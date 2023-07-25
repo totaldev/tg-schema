@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a vector of numbers; for testing only.
+ * A simple object containing a vector of numbers; for testing only
  */
 class TestVectorInt extends TdObject
 {
     public const TYPE_NAME = 'testVectorInt';
 
     /**
-     * Vector of numbers.
+     * Vector of numbers
      *
      * @var int[]
      */

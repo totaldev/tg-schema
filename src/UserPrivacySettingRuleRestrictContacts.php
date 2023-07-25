@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A rule to restrict all contacts of a user from doing something.
+ * A rule to restrict all contacts of the user from doing something
  */
 class UserPrivacySettingRuleRestrictContacts extends UserPrivacySettingRule
 {

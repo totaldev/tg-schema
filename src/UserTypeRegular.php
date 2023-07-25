@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A regular user.
+ * A regular user
  */
 class UserTypeRegular extends UserType
 {

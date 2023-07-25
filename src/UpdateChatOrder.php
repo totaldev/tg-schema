@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent.

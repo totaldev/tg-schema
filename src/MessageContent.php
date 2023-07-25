@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the content of a message.
+ * Contains the content of a message
  */
 class MessageContent extends TdObject
 {

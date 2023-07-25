@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a single result of an inline query; for bots only.
+ * Represents a single result of an inline query; for bots only
  */
 class InputInlineQueryResult extends TdObject
 {

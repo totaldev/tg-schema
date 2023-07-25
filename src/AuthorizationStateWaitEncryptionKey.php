@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * TDLib needs an encryption key to decrypt the local database.

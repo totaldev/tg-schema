@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Provides information about the status of a member in a chat.
+ * Provides information about the status of a member in a chat
  */
 class ChatMemberStatus extends TdObject
 {

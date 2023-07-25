@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A chat invite link.
+ * A chat invite link
  */
 class TMeUrlTypeChatInvite extends TMeUrlType
 {
     public const TYPE_NAME = 'tMeUrlTypeChatInvite';
 
     /**
-     * Chat invite link info.
+     * Information about the chat invite link
+     *
+     * @var ChatInviteLinkInfo
      */
     protected ChatInviteLinkInfo $info;
 
@@ -38,7 +40,7 @@ class TMeUrlTypeChatInvite extends TMeUrlType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info'  => $this->info->typeSerialize(),
+            'info' => $this->info->typeSerialize(),
         ];
     }
 

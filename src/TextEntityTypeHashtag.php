@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A hashtag text, beginning with "#".
+ * A hashtag text, beginning with "#"
  */
 class TextEntityTypeHashtag extends TextEntityType
 {

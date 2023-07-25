@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Deletes saved order info.
+ * Deletes saved order information
  */
 class DeleteSavedOrderInfo extends TdFunction
 {

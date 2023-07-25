@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the value of a string in a language pack.
+ * Represents the value of a string in a language pack
  */
 class LanguagePackStringValue extends TdObject
 {

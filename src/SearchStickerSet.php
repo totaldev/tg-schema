@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for a sticker set by its name.
+ * Searches for a sticker set by its name
  */
 class SearchStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'searchStickerSet';
 
     /**
-     * Name of the sticker set.
+     * Name of the sticker set
+     *
+     * @var string
      */
     protected string $name;
 
@@ -36,7 +38,7 @@ class SearchStickerSet extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
     }
 

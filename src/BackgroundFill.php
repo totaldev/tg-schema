@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a fill of a background.
+ * Describes a fill of a background
  */
 class BackgroundFill extends TdObject
 {

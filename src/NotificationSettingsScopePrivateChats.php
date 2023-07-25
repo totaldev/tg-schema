@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Notification settings applied to all private and secret chats when the corresponding chat setting has a default value.
+ * Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
  */
 class NotificationSettingsScopePrivateChats extends NotificationSettingsScope
 {

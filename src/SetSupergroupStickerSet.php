@@ -6,26 +6,30 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the sticker set of a supergroup; requires can_change_info rights.
+ * Changes the sticker set of a supergroup; requires can_change_info administrator right
  */
 class SetSupergroupStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'setSupergroupStickerSet';
 
     /**
-     * Identifier of the supergroup.
+     * Identifier of the supergroup
+     *
+     * @var int
      */
     protected int $supergroupId;
 
     /**
-     * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
+     * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
+     *
+     * @var int
      */
-    protected string $stickerSetId;
+    protected int $stickerSetId;
 
-    public function __construct(int $supergroupId, string $stickerSetId)
+    public function __construct(int $supergroupId, int $stickerSetId)
     {
         $this->supergroupId = $supergroupId;
         $this->stickerSetId = $stickerSetId;
@@ -42,8 +46,8 @@ class SetSupergroupStickerSet extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
-            'supergroup_id'  => $this->supergroupId,
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
             'sticker_set_id' => $this->stickerSetId,
         ];
     }
@@ -53,7 +57,7 @@ class SetSupergroupStickerSet extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getStickerSetId(): string
+    public function getStickerSetId(): int
     {
         return $this->stickerSetId;
     }

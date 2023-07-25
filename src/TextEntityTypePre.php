@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Text that must be formatted as if inside a pre HTML tag.
+ * Text that must be formatted as if inside a pre HTML tag
  */
 class TextEntityTypePre extends TextEntityType
 {

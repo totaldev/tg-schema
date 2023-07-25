@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An expired video message (self-destructed after TTL has elapsed).
+ * A self-destructed video message
  */
 class MessageExpiredVideo extends MessageContent
 {

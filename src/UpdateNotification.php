@@ -6,22 +6,26 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A notification was changed.
+ * A notification was changed
  */
 class UpdateNotification extends Update
 {
     public const TYPE_NAME = 'updateNotification';
 
     /**
-     * Unique notification group identifier.
+     * Unique notification group identifier
+     *
+     * @var int
      */
     protected int $notificationGroupId;
 
     /**
-     * Changed notification.
+     * Changed notification
+     *
+     * @var Notification
      */
     protected Notification $notification;
 
@@ -30,7 +34,7 @@ class UpdateNotification extends Update
         parent::__construct();
 
         $this->notificationGroupId = $notificationGroupId;
-        $this->notification        = $notification;
+        $this->notification = $notification;
     }
 
     public static function fromArray(array $array): UpdateNotification
@@ -44,9 +48,9 @@ class UpdateNotification extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'                 => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'notification_group_id' => $this->notificationGroupId,
-            'notification'          => $this->notification->typeSerialize(),
+            'notification' => $this->notification->typeSerialize(),
         ];
     }
 

@@ -6,44 +6,48 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Sets the result of a shipping query; for bots only.
+ * Sets the result of a shipping query; for bots only
  */
 class AnswerShippingQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerShippingQuery';
 
     /**
-     * Identifier of the shipping query.
+     * Identifier of the shipping query
+     *
+     * @var int
      */
-    protected string $shippingQueryId;
+    protected int $shippingQueryId;
 
     /**
-     * Available shipping options.
+     * Available shipping options
      *
      * @var ShippingOption[]
      */
     protected array $shippingOptions;
 
     /**
-     * An error message, empty on success.
+     * An error message, empty on success
+     *
+     * @var string
      */
     protected string $errorMessage;
 
-    public function __construct(string $shippingQueryId, array $shippingOptions, string $errorMessage)
+    public function __construct(int $shippingQueryId, array $shippingOptions, string $errorMessage)
     {
         $this->shippingQueryId = $shippingQueryId;
         $this->shippingOptions = $shippingOptions;
-        $this->errorMessage    = $errorMessage;
+        $this->errorMessage = $errorMessage;
     }
 
     public static function fromArray(array $array): AnswerShippingQuery
     {
         return new static(
             $array['shipping_query_id'],
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
             $array['error_message'],
         );
     }
@@ -51,14 +55,14 @@ class AnswerShippingQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'shipping_query_id' => $this->shippingQueryId,
-            array_map(fn ($x)   => $x->typeSerialize(), $this->shippingOptions),
-            'error_message'     => $this->errorMessage,
+            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            'error_message' => $this->errorMessage,
         ];
     }
 
-    public function getShippingQueryId(): string
+    public function getShippingQueryId(): int
     {
         return $this->shippingQueryId;
     }

@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of language pack strings.
+ * Contains a list of language pack strings
  */
 class LanguagePackStrings extends TdObject
 {
     public const TYPE_NAME = 'languagePackStrings';
 
     /**
-     * A list of language pack strings.
+     * A list of language pack strings
      *
      * @var LanguagePackString[]
      */
@@ -30,15 +30,15 @@ class LanguagePackStrings extends TdObject
     public static function fromArray(array $array): LanguagePackStrings
     {
         return new static(
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            array_map(fn ($x) => $x->typeSerialize(), $this->strings),
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 

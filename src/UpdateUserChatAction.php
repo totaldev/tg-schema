@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * User activity in the chat has changed.

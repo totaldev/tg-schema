@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains an HTTP URL.
+ * Contains an HTTP URL
  */
 class HttpUrl extends TdObject
 {
     public const TYPE_NAME = 'httpUrl';
 
     /**
-     * The URL.
+     * The URL
+     *
+     * @var string
      */
     protected string $url;
 
@@ -36,7 +38,7 @@ class HttpUrl extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
+            'url' => $this->url,
         ];
     }
 

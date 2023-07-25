@@ -6,41 +6,47 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for installed sticker sets by looking for specified query in their title and name.
+ * Searches for installed sticker sets by looking for specified query in their title and name
  */
 class SearchInstalledStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'searchInstalledStickerSets';
 
     /**
-     * Pass true to return mask sticker sets; pass false to return ordinary sticker sets.
+     * Type of the sticker sets to search for
+     *
+     * @var StickerType
      */
-    protected bool $isMasks;
+    protected StickerType $stickerType;
 
     /**
-     * Query to search for.
+     * Query to search for
+     *
+     * @var string
      */
     protected string $query;
 
     /**
-     * The maximum number of sticker sets to return.
+     * The maximum number of sticker sets to return
+     *
+     * @var int
      */
     protected int $limit;
 
-    public function __construct(bool $isMasks, string $query, int $limit)
+    public function __construct(StickerType $stickerType, string $query, int $limit)
     {
-        $this->isMasks = $isMasks;
-        $this->query   = $query;
-        $this->limit   = $limit;
+        $this->stickerType = $stickerType;
+        $this->query = $query;
+        $this->limit = $limit;
     }
 
     public static function fromArray(array $array): SearchInstalledStickerSets
     {
         return new static(
-            $array['is_masks'],
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['query'],
             $array['limit'],
         );
@@ -49,16 +55,16 @@ class SearchInstalledStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
-            'is_masks' => $this->isMasks,
-            'query'    => $this->query,
-            'limit'    => $this->limit,
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'query' => $this->query,
+            'limit' => $this->limit,
         ];
     }
 
-    public function getIsMasks(): bool
+    public function getStickerType(): StickerType
     {
-        return $this->isMasks;
+        return $this->stickerType;
     }
 
     public function getQuery(): string

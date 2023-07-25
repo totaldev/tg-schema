@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Adds the specified data to data usage statistics. Can be called before authorization.
+ * Adds the specified data to data usage statistics. Can be called before authorization
  */
 class AddNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'addNetworkStatistics';
 
     /**
-     * The network statistics entry with the data to be added to statistics.
+     * The network statistics entry with the data to be added to statistics
+     *
+     * @var NetworkStatisticsEntry
      */
     protected NetworkStatisticsEntry $entry;
 

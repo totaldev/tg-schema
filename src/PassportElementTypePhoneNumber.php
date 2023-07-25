@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element containing the user's phone number.
+ * A Telegram Passport element containing the user's phone number
  */
 class PassportElementTypePhoneNumber extends PassportElementType
 {

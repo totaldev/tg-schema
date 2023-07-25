@@ -6,47 +6,51 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An HTTP url needs to be open.
+ * An HTTP URL needs to be open
  */
 class LoginUrlInfoOpen extends LoginUrlInfo
 {
     public const TYPE_NAME = 'loginUrlInfoOpen';
 
     /**
-     * The URL to open.
+     * The URL to open
+     *
+     * @var string
      */
     protected string $url;
 
     /**
-     * True, if there is no need to show an ordinary open URL confirm.
+     * True, if there is no need to show an ordinary open URL confirmation
+     *
+     * @var bool
      */
-    protected bool $skipConfirm;
+    protected bool $skipConfirmation;
 
-    public function __construct(string $url, bool $skipConfirm)
+    public function __construct(string $url, bool $skipConfirmation)
     {
         parent::__construct();
 
-        $this->url         = $url;
-        $this->skipConfirm = $skipConfirm;
+        $this->url = $url;
+        $this->skipConfirmation = $skipConfirmation;
     }
 
     public static function fromArray(array $array): LoginUrlInfoOpen
     {
         return new static(
             $array['url'],
-            $array['skip_confirm'],
+            $array['skip_confirmation'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'url'          => $this->url,
-            'skip_confirm' => $this->skipConfirm,
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'skip_confirmation' => $this->skipConfirmation,
         ];
     }
 
@@ -55,8 +59,8 @@ class LoginUrlInfoOpen extends LoginUrlInfo
         return $this->url;
     }
 
-    public function getSkipConfirm(): bool
+    public function getSkipConfirmation(): bool
     {
-        return $this->skipConfirm;
+        return $this->skipConfirmation;
     }
 }

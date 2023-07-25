@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The call wasn't discarded, or the reason is unknown.
+ * The call wasn't discarded, or the reason is unknown
  */
 class CallDiscardReasonEmpty extends CallDiscardReason
 {

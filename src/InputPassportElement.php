@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about a Telegram Passport element to be saved.
+ * Contains information about a Telegram Passport element to be saved
  */
 class InputPassportElement extends TdObject
 {

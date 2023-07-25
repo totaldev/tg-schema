@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A phone number.
+ * A phone number
  */
 class TextEntityTypePhoneNumber extends TextEntityType
 {

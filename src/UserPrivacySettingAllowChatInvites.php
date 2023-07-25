@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether the user can be invited to chats.
+ * A privacy setting for managing whether the user can be invited to chats
  */
 class UserPrivacySettingAllowChatInvites extends UserPrivacySetting
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether the user can be called.
+ * A privacy setting for managing whether the user can be called
  */
 class UserPrivacySettingAllowCalls extends UserPrivacySetting
 {

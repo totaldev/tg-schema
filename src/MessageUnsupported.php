@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Message content that is not supported by the client.
+ * A message content that is not supported in the current TDLib version
  */
 class MessageUnsupported extends MessageContent
 {

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges.

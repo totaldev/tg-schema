@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Checks the phone number verification code for Telegram Passport.
+ * Checks the phone number verification code for Telegram Passport
  */
 class CheckPhoneNumberVerificationCode extends TdFunction
 {
     public const TYPE_NAME = 'checkPhoneNumberVerificationCode';
 
     /**
-     * Verification code.
+     * Verification code to check
+     *
+     * @var string
      */
     protected string $code;
 
@@ -36,7 +38,7 @@ class CheckPhoneNumberVerificationCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code'  => $this->code,
+            'code' => $this->code,
         ];
     }
 

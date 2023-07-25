@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The user is typing a message.
+ * The user is typing a message
  */
 class ChatActionTyping extends ChatAction
 {

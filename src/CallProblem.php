@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the exact type of a problem with a call.
+ * Describes the exact type of a problem with a call
  */
 class CallProblem extends TdObject
 {

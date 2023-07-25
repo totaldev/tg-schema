@@ -6,43 +6,51 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file generation process needs to be started by the client.
+ * The file generation process needs to be started by the application
  */
 class UpdateFileGenerationStart extends Update
 {
     public const TYPE_NAME = 'updateFileGenerationStart';
 
     /**
-     * Unique identifier for the generation process.
+     * Unique identifier for the generation process
+     *
+     * @var int
      */
-    protected string $generationId;
+    protected int $generationId;
 
     /**
-     * The path to a file from which a new file is generated; may be empty.
+     * The path to a file from which a new file is generated; may be empty
+     *
+     * @var string
      */
     protected string $originalPath;
 
     /**
-     * The path to a file that should be created and where the new file should be generated.
+     * The path to a file that must be created and where the new file is generated
+     *
+     * @var string
      */
     protected string $destinationPath;
 
     /**
-     * String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client.
+     * String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
+     *
+     * @var string
      */
     protected string $conversion;
 
-    public function __construct(string $generationId, string $originalPath, string $destinationPath, string $conversion)
+    public function __construct(int $generationId, string $originalPath, string $destinationPath, string $conversion)
     {
         parent::__construct();
 
-        $this->generationId    = $generationId;
-        $this->originalPath    = $originalPath;
+        $this->generationId = $generationId;
+        $this->originalPath = $originalPath;
         $this->destinationPath = $destinationPath;
-        $this->conversion      = $conversion;
+        $this->conversion = $conversion;
     }
 
     public static function fromArray(array $array): UpdateFileGenerationStart
@@ -58,15 +66,15 @@ class UpdateFileGenerationStart extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'generation_id'    => $this->generationId,
-            'original_path'    => $this->originalPath,
+            '@type' => static::TYPE_NAME,
+            'generation_id' => $this->generationId,
+            'original_path' => $this->originalPath,
             'destination_path' => $this->destinationPath,
-            'conversion'       => $this->conversion,
+            'conversion' => $this->conversion,
         ];
     }
 
-    public function getGenerationId(): string
+    public function getGenerationId(): int
     {
         return $this->generationId;
     }

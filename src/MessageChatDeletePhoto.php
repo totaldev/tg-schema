@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A deleted chat photo.
+ * A deleted chat photo
  */
 class MessageChatDeletePhoto extends MessageContent
 {

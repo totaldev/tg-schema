@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The call has been answered and encryption keys are being exchanged.
+ * The call has been answered and encryption keys are being exchanged
  */
 class CallStateExchangingKeys extends CallState
 {

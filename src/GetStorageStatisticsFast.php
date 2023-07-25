@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Quickly returns approximate storage usage statistics. Can be called before authorization.
+ * Quickly returns approximate storage usage statistics. Can be called before authorization
  */
 class GetStorageStatisticsFast extends TdFunction
 {

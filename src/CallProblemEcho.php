@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The user heard their own voice.
+ * The user heard their own voice
  */
 class CallProblemEcho extends CallProblem
 {

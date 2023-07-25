@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a string; for testing only.
+ * A simple object containing a string; for testing only
  */
 class TestString extends TdObject
 {
     public const TYPE_NAME = 'testString';
 
     /**
-     * String.
+     * String
+     *
+     * @var string
      */
     protected string $value;
 

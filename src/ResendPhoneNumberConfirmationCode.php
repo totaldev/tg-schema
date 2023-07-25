@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Resends phone number confirmation code.
+ * Resends phone number confirmation code
  */
 class ResendPhoneNumberConfirmationCode extends TdFunction
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns database statistics.
+ * Returns database statistics
  */
 class GetDatabaseStatistics extends TdFunction
 {

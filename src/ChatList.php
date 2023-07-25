@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a list of chats.
+ * Describes a list of chats
  */
 class ChatList extends TdObject
 {

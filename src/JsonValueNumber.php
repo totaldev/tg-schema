@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a numeric JSON value.
+ * Represents a numeric JSON value
  */
 class JsonValueNumber extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueNumber';
 
     /**
-     * The value.
+     * The value
+     *
+     * @var float
      */
     protected float $value;
 

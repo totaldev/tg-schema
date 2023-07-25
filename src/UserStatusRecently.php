@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The user was online recently.
+ * The user was online recently
  */
 class UserStatusRecently extends UserStatus
 {

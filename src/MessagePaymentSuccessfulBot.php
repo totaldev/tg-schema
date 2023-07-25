@@ -6,59 +6,83 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A payment has been completed; for bots only.
+ * A payment has been completed; for bots only
  */
 class MessagePaymentSuccessfulBot extends MessageContent
 {
     public const TYPE_NAME = 'messagePaymentSuccessfulBot';
 
     /**
-     * Identifier of the message with the corresponding invoice; can be an identifier of a deleted message.
-     */
-    protected int $invoiceMessageId;
-
-    /**
-     * Currency for price of the product.
+     * Currency for price of the product
+     *
+     * @var string
      */
     protected string $currency;
 
     /**
-     * Total price for the product, in the minimal quantity of the currency.
+     * Total price for the product, in the smallest units of the currency
+     *
+     * @var int
      */
     protected int $totalAmount;
 
     /**
-     * Invoice payload.
+     * True, if this is a recurring payment
+     *
+     * @var bool
+     */
+    protected bool $isRecurring;
+
+    /**
+     * True, if this is the first recurring payment
+     *
+     * @var bool
+     */
+    protected bool $isFirstRecurring;
+
+    /**
+     * Invoice payload
+     *
+     * @var string
      */
     protected string $invoicePayload;
 
     /**
-     * Identifier of the shipping option chosen by the user; may be empty if not applicable.
+     * Identifier of the shipping option chosen by the user; may be empty if not applicable
+     *
+     * @var string
      */
     protected string $shippingOptionId;
 
     /**
-     * Information about the order; may be null.
+     * Information about the order; may be null
+     *
+     * @var OrderInfo|null
      */
     protected ?OrderInfo $orderInfo;
 
     /**
-     * Telegram payment identifier.
+     * Telegram payment identifier
+     *
+     * @var string
      */
     protected string $telegramPaymentChargeId;
 
     /**
-     * Provider payment identifier.
+     * Provider payment identifier
+     *
+     * @var string
      */
     protected string $providerPaymentChargeId;
 
     public function __construct(
-        int $invoiceMessageId,
         string $currency,
         int $totalAmount,
+        bool $isRecurring,
+        bool $isFirstRecurring,
         string $invoicePayload,
         string $shippingOptionId,
         ?OrderInfo $orderInfo,
@@ -67,12 +91,13 @@ class MessagePaymentSuccessfulBot extends MessageContent
     ) {
         parent::__construct();
 
-        $this->invoiceMessageId        = $invoiceMessageId;
-        $this->currency                = $currency;
-        $this->totalAmount             = $totalAmount;
-        $this->invoicePayload          = $invoicePayload;
-        $this->shippingOptionId        = $shippingOptionId;
-        $this->orderInfo               = $orderInfo;
+        $this->currency = $currency;
+        $this->totalAmount = $totalAmount;
+        $this->isRecurring = $isRecurring;
+        $this->isFirstRecurring = $isFirstRecurring;
+        $this->invoicePayload = $invoicePayload;
+        $this->shippingOptionId = $shippingOptionId;
+        $this->orderInfo = $orderInfo;
         $this->telegramPaymentChargeId = $telegramPaymentChargeId;
         $this->providerPaymentChargeId = $providerPaymentChargeId;
     }
@@ -80,9 +105,10 @@ class MessagePaymentSuccessfulBot extends MessageContent
     public static function fromArray(array $array): MessagePaymentSuccessfulBot
     {
         return new static(
-            $array['invoice_message_id'],
             $array['currency'],
             $array['total_amount'],
+            $array['is_recurring'],
+            $array['is_first_recurring'],
             $array['invoice_payload'],
             $array['shipping_option_id'],
             (isset($array['order_info']) ? TdSchemaRegistry::fromArray($array['order_info']) : null),
@@ -94,21 +120,17 @@ class MessagePaymentSuccessfulBot extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'                      => static::TYPE_NAME,
-            'invoice_message_id'         => $this->invoiceMessageId,
-            'currency'                   => $this->currency,
-            'total_amount'               => $this->totalAmount,
-            'invoice_payload'            => $this->invoicePayload,
-            'shipping_option_id'         => $this->shippingOptionId,
-            'order_info'                 => (isset($this->orderInfo) ? $this->orderInfo : null),
+            '@type' => static::TYPE_NAME,
+            'currency' => $this->currency,
+            'total_amount' => $this->totalAmount,
+            'is_recurring' => $this->isRecurring,
+            'is_first_recurring' => $this->isFirstRecurring,
+            'invoice_payload' => $this->invoicePayload,
+            'shipping_option_id' => $this->shippingOptionId,
+            'order_info' => (isset($this->orderInfo) ? $this->orderInfo : null),
             'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
             'provider_payment_charge_id' => $this->providerPaymentChargeId,
         ];
-    }
-
-    public function getInvoiceMessageId(): int
-    {
-        return $this->invoiceMessageId;
     }
 
     public function getCurrency(): string
@@ -119,6 +141,16 @@ class MessagePaymentSuccessfulBot extends MessageContent
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function getIsRecurring(): bool
+    {
+        return $this->isRecurring;
+    }
+
+    public function getIsFirstRecurring(): bool
+    {
+        return $this->isFirstRecurring;
     }
 
     public function getInvoicePayload(): string

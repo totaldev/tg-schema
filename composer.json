@@ -1,5 +1,5 @@
 {
-    "name": "phptdgram/schema",
+    "name": "totaldev/tg-schema",
     "type": "library",
     "description": "The PHP TD Gram Schema generated TdLib Schema Classes using phptdgram/schema-generator from td_api.tl file.",
     "keywords": [
@@ -8,20 +8,23 @@
         "telegram",
         "tdlib"
     ],
-    "homepage": "https://github.com/phptdgram/schema",
+    "homepage": "https://github.com/totaldev/tg-schema",
     "license": "MIT",
     "authors": [
         {
             "name": "Aurimas Niekis",
             "email": "aurimas@niekis.lt"
+        },
+        {
+            "name": "Vadim Kovalenko"
         }
     ],
     "support": {
-        "issues": "https://github.com/phptdgram/schema",
-        "source": "https://github.com/phptdgram/schema"
+        "issues": "https://github.com/totaldev/tg-schema",
+        "source": "https://github.com/totaldev/tg-schema"
     },
     "require": {
-        "php": "^7.4||^8.0",
+        "php": "^8.0",
         "ext-json": "*"
     },
     "require-dev": {
@@ -32,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPTdGram\\Schema\\": "src"
+            "Totaldev\\TgSchema\\": "src"
         },
         "classmap": [
             "src/"

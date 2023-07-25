@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * The TTL (Time To Live) setting messages in a secret chat has been changed.

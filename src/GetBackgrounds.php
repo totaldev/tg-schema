@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns backgrounds installed by the user.
+ * Returns backgrounds installed by the user
  */
 class GetBackgrounds extends TdFunction
 {
     public const TYPE_NAME = 'getBackgrounds';
 
     /**
-     * True, if the backgrounds needs to be ordered for dark theme.
+     * Pass true to order returned backgrounds for a dark theme
+     *
+     * @var bool
      */
     protected bool $forDarkTheme;
 
@@ -35,7 +37,7 @@ class GetBackgrounds extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'for_dark_theme' => $this->forDarkTheme,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the type of a file.
+ * Represents the type of a file
  */
 class FileType extends TdObject
 {

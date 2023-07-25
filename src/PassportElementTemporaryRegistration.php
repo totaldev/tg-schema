@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element containing the user's temporary registration.
+ * A Telegram Passport element containing the user's temporary registration
  */
 class PassportElementTemporaryRegistration extends PassportElement
 {
     public const TYPE_NAME = 'passportElementTemporaryRegistration';
 
     /**
-     * Temporary registration.
+     * Temporary registration
+     *
+     * @var PersonalDocument
      */
     protected PersonalDocument $temporaryRegistration;
 
@@ -37,7 +39,7 @@ class PassportElementTemporaryRegistration extends PassportElement
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'temporary_registration' => $this->temporaryRegistration->typeSerialize(),
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a stream to which TDLib internal log is written.
+ * Describes a stream to which TDLib internal log is written
  */
 class LogStream extends TdObject
 {

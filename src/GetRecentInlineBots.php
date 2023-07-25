@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns up to 20 recently used inline bots in the order of their last usage.
+ * Returns up to 20 recently used inline bots in the order of their last usage
  */
 class GetRecentInlineBots extends TdFunction
 {

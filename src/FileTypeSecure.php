@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a file from Secure storage used for storing Telegram Passport files.
+ * The file is a file from Secure storage used for storing Telegram Passport files
  */
 class FileTypeSecure extends FileType
 {

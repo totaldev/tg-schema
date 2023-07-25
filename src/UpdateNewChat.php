@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates.
+ * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
  */
 class UpdateNewChat extends Update
 {
     public const TYPE_NAME = 'updateNewChat';
 
     /**
-     * The chat.
+     * The chat
+     *
+     * @var Chat
      */
     protected Chat $chat;
 
@@ -38,7 +40,7 @@ class UpdateNewChat extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'chat'  => $this->chat->typeSerialize(),
+            'chat' => $this->chat->typeSerialize(),
         ];
     }
 

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A rule to allow all of a user's contacts to do something.
+ * A rule to allow all contacts of the user to do something
  */
 class UserPrivacySettingRuleAllowContacts extends UserPrivacySettingRule
 {

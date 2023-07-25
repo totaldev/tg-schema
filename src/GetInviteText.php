@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram.

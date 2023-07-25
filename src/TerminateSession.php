@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Terminates a session of the current user.
+ * Terminates a session of the current user
  */
 class TerminateSession extends TdFunction
 {
     public const TYPE_NAME = 'terminateSession';
 
     /**
-     * Session identifier.
+     * Session identifier
+     *
+     * @var int
      */
-    protected string $sessionId;
+    protected int $sessionId;
 
-    public function __construct(string $sessionId)
+    public function __construct(int $sessionId)
     {
         $this->sessionId = $sessionId;
     }
@@ -35,12 +37,12 @@ class TerminateSession extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'session_id' => $this->sessionId,
         ];
     }
 
-    public function getSessionId(): string
+    public function getSessionId(): int
     {
         return $this->sessionId;
     }

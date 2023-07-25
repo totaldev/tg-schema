@@ -6,26 +6,30 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The supergroup sticker set was changed.
+ * The supergroup sticker set was changed
  */
 class ChatEventStickerSetChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventStickerSetChanged';
 
     /**
-     * Previous identifier of the chat sticker set; 0 if none.
+     * Previous identifier of the chat sticker set; 0 if none
+     *
+     * @var int
      */
-    protected string $oldStickerSetId;
+    protected int $oldStickerSetId;
 
     /**
-     * New identifier of the chat sticker set; 0 if none.
+     * New identifier of the chat sticker set; 0 if none
+     *
+     * @var int
      */
-    protected string $newStickerSetId;
+    protected int $newStickerSetId;
 
-    public function __construct(string $oldStickerSetId, string $newStickerSetId)
+    public function __construct(int $oldStickerSetId, int $newStickerSetId)
     {
         parent::__construct();
 
@@ -44,18 +48,18 @@ class ChatEventStickerSetChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'old_sticker_set_id' => $this->oldStickerSetId,
             'new_sticker_set_id' => $this->newStickerSetId,
         ];
     }
 
-    public function getOldStickerSetId(): string
+    public function getOldStickerSetId(): int
     {
         return $this->oldStickerSetId;
     }
 
-    public function getNewStickerSetId(): string
+    public function getNewStickerSetId(): int
     {
         return $this->newStickerSetId;
     }

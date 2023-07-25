@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The translation of the document contains an error. The error is considered resolved when the list of files changes.
+ * The translation of the document contains an error. The error is considered resolved when the list of files changes
  */
 class InputPassportElementErrorSourceTranslationFiles extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceTranslationFiles';
 
     /**
-     * Current hashes of all files with the translation.
+     * Current hashes of all files with the translation
      *
      * @var string[]
      */
@@ -39,7 +39,7 @@ class InputPassportElementErrorSourceTranslationFiles extends InputPassportEleme
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_hashes' => $this->fileHashes,
         ];
     }

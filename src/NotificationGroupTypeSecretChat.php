@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A group containing a notification of type notificationTypeNewSecretChat.
+ * A group containing a notification of type notificationTypeNewSecretChat
  */
 class NotificationGroupTypeSecretChat extends NotificationGroupType
 {

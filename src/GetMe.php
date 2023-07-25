@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the current user.
+ * Returns the current user
  */
 class GetMe extends TdFunction
 {

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents an integer option.
+ * Represents an integer option
  */
 class OptionValueInteger extends OptionValue
 {
     public const TYPE_NAME = 'optionValueInteger';
 
     /**
-     * The value of the option.
+     * The value of the option
+     *
+     * @var int
      */
     protected int $value;
 

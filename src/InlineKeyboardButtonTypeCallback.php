@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A button that sends a special callback query to a bot.
+ * A button that sends a callback query to a bot
  */
 class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeCallback';
 
     /**
-     * Data to be sent to the bot via a callback query.
+     * Data to be sent to the bot via a callback query
+     *
+     * @var string
      */
     protected string $data;
 
@@ -38,7 +40,7 @@ class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data'  => $this->data,
+            'data' => $this->data,
         ];
     }
 

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword.
+ * Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
  */
 class CheckAuthenticationPassword extends TdFunction
 {
     public const TYPE_NAME = 'checkAuthenticationPassword';
 
     /**
-     * The password to check.
+     * The 2-step verification password to check
+     *
+     * @var string
      */
     protected string $password;
 
@@ -35,7 +37,7 @@ class CheckAuthenticationPassword extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'password' => $this->password,
         ];
     }

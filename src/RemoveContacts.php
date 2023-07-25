@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes users from the contact list.
+ * Removes users from the contact list
  */
 class RemoveContacts extends TdFunction
 {
     public const TYPE_NAME = 'removeContacts';
 
     /**
-     * Identifiers of users to be deleted.
+     * Identifiers of users to be deleted
      *
      * @var int[]
      */
@@ -37,7 +37,7 @@ class RemoveContacts extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'user_ids' => $this->userIds,
         ];
     }

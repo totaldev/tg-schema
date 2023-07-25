@@ -6,40 +6,48 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a chat event.
+ * Represents a chat event
  */
 class ChatEvent extends TdObject
 {
     public const TYPE_NAME = 'chatEvent';
 
     /**
-     * Chat event identifier.
+     * Chat event identifier
+     *
+     * @var int
      */
-    protected string $id;
+    protected int $id;
 
     /**
-     * Point in time (Unix timestamp) when the event happened.
+     * Point in time (Unix timestamp) when the event happened
+     *
+     * @var int
      */
     protected int $date;
 
     /**
-     * Identifier of the user who performed the action that triggered the event.
+     * Identifier of the user or chat who performed the action
+     *
+     * @var MessageSender
      */
-    protected int $userId;
+    protected MessageSender $memberId;
 
     /**
-     * Action performed by the user.
+     * The action
+     *
+     * @var ChatEventAction
      */
     protected ChatEventAction $action;
 
-    public function __construct(string $id, int $date, int $userId, ChatEventAction $action)
+    public function __construct(int $id, int $date, MessageSender $memberId, ChatEventAction $action)
     {
-        $this->id     = $id;
-        $this->date   = $date;
-        $this->userId = $userId;
+        $this->id = $id;
+        $this->date = $date;
+        $this->memberId = $memberId;
         $this->action = $action;
     }
 
@@ -48,7 +56,7 @@ class ChatEvent extends TdObject
         return new static(
             $array['id'],
             $array['date'],
-            $array['user_id'],
+            TdSchemaRegistry::fromArray($array['member_id']),
             TdSchemaRegistry::fromArray($array['action']),
         );
     }
@@ -56,15 +64,15 @@ class ChatEvent extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'id'      => $this->id,
-            'date'    => $this->date,
-            'user_id' => $this->userId,
-            'action'  => $this->action->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'date' => $this->date,
+            'member_id' => $this->memberId->typeSerialize(),
+            'action' => $this->action->typeSerialize(),
         ];
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
@@ -74,9 +82,9 @@ class ChatEvent extends TdObject
         return $this->date;
     }
 
-    public function getUserId(): int
+    public function getMemberId(): MessageSender
     {
-        return $this->userId;
+        return $this->memberId;
     }
 
     public function getAction(): ChatEventAction

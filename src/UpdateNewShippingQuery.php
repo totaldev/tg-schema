@@ -6,42 +6,50 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A new incoming shipping query; for bots only. Only for invoices with flexible price.
+ * A new incoming shipping query; for bots only. Only for invoices with flexible price
  */
 class UpdateNewShippingQuery extends Update
 {
     public const TYPE_NAME = 'updateNewShippingQuery';
 
     /**
-     * Unique query identifier.
+     * Unique query identifier
+     *
+     * @var int
      */
-    protected string $id;
+    protected int $id;
 
     /**
-     * Identifier of the user who sent the query.
+     * Identifier of the user who sent the query
+     *
+     * @var int
      */
     protected int $senderUserId;
 
     /**
-     * Invoice payload.
+     * Invoice payload
+     *
+     * @var string
      */
     protected string $invoicePayload;
 
     /**
-     * User shipping address.
+     * User shipping address
+     *
+     * @var Address
      */
     protected Address $shippingAddress;
 
-    public function __construct(string $id, int $senderUserId, string $invoicePayload, Address $shippingAddress)
+    public function __construct(int $id, int $senderUserId, string $invoicePayload, Address $shippingAddress)
     {
         parent::__construct();
 
-        $this->id              = $id;
-        $this->senderUserId    = $senderUserId;
-        $this->invoicePayload  = $invoicePayload;
+        $this->id = $id;
+        $this->senderUserId = $senderUserId;
+        $this->invoicePayload = $invoicePayload;
         $this->shippingAddress = $shippingAddress;
     }
 
@@ -58,15 +66,15 @@ class UpdateNewShippingQuery extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'id'               => $this->id,
-            'sender_user_id'   => $this->senderUserId,
-            'invoice_payload'  => $this->invoicePayload,
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'sender_user_id' => $this->senderUserId,
+            'invoice_payload' => $this->invoicePayload,
             'shipping_address' => $this->shippingAddress->typeSerialize(),
         ];
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }

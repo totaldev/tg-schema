@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A basic group was upgraded to a supergroup and was deactivated as the result.
+ * A basic group was upgraded to a supergroup and was deactivated as the result
  */
 class MessageChatUpgradeTo extends MessageContent
 {
     public const TYPE_NAME = 'messageChatUpgradeTo';
 
     /**
-     * Identifier of the supergroup to which the basic group was upgraded.
+     * Identifier of the supergroup to which the basic group was upgraded
+     *
+     * @var int
      */
     protected int $supergroupId;
 
@@ -37,7 +39,7 @@ class MessageChatUpgradeTo extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
     }

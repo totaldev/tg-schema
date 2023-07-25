@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A mobile roaming network.
+ * A mobile roaming network
  */
 class NetworkTypeMobileRoaming extends NetworkType
 {

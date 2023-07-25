@@ -6,22 +6,24 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a list of users.
+ * Represents a list of users
  */
 class Users extends TdObject
 {
     public const TYPE_NAME = 'users';
 
     /**
-     * Approximate total count of users found.
+     * Approximate total number of users found
+     *
+     * @var int
      */
     protected int $totalCount;
 
     /**
-     * A list of user identifiers.
+     * A list of user identifiers
      *
      * @var int[]
      */
@@ -30,7 +32,7 @@ class Users extends TdObject
     public function __construct(int $totalCount, array $userIds)
     {
         $this->totalCount = $totalCount;
-        $this->userIds    = $userIds;
+        $this->userIds = $userIds;
     }
 
     public static function fromArray(array $array): Users
@@ -44,9 +46,9 @@ class Users extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            'user_ids'    => $this->userIds,
+            'user_ids' => $this->userIds,
         ];
     }
 

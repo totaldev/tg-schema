@@ -6,29 +6,33 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Finishes the file generation.
+ * Finishes the file generation
  */
 class FinishFileGeneration extends TdFunction
 {
     public const TYPE_NAME = 'finishFileGeneration';
 
     /**
-     * The identifier of the generation process.
+     * The identifier of the generation process
+     *
+     * @var int
      */
-    protected string $generationId;
+    protected int $generationId;
 
     /**
-     * If set, means that file generation has failed and should be terminated.
+     * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
+     *
+     * @var Error
      */
     protected Error $error;
 
-    public function __construct(string $generationId, Error $error)
+    public function __construct(int $generationId, Error $error)
     {
         $this->generationId = $generationId;
-        $this->error        = $error;
+        $this->error = $error;
     }
 
     public static function fromArray(array $array): FinishFileGeneration
@@ -42,13 +46,13 @@ class FinishFileGeneration extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'generation_id' => $this->generationId,
-            'error'         => $this->error->typeSerialize(),
+            'error' => $this->error->typeSerialize(),
         ];
     }
 
-    public function getGenerationId(): string
+    public function getGenerationId(): int
     {
         return $this->generationId;
     }

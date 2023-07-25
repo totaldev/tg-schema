@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An updated chat photo.
+ * An updated chat photo
  */
 class MessageChatChangePhoto extends MessageContent
 {
     public const TYPE_NAME = 'messageChatChangePhoto';
 
     /**
-     * New chat photo.
+     * New chat photo
+     *
+     * @var ChatPhoto
      */
-    protected Photo $photo;
+    protected ChatPhoto $photo;
 
-    public function __construct(Photo $photo)
+    public function __construct(ChatPhoto $photo)
     {
         parent::__construct();
 
@@ -42,7 +44,7 @@ class MessageChatChangePhoto extends MessageContent
         ];
     }
 
-    public function getPhoto(): Photo
+    public function getPhoto(): ChatPhoto
     {
         return $this->photo;
     }

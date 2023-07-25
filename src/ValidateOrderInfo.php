@@ -6,39 +6,39 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Validates the order information provided by a user and returns the available shipping options for a flexible invoice.
+ * Validates the order information provided by a user and returns the available shipping options for a flexible invoice
  */
 class ValidateOrderInfo extends TdFunction
 {
     public const TYPE_NAME = 'validateOrderInfo';
 
     /**
-     * Chat identifier of the Invoice message.
+     * The invoice
+     *
+     * @var InputInvoice
      */
-    protected int $chatId;
+    protected InputInvoice $inputInvoice;
 
     /**
-     * Message identifier.
-     */
-    protected int $messageId;
-
-    /**
-     * The order information, provided by the user.
+     * The order information, provided by the user; pass null if empty
+     *
+     * @var OrderInfo
      */
     protected OrderInfo $orderInfo;
 
     /**
-     * True, if the order information can be saved.
+     * Pass true to save the order information
+     *
+     * @var bool
      */
     protected bool $allowSave;
 
-    public function __construct(int $chatId, int $messageId, OrderInfo $orderInfo, bool $allowSave)
+    public function __construct(InputInvoice $inputInvoice, OrderInfo $orderInfo, bool $allowSave)
     {
-        $this->chatId    = $chatId;
-        $this->messageId = $messageId;
+        $this->inputInvoice = $inputInvoice;
         $this->orderInfo = $orderInfo;
         $this->allowSave = $allowSave;
     }
@@ -46,8 +46,7 @@ class ValidateOrderInfo extends TdFunction
     public static function fromArray(array $array): ValidateOrderInfo
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
+            TdSchemaRegistry::fromArray($array['input_invoice']),
             TdSchemaRegistry::fromArray($array['order_info']),
             $array['allow_save'],
         );
@@ -56,22 +55,16 @@ class ValidateOrderInfo extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type' => static::TYPE_NAME,
+            'input_invoice' => $this->inputInvoice->typeSerialize(),
             'order_info' => $this->orderInfo->typeSerialize(),
             'allow_save' => $this->allowSave,
         ];
     }
 
-    public function getChatId(): int
+    public function getInputInvoice(): InputInvoice
     {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
+        return $this->inputInvoice;
     }
 
     public function getOrderInfo(): OrderInfo

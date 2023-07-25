@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * There is a working connection to the Telegram servers.
+ * There is a working connection to the Telegram servers
  */
 class ConnectionStateReady extends ConnectionState
 {

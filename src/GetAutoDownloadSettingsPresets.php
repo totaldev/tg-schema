@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns auto-download settings presets for the currently logged in user.
+ * Returns auto-download settings presets for the current user
  */
 class GetAutoDownloadSettingsPresets extends TdFunction
 {

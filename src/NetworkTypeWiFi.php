@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A Wi-Fi network.
+ * A Wi-Fi network
  */
 class NetworkTypeWiFi extends NetworkType
 {

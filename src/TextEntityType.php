@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a part of the text which must be formatted differently.
+ * Represents a part of the text which must be formatted differently
  */
 class TextEntityType extends TdObject
 {

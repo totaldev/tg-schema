@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The list of attached files contains an error. The error is considered resolved when the file list changes.
+ * The list of attached files contains an error. The error is considered resolved when the file list changes
  */
 class InputPassportElementErrorSourceFiles extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceFiles';
 
     /**
-     * Current hashes of all attached files.
+     * Current hashes of all attached files
      *
      * @var string[]
      */
@@ -39,7 +39,7 @@ class InputPassportElementErrorSourceFiles extends InputPassportElementErrorSour
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_hashes' => $this->fileHashes,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A category containing frequently used channels.
+ * A category containing frequently used channels
  */
 class TopChatCategoryChannels extends TopChatCategory
 {

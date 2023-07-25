@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns all chat members, including restricted chat members.
+ * Returns all chat members, including restricted chat members
  */
 class ChatMembersFilterMembers extends ChatMembersFilter
 {

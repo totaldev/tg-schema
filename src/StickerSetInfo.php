@@ -6,103 +6,134 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents short information about a sticker set.
+ * Represents short information about a sticker set
  */
 class StickerSetInfo extends TdObject
 {
     public const TYPE_NAME = 'stickerSetInfo';
 
     /**
-     * Identifier of the sticker set.
+     * Identifier of the sticker set
+     *
+     * @var int
      */
-    protected string $id;
+    protected int $id;
 
     /**
-     * Title of the sticker set.
+     * Title of the sticker set
+     *
+     * @var string
      */
     protected string $title;
 
     /**
-     * Name of the sticker set.
+     * Name of the sticker set
+     *
+     * @var string
      */
     protected string $name;
 
     /**
-     * Sticker set thumbnail in WEBP format with width and height 100; may be null.
+     * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null
+     *
+     * @var Thumbnail|null
      */
-    protected ?PhotoSize $thumbnail;
+    protected ?Thumbnail $thumbnail;
 
     /**
-     * True, if the sticker set has been installed by current user.
+     * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
+     *
+     * @var ClosedVectorPath[]
+     */
+    protected array $thumbnailOutline;
+
+    /**
+     * True, if the sticker set has been installed by the current user
+     *
+     * @var bool
      */
     protected bool $isInstalled;
 
     /**
-     * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously.
+     * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+     *
+     * @var bool
      */
     protected bool $isArchived;
 
     /**
-     * True, if the sticker set is official.
+     * True, if the sticker set is official
+     *
+     * @var bool
      */
     protected bool $isOfficial;
 
     /**
-     * True, is the stickers in the set are animated.
+     * Format of the stickers in the set
+     *
+     * @var StickerFormat
      */
-    protected bool $isAnimated;
+    protected StickerFormat $stickerFormat;
 
     /**
-     * True, if the stickers in the set are masks.
+     * Type of the stickers in the set
+     *
+     * @var StickerType
      */
-    protected bool $isMasks;
+    protected StickerType $stickerType;
 
     /**
-     * True for already viewed trending sticker sets.
+     * True for already viewed trending sticker sets
+     *
+     * @var bool
      */
     protected bool $isViewed;
 
     /**
-     * Total number of stickers in the set.
+     * Total number of stickers in the set
+     *
+     * @var int
      */
     protected int $size;
 
     /**
-     * Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested.
+     * Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
      *
      * @var Sticker[]
      */
     protected array $covers;
 
     public function __construct(
-        string $id,
+        int $id,
         string $title,
         string $name,
-        ?PhotoSize $thumbnail,
+        ?Thumbnail $thumbnail,
+        array $thumbnailOutline,
         bool $isInstalled,
         bool $isArchived,
         bool $isOfficial,
-        bool $isAnimated,
-        bool $isMasks,
+        StickerFormat $stickerFormat,
+        StickerType $stickerType,
         bool $isViewed,
         int $size,
         array $covers
     ) {
-        $this->id          = $id;
-        $this->title       = $title;
-        $this->name        = $name;
-        $this->thumbnail   = $thumbnail;
+        $this->id = $id;
+        $this->title = $title;
+        $this->name = $name;
+        $this->thumbnail = $thumbnail;
+        $this->thumbnailOutline = $thumbnailOutline;
         $this->isInstalled = $isInstalled;
-        $this->isArchived  = $isArchived;
-        $this->isOfficial  = $isOfficial;
-        $this->isAnimated  = $isAnimated;
-        $this->isMasks     = $isMasks;
-        $this->isViewed    = $isViewed;
-        $this->size        = $size;
-        $this->covers      = $covers;
+        $this->isArchived = $isArchived;
+        $this->isOfficial = $isOfficial;
+        $this->stickerFormat = $stickerFormat;
+        $this->stickerType = $stickerType;
+        $this->isViewed = $isViewed;
+        $this->size = $size;
+        $this->covers = $covers;
     }
 
     public static function fromArray(array $array): StickerSetInfo
@@ -112,37 +143,39 @@ class StickerSetInfo extends TdObject
             $array['title'],
             $array['name'],
             (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['thumbnailOutline']),
             $array['is_installed'],
             $array['is_archived'],
             $array['is_official'],
-            $array['is_animated'],
-            $array['is_masks'],
+            TdSchemaRegistry::fromArray($array['sticker_format']),
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['is_viewed'],
             $array['size'],
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'id'              => $this->id,
-            'title'           => $this->title,
-            'name'            => $this->name,
-            'thumbnail'       => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'is_installed'    => $this->isInstalled,
-            'is_archived'     => $this->isArchived,
-            'is_official'     => $this->isOfficial,
-            'is_animated'     => $this->isAnimated,
-            'is_masks'        => $this->isMasks,
-            'is_viewed'       => $this->isViewed,
-            'size'            => $this->size,
-            array_map(fn ($x) => $x->typeSerialize(), $this->covers),
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'title' => $this->title,
+            'name' => $this->name,
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->thumbnailOutline),
+            'is_installed' => $this->isInstalled,
+            'is_archived' => $this->isArchived,
+            'is_official' => $this->isOfficial,
+            'sticker_format' => $this->stickerFormat->typeSerialize(),
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'is_viewed' => $this->isViewed,
+            'size' => $this->size,
+            array_map(fn($x) => $x->typeSerialize(), $this->covers),
         ];
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
@@ -157,9 +190,14 @@ class StickerSetInfo extends TdObject
         return $this->name;
     }
 
-    public function getThumbnail(): ?PhotoSize
+    public function getThumbnail(): ?Thumbnail
     {
         return $this->thumbnail;
+    }
+
+    public function getThumbnailOutline(): array
+    {
+        return $this->thumbnailOutline;
     }
 
     public function getIsInstalled(): bool
@@ -177,14 +215,14 @@ class StickerSetInfo extends TdObject
         return $this->isOfficial;
     }
 
-    public function getIsAnimated(): bool
+    public function getStickerFormat(): StickerFormat
     {
-        return $this->isAnimated;
+        return $this->stickerFormat;
     }
 
-    public function getIsMasks(): bool
+    public function getStickerType(): StickerType
     {
-        return $this->isMasks;
+        return $this->stickerType;
     }
 
     public function getIsViewed(): bool

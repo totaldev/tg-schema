@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A URL linking to a sticker set.
+ * A URL linking to a sticker set
  */
 class TMeUrlTypeStickerSet extends TMeUrlType
 {
     public const TYPE_NAME = 'tMeUrlTypeStickerSet';
 
     /**
-     * Identifier of the sticker set.
+     * Identifier of the sticker set
+     *
+     * @var int
      */
-    protected string $stickerSetId;
+    protected int $stickerSetId;
 
-    public function __construct(string $stickerSetId)
+    public function __construct(int $stickerSetId)
     {
         parent::__construct();
 
@@ -37,12 +39,12 @@ class TMeUrlTypeStickerSet extends TMeUrlType
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker_set_id' => $this->stickerSetId,
         ];
     }
 
-    public function getStickerSetId(): string
+    public function getStickerSetId(): int
     {
         return $this->stickerSetId;
     }

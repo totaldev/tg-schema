@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the type of an inline keyboard button.
+ * Describes the type of an inline keyboard button
  */
 class InlineKeyboardButtonType extends TdObject
 {

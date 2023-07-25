@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a document.
+ * The file is a document
  */
 class FileTypeDocument extends FileType
 {

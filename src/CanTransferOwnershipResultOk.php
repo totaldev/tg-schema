@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The session can be used.
+ * The session can be used
  */
 class CanTransferOwnershipResultOk extends CanTransferOwnershipResult
 {

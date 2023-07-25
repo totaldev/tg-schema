@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of available TDLib internal log tags.
+ * Contains a list of available TDLib internal log tags
  */
 class LogTags extends TdObject
 {
     public const TYPE_NAME = 'logTags';
 
     /**
-     * List of log tags.
+     * List of log tags
      *
      * @var string[]
      */
@@ -38,7 +38,7 @@ class LogTags extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tags'  => $this->tags,
+            'tags' => $this->tags,
         ];
     }
 

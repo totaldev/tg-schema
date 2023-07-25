@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A category containing frequently used chats with inline bots sorted by their usage in inline mode.
+ * A category containing frequently used chats with inline bots sorted by their usage in inline mode
  */
 class TopChatCategoryInlineBots extends TopChatCategory
 {

@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes background from the list of installed backgrounds.
+ * Removes background from the list of installed backgrounds
  */
 class RemoveBackground extends TdFunction
 {
     public const TYPE_NAME = 'removeBackground';
 
     /**
-     * The background identifier.
+     * The background identifier
+     *
+     * @var int
      */
-    protected string $backgroundId;
+    protected int $backgroundId;
 
-    public function __construct(string $backgroundId)
+    public function __construct(int $backgroundId)
     {
         $this->backgroundId = $backgroundId;
     }
@@ -35,12 +37,12 @@ class RemoveBackground extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'background_id' => $this->backgroundId,
         ];
     }
 
-    public function getBackgroundId(): string
+    public function getBackgroundId(): int
     {
         return $this->backgroundId;
     }

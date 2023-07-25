@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The username is invalid.
+ * The username is invalid
  */
 class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult
 {

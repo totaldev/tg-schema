@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the current authorization state of the client.
+ * Represents the current authorization state of the TDLib client
  */
 class AuthorizationState extends TdObject
 {

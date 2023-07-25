@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Disconnects all websites from the current user's Telegram account.
+ * Disconnects all websites from the current user's Telegram account
  */
 class DisconnectAllWebsites extends TdFunction
 {

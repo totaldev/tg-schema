@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A rule to allow all users to do something.
+ * A rule to allow all users to do something
  */
 class UserPrivacySettingRuleAllowAll extends UserPrivacySettingRule
 {

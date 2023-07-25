@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A contact has registered with Telegram.
+ * A contact has registered with Telegram
  */
 class MessageContactRegistered extends MessageContent
 {

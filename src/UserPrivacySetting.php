@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes available user privacy settings.
+ * Describes available user privacy settings
  */
 class UserPrivacySetting extends TdObject
 {

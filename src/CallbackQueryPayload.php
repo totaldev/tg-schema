@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a payload of a callback query.
+ * Represents a payload of a callback query
  */
 class CallbackQueryPayload extends TdObject
 {

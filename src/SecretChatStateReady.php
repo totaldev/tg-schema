@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The secret chat is ready to use.
+ * The secret chat is ready to use
  */
 class SecretChatStateReady extends SecretChatState
 {

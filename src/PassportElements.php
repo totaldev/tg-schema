@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about saved Telegram Passport elements.
+ * Contains information about saved Telegram Passport elements
  */
 class PassportElements extends TdObject
 {
     public const TYPE_NAME = 'passportElements';
 
     /**
-     * Telegram Passport elements.
+     * Telegram Passport elements
      *
      * @var PassportElement[]
      */
@@ -30,15 +30,15 @@ class PassportElements extends TdObject
     public static function fromArray(array $array): PassportElements
     {
         return new static(
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['elements']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['elements']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            array_map(fn ($x) => $x->typeSerialize(), $this->elements),
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->elements),
         ];
     }
 

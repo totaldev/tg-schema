@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the reason why a call was discarded.
+ * Describes the reason why a call was discarded
  */
 class CallDiscardReason extends TdObject
 {

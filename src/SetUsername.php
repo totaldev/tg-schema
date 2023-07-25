@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the username of the current user. If something changes, updateUser will be sent.
+ * Changes the editable username of the current user
  */
 class SetUsername extends TdFunction
 {
     public const TYPE_NAME = 'setUsername';
 
     /**
-     * The new value of the username. Use an empty string to remove the username.
+     * The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+     *
+     * @var string
      */
     protected string $username;
 
@@ -35,7 +37,7 @@ class SetUsername extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'username' => $this->username,
         ];
     }

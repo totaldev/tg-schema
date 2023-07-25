@@ -6,41 +6,49 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Adds a proxy server for network requests. Can be called before authorization.
+ * Adds a proxy server for network requests. Can be called before authorization
  */
 class AddProxy extends TdFunction
 {
     public const TYPE_NAME = 'addProxy';
 
     /**
-     * Proxy server IP address.
+     * Proxy server IP address
+     *
+     * @var string
      */
     protected string $server;
 
     /**
-     * Proxy server port.
+     * Proxy server port
+     *
+     * @var int
      */
     protected int $port;
 
     /**
-     * True, if the proxy should be enabled.
+     * Pass true to immediately enable the proxy
+     *
+     * @var bool
      */
     protected bool $enable;
 
     /**
-     * Proxy type.
+     * Proxy type
+     *
+     * @var ProxyType
      */
     protected ProxyType $type;
 
     public function __construct(string $server, int $port, bool $enable, ProxyType $type)
     {
         $this->server = $server;
-        $this->port   = $port;
+        $this->port = $port;
         $this->enable = $enable;
-        $this->type   = $type;
+        $this->type = $type;
     }
 
     public static function fromArray(array $array): AddProxy
@@ -56,11 +64,11 @@ class AddProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'server' => $this->server,
-            'port'   => $this->port,
+            'port' => $this->port,
             'enable' => $this->enable,
-            'type'   => $this->type->typeSerialize(),
+            'type' => $this->type->typeSerialize(),
         ];
     }
 

@@ -6,36 +6,92 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the photo of a chat.
+ * Describes a chat or user profile photo
  */
 class ChatPhoto extends TdObject
 {
     public const TYPE_NAME = 'chatPhoto';
 
     /**
-     * A small (160x160) chat photo. The file can be downloaded only before the photo is changed.
+     * Unique photo identifier
+     *
+     * @var int
      */
-    protected File $small;
+    protected int $id;
 
     /**
-     * A big (640x640) chat photo. The file can be downloaded only before the photo is changed.
+     * Point in time (Unix timestamp) when the photo has been added
+     *
+     * @var int
      */
-    protected File $big;
+    protected int $addedDate;
 
-    public function __construct(File $small, File $big)
-    {
-        $this->small = $small;
-        $this->big   = $big;
+    /**
+     * Photo minithumbnail; may be null
+     *
+     * @var Minithumbnail|null
+     */
+    protected ?Minithumbnail $minithumbnail;
+
+    /**
+     * Available variants of the photo in JPEG format, in different size
+     *
+     * @var PhotoSize[]
+     */
+    protected array $sizes;
+
+    /**
+     * A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
+     *
+     * @var AnimatedChatPhoto|null
+     */
+    protected ?AnimatedChatPhoto $animation;
+
+    /**
+     * A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
+     *
+     * @var AnimatedChatPhoto|null
+     */
+    protected ?AnimatedChatPhoto $smallAnimation;
+
+    /**
+     * Sticker-based version of the chat photo; may be null
+     *
+     * @var ChatPhotoSticker|null
+     */
+    protected ?ChatPhotoSticker $sticker;
+
+    public function __construct(
+        int $id,
+        int $addedDate,
+        ?Minithumbnail $minithumbnail,
+        array $sizes,
+        ?AnimatedChatPhoto $animation,
+        ?AnimatedChatPhoto $smallAnimation,
+        ?ChatPhotoSticker $sticker
+    ) {
+        $this->id = $id;
+        $this->addedDate = $addedDate;
+        $this->minithumbnail = $minithumbnail;
+        $this->sizes = $sizes;
+        $this->animation = $animation;
+        $this->smallAnimation = $smallAnimation;
+        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): ChatPhoto
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['small']),
-            TdSchemaRegistry::fromArray($array['big']),
+            $array['id'],
+            $array['added_date'],
+            (isset($array['minithumbnail']) ? TdSchemaRegistry::fromArray($array['minithumbnail']) : null),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['sizes']),
+            (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            (isset($array['small_animation']) ? TdSchemaRegistry::fromArray($array['small_animation']) : null),
+            (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
         );
     }
 
@@ -43,18 +99,48 @@ class ChatPhoto extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'small' => $this->small->typeSerialize(),
-            'big'   => $this->big->typeSerialize(),
+            'id' => $this->id,
+            'added_date' => $this->addedDate,
+            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->sizes),
+            'animation' => (isset($this->animation) ? $this->animation : null),
+            'small_animation' => (isset($this->smallAnimation) ? $this->smallAnimation : null),
+            'sticker' => (isset($this->sticker) ? $this->sticker : null),
         ];
     }
 
-    public function getSmall(): File
+    public function getId(): int
     {
-        return $this->small;
+        return $this->id;
     }
 
-    public function getBig(): File
+    public function getAddedDate(): int
     {
-        return $this->big;
+        return $this->addedDate;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getSizes(): array
+    {
+        return $this->sizes;
+    }
+
+    public function getAnimation(): ?AnimatedChatPhoto
+    {
+        return $this->animation;
+    }
+
+    public function getSmallAnimation(): ?AnimatedChatPhoto
+    {
+        return $this->smallAnimation;
+    }
+
+    public function getSticker(): ?ChatPhotoSticker
+    {
+        return $this->sticker;
     }
 }

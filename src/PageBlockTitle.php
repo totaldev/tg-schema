@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The title of a page.
+ * The title of a page
  */
 class PageBlockTitle extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockTitle';
 
     /**
-     * Title.
+     * Title
+     *
+     * @var RichText
      */
     protected RichText $title;
 

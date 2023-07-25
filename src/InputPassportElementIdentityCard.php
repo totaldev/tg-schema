@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's identity card.
+ * A Telegram Passport element to be saved containing the user's identity card
  */
 class InputPassportElementIdentityCard extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementIdentityCard';
 
     /**
-     * The identity card to be saved.
+     * The identity card to be saved
+     *
+     * @var InputIdentityDocument
      */
     protected InputIdentityDocument $identityCard;
 
@@ -37,7 +39,7 @@ class InputPassportElementIdentityCard extends InputPassportElement
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'identity_card' => $this->identityCard->typeSerialize(),
         ];
     }

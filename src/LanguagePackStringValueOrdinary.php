@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An ordinary language pack string.
+ * An ordinary language pack string
  */
 class LanguagePackStringValueOrdinary extends LanguagePackStringValue
 {
     public const TYPE_NAME = 'languagePackStringValueOrdinary';
 
     /**
-     * String value.
+     * String value
+     *
+     * @var string
      */
     protected string $value;
 

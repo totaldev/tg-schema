@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the owner and administrators.
+ * Returns the owner and administrators
  */
 class ChatMembersFilterAdministrators extends ChatMembersFilter
 {

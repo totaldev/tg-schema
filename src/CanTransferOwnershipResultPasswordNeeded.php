@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The 2-step verification needs to be enabled first.
+ * The 2-step verification needs to be enabled first
  */
 class CanTransferOwnershipResultPasswordNeeded extends CanTransferOwnershipResult
 {

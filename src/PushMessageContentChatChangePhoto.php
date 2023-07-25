@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A chat photo was edited.
+ * A chat photo was edited
  */
 class PushMessageContentChatChangePhoto extends PushMessageContent
 {

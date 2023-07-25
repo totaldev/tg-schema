@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a block of an instant view web page.
+ * Describes a block of an instant view web page
  */
 class PageBlock extends TdObject
 {

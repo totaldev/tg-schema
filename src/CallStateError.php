@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The call has ended with an error.
+ * The call has ended with an error
  */
 class CallStateError extends CallState
 {
     public const TYPE_NAME = 'callStateError';
 
     /**
-     * Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout.
+     * Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
+     *
+     * @var Error
      */
     protected Error $error;
 

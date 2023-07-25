@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Clears draft messages in all chats.
+ * Clears message drafts in all chats
  */
 class ClearAllDraftMessages extends TdFunction
 {
     public const TYPE_NAME = 'clearAllDraftMessages';
 
     /**
-     * If true, local draft messages in secret chats will not be cleared.
+     * Pass true to keep local message drafts in secret chats
+     *
+     * @var bool
      */
     protected bool $excludeSecretChats;
 
@@ -35,7 +37,7 @@ class ClearAllDraftMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'exclude_secret_chats' => $this->excludeSecretChats,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the type of a network.
+ * Represents the type of a network
  */
 class NetworkType extends TdObject
 {

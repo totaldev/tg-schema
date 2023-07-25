@@ -6,45 +6,59 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Uploads a PNG image with a sticker; for bots only; returns the uploaded file.
+ * Uploads a file with a sticker; returns the uploaded file
  */
 class UploadStickerFile extends TdFunction
 {
     public const TYPE_NAME = 'uploadStickerFile';
 
     /**
-     * Sticker file owner.
+     * Sticker file owner; ignored for regular users
+     *
+     * @var int
      */
     protected int $userId;
 
     /**
-     * PNG image with the sticker; must be up to 512 kB in size and fit in 512x512 square.
+     * Sticker format
+     *
+     * @var StickerFormat
      */
-    protected InputFile $pngSticker;
+    protected StickerFormat $stickerFormat;
 
-    public function __construct(int $userId, InputFile $pngSticker)
+    /**
+     * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
+
+    public function __construct(int $userId, StickerFormat $stickerFormat, InputFile $sticker)
     {
-        $this->userId     = $userId;
-        $this->pngSticker = $pngSticker;
+        $this->userId = $userId;
+        $this->stickerFormat = $stickerFormat;
+        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): UploadStickerFile
     {
         return new static(
             $array['user_id'],
-            TdSchemaRegistry::fromArray($array['png_sticker']),
+            TdSchemaRegistry::fromArray($array['sticker_format']),
+            TdSchemaRegistry::fromArray($array['sticker']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'user_id'     => $this->userId,
-            'png_sticker' => $this->pngSticker->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'sticker_format' => $this->stickerFormat->typeSerialize(),
+            'sticker' => $this->sticker->typeSerialize(),
         ];
     }
 
@@ -53,8 +67,13 @@ class UploadStickerFile extends TdFunction
         return $this->userId;
     }
 
-    public function getPngSticker(): InputFile
+    public function getStickerFormat(): StickerFormat
     {
-        return $this->pngSticker;
+        return $this->stickerFormat;
+    }
+
+    public function getSticker(): InputFile
+    {
+        return $this->sticker;
     }
 }

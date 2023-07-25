@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A message with a poll.
+ * A message with a poll
  */
 class MessagePoll extends MessageContent
 {
     public const TYPE_NAME = 'messagePoll';
 
     /**
-     * The poll description.
+     * The poll description
+     *
+     * @var Poll
      */
     protected Poll $poll;
 
@@ -38,7 +40,7 @@ class MessagePoll extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'poll'  => $this->poll->typeSerialize(),
+            'poll' => $this->poll->typeSerialize(),
         ];
     }
 

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether a link to the user's account is included in forwarded messages.
+ * A privacy setting for managing whether a link to the user's account is included in forwarded messages
  */
 class UserPrivacySettingShowLinkInForwardedMessages extends UserPrivacySetting
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A category containing frequently used basic groups and supergroups.
+ * A category containing frequently used basic groups and supergroups
  */
 class TopChatCategoryGroups extends TopChatCategory
 {

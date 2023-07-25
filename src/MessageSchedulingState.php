@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about the time when a scheduled message will be sent.
+ * Contains information about the time when a scheduled message will be sent
  */
 class MessageSchedulingState extends TdObject
 {

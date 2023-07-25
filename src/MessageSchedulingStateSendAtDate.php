@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The message will be sent at the specified date.
+ * The message will be sent at the specified date
  */
 class MessageSchedulingStateSendAtDate extends MessageSchedulingState
 {
     public const TYPE_NAME = 'messageSchedulingStateSendAtDate';
 
     /**
-     * Date the message will be sent. The date must be within 367 days in the future.
+     * Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
+     *
+     * @var int
      */
     protected int $sendDate;
 
@@ -37,7 +39,7 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'send_date' => $this->sendDate,
         ];
     }

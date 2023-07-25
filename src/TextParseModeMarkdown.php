@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The text should be parsed in markdown-style.
+ * The text uses Markdown-style formatting
  */
 class TextParseModeMarkdown extends TextParseMode
 {
     public const TYPE_NAME = 'textParseModeMarkdown';
 
     /**
-     * Version of the parser: 0 or 1 - Bot API Markdown parse mode, 2 - Bot API MarkdownV2 parse mode.
+     * Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
+     *
+     * @var int
      */
     protected int $version;
 
@@ -37,7 +39,7 @@ class TextParseModeMarkdown extends TextParseMode
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'version' => $this->version,
         ];
     }

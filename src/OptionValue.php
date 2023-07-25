@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the value of an option.
+ * Represents the value of an option
  */
 class OptionValue extends TdObject
 {

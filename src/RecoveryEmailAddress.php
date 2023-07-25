@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about the current recovery email address.
+ * Contains information about the current recovery email address
  */
 class RecoveryEmailAddress extends TdObject
 {
     public const TYPE_NAME = 'recoveryEmailAddress';
 
     /**
-     * Recovery email address.
+     * Recovery email address
+     *
+     * @var string
      */
     protected string $recoveryEmailAddress;
 
@@ -35,7 +37,7 @@ class RecoveryEmailAddress extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'recovery_email_address' => $this->recoveryEmailAddress,
         ];
     }

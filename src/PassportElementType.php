@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the type of a Telegram Passport element.
+ * Contains the type of a Telegram Passport element
  */
 class PassportElementType extends TdObject
 {

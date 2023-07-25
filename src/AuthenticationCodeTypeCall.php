@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An authentication code is delivered via a phone call to the specified phone number.
+ * An authentication code is delivered via a phone call to the specified phone number
  */
 class AuthenticationCodeTypeCall extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeCall';
 
     /**
-     * Length of the code.
+     * Length of the code
+     *
+     * @var int
      */
     protected int $length;
 
@@ -37,7 +39,7 @@ class AuthenticationCodeTypeCall extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'length' => $this->length,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The user has cancelled the previous action.
+ * The user has canceled the previous action
  */
 class ChatActionCancel extends ChatAction
 {

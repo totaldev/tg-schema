@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Forces an updates.getDifference call to the Telegram servers; for testing only.
+ * Forces an updates.getDifference call to the Telegram servers; for testing only
  */
 class TestGetDifference extends TdFunction
 {

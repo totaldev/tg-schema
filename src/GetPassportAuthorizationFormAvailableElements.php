@@ -6,35 +6,39 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form.
+ * Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
  */
 class GetPassportAuthorizationFormAvailableElements extends TdFunction
 {
     public const TYPE_NAME = 'getPassportAuthorizationFormAvailableElements';
 
     /**
-     * Authorization form identifier.
+     * Authorization form identifier
+     *
+     * @var int
      */
-    protected int $autorizationFormId;
+    protected int $authorizationFormId;
 
     /**
-     * Password of the current user.
+     * The 2-step verification password of the current user
+     *
+     * @var string
      */
     protected string $password;
 
-    public function __construct(int $autorizationFormId, string $password)
+    public function __construct(int $authorizationFormId, string $password)
     {
-        $this->autorizationFormId = $autorizationFormId;
-        $this->password           = $password;
+        $this->authorizationFormId = $authorizationFormId;
+        $this->password = $password;
     }
 
     public static function fromArray(array $array): GetPassportAuthorizationFormAvailableElements
     {
         return new static(
-            $array['autorization_form_id'],
+            $array['authorization_form_id'],
             $array['password'],
         );
     }
@@ -42,15 +46,15 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                => static::TYPE_NAME,
-            'autorization_form_id' => $this->autorizationFormId,
-            'password'             => $this->password,
+            '@type' => static::TYPE_NAME,
+            'authorization_form_id' => $this->authorizationFormId,
+            'password' => $this->password,
         ];
     }
 
-    public function getAutorizationFormId(): int
+    public function getAuthorizationFormId(): int
     {
-        return $this->autorizationFormId;
+        return $this->authorizationFormId;
     }
 
     public function getPassword(): string

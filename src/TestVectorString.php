@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a vector of strings; for testing only.
+ * A simple object containing a vector of strings; for testing only
  */
 class TestVectorString extends TdObject
 {
     public const TYPE_NAME = 'testVectorString';
 
     /**
-     * Vector of strings.
+     * Vector of strings
      *
      * @var string[]
      */

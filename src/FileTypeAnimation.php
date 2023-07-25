@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is an animation.
+ * The file is an animation
  */
 class FileTypeAnimation extends FileType
 {

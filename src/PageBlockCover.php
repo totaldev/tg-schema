@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A page cover.
+ * A page cover
  */
 class PageBlockCover extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockCover';
 
     /**
-     * Cover.
+     * Cover
+     *
+     * @var PageBlock
      */
     protected PageBlock $cover;
 

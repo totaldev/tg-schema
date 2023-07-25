@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a wallpaper or a background pattern.
+ * The file is a wallpaper or a background pattern
  */
 class FileTypeWallpaper extends FileType
 {

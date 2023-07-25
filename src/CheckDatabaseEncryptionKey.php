@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey.

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a Vertical alignment of a table cell content.
+ * Describes a Vertical alignment of a table cell content
  */
 class PageBlockVerticalAlignment extends TdObject
 {

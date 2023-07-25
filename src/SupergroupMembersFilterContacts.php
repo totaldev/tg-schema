@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns contacts of the user, which are members of the supergroup or channel.
+ * Returns contacts of the user, which are members of the supergroup or channel
  */
 class SupergroupMembersFilterContacts extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterContacts';
 
     /**
-     * Query to search for.
+     * Query to search for
+     *
+     * @var string
      */
     protected string $query;
 

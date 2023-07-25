@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns bot members of the chat.
+ * Returns bot members of the chat
  */
 class ChatMembersFilterBots extends ChatMembersFilter
 {

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain.
+ * Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
  */
 class SetDatabaseEncryptionKey extends TdFunction
 {
     public const TYPE_NAME = 'setDatabaseEncryptionKey';
 
     /**
-     * New encryption key.
+     * New encryption key
+     *
+     * @var string
      */
     protected string $newEncryptionKey;
 
@@ -35,7 +37,7 @@ class SetDatabaseEncryptionKey extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'new_encryption_key' => $this->newEncryptionKey,
         ];
     }

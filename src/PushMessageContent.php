@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains content of a push message notification.
+ * Contains content of a push message notification
  */
 class PushMessageContent extends TdObject
 {

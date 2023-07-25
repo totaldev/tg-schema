@@ -6,29 +6,33 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The photo will not be changed before request to the server has been completed.
+ * Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
  */
 class SetChatPhoto extends TdFunction
 {
     public const TYPE_NAME = 'setChatPhoto';
 
     /**
-     * Chat identifier.
+     * Chat identifier
+     *
+     * @var int
      */
     protected int $chatId;
 
     /**
-     * New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable.
+     * New chat photo; pass null to delete the chat photo
+     *
+     * @var InputChatPhoto
      */
-    protected InputFile $photo;
+    protected InputChatPhoto $photo;
 
-    public function __construct(int $chatId, InputFile $photo)
+    public function __construct(int $chatId, InputChatPhoto $photo)
     {
         $this->chatId = $chatId;
-        $this->photo  = $photo;
+        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): SetChatPhoto
@@ -42,9 +46,9 @@ class SetChatPhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'photo'   => $this->photo->typeSerialize(),
+            'photo' => $this->photo->typeSerialize(),
         ];
     }
 
@@ -53,7 +57,7 @@ class SetChatPhoto extends TdFunction
         return $this->chatId;
     }
 
-    public function getPhoto(): InputFile
+    public function getPhoto(): InputChatPhoto
     {
         return $this->photo;
     }

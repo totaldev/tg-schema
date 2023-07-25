@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video.

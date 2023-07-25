@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * TDLib needs TdlibParameters for initialization.
+ * Initialization parameters are needed. Call setTdlibParameters to provide them
  */
 class AuthorizationStateWaitTdlibParameters extends AuthorizationState
 {

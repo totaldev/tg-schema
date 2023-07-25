@@ -6,22 +6,24 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of chat members.
+ * Contains a list of chat members
  */
 class ChatMembers extends TdObject
 {
     public const TYPE_NAME = 'chatMembers';
 
     /**
-     * Approximate total count of chat members found.
+     * Approximate total number of chat members found
+     *
+     * @var int
      */
     protected int $totalCount;
 
     /**
-     * A list of chat members.
+     * A list of chat members
      *
      * @var ChatMember[]
      */
@@ -30,23 +32,23 @@ class ChatMembers extends TdObject
     public function __construct(int $totalCount, array $members)
     {
         $this->totalCount = $totalCount;
-        $this->members    = $members;
+        $this->members = $members;
     }
 
     public static function fromArray(array $array): ChatMembers
     {
         return new static(
             $array['total_count'],
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['members']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'total_count'     => $this->totalCount,
-            array_map(fn ($x) => $x->typeSerialize(), $this->members),
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->members),
         ];
     }
 

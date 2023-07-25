@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The user has started to play a game.
+ * The user has started to play a game
  */
 class ChatActionStartPlayingGame extends ChatAction
 {

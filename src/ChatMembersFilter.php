@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Specifies the kind of chat members to return in searchChatMembers.
+ * Specifies the kind of chat members to return in searchChatMembers
  */
 class ChatMembersFilter extends TdObject
 {

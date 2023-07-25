@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the types of chats to which notification settings are applied.
+ * Describes the types of chats to which notification settings are relevant
  */
 class NotificationSettingsScope extends TdObject
 {

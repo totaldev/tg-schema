@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes.
+ * The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
  */
 class PassportElementErrorSourceReverseSide extends PassportElementErrorSource
 {

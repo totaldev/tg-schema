@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The speech was distorted.
+ * The speech was distorted
  */
 class CallProblemDistortedSpeech extends CallProblem
 {

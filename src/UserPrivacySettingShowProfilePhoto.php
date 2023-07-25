@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether the user's profile photo is visible.
+ * A privacy setting for managing whether the user's profile photo is visible
  */
 class UserPrivacySettingShowProfilePhoto extends UserPrivacySetting
 {

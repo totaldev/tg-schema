@@ -6,22 +6,26 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An option changed its value.
+ * An option changed its value
  */
 class UpdateOption extends Update
 {
     public const TYPE_NAME = 'updateOption';
 
     /**
-     * The option name.
+     * The option name
+     *
+     * @var string
      */
     protected string $name;
 
     /**
-     * The new option value.
+     * The new option value
+     *
+     * @var OptionValue
      */
     protected OptionValue $value;
 
@@ -29,7 +33,7 @@ class UpdateOption extends Update
     {
         parent::__construct();
 
-        $this->name  = $name;
+        $this->name = $name;
         $this->value = $value;
     }
 
@@ -45,7 +49,7 @@ class UpdateOption extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
             'value' => $this->value->typeSerialize(),
         ];
     }

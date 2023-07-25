@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a TDLib internal log verbosity level.
+ * Contains a TDLib internal log verbosity level
  */
 class LogVerbosityLevel extends TdObject
 {
     public const TYPE_NAME = 'logVerbosityLevel';
 
     /**
-     * Log verbosity level.
+     * Log verbosity level
+     *
+     * @var int
      */
     protected int $verbosityLevel;
 
@@ -35,7 +37,7 @@ class LogVerbosityLevel extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'verbosity_level' => $this->verbosityLevel,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns application config, provided by the server. Can be called before authorization.
+ * Returns application config, provided by the server. Can be called before authorization
  */
 class GetApplicationConfig extends TdFunction
 {

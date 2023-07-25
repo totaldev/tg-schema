@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A chat title was edited.
+ * A chat title was edited
  */
 class PushMessageContentChatChangeTitle extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatChangeTitle';
 
     /**
-     * New chat title.
+     * New chat title
+     *
+     * @var string
      */
     protected string $title;
 

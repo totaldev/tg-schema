@@ -6,47 +6,51 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A button that forces an inline query to the bot to be inserted in the input field.
+ * A button that forces an inline query to the bot to be inserted in the input field
  */
 class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeSwitchInline';
 
     /**
-     * Inline query to be sent to the bot.
+     * Inline query to be sent to the bot
+     *
+     * @var string
      */
     protected string $query;
 
     /**
-     * True, if the inline query should be sent from the current chat.
+     * Target chat from which to send the inline query
+     *
+     * @var TargetChat
      */
-    protected bool $inCurrentChat;
+    protected TargetChat $targetChat;
 
-    public function __construct(string $query, bool $inCurrentChat)
+    public function __construct(string $query, TargetChat $targetChat)
     {
         parent::__construct();
 
-        $this->query         = $query;
-        $this->inCurrentChat = $inCurrentChat;
+        $this->query = $query;
+        $this->targetChat = $targetChat;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeSwitchInline
     {
         return new static(
             $array['query'],
-            $array['in_current_chat'],
+            TdSchemaRegistry::fromArray($array['target_chat']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'query'           => $this->query,
-            'in_current_chat' => $this->inCurrentChat,
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'target_chat' => $this->targetChat->typeSerialize(),
         ];
     }
 
@@ -55,8 +59,8 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
         return $this->query;
     }
 
-    public function getInCurrentChat(): bool
+    public function getTargetChat(): TargetChat
     {
-        return $this->inCurrentChat;
+        return $this->targetChat;
     }
 }

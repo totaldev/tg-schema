@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * New secret chat was created.
+ * New secret chat was created
  */
 class NotificationTypeNewSecretChat extends NotificationType
 {

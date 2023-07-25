@@ -6,22 +6,26 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Toggles sender signatures messages sent in a channel; requires can_change_info rights.
+ * Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
  */
 class ToggleSupergroupSignMessages extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupSignMessages';
 
     /**
-     * Identifier of the channel.
+     * Identifier of the channel
+     *
+     * @var int
      */
     protected int $supergroupId;
 
     /**
-     * New value of sign_messages.
+     * New value of sign_messages
+     *
+     * @var bool
      */
     protected bool $signMessages;
 
@@ -42,7 +46,7 @@ class ToggleSupergroupSignMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
             'sign_messages' => $this->signMessages,
         ];

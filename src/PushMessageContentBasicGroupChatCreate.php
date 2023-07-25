@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A newly created basic group.
+ * A newly created basic group
  */
 class PushMessageContentBasicGroupChatCreate extends PushMessageContent
 {

@@ -6,61 +6,84 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A video message.
+ * A video message
  */
 class InputMessageVideo extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageVideo';
 
     /**
-     * Video to be sent.
+     * Video to be sent
+     *
+     * @var InputFile
      */
     protected InputFile $video;
 
     /**
-     * Video thumbnail, if available.
+     * Video thumbnail; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
      */
     protected InputThumbnail $thumbnail;
 
     /**
-     * File identifiers of the stickers added to the video, if applicable.
+     * File identifiers of the stickers added to the video, if applicable
      *
      * @var int[]
      */
     protected array $addedStickerFileIds;
 
     /**
-     * Duration of the video, in seconds.
+     * Duration of the video, in seconds
+     *
+     * @var int
      */
     protected int $duration;
 
     /**
-     * Video width.
+     * Video width
+     *
+     * @var int
      */
     protected int $width;
 
     /**
-     * Video height.
+     * Video height
+     *
+     * @var int
      */
     protected int $height;
 
     /**
-     * True, if the video should be tried to be streamed.
+     * True, if the video is supposed to be streamed
+     *
+     * @var bool
      */
     protected bool $supportsStreaming;
 
     /**
-     * Video caption; 0-GetOption("message_caption_length_max") characters.
+     * Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+     *
+     * @var FormattedText
      */
     protected FormattedText $caption;
 
     /**
-     * Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats.
+     * Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
+     *
+     * @var int
      */
-    protected int $ttl;
+    protected int $selfDestructTime;
+
+    /**
+     * True, if the video preview must be covered by a spoiler animation; not supported in secret chats
+     *
+     * @var bool
+     */
+    protected bool $hasSpoiler;
 
     public function __construct(
         InputFile $video,
@@ -71,19 +94,21 @@ class InputMessageVideo extends InputMessageContent
         int $height,
         bool $supportsStreaming,
         FormattedText $caption,
-        int $ttl
+        int $selfDestructTime,
+        bool $hasSpoiler
     ) {
         parent::__construct();
 
-        $this->video               = $video;
-        $this->thumbnail           = $thumbnail;
+        $this->video = $video;
+        $this->thumbnail = $thumbnail;
         $this->addedStickerFileIds = $addedStickerFileIds;
-        $this->duration            = $duration;
-        $this->width               = $width;
-        $this->height              = $height;
-        $this->supportsStreaming   = $supportsStreaming;
-        $this->caption             = $caption;
-        $this->ttl                 = $ttl;
+        $this->duration = $duration;
+        $this->width = $width;
+        $this->height = $height;
+        $this->supportsStreaming = $supportsStreaming;
+        $this->caption = $caption;
+        $this->selfDestructTime = $selfDestructTime;
+        $this->hasSpoiler = $hasSpoiler;
     }
 
     public static function fromArray(array $array): InputMessageVideo
@@ -97,23 +122,25 @@ class InputMessageVideo extends InputMessageContent
             $array['height'],
             $array['supports_streaming'],
             TdSchemaRegistry::fromArray($array['caption']),
-            $array['ttl'],
+            $array['self_destruct_time'],
+            $array['has_spoiler'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
-            'video'                  => $this->video->typeSerialize(),
-            'thumbnail'              => $this->thumbnail->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'thumbnail' => $this->thumbnail->typeSerialize(),
             'added_sticker_file_ids' => $this->addedStickerFileIds,
-            'duration'               => $this->duration,
-            'width'                  => $this->width,
-            'height'                 => $this->height,
-            'supports_streaming'     => $this->supportsStreaming,
-            'caption'                => $this->caption->typeSerialize(),
-            'ttl'                    => $this->ttl,
+            'duration' => $this->duration,
+            'width' => $this->width,
+            'height' => $this->height,
+            'supports_streaming' => $this->supportsStreaming,
+            'caption' => $this->caption->typeSerialize(),
+            'self_destruct_time' => $this->selfDestructTime,
+            'has_spoiler' => $this->hasSpoiler,
         ];
     }
 
@@ -157,8 +184,13 @@ class InputMessageVideo extends InputMessageContent
         return $this->caption;
     }
 
-    public function getTtl(): int
+    public function getSelfDestructTime(): int
     {
-        return $this->ttl;
+        return $this->selfDestructTime;
+    }
+
+    public function getHasSpoiler(): bool
+    {
+        return $this->hasSpoiler;
     }
 }

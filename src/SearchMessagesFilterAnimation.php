@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns only animation messages.
+ * Returns only animation messages
  */
 class SearchMessagesFilterAnimation extends SearchMessagesFilter
 {

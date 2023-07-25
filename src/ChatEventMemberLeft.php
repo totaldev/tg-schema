@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A member left the chat.
+ * A member left the chat
  */
 class ChatEventMemberLeft extends ChatEventAction
 {

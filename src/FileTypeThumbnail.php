@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a thumbnail of another file.
+ * The file is a thumbnail of another file
  */
 class FileTypeThumbnail extends FileType
 {

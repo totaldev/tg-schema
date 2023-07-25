@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The file is an audio file.
+ * The file is an audio file
  */
 class FileTypeAudio extends FileType
 {

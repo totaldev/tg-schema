@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The content should be bottom-aligned.
+ * The content must be bottom-aligned
  */
 class PageBlockVerticalAlignmentBottom extends PageBlockVerticalAlignment
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * An object of this type is returned on a successful function call for certain functions.
+ * An object of this type is returned on a successful function call for certain functions
  */
 class Ok extends TdObject
 {

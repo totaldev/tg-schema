@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * The call was ended before the conversation started. It was declined by the other party.
+ * The call was ended before the conversation started. It was declined by the other party
  */
 class CallDiscardReasonDeclined extends CallDiscardReason
 {

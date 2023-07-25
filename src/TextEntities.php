@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of text entities.
+ * Contains a list of text entities
  */
 class TextEntities extends TdObject
 {
     public const TYPE_NAME = 'textEntities';
 
     /**
-     * List of text entities.
+     * List of text entities
      *
      * @var TextEntity[]
      */
@@ -30,15 +30,15 @@ class TextEntities extends TdObject
     public static function fromArray(array $array): TextEntities
     {
         return new static(
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            array_map(fn ($x) => $x->typeSerialize(), $this->entities),
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->entities),
         ];
     }
 

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns only voice and video note messages.
+ * Returns only voice and video note messages
  */
 class SearchMessagesFilterVoiceAndVideoNote extends SearchMessagesFilter
 {

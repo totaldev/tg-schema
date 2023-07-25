@@ -6,34 +6,40 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns approximate number of messages of the specified type in the chat.
+ * Returns approximate number of messages of the specified type in the chat
  */
 class GetChatMessageCount extends TdFunction
 {
     public const TYPE_NAME = 'getChatMessageCount';
 
     /**
-     * Identifier of the chat in which to count messages.
+     * Identifier of the chat in which to count messages
+     *
+     * @var int
      */
     protected int $chatId;
 
     /**
-     * Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
+     * Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+     *
+     * @var SearchMessagesFilter
      */
     protected SearchMessagesFilter $filter;
 
     /**
-     * If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown.
+     * Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+     *
+     * @var bool
      */
     protected bool $returnLocal;
 
     public function __construct(int $chatId, SearchMessagesFilter $filter, bool $returnLocal)
     {
-        $this->chatId      = $chatId;
-        $this->filter      = $filter;
+        $this->chatId = $chatId;
+        $this->filter = $filter;
         $this->returnLocal = $returnLocal;
     }
 
@@ -49,9 +55,9 @@ class GetChatMessageCount extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'chat_id'      => $this->chatId,
-            'filter'       => $this->filter->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'filter' => $this->filter->typeSerialize(),
             'return_local' => $this->returnLocal,
         ];
     }

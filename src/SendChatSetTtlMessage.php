@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TdSchema;
 
 /**
  * Changes the current TTL setting (sets a new self-destruct timer) in a secret chat and sends the corresponding message.

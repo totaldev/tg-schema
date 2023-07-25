@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a chat event.
+ * Represents a chat event
  */
 class ChatEventAction extends TdObject
 {

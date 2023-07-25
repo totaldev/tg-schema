@@ -6,36 +6,42 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace Totaldev\TgSchema;
 
 /**
- * A new incoming query; for bots only.
+ * A new incoming query; for bots only
  */
 class UpdateNewCustomQuery extends Update
 {
     public const TYPE_NAME = 'updateNewCustomQuery';
 
     /**
-     * The query identifier.
+     * The query identifier
+     *
+     * @var int
      */
-    protected string $id;
+    protected int $id;
 
     /**
-     * JSON-serialized query data.
+     * JSON-serialized query data
+     *
+     * @var string
      */
     protected string $data;
 
     /**
-     * Query timeout.
+     * Query timeout
+     *
+     * @var int
      */
     protected int $timeout;
 
-    public function __construct(string $id, string $data, int $timeout)
+    public function __construct(int $id, string $data, int $timeout)
     {
         parent::__construct();
 
-        $this->id      = $id;
-        $this->data    = $data;
+        $this->id = $id;
+        $this->data = $data;
         $this->timeout = $timeout;
     }
 
@@ -51,14 +57,14 @@ class UpdateNewCustomQuery extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'id'      => $this->id,
-            'data'    => $this->data,
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'data' => $this->data,
             'timeout' => $this->timeout,
         ];
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
