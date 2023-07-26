@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns a list of common group chats with a given user. Chats are sorted by their type and creation date

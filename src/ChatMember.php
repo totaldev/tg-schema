@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Describes a user or a chat as a member of another chat

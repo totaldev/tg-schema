@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported

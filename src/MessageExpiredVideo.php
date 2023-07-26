@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A self-destructed video message

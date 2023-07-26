@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The user or the chat is not a chat member

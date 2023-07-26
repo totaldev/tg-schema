@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time

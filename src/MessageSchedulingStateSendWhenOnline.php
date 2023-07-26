@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed

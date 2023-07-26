@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization

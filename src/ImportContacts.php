@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored

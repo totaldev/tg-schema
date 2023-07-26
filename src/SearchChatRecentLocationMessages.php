@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user

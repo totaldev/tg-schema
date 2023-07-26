@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate

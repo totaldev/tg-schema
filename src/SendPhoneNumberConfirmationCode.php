@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation

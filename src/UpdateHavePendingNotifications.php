@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications

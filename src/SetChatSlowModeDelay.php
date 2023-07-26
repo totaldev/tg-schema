@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side

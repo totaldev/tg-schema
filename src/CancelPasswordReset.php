@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0

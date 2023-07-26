@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side

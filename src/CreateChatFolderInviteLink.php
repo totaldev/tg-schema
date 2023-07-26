@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats

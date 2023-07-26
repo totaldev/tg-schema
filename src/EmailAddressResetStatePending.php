@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible

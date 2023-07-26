@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list

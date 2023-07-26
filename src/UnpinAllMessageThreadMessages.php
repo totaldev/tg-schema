@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup

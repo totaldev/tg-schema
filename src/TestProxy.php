@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization

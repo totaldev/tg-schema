@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase

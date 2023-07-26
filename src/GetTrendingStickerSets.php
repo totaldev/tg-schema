@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib

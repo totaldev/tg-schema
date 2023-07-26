@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions

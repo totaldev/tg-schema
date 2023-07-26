@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot

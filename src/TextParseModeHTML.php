@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode

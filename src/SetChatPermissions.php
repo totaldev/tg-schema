@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right

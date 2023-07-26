@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword

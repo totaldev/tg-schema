@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used

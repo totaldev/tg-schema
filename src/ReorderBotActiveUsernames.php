@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true

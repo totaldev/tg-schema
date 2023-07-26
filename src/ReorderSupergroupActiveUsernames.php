@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel

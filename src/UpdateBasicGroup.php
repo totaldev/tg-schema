@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application

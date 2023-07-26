@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT

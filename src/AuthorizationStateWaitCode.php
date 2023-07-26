@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link

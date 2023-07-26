@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user

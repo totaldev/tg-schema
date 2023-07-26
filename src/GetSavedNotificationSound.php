@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier

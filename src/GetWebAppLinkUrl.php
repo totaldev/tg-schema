@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked

@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Totaldev\\Schema\\": "src"
+            "Totaldev\\TgSchema\\": "src"
         },
         "classmap": [
             "src/"

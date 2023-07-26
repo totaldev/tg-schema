@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right

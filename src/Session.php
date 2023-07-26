@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order

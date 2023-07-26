@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously

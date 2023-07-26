@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Options to be used when a message content is copied without reference to the original sender. Service messages and messageInvoice can't be copied

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only

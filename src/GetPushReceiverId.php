@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously

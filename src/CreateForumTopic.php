@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup

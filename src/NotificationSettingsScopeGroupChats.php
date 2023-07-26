@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value

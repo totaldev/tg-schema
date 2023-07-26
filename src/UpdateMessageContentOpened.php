@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the self-destruct timer

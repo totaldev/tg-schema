@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size

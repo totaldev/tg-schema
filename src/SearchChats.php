@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list

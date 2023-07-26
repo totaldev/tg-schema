@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes

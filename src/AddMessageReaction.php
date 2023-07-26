@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message

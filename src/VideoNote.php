@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format

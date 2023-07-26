@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode

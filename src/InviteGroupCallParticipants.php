@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats

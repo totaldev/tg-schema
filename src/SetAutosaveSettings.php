@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings

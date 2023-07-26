@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji

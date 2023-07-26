@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The sticker is a custom emoji to be used inside message text and caption. Currently, only Telegram Premium users can use custom emoji

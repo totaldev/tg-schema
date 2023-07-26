@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request

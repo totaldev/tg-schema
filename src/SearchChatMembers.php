@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels

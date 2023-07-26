@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video

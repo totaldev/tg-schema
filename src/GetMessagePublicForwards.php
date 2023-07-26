@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib

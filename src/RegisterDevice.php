@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription

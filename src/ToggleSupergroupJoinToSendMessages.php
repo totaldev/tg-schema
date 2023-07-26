@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right

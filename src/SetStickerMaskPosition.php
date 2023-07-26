@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")

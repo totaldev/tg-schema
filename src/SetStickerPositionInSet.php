@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot

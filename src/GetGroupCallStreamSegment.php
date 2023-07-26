@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video

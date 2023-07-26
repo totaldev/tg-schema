@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot

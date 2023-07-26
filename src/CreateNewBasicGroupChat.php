@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat

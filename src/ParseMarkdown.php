@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link

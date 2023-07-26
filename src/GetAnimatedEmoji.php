@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace TotaldevTgSchema;
+namespace Totaldev\TgSchema;
 
 /**
  * Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
