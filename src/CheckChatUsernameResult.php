@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Represents result of checking whether a username can be set for a chat.
+ * Represents result of checking whether a username can be set for a chat
  */
 class CheckChatUsernameResult extends TdObject
 {

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Adds current user as a new member to a chat. Private and secret chats can't be joined using this method.
+ * Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
  */
 class JoinChat extends TdFunction
 {
     public const TYPE_NAME = 'joinChat';
 
     /**
-     * Chat identifier.
+     * Chat identifier
+     *
+     * @var int
      */
     protected int $chatId;
 
@@ -35,7 +37,7 @@ class JoinChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A screenshot of a message in the chat has been taken.
+ * A screenshot of a message in the chat has been taken
  */
 class MessageScreenshotTaken extends MessageContent
 {

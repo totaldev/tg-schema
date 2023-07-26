@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Does nothing; for testing only. This is an offline method. Can be called before authorization.
+ * Does nothing; for testing only. This is an offline method. Can be called before authorization
  */
 class TestCallEmpty extends TdFunction
 {

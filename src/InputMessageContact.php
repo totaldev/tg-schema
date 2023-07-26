@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A message containing a user contact.
+ * A message containing a user contact
  */
 class InputMessageContact extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageContact';
 
     /**
-     * Contact to send.
+     * Contact to send
+     *
+     * @var Contact
      */
     protected Contact $contact;
 
@@ -37,7 +39,7 @@ class InputMessageContact extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'contact' => $this->contact->typeSerialize(),
         ];
     }

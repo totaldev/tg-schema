@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An email address.
+ * An email address
  */
 class TextEntityTypeEmailAddress extends TextEntityType
 {

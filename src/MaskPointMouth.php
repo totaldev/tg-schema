@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A mask should be placed relatively to the mouth.
+ * The mask is placed relatively to the mouth
  */
 class MaskPointMouth extends MaskPoint
 {

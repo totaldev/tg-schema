@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A new member joined the chat by invite link.
+ * A new member joined the chat via an invite link
  */
 class MessageChatJoinByLink extends MessageContent
 {

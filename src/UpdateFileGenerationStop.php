@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * File generation is no longer needed.
+ * File generation is no longer needed
  */
 class UpdateFileGenerationStop extends Update
 {
     public const TYPE_NAME = 'updateFileGenerationStop';
 
     /**
-     * Unique identifier for the generation process.
+     * Unique identifier for the generation process
+     *
+     * @var int
      */
-    protected string $generationId;
+    protected int $generationId;
 
-    public function __construct(string $generationId)
+    public function __construct(int $generationId)
     {
         parent::__construct();
 
@@ -37,12 +39,12 @@ class UpdateFileGenerationStop extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'generation_id' => $this->generationId,
         ];
     }
 
-    public function getGenerationId(): string
+    public function getGenerationId(): int
     {
         return $this->generationId;
     }

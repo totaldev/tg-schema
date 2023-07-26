@@ -6,59 +6,75 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a sticker that should be added to a sticker set.
+ * A sticker to be added to a sticker set
  */
 class InputSticker extends TdObject
 {
     public const TYPE_NAME = 'inputSticker';
 
     /**
-     * PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square.
+     * File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     *
+     * @var InputFile
      */
-    protected InputFile $pngSticker;
+    protected InputFile $sticker;
 
     /**
-     * Emoji corresponding to the sticker.
+     * String with 1-20 emoji corresponding to the sticker
+     *
+     * @var string
      */
     protected string $emojis;
 
     /**
-     * For masks, position where the mask should be placed; may be null.
+     * Position where the mask is placed; pass null if not specified
+     *
+     * @var MaskPosition
      */
-    protected ?MaskPosition $maskPosition;
+    protected MaskPosition $maskPosition;
 
-    public function __construct(InputFile $pngSticker, string $emojis, ?MaskPosition $maskPosition)
+    /**
+     * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+     *
+     * @var string[]
+     */
+    protected array $keywords;
+
+    public function __construct(InputFile $sticker, string $emojis, MaskPosition $maskPosition, array $keywords)
     {
-        $this->pngSticker   = $pngSticker;
-        $this->emojis       = $emojis;
+        $this->sticker = $sticker;
+        $this->emojis = $emojis;
         $this->maskPosition = $maskPosition;
+        $this->keywords = $keywords;
     }
 
     public static function fromArray(array $array): InputSticker
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['png_sticker']),
+            TdSchemaRegistry::fromArray($array['sticker']),
             $array['emojis'],
-            (isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null),
+            TdSchemaRegistry::fromArray($array['mask_position']),
+            $array['keywords'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
-            'png_sticker'   => $this->pngSticker->typeSerialize(),
-            'emojis'        => $this->emojis,
-            'mask_position' => (isset($this->maskPosition) ? $this->maskPosition : null),
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'emojis' => $this->emojis,
+            'mask_position' => $this->maskPosition->typeSerialize(),
+            'keywords' => $this->keywords,
         ];
     }
 
-    public function getPngSticker(): InputFile
+    public function getSticker(): InputFile
     {
-        return $this->pngSticker;
+        return $this->sticker;
     }
 
     public function getEmojis(): string
@@ -66,8 +82,13 @@ class InputSticker extends TdObject
         return $this->emojis;
     }
 
-    public function getMaskPosition(): ?MaskPosition
+    public function getMaskPosition(): MaskPosition
     {
         return $this->maskPosition;
+    }
+
+    public function getKeywords(): array
+    {
+        return $this->keywords;
     }
 }

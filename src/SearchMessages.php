@@ -6,53 +6,80 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance the number of returned messages is chosen by the library.
+ * Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
  */
 class SearchMessages extends TdFunction
 {
     public const TYPE_NAME = 'searchMessages';
 
     /**
-     * Chat list in which to search messages; pass null to search in all chats regardless of their chat list.
+     * Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
+     *
+     * @var ChatList
      */
     protected ChatList $chatList;
 
     /**
-     * Query to search for.
+     * Query to search for
+     *
+     * @var string
      */
     protected string $query;
 
     /**
-     * The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message.
+     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+     *
+     * @var string
      */
-    protected int $offsetDate;
+    protected string $offset;
 
     /**
-     * The chat identifier of the last found message, or 0 for the first request.
-     */
-    protected int $offsetChatId;
-
-    /**
-     * The message identifier of the last found message, or 0 for the first request.
-     */
-    protected int $offsetMessageId;
-
-    /**
-     * The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached.
+     * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+     *
+     * @var int
      */
     protected int $limit;
 
-    public function __construct(ChatList $chatList, string $query, int $offsetDate, int $offsetChatId, int $offsetMessageId, int $limit)
-    {
-        $this->chatList        = $chatList;
-        $this->query           = $query;
-        $this->offsetDate      = $offsetDate;
-        $this->offsetChatId    = $offsetChatId;
-        $this->offsetMessageId = $offsetMessageId;
-        $this->limit           = $limit;
+    /**
+     * Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+     *
+     * @var SearchMessagesFilter
+     */
+    protected SearchMessagesFilter $filter;
+
+    /**
+     * If not 0, the minimum date of the messages to return
+     *
+     * @var int
+     */
+    protected int $minDate;
+
+    /**
+     * If not 0, the maximum date of the messages to return
+     *
+     * @var int
+     */
+    protected int $maxDate;
+
+    public function __construct(
+        ChatList $chatList,
+        string $query,
+        string $offset,
+        int $limit,
+        SearchMessagesFilter $filter,
+        int $minDate,
+        int $maxDate
+    ) {
+        $this->chatList = $chatList;
+        $this->query = $query;
+        $this->offset = $offset;
+        $this->limit = $limit;
+        $this->filter = $filter;
+        $this->minDate = $minDate;
+        $this->maxDate = $maxDate;
     }
 
     public static function fromArray(array $array): SearchMessages
@@ -60,23 +87,25 @@ class SearchMessages extends TdFunction
         return new static(
             TdSchemaRegistry::fromArray($array['chat_list']),
             $array['query'],
-            $array['offset_date'],
-            $array['offset_chat_id'],
-            $array['offset_message_id'],
+            $array['offset'],
             $array['limit'],
+            TdSchemaRegistry::fromArray($array['filter']),
+            $array['min_date'],
+            $array['max_date'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_list'         => $this->chatList->typeSerialize(),
-            'query'             => $this->query,
-            'offset_date'       => $this->offsetDate,
-            'offset_chat_id'    => $this->offsetChatId,
-            'offset_message_id' => $this->offsetMessageId,
-            'limit'             => $this->limit,
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'query' => $this->query,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+            'filter' => $this->filter->typeSerialize(),
+            'min_date' => $this->minDate,
+            'max_date' => $this->maxDate,
         ];
     }
 
@@ -90,23 +119,28 @@ class SearchMessages extends TdFunction
         return $this->query;
     }
 
-    public function getOffsetDate(): int
+    public function getOffset(): string
     {
-        return $this->offsetDate;
-    }
-
-    public function getOffsetChatId(): int
-    {
-        return $this->offsetChatId;
-    }
-
-    public function getOffsetMessageId(): int
-    {
-        return $this->offsetMessageId;
+        return $this->offset;
     }
 
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function getFilter(): SearchMessagesFilter
+    {
+        return $this->filter;
+    }
+
+    public function getMinDate(): int
+    {
+        return $this->minDate;
+    }
+
+    public function getMaxDate(): int
+    {
+        return $this->maxDate;
     }
 }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The file is a thumbnail of a file from a secret chat.
+ * The file is a thumbnail of a file from a secret chat
  */
 class FileTypeSecretThumbnail extends FileType
 {

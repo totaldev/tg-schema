@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A category containing frequently used private chats with non-bot users.
+ * A category containing frequently used private chats with non-bot users
  */
 class TopChatCategoryUsers extends TopChatCategory
 {

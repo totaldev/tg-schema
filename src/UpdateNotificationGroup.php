@@ -6,54 +6,66 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A list of active notifications in a notification group has changed.
+ * A list of active notifications in a notification group has changed
  */
 class UpdateNotificationGroup extends Update
 {
     public const TYPE_NAME = 'updateNotificationGroup';
 
     /**
-     * Unique notification group identifier.
+     * Unique notification group identifier
+     *
+     * @var int
      */
     protected int $notificationGroupId;
 
     /**
-     * New type of the notification group.
+     * New type of the notification group
+     *
+     * @var NotificationGroupType
      */
     protected NotificationGroupType $type;
 
     /**
-     * Identifier of a chat to which all notifications in the group belong.
+     * Identifier of a chat to which all notifications in the group belong
+     *
+     * @var int
      */
     protected int $chatId;
 
     /**
-     * Chat identifier, which notification settings must be applied to the added notifications.
+     * Chat identifier, which notification settings must be applied to the added notifications
+     *
+     * @var int
      */
     protected int $notificationSettingsChatId;
 
     /**
-     * True, if the notifications should be shown without sound.
+     * Identifier of the notification sound to be played; 0 if sound is disabled
+     *
+     * @var int
      */
-    protected bool $isSilent;
+    protected int $notificationSoundId;
 
     /**
-     * Total number of unread notifications in the group, can be bigger than number of active notifications.
+     * Total number of unread notifications in the group, can be bigger than number of active notifications
+     *
+     * @var int
      */
     protected int $totalCount;
 
     /**
-     * List of added group notifications, sorted by notification ID.
+     * List of added group notifications, sorted by notification ID
      *
      * @var Notification[]
      */
     protected array $addedNotifications;
 
     /**
-     * Identifiers of removed group notifications, sorted by notification ID.
+     * Identifiers of removed group notifications, sorted by notification ID
      *
      * @var int[]
      */
@@ -64,21 +76,21 @@ class UpdateNotificationGroup extends Update
         NotificationGroupType $type,
         int $chatId,
         int $notificationSettingsChatId,
-        bool $isSilent,
+        int $notificationSoundId,
         int $totalCount,
         array $addedNotifications,
         array $removedNotificationIds
     ) {
         parent::__construct();
 
-        $this->notificationGroupId        = $notificationGroupId;
-        $this->type                       = $type;
-        $this->chatId                     = $chatId;
+        $this->notificationGroupId = $notificationGroupId;
+        $this->type = $type;
+        $this->chatId = $chatId;
         $this->notificationSettingsChatId = $notificationSettingsChatId;
-        $this->isSilent                   = $isSilent;
-        $this->totalCount                 = $totalCount;
-        $this->addedNotifications         = $addedNotifications;
-        $this->removedNotificationIds     = $removedNotificationIds;
+        $this->notificationSoundId = $notificationSoundId;
+        $this->totalCount = $totalCount;
+        $this->addedNotifications = $addedNotifications;
+        $this->removedNotificationIds = $removedNotificationIds;
     }
 
     public static function fromArray(array $array): UpdateNotificationGroup
@@ -88,9 +100,9 @@ class UpdateNotificationGroup extends Update
             TdSchemaRegistry::fromArray($array['type']),
             $array['chat_id'],
             $array['notification_settings_chat_id'],
-            $array['is_silent'],
+            $array['notification_sound_id'],
             $array['total_count'],
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['addedNotifications']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['addedNotifications']),
             $array['removed_notification_ids'],
         );
     }
@@ -98,15 +110,15 @@ class UpdateNotificationGroup extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'                         => static::TYPE_NAME,
-            'notification_group_id'         => $this->notificationGroupId,
-            'type'                          => $this->type->typeSerialize(),
-            'chat_id'                       => $this->chatId,
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'type' => $this->type->typeSerialize(),
+            'chat_id' => $this->chatId,
             'notification_settings_chat_id' => $this->notificationSettingsChatId,
-            'is_silent'                     => $this->isSilent,
-            'total_count'                   => $this->totalCount,
-            array_map(fn ($x)               => $x->typeSerialize(), $this->addedNotifications),
-            'removed_notification_ids'      => $this->removedNotificationIds,
+            'notification_sound_id' => $this->notificationSoundId,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->addedNotifications),
+            'removed_notification_ids' => $this->removedNotificationIds,
         ];
     }
 
@@ -130,9 +142,9 @@ class UpdateNotificationGroup extends Update
         return $this->notificationSettingsChatId;
     }
 
-    public function getIsSilent(): bool
+    public function getNotificationSoundId(): int
     {
-        return $this->isSilent;
+        return $this->notificationSoundId;
     }
 
     public function getTotalCount(): int

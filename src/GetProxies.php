@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns list of proxies that are currently set up. Can be called before authorization.
+ * Returns list of proxies that are currently set up. Can be called before authorization
  */
 class GetProxies extends TdFunction
 {

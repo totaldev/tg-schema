@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl.
+ * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
  */
 class LoginUrlInfo extends TdObject
 {

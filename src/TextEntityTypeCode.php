@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Text that must be formatted as if inside a code HTML tag.
+ * Text that must be formatted as if inside a code HTML tag
  */
 class TextEntityTypeCode extends TextEntityType
 {

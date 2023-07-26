@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains notifications about data changes.
+ * Contains notifications about data changes
  */
 class Update extends TdObject
 {

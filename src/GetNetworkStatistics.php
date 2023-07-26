@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns network data usage statistics. Can be called before authorization.
+ * Returns network data usage statistics. Can be called before authorization
  */
 class GetNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'getNetworkStatistics';
 
     /**
-     * If true, returns only data for the current library launch.
+     * Pass true to get statistics only for the current library launch
+     *
+     * @var bool
      */
     protected bool $onlyCurrent;
 
@@ -35,7 +37,7 @@ class GetNetworkStatistics extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'only_current' => $this->onlyCurrent,
         ];
     }

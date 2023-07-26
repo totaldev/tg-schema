@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A Telegram Passport element containing the user's email address.
+ * A Telegram Passport element containing the user's email address
  */
 class PassportElementTypeEmailAddress extends PassportElementType
 {

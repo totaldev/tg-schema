@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 interface TdTypeSerializableInterface
 {

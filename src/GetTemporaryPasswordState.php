@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns information about the current temporary password.
+ * Returns information about the current temporary password
  */
 class GetTemporaryPasswordState extends TdFunction
 {

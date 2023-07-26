@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The list of saved animations was updated.
+ * The list of saved animations was updated
  */
 class UpdateSavedAnimations extends Update
 {
     public const TYPE_NAME = 'updateSavedAnimations';
 
     /**
-     * The new list of file identifiers of saved animations.
+     * The new list of file identifiers of saved animations
      *
      * @var int[]
      */
@@ -39,7 +39,7 @@ class UpdateSavedAnimations extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'animation_ids' => $this->animationIds,
         ];
     }

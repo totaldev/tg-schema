@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the last time the user was online.
+ * Describes the last time the user was online
  */
 class UserStatus extends TdObject
 {

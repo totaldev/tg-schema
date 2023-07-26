@@ -6,55 +6,59 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy.
+ * Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
  */
 class GetPaymentForm extends TdFunction
 {
     public const TYPE_NAME = 'getPaymentForm';
 
     /**
-     * Chat identifier of the Invoice message.
+     * The invoice
+     *
+     * @var InputInvoice
      */
-    protected int $chatId;
+    protected InputInvoice $inputInvoice;
 
     /**
-     * Message identifier.
+     * Preferred payment form theme; pass null to use the default theme
+     *
+     * @var ThemeParameters
      */
-    protected int $messageId;
+    protected ThemeParameters $theme;
 
-    public function __construct(int $chatId, int $messageId)
+    public function __construct(InputInvoice $inputInvoice, ThemeParameters $theme)
     {
-        $this->chatId    = $chatId;
-        $this->messageId = $messageId;
+        $this->inputInvoice = $inputInvoice;
+        $this->theme = $theme;
     }
 
     public static function fromArray(array $array): GetPaymentForm
     {
         return new static(
-            $array['chat_id'],
-            $array['message_id'],
+            TdSchemaRegistry::fromArray($array['input_invoice']),
+            TdSchemaRegistry::fromArray($array['theme']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type' => static::TYPE_NAME,
+            'input_invoice' => $this->inputInvoice->typeSerialize(),
+            'theme' => $this->theme->typeSerialize(),
         ];
     }
 
-    public function getChatId(): int
+    public function getInputInvoice(): InputInvoice
     {
-        return $this->chatId;
+        return $this->inputInvoice;
     }
 
-    public function getMessageId(): int
+    public function getTheme(): ThemeParameters
     {
-        return $this->messageId;
+        return $this->theme;
     }
 }

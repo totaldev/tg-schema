@@ -6,39 +6,41 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The list of installed sticker sets was updated.
+ * The list of installed sticker sets was updated
  */
 class UpdateInstalledStickerSets extends Update
 {
     public const TYPE_NAME = 'updateInstalledStickerSets';
 
     /**
-     * True, if the list of installed mask sticker sets was updated.
+     * Type of the affected stickers
+     *
+     * @var StickerType
      */
-    protected bool $isMasks;
+    protected StickerType $stickerType;
 
     /**
-     * The new list of installed ordinary sticker sets.
+     * The new list of installed ordinary sticker sets
      *
-     * @var string[]
+     * @var int[]
      */
     protected array $stickerSetIds;
 
-    public function __construct(bool $isMasks, array $stickerSetIds)
+    public function __construct(StickerType $stickerType, array $stickerSetIds)
     {
         parent::__construct();
 
-        $this->isMasks       = $isMasks;
+        $this->stickerType = $stickerType;
         $this->stickerSetIds = $stickerSetIds;
     }
 
     public static function fromArray(array $array): UpdateInstalledStickerSets
     {
         return new static(
-            $array['is_masks'],
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['sticker_set_ids'],
         );
     }
@@ -46,15 +48,15 @@ class UpdateInstalledStickerSets extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'is_masks'        => $this->isMasks,
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
         ];
     }
 
-    public function getIsMasks(): bool
+    public function getStickerType(): StickerType
     {
-        return $this->isMasks;
+        return $this->stickerType;
     }
 
     public function getStickerSetIds(): array

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns saved animations.
+ * Returns saved animations
  */
 class GetSavedAnimations extends TdFunction
 {

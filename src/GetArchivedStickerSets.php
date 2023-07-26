@@ -6,41 +6,47 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns a list of archived sticker sets.
+ * Returns a list of archived sticker sets
  */
 class GetArchivedStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'getArchivedStickerSets';
 
     /**
-     * Pass true to return mask stickers sets; pass false to return ordinary sticker sets.
+     * Type of the sticker sets to return
+     *
+     * @var StickerType
      */
-    protected bool $isMasks;
+    protected StickerType $stickerType;
 
     /**
-     * Identifier of the sticker set from which to return the result.
+     * Identifier of the sticker set from which to return the result
+     *
+     * @var int
      */
-    protected string $offsetStickerSetId;
+    protected int $offsetStickerSetId;
 
     /**
-     * The maximum number of sticker sets to return.
+     * The maximum number of sticker sets to return; up to 100
+     *
+     * @var int
      */
     protected int $limit;
 
-    public function __construct(bool $isMasks, string $offsetStickerSetId, int $limit)
+    public function __construct(StickerType $stickerType, int $offsetStickerSetId, int $limit)
     {
-        $this->isMasks            = $isMasks;
+        $this->stickerType = $stickerType;
         $this->offsetStickerSetId = $offsetStickerSetId;
-        $this->limit              = $limit;
+        $this->limit = $limit;
     }
 
     public static function fromArray(array $array): GetArchivedStickerSets
     {
         return new static(
-            $array['is_masks'],
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['offset_sticker_set_id'],
             $array['limit'],
         );
@@ -49,19 +55,19 @@ class GetArchivedStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                 => static::TYPE_NAME,
-            'is_masks'              => $this->isMasks,
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
             'offset_sticker_set_id' => $this->offsetStickerSetId,
-            'limit'                 => $this->limit,
+            'limit' => $this->limit,
         ];
     }
 
-    public function getIsMasks(): bool
+    public function getStickerType(): StickerType
     {
-        return $this->isMasks;
+        return $this->stickerType;
     }
 
-    public function getOffsetStickerSetId(): string
+    public function getOffsetStickerSetId(): int
     {
         return $this->offsetStickerSetId;
     }

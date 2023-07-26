@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the current call state.
+ * Describes the current call state
  */
 class CallState extends TdObject
 {

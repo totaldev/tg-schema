@@ -6,93 +6,178 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains information about an invoice payment form.
+ * Contains information about an invoice payment form
  */
 class PaymentForm extends TdObject
 {
     public const TYPE_NAME = 'paymentForm';
 
     /**
-     * Full information of the invoice.
+     * The payment form identifier
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
+     * Full information about the invoice
+     *
+     * @var Invoice
      */
     protected Invoice $invoice;
 
     /**
-     * Payment form URL.
+     * User identifier of the seller bot
+     *
+     * @var int
      */
-    protected string $url;
+    protected int $sellerBotUserId;
 
     /**
-     * Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null.
+     * User identifier of the payment provider bot
+     *
+     * @var int
      */
-    protected ?PaymentsProviderStripe $paymentsProvider;
+    protected int $paymentProviderUserId;
 
     /**
-     * Saved server-side order information; may be null.
+     * Information about the payment provider
+     *
+     * @var PaymentProvider
+     */
+    protected PaymentProvider $paymentProvider;
+
+    /**
+     * The list of additional payment options
+     *
+     * @var PaymentOption[]
+     */
+    protected array $additionalPaymentOptions;
+
+    /**
+     * Saved server-side order information; may be null
+     *
+     * @var OrderInfo|null
      */
     protected ?OrderInfo $savedOrderInfo;
 
     /**
-     * Contains information about saved card credentials; may be null.
+     * The list of saved payment credentials
+     *
+     * @var SavedCredentials[]
      */
-    protected ?SavedCredentials $savedCredentials;
+    protected array $savedCredentials;
 
     /**
-     * True, if the user can choose to save credentials.
+     * True, if the user can choose to save credentials
+     *
+     * @var bool
      */
     protected bool $canSaveCredentials;
 
     /**
-     * True, if the user will be able to save credentials protected by a password they set up.
+     * True, if the user will be able to save credentials, if sets up a 2-step verification password
+     *
+     * @var bool
      */
     protected bool $needPassword;
 
+    /**
+     * Product title
+     *
+     * @var string
+     */
+    protected string $productTitle;
+
+    /**
+     * Product description
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $productDescription;
+
+    /**
+     * Product photo; may be null
+     *
+     * @var Photo|null
+     */
+    protected ?Photo $productPhoto;
+
     public function __construct(
+        int $id,
         Invoice $invoice,
-        string $url,
-        ?PaymentsProviderStripe $paymentsProvider,
+        int $sellerBotUserId,
+        int $paymentProviderUserId,
+        PaymentProvider $paymentProvider,
+        array $additionalPaymentOptions,
         ?OrderInfo $savedOrderInfo,
-        ?SavedCredentials $savedCredentials,
+        array $savedCredentials,
         bool $canSaveCredentials,
-        bool $needPassword
+        bool $needPassword,
+        string $productTitle,
+        FormattedText $productDescription,
+        ?Photo $productPhoto
     ) {
-        $this->invoice            = $invoice;
-        $this->url                = $url;
-        $this->paymentsProvider   = $paymentsProvider;
-        $this->savedOrderInfo     = $savedOrderInfo;
-        $this->savedCredentials   = $savedCredentials;
+        $this->id = $id;
+        $this->invoice = $invoice;
+        $this->sellerBotUserId = $sellerBotUserId;
+        $this->paymentProviderUserId = $paymentProviderUserId;
+        $this->paymentProvider = $paymentProvider;
+        $this->additionalPaymentOptions = $additionalPaymentOptions;
+        $this->savedOrderInfo = $savedOrderInfo;
+        $this->savedCredentials = $savedCredentials;
         $this->canSaveCredentials = $canSaveCredentials;
-        $this->needPassword       = $needPassword;
+        $this->needPassword = $needPassword;
+        $this->productTitle = $productTitle;
+        $this->productDescription = $productDescription;
+        $this->productPhoto = $productPhoto;
     }
 
     public static function fromArray(array $array): PaymentForm
     {
         return new static(
+            $array['id'],
             TdSchemaRegistry::fromArray($array['invoice']),
-            $array['url'],
-            (isset($array['payments_provider']) ? TdSchemaRegistry::fromArray($array['payments_provider']) : null),
+            $array['seller_bot_user_id'],
+            $array['payment_provider_user_id'],
+            TdSchemaRegistry::fromArray($array['payment_provider']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['additionalPaymentOptions']),
             (isset($array['saved_order_info']) ? TdSchemaRegistry::fromArray($array['saved_order_info']) : null),
-            (isset($array['saved_credentials']) ? TdSchemaRegistry::fromArray($array['saved_credentials']) : null),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['savedCredentials']),
             $array['can_save_credentials'],
             $array['need_password'],
+            $array['product_title'],
+            TdSchemaRegistry::fromArray($array['product_description']),
+            (isset($array['product_photo']) ? TdSchemaRegistry::fromArray($array['product_photo']) : null),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                => static::TYPE_NAME,
-            'invoice'              => $this->invoice->typeSerialize(),
-            'url'                  => $this->url,
-            'payments_provider'    => (isset($this->paymentsProvider) ? $this->paymentsProvider : null),
-            'saved_order_info'     => (isset($this->savedOrderInfo) ? $this->savedOrderInfo : null),
-            'saved_credentials'    => (isset($this->savedCredentials) ? $this->savedCredentials : null),
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'invoice' => $this->invoice->typeSerialize(),
+            'seller_bot_user_id' => $this->sellerBotUserId,
+            'payment_provider_user_id' => $this->paymentProviderUserId,
+            'payment_provider' => $this->paymentProvider->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->additionalPaymentOptions),
+            'saved_order_info' => (isset($this->savedOrderInfo) ? $this->savedOrderInfo : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->savedCredentials),
             'can_save_credentials' => $this->canSaveCredentials,
-            'need_password'        => $this->needPassword,
+            'need_password' => $this->needPassword,
+            'product_title' => $this->productTitle,
+            'product_description' => $this->productDescription->typeSerialize(),
+            'product_photo' => (isset($this->productPhoto) ? $this->productPhoto : null),
         ];
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getInvoice(): Invoice
@@ -100,14 +185,24 @@ class PaymentForm extends TdObject
         return $this->invoice;
     }
 
-    public function getUrl(): string
+    public function getSellerBotUserId(): int
     {
-        return $this->url;
+        return $this->sellerBotUserId;
     }
 
-    public function getPaymentsProvider(): ?PaymentsProviderStripe
+    public function getPaymentProviderUserId(): int
     {
-        return $this->paymentsProvider;
+        return $this->paymentProviderUserId;
+    }
+
+    public function getPaymentProvider(): PaymentProvider
+    {
+        return $this->paymentProvider;
+    }
+
+    public function getAdditionalPaymentOptions(): array
+    {
+        return $this->additionalPaymentOptions;
     }
 
     public function getSavedOrderInfo(): ?OrderInfo
@@ -115,7 +210,7 @@ class PaymentForm extends TdObject
         return $this->savedOrderInfo;
     }
 
-    public function getSavedCredentials(): ?SavedCredentials
+    public function getSavedCredentials(): array
     {
         return $this->savedCredentials;
     }
@@ -128,5 +223,20 @@ class PaymentForm extends TdObject
     public function getNeedPassword(): bool
     {
         return $this->needPassword;
+    }
+
+    public function getProductTitle(): string
+    {
+        return $this->productTitle;
+    }
+
+    public function getProductDescription(): FormattedText
+    {
+        return $this->productDescription;
+    }
+
+    public function getProductPhoto(): ?Photo
+    {
+        return $this->productPhoto;
     }
 }

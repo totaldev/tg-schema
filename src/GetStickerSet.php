@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns information about a sticker set by its identifier.
+ * Returns information about a sticker set by its identifier
  */
 class GetStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'getStickerSet';
 
     /**
-     * Identifier of the sticker set.
+     * Identifier of the sticker set
+     *
+     * @var int
      */
-    protected string $setId;
+    protected int $setId;
 
-    public function __construct(string $setId)
+    public function __construct(int $setId)
     {
         $this->setId = $setId;
     }
@@ -35,12 +37,12 @@ class GetStickerSet extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'set_id' => $this->setId,
         ];
     }
 
-    public function getSetId(): string
+    public function getSetId(): int
     {
         return $this->setId;
     }

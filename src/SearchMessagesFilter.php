@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Represents a filter for message search results.
+ * Represents a filter for message search results
  */
 class SearchMessagesFilter extends TdObject
 {

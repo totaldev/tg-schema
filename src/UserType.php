@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Represents the type of a user. The following types are possible: regular users, deleted users and bots.
+ * Represents the type of a user. The following types are possible: regular users, deleted users and bots
  */
 class UserType extends TdObject
 {

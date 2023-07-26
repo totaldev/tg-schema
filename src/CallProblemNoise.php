@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user heard background noise.
+ * The user heard background noise
  */
 class CallProblemNoise extends CallProblem
 {

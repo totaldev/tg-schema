@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Represents a null JSON value.
+ * Represents a null JSON value
  */
 class JsonValueNull extends JsonValue
 {

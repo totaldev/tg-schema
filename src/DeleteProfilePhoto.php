@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Deletes a profile photo. If something changes, updateUser will be sent.
+ * Deletes a profile photo
  */
 class DeleteProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'deleteProfilePhoto';
 
     /**
-     * Identifier of the profile photo to delete.
+     * Identifier of the profile photo to delete
+     *
+     * @var int
      */
-    protected string $profilePhotoId;
+    protected int $profilePhotoId;
 
-    public function __construct(string $profilePhotoId)
+    public function __construct(int $profilePhotoId)
     {
         $this->profilePhotoId = $profilePhotoId;
     }
@@ -35,12 +37,12 @@ class DeleteProfilePhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'profile_photo_id' => $this->profilePhotoId,
         ];
     }
 
-    public function getProfilePhotoId(): string
+    public function getProfilePhotoId(): int
     {
         return $this->profilePhotoId;
     }

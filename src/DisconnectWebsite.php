@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Disconnects website from the current user's Telegram account.
+ * Disconnects website from the current user's Telegram account
  */
 class DisconnectWebsite extends TdFunction
 {
     public const TYPE_NAME = 'disconnectWebsite';
 
     /**
-     * Website identifier.
+     * Website identifier
+     *
+     * @var int
      */
-    protected string $websiteId;
+    protected int $websiteId;
 
-    public function __construct(string $websiteId)
+    public function __construct(int $websiteId)
     {
         $this->websiteId = $websiteId;
     }
@@ -35,12 +37,12 @@ class DisconnectWebsite extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'website_id' => $this->websiteId,
         ];
     }
 
-    public function getWebsiteId(): string
+    public function getWebsiteId(): int
     {
         return $this->websiteId;
     }

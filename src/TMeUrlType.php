@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the type of a URL linking to an internal Telegram entity.
+ * Describes the type of a URL linking to an internal Telegram entity
  */
 class TMeUrlType extends TdObject
 {

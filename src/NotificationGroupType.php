@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the type of notifications in a notification group.
+ * Describes the type of notifications in a notification group
  */
 class NotificationGroupType extends TdObject
 {

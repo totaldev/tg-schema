@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The file is a profile photo.
+ * The file is a profile photo
  */
 class FileTypeProfilePhoto extends FileType
 {

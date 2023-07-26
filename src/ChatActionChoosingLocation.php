@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user is picking a location or venue to send.
+ * The user is picking a location or venue to send
  */
 class ChatActionChoosingLocation extends ChatAction
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a keyboard button type.
+ * Describes a keyboard button type
  */
 class KeyboardButtonType extends TdObject
 {

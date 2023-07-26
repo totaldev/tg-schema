@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Terminates all other sessions of the current user.
+ * Terminates all other sessions of the current user
  */
 class TerminateAllOtherSessions extends TdFunction
 {

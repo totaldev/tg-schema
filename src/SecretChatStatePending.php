@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The secret chat is not yet created; waiting for the other user to get online.
+ * The secret chat is not yet created; waiting for the other user to get online
  */
 class SecretChatStatePending extends SecretChatState
 {

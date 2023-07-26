@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A bold text.
+ * A bold text
  */
 class TextEntityTypeBold extends TextEntityType
 {

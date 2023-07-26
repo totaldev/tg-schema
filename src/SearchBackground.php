@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Searches for a background by its name.
+ * Searches for a background by its name
  */
 class SearchBackground extends TdFunction
 {
     public const TYPE_NAME = 'searchBackground';
 
     /**
-     * The name of the background.
+     * The name of the background
+     *
+     * @var string
      */
     protected string $name;
 
@@ -36,7 +38,7 @@ class SearchBackground extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
     }
 

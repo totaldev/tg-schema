@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Requests to send a password recovery code to an email address that was previously set up.
+ * Requests to send a 2-step verification password recovery code to an email address that was previously set up
  */
 class RequestPasswordRecovery extends TdFunction
 {

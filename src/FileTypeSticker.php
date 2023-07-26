@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The file is a sticker.
+ * The file is a sticker
  */
 class FileTypeSticker extends FileType
 {

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The connection state has changed.
+ * The connection state has changed. This update must be used only to show a human-readable description of the connection state
  */
 class UpdateConnectionState extends Update
 {
     public const TYPE_NAME = 'updateConnectionState';
 
     /**
-     * The new connection state.
+     * The new connection state
+     *
+     * @var ConnectionState
      */
     protected ConnectionState $state;
 

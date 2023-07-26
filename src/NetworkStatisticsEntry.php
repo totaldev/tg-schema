@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains statistics about network usage.
+ * Contains statistics about network usage
  */
 class NetworkStatisticsEntry extends TdObject
 {

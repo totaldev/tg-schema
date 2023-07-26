@@ -6,49 +6,64 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A new incoming callback query from a message sent via a bot; for bots only.
+ * A new incoming callback query from a message sent via a bot; for bots only
  */
 class UpdateNewInlineCallbackQuery extends Update
 {
     public const TYPE_NAME = 'updateNewInlineCallbackQuery';
 
     /**
-     * Unique query identifier.
+     * Unique query identifier
+     *
+     * @var int
      */
-    protected string $id;
+    protected int $id;
 
     /**
-     * Identifier of the user who sent the query.
+     * Identifier of the user who sent the query
+     *
+     * @var int
      */
     protected int $senderUserId;
 
     /**
-     * Identifier of the inline message, from which the query originated.
+     * Identifier of the inline message from which the query originated
+     *
+     * @var string
      */
     protected string $inlineMessageId;
 
     /**
-     * An identifier uniquely corresponding to the chat a message was sent to.
+     * An identifier uniquely corresponding to the chat a message was sent to
+     *
+     * @var int
      */
-    protected string $chatInstance;
+    protected int $chatInstance;
 
     /**
-     * Query payload.
+     * Query payload
+     *
+     * @var CallbackQueryPayload
      */
     protected CallbackQueryPayload $payload;
 
-    public function __construct(string $id, int $senderUserId, string $inlineMessageId, string $chatInstance, CallbackQueryPayload $payload)
-    {
+    public function __construct(
+        int $id,
+        int $senderUserId,
+        string $inlineMessageId,
+        int $chatInstance,
+        CallbackQueryPayload $payload
+    ) {
         parent::__construct();
 
-        $this->id              = $id;
-        $this->senderUserId    = $senderUserId;
+        $this->id = $id;
+        $this->senderUserId = $senderUserId;
         $this->inlineMessageId = $inlineMessageId;
-        $this->chatInstance    = $chatInstance;
-        $this->payload         = $payload;
+        $this->chatInstance = $chatInstance;
+        $this->payload = $payload;
     }
 
     public static function fromArray(array $array): UpdateNewInlineCallbackQuery
@@ -65,16 +80,16 @@ class UpdateNewInlineCallbackQuery extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'id'                => $this->id,
-            'sender_user_id'    => $this->senderUserId,
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'sender_user_id' => $this->senderUserId,
             'inline_message_id' => $this->inlineMessageId,
-            'chat_instance'     => $this->chatInstance,
-            'payload'           => $this->payload->typeSerialize(),
+            'chat_instance' => $this->chatInstance,
+            'payload' => $this->payload->typeSerialize(),
         ];
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
@@ -89,7 +104,7 @@ class UpdateNewInlineCallbackQuery extends Update
         return $this->inlineMessageId;
     }
 
-    public function getChatInstance(): string
+    public function getChatInstance(): int
     {
         return $this->chatInstance;
     }

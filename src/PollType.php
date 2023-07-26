@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the type of a poll.
+ * Describes the type of a poll
  */
 class PollType extends TdObject
 {

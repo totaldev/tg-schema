@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Used to search for supergroup or channel members via a (string) query.
+ * Used to search for supergroup or channel members via a (string) query
  */
 class SupergroupMembersFilterSearch extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterSearch';
 
     /**
-     * Query to search for.
+     * Query to search for
+     *
+     * @var string
      */
     protected string $query;
 

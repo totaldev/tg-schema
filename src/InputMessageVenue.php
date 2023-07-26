@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A message with information about a venue.
+ * A message with information about a venue
  */
 class InputMessageVenue extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageVenue';
 
     /**
-     * Venue to send.
+     * Venue to send
+     *
+     * @var Venue
      */
     protected Venue $venue;
 

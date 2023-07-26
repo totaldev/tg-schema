@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A mention of a user by their username.
+ * A mention of a user, a supergroup, or a channel by their username
  */
 class TextEntityTypeMention extends TextEntityType
 {

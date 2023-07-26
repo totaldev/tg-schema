@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An HTTP URL.
+ * An HTTP URL
  */
 class TextEntityTypeUrl extends TextEntityType
 {

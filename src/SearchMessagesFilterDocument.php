@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns only document messages.
+ * Returns only document messages
  */
 class SearchMessagesFilterDocument extends SearchMessagesFilter
 {

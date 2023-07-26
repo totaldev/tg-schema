@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns the total number of imported contacts.
+ * Returns the total number of imported contacts
  */
 class GetImportedContactCount extends TdFunction
 {

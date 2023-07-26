@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The file type is not yet known.
+ * The file type is not yet known
  */
 class FileTypeUnknown extends FileType
 {

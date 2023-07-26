@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns all website where the current user used Telegram to log in.
+ * Returns all website where the current user used Telegram to log in
  */
 class GetConnectedWebsites extends TdFunction
 {

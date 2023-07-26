@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Clears the list of recently found chats.
+ * Clears the list of recently found chats
  */
 class ClearRecentlyFoundChats extends TdFunction
 {

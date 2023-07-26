@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached.
+ * Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
  */
 class CheckCreatedPublicChatsLimit extends TdFunction
 {
     public const TYPE_NAME = 'checkCreatedPublicChatsLimit';
 
     /**
-     * Type of the public chats, for which to check the limit.
+     * Type of the public chats, for which to check the limit
+     *
+     * @var PublicChatType
      */
     protected PublicChatType $type;
 
@@ -36,7 +38,7 @@ class CheckCreatedPublicChatsLimit extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type' => $this->type->typeSerialize(),
         ];
     }
 

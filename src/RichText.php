@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a text object inside an instant-view web page.
+ * Describes a text object inside an instant-view web page
  */
 class RichText extends TdObject
 {

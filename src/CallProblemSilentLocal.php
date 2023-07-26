@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user couldn't hear the other side.
+ * The user couldn't hear the other side
  */
 class CallProblemSilentLocal extends CallProblem
 {

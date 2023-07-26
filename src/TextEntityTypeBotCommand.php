@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A bot command, beginning with "/". This shouldn't be highlighted if there are no bots in the chat.
+ * A bot command, beginning with "/"
  */
 class TextEntityTypeBotCommand extends TextEntityType
 {

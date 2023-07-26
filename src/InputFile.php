@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Points to a file.
+ * Points to a file
  */
 class InputFile extends TdObject
 {

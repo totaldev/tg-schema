@@ -6,35 +6,48 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Searches for stickers from public sticker sets that correspond to a given emoji.
+ * Searches for stickers from public sticker sets that correspond to any of the given emoji
  */
 class SearchStickers extends TdFunction
 {
     public const TYPE_NAME = 'searchStickers';
 
     /**
-     * String representation of emoji; must be non-empty.
+     * Type of the stickers to return
+     *
+     * @var StickerType
      */
-    protected string $emoji;
+    protected StickerType $stickerType;
 
     /**
-     * The maximum number of stickers to be returned.
+     * Space-separated list of emoji to search for; must be non-empty
+     *
+     * @var string
+     */
+    protected string $emojis;
+
+    /**
+     * The maximum number of stickers to be returned; 0-100
+     *
+     * @var int
      */
     protected int $limit;
 
-    public function __construct(string $emoji, int $limit)
+    public function __construct(StickerType $stickerType, string $emojis, int $limit)
     {
-        $this->emoji = $emoji;
+        $this->stickerType = $stickerType;
+        $this->emojis = $emojis;
         $this->limit = $limit;
     }
 
     public static function fromArray(array $array): SearchStickers
     {
         return new static(
-            $array['emoji'],
+            TdSchemaRegistry::fromArray($array['sticker_type']),
+            $array['emojis'],
             $array['limit'],
         );
     }
@@ -43,14 +56,20 @@ class SearchStickers extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'emoji' => $this->emoji,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'emojis' => $this->emojis,
             'limit' => $this->limit,
         ];
     }
 
-    public function getEmoji(): string
+    public function getStickerType(): StickerType
     {
-        return $this->emoji;
+        return $this->stickerType;
+    }
+
+    public function getEmojis(): string
+    {
+        return $this->emojis;
     }
 
     public function getLimit(): int

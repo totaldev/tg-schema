@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber.
+ * Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
  */
 class RequestQrCodeAuthentication extends TdFunction
 {
     public const TYPE_NAME = 'requestQrCodeAuthentication';
 
     /**
-     * List of user identifiers of other users currently using the client.
+     * List of user identifiers of other users currently using the application
      *
      * @var int[]
      */
@@ -37,7 +37,7 @@ class RequestQrCodeAuthentication extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'other_user_ids' => $this->otherUserIds,
         ];
     }

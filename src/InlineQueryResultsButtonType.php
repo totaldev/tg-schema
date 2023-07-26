@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+declare(strict_types=1);
+
+namespace TotaldevTgSchema;
+
+/**
+ * Represents a type of a button in results of inline query
+ */
+class InlineQueryResultsButtonType extends TdObject
+{
+    public const TYPE_NAME = 'InlineQueryResultsButtonType';
+
+    public function __construct()
+    {
+    }
+
+    public static function fromArray(array $array): InlineQueryResultsButtonType
+    {
+        return new static();
+    }
+
+    public function typeSerialize(): array
+    {
+        return ['@type' => static::TYPE_NAME];
+    }
+}

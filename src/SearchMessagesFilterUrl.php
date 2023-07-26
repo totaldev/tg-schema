@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns only messages containing URLs.
+ * Returns only messages containing URLs
  */
 class SearchMessagesFilterUrl extends SearchMessagesFilter
 {

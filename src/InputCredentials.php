@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains information about the payment method chosen by the user.
+ * Contains information about the payment method chosen by the user
  */
 class InputCredentials extends TdObject
 {

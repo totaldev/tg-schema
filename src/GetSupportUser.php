@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns a user that can be contacted to get support.
+ * Returns a user that can be contacted to get support
  */
 class GetSupportUser extends TdFunction
 {

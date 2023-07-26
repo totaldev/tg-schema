@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a type of public chats.
+ * Describes a type of public chats
  */
 class PublicChatType extends TdObject
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains detailed information about a notification.
+ * Contains detailed information about a notification
  */
 class NotificationType extends TdObject
 {

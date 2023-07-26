@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the current secret chat state.
+ * Describes the current secret chat state
  */
 class SecretChatState extends TdObject
 {

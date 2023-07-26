@@ -6,22 +6,26 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Creates a new temporary password for processing payments.
+ * Creates a new temporary password for processing payments
  */
 class CreateTemporaryPassword extends TdFunction
 {
     public const TYPE_NAME = 'createTemporaryPassword';
 
     /**
-     * Persistent user password.
+     * The 2-step verification password of the current user
+     *
+     * @var string
      */
     protected string $password;
 
     /**
-     * Time during which the temporary password will be valid, in seconds; should be between 60 and 86400.
+     * Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
+     *
+     * @var int
      */
     protected int $validFor;
 
@@ -42,8 +46,8 @@ class CreateTemporaryPassword extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
-            'password'  => $this->password,
+            '@type' => static::TYPE_NAME,
+            'password' => $this->password,
             'valid_for' => $this->validFor,
         ];
     }

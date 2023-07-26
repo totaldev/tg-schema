@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns only messages with mentions of the current user, or messages that are replies to their messages.
+ * Returns only messages with mentions of the current user, or messages that are replies to their messages
  */
 class SearchMessagesFilterMention extends SearchMessagesFilter
 {

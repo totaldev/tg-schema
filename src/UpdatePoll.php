@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A poll was updated; for bots only.
+ * A poll was updated; for bots only
  */
 class UpdatePoll extends Update
 {
     public const TYPE_NAME = 'updatePoll';
 
     /**
-     * New data about the poll.
+     * New data about the poll
+     *
+     * @var Poll
      */
     protected Poll $poll;
 
@@ -38,7 +40,7 @@ class UpdatePoll extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'poll'  => $this->poll->typeSerialize(),
+            'poll' => $this->poll->typeSerialize(),
         ];
     }
 

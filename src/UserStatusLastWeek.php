@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user is offline, but was online last week.
+ * The user is offline, but was online last week
  */
 class UserStatusLastWeek extends UserStatus
 {

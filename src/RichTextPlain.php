@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A plain text.
+ * A plain text
  */
 class RichTextPlain extends RichText
 {
     public const TYPE_NAME = 'richTextPlain';
 
     /**
-     * Text.
+     * Text
+     *
+     * @var string
      */
     protected string $text;
 
@@ -38,7 +40,7 @@ class RichTextPlain extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text,
+            'text' => $this->text,
         ];
     }
 

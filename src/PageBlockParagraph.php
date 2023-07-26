@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A text paragraph.
+ * A text paragraph
  */
 class PageBlockParagraph extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockParagraph';
 
     /**
-     * Paragraph text.
+     * Paragraph text
+     *
+     * @var RichText
      */
     protected RichText $text;
 
@@ -38,7 +40,7 @@ class PageBlockParagraph extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text' => $this->text->typeSerialize(),
         ];
     }
 

@@ -6,36 +6,50 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A video message.
+ * A video message
  */
 class MessageVideo extends MessageContent
 {
     public const TYPE_NAME = 'messageVideo';
 
     /**
-     * The video description.
+     * The video description
+     *
+     * @var Video
      */
     protected Video $video;
 
     /**
-     * Video caption.
+     * Video caption
+     *
+     * @var FormattedText
      */
     protected FormattedText $caption;
 
     /**
-     * True, if the video thumbnail must be blurred and the video must be shown only while tapped.
+     * True, if the video preview must be covered by a spoiler animation
+     *
+     * @var bool
+     */
+    protected bool $hasSpoiler;
+
+    /**
+     * True, if the video thumbnail must be blurred and the video must be shown only while tapped
+     *
+     * @var bool
      */
     protected bool $isSecret;
 
-    public function __construct(Video $video, FormattedText $caption, bool $isSecret)
+    public function __construct(Video $video, FormattedText $caption, bool $hasSpoiler, bool $isSecret)
     {
         parent::__construct();
 
-        $this->video    = $video;
-        $this->caption  = $caption;
+        $this->video = $video;
+        $this->caption = $caption;
+        $this->hasSpoiler = $hasSpoiler;
         $this->isSecret = $isSecret;
     }
 
@@ -44,6 +58,7 @@ class MessageVideo extends MessageContent
         return new static(
             TdSchemaRegistry::fromArray($array['video']),
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['has_spoiler'],
             $array['is_secret'],
         );
     }
@@ -51,9 +66,10 @@ class MessageVideo extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
-            'video'     => $this->video->typeSerialize(),
-            'caption'   => $this->caption->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'has_spoiler' => $this->hasSpoiler,
             'is_secret' => $this->isSecret,
         ];
     }
@@ -66,6 +82,11 @@ class MessageVideo extends MessageContent
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function getHasSpoiler(): bool
+    {
+        return $this->hasSpoiler;
     }
 
     public function getIsSecret(): bool

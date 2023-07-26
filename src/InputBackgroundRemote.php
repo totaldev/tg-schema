@@ -6,21 +6,23 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A background from the server.
+ * A background from the server
  */
 class InputBackgroundRemote extends InputBackground
 {
     public const TYPE_NAME = 'inputBackgroundRemote';
 
     /**
-     * The background identifier.
+     * The background identifier
+     *
+     * @var int
      */
-    protected string $backgroundId;
+    protected int $backgroundId;
 
-    public function __construct(string $backgroundId)
+    public function __construct(int $backgroundId)
     {
         parent::__construct();
 
@@ -37,12 +39,12 @@ class InputBackgroundRemote extends InputBackground
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'background_id' => $this->backgroundId,
         ];
     }
 
-    public function getBackgroundId(): string
+    public function getBackgroundId(): int
     {
         return $this->backgroundId;
     }

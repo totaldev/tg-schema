@@ -6,92 +6,120 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a sticker.
+ * Describes a sticker
  */
 class Sticker extends TdObject
 {
     public const TYPE_NAME = 'sticker';
 
     /**
-     * The identifier of the sticker set to which the sticker belongs; 0 if none.
+     * Unique sticker identifier within the set; 0 if none
+     *
+     * @var int
      */
-    protected string $setId;
+    protected int $id;
 
     /**
-     * Sticker width; as defined by the sender.
+     * Identifier of the sticker set to which the sticker belongs; 0 if none
+     *
+     * @var int
+     */
+    protected int $setId;
+
+    /**
+     * Sticker width; as defined by the sender
+     *
+     * @var int
      */
     protected int $width;
 
     /**
-     * Sticker height; as defined by the sender.
+     * Sticker height; as defined by the sender
+     *
+     * @var int
      */
     protected int $height;
 
     /**
-     * Emoji corresponding to the sticker.
+     * Emoji corresponding to the sticker
+     *
+     * @var string
      */
     protected string $emoji;
 
     /**
-     * True, if the sticker is an animated sticker in TGS format.
+     * Sticker format
+     *
+     * @var StickerFormat
      */
-    protected bool $isAnimated;
+    protected StickerFormat $format;
 
     /**
-     * True, if the sticker is a mask.
+     * Sticker's full type
+     *
+     * @var StickerFullType
      */
-    protected bool $isMask;
+    protected StickerFullType $fullType;
 
     /**
-     * Position where the mask should be placed; may be null.
+     * Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
+     *
+     * @var ClosedVectorPath[]
      */
-    protected ?MaskPosition $maskPosition;
+    protected array $outline;
 
     /**
-     * Sticker thumbnail in WEBP or JPEG format; may be null.
+     * Sticker thumbnail in WEBP or JPEG format; may be null
+     *
+     * @var Thumbnail|null
      */
-    protected ?PhotoSize $thumbnail;
+    protected ?Thumbnail $thumbnail;
 
     /**
-     * File containing the sticker.
+     * File containing the sticker
+     *
+     * @var File
      */
     protected File $sticker;
 
     public function __construct(
-        string $setId,
+        int $id,
+        int $setId,
         int $width,
         int $height,
         string $emoji,
-        bool $isAnimated,
-        bool $isMask,
-        ?MaskPosition $maskPosition,
-        ?PhotoSize $thumbnail,
+        StickerFormat $format,
+        StickerFullType $fullType,
+        array $outline,
+        ?Thumbnail $thumbnail,
         File $sticker
     ) {
-        $this->setId        = $setId;
-        $this->width        = $width;
-        $this->height       = $height;
-        $this->emoji        = $emoji;
-        $this->isAnimated   = $isAnimated;
-        $this->isMask       = $isMask;
-        $this->maskPosition = $maskPosition;
-        $this->thumbnail    = $thumbnail;
-        $this->sticker      = $sticker;
+        $this->id = $id;
+        $this->setId = $setId;
+        $this->width = $width;
+        $this->height = $height;
+        $this->emoji = $emoji;
+        $this->format = $format;
+        $this->fullType = $fullType;
+        $this->outline = $outline;
+        $this->thumbnail = $thumbnail;
+        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): Sticker
     {
         return new static(
+            $array['id'],
             $array['set_id'],
             $array['width'],
             $array['height'],
             $array['emoji'],
-            $array['is_animated'],
-            $array['is_mask'],
-            (isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null),
+            TdSchemaRegistry::fromArray($array['format']),
+            TdSchemaRegistry::fromArray($array['full_type']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['outline']),
             (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
             TdSchemaRegistry::fromArray($array['sticker']),
         );
@@ -100,20 +128,26 @@ class Sticker extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
-            'set_id'        => $this->setId,
-            'width'         => $this->width,
-            'height'        => $this->height,
-            'emoji'         => $this->emoji,
-            'is_animated'   => $this->isAnimated,
-            'is_mask'       => $this->isMask,
-            'mask_position' => (isset($this->maskPosition) ? $this->maskPosition : null),
-            'thumbnail'     => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'sticker'       => $this->sticker->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'set_id' => $this->setId,
+            'width' => $this->width,
+            'height' => $this->height,
+            'emoji' => $this->emoji,
+            'format' => $this->format->typeSerialize(),
+            'full_type' => $this->fullType->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->outline),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'sticker' => $this->sticker->typeSerialize(),
         ];
     }
 
-    public function getSetId(): string
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getSetId(): int
     {
         return $this->setId;
     }
@@ -133,22 +167,22 @@ class Sticker extends TdObject
         return $this->emoji;
     }
 
-    public function getIsAnimated(): bool
+    public function getFormat(): StickerFormat
     {
-        return $this->isAnimated;
+        return $this->format;
     }
 
-    public function getIsMask(): bool
+    public function getFullType(): StickerFullType
     {
-        return $this->isMask;
+        return $this->fullType;
     }
 
-    public function getMaskPosition(): ?MaskPosition
+    public function getOutline(): array
     {
-        return $this->maskPosition;
+        return $this->outline;
     }
 
-    public function getThumbnail(): ?PhotoSize
+    public function getThumbnail(): ?Thumbnail
     {
         return $this->thumbnail;
     }

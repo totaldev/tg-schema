@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The content should be left-aligned.
+ * The content must be left-aligned
  */
 class PageBlockHorizontalAlignmentLeft extends PageBlockHorizontalAlignment
 {

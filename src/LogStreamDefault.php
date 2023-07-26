@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The log is written to stderr or an OS specific log.
+ * The log is written to stderr or an OS specific log
  */
 class LogStreamDefault extends LogStream
 {

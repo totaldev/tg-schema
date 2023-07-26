@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An underlined text.
+ * An underlined text
  */
 class TextEntityTypeUnderline extends TextEntityType
 {

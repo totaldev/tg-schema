@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The call was ended because one of the parties hung up.
+ * The call was ended because one of the parties hung up
  */
 class CallDiscardReasonHungUp extends CallDiscardReason
 {

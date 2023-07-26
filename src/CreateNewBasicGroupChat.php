@@ -6,31 +6,41 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat.
+ * Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
  */
 class CreateNewBasicGroupChat extends TdFunction
 {
     public const TYPE_NAME = 'createNewBasicGroupChat';
 
     /**
-     * Identifiers of users to be added to the basic group.
+     * Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
      *
      * @var int[]
      */
     protected array $userIds;
 
     /**
-     * Title of the new basic group; 1-128 characters.
+     * Title of the new basic group; 1-128 characters
+     *
+     * @var string
      */
     protected string $title;
 
-    public function __construct(array $userIds, string $title)
+    /**
+     * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+     *
+     * @var int
+     */
+    protected int $messageAutoDeleteTime;
+
+    public function __construct(array $userIds, string $title, int $messageAutoDeleteTime)
     {
         $this->userIds = $userIds;
-        $this->title   = $title;
+        $this->title = $title;
+        $this->messageAutoDeleteTime = $messageAutoDeleteTime;
     }
 
     public static function fromArray(array $array): CreateNewBasicGroupChat
@@ -38,15 +48,17 @@ class CreateNewBasicGroupChat extends TdFunction
         return new static(
             $array['user_ids'],
             $array['title'],
+            $array['message_auto_delete_time'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'user_ids' => $this->userIds,
-            'title'    => $this->title,
+            'title' => $this->title,
+            'message_auto_delete_time' => $this->messageAutoDeleteTime,
         ];
     }
 
@@ -58,5 +70,10 @@ class CreateNewBasicGroupChat extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function getMessageAutoDeleteTime(): int
+    {
+        return $this->messageAutoDeleteTime;
     }
 }

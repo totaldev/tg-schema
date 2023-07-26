@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A poll in a message was stopped.
+ * A poll in a message was stopped
  */
 class ChatEventPollStopped extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventPollStopped';
 
     /**
-     * The message with the poll.
+     * The message with the poll
+     *
+     * @var Message
      */
     protected Message $message;
 
@@ -37,7 +39,7 @@ class ChatEventPollStopped extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
         ];
     }

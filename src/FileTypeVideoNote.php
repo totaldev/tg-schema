@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The file is a video note.
+ * The file is a video note
  */
 class FileTypeVideoNote extends FileType
 {

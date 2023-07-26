@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Disables the currently enabled proxy. Can be called before authorization.
+ * Disables the currently enabled proxy. Can be called before authorization
  */
 class DisableProxy extends TdFunction
 {

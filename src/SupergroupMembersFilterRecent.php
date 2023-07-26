@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns recently active users in reverse chronological order.
+ * Returns recently active users in reverse chronological order
  */
 class SupergroupMembersFilterRecent extends SupergroupMembersFilter
 {

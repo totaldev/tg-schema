@@ -6,29 +6,33 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Sets the result of a pre-checkout query; for bots only.
+ * Sets the result of a pre-checkout query; for bots only
  */
 class AnswerPreCheckoutQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerPreCheckoutQuery';
 
     /**
-     * Identifier of the pre-checkout query.
+     * Identifier of the pre-checkout query
+     *
+     * @var int
      */
-    protected string $preCheckoutQueryId;
+    protected int $preCheckoutQueryId;
 
     /**
-     * An error message, empty on success.
+     * An error message, empty on success
+     *
+     * @var string
      */
     protected string $errorMessage;
 
-    public function __construct(string $preCheckoutQueryId, string $errorMessage)
+    public function __construct(int $preCheckoutQueryId, string $errorMessage)
     {
         $this->preCheckoutQueryId = $preCheckoutQueryId;
-        $this->errorMessage       = $errorMessage;
+        $this->errorMessage = $errorMessage;
     }
 
     public static function fromArray(array $array): AnswerPreCheckoutQuery
@@ -42,13 +46,13 @@ class AnswerPreCheckoutQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                 => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'pre_checkout_query_id' => $this->preCheckoutQueryId,
-            'error_message'         => $this->errorMessage,
+            'error_message' => $this->errorMessage,
         ];
     }
 
-    public function getPreCheckoutQueryId(): string
+    public function getPreCheckoutQueryId(): int
     {
         return $this->preCheckoutQueryId;
     }

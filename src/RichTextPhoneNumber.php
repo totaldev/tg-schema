@@ -6,22 +6,26 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A rich text phone number.
+ * A rich text phone number
  */
 class RichTextPhoneNumber extends RichText
 {
     public const TYPE_NAME = 'richTextPhoneNumber';
 
     /**
-     * Text.
+     * Text
+     *
+     * @var RichText
      */
     protected RichText $text;
 
     /**
-     * Phone number.
+     * Phone number
+     *
+     * @var string
      */
     protected string $phoneNumber;
 
@@ -29,7 +33,7 @@ class RichTextPhoneNumber extends RichText
     {
         parent::__construct();
 
-        $this->text        = $text;
+        $this->text = $text;
         $this->phoneNumber = $phoneNumber;
     }
 
@@ -44,8 +48,8 @@ class RichTextPhoneNumber extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'text'         => $this->text->typeSerialize(),
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
             'phone_number' => $this->phoneNumber,
         ];
     }

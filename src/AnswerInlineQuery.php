@@ -6,68 +6,71 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Sets the result of an inline query; for bots only.
+ * Sets the result of an inline query; for bots only
  */
 class AnswerInlineQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerInlineQuery';
 
     /**
-     * Identifier of the inline query.
+     * Identifier of the inline query
+     *
+     * @var int
      */
-    protected string $inlineQueryId;
+    protected int $inlineQueryId;
 
     /**
-     * True, if the result of the query can be cached for the specified user.
+     * Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+     *
+     * @var bool
      */
     protected bool $isPersonal;
 
     /**
-     * The results of the query.
+     * Button to be shown above inline query results; pass null if none
+     *
+     * @var InlineQueryResultsButton
+     */
+    protected InlineQueryResultsButton $button;
+
+    /**
+     * The results of the query
      *
      * @var InputInlineQueryResult[]
      */
     protected array $results;
 
     /**
-     * Allowed time to cache the results of the query, in seconds.
+     * Allowed time to cache the results of the query, in seconds
+     *
+     * @var int
      */
     protected int $cacheTime;
 
     /**
-     * Offset for the next inline query; pass an empty string if there are no more results.
+     * Offset for the next inline query; pass an empty string if there are no more results
+     *
+     * @var string
      */
     protected string $nextOffset;
 
-    /**
-     * If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter.
-     */
-    protected string $switchPmText;
-
-    /**
-     * The parameter for the bot start message.
-     */
-    protected string $switchPmParameter;
-
     public function __construct(
-        string $inlineQueryId,
+        int $inlineQueryId,
         bool $isPersonal,
+        InlineQueryResultsButton $button,
         array $results,
         int $cacheTime,
-        string $nextOffset,
-        string $switchPmText,
-        string $switchPmParameter
+        string $nextOffset
     ) {
-        $this->inlineQueryId     = $inlineQueryId;
-        $this->isPersonal        = $isPersonal;
-        $this->results           = $results;
-        $this->cacheTime         = $cacheTime;
-        $this->nextOffset        = $nextOffset;
-        $this->switchPmText      = $switchPmText;
-        $this->switchPmParameter = $switchPmParameter;
+        $this->inlineQueryId = $inlineQueryId;
+        $this->isPersonal = $isPersonal;
+        $this->button = $button;
+        $this->results = $results;
+        $this->cacheTime = $cacheTime;
+        $this->nextOffset = $nextOffset;
     }
 
     public static function fromArray(array $array): AnswerInlineQuery
@@ -75,29 +78,27 @@ class AnswerInlineQuery extends TdFunction
         return new static(
             $array['inline_query_id'],
             $array['is_personal'],
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['results']),
+            TdSchemaRegistry::fromArray($array['button']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
             $array['cache_time'],
             $array['next_offset'],
-            $array['switch_pm_text'],
-            $array['switch_pm_parameter'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'               => static::TYPE_NAME,
-            'inline_query_id'     => $this->inlineQueryId,
-            'is_personal'         => $this->isPersonal,
-            array_map(fn ($x)     => $x->typeSerialize(), $this->results),
-            'cache_time'          => $this->cacheTime,
-            'next_offset'         => $this->nextOffset,
-            'switch_pm_text'      => $this->switchPmText,
-            'switch_pm_parameter' => $this->switchPmParameter,
+            '@type' => static::TYPE_NAME,
+            'inline_query_id' => $this->inlineQueryId,
+            'is_personal' => $this->isPersonal,
+            'button' => $this->button->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->results),
+            'cache_time' => $this->cacheTime,
+            'next_offset' => $this->nextOffset,
         ];
     }
 
-    public function getInlineQueryId(): string
+    public function getInlineQueryId(): int
     {
         return $this->inlineQueryId;
     }
@@ -105,6 +106,11 @@ class AnswerInlineQuery extends TdFunction
     public function getIsPersonal(): bool
     {
         return $this->isPersonal;
+    }
+
+    public function getButton(): InlineQueryResultsButton
+    {
+        return $this->button;
     }
 
     public function getResults(): array
@@ -120,15 +126,5 @@ class AnswerInlineQuery extends TdFunction
     public function getNextOffset(): string
     {
         return $this->nextOffset;
-    }
-
-    public function getSwitchPmText(): string
-    {
-        return $this->switchPmText;
-    }
-
-    public function getSwitchPmParameter(): string
-    {
-        return $this->switchPmParameter;
     }
 }

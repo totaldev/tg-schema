@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Represents a JSON array.
+ * Represents a JSON array
  */
 class JsonValueArray extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueArray';
 
     /**
-     * The list of array elements.
+     * The list of array elements
      *
      * @var JsonValue[]
      */
@@ -32,15 +32,15 @@ class JsonValueArray extends JsonValue
     public static function fromArray(array $array): JsonValueArray
     {
         return new static(
-            array_map(fn ($x) => TdSchemaRegistry::fromArray($x), $array['values']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['values']),
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            array_map(fn ($x) => $x->typeSerialize(), $this->values),
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->values),
         ];
     }
 

@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An authentication code is delivered via an SMS message to the specified phone number.
+ * An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
  */
 class AuthenticationCodeTypeSms extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeSms';
 
     /**
-     * Length of the code.
+     * Length of the code
+     *
+     * @var int
      */
     protected int $length;
 
@@ -37,7 +39,7 @@ class AuthenticationCodeTypeSms extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'length' => $this->length,
         ];
     }

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The chat is public, because it is a location-based supergroup.
+ * The chat is public, because it is a location-based supergroup
  */
 class PublicChatTypeIsLocationBased extends PublicChatType
 {

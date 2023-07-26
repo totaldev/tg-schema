@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An empty block separating a page.
+ * An empty block separating a page
  */
 class PageBlockDivider extends PageBlock
 {

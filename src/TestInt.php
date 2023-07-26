@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A simple object containing a number; for testing only.
+ * A simple object containing a number; for testing only
  */
 class TestInt extends TdObject
 {
     public const TYPE_NAME = 'testInt';
 
     /**
-     * Number.
+     * Number
+     *
+     * @var int
      */
     protected int $value;
 

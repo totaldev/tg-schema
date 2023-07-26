@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Re-sends the code to verify an email address to be added to a user's Telegram Passport.
+ * Resends the code to verify an email address to be added to a user's Telegram Passport
  */
 class ResendEmailAddressVerificationCode extends TdFunction
 {

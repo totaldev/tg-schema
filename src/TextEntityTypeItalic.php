@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An italic text.
+ * An italic text
  */
 class TextEntityTypeItalic extends TextEntityType
 {

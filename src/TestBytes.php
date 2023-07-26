@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A simple object containing a sequence of bytes; for testing only.
+ * A simple object containing a sequence of bytes; for testing only
  */
 class TestBytes extends TdObject
 {
     public const TYPE_NAME = 'testBytes';
 
     /**
-     * Bytes.
+     * Bytes
+     *
+     * @var string
      */
     protected string $value;
 

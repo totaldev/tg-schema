@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The call is hanging up after discardCall has been called.
+ * The call is hanging up after discardCall has been called
  */
 class CallStateHangingUp extends CallState
 {

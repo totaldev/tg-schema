@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the different types of activity in a chat.
+ * Describes the different types of activity in a chat
  */
 class ChatAction extends TdObject
 {

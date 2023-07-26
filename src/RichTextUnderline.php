@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * An underlined rich text.
+ * An underlined rich text
  */
 class RichTextUnderline extends RichText
 {
     public const TYPE_NAME = 'richTextUnderline';
 
     /**
-     * Text.
+     * Text
+     *
+     * @var RichText
      */
     protected RichText $text;
 
@@ -38,7 +40,7 @@ class RichTextUnderline extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text' => $this->text->typeSerialize(),
         ];
     }
 

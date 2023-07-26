@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Specifies the kind of chat members to return in getSupergroupMembers.
+ * Specifies the kind of chat members to return in getSupergroupMembers
  */
 class SupergroupMembersFilter extends TdObject
 {

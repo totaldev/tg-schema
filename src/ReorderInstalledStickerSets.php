@@ -6,37 +6,39 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Changes the order of installed sticker sets.
+ * Changes the order of installed sticker sets
  */
 class ReorderInstalledStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'reorderInstalledStickerSets';
 
     /**
-     * Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets.
+     * Type of the sticker sets to reorder
+     *
+     * @var StickerType
      */
-    protected bool $isMasks;
+    protected StickerType $stickerType;
 
     /**
-     * Identifiers of installed sticker sets in the new correct order.
+     * Identifiers of installed sticker sets in the new correct order
      *
-     * @var string[]
+     * @var int[]
      */
     protected array $stickerSetIds;
 
-    public function __construct(bool $isMasks, array $stickerSetIds)
+    public function __construct(StickerType $stickerType, array $stickerSetIds)
     {
-        $this->isMasks       = $isMasks;
+        $this->stickerType = $stickerType;
         $this->stickerSetIds = $stickerSetIds;
     }
 
     public static function fromArray(array $array): ReorderInstalledStickerSets
     {
         return new static(
-            $array['is_masks'],
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['sticker_set_ids'],
         );
     }
@@ -44,15 +46,15 @@ class ReorderInstalledStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
-            'is_masks'        => $this->isMasks,
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
         ];
     }
 
-    public function getIsMasks(): bool
+    public function getStickerType(): StickerType
     {
-        return $this->isMasks;
+        return $this->stickerType;
     }
 
     public function getStickerSetIds(): array

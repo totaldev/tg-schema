@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user is recording a voice note.
+ * The user is recording a voice note
  */
 class ChatActionRecordingVoiceNote extends ChatAction
 {

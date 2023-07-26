@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes the type of a background.
+ * Describes the type of a background
  */
 class BackgroundType extends TdObject
 {

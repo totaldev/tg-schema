@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The network is not available.
+ * The network is not available
  */
 class NetworkTypeNone extends NetworkType
 {

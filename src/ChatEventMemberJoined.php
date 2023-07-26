@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A new member joined the chat.
+ * A new member joined the chat
  */
 class ChatEventMemberJoined extends ChatEventAction
 {

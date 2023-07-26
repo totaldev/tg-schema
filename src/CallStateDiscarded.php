@@ -6,37 +6,51 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The call has ended successfully.
+ * The call has ended successfully
  */
 class CallStateDiscarded extends CallState
 {
     public const TYPE_NAME = 'callStateDiscarded';
 
     /**
-     * The reason, why the call has ended.
+     * The reason, why the call has ended
+     *
+     * @var CallDiscardReason
      */
     protected CallDiscardReason $reason;
 
     /**
-     * True, if the call rating should be sent to the server.
+     * True, if the call rating must be sent to the server
+     *
+     * @var bool
      */
     protected bool $needRating;
 
     /**
-     * True, if the call debug information should be sent to the server.
+     * True, if the call debug information must be sent to the server
+     *
+     * @var bool
      */
     protected bool $needDebugInformation;
 
-    public function __construct(CallDiscardReason $reason, bool $needRating, bool $needDebugInformation)
+    /**
+     * True, if the call log must be sent to the server
+     *
+     * @var bool
+     */
+    protected bool $needLog;
+
+    public function __construct(CallDiscardReason $reason, bool $needRating, bool $needDebugInformation, bool $needLog)
     {
         parent::__construct();
 
-        $this->reason               = $reason;
-        $this->needRating           = $needRating;
+        $this->reason = $reason;
+        $this->needRating = $needRating;
         $this->needDebugInformation = $needDebugInformation;
+        $this->needLog = $needLog;
     }
 
     public static function fromArray(array $array): CallStateDiscarded
@@ -45,16 +59,18 @@ class CallStateDiscarded extends CallState
             TdSchemaRegistry::fromArray($array['reason']),
             $array['need_rating'],
             $array['need_debug_information'],
+            $array['need_log'],
         );
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
-            'reason'                 => $this->reason->typeSerialize(),
-            'need_rating'            => $this->needRating,
+            '@type' => static::TYPE_NAME,
+            'reason' => $this->reason->typeSerialize(),
+            'need_rating' => $this->needRating,
             'need_debug_information' => $this->needDebugInformation,
+            'need_log' => $this->needLog,
         ];
     }
 
@@ -71,5 +87,10 @@ class CallStateDiscarded extends CallState
     public function getNeedDebugInformation(): bool
     {
         return $this->needDebugInformation;
+    }
+
+    public function getNeedLog(): bool
+    {
+        return $this->needLog;
     }
 }

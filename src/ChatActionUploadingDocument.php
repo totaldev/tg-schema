@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user is uploading a document.
+ * The user is uploading a document
  */
 class ChatActionUploadingDocument extends ChatAction
 {
     public const TYPE_NAME = 'chatActionUploadingDocument';
 
     /**
-     * Upload progress, as a percentage.
+     * Upload progress, as a percentage
+     *
+     * @var int
      */
     protected int $progress;
 
@@ -37,7 +39,7 @@ class ChatActionUploadingDocument extends ChatAction
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'progress' => $this->progress,
         ];
     }

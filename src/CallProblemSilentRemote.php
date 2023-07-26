@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The other side couldn't hear the user.
+ * The other side couldn't hear the user
  */
 class CallProblemSilentRemote extends CallProblem
 {

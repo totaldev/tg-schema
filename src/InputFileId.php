@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A file defined by its unique ID.
+ * A file defined by its unique ID
  */
 class InputFileId extends InputFile
 {
     public const TYPE_NAME = 'inputFileId';
 
     /**
-     * Unique file identifier.
+     * Unique file identifier
+     *
+     * @var int
      */
     protected int $id;
 
@@ -38,7 +40,7 @@ class InputFileId extends InputFile
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id'    => $this->id,
+            'id' => $this->id,
         ];
     }
 

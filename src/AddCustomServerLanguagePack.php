@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
+ * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
  */
 class AddCustomServerLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'addCustomServerLanguagePack';
 
     /**
-     * Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link.
+     * Identifier of a language pack to be added
+     *
+     * @var string
      */
     protected string $languagePackId;
 
@@ -35,7 +37,7 @@ class AddCustomServerLanguagePack extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
     }

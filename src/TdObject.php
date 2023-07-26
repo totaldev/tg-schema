@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
-use JsonSerializable;
+use totaldev\SchemaGenerator\JsonSerializable;
 
-abstract class TdObject implements TdTypeSerializableInterface, JsonSerializable
+abstract class TdObject implements TdTypeSerializableInterface, totaldev\SchemaGenerator\JsonSerializable
 {
     public const TYPE_NAME = '_tdObject';
 

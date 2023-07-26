@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Resends the 2-step verification recovery email address verification code.
+ * Resends the 2-step verification recovery email address verification code
  */
 class ResendRecoveryEmailAddressCode extends TdFunction
 {

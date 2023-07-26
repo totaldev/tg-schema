@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns all user contacts.
+ * Returns all contacts of the user
  */
 class GetContacts extends TdFunction
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains information about background to set.
+ * Contains information about background to set
  */
 class InputBackground extends TdObject
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A Telegram Passport element containing the user's identity card.
+ * A Telegram Passport element containing the user's identity card
  */
 class PassportElementTypeIdentityCard extends PassportElementType
 {

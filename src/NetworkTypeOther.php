@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A different network type (e.g., Ethernet network).
+ * A different network type (e.g., Ethernet network)
  */
 class NetworkTypeOther extends NetworkType
 {

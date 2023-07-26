@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The data is not a file.
+ * The data is not a file
  */
 class FileTypeNone extends FileType
 {

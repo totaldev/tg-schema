@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A message was pinned.
+ * A message was pinned
  */
 class ChatEventMessagePinned extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMessagePinned';
 
     /**
-     * Pinned message.
+     * Pinned message
+     *
+     * @var Message
      */
     protected Message $message;
 
@@ -37,7 +39,7 @@ class ChatEventMessagePinned extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
         ];
     }

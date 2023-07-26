@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The user can't be a member of a public supergroup.
+ * The user can't be a member of a public supergroup
  */
 class CheckChatUsernameResultPublicGroupsUnavailable extends CheckChatUsernameResult
 {

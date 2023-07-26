@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns saved order info, if any.
+ * Returns saved order information. Returns a 404 error if there is no saved order information
  */
 class GetSavedOrderInfo extends TdFunction
 {

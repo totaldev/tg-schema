@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Checks whether the current session can be used to transfer a chat ownership to another user.
+ * Checks whether the current session can be used to transfer a chat ownership to another user
  */
 class CanTransferOwnership extends TdFunction
 {

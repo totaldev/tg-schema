@@ -6,19 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Informs the server that some trending sticker sets have been viewed by the user.
+ * Informs the server that some trending sticker sets have been viewed by the user
  */
 class ViewTrendingStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'viewTrendingStickerSets';
 
     /**
-     * Identifiers of viewed trending sticker sets.
+     * Identifiers of viewed trending sticker sets
      *
-     * @var string[]
+     * @var int[]
      */
     protected array $stickerSetIds;
 
@@ -37,7 +37,7 @@ class ViewTrendingStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker_set_ids' => $this->stickerSetIds,
         ];
     }

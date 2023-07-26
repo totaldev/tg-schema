@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The content should be center-aligned.
+ * The content must be center-aligned
  */
 class PageBlockHorizontalAlignmentCenter extends PageBlockHorizontalAlignment
 {

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Returns only photo and video messages.
+ * Returns only photo and video messages
  */
 class SearchMessagesFilterPhotoAndVideo extends SearchMessagesFilter
 {

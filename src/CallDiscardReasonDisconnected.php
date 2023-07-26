@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The call was ended during the conversation because the users were disconnected.
+ * The call was ended during the conversation because the users were disconnected
  */
 class CallDiscardReasonDisconnected extends CallDiscardReason
 {

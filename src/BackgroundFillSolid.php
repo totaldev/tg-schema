@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Describes a solid fill of a background.
+ * Describes a solid fill of a background
  */
 class BackgroundFillSolid extends BackgroundFill
 {
     public const TYPE_NAME = 'backgroundFillSolid';
 
     /**
-     * A color of the background in the RGB24 format.
+     * A color of the background in the RGB24 format
+     *
+     * @var int
      */
     protected int $color;
 

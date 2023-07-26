@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The log is written nowhere.
+ * The log is written nowhere
  */
 class LogStreamEmpty extends LogStream
 {

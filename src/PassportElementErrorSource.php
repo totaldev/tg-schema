@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains the description of an error in a Telegram Passport element.
+ * Contains the description of an error in a Telegram Passport element
  */
 class PassportElementErrorSource extends TdObject
 {

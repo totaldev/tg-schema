@@ -6,17 +6,19 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A kicker.
+ * A kicker
  */
 class PageBlockKicker extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockKicker';
 
     /**
-     * Kicker.
+     * Kicker
+     *
+     * @var RichText
      */
     protected RichText $kicker;
 
@@ -37,7 +39,7 @@ class PageBlockKicker extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'kicker' => $this->kicker->typeSerialize(),
         ];
     }

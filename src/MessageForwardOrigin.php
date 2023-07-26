@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Contains information about the origin of a forwarded message.
+ * Contains information about the origin of a forwarded message
  */
 class MessageForwardOrigin extends TdObject
 {

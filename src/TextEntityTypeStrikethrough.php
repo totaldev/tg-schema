@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * A strikethrough text.
+ * A strikethrough text
  */
 class TextEntityTypeStrikethrough extends TextEntityType
 {

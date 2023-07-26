@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The call ended unexpectedly.
+ * The call ended unexpectedly
  */
 class CallProblemDropped extends CallProblem
 {

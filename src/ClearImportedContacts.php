@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * Clears all imported contacts, contact list remains unchanged.
+ * Clears all imported contacts, contact list remains unchanged
  */
 class ClearImportedContacts extends TdFunction
 {

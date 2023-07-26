@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace PHPTdGram\Schema;
+namespace TotaldevTgSchema;
 
 /**
- * The chat is public, because it has username.
+ * The chat is public, because it has an active username
  */
 class PublicChatTypeHasUsername extends PublicChatType
 {
