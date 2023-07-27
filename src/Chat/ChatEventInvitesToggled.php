@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The can_invite_users permission of a supergroup chat was toggled
  */

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Location\Location;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents a location to which a chat is connected

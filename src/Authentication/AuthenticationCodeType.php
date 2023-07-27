@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Authentication;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Provides information about the method by which an authentication code is delivered to the user

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Group;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains the group call identifier

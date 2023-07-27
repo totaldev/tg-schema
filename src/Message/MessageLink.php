@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains an HTTPS link to a message in a supergroup or channel, or a forum topic

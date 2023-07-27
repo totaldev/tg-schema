@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Terminate;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Terminates all other sessions of the current user

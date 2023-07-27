@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that sends a callback query to a bot
  */

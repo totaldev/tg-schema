@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Inline;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes the type of an inline keyboard button

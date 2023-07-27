@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Found;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Web\WebApp;
 
 /**
  * Contains information about a Web App found by its short name

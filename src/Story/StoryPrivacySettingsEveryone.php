@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Story;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The story can be viewed by everyone
  */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats

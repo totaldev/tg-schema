@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Added;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents a reaction applied to a message

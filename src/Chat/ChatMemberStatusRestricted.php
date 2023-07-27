@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user is under certain restrictions in the chat. Not supported in basic groups and channels
  */

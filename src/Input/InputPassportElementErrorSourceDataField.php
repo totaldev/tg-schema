@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A data field contains an error. The error is considered resolved when the field's value changes
  */

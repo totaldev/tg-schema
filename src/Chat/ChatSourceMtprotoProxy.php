@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat is sponsored by the user's MTProxy server
  */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Upgrade;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group

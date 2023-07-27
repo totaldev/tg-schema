@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggested;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
  */

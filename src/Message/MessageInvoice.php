@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
  */

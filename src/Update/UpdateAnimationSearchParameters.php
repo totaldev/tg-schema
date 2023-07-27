@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The parameters of animation search through getOption("animation_search_bot_username") bot has changed
  */

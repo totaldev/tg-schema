@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Delete;
 
+use Totaldev\TgSchema\Passport\PassportElementType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Deletes a Telegram Passport element

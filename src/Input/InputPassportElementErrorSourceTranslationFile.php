@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
  */

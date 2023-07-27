@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
  */

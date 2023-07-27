@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Chat\ChatFolder;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns default icon name for a folder. Can be called synchronously

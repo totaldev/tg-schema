@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Search\SearchMessagesFilter;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An invoice from a message of the type messageInvoice
  */

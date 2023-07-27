@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview

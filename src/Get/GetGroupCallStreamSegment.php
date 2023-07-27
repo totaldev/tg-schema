@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Group\GroupCallVideoQuality;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video

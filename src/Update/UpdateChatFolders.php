@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatFolderInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of chat folders or a chat folder has changed
  */

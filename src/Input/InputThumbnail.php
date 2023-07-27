@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size

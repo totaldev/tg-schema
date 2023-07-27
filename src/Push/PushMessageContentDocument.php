@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\Document\Document;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A document message (a general file)
  */

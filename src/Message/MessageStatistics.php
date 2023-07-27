@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Statistical\StatisticalGraph;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * A detailed statistics about a message

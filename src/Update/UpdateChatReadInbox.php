@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Incoming messages were read or the number of unread messages has been changed
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Reaction\ReactionType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Only specific reactions are available in the chat
  */

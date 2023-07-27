@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Reply;
 
+use Totaldev\TgSchema\Inline\InlineKeyboardButton;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Contains an inline keyboard layout
  */

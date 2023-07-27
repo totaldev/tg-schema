@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Story\Story;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A story was changed
  */

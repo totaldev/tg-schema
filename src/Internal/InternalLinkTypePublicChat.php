@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
  */

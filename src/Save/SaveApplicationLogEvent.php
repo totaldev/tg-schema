@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Save;
 
+use Totaldev\TgSchema\Json\JsonValue;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Saves application log event on the server. Can be called before authorization

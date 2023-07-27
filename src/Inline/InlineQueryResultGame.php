@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\Game\Game;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents information about a game
  */

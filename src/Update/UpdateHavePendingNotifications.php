@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
  */

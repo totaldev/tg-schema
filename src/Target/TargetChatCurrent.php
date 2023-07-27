@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Target;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The currently opened chat needs to be kept
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A chat content was allowed or restricted for saving
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Poll;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A regular poll
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Keyboard;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that sends the user's location when pressed; available only in private chats
  */

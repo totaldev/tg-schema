@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Authorization\AuthorizationState;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user authorization state has changed
  */

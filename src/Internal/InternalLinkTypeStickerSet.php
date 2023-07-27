@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
  */

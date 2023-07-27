@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Keyboard;
 
+use Totaldev\TgSchema\Chat\ChatAdministratorRights;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
  */

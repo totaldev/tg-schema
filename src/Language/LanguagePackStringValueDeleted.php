@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Language;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A deleted language pack string, the value must be taken from the built-in English language pack
  */

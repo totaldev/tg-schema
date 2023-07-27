@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Keyboard;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
  */

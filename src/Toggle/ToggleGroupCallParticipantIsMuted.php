@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Toggle;
 
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves

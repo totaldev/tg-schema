@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\VideoNote;
+
 /**
  * A video note message
  */

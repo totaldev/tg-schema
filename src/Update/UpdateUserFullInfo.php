@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\User\UserFullInfo;
+
 /**
  * Some data in userFullInfo has been changed
  */

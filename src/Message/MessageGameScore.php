@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new high score was achieved in a game
  */

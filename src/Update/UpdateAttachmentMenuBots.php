@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Attachment\AttachmentMenuBot;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of bots added to attachment menu has changed
  */

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Search;
 
+use Totaldev\TgSchema\Sticker\StickerType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Searches for installed sticker sets by looking for specified query in their title and name

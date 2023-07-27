@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Encrypted\EncryptedCredentials;
+use Totaldev\TgSchema\Encrypted\EncryptedPassportElement;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Telegram Passport data has been received; for bots only
  */

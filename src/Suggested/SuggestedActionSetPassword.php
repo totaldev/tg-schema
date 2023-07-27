@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggested;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Suggests the user to set a 2-step verification password to be able to log in again
  */

@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatInviteLink;
+use Totaldev\TgSchema\Chat\ChatMember;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * User rights changed in a chat; for bots only
  */

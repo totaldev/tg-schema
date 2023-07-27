@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An animation message (GIF-style).
  */

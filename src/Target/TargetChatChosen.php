@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Target;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat needs to be chosen by the user among chats of the specified types
  */

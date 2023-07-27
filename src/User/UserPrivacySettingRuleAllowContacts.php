@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A rule to allow all contacts of the user to do something
  */

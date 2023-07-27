@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An audio message
  */

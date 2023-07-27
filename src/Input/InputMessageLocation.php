@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with a location
  */

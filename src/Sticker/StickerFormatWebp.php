@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sticker;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The sticker is an image in WEBP format
  */

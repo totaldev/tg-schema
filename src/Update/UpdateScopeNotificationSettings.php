@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Notification\NotificationSettingsScope;
+use Totaldev\TgSchema\Scope\ScopeNotificationSettings;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Notification settings for some type of chats were updated
  */

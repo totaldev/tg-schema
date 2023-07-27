@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Passport;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The file contains an error. The error will be considered resolved when the file changes
  */

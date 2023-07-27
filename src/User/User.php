@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\Emoji\EmojiStatus;
+use Totaldev\TgSchema\Profile\ProfilePhoto;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Usernames\Usernames;
 
 /**
  * Represents a user

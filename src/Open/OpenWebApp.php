@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Open;
 
+use Totaldev\TgSchema\Message\MessageReplyTo;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
  * Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once

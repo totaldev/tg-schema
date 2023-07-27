@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Authentication;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authentication code is delivered via Firebase Authentication to the official Android application
  */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Account\AccountTtl;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the period of inactivity after which the account of the current user will automatically be deleted

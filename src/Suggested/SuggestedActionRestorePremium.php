@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggested;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Suggests the user to restore a recently expired Premium subscription
  */

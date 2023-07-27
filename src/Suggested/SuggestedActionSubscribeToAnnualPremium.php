@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggested;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Suggests the user to subscribe to the Premium subscription with annual payments
  */

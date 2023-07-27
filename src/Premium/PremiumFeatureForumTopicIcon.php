@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Premium;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The ability to set a custom emoji as a forum topic icon
  */

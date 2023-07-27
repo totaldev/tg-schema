@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The current user has connected a website by logging in using Telegram Login Widget on it
  */

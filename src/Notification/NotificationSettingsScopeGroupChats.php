@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Notification;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
  */

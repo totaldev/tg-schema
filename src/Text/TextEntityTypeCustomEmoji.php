@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Text;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Unread\UnreadReaction;
+
 /**
  * The list of unread reactions added to a message was changed
  */

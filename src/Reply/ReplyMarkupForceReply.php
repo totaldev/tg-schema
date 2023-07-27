@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Reply;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Instructs application to force a reply to this message
  */

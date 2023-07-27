@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Speech;
 
+use Totaldev\TgSchema\Error\Error;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The speech recognition failed
  */

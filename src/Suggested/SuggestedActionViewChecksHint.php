@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggested;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Suggests the user to view a hint about the meaning of one and two check marks on sent messages
  */

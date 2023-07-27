@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Contact\Contact;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message containing a user contact
  */

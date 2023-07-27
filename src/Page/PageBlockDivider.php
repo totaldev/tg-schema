@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An empty block separating a page
  */

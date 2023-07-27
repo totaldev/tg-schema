@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A privacy setting for managing whether the user's phone number is visible
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Authorization;
 
+use Totaldev\TgSchema\Authentication\AuthenticationCodeInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * TDLib needs the user's authentication code to authorize. Call checkAuthenticationCode to check the code
  */

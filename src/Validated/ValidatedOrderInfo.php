@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Validated;
 
+use Totaldev\TgSchema\Shipping\ShippingOption;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options

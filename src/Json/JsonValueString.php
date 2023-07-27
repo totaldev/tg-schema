@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Json;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents a string JSON value
  */

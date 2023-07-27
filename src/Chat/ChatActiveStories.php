@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Story\StoryInfo;
+use Totaldev\TgSchema\Story\StoryList;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes active stories posted by a chat

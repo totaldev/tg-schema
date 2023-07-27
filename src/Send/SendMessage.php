@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Input\InputMessageContent;
+use Totaldev\TgSchema\Message\MessageReplyTo;
+use Totaldev\TgSchema\Message\MessageSendOptions;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends a message. Returns the sent message

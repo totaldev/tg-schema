@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Premium;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The ability to convert voice notes to text
  */

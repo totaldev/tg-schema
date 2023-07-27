@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
  */

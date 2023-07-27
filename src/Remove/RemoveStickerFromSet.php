@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Remove;
 
+use Totaldev\TgSchema\Input\InputFile;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot

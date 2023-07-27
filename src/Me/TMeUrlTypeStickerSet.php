@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Me;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A URL linking to a sticker set
  */

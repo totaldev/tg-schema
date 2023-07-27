@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Top\TopChatCategory;
 
 /**
  * Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled

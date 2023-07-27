@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Poll;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A poll in quiz mode, which has exactly one correct answer option and can be answered only once
  */

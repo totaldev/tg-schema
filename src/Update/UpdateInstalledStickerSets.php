@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Sticker\StickerType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of installed sticker sets was updated
  */

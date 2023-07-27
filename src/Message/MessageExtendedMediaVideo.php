@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\Video;
+
 /**
  * The media is a video
  */

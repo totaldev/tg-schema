@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Background;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Describes a gradient fill of a background
  */

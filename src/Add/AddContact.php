@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Add;
 
+use Totaldev\TgSchema\Contact\Contact;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Adds a user to the contact list or edits an existing contact by their user identifier

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Call\Call;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * New call was created or information about a call was updated
  */

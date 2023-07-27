@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Create;
 
+use Totaldev\TgSchema\Chat\ChatLocation;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat

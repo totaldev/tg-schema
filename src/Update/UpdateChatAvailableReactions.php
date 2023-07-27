@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatAvailableReactions;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat available reactions were changed
  */

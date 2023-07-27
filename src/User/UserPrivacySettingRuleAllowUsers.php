@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A rule to allow certain specified users to do something
  */

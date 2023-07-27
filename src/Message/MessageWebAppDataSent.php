@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Data from a Web App has been sent to a bot
  */

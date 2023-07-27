@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Authorization;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Initialization parameters are needed. Call setTdlibParameters to provide them
  */

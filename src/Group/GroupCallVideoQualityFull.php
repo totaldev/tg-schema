@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Group;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The best available video quality
  */

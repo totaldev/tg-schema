@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Upload;
 
+use Totaldev\TgSchema\Input\InputFile;
+use Totaldev\TgSchema\Sticker\StickerFormat;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Uploads a file with a sticker; returns the uploaded file

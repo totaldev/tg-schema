@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains an HTTPS URL, which can be used to get information about a user

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Phone;
 
+use Totaldev\TgSchema\Firebase\FirebaseAuthenticationSettings;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains settings for the authentication of the user's phone number

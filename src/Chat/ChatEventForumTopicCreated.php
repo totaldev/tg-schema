@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Forum\ForumTopicInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new forum topic was created
  */

@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Forum;
 
+use Totaldev\TgSchema\Chat\ChatNotificationSettings;
+use Totaldev\TgSchema\Draft\DraftMessage;
+use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a forum topic

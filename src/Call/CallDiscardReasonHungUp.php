@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Call;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The call was ended because one of the parties hung up
  */

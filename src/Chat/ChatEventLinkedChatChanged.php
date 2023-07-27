@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The linked chat of a supergroup was changed
  */

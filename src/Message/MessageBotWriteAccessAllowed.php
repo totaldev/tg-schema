@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Web\WebApp;
+
 /**
  * The user allowed the bot to send messages
  */

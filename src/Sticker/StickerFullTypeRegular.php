@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sticker;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The sticker is a regular sticker
  */

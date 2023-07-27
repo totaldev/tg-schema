@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Order\OrderInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new incoming pre-checkout query; for bots only. Contains full information about a checkout
  */

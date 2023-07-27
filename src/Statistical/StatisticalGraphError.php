@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Statistical;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An error message to be shown to the user instead of the graph
  */

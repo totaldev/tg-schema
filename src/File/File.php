@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\File;
 
+use Totaldev\TgSchema\Local\LocalFile;
+use Totaldev\TgSchema\Remote\RemoteFile;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents a file

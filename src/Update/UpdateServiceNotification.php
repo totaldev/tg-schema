@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\MessageContent;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
  */

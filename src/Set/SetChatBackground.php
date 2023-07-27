@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Background\BackgroundType;
+use Totaldev\TgSchema\Input\InputBackground;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users

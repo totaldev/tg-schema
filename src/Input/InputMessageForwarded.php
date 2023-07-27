@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Message\MessageCopyOptions;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A forwarded message
  */

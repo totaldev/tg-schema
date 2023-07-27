@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user is offline
  */

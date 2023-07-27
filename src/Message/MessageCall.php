@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Call\CallDiscardReason;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with information about an ended call
  */

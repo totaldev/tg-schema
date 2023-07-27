@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Secret;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The secret chat is ready to use
  */

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Read;
 
+use Totaldev\TgSchema\Chat\ChatList;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Traverse all chats in a chat list and marks all messages in the chats as read

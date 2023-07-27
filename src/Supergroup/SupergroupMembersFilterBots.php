@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns bot members of the supergroup or channel
  */

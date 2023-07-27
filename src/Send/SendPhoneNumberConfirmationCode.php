@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Phone\PhoneNumberAuthenticationSettings;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation

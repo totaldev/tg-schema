@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Report;
 
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions

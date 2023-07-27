@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Input\InputFile;
+use Totaldev\TgSchema\Mask\MaskPosition;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot

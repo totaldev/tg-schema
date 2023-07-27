@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Language\LanguagePackInfo;
+use Totaldev\TgSchema\Language\LanguagePackString;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Adds or changes a custom local language pack to the current localization target

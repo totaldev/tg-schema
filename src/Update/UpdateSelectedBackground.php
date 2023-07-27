@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Background\Background;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The selected background has changed
  */

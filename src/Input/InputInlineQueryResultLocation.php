@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents a point on the map
  */

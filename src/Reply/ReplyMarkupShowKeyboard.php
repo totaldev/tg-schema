@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Reply;
 
+use Totaldev\TgSchema\Keyboard\KeyboardButton;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Contains a custom keyboard layout to quickly reply to bots
  */

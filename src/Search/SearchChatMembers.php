@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Search;
 
+use Totaldev\TgSchema\Chat\ChatMembersFilter;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Poll\Poll;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with a poll
  */

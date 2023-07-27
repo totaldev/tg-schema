@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Check;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user can't be a member of a public supergroup
  */

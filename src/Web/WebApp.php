@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Web;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App

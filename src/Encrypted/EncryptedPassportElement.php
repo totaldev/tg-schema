@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Encrypted;
 
+use Totaldev\TgSchema\Dated\DatedFile;
+use Totaldev\TgSchema\Passport\PassportElementType;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains information about an encrypted Telegram Passport element; for bots only

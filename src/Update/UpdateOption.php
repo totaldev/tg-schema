@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Option\OptionValue;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An option changed its value
  */

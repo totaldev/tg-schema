@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Remove;
 
+use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Removes a reaction from a message. A chosen reaction can always be removed

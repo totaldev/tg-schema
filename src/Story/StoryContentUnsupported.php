@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Story;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A story content that is not supported in the current TDLib version
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A rule to restrict all members of specified basic groups and supergroups from doing something
  */

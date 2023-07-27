@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Bot;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A scope covering a member of a chat
  */

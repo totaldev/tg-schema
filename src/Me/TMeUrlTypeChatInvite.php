@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Me;
 
+use Totaldev\TgSchema\Chat\ChatInviteLinkInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A chat invite link
  */

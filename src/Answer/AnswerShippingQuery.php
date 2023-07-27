@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Answer;
 
+use Totaldev\TgSchema\Shipping\ShippingOption;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the result of a shipping query; for bots only

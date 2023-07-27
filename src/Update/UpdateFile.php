@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Information about a file was updated
  */

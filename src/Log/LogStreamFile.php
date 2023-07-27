@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Log;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The log is written to a file
  */

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\End;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Ends recording of an active group call. Requires groupCall.can_be_managed group call flag

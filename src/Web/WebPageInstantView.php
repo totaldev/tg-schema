@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Web;
 
+use Totaldev\TgSchema\Internal\InternalLinkType;
+use Totaldev\TgSchema\Page\PageBlock;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes an instant view page for a web page

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Import;
 
+use Totaldev\TgSchema\Contact\Contact;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored

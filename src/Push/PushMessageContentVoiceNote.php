@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Voice\VoiceNote;
+
 /**
  * A voice note message
  */

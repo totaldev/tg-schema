@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Secret\SecretChat;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
  */

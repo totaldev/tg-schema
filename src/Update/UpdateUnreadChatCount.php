@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatList;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
  */

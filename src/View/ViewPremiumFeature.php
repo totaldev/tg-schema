@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\View;
 
+use Totaldev\TgSchema\Premium\PremiumFeature;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen

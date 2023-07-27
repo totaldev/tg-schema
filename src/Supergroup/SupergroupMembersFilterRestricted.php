@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns restricted supergroup members; can be used only by administrators
  */

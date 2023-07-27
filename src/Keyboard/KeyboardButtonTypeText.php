@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Keyboard;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A simple button, with text that must be sent when the button is pressed
  */

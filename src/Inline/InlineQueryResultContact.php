@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\Contact\Contact;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
+
 /**
  * Represents a user contact
  */

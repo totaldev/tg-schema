@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Language;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An ordinary language pack string
  */

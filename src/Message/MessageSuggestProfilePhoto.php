@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Chat\ChatPhoto;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A profile photo was suggested to a user in a private chat
  */

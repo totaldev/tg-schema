@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Device;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A token for Microsoft Push Notification Service VoIP channel
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\MessageContent;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The message content has changed
  */

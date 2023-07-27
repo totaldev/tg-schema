@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Basic;
 
+use Totaldev\TgSchema\Chat\ChatMemberStatus;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Reset;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The password reset request was declined
  */

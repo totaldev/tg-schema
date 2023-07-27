@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sticker;
 
+use Totaldev\TgSchema\Closed\ClosedVectorPath;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
  * Represents short information about a sticker set

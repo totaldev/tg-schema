@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Identity;
 
+use Totaldev\TgSchema\Date\Date;
+use Totaldev\TgSchema\Dated\DatedFile;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * An identity document

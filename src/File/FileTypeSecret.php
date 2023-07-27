@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\File;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The file was sent to a secret chat (the file type is not known to the server)
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Supergroup\SupergroupFullInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some data in supergroupFullInfo has been changed
  */

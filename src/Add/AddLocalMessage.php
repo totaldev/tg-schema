@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Add;
 
+use Totaldev\TgSchema\Input\InputMessageContent;
+use Totaldev\TgSchema\Message\MessageReplyTo;
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message

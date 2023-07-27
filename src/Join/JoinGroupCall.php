@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Join;
 
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Joins an active group call. Returns join response payload for tgcalls

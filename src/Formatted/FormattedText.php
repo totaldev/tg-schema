@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Formatted;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Text\TextEntity;
 
 /**
  * A text with some entities

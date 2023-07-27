@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Unread\UnreadReaction;
 
 /**
  * Describes a message

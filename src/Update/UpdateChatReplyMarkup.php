@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
  */

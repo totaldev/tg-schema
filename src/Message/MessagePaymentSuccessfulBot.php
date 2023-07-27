@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Order\OrderInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A payment has been completed; for bots only
  */

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Check;
 
+use Totaldev\TgSchema\Email\EmailAddressAuthentication;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode

@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Input\InputStoryContent;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes content and caption of a previously sent story

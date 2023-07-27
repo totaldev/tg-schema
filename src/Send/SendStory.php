@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Input\InputStoryContent;
+use Totaldev\TgSchema\Story\StoryPrivacySettings;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends a new story. Returns a temporary story with identifier 0

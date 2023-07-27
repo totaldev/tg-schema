@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Chat\ChatPhoto;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An updated chat photo
  */

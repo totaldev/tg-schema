@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Rich;
 
+use Totaldev\TgSchema\Document\Document;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A small image inside the text
  */

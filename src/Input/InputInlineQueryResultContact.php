@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Contact\Contact;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents a user contact
  */

@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Chat\ChatFolder;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Edits existing chat folder. Returns information about the edited chat folder

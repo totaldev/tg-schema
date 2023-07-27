@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\View;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Informs the server that some trending sticker sets have been viewed by the user

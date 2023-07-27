@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns users banned from the supergroup or channel; can be used only by administrators
  */

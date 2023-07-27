@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A photo message
  */

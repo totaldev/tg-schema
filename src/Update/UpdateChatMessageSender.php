@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The message sender that is selected to send messages in a chat has changed
  */

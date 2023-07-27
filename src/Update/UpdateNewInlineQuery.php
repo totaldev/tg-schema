@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatType;
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new incoming inline query; for bots only
  */

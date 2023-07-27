@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Target;
 
+use Totaldev\TgSchema\Internal\InternalLinkType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat needs to be open with the provided internal link
  */

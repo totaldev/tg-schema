@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\End;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Ends screen sharing in a joined group call

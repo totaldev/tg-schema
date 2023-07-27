@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Can;
 
+use Totaldev\TgSchema\Store\StorePaymentPurpose;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase

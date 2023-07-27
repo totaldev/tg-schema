@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A basic group was upgraded to a supergroup and was deactivated as the result
  */

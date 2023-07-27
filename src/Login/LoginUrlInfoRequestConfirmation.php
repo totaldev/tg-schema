@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Login;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authorization confirmation dialog needs to be shown to the user
  */

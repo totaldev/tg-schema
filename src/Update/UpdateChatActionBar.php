@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatActionBar;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat action bar was changed
  */

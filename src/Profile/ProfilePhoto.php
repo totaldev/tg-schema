@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Profile;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a user profile photo

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatTheme;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of available chat themes has changed
  */

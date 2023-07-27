@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\Bot\BotInfo;
+use Totaldev\TgSchema\Chat\ChatPhoto;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Premium\PremiumPaymentOption;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains full information about a user

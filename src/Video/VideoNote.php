@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Video;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
+use Totaldev\TgSchema\Speech\SpeechRecognitionResult;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
  * Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format

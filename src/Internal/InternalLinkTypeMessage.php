@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
  */

@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Bot;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\Chat\ChatAdministratorRights;
+use Totaldev\TgSchema\Internal\InternalLinkType;
+use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains information about a bot

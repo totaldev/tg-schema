@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Animated\AnimatedChatPhoto;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
+use Totaldev\TgSchema\Photo\PhotoSize;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a chat or user profile photo

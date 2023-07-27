@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Assign;
 
+use Totaldev\TgSchema\Store\StorePaymentPurpose;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Informs server about a purchase through Google Play. For official applications only

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Login;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An HTTP URL needs to be open
  */

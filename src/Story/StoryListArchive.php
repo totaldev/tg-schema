@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Story;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of stories, shown in the Arvhive chat list
  */

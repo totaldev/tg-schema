@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Add;
 
+use Totaldev\TgSchema\Network\NetworkStatisticsEntry;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Adds the specified data to data usage statistics. Can be called before authorization

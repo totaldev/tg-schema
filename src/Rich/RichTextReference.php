@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Rich;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A reference to a richTexts object on the same web page
  */

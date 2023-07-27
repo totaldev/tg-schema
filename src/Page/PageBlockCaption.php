@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains a caption of an instant view web page block, consisting of a text and a trailing credit

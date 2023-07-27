@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
  */

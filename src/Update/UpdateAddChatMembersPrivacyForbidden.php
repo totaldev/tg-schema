@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
  */

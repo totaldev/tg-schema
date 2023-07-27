@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\User\UserPrivacySetting;
+use Totaldev\TgSchema\User\UserPrivacySettingRules;
+
 /**
  * Some privacy setting rules have been changed
  */

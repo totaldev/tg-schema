@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Notification;
 
+use Totaldev\TgSchema\Message\Message;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * New message was received
  */

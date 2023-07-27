@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Callback;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The payload for a general callback button
  */

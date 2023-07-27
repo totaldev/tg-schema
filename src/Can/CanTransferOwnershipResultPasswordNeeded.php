@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Can;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The 2-step verification needs to be enabled first
  */

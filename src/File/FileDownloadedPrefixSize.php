@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\File;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains size of downloaded prefix of a file

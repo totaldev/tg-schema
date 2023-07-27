@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The media is hidden until the invoice is paid
  */

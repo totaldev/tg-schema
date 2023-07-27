@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Message\MessageReplyTo;
+use Totaldev\TgSchema\Message\MessageSendOptions;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message

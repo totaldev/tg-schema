@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Forum\ForumTopicInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Basic information about a topic in a forum chat was changed
  */

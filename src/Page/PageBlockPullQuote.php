@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\Rich\RichText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A pull quote
  */

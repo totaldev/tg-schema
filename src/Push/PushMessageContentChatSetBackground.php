@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A chat background was edited
  */

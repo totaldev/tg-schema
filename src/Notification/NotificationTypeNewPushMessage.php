@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Notification;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\Push\PushMessageContent;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * New message was received through a push notification
  */

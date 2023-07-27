@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Network;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The network is not available
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Dice;
 
+use Totaldev\TgSchema\Sticker\Sticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A regular animated sticker
  */

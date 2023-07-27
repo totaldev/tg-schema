@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Internal\InternalLinkType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The sponsor is a public channel chat
  */

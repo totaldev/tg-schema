@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Password;
 
+use Totaldev\TgSchema\Email\EmailAddressAuthenticationCodeInfo;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents the current state of 2-step verification

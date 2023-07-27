@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Mask;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The mask is placed relatively to the forehead
  */

@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Theme;
 
+use Totaldev\TgSchema\Background\Background;
+use Totaldev\TgSchema\Background\BackgroundFill;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes theme settings

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Basic\BasicGroupFullInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some data in basicGroupFullInfo has been changed
  */

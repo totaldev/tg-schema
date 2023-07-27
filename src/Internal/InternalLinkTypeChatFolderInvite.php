@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
  */

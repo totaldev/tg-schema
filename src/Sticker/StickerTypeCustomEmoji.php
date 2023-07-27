@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sticker;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The sticker is a custom emoji to be used inside message text and caption
  */

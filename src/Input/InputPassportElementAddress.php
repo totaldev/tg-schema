@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Address\Address;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A Telegram Passport element to be saved containing the user's address
  */

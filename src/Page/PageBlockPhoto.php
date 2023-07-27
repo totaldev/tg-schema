@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A photo
  */

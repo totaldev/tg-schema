@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Dice;
 
+use Totaldev\TgSchema\Sticker\Sticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Animated stickers to be combined into a slot machine
  */

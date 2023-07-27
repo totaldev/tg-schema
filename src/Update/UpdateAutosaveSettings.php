@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Autosave\AutosaveSettingsScope;
+use Totaldev\TgSchema\Scope\ScopeAutosaveSettings;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Autosave settings for some type of chats were updated
  */

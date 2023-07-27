@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Forum\ForumTopicInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The General forum topic was hidden or unhidden
  */

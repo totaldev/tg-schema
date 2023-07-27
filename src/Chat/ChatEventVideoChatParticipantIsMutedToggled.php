@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A video chat participant was muted or unmuted
  */

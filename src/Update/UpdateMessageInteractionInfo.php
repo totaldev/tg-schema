@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\MessageInteractionInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The information about interactions with a message has changed
  */

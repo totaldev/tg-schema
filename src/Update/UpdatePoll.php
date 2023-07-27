@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Poll\Poll;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A poll was updated; for bots only
  */

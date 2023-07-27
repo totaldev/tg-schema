@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Emoji;
 
+use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains a list of similar emoji to search for in getStickers and searchStickers

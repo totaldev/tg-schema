@@ -12,7 +12,7 @@ use InvalidArgumentException;
 
 class TdSchemaRegistry
 {
-    public const VERSION = '1.6.0';
+    public const VERSION = '1.8.15';
 
     public const TYPES = [
         'error' => Error\Error::class,

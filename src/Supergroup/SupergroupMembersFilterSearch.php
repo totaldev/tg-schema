@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Used to search for supergroup or channel members via a (string) query
  */

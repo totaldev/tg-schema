@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Statistical;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The graph data to be asynchronously loaded through getStatisticalGraph
  */

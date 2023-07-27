@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatJoinRequestsInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat pending join requests were changed
  */

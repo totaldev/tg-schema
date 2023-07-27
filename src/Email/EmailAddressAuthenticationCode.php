@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Email;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authentication code delivered to a user's email address
  */

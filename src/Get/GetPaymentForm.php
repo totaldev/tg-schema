@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Input\InputInvoice;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
  * Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy

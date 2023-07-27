@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Language\LanguagePackInfo;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Edits information about a custom local language pack in the current localization target. Can be called before authorization

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Search;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns only messages containing chat photos
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Report;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A custom reason provided by the user
  */

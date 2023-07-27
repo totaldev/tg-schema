@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Group\GroupCall;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Information about a group call was updated
  */

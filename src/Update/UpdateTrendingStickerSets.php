@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Sticker\StickerType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Trending\TrendingStickerSets;
+
 /**
  * The list of trending sticker sets was updated or some of them were viewed
  */

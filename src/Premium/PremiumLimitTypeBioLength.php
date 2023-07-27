@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Premium;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The maximum length of the user's bio
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents an animation file
  */

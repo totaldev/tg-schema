@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Basic;
 
+use Totaldev\TgSchema\Bot\BotCommands;
+use Totaldev\TgSchema\Chat\ChatInviteLink;
+use Totaldev\TgSchema\Chat\ChatMember;
+use Totaldev\TgSchema\Chat\ChatPhoto;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains full information about a basic group

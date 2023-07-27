@@ -8,7 +8,17 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Web;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\Audio\Audio;
+use Totaldev\TgSchema\Document\Document;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\Video;
+use Totaldev\TgSchema\Video\VideoNote;
+use Totaldev\TgSchema\Voice\VoiceNote;
 
 /**
  * Describes a web page preview

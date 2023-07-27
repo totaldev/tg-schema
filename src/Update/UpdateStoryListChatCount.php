@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Story\StoryList;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Number of chats in a story list has changed
  */

@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Closed;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Vector\VectorPathCommand;
 
 /**
  * Represents a closed vector path. The path begins at the end point of the last command

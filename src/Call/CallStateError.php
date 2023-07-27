@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Call;
 
+use Totaldev\TgSchema\Error\Error;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The call has ended with an error
  */

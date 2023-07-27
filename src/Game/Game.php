@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Game;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a game. Use getInternalLink with internalLinkTypeGame to share the game

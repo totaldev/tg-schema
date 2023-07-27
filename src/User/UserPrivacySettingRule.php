@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents a single rule for managing user privacy settings

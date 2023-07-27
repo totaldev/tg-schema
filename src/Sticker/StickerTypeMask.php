@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sticker;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The sticker is a mask in WEBP format to be placed on photos or videos
  */

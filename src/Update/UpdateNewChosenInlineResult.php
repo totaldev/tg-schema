@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user has chosen a result of an inline query; for bots only
  */

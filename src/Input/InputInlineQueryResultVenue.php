@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Venue\Venue;
+
 /**
  * Represents information about a venue
  */

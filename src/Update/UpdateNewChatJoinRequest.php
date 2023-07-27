@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatInviteLink;
+use Totaldev\TgSchema\Chat\ChatJoinRequest;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A user sent a join request to a chat; for bots only
  */

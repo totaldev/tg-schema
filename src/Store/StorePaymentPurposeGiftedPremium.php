@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Store;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user gifted Telegram Premium to another user
  */

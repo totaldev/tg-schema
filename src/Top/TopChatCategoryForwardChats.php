@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Top;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A category containing frequently used chats used to forward messages
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Connection;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Downloading data received while the application was offline
  */

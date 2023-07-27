@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Public;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat is public, because it is a location-based supergroup
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Autosave;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Autosave settings applied to all basic group and supergroup chats without chat-specific settings
  */

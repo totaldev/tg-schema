@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Thumbnail;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The thumbnail is in TGS format. It will be used only for TGS sticker sets
  */

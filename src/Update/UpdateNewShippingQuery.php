@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Address\Address;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new incoming shipping query; for bots only. Only for invoices with flexible price
  */

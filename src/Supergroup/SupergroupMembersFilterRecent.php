@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns recently active users in reverse chronological order
  */

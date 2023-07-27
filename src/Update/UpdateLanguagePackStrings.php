@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Language\LanguagePackString;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some language pack strings have been updated
  */

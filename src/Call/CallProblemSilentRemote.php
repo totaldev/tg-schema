@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Call;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The other side couldn't hear the user
  */

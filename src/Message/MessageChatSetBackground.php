@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Chat\ChatBackground;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new background was set in the chat
  */

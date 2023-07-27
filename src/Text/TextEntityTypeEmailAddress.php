@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Text;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An email address
  */

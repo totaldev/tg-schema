@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Option;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents an unknown option or an option which has a default value
  */

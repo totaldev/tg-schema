@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Callback\CallbackQueryPayload;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new incoming callback query from a message sent via a bot; for bots only
  */

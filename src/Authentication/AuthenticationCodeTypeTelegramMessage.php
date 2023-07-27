@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Authentication;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authentication code is delivered via a private Telegram message, which can be viewed from another active session
  */

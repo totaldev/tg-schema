@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Sticker\Sticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A sticker message
  */

@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Create;
 
+use Totaldev\TgSchema\Input\InputSticker;
+use Totaldev\TgSchema\Sticker\StickerFormat;
+use Totaldev\TgSchema\Sticker\StickerType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Creates a new sticker set. Returns the newly created sticker set

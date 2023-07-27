@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Edits the content of a live location in an inline message sent via a bot; for bots only

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Connection\ConnectionState;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The connection state has changed. This update must be used only to show a human-readable description of the connection state
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
  */

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Text;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A text shows instead of a raw mention of the user (e.g., when the user has no username)
  */

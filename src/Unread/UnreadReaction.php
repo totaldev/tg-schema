@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Unread;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains information about an unread reaction to a message

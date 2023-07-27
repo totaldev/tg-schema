@@ -8,7 +8,12 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Draft\DraftMessage;
+use Totaldev\TgSchema\Message\Message;
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Video\VideoChat;
 
 /**
  * A chat. (Can be a private chat, basic group, supergroup, or secret chat)

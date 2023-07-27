@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\User\User;
+
 /**
  * Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
  */

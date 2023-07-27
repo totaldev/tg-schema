@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatPermissions;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Chat permissions was changed
  */

@@ -9,6 +9,9 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\User\UserPrivacySetting;
+use Totaldev\TgSchema\User\UserPrivacySettingRules;
 
 /**
  * Changes user privacy settings

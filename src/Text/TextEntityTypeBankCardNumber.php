@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Text;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A bank card number. The getBankCardInfo method can be used to get information about the bank card
  */

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Suggested\SuggestedAction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of suggested to the user actions has changed
  */

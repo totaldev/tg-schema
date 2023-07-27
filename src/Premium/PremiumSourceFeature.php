@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Premium;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A user tried to use a Premium feature
  */

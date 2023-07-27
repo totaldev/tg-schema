@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatPosition;
+use Totaldev\TgSchema\Draft\DraftMessage;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
  */

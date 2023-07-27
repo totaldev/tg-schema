@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
  */

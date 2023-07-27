@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Email;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authentication token received through Apple ID
  */

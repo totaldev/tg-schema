@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Can;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The session was created recently, user needs to wait
  */

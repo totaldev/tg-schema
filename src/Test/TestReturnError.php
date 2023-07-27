@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Test;
 
+use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously

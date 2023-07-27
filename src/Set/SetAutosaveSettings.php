@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Autosave\AutosaveSettingsScope;
+use Totaldev\TgSchema\Scope\ScopeAutosaveSettings;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Check;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The user has too many chats with username, one of them must be made private first
  */

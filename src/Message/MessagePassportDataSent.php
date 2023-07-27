@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Passport\PassportElementType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Telegram Passport data has been sent to a bot
  */

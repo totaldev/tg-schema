@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Basic\BasicGroup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
  */

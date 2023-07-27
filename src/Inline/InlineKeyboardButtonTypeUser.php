@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
  */

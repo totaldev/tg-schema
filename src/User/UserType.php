@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Represents the type of a user. The following types are possible: regular users, deleted users and bots

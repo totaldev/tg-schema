@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * New chat members were invited to a group
  */

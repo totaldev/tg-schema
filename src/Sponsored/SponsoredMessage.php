@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Sponsored;
 
+use Totaldev\TgSchema\Message\MessageContent;
+use Totaldev\TgSchema\Message\MessageSponsor;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a sponsored message

@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Downloaded\DownloadedFileCounts;
+use Totaldev\TgSchema\File\FileDownload;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A file was added to the file download list. This update is sent only after file download list is loaded for the first time
  */

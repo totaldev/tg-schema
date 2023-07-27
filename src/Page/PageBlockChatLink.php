@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\Chat\ChatPhotoInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A link to a chat
  */

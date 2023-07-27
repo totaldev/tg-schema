@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Authentication;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
  */

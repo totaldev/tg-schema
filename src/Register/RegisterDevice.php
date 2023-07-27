@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Register;
 
+use Totaldev\TgSchema\Device\DeviceToken;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription

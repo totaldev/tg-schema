@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Answer;
 
+use Totaldev\TgSchema\Inline\InlineQueryResultsButton;
+use Totaldev\TgSchema\Input\InputInlineQueryResult;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the result of an inline query; for bots only

@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Chat\ChatPhotoSticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A sticker on a custom background
  */

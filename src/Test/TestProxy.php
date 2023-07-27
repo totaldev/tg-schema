@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Test;
 
+use Totaldev\TgSchema\Proxy\ProxyType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization

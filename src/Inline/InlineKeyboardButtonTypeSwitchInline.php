@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\Target\TargetChat;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that forces an inline query to the bot to be inserted in the input field
  */

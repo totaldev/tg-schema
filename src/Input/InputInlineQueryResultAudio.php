@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Represents a link to an MP3 audio file
  */

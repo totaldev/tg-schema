@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Proxy;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An MTProto proxy server
  */

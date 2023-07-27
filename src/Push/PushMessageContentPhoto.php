@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A photo message
  */

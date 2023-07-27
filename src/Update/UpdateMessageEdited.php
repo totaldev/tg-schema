@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message was edited. Changes in the message content will come in a separate updateMessageContent
  */

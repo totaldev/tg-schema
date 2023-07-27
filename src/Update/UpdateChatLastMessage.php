@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatPosition;
+use Totaldev\TgSchema\Message\Message;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
  */

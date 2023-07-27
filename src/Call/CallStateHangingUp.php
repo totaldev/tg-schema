@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Call;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The call is hanging up after discardCall has been called
  */

@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Audio;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
  * Describes an audio file. Audio is usually in MP3 or M4A format

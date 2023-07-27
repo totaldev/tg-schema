@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Inline;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
  */

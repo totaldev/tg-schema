@@ -8,7 +8,13 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Payment;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Invoice\Invoice;
+use Totaldev\TgSchema\Order\OrderInfo;
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\Saved\SavedCredentials;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains information about an invoice payment form

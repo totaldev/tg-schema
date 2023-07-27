@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Animation;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
  * Describes an animation file. The animation must be encoded in GIF or MPEG4 format

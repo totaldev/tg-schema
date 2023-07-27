@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Found;
 
+use Totaldev\TgSchema\Downloaded\DownloadedFileCounts;
+use Totaldev\TgSchema\File\FileDownload;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains a list of downloaded files, found by a search

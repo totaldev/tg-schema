@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Proxy\ProxyType;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Edits an existing proxy server for network requests. Can be called before authorization

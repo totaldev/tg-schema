@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Animated;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes an animated or custom representation of an emoji

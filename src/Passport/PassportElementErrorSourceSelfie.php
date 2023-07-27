@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Passport;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
  */

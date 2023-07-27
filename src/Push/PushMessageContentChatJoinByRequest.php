@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Push;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A new member was accepted to the chat by an administrator
  */

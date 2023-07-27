@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Validate;
 
+use Totaldev\TgSchema\Input\InputInvoice;
+use Totaldev\TgSchema\Order\OrderInfo;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Validates the order information provided by a user and returns the available shipping options for a flexible invoice

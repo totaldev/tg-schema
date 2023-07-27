@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Payment;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Some other payment provider, for which a web payment form must be shown
  */

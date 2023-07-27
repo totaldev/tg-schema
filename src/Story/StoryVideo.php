@@ -8,7 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Story;
 
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\Minithumbnail\Minithumbnail;
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
  * Describes a video file sent in a story

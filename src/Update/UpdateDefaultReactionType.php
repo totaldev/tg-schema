@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Reaction\ReactionType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The type of default reaction has changed
  */

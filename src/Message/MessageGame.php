@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Game\Game;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with a game
  */

@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatAction;
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message sender activity in the chat has changed
  */

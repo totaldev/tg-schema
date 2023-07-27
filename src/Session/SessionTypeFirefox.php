@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Session;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The session is running on the Firefox browser
  */

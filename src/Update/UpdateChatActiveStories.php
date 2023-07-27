@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatActiveStories;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The list of active stories posted by a specific chat has changed
  */

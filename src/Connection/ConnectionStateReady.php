@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Connection;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * There is a working connection to the Telegram servers
  */

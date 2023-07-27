@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Vector;
 
+use Totaldev\TgSchema\Point\Point;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A straight line to a given point
  */

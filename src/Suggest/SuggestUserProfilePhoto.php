@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Suggest;
 
+use Totaldev\TgSchema\Input\InputChatPhoto;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Suggests a profile photo to another regular user with common messages

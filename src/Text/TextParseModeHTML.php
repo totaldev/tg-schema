@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Text;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
  */

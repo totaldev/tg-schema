@@ -9,6 +9,8 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Updates;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Update\Update;
 
 /**
  * Contains a list of updates

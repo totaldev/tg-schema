@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Poll\PollType;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
  */

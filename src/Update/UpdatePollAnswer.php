@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A user changed the answer to a poll; for bots only
  */

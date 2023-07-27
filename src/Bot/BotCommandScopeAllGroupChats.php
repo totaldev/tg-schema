@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Bot;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A scope covering all group and supergroup chats
  */

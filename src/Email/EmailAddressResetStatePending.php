@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Email;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible
  */

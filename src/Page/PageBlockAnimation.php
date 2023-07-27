@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Page;
 
+use Totaldev\TgSchema\Animation\Animation;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * An animation
  */

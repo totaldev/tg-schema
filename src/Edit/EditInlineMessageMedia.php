@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Edit;
 
+use Totaldev\TgSchema\Input\InputMessageContent;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only

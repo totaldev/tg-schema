@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Emoji;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The category must be used by default
  */

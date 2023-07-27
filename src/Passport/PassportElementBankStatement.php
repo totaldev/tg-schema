@@ -8,6 +8,9 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Passport;
 
+use Totaldev\TgSchema\Personal\PersonalDocument;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A Telegram Passport element containing the user's bank statement
  */
