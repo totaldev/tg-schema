@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema\Text;
+
+use Totaldev\TgSchema\TdObject;
+
+/**
+ * Contains some text
+ */
+class Text extends TdObject
+{
+    public const TYPE_NAME = 'text';
+
+    /**
+     * Text
+     *
+     * @var string
+     */
+    protected string $text;
+
+    public function __construct(string $text)
+    {
+        $this->text = $text;
+    }
+
+    public static function fromArray(array $array): Text
+    {
+        return new static(
+            $array['text'],
+        );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+        ];
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+}
