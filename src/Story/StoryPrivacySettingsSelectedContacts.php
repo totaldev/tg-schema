@@ -18,7 +18,7 @@ class StoryPrivacySettingsSelectedContacts extends StoryPrivacySettings
     public const TYPE_NAME = 'storyPrivacySettingsSelectedContacts';
 
     /**
-     * Identifiers of the users; always empty for non-owned stories
+     * Identifiers of the users; always unknown and empty for non-owned stories
      *
      * @var int[]
      */

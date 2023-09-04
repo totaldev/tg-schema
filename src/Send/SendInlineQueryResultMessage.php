@@ -56,7 +56,7 @@ class SendInlineQueryResultMessage extends TdFunction
     protected int $queryId;
 
     /**
-     * Identifier of the inline result
+     * Identifier of the inline query result
      *
      * @var string
      */

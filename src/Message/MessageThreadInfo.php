@@ -55,7 +55,7 @@ class MessageThreadInfo extends TdObject
     protected array $messages;
 
     /**
-     * A draft of a message in the message thread; may be null
+     * A draft of a message in the message thread; may be null if none
      *
      * @var DraftMessage|null
      */

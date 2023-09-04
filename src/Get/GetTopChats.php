@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Top\TopChatCategory;
 
 /**
- * Returns a list of frequently used chats. Supported only if the chat info database is enabled
+ * Returns a list of frequently used chats
  */
 class GetTopChats extends TdFunction
 {

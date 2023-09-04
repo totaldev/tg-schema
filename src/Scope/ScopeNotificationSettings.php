@@ -40,14 +40,14 @@ class ScopeNotificationSettings extends TdObject
     protected bool $showPreview;
 
     /**
-     * If true, mute_stories is ignored and stories are unmuted only for the first 5 chats from topChatCategoryUsers
+     * If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
      *
      * @var bool
      */
     protected bool $useDefaultMuteStories;
 
     /**
-     * True, if story notifications are received without sound
+     * True, if story notifications are disabled for the chat
      *
      * @var bool
      */

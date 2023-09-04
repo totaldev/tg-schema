@@ -26,15 +26,23 @@ class StoryInteractionInfo extends TdObject
     protected int $viewCount;
 
     /**
+     * Number of reactions added to the story
+     *
+     * @var int
+     */
+    protected int $reactionCount;
+
+    /**
      * Identifiers of at most 3 recent viewers of the story
      *
      * @var int[]
      */
     protected array $recentViewerUserIds;
 
-    public function __construct(int $viewCount, array $recentViewerUserIds)
+    public function __construct(int $viewCount, int $reactionCount, array $recentViewerUserIds)
     {
         $this->viewCount = $viewCount;
+        $this->reactionCount = $reactionCount;
         $this->recentViewerUserIds = $recentViewerUserIds;
     }
 
@@ -42,6 +50,7 @@ class StoryInteractionInfo extends TdObject
     {
         return new static(
             $array['view_count'],
+            $array['reaction_count'],
             $array['recent_viewer_user_ids'],
         );
     }
@@ -51,6 +60,7 @@ class StoryInteractionInfo extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'view_count' => $this->viewCount,
+            'reaction_count' => $this->reactionCount,
             'recent_viewer_user_ids' => $this->recentViewerUserIds,
         ];
     }
@@ -58,6 +68,11 @@ class StoryInteractionInfo extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function getReactionCount(): int
+    {
+        return $this->reactionCount;
     }
 
     public function getRecentViewerUserIds(): array

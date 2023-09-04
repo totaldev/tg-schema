@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Thumbnail;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The thumbnail is in static GIF format. It will be used only for some bot inline results
+ * The thumbnail is in static GIF format. It will be used only for some bot inline query results
  */
 class ThumbnailFormatGif extends ThumbnailFormat
 {

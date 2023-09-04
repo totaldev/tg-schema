@@ -85,7 +85,7 @@ class ForumTopic extends TdObject
     protected ChatNotificationSettings $notificationSettings;
 
     /**
-     * A draft of a message in the topic; may be null
+     * A draft of a message in the topic; may be null if none
      *
      * @var DraftMessage|null
      */

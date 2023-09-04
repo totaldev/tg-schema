@@ -68,7 +68,7 @@ class ChatNotificationSettings extends TdObject
     protected bool $useDefaultMuteStories;
 
     /**
-     * True, if story notifications are received without sound
+     * True, if story notifications are disabled for the chat
      *
      * @var bool
      */

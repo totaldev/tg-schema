@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -39,6 +40,13 @@ class Story extends TdObject
      * @var int
      */
     protected int $date;
+
+    /**
+     * True, if the story is being sent by the current user
+     *
+     * @var bool
+     */
+    protected bool $isBeingSent;
 
     /**
      * True, if the story is being edited by the current user
@@ -104,6 +112,13 @@ class Story extends TdObject
     protected ?StoryInteractionInfo $interactionInfo;
 
     /**
+     * Type of the chosen reaction; may be null if none
+     *
+     * @var ReactionType|null
+     */
+    protected ?ReactionType $chosenReactionType;
+
+    /**
      * Privacy rules affecting story visibility; may be approximate for non-owned stories
      *
      * @var StoryPrivacySettings
@@ -118,6 +133,13 @@ class Story extends TdObject
     protected StoryContent $content;
 
     /**
+     * Clickable areas to be shown on the story content
+     *
+     * @var StoryArea[]
+     */
+    protected array $areas;
+
+    /**
      * Caption of the story
      *
      * @var FormattedText
@@ -128,6 +150,7 @@ class Story extends TdObject
         int $id,
         int $senderChatId,
         int $date,
+        bool $isBeingSent,
         bool $isBeingEdited,
         bool $isEdited,
         bool $isPinned,
@@ -137,13 +160,16 @@ class Story extends TdObject
         bool $canGetViewers,
         bool $hasExpiredViewers,
         ?StoryInteractionInfo $interactionInfo,
+        ?ReactionType $chosenReactionType,
         StoryPrivacySettings $privacySettings,
         StoryContent $content,
+        array $areas,
         FormattedText $caption,
     ) {
         $this->id = $id;
         $this->senderChatId = $senderChatId;
         $this->date = $date;
+        $this->isBeingSent = $isBeingSent;
         $this->isBeingEdited = $isBeingEdited;
         $this->isEdited = $isEdited;
         $this->isPinned = $isPinned;
@@ -153,8 +179,10 @@ class Story extends TdObject
         $this->canGetViewers = $canGetViewers;
         $this->hasExpiredViewers = $hasExpiredViewers;
         $this->interactionInfo = $interactionInfo;
+        $this->chosenReactionType = $chosenReactionType;
         $this->privacySettings = $privacySettings;
         $this->content = $content;
+        $this->areas = $areas;
         $this->caption = $caption;
     }
 
@@ -164,6 +192,7 @@ class Story extends TdObject
             $array['id'],
             $array['sender_chat_id'],
             $array['date'],
+            $array['is_being_sent'],
             $array['is_being_edited'],
             $array['is_edited'],
             $array['is_pinned'],
@@ -173,8 +202,10 @@ class Story extends TdObject
             $array['can_get_viewers'],
             $array['has_expired_viewers'],
             (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
+            (isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null),
             TdSchemaRegistry::fromArray($array['privacy_settings']),
             TdSchemaRegistry::fromArray($array['content']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
             TdSchemaRegistry::fromArray($array['caption']),
         );
     }
@@ -186,6 +217,7 @@ class Story extends TdObject
             'id' => $this->id,
             'sender_chat_id' => $this->senderChatId,
             'date' => $this->date,
+            'is_being_sent' => $this->isBeingSent,
             'is_being_edited' => $this->isBeingEdited,
             'is_edited' => $this->isEdited,
             'is_pinned' => $this->isPinned,
@@ -195,8 +227,10 @@ class Story extends TdObject
             'can_get_viewers' => $this->canGetViewers,
             'has_expired_viewers' => $this->hasExpiredViewers,
             'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
+            'chosen_reaction_type' => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
             'privacy_settings' => $this->privacySettings->typeSerialize(),
             'content' => $this->content->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->areas),
             'caption' => $this->caption->typeSerialize(),
         ];
     }
@@ -214,6 +248,11 @@ class Story extends TdObject
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function getIsBeingSent(): bool
+    {
+        return $this->isBeingSent;
     }
 
     public function getIsBeingEdited(): bool
@@ -261,6 +300,11 @@ class Story extends TdObject
         return $this->interactionInfo;
     }
 
+    public function getChosenReactionType(): ?ReactionType
+    {
+        return $this->chosenReactionType;
+    }
+
     public function getPrivacySettings(): StoryPrivacySettings
     {
         return $this->privacySettings;
@@ -269,6 +313,11 @@ class Story extends TdObject
     public function getContent(): StoryContent
     {
         return $this->content;
+    }
+
+    public function getAreas(): array
+    {
+        return $this->areas;
     }
 
     public function getCaption(): FormattedText

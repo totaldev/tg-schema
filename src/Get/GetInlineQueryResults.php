@@ -48,7 +48,7 @@ class GetInlineQueryResults extends TdFunction
     protected string $query;
 
     /**
-     * Offset of the first entry to return
+     * Offset of the first entry to return; use empty string to get the first chunk of results
      *
      * @var string
      */

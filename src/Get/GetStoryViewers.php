@@ -8,12 +8,11 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Get;
 
-use Totaldev\TgSchema\Message\MessageViewer;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+ * Returns viewers of a story. The method can be called if story.can_get_viewers == true
  */
 class GetStoryViewers extends TdFunction
 {
@@ -27,23 +26,53 @@ class GetStoryViewers extends TdFunction
     protected int $storyId;
 
     /**
-     * A viewer from which to return next viewers; pass null to get results from the beginning
+     * Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
      *
-     * @var MessageViewer
+     * @var string
      */
-    protected MessageViewer $offsetViewer;
+    protected string $query;
 
     /**
-     * The maximum number of story viewers to return For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+     * Pass true to get only contacts; pass false to get all relevant viewers
+     *
+     * @var bool
+     */
+    protected bool $onlyContacts;
+
+    /**
+     * Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+     *
+     * @var bool
+     */
+    protected bool $preferWithReaction;
+
+    /**
+     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+     *
+     * @var string
+     */
+    protected string $offset;
+
+    /**
+     * The maximum number of story viewers to return
      *
      * @var int
      */
     protected int $limit;
 
-    public function __construct(int $storyId, MessageViewer $offsetViewer, int $limit)
-    {
+    public function __construct(
+        int $storyId,
+        string $query,
+        bool $onlyContacts,
+        bool $preferWithReaction,
+        string $offset,
+        int $limit,
+    ) {
         $this->storyId = $storyId;
-        $this->offsetViewer = $offsetViewer;
+        $this->query = $query;
+        $this->onlyContacts = $onlyContacts;
+        $this->preferWithReaction = $preferWithReaction;
+        $this->offset = $offset;
         $this->limit = $limit;
     }
 
@@ -51,7 +80,10 @@ class GetStoryViewers extends TdFunction
     {
         return new static(
             $array['story_id'],
-            TdSchemaRegistry::fromArray($array['offset_viewer']),
+            $array['query'],
+            $array['only_contacts'],
+            $array['prefer_with_reaction'],
+            $array['offset'],
             $array['limit'],
         );
     }
@@ -61,7 +93,10 @@ class GetStoryViewers extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'story_id' => $this->storyId,
-            'offset_viewer' => $this->offsetViewer->typeSerialize(),
+            'query' => $this->query,
+            'only_contacts' => $this->onlyContacts,
+            'prefer_with_reaction' => $this->preferWithReaction,
+            'offset' => $this->offset,
             'limit' => $this->limit,
         ];
     }
@@ -71,9 +106,24 @@ class GetStoryViewers extends TdFunction
         return $this->storyId;
     }
 
-    public function getOffsetViewer(): MessageViewer
+    public function getQuery(): string
     {
-        return $this->offsetViewer;
+        return $this->query;
+    }
+
+    public function getOnlyContacts(): bool
+    {
+        return $this->onlyContacts;
+    }
+
+    public function getPreferWithReaction(): bool
+    {
+        return $this->preferWithReaction;
+    }
+
+    public function getOffset(): string
+    {
+        return $this->offset;
     }
 
     public function getLimit(): int

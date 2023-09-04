@@ -18,7 +18,7 @@ class StoryPrivacySettingsContacts extends StoryPrivacySettings
     public const TYPE_NAME = 'storyPrivacySettingsContacts';
 
     /**
-     * User identifiers of the contacts that can't see the story; always empty for non-owned stories
+     * User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
      *
      * @var int[]
      */

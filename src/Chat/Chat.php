@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Block\BlockList;
 use Totaldev\TgSchema\Draft\DraftMessage;
 use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\Message\MessageSender;
@@ -58,7 +59,7 @@ class Chat extends TdObject
     protected ChatPermissions $permissions;
 
     /**
-     * Last message in the chat; may be null
+     * Last message in the chat; may be null if none or unknown
      *
      * @var Message|null
      */
@@ -77,6 +78,13 @@ class Chat extends TdObject
      * @var MessageSender|null
      */
     protected ?MessageSender $messageSenderId;
+
+    /**
+     * Block list to which the chat is added; may be null if none
+     *
+     * @var BlockList|null
+     */
+    protected ?BlockList $blockList;
 
     /**
      * True, if chat content can't be saved locally, forwarded, or copied
@@ -98,13 +106,6 @@ class Chat extends TdObject
      * @var bool
      */
     protected bool $isMarkedAsUnread;
-
-    /**
-     * True, if the chat is blocked by the current user and private messages from the chat can't be received
-     *
-     * @var bool
-     */
-    protected bool $isBlocked;
 
     /**
      * True, if the chat has scheduled messages
@@ -212,7 +213,7 @@ class Chat extends TdObject
     protected string $themeName;
 
     /**
-     * Information about actions which must be possible to do through the chat action bar; may be null
+     * Information about actions which must be possible to do through the chat action bar; may be null if none
      *
      * @var ChatActionBar|null
      */
@@ -226,7 +227,7 @@ class Chat extends TdObject
     protected VideoChat $videoChat;
 
     /**
-     * Information about pending join requests; may be null
+     * Information about pending join requests; may be null if none
      *
      * @var ChatJoinRequestsInfo|null
      */
@@ -240,7 +241,7 @@ class Chat extends TdObject
     protected int $replyMarkupMessageId;
 
     /**
-     * A draft of a message in the chat; may be null
+     * A draft of a message in the chat; may be null if none
      *
      * @var DraftMessage|null
      */
@@ -262,10 +263,10 @@ class Chat extends TdObject
         ?Message $lastMessage,
         array $positions,
         ?MessageSender $messageSenderId,
+        ?BlockList $blockList,
         bool $hasProtectedContent,
         bool $isTranslatable,
         bool $isMarkedAsUnread,
-        bool $isBlocked,
         bool $hasScheduledMessages,
         bool $canBeDeletedOnlyForSelf,
         bool $canBeDeletedForAllUsers,
@@ -296,10 +297,10 @@ class Chat extends TdObject
         $this->lastMessage = $lastMessage;
         $this->positions = $positions;
         $this->messageSenderId = $messageSenderId;
+        $this->blockList = $blockList;
         $this->hasProtectedContent = $hasProtectedContent;
         $this->isTranslatable = $isTranslatable;
         $this->isMarkedAsUnread = $isMarkedAsUnread;
-        $this->isBlocked = $isBlocked;
         $this->hasScheduledMessages = $hasScheduledMessages;
         $this->canBeDeletedOnlyForSelf = $canBeDeletedOnlyForSelf;
         $this->canBeDeletedForAllUsers = $canBeDeletedForAllUsers;
@@ -334,10 +335,10 @@ class Chat extends TdObject
             (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
             (isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null),
+            (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
             $array['has_protected_content'],
             $array['is_translatable'],
             $array['is_marked_as_unread'],
-            $array['is_blocked'],
             $array['has_scheduled_messages'],
             $array['can_be_deleted_only_for_self'],
             $array['can_be_deleted_for_all_users'],
@@ -374,10 +375,10 @@ class Chat extends TdObject
             'last_message' => (isset($this->lastMessage) ? $this->lastMessage : null),
             array_map(fn($x) => $x->typeSerialize(), $this->positions),
             'message_sender_id' => (isset($this->messageSenderId) ? $this->messageSenderId : null),
+            'block_list' => (isset($this->blockList) ? $this->blockList : null),
             'has_protected_content' => $this->hasProtectedContent,
             'is_translatable' => $this->isTranslatable,
             'is_marked_as_unread' => $this->isMarkedAsUnread,
-            'is_blocked' => $this->isBlocked,
             'has_scheduled_messages' => $this->hasScheduledMessages,
             'can_be_deleted_only_for_self' => $this->canBeDeletedOnlyForSelf,
             'can_be_deleted_for_all_users' => $this->canBeDeletedForAllUsers,
@@ -442,6 +443,11 @@ class Chat extends TdObject
         return $this->messageSenderId;
     }
 
+    public function getBlockList(): ?BlockList
+    {
+        return $this->blockList;
+    }
+
     public function getHasProtectedContent(): bool
     {
         return $this->hasProtectedContent;
@@ -455,11 +461,6 @@ class Chat extends TdObject
     public function getIsMarkedAsUnread(): bool
     {
         return $this->isMarkedAsUnread;
-    }
-
-    public function getIsBlocked(): bool
-    {
-        return $this->isBlocked;
     }
 
     public function getHasScheduledMessages(): bool

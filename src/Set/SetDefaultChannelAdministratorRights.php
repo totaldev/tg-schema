@@ -20,13 +20,13 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     public const TYPE_NAME = 'setDefaultChannelAdministratorRights';
 
     /**
-     * Default administrator rights for adding the bot to channels; may be null
+     * Default administrator rights for adding the bot to channels; pass null to remove default rights
      *
-     * @var ChatAdministratorRights|null
+     * @var ChatAdministratorRights
      */
-    protected ?ChatAdministratorRights $defaultChannelAdministratorRights;
+    protected ChatAdministratorRights $defaultChannelAdministratorRights;
 
-    public function __construct(?ChatAdministratorRights $defaultChannelAdministratorRights)
+    public function __construct(ChatAdministratorRights $defaultChannelAdministratorRights)
     {
         $this->defaultChannelAdministratorRights = $defaultChannelAdministratorRights;
     }
@@ -34,7 +34,7 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     public static function fromArray(array $array): SetDefaultChannelAdministratorRights
     {
         return new static(
-            (isset($array['default_channel_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_channel_administrator_rights']) : null),
+            TdSchemaRegistry::fromArray($array['default_channel_administrator_rights']),
         );
     }
 
@@ -42,11 +42,11 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'default_channel_administrator_rights' => (isset($this->defaultChannelAdministratorRights) ? $this->defaultChannelAdministratorRights : null),
+            'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights->typeSerialize(),
         ];
     }
 
-    public function getDefaultChannelAdministratorRights(): ?ChatAdministratorRights
+    public function getDefaultChannelAdministratorRights(): ChatAdministratorRights
     {
         return $this->defaultChannelAdministratorRights;
     }

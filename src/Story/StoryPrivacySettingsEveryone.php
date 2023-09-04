@@ -17,18 +17,37 @@ class StoryPrivacySettingsEveryone extends StoryPrivacySettings
 {
     public const TYPE_NAME = 'storyPrivacySettingsEveryone';
 
-    public function __construct()
+    /**
+     * Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
+     *
+     * @var int[]
+     */
+    protected array $exceptUserIds;
+
+    public function __construct(array $exceptUserIds)
     {
         parent::__construct();
+
+        $this->exceptUserIds = $exceptUserIds;
     }
 
     public static function fromArray(array $array): StoryPrivacySettingsEveryone
     {
-        return new static();
+        return new static(
+            $array['except_user_ids'],
+        );
     }
 
     public function typeSerialize(): array
     {
-        return ['@type' => static::TYPE_NAME];
+        return [
+            '@type' => static::TYPE_NAME,
+            'except_user_ids' => $this->exceptUserIds,
+        ];
+    }
+
+    public function getExceptUserIds(): array
+    {
+        return $this->exceptUserIds;
     }
 }

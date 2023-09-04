@@ -156,7 +156,7 @@ class SupergroupFullInfo extends TdObject
     protected int $stickerSetId;
 
     /**
-     * Location to which the supergroup is connected; may be null
+     * Location to which the supergroup is connected; may be null if none
      *
      * @var ChatLocation|null
      */

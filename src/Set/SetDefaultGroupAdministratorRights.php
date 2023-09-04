@@ -20,13 +20,13 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public const TYPE_NAME = 'setDefaultGroupAdministratorRights';
 
     /**
-     * Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+     * Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
      *
-     * @var ChatAdministratorRights|null
+     * @var ChatAdministratorRights
      */
-    protected ?ChatAdministratorRights $defaultGroupAdministratorRights;
+    protected ChatAdministratorRights $defaultGroupAdministratorRights;
 
-    public function __construct(?ChatAdministratorRights $defaultGroupAdministratorRights)
+    public function __construct(ChatAdministratorRights $defaultGroupAdministratorRights)
     {
         $this->defaultGroupAdministratorRights = $defaultGroupAdministratorRights;
     }
@@ -34,7 +34,7 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public static function fromArray(array $array): SetDefaultGroupAdministratorRights
     {
         return new static(
-            (isset($array['default_group_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_group_administrator_rights']) : null),
+            TdSchemaRegistry::fromArray($array['default_group_administrator_rights']),
         );
     }
 
@@ -42,11 +42,11 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'default_group_administrator_rights' => (isset($this->defaultGroupAdministratorRights) ? $this->defaultGroupAdministratorRights : null),
+            'default_group_administrator_rights' => $this->defaultGroupAdministratorRights->typeSerialize(),
         ];
     }
 
-    public function getDefaultGroupAdministratorRights(): ?ChatAdministratorRights
+    public function getDefaultGroupAdministratorRights(): ChatAdministratorRights
     {
         return $this->defaultGroupAdministratorRights;
     }

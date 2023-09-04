@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A emoji status shown along with the user's name
+ * An emoji status shown along with the user's name
  */
 class PremiumFeatureEmojiStatus extends PremiumFeature
 {

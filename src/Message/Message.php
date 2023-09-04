@@ -42,14 +42,14 @@ class Message extends TdObject
     protected int $chatId;
 
     /**
-     * The sending state of the message; may be null
+     * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
      *
      * @var MessageSendingState|null
      */
     protected ?MessageSendingState $sendingState;
 
     /**
-     * The scheduling state of the message; may be null
+     * The scheduling state of the message; may be null if the message isn't scheduled
      *
      * @var MessageSchedulingState|null
      */
@@ -189,14 +189,14 @@ class Message extends TdObject
     protected int $editDate;
 
     /**
-     * Information about the initial message sender; may be null
+     * Information about the initial message sender; may be null if none or unknown
      *
      * @var MessageForwardInfo|null
      */
     protected ?MessageForwardInfo $forwardInfo;
 
     /**
-     * Information about interactions with the message; may be null
+     * Information about interactions with the message; may be null if none
      *
      * @var MessageInteractionInfo|null
      */
@@ -280,7 +280,7 @@ class Message extends TdObject
     protected MessageContent $content;
 
     /**
-     * Reply markup for the message; may be null
+     * Reply markup for the message; may be null if none
      *
      * @var ReplyMarkup|null
      */

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\Block\BlockList;
 use Totaldev\TgSchema\Bot\BotInfo;
 use Totaldev\TgSchema\Chat\ChatPhoto;
 use Totaldev\TgSchema\Formatted\FormattedText;
@@ -44,11 +45,11 @@ class UserFullInfo extends TdObject
     protected ?ChatPhoto $publicPhoto;
 
     /**
-     * True, if the user is blocked by the current user
+     * Block list to which the user is added; may be null if none
      *
-     * @var bool
+     * @var BlockList|null
      */
-    protected bool $isBlocked;
+    protected ?BlockList $blockList;
 
     /**
      * True, if the user can be called
@@ -121,7 +122,7 @@ class UserFullInfo extends TdObject
     protected int $groupInCommonCount;
 
     /**
-     * For bots, information about the bot; may be null
+     * For bots, information about the bot; may be null if the user isn't a bot
      *
      * @var BotInfo|null
      */
@@ -131,7 +132,7 @@ class UserFullInfo extends TdObject
         ?ChatPhoto $personalPhoto,
         ?ChatPhoto $photo,
         ?ChatPhoto $publicPhoto,
-        bool $isBlocked,
+        ?BlockList $blockList,
         bool $canBeCalled,
         bool $supportsVideoCalls,
         bool $hasPrivateCalls,
@@ -147,7 +148,7 @@ class UserFullInfo extends TdObject
         $this->personalPhoto = $personalPhoto;
         $this->photo = $photo;
         $this->publicPhoto = $publicPhoto;
-        $this->isBlocked = $isBlocked;
+        $this->blockList = $blockList;
         $this->canBeCalled = $canBeCalled;
         $this->supportsVideoCalls = $supportsVideoCalls;
         $this->hasPrivateCalls = $hasPrivateCalls;
@@ -167,7 +168,7 @@ class UserFullInfo extends TdObject
             (isset($array['personal_photo']) ? TdSchemaRegistry::fromArray($array['personal_photo']) : null),
             (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
             (isset($array['public_photo']) ? TdSchemaRegistry::fromArray($array['public_photo']) : null),
-            $array['is_blocked'],
+            (isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null),
             $array['can_be_called'],
             $array['supports_video_calls'],
             $array['has_private_calls'],
@@ -189,7 +190,7 @@ class UserFullInfo extends TdObject
             'personal_photo' => (isset($this->personalPhoto) ? $this->personalPhoto : null),
             'photo' => (isset($this->photo) ? $this->photo : null),
             'public_photo' => (isset($this->publicPhoto) ? $this->publicPhoto : null),
-            'is_blocked' => $this->isBlocked,
+            'block_list' => (isset($this->blockList) ? $this->blockList : null),
             'can_be_called' => $this->canBeCalled,
             'supports_video_calls' => $this->supportsVideoCalls,
             'has_private_calls' => $this->hasPrivateCalls,
@@ -219,9 +220,9 @@ class UserFullInfo extends TdObject
         return $this->publicPhoto;
     }
 
-    public function getIsBlocked(): bool
+    public function getBlockList(): ?BlockList
     {
-        return $this->isBlocked;
+        return $this->blockList;
     }
 
     public function getCanBeCalled(): bool

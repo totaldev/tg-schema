@@ -9,13 +9,14 @@ declare(strict_types=1);
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Input\InputStoryAreas;
 use Totaldev\TgSchema\Input\InputStoryContent;
 use Totaldev\TgSchema\Story\StoryPrivacySettings;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a new story. Returns a temporary story with identifier 0
+ * Sends a new story. Returns a temporary story
  */
 class SendStory extends TdFunction
 {
@@ -27,6 +28,13 @@ class SendStory extends TdFunction
      * @var InputStoryContent
      */
     protected InputStoryContent $content;
+
+    /**
+     * Clickable rectangle areas to be shown on the story media; pass null if none
+     *
+     * @var InputStoryAreas
+     */
+    protected InputStoryAreas $areas;
 
     /**
      * Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
@@ -43,7 +51,7 @@ class SendStory extends TdFunction
     protected StoryPrivacySettings $privacySettings;
 
     /**
-     * Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+     * Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
      *
      * @var int
      */
@@ -65,6 +73,7 @@ class SendStory extends TdFunction
 
     public function __construct(
         InputStoryContent $content,
+        InputStoryAreas $areas,
         FormattedText $caption,
         StoryPrivacySettings $privacySettings,
         int $activePeriod,
@@ -72,6 +81,7 @@ class SendStory extends TdFunction
         bool $protectContent,
     ) {
         $this->content = $content;
+        $this->areas = $areas;
         $this->caption = $caption;
         $this->privacySettings = $privacySettings;
         $this->activePeriod = $activePeriod;
@@ -83,6 +93,7 @@ class SendStory extends TdFunction
     {
         return new static(
             TdSchemaRegistry::fromArray($array['content']),
+            TdSchemaRegistry::fromArray($array['areas']),
             TdSchemaRegistry::fromArray($array['caption']),
             TdSchemaRegistry::fromArray($array['privacy_settings']),
             $array['active_period'],
@@ -96,6 +107,7 @@ class SendStory extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'content' => $this->content->typeSerialize(),
+            'areas' => $this->areas->typeSerialize(),
             'caption' => $this->caption->typeSerialize(),
             'privacy_settings' => $this->privacySettings->typeSerialize(),
             'active_period' => $this->activePeriod,
@@ -107,6 +119,11 @@ class SendStory extends TdFunction
     public function getContent(): InputStoryContent
     {
         return $this->content;
+    }
+
+    public function getAreas(): InputStoryAreas
+    {
+        return $this->areas;
     }
 
     public function getCaption(): FormattedText
