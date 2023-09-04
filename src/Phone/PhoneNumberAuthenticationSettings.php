@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Phone;
 
@@ -48,13 +48,6 @@ class PhoneNumberAuthenticationSettings extends TdObject
     protected bool $allowSmsRetrieverApi;
 
     /**
-     * For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
-     *
-     * @var FirebaseAuthenticationSettings
-     */
-    protected FirebaseAuthenticationSettings $firebaseAuthenticationSettings;
-
-    /**
      * List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions
      *
      * @var string[]
@@ -66,14 +59,12 @@ class PhoneNumberAuthenticationSettings extends TdObject
         bool $allowMissedCall,
         bool $isCurrentPhoneNumber,
         bool $allowSmsRetrieverApi,
-        FirebaseAuthenticationSettings $firebaseAuthenticationSettings,
         array $authenticationTokens,
     ) {
         $this->allowFlashCall = $allowFlashCall;
         $this->allowMissedCall = $allowMissedCall;
         $this->isCurrentPhoneNumber = $isCurrentPhoneNumber;
         $this->allowSmsRetrieverApi = $allowSmsRetrieverApi;
-        $this->firebaseAuthenticationSettings = $firebaseAuthenticationSettings;
         $this->authenticationTokens = $authenticationTokens;
     }
 
@@ -84,7 +75,6 @@ class PhoneNumberAuthenticationSettings extends TdObject
             $array['allow_missed_call'],
             $array['is_current_phone_number'],
             $array['allow_sms_retriever_api'],
-            TdSchemaRegistry::fromArray($array['firebase_authentication_settings']),
             $array['authentication_tokens'],
         );
     }
@@ -97,7 +87,6 @@ class PhoneNumberAuthenticationSettings extends TdObject
             'allow_missed_call' => $this->allowMissedCall,
             'is_current_phone_number' => $this->isCurrentPhoneNumber,
             'allow_sms_retriever_api' => $this->allowSmsRetrieverApi,
-            'firebase_authentication_settings' => $this->firebaseAuthenticationSettings->typeSerialize(),
             'authentication_tokens' => $this->authenticationTokens,
         ];
     }

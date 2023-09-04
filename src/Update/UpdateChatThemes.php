@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
@@ -35,7 +35,7 @@ class UpdateChatThemes extends Update
     public static function fromArray(array $array): UpdateChatThemes
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chatThemes']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
         );
     }
 

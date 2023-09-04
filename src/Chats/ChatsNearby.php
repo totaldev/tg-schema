@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chats;
 
@@ -42,8 +42,8 @@ class ChatsNearby extends TdObject
     public static function fromArray(array $array): ChatsNearby
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['usersNearby']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['supergroupsNearby']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['users_nearby']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['supergroups_nearby']),
         );
     }
 

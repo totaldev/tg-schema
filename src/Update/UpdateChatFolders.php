@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Update;
 
@@ -43,7 +43,7 @@ class UpdateChatFolders extends Update
     public static function fromArray(array $array): UpdateChatFolders
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chatFolders']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
             $array['main_chat_list_position'],
         );
     }

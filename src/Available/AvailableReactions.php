@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Available;
 
@@ -61,9 +61,9 @@ class AvailableReactions extends TdObject
     public static function fromArray(array $array): AvailableReactions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topReactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentReactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popularReactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
             $array['allow_custom_emoji'],
         );
     }

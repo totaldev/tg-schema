@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Chat;
 
@@ -186,9 +186,9 @@ class ChatStatisticsSupergroup extends ChatStatistics
             TdSchemaRegistry::fromArray($array['action_graph']),
             TdSchemaRegistry::fromArray($array['day_graph']),
             TdSchemaRegistry::fromArray($array['week_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topSenders']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topAdministrators']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topInviters']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_senders']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_administrators']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_inviters']),
         );
     }
 

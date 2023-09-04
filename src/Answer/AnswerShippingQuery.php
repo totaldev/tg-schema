@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema\Answer;
 
@@ -51,7 +51,7 @@ class AnswerShippingQuery extends TdFunction
     {
         return new static(
             $array['shipping_query_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
             $array['error_message'],
         );
     }

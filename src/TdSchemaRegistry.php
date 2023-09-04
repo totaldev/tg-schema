@@ -4,7 +4,7 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace Totaldev\TgSchema;
 
@@ -12,7 +12,7 @@ use InvalidArgumentException;
 
 class TdSchemaRegistry
 {
-    public const VERSION = '1.8.15';
+    public const VERSION = '1.8.16';
 
     public const TYPES = [
         'error' => Error\Error::class,
