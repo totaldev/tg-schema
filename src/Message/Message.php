@@ -395,7 +395,7 @@ class Message extends TdObject
             $array['edit_date'],
             (isset($array['forward_info']) ? TdSchemaRegistry::fromArray($array['forward_info']) : null),
             (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unreadReactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
             (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
             $array['message_thread_id'],
             $array['self_destruct_time'],

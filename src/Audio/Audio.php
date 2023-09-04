@@ -116,7 +116,7 @@ class Audio extends TdObject
             $array['mime_type'],
             (isset($array['album_cover_minithumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_minithumbnail']) : null),
             (isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['externalAlbumCovers']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['external_album_covers']),
             TdSchemaRegistry::fromArray($array['audio']),
         );
     }

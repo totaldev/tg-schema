@@ -71,7 +71,7 @@ class MessageReplyInfo extends TdObject
     {
         return new static(
             $array['reply_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentReplierIds']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_replier_ids']),
             $array['last_read_inbox_message_id'],
             $array['last_read_outbox_message_id'],
             $array['last_message_id'],

@@ -61,7 +61,7 @@ class MessageReaction extends TdObject
             TdSchemaRegistry::fromArray($array['type']),
             $array['total_count'],
             $array['is_chosen'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentSenderIds']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
         );
     }
 
