@@ -36,16 +36,16 @@ class InputPassportElementBankStatement extends InputPassportElement
         );
     }
 
+    public function getBankStatement(): InputPersonalDocument
+    {
+        return $this->bankStatement;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'bank_statement' => $this->bankStatement->typeSerialize(),
         ];
-    }
-
-    public function getBankStatement(): InputPersonalDocument
-    {
-        return $this->bankStatement;
     }
 }

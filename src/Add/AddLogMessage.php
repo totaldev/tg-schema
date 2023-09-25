@@ -17,18 +17,18 @@ class AddLogMessage extends TdFunction
     public const TYPE_NAME = 'addLogMessage';
 
     /**
-     * The minimum verbosity level needed for the message to be logged; 0-1023
-     *
-     * @var int
-     */
-    protected int $verbosityLevel;
-
-    /**
      * Text of a message to log
      *
      * @var string
      */
     protected string $text;
+
+    /**
+     * The minimum verbosity level needed for the message to be logged; 0-1023
+     *
+     * @var int
+     */
+    protected int $verbosityLevel;
 
     public function __construct(int $verbosityLevel, string $text)
     {
@@ -44,13 +44,9 @@ class AddLogMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getText(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'verbosity_level' => $this->verbosityLevel,
-            'text' => $this->text,
-        ];
+        return $this->text;
     }
 
     public function getVerbosityLevel(): int
@@ -58,8 +54,12 @@ class AddLogMessage extends TdFunction
         return $this->verbosityLevel;
     }
 
-    public function getText(): string
+    public function typeSerialize(): array
     {
-        return $this->text;
+        return [
+            '@type' => static::TYPE_NAME,
+            'verbosity_level' => $this->verbosityLevel,
+            'text' => $this->text,
+        ];
     }
 }

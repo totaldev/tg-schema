@@ -36,16 +36,16 @@ class UpdateSavedAnimations extends Update
         );
     }
 
+    public function getAnimationIds(): array
+    {
+        return $this->animationIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'animation_ids' => $this->animationIds,
         ];
-    }
-
-    public function getAnimationIds(): array
-    {
-        return $this->animationIds;
     }
 }

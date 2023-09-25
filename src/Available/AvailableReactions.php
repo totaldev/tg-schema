@@ -17,18 +17,11 @@ class AvailableReactions extends TdObject
     public const TYPE_NAME = 'availableReactions';
 
     /**
-     * List of reactions to be shown at the top
+     * True, if custom emoji reactions could be added by Telegram Premium subscribers
      *
-     * @var AvailableReaction[]
+     * @var bool
      */
-    protected array $topReactions;
-
-    /**
-     * List of recently used reactions
-     *
-     * @var AvailableReaction[]
-     */
-    protected array $recentReactions;
+    protected bool $allowCustomEmoji;
 
     /**
      * List of popular reactions
@@ -38,18 +31,26 @@ class AvailableReactions extends TdObject
     protected array $popularReactions;
 
     /**
-     * True, if custom emoji reactions could be added by Telegram Premium subscribers
+     * List of recently used reactions
      *
-     * @var bool
+     * @var AvailableReaction[]
      */
-    protected bool $allowCustomEmoji;
+    protected array $recentReactions;
+
+    /**
+     * List of reactions to be shown at the top
+     *
+     * @var AvailableReaction[]
+     */
+    protected array $topReactions;
 
     public function __construct(
         array $topReactions,
         array $recentReactions,
         array $popularReactions,
-        bool $allowCustomEmoji,
-    ) {
+        bool  $allowCustomEmoji,
+    )
+    {
         $this->topReactions = $topReactions;
         $this->recentReactions = $recentReactions;
         $this->popularReactions = $popularReactions;
@@ -59,11 +60,31 @@ class AvailableReactions extends TdObject
     public static function fromArray(array $array): AvailableReactions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topReactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentReactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popularReactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
             $array['allow_custom_emoji'],
         );
+    }
+
+    public function getAllowCustomEmoji(): bool
+    {
+        return $this->allowCustomEmoji;
+    }
+
+    public function getPopularReactions(): array
+    {
+        return $this->popularReactions;
+    }
+
+    public function getRecentReactions(): array
+    {
+        return $this->recentReactions;
+    }
+
+    public function getTopReactions(): array
+    {
+        return $this->topReactions;
     }
 
     public function typeSerialize(): array
@@ -75,25 +96,5 @@ class AvailableReactions extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->popularReactions),
             'allow_custom_emoji' => $this->allowCustomEmoji,
         ];
-    }
-
-    public function getTopReactions(): array
-    {
-        return $this->topReactions;
-    }
-
-    public function getRecentReactions(): array
-    {
-        return $this->recentReactions;
-    }
-
-    public function getPopularReactions(): array
-    {
-        return $this->popularReactions;
-    }
-
-    public function getAllowCustomEmoji(): bool
-    {
-        return $this->allowCustomEmoji;
     }
 }

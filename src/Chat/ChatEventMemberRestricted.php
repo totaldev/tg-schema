@@ -24,18 +24,18 @@ class ChatEventMemberRestricted extends ChatEventAction
     protected MessageSender $memberId;
 
     /**
-     * Previous status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $oldStatus;
-
-    /**
      * New status of the chat member
      *
      * @var ChatMemberStatus
      */
     protected ChatMemberStatus $newStatus;
+
+    /**
+     * Previous status of the chat member
+     *
+     * @var ChatMemberStatus
+     */
+    protected ChatMemberStatus $oldStatus;
 
     public function __construct(MessageSender $memberId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
     {
@@ -55,6 +55,21 @@ class ChatEventMemberRestricted extends ChatEventAction
         );
     }
 
+    public function getMemberId(): MessageSender
+    {
+        return $this->memberId;
+    }
+
+    public function getNewStatus(): ChatMemberStatus
+    {
+        return $this->newStatus;
+    }
+
+    public function getOldStatus(): ChatMemberStatus
+    {
+        return $this->oldStatus;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class ChatEventMemberRestricted extends ChatEventAction
             'old_status' => $this->oldStatus->typeSerialize(),
             'new_status' => $this->newStatus->typeSerialize(),
         ];
-    }
-
-    public function getMemberId(): MessageSender
-    {
-        return $this->memberId;
-    }
-
-    public function getOldStatus(): ChatMemberStatus
-    {
-        return $this->oldStatus;
-    }
-
-    public function getNewStatus(): ChatMemberStatus
-    {
-        return $this->newStatus;
     }
 }

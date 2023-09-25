@@ -17,6 +17,13 @@ class ChatFolderInviteLinkInfo extends TdObject
     public const TYPE_NAME = 'chatFolderInviteLinkInfo';
 
     /**
+     * Identifiers of the chats from the link, which are added to the folder already
+     *
+     * @var int[]
+     */
+    protected array $addedChatIds;
+
+    /**
      * Basic information about the chat folder; chat folder identifier will be 0 if the user didn't have the chat folder yet
      *
      * @var ChatFolderInfo
@@ -29,13 +36,6 @@ class ChatFolderInviteLinkInfo extends TdObject
      * @var int[]
      */
     protected array $missingChatIds;
-
-    /**
-     * Identifiers of the chats from the link, which are added to the folder already
-     *
-     * @var int[]
-     */
-    protected array $addedChatIds;
 
     public function __construct(ChatFolderInfo $chatFolderInfo, array $missingChatIds, array $addedChatIds)
     {
@@ -53,14 +53,9 @@ class ChatFolderInviteLinkInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAddedChatIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_info' => $this->chatFolderInfo->typeSerialize(),
-            'missing_chat_ids' => $this->missingChatIds,
-            'added_chat_ids' => $this->addedChatIds,
-        ];
+        return $this->addedChatIds;
     }
 
     public function getChatFolderInfo(): ChatFolderInfo
@@ -73,8 +68,13 @@ class ChatFolderInviteLinkInfo extends TdObject
         return $this->missingChatIds;
     }
 
-    public function getAddedChatIds(): array
+    public function typeSerialize(): array
     {
-        return $this->addedChatIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_info' => $this->chatFolderInfo->typeSerialize(),
+            'missing_chat_ids' => $this->missingChatIds,
+            'added_chat_ids' => $this->addedChatIds,
+        ];
     }
 }

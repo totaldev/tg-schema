@@ -34,14 +34,8 @@ class PhoneNumberAuthenticationSettings extends TdObject
     protected bool $allowMissedCall;
 
     /**
-     * Pass true if the authenticated phone number is used on the current device
-     *
-     * @var bool
-     */
-    protected bool $isCurrentPhoneNumber;
-
-    /**
-     * For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
+     * For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically
+     * receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
      *
      * @var bool
      */
@@ -54,13 +48,21 @@ class PhoneNumberAuthenticationSettings extends TdObject
      */
     protected array $authenticationTokens;
 
+    /**
+     * Pass true if the authenticated phone number is used on the current device
+     *
+     * @var bool
+     */
+    protected bool $isCurrentPhoneNumber;
+
     public function __construct(
-        bool $allowFlashCall,
-        bool $allowMissedCall,
-        bool $isCurrentPhoneNumber,
-        bool $allowSmsRetrieverApi,
+        bool  $allowFlashCall,
+        bool  $allowMissedCall,
+        bool  $isCurrentPhoneNumber,
+        bool  $allowSmsRetrieverApi,
         array $authenticationTokens,
-    ) {
+    )
+    {
         $this->allowFlashCall = $allowFlashCall;
         $this->allowMissedCall = $allowMissedCall;
         $this->isCurrentPhoneNumber = $isCurrentPhoneNumber;
@@ -79,18 +81,6 @@ class PhoneNumberAuthenticationSettings extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'allow_flash_call' => $this->allowFlashCall,
-            'allow_missed_call' => $this->allowMissedCall,
-            'is_current_phone_number' => $this->isCurrentPhoneNumber,
-            'allow_sms_retriever_api' => $this->allowSmsRetrieverApi,
-            'authentication_tokens' => $this->authenticationTokens,
-        ];
-    }
-
     public function getAllowFlashCall(): bool
     {
         return $this->allowFlashCall;
@@ -101,14 +91,14 @@ class PhoneNumberAuthenticationSettings extends TdObject
         return $this->allowMissedCall;
     }
 
-    public function getIsCurrentPhoneNumber(): bool
-    {
-        return $this->isCurrentPhoneNumber;
-    }
-
     public function getAllowSmsRetrieverApi(): bool
     {
         return $this->allowSmsRetrieverApi;
+    }
+
+    public function getAuthenticationTokens(): array
+    {
+        return $this->authenticationTokens;
     }
 
     public function getFirebaseAuthenticationSettings(): FirebaseAuthenticationSettings
@@ -116,8 +106,20 @@ class PhoneNumberAuthenticationSettings extends TdObject
         return $this->firebaseAuthenticationSettings;
     }
 
-    public function getAuthenticationTokens(): array
+    public function getIsCurrentPhoneNumber(): bool
     {
-        return $this->authenticationTokens;
+        return $this->isCurrentPhoneNumber;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'allow_flash_call' => $this->allowFlashCall,
+            'allow_missed_call' => $this->allowMissedCall,
+            'is_current_phone_number' => $this->isCurrentPhoneNumber,
+            'allow_sms_retriever_api' => $this->allowSmsRetrieverApi,
+            'authentication_tokens' => $this->authenticationTokens,
+        ];
     }
 }

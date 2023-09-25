@@ -18,18 +18,11 @@ class PageBlockRelatedArticle extends TdObject
     public const TYPE_NAME = 'pageBlockRelatedArticle';
 
     /**
-     * Related article URL
+     * Article author; may be empty
      *
      * @var string
      */
-    protected string $url;
-
-    /**
-     * Article title; may be empty
-     *
-     * @var string
-     */
-    protected string $title;
+    protected string $author;
 
     /**
      * Article description; may be empty
@@ -46,18 +39,25 @@ class PageBlockRelatedArticle extends TdObject
     protected ?Photo $photo;
 
     /**
-     * Article author; may be empty
-     *
-     * @var string
-     */
-    protected string $author;
-
-    /**
      * Point in time (Unix timestamp) when the article was published; 0 if unknown
      *
      * @var int
      */
     protected int $publishDate;
+
+    /**
+     * Article title; may be empty
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Related article URL
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(
         string $url,
@@ -65,8 +65,9 @@ class PageBlockRelatedArticle extends TdObject
         string $description,
         ?Photo $photo,
         string $author,
-        int $publishDate,
-    ) {
+        int    $publishDate,
+    )
+    {
         $this->url = $url;
         $this->title = $title;
         $this->description = $description;
@@ -87,27 +88,9 @@ class PageBlockRelatedArticle extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAuthor(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'title' => $this->title,
-            'description' => $this->description,
-            'photo' => (isset($this->photo) ? $this->photo : null),
-            'author' => $this->author,
-            'publish_date' => $this->publishDate,
-        ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
+        return $this->author;
     }
 
     public function getDescription(): string
@@ -120,13 +103,31 @@ class PageBlockRelatedArticle extends TdObject
         return $this->photo;
     }
 
-    public function getAuthor(): string
-    {
-        return $this->author;
-    }
-
     public function getPublishDate(): int
     {
         return $this->publishDate;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'title' => $this->title,
+            'description' => $this->description,
+            'photo' => (isset($this->photo) ? $this->photo : null),
+            'author' => $this->author,
+            'publish_date' => $this->publishDate,
+        ];
     }
 }

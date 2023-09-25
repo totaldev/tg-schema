@@ -18,11 +18,11 @@ class CreateCall extends TdFunction
     public const TYPE_NAME = 'createCall';
 
     /**
-     * Identifier of the user to be called
+     * Pass true to create a video call
      *
-     * @var int
+     * @var bool
      */
-    protected int $userId;
+    protected bool $isVideo;
 
     /**
      * The call protocols supported by the application
@@ -32,11 +32,11 @@ class CreateCall extends TdFunction
     protected CallProtocol $protocol;
 
     /**
-     * Pass true to create a video call
+     * Identifier of the user to be called
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isVideo;
+    protected int $userId;
 
     public function __construct(int $userId, CallProtocol $protocol, bool $isVideo)
     {
@@ -54,6 +54,21 @@ class CreateCall extends TdFunction
         );
     }
 
+    public function getIsVideo(): bool
+    {
+        return $this->isVideo;
+    }
+
+    public function getProtocol(): CallProtocol
+    {
+        return $this->protocol;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class CreateCall extends TdFunction
             'protocol' => $this->protocol->typeSerialize(),
             'is_video' => $this->isVideo,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getProtocol(): CallProtocol
-    {
-        return $this->protocol;
-    }
-
-    public function getIsVideo(): bool
-    {
-        return $this->isVideo;
     }
 }

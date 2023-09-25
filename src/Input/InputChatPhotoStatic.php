@@ -36,16 +36,16 @@ class InputChatPhotoStatic extends InputChatPhoto
         );
     }
 
+    public function getPhoto(): InputFile
+    {
+        return $this->photo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'photo' => $this->photo->typeSerialize(),
         ];
-    }
-
-    public function getPhoto(): InputFile
-    {
-        return $this->photo;
     }
 }

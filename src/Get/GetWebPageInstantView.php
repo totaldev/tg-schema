@@ -17,18 +17,18 @@ class GetWebPageInstantView extends TdFunction
     public const TYPE_NAME = 'getWebPageInstantView';
 
     /**
-     * The web page URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Pass true to get full instant view for the web page
      *
      * @var bool
      */
     protected bool $forceFull;
+
+    /**
+     * The web page URL
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, bool $forceFull)
     {
@@ -44,13 +44,9 @@ class GetWebPageInstantView extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getForceFull(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'force_full' => $this->forceFull,
-        ];
+        return $this->forceFull;
     }
 
     public function getUrl(): string
@@ -58,8 +54,12 @@ class GetWebPageInstantView extends TdFunction
         return $this->url;
     }
 
-    public function getForceFull(): bool
+    public function typeSerialize(): array
     {
-        return $this->forceFull;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'force_full' => $this->forceFull,
+        ];
     }
 }

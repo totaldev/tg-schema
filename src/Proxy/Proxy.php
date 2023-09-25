@@ -24,18 +24,11 @@ class Proxy extends TdObject
     protected int $id;
 
     /**
-     * Proxy server domain or IP address
+     * True, if the proxy is enabled now
      *
-     * @var string
+     * @var bool
      */
-    protected string $server;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
+    protected bool $isEnabled;
 
     /**
      * Point in time (Unix timestamp) when the proxy was last used; 0 if never
@@ -45,11 +38,18 @@ class Proxy extends TdObject
     protected int $lastUsedDate;
 
     /**
-     * True, if the proxy is enabled now
+     * Proxy server port
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isEnabled;
+    protected int $port;
+
+    /**
+     * Proxy server domain or IP address
+     *
+     * @var string
+     */
+    protected string $server;
 
     /**
      * Type of the proxy
@@ -59,13 +59,14 @@ class Proxy extends TdObject
     protected ProxyType $type;
 
     public function __construct(
-        int $id,
-        string $server,
-        int $port,
-        int $lastUsedDate,
-        bool $isEnabled,
+        int       $id,
+        string    $server,
+        int       $port,
+        int       $lastUsedDate,
+        bool      $isEnabled,
         ProxyType $type,
-    ) {
+    )
+    {
         $this->id = $id;
         $this->server = $server;
         $this->port = $port;
@@ -86,6 +87,36 @@ class Proxy extends TdObject
         );
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsEnabled(): bool
+    {
+        return $this->isEnabled;
+    }
+
+    public function getLastUsedDate(): int
+    {
+        return $this->lastUsedDate;
+    }
+
+    public function getPort(): int
+    {
+        return $this->port;
+    }
+
+    public function getServer(): string
+    {
+        return $this->server;
+    }
+
+    public function getType(): ProxyType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -97,35 +128,5 @@ class Proxy extends TdObject
             'is_enabled' => $this->isEnabled,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
-    }
-
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    public function getLastUsedDate(): int
-    {
-        return $this->lastUsedDate;
-    }
-
-    public function getIsEnabled(): bool
-    {
-        return $this->isEnabled;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
     }
 }

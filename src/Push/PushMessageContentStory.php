@@ -36,16 +36,16 @@ class PushMessageContentStory extends PushMessageContent
         );
     }
 
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

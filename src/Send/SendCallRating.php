@@ -25,13 +25,6 @@ class SendCallRating extends TdFunction
     protected int $callId;
 
     /**
-     * Call rating; 1-5
-     *
-     * @var int
-     */
-    protected int $rating;
-
-    /**
      * An optional user comment if the rating is less than 5
      *
      * @var string
@@ -44,6 +37,13 @@ class SendCallRating extends TdFunction
      * @var CallProblem[]
      */
     protected array $problems;
+
+    /**
+     * Call rating; 1-5
+     *
+     * @var int
+     */
+    protected int $rating;
 
     public function __construct(int $callId, int $rating, string $comment, array $problems)
     {
@@ -63,25 +63,9 @@ class SendCallRating extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'rating' => $this->rating,
-            'comment' => $this->comment,
-            array_map(fn($x) => $x->typeSerialize(), $this->problems),
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
-    }
-
-    public function getRating(): int
-    {
-        return $this->rating;
     }
 
     public function getComment(): string
@@ -92,5 +76,21 @@ class SendCallRating extends TdFunction
     public function getProblems(): array
     {
         return $this->problems;
+    }
+
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'call_id' => $this->callId,
+            'rating' => $this->rating,
+            'comment' => $this->comment,
+            array_map(fn($x) => $x->typeSerialize(), $this->problems),
+        ];
     }
 }

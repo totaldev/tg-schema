@@ -10,11 +10,27 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
+ * Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type
+ * inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the
+ * button must be handled as an ordinary URL button
  */
 class GetLoginUrl extends TdFunction
 {
     public const TYPE_NAME = 'getLoginUrl';
+
+    /**
+     * Pass true to allow the bot to send messages to the current user
+     *
+     * @var bool
+     */
+    protected bool $allowWriteAccess;
+
+    /**
+     * Button identifier
+     *
+     * @var int
+     */
+    protected int $buttonId;
 
     /**
      * Chat identifier of the message with the button
@@ -29,20 +45,6 @@ class GetLoginUrl extends TdFunction
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Button identifier
-     *
-     * @var int
-     */
-    protected int $buttonId;
-
-    /**
-     * Pass true to allow the bot to send messages to the current user
-     *
-     * @var bool
-     */
-    protected bool $allowWriteAccess;
 
     public function __construct(int $chatId, int $messageId, int $buttonId, bool $allowWriteAccess)
     {
@@ -62,15 +64,14 @@ class GetLoginUrl extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowWriteAccess(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'button_id' => $this->buttonId,
-            'allow_write_access' => $this->allowWriteAccess,
-        ];
+        return $this->allowWriteAccess;
+    }
+
+    public function getButtonId(): int
+    {
+        return $this->buttonId;
     }
 
     public function getChatId(): int
@@ -83,13 +84,14 @@ class GetLoginUrl extends TdFunction
         return $this->messageId;
     }
 
-    public function getButtonId(): int
+    public function typeSerialize(): array
     {
-        return $this->buttonId;
-    }
-
-    public function getAllowWriteAccess(): bool
-    {
-        return $this->allowWriteAccess;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'button_id' => $this->buttonId,
+            'allow_write_access' => $this->allowWriteAccess,
+        ];
     }
 }

@@ -45,15 +45,6 @@ class RegisterDevice extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'device_token' => $this->deviceToken->typeSerialize(),
-            'other_user_ids' => $this->otherUserIds,
-        ];
-    }
-
     public function getDeviceToken(): DeviceToken
     {
         return $this->deviceToken;
@@ -62,5 +53,14 @@ class RegisterDevice extends TdFunction
     public function getOtherUserIds(): array
     {
         return $this->otherUserIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'device_token' => $this->deviceToken->typeSerialize(),
+            'other_user_ids' => $this->otherUserIds,
+        ];
     }
 }

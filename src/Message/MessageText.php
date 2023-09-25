@@ -47,15 +47,6 @@ class MessageText extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'web_page' => (isset($this->webPage) ? $this->webPage : null),
-        ];
-    }
-
     public function getText(): FormattedText
     {
         return $this->text;
@@ -64,5 +55,14 @@ class MessageText extends MessageContent
     public function getWebPage(): ?WebPage
     {
         return $this->webPage;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'web_page' => (isset($this->webPage) ? $this->webPage : null),
+        ];
     }
 }

@@ -17,18 +17,18 @@ class InputInlineQueryResultGame extends InputInlineQueryResult
     public const TYPE_NAME = 'inputInlineQueryResultGame';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
      * Short name of the game
      *
      * @var string
      */
     protected string $gameShortName;
+
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
 
     /**
      * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
@@ -55,6 +55,21 @@ class InputInlineQueryResultGame extends InputInlineQueryResult
         );
     }
 
+    public function getGameShortName(): string
+    {
+        return $this->gameShortName;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class InputInlineQueryResultGame extends InputInlineQueryResult
             'game_short_name' => $this->gameShortName,
             'reply_markup' => $this->replyMarkup->typeSerialize(),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getGameShortName(): string
-    {
-        return $this->gameShortName;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
     }
 }

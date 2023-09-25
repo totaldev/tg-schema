@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
+ * Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance,
+ * the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
  */
 class GetChatHistory extends TdFunction
 {
@@ -31,18 +32,19 @@ class GetChatHistory extends TdFunction
     protected int $fromMessageId;
 
     /**
+     * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than
+     * or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
      *
      * @var int
      */
     protected int $offset;
-
-    /**
-     * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
 
     /**
      * Pass true to get only messages that are available without sending network requests
@@ -71,18 +73,6 @@ class GetChatHistory extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'from_message_id' => $this->fromMessageId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-            'only_local' => $this->onlyLocal,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -93,18 +83,30 @@ class GetChatHistory extends TdFunction
         return $this->fromMessageId;
     }
 
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
     public function getLimit(): int
     {
         return $this->limit;
     }
 
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
     public function getOnlyLocal(): bool
     {
         return $this->onlyLocal;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'from_message_id' => $this->fromMessageId,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+            'only_local' => $this->onlyLocal,
+        ];
     }
 }

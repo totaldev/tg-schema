@@ -17,18 +17,11 @@ class ChatInviteLink extends TdObject
     public const TYPE_NAME = 'chatInviteLink';
 
     /**
-     * Chat invite link
+     * True, if the link only creates join request. If true, total number of joining members will be unlimited
      *
-     * @var string
+     * @var bool
      */
-    protected string $inviteLink;
-
-    /**
-     * Name of the link
-     *
-     * @var string
-     */
-    protected string $name;
+    protected bool $createsJoinRequest;
 
     /**
      * User identifier of an administrator created the link
@@ -59,35 +52,15 @@ class ChatInviteLink extends TdObject
     protected int $expirationDate;
 
     /**
-     * The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval
+     * Chat invite link
      *
-     * @var int
+     * @var string
      */
-    protected int $memberLimit;
+    protected string $inviteLink;
 
     /**
-     * Number of chat members, which joined the chat using the link
-     *
-     * @var int
-     */
-    protected int $memberCount;
-
-    /**
-     * Number of pending join requests created using this link
-     *
-     * @var int
-     */
-    protected int $pendingJoinRequestCount;
-
-    /**
-     * True, if the link only creates join request. If true, total number of joining members will be unlimited
-     *
-     * @var bool
-     */
-    protected bool $createsJoinRequest;
-
-    /**
-     * True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
+     * True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each
+     * administrator with can_invite_users right at a given time
      *
      * @var bool
      */
@@ -100,20 +73,49 @@ class ChatInviteLink extends TdObject
      */
     protected bool $isRevoked;
 
+    /**
+     * Number of chat members, which joined the chat using the link
+     *
+     * @var int
+     */
+    protected int $memberCount;
+
+    /**
+     * The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited. Always 0 if the link requires approval
+     *
+     * @var int
+     */
+    protected int $memberLimit;
+
+    /**
+     * Name of the link
+     *
+     * @var string
+     */
+    protected string $name;
+
+    /**
+     * Number of pending join requests created using this link
+     *
+     * @var int
+     */
+    protected int $pendingJoinRequestCount;
+
     public function __construct(
         string $inviteLink,
         string $name,
-        int $creatorUserId,
-        int $date,
-        int $editDate,
-        int $expirationDate,
-        int $memberLimit,
-        int $memberCount,
-        int $pendingJoinRequestCount,
-        bool $createsJoinRequest,
-        bool $isPrimary,
-        bool $isRevoked,
-    ) {
+        int    $creatorUserId,
+        int    $date,
+        int    $editDate,
+        int    $expirationDate,
+        int    $memberLimit,
+        int    $memberCount,
+        int    $pendingJoinRequestCount,
+        bool   $createsJoinRequest,
+        bool   $isPrimary,
+        bool   $isRevoked,
+    )
+    {
         $this->inviteLink = $inviteLink;
         $this->name = $name;
         $this->creatorUserId = $creatorUserId;
@@ -146,33 +148,9 @@ class ChatInviteLink extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getCreatesJoinRequest(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'invite_link' => $this->inviteLink,
-            'name' => $this->name,
-            'creator_user_id' => $this->creatorUserId,
-            'date' => $this->date,
-            'edit_date' => $this->editDate,
-            'expiration_date' => $this->expirationDate,
-            'member_limit' => $this->memberLimit,
-            'member_count' => $this->memberCount,
-            'pending_join_request_count' => $this->pendingJoinRequestCount,
-            'creates_join_request' => $this->createsJoinRequest,
-            'is_primary' => $this->isPrimary,
-            'is_revoked' => $this->isRevoked,
-        ];
-    }
-
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
+        return $this->createsJoinRequest;
     }
 
     public function getCreatorUserId(): int
@@ -195,24 +173,9 @@ class ChatInviteLink extends TdObject
         return $this->expirationDate;
     }
 
-    public function getMemberLimit(): int
+    public function getInviteLink(): string
     {
-        return $this->memberLimit;
-    }
-
-    public function getMemberCount(): int
-    {
-        return $this->memberCount;
-    }
-
-    public function getPendingJoinRequestCount(): int
-    {
-        return $this->pendingJoinRequestCount;
-    }
-
-    public function getCreatesJoinRequest(): bool
-    {
-        return $this->createsJoinRequest;
+        return $this->inviteLink;
     }
 
     public function getIsPrimary(): bool
@@ -223,5 +186,44 @@ class ChatInviteLink extends TdObject
     public function getIsRevoked(): bool
     {
         return $this->isRevoked;
+    }
+
+    public function getMemberCount(): int
+    {
+        return $this->memberCount;
+    }
+
+    public function getMemberLimit(): int
+    {
+        return $this->memberLimit;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPendingJoinRequestCount(): int
+    {
+        return $this->pendingJoinRequestCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'invite_link' => $this->inviteLink,
+            'name' => $this->name,
+            'creator_user_id' => $this->creatorUserId,
+            'date' => $this->date,
+            'edit_date' => $this->editDate,
+            'expiration_date' => $this->expirationDate,
+            'member_limit' => $this->memberLimit,
+            'member_count' => $this->memberCount,
+            'pending_join_request_count' => $this->pendingJoinRequestCount,
+            'creates_join_request' => $this->createsJoinRequest,
+            'is_primary' => $this->isPrimary,
+            'is_revoked' => $this->isRevoked,
+        ];
     }
 }

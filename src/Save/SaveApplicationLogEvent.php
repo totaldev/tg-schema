@@ -18,13 +18,6 @@ class SaveApplicationLogEvent extends TdFunction
     public const TYPE_NAME = 'saveApplicationLogEvent';
 
     /**
-     * Event type
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
      * Optional chat identifier, associated with the event
      *
      * @var int
@@ -37,6 +30,13 @@ class SaveApplicationLogEvent extends TdFunction
      * @var JsonValue
      */
     protected JsonValue $data;
+
+    /**
+     * Event type
+     *
+     * @var string
+     */
+    protected string $type;
 
     public function __construct(string $type, int $chatId, JsonValue $data)
     {
@@ -54,21 +54,6 @@ class SaveApplicationLogEvent extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type,
-            'chat_id' => $this->chatId,
-            'data' => $this->data->typeSerialize(),
-        ];
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +62,20 @@ class SaveApplicationLogEvent extends TdFunction
     public function getData(): JsonValue
     {
         return $this->data;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type,
+            'chat_id' => $this->chatId,
+            'data' => $this->data->typeSerialize(),
+        ];
     }
 }

@@ -24,18 +24,18 @@ class StartGroupCallRecording extends TdFunction
     protected int $groupCallId;
 
     /**
-     * Group call recording title; 0-64 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Pass true to record a video file instead of an audio file
      *
      * @var bool
      */
     protected bool $recordVideo;
+
+    /**
+     * Group call recording title; 0-64 characters
+     *
+     * @var string
+     */
+    protected string $title;
 
     /**
      * Pass true to use portrait orientation for video instead of landscape one
@@ -62,6 +62,26 @@ class StartGroupCallRecording extends TdFunction
         );
     }
 
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getRecordVideo(): bool
+    {
+        return $this->recordVideo;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getUsePortraitOrientation(): bool
+    {
+        return $this->usePortraitOrientation;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class StartGroupCallRecording extends TdFunction
             'record_video' => $this->recordVideo,
             'use_portrait_orientation' => $this->usePortraitOrientation,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getRecordVideo(): bool
-    {
-        return $this->recordVideo;
-    }
-
-    public function getUsePortraitOrientation(): bool
-    {
-        return $this->usePortraitOrientation;
     }
 }

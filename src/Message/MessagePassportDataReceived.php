@@ -18,18 +18,18 @@ class MessagePassportDataReceived extends MessageContent
     public const TYPE_NAME = 'messagePassportDataReceived';
 
     /**
-     * List of received Telegram Passport elements
-     *
-     * @var EncryptedPassportElement[]
-     */
-    protected array $elements;
-
-    /**
      * Encrypted data credentials
      *
      * @var EncryptedCredentials
      */
     protected EncryptedCredentials $credentials;
+
+    /**
+     * List of received Telegram Passport elements
+     *
+     * @var EncryptedPassportElement[]
+     */
+    protected array $elements;
 
     public function __construct(array $elements, EncryptedCredentials $credentials)
     {
@@ -47,13 +47,9 @@ class MessagePassportDataReceived extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getCredentials(): EncryptedCredentials
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->elements),
-            'credentials' => $this->credentials->typeSerialize(),
-        ];
+        return $this->credentials;
     }
 
     public function getElements(): array
@@ -61,8 +57,12 @@ class MessagePassportDataReceived extends MessageContent
         return $this->elements;
     }
 
-    public function getCredentials(): EncryptedCredentials
+    public function typeSerialize(): array
     {
-        return $this->credentials;
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->elements),
+            'credentials' => $this->credentials->typeSerialize(),
+        ];
     }
 }

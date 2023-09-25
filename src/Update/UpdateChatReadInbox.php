@@ -54,16 +54,6 @@ class UpdateChatReadInbox extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
-            'unread_count' => $this->unreadCount,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +67,15 @@ class UpdateChatReadInbox extends Update
     public function getUnreadCount(): int
     {
         return $this->unreadCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
+            'unread_count' => $this->unreadCount,
+        ];
     }
 }

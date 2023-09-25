@@ -18,18 +18,18 @@ class MessageDocument extends MessageContent
     public const TYPE_NAME = 'messageDocument';
 
     /**
-     * The document description
-     *
-     * @var Document
-     */
-    protected Document $document;
-
-    /**
      * Document caption
      *
      * @var FormattedText
      */
     protected FormattedText $caption;
+
+    /**
+     * The document description
+     *
+     * @var Document
+     */
+    protected Document $document;
 
     public function __construct(Document $document, FormattedText $caption)
     {
@@ -47,13 +47,9 @@ class MessageDocument extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getDocument(): Document
@@ -61,8 +57,12 @@ class MessageDocument extends MessageContent
         return $this->document;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'document' => $this->document->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

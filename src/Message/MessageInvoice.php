@@ -18,11 +18,11 @@ class MessageInvoice extends MessageContent
     public const TYPE_NAME = 'messageInvoice';
 
     /**
-     * Product title
+     * Currency for the product price
      *
      * @var string
      */
-    protected string $title;
+    protected string $currency;
 
     /**
      * Product description
@@ -32,32 +32,11 @@ class MessageInvoice extends MessageContent
     protected FormattedText $description;
 
     /**
-     * Product photo; may be null
+     * Extended media attached to the invoice; may be null
      *
-     * @var Photo|null
+     * @var MessageExtendedMedia|null
      */
-    protected ?Photo $photo;
-
-    /**
-     * Currency for the product price
-     *
-     * @var string
-     */
-    protected string $currency;
-
-    /**
-     * Product total price in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $totalAmount;
-
-    /**
-     * Unique invoice bot start_parameter to be passed to getInternalLink
-     *
-     * @var string
-     */
-    protected string $startParameter;
+    protected ?MessageExtendedMedia $extendedMedia;
 
     /**
      * True, if the invoice is a test invoice
@@ -74,6 +53,13 @@ class MessageInvoice extends MessageContent
     protected bool $needShippingAddress;
 
     /**
+     * Product photo; may be null
+     *
+     * @var Photo|null
+     */
+    protected ?Photo $photo;
+
+    /**
      * The identifier of the message with the receipt, after the product has been purchased
      *
      * @var int
@@ -81,24 +67,39 @@ class MessageInvoice extends MessageContent
     protected int $receiptMessageId;
 
     /**
-     * Extended media attached to the invoice; may be null
+     * Unique invoice bot start_parameter to be passed to getInternalLink
      *
-     * @var MessageExtendedMedia|null
+     * @var string
      */
-    protected ?MessageExtendedMedia $extendedMedia;
+    protected string $startParameter;
+
+    /**
+     * Product title
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Product total price in the smallest units of the currency
+     *
+     * @var int
+     */
+    protected int $totalAmount;
 
     public function __construct(
-        string $title,
-        FormattedText $description,
-        ?Photo $photo,
-        string $currency,
-        int $totalAmount,
-        string $startParameter,
-        bool $isTest,
-        bool $needShippingAddress,
-        int $receiptMessageId,
+        string                $title,
+        FormattedText         $description,
+        ?Photo                $photo,
+        string                $currency,
+        int                   $totalAmount,
+        string                $startParameter,
+        bool                  $isTest,
+        bool                  $needShippingAddress,
+        int                   $receiptMessageId,
         ?MessageExtendedMedia $extendedMedia,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->title = $title;
@@ -129,6 +130,56 @@ class MessageInvoice extends MessageContent
         );
     }
 
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getDescription(): FormattedText
+    {
+        return $this->description;
+    }
+
+    public function getExtendedMedia(): ?MessageExtendedMedia
+    {
+        return $this->extendedMedia;
+    }
+
+    public function getIsTest(): bool
+    {
+        return $this->isTest;
+    }
+
+    public function getNeedShippingAddress(): bool
+    {
+        return $this->needShippingAddress;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function getReceiptMessageId(): int
+    {
+        return $this->receiptMessageId;
+    }
+
+    public function getStartParameter(): string
+    {
+        return $this->startParameter;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getTotalAmount(): int
+    {
+        return $this->totalAmount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -144,55 +195,5 @@ class MessageInvoice extends MessageContent
             'receipt_message_id' => $this->receiptMessageId,
             'extended_media' => (isset($this->extendedMedia) ? $this->extendedMedia : null),
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): FormattedText
-    {
-        return $this->description;
-    }
-
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    public function getTotalAmount(): int
-    {
-        return $this->totalAmount;
-    }
-
-    public function getStartParameter(): string
-    {
-        return $this->startParameter;
-    }
-
-    public function getIsTest(): bool
-    {
-        return $this->isTest;
-    }
-
-    public function getNeedShippingAddress(): bool
-    {
-        return $this->needShippingAddress;
-    }
-
-    public function getReceiptMessageId(): int
-    {
-        return $this->receiptMessageId;
-    }
-
-    public function getExtendedMedia(): ?MessageExtendedMedia
-    {
-        return $this->extendedMedia;
     }
 }

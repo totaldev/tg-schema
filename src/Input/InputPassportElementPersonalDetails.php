@@ -37,16 +37,16 @@ class InputPassportElementPersonalDetails extends InputPassportElement
         );
     }
 
+    public function getPersonalDetails(): PersonalDetails
+    {
+        return $this->personalDetails;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'personal_details' => $this->personalDetails->typeSerialize(),
         ];
-    }
-
-    public function getPersonalDetails(): PersonalDetails
-    {
-        return $this->personalDetails;
     }
 }

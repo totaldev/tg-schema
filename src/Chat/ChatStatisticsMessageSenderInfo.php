@@ -17,11 +17,11 @@ class ChatStatisticsMessageSenderInfo extends TdObject
     public const TYPE_NAME = 'chatStatisticsMessageSenderInfo';
 
     /**
-     * User identifier
+     * Average number of characters in sent messages; 0 if unknown
      *
      * @var int
      */
-    protected int $userId;
+    protected int $averageCharacterCount;
 
     /**
      * Number of sent messages
@@ -31,11 +31,11 @@ class ChatStatisticsMessageSenderInfo extends TdObject
     protected int $sentMessageCount;
 
     /**
-     * Average number of characters in sent messages; 0 if unknown
+     * User identifier
      *
      * @var int
      */
-    protected int $averageCharacterCount;
+    protected int $userId;
 
     public function __construct(int $userId, int $sentMessageCount, int $averageCharacterCount)
     {
@@ -53,6 +53,21 @@ class ChatStatisticsMessageSenderInfo extends TdObject
         );
     }
 
+    public function getAverageCharacterCount(): int
+    {
+        return $this->averageCharacterCount;
+    }
+
+    public function getSentMessageCount(): int
+    {
+        return $this->sentMessageCount;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class ChatStatisticsMessageSenderInfo extends TdObject
             'sent_message_count' => $this->sentMessageCount,
             'average_character_count' => $this->averageCharacterCount,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getSentMessageCount(): int
-    {
-        return $this->sentMessageCount;
-    }
-
-    public function getAverageCharacterCount(): int
-    {
-        return $this->averageCharacterCount;
     }
 }

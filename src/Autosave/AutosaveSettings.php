@@ -18,20 +18,6 @@ class AutosaveSettings extends TdObject
     public const TYPE_NAME = 'autosaveSettings';
 
     /**
-     * Default autosave settings for private chats
-     *
-     * @var ScopeAutosaveSettings
-     */
-    protected ScopeAutosaveSettings $privateChatSettings;
-
-    /**
-     * Default autosave settings for basic group and supergroup chats
-     *
-     * @var ScopeAutosaveSettings
-     */
-    protected ScopeAutosaveSettings $groupSettings;
-
-    /**
      * Default autosave settings for channel chats
      *
      * @var ScopeAutosaveSettings
@@ -45,12 +31,27 @@ class AutosaveSettings extends TdObject
      */
     protected array $exceptions;
 
+    /**
+     * Default autosave settings for basic group and supergroup chats
+     *
+     * @var ScopeAutosaveSettings
+     */
+    protected ScopeAutosaveSettings $groupSettings;
+
+    /**
+     * Default autosave settings for private chats
+     *
+     * @var ScopeAutosaveSettings
+     */
+    protected ScopeAutosaveSettings $privateChatSettings;
+
     public function __construct(
         ScopeAutosaveSettings $privateChatSettings,
         ScopeAutosaveSettings $groupSettings,
         ScopeAutosaveSettings $channelSettings,
-        array $exceptions,
-    ) {
+        array                 $exceptions,
+    )
+    {
         $this->privateChatSettings = $privateChatSettings;
         $this->groupSettings = $groupSettings;
         $this->channelSettings = $channelSettings;
@@ -67,6 +68,26 @@ class AutosaveSettings extends TdObject
         );
     }
 
+    public function getChannelSettings(): ScopeAutosaveSettings
+    {
+        return $this->channelSettings;
+    }
+
+    public function getExceptions(): array
+    {
+        return $this->exceptions;
+    }
+
+    public function getGroupSettings(): ScopeAutosaveSettings
+    {
+        return $this->groupSettings;
+    }
+
+    public function getPrivateChatSettings(): ScopeAutosaveSettings
+    {
+        return $this->privateChatSettings;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +97,5 @@ class AutosaveSettings extends TdObject
             'channel_settings' => $this->channelSettings->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->exceptions),
         ];
-    }
-
-    public function getPrivateChatSettings(): ScopeAutosaveSettings
-    {
-        return $this->privateChatSettings;
-    }
-
-    public function getGroupSettings(): ScopeAutosaveSettings
-    {
-        return $this->groupSettings;
-    }
-
-    public function getChannelSettings(): ScopeAutosaveSettings
-    {
-        return $this->channelSettings;
-    }
-
-    public function getExceptions(): array
-    {
-        return $this->exceptions;
     }
 }

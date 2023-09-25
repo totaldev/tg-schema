@@ -36,16 +36,16 @@ class RichTextPlain extends RichText
         );
     }
 
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text,
         ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
     }
 }

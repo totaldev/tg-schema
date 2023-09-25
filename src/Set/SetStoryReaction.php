@@ -18,11 +18,11 @@ class SetStoryReaction extends TdFunction
     public const TYPE_NAME = 'setStoryReaction';
 
     /**
-     * The identifier of the sender of the story
+     * Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
      *
-     * @var int
+     * @var ReactionType
      */
-    protected int $storySenderChatId;
+    protected ReactionType $reactionType;
 
     /**
      * The identifier of the story
@@ -32,11 +32,11 @@ class SetStoryReaction extends TdFunction
     protected int $storyId;
 
     /**
-     * Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+     * The identifier of the sender of the story
      *
-     * @var ReactionType
+     * @var int
      */
-    protected ReactionType $reactionType;
+    protected int $storySenderChatId;
 
     /**
      * Pass true if the reaction needs to be added to recent reactions
@@ -46,11 +46,12 @@ class SetStoryReaction extends TdFunction
     protected bool $updateRecentReactions;
 
     public function __construct(
-        int $storySenderChatId,
-        int $storyId,
+        int          $storySenderChatId,
+        int          $storyId,
         ReactionType $reactionType,
-        bool $updateRecentReactions,
-    ) {
+        bool         $updateRecentReactions,
+    )
+    {
         $this->storySenderChatId = $storySenderChatId;
         $this->storyId = $storyId;
         $this->reactionType = $reactionType;
@@ -67,6 +68,26 @@ class SetStoryReaction extends TdFunction
         );
     }
 
+    public function getReactionType(): ReactionType
+    {
+        return $this->reactionType;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
+    public function getUpdateRecentReactions(): bool
+    {
+        return $this->updateRecentReactions;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +97,5 @@ class SetStoryReaction extends TdFunction
             'reaction_type' => $this->reactionType->typeSerialize(),
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getReactionType(): ReactionType
-    {
-        return $this->reactionType;
-    }
-
-    public function getUpdateRecentReactions(): bool
-    {
-        return $this->updateRecentReactions;
     }
 }

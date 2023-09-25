@@ -17,53 +17,11 @@ class ScopeNotificationSettings extends TdObject
     public const TYPE_NAME = 'scopeNotificationSettings';
 
     /**
-     * Time left before notifications will be unmuted, in seconds
-     *
-     * @var int
-     */
-    protected int $muteFor;
-
-    /**
-     * Identifier of the notification sound to be played; 0 if sound is disabled
-     *
-     * @var int
-     */
-    protected int $soundId;
-
-    /**
-     * True, if message content must be displayed in notifications
+     * True, if notifications for messages with mentions will be created as for an ordinary unread message
      *
      * @var bool
      */
-    protected bool $showPreview;
-
-    /**
-     * If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
-     *
-     * @var bool
-     */
-    protected bool $useDefaultMuteStories;
-
-    /**
-     * True, if story notifications are disabled for the chat
-     *
-     * @var bool
-     */
-    protected bool $muteStories;
-
-    /**
-     * Identifier of the notification sound to be played for stories; 0 if sound is disabled
-     *
-     * @var int
-     */
-    protected int $storySoundId;
-
-    /**
-     * True, if the sender of stories must be displayed in notifications
-     *
-     * @var bool
-     */
-    protected bool $showStorySender;
+    protected bool $disableMentionNotifications;
 
     /**
      * True, if notifications for incoming pinned messages will be created as for an ordinary unread message
@@ -73,23 +31,66 @@ class ScopeNotificationSettings extends TdObject
     protected bool $disablePinnedMessageNotifications;
 
     /**
-     * True, if notifications for messages with mentions will be created as for an ordinary unread message
+     * Time left before notifications will be unmuted, in seconds
+     *
+     * @var int
+     */
+    protected int $muteFor;
+
+    /**
+     * True, if story notifications are disabled for the chat
      *
      * @var bool
      */
-    protected bool $disableMentionNotifications;
+    protected bool $muteStories;
+
+    /**
+     * True, if message content must be displayed in notifications
+     *
+     * @var bool
+     */
+    protected bool $showPreview;
+
+    /**
+     * True, if the sender of stories must be displayed in notifications
+     *
+     * @var bool
+     */
+    protected bool $showStorySender;
+
+    /**
+     * Identifier of the notification sound to be played; 0 if sound is disabled
+     *
+     * @var int
+     */
+    protected int $soundId;
+
+    /**
+     * Identifier of the notification sound to be played for stories; 0 if sound is disabled
+     *
+     * @var int
+     */
+    protected int $storySoundId;
+
+    /**
+     * If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
+     *
+     * @var bool
+     */
+    protected bool $useDefaultMuteStories;
 
     public function __construct(
-        int $muteFor,
-        int $soundId,
+        int  $muteFor,
+        int  $soundId,
         bool $showPreview,
         bool $useDefaultMuteStories,
         bool $muteStories,
-        int $storySoundId,
+        int  $storySoundId,
         bool $showStorySender,
         bool $disablePinnedMessageNotifications,
         bool $disableMentionNotifications,
-    ) {
+    )
+    {
         $this->muteFor = $muteFor;
         $this->soundId = $soundId;
         $this->showPreview = $showPreview;
@@ -116,6 +117,51 @@ class ScopeNotificationSettings extends TdObject
         );
     }
 
+    public function getDisableMentionNotifications(): bool
+    {
+        return $this->disableMentionNotifications;
+    }
+
+    public function getDisablePinnedMessageNotifications(): bool
+    {
+        return $this->disablePinnedMessageNotifications;
+    }
+
+    public function getMuteFor(): int
+    {
+        return $this->muteFor;
+    }
+
+    public function getMuteStories(): bool
+    {
+        return $this->muteStories;
+    }
+
+    public function getShowPreview(): bool
+    {
+        return $this->showPreview;
+    }
+
+    public function getShowStorySender(): bool
+    {
+        return $this->showStorySender;
+    }
+
+    public function getSoundId(): int
+    {
+        return $this->soundId;
+    }
+
+    public function getStorySoundId(): int
+    {
+        return $this->storySoundId;
+    }
+
+    public function getUseDefaultMuteStories(): bool
+    {
+        return $this->useDefaultMuteStories;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -130,50 +176,5 @@ class ScopeNotificationSettings extends TdObject
             'disable_pinned_message_notifications' => $this->disablePinnedMessageNotifications,
             'disable_mention_notifications' => $this->disableMentionNotifications,
         ];
-    }
-
-    public function getMuteFor(): int
-    {
-        return $this->muteFor;
-    }
-
-    public function getSoundId(): int
-    {
-        return $this->soundId;
-    }
-
-    public function getShowPreview(): bool
-    {
-        return $this->showPreview;
-    }
-
-    public function getUseDefaultMuteStories(): bool
-    {
-        return $this->useDefaultMuteStories;
-    }
-
-    public function getMuteStories(): bool
-    {
-        return $this->muteStories;
-    }
-
-    public function getStorySoundId(): int
-    {
-        return $this->storySoundId;
-    }
-
-    public function getShowStorySender(): bool
-    {
-        return $this->showStorySender;
-    }
-
-    public function getDisablePinnedMessageNotifications(): bool
-    {
-        return $this->disablePinnedMessageNotifications;
-    }
-
-    public function getDisableMentionNotifications(): bool
-    {
-        return $this->disableMentionNotifications;
     }
 }

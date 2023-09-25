@@ -19,20 +19,6 @@ class InputMessageAnimation extends InputMessageContent
     public const TYPE_NAME = 'inputMessageAnimation';
 
     /**
-     * Animation file to be sent
-     *
-     * @var InputFile
-     */
-    protected InputFile $animation;
-
-    /**
-     * Animation thumbnail; pass null to skip thumbnail uploading
-     *
-     * @var InputThumbnail
-     */
-    protected InputThumbnail $thumbnail;
-
-    /**
      * File identifiers of the stickers added to the animation, if applicable
      *
      * @var int[]
@@ -40,25 +26,11 @@ class InputMessageAnimation extends InputMessageContent
     protected array $addedStickerFileIds;
 
     /**
-     * Duration of the animation, in seconds
+     * Animation file to be sent
      *
-     * @var int
+     * @var InputFile
      */
-    protected int $duration;
-
-    /**
-     * Width of the animation; may be replaced by the server
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Height of the animation; may be replaced by the server
-     *
-     * @var int
-     */
-    protected int $height;
+    protected InputFile $animation;
 
     /**
      * Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
@@ -68,22 +40,51 @@ class InputMessageAnimation extends InputMessageContent
     protected FormattedText $caption;
 
     /**
+     * Duration of the animation, in seconds
+     *
+     * @var int
+     */
+    protected int $duration;
+
+    /**
      * True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
      *
      * @var bool
      */
     protected bool $hasSpoiler;
 
+    /**
+     * Height of the animation; may be replaced by the server
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * Animation thumbnail; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
+     */
+    protected InputThumbnail $thumbnail;
+
+    /**
+     * Width of the animation; may be replaced by the server
+     *
+     * @var int
+     */
+    protected int $width;
+
     public function __construct(
-        InputFile $animation,
+        InputFile      $animation,
         InputThumbnail $thumbnail,
-        array $addedStickerFileIds,
-        int $duration,
-        int $width,
-        int $height,
-        FormattedText $caption,
-        bool $hasSpoiler,
-    ) {
+        array          $addedStickerFileIds,
+        int            $duration,
+        int            $width,
+        int            $height,
+        FormattedText  $caption,
+        bool           $hasSpoiler,
+    )
+    {
         parent::__construct();
 
         $this->animation = $animation;
@@ -110,6 +111,46 @@ class InputMessageAnimation extends InputMessageContent
         );
     }
 
+    public function getAddedStickerFileIds(): array
+    {
+        return $this->addedStickerFileIds;
+    }
+
+    public function getAnimation(): InputFile
+    {
+        return $this->animation;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getHasSpoiler(): bool
+    {
+        return $this->hasSpoiler;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getThumbnail(): InputThumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -123,45 +164,5 @@ class InputMessageAnimation extends InputMessageContent
             'caption' => $this->caption->typeSerialize(),
             'has_spoiler' => $this->hasSpoiler,
         ];
-    }
-
-    public function getAnimation(): InputFile
-    {
-        return $this->animation;
-    }
-
-    public function getThumbnail(): InputThumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getAddedStickerFileIds(): array
-    {
-        return $this->addedStickerFileIds;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
-    }
-
-    public function getHasSpoiler(): bool
-    {
-        return $this->hasSpoiler;
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
+ * Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page
+ * preview is disabled in secret chats
  */
 class GetExternalLinkInfo extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetExternalLinkInfo extends TdFunction
         );
     }
 
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'link' => $this->link,
         ];
-    }
-
-    public function getLink(): string
-    {
-        return $this->link;
     }
 }

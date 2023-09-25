@@ -36,16 +36,16 @@ class SetDefaultMessageAutoDeleteTime extends TdFunction
         );
     }
 
+    public function getMessageAutoDeleteTime(): MessageAutoDeleteTime
+    {
+        return $this->messageAutoDeleteTime;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message_auto_delete_time' => $this->messageAutoDeleteTime->typeSerialize(),
         ];
-    }
-
-    public function getMessageAutoDeleteTime(): MessageAutoDeleteTime
-    {
-        return $this->messageAutoDeleteTime;
     }
 }

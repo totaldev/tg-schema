@@ -35,16 +35,16 @@ class TMeUrls extends TdObject
         );
     }
 
+    public function getUrls(): array
+    {
+        return $this->urls;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->urls),
         ];
-    }
-
-    public function getUrls(): array
-    {
-        return $this->urls;
     }
 }

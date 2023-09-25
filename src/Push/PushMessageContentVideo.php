@@ -17,18 +17,18 @@ class PushMessageContentVideo extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentVideo';
 
     /**
-     * Message content; may be null
-     *
-     * @var Video|null
-     */
-    protected ?Video $video;
-
-    /**
      * Video caption
      *
      * @var string
      */
     protected string $caption;
+
+    /**
+     * True, if the message is a pinned message with the specified content
+     *
+     * @var bool
+     */
+    protected bool $isPinned;
 
     /**
      * True, if the video is secret
@@ -38,11 +38,11 @@ class PushMessageContentVideo extends PushMessageContent
     protected bool $isSecret;
 
     /**
-     * True, if the message is a pinned message with the specified content
+     * Message content; may be null
      *
-     * @var bool
+     * @var Video|null
      */
-    protected bool $isPinned;
+    protected ?Video $video;
 
     public function __construct(?Video $video, string $caption, bool $isSecret, bool $isPinned)
     {
@@ -64,6 +64,26 @@ class PushMessageContentVideo extends PushMessageContent
         );
     }
 
+    public function getCaption(): string
+    {
+        return $this->caption;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getIsSecret(): bool
+    {
+        return $this->isSecret;
+    }
+
+    public function getVideo(): ?Video
+    {
+        return $this->video;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class PushMessageContentVideo extends PushMessageContent
             'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getVideo(): ?Video
-    {
-        return $this->video;
-    }
-
-    public function getCaption(): string
-    {
-        return $this->caption;
-    }
-
-    public function getIsSecret(): bool
-    {
-        return $this->isSecret;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

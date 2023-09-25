@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+ * Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the
+ * current authorization state. Can be called before initialization
  */
 class GetAuthorizationState extends TdFunction
 {

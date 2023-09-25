@@ -35,16 +35,16 @@ class ConnectedWebsites extends TdObject
         );
     }
 
+    public function getWebsites(): array
+    {
+        return $this->websites;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->websites),
         ];
-    }
-
-    public function getWebsites(): array
-    {
-        return $this->websites;
     }
 }

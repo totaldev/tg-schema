@@ -36,16 +36,16 @@ class ViewPremiumFeature extends TdFunction
         );
     }
 
+    public function getFeature(): PremiumFeature
+    {
+        return $this->feature;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'feature' => $this->feature->typeSerialize(),
         ];
-    }
-
-    public function getFeature(): PremiumFeature
-    {
-        return $this->feature;
     }
 }

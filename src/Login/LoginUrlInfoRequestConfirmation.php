@@ -16,11 +16,11 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
     public const TYPE_NAME = 'loginUrlInfoRequestConfirmation';
 
     /**
-     * An HTTP URL to be opened
+     * User identifier of a bot linked with the website
      *
-     * @var string
+     * @var int
      */
-    protected string $url;
+    protected int $botUserId;
 
     /**
      * A domain of the URL
@@ -30,18 +30,18 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
     protected string $domain;
 
     /**
-     * User identifier of a bot linked with the website
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
      * True, if the user must be asked for the permission to the bot to send them messages
      *
      * @var bool
      */
     protected bool $requestWriteAccess;
+
+    /**
+     * An HTTP URL to be opened
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, string $domain, int $botUserId, bool $requestWriteAccess)
     {
@@ -63,6 +63,26 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
         );
     }
 
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getDomain(): string
+    {
+        return $this->domain;
+    }
+
+    public function getRequestWriteAccess(): bool
+    {
+        return $this->requestWriteAccess;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
             'bot_user_id' => $this->botUserId,
             'request_write_access' => $this->requestWriteAccess,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getDomain(): string
-    {
-        return $this->domain;
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getRequestWriteAccess(): bool
-    {
-        return $this->requestWriteAccess;
     }
 }

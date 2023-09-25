@@ -36,16 +36,16 @@ class ChatEventInviteLinkRevoked extends ChatEventAction
         );
     }
 
+    public function getInviteLink(): ChatInviteLink
+    {
+        return $this->inviteLink;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'invite_link' => $this->inviteLink->typeSerialize(),
         ];
-    }
-
-    public function getInviteLink(): ChatInviteLink
-    {
-        return $this->inviteLink;
     }
 }

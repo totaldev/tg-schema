@@ -45,15 +45,6 @@ class InputChatPhotoAnimation extends InputChatPhoto
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animation' => $this->animation->typeSerialize(),
-            'main_frame_timestamp' => $this->mainFrameTimestamp,
-        ];
-    }
-
     public function getAnimation(): InputFile
     {
         return $this->animation;
@@ -62,5 +53,14 @@ class InputChatPhotoAnimation extends InputChatPhoto
     public function getMainFrameTimestamp(): float
     {
         return $this->mainFrameTimestamp;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'animation' => $this->animation->typeSerialize(),
+            'main_frame_timestamp' => $this->mainFrameTimestamp,
+        ];
     }
 }

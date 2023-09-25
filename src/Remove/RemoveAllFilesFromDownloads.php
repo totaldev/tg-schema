@@ -17,6 +17,13 @@ class RemoveAllFilesFromDownloads extends TdFunction
     public const TYPE_NAME = 'removeAllFilesFromDownloads';
 
     /**
+     * Pass true to delete the file from the TDLib file cache
+     *
+     * @var bool
+     */
+    protected bool $deleteFromCache;
+
+    /**
      * Pass true to remove only active downloads, including paused
      *
      * @var bool
@@ -29,13 +36,6 @@ class RemoveAllFilesFromDownloads extends TdFunction
      * @var bool
      */
     protected bool $onlyCompleted;
-
-    /**
-     * Pass true to delete the file from the TDLib file cache
-     *
-     * @var bool
-     */
-    protected bool $deleteFromCache;
 
     public function __construct(bool $onlyActive, bool $onlyCompleted, bool $deleteFromCache)
     {
@@ -53,14 +53,9 @@ class RemoveAllFilesFromDownloads extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getDeleteFromCache(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'only_active' => $this->onlyActive,
-            'only_completed' => $this->onlyCompleted,
-            'delete_from_cache' => $this->deleteFromCache,
-        ];
+        return $this->deleteFromCache;
     }
 
     public function getOnlyActive(): bool
@@ -73,8 +68,13 @@ class RemoveAllFilesFromDownloads extends TdFunction
         return $this->onlyCompleted;
     }
 
-    public function getDeleteFromCache(): bool
+    public function typeSerialize(): array
     {
-        return $this->deleteFromCache;
+        return [
+            '@type' => static::TYPE_NAME,
+            'only_active' => $this->onlyActive,
+            'only_completed' => $this->onlyCompleted,
+            'delete_from_cache' => $this->deleteFromCache,
+        ];
     }
 }

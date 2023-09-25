@@ -24,18 +24,18 @@ class UpdateNewShippingQuery extends Update
     protected int $id;
 
     /**
-     * Identifier of the user who sent the query
-     *
-     * @var int
-     */
-    protected int $senderUserId;
-
-    /**
      * Invoice payload
      *
      * @var string
      */
     protected string $invoicePayload;
+
+    /**
+     * Identifier of the user who sent the query
+     *
+     * @var int
+     */
+    protected int $senderUserId;
 
     /**
      * User shipping address
@@ -64,6 +64,26 @@ class UpdateNewShippingQuery extends Update
         );
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getInvoicePayload(): string
+    {
+        return $this->invoicePayload;
+    }
+
+    public function getSenderUserId(): int
+    {
+        return $this->senderUserId;
+    }
+
+    public function getShippingAddress(): Address
+    {
+        return $this->shippingAddress;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class UpdateNewShippingQuery extends Update
             'invoice_payload' => $this->invoicePayload,
             'shipping_address' => $this->shippingAddress->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSenderUserId(): int
-    {
-        return $this->senderUserId;
-    }
-
-    public function getInvoicePayload(): string
-    {
-        return $this->invoicePayload;
-    }
-
-    public function getShippingAddress(): Address
-    {
-        return $this->shippingAddress;
     }
 }

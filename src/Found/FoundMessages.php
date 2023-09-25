@@ -18,13 +18,6 @@ class FoundMessages extends TdObject
     public const TYPE_NAME = 'foundMessages';
 
     /**
-     * Approximate total number of messages found; -1 if unknown
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of messages
      *
      * @var Message[]
@@ -37,6 +30,13 @@ class FoundMessages extends TdObject
      * @var string
      */
     protected string $nextOffset;
+
+    /**
+     * Approximate total number of messages found; -1 if unknown
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $messages, string $nextOffset)
     {
@@ -54,21 +54,6 @@ class FoundMessages extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
-            'next_offset' => $this->nextOffset,
-        ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
     public function getMessages(): array
     {
         return $this->messages;
@@ -77,5 +62,20 @@ class FoundMessages extends TdObject
     public function getNextOffset(): string
     {
         return $this->nextOffset;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            'next_offset' => $this->nextOffset,
+        ];
     }
 }

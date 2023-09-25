@@ -18,18 +18,18 @@ class Thumbnail extends TdObject
     public const TYPE_NAME = 'thumbnail';
 
     /**
+     * The thumbnail
+     *
+     * @var File
+     */
+    protected File $file;
+
+    /**
      * Thumbnail format
      *
      * @var ThumbnailFormat
      */
     protected ThumbnailFormat $format;
-
-    /**
-     * Thumbnail width
-     *
-     * @var int
-     */
-    protected int $width;
 
     /**
      * Thumbnail height
@@ -39,11 +39,11 @@ class Thumbnail extends TdObject
     protected int $height;
 
     /**
-     * The thumbnail
+     * Thumbnail width
      *
-     * @var File
+     * @var int
      */
-    protected File $file;
+    protected int $width;
 
     public function __construct(ThumbnailFormat $format, int $width, int $height, File $file)
     {
@@ -63,6 +63,26 @@ class Thumbnail extends TdObject
         );
     }
 
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
+    public function getFormat(): ThumbnailFormat
+    {
+        return $this->format;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class Thumbnail extends TdObject
             'height' => $this->height,
             'file' => $this->file->typeSerialize(),
         ];
-    }
-
-    public function getFormat(): ThumbnailFormat
-    {
-        return $this->format;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getFile(): File
-    {
-        return $this->file;
     }
 }

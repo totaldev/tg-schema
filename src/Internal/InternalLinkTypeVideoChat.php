@@ -54,16 +54,6 @@ class InternalLinkTypeVideoChat extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_username' => $this->chatUsername,
-            'invite_hash' => $this->inviteHash,
-            'is_live_stream' => $this->isLiveStream,
-        ];
-    }
-
     public function getChatUsername(): string
     {
         return $this->chatUsername;
@@ -77,5 +67,15 @@ class InternalLinkTypeVideoChat extends InternalLinkType
     public function getIsLiveStream(): bool
     {
         return $this->isLiveStream;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_username' => $this->chatUsername,
+            'invite_hash' => $this->inviteHash,
+            'is_live_stream' => $this->isLiveStream,
+        ];
     }
 }

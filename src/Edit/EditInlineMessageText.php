@@ -26,24 +26,25 @@ class EditInlineMessageText extends TdFunction
     protected string $inlineMessageId;
 
     /**
-     * The new message reply markup; pass null if none
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
      * New text content of the message. Must be of type inputMessageText
      *
      * @var InputMessageContent
      */
     protected InputMessageContent $inputMessageContent;
 
+    /**
+     * The new message reply markup; pass null if none
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
     public function __construct(
-        string $inlineMessageId,
-        ReplyMarkup $replyMarkup,
+        string              $inlineMessageId,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         $this->inlineMessageId = $inlineMessageId;
         $this->replyMarkup = $replyMarkup;
         $this->inputMessageContent = $inputMessageContent;
@@ -58,6 +59,21 @@ class EditInlineMessageText extends TdFunction
         );
     }
 
+    public function getInlineMessageId(): string
+    {
+        return $this->inlineMessageId;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -66,20 +82,5 @@ class EditInlineMessageText extends TdFunction
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getInlineMessageId(): string
-    {
-        return $this->inlineMessageId;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

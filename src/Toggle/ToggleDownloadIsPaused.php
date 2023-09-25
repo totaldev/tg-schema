@@ -44,15 +44,6 @@ class ToggleDownloadIsPaused extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'is_paused' => $this->isPaused,
-        ];
-    }
-
     public function getFileId(): int
     {
         return $this->fileId;
@@ -61,5 +52,14 @@ class ToggleDownloadIsPaused extends TdFunction
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'is_paused' => $this->isPaused,
+        ];
     }
 }

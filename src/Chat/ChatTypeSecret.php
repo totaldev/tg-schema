@@ -45,15 +45,6 @@ class ChatTypeSecret extends ChatType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'secret_chat_id' => $this->secretChatId,
-            'user_id' => $this->userId,
-        ];
-    }
-
     public function getSecretChatId(): int
     {
         return $this->secretChatId;
@@ -62,5 +53,14 @@ class ChatTypeSecret extends ChatType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'secret_chat_id' => $this->secretChatId,
+            'user_id' => $this->userId,
+        ];
     }
 }

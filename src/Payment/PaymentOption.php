@@ -44,15 +44,6 @@ class PaymentOption extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'url' => $this->url,
-        ];
-    }
-
     public function getTitle(): string
     {
         return $this->title;
@@ -61,5 +52,14 @@ class PaymentOption extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'url' => $this->url,
+        ];
     }
 }

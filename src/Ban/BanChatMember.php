@@ -11,11 +11,20 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+ * Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group
+ * on their own using invite links, etc., unless unbanned first
  */
 class BanChatMember extends TdFunction
 {
     public const TYPE_NAME = 'banChatMember';
+
+    /**
+     * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from
+     * the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
+     *
+     * @var int
+     */
+    protected int $bannedUntilDate;
 
     /**
      * Chat identifier
@@ -30,13 +39,6 @@ class BanChatMember extends TdFunction
      * @var MessageSender
      */
     protected MessageSender $memberId;
-
-    /**
-     * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
-     *
-     * @var int
-     */
-    protected int $bannedUntilDate;
 
     /**
      * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
@@ -63,15 +65,9 @@ class BanChatMember extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getBannedUntilDate(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
-            'banned_until_date' => $this->bannedUntilDate,
-            'revoke_messages' => $this->revokeMessages,
-        ];
+        return $this->bannedUntilDate;
     }
 
     public function getChatId(): int
@@ -84,13 +80,19 @@ class BanChatMember extends TdFunction
         return $this->memberId;
     }
 
-    public function getBannedUntilDate(): int
-    {
-        return $this->bannedUntilDate;
-    }
-
     public function getRevokeMessages(): bool
     {
         return $this->revokeMessages;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'member_id' => $this->memberId->typeSerialize(),
+            'banned_until_date' => $this->bannedUntilDate,
+            'revoke_messages' => $this->revokeMessages,
+        ];
     }
 }

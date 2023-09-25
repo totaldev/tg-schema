@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+ * Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner
+ * privileges for other links
  */
 class GetChatInviteLinkMembers extends TdFunction
 {
@@ -32,18 +33,18 @@ class GetChatInviteLinkMembers extends TdFunction
     protected string $inviteLink;
 
     /**
-     * A chat member from which to return next chat members; pass null to get results from the beginning
-     *
-     * @var ChatInviteLinkMember
-     */
-    protected ChatInviteLinkMember $offsetMember;
-
-    /**
      * The maximum number of chat members to return; up to 100
      *
      * @var int
      */
     protected int $limit;
+
+    /**
+     * A chat member from which to return next chat members; pass null to get results from the beginning
+     *
+     * @var ChatInviteLinkMember
+     */
+    protected ChatInviteLinkMember $offsetMember;
 
     public function __construct(int $chatId, string $inviteLink, ChatInviteLinkMember $offsetMember, int $limit)
     {
@@ -63,17 +64,6 @@ class GetChatInviteLinkMembers extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'invite_link' => $this->inviteLink,
-            'offset_member' => $this->offsetMember->typeSerialize(),
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -84,13 +74,24 @@ class GetChatInviteLinkMembers extends TdFunction
         return $this->inviteLink;
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
     public function getOffsetMember(): ChatInviteLinkMember
     {
         return $this->offsetMember;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'invite_link' => $this->inviteLink,
+            'offset_member' => $this->offsetMember->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 }

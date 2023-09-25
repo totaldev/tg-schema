@@ -45,15 +45,6 @@ class UpdateAddChatMembersPrivacyForbidden extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateAddChatMembersPrivacyForbidden extends Update
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_ids' => $this->userIds,
+        ];
     }
 }

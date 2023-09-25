@@ -35,16 +35,16 @@ class RemoveRecentHashtag extends TdFunction
         );
     }
 
+    public function getHashtag(): string
+    {
+        return $this->hashtag;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'hashtag' => $this->hashtag,
         ];
-    }
-
-    public function getHashtag(): string
-    {
-        return $this->hashtag;
     }
 }

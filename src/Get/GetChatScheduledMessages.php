@@ -35,16 +35,16 @@ class GetChatScheduledMessages extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

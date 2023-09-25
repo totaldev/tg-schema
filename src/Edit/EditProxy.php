@@ -18,6 +18,20 @@ class EditProxy extends TdFunction
     public const TYPE_NAME = 'editProxy';
 
     /**
+     * Pass true to immediately enable the proxy
+     *
+     * @var bool
+     */
+    protected bool $enable;
+
+    /**
+     * Proxy server port
+     *
+     * @var int
+     */
+    protected int $port;
+
+    /**
      * Proxy identifier
      *
      * @var int
@@ -30,20 +44,6 @@ class EditProxy extends TdFunction
      * @var string
      */
     protected string $server;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Pass true to immediately enable the proxy
-     *
-     * @var bool
-     */
-    protected bool $enable;
 
     /**
      * Proxy type
@@ -72,16 +72,14 @@ class EditProxy extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getEnable(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'proxy_id' => $this->proxyId,
-            'server' => $this->server,
-            'port' => $this->port,
-            'enable' => $this->enable,
-            'type' => $this->type->typeSerialize(),
-        ];
+        return $this->enable;
+    }
+
+    public function getPort(): int
+    {
+        return $this->port;
     }
 
     public function getProxyId(): int
@@ -94,18 +92,20 @@ class EditProxy extends TdFunction
         return $this->server;
     }
 
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    public function getEnable(): bool
-    {
-        return $this->enable;
-    }
-
     public function getType(): ProxyType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'proxy_id' => $this->proxyId,
+            'server' => $this->server,
+            'port' => $this->port,
+            'enable' => $this->enable,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

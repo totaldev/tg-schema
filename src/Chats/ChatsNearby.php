@@ -18,18 +18,18 @@ class ChatsNearby extends TdObject
     public const TYPE_NAME = 'chatsNearby';
 
     /**
-     * List of users nearby
-     *
-     * @var ChatNearby[]
-     */
-    protected array $usersNearby;
-
-    /**
      * List of location-based supergroups nearby
      *
      * @var ChatNearby[]
      */
     protected array $supergroupsNearby;
+
+    /**
+     * List of users nearby
+     *
+     * @var ChatNearby[]
+     */
+    protected array $usersNearby;
 
     public function __construct(array $usersNearby, array $supergroupsNearby)
     {
@@ -40,9 +40,19 @@ class ChatsNearby extends TdObject
     public static function fromArray(array $array): ChatsNearby
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['usersNearby']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['supergroupsNearby']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['users_nearby']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['supergroups_nearby']),
         );
+    }
+
+    public function getSupergroupsNearby(): array
+    {
+        return $this->supergroupsNearby;
+    }
+
+    public function getUsersNearby(): array
+    {
+        return $this->usersNearby;
     }
 
     public function typeSerialize(): array
@@ -52,15 +62,5 @@ class ChatsNearby extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->usersNearby),
             array_map(fn($x) => $x->typeSerialize(), $this->supergroupsNearby),
         ];
-    }
-
-    public function getUsersNearby(): array
-    {
-        return $this->usersNearby;
-    }
-
-    public function getSupergroupsNearby(): array
-    {
-        return $this->supergroupsNearby;
     }
 }

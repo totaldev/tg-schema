@@ -54,16 +54,6 @@ class GetChatMessageCount extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'filter' => $this->filter->typeSerialize(),
-            'return_local' => $this->returnLocal,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +67,15 @@ class GetChatMessageCount extends TdFunction
     public function getReturnLocal(): bool
     {
         return $this->returnLocal;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'filter' => $this->filter->typeSerialize(),
+            'return_local' => $this->returnLocal,
+        ];
     }
 }

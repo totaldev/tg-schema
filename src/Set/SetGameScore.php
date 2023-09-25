@@ -24,13 +24,6 @@ class SetGameScore extends TdFunction
     protected int $chatId;
 
     /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Pass true to edit the game message to include the current scoreboard
      *
      * @var bool
@@ -38,11 +31,18 @@ class SetGameScore extends TdFunction
     protected bool $editMessage;
 
     /**
-     * User identifier
+     * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+     *
+     * @var bool
+     */
+    protected bool $force;
+
+    /**
+     * Identifier of the message
      *
      * @var int
      */
-    protected int $userId;
+    protected int $messageId;
 
     /**
      * The new score
@@ -52,11 +52,11 @@ class SetGameScore extends TdFunction
     protected int $score;
 
     /**
-     * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+     * User identifier
      *
-     * @var bool
+     * @var int
      */
-    protected bool $force;
+    protected int $userId;
 
     public function __construct(int $chatId, int $messageId, bool $editMessage, int $userId, int $score, bool $force)
     {
@@ -80,6 +80,36 @@ class SetGameScore extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getEditMessage(): bool
+    {
+        return $this->editMessage;
+    }
+
+    public function getForce(): bool
+    {
+        return $this->force;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -91,35 +121,5 @@ class SetGameScore extends TdFunction
             'score' => $this->score,
             'force' => $this->force,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getEditMessage(): bool
-    {
-        return $this->editMessage;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
-    }
-
-    public function getForce(): bool
-    {
-        return $this->force;
     }
 }

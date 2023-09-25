@@ -17,18 +17,18 @@ class SetLogTagVerbosityLevel extends TdFunction
     public const TYPE_NAME = 'setLogTagVerbosityLevel';
 
     /**
-     * Logging tag to change verbosity level
-     *
-     * @var string
-     */
-    protected string $tag;
-
-    /**
      * New verbosity level; 1-1024
      *
      * @var int
      */
     protected int $newVerbosityLevel;
+
+    /**
+     * Logging tag to change verbosity level
+     *
+     * @var string
+     */
+    protected string $tag;
 
     public function __construct(string $tag, int $newVerbosityLevel)
     {
@@ -44,13 +44,9 @@ class SetLogTagVerbosityLevel extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewVerbosityLevel(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'tag' => $this->tag,
-            'new_verbosity_level' => $this->newVerbosityLevel,
-        ];
+        return $this->newVerbosityLevel;
     }
 
     public function getTag(): string
@@ -58,8 +54,12 @@ class SetLogTagVerbosityLevel extends TdFunction
         return $this->tag;
     }
 
-    public function getNewVerbosityLevel(): int
+    public function typeSerialize(): array
     {
-        return $this->newVerbosityLevel;
+        return [
+            '@type' => static::TYPE_NAME,
+            'tag' => $this->tag,
+            'new_verbosity_level' => $this->newVerbosityLevel,
+        ];
     }
 }

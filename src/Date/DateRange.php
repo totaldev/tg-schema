@@ -17,18 +17,18 @@ class DateRange extends TdObject
     public const TYPE_NAME = 'dateRange';
 
     /**
-     * Point in time (Unix timestamp) at which the date range begins
-     *
-     * @var int
-     */
-    protected int $startDate;
-
-    /**
      * Point in time (Unix timestamp) at which the date range ends
      *
      * @var int
      */
     protected int $endDate;
+
+    /**
+     * Point in time (Unix timestamp) at which the date range begins
+     *
+     * @var int
+     */
+    protected int $startDate;
 
     public function __construct(int $startDate, int $endDate)
     {
@@ -44,13 +44,9 @@ class DateRange extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getEndDate(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'start_date' => $this->startDate,
-            'end_date' => $this->endDate,
-        ];
+        return $this->endDate;
     }
 
     public function getStartDate(): int
@@ -58,8 +54,12 @@ class DateRange extends TdObject
         return $this->startDate;
     }
 
-    public function getEndDate(): int
+    public function typeSerialize(): array
     {
-        return $this->endDate;
+        return [
+            '@type' => static::TYPE_NAME,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
+        ];
     }
 }

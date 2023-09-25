@@ -17,13 +17,6 @@ class SetInlineGameScore extends TdFunction
     public const TYPE_NAME = 'setInlineGameScore';
 
     /**
-     * Inline message identifier
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
      * Pass true to edit the game message to include the current scoreboard
      *
      * @var bool
@@ -31,11 +24,18 @@ class SetInlineGameScore extends TdFunction
     protected bool $editMessage;
 
     /**
-     * User identifier
+     * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
      *
-     * @var int
+     * @var bool
      */
-    protected int $userId;
+    protected bool $force;
+
+    /**
+     * Inline message identifier
+     *
+     * @var string
+     */
+    protected string $inlineMessageId;
 
     /**
      * The new score
@@ -45,11 +45,11 @@ class SetInlineGameScore extends TdFunction
     protected int $score;
 
     /**
-     * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+     * User identifier
      *
-     * @var bool
+     * @var int
      */
-    protected bool $force;
+    protected int $userId;
 
     public function __construct(string $inlineMessageId, bool $editMessage, int $userId, int $score, bool $force)
     {
@@ -71,6 +71,31 @@ class SetInlineGameScore extends TdFunction
         );
     }
 
+    public function getEditMessage(): bool
+    {
+        return $this->editMessage;
+    }
+
+    public function getForce(): bool
+    {
+        return $this->force;
+    }
+
+    public function getInlineMessageId(): string
+    {
+        return $this->inlineMessageId;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +106,5 @@ class SetInlineGameScore extends TdFunction
             'score' => $this->score,
             'force' => $this->force,
         ];
-    }
-
-    public function getInlineMessageId(): string
-    {
-        return $this->inlineMessageId;
-    }
-
-    public function getEditMessage(): bool
-    {
-        return $this->editMessage;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
-    }
-
-    public function getForce(): bool
-    {
-        return $this->force;
     }
 }

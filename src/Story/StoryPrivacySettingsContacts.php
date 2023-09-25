@@ -36,16 +36,16 @@ class StoryPrivacySettingsContacts extends StoryPrivacySettings
         );
     }
 
+    public function getExceptUserIds(): array
+    {
+        return $this->exceptUserIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'except_user_ids' => $this->exceptUserIds,
         ];
-    }
-
-    public function getExceptUserIds(): array
-    {
-        return $this->exceptUserIds;
     }
 }

@@ -36,16 +36,16 @@ class Proxies extends TdObject
         );
     }
 
+    public function getProxies(): array
+    {
+        return $this->proxies;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->proxies),
         ];
-    }
-
-    public function getProxies(): array
-    {
-        return $this->proxies;
     }
 }

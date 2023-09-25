@@ -16,11 +16,11 @@ class PaymentProviderStripe extends PaymentProvider
     public const TYPE_NAME = 'paymentProviderStripe';
 
     /**
-     * Stripe API publishable key
+     * True, if the cardholder name must be provided
      *
-     * @var string
+     * @var bool
      */
-    protected string $publishableKey;
+    protected bool $needCardholderName;
 
     /**
      * True, if the user country must be provided
@@ -37,18 +37,19 @@ class PaymentProviderStripe extends PaymentProvider
     protected bool $needPostalCode;
 
     /**
-     * True, if the cardholder name must be provided
+     * Stripe API publishable key
      *
-     * @var bool
+     * @var string
      */
-    protected bool $needCardholderName;
+    protected string $publishableKey;
 
     public function __construct(
         string $publishableKey,
-        bool $needCountry,
-        bool $needPostalCode,
-        bool $needCardholderName,
-    ) {
+        bool   $needCountry,
+        bool   $needPostalCode,
+        bool   $needCardholderName,
+    )
+    {
         parent::__construct();
 
         $this->publishableKey = $publishableKey;
@@ -67,20 +68,9 @@ class PaymentProviderStripe extends PaymentProvider
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedCardholderName(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'publishable_key' => $this->publishableKey,
-            'need_country' => $this->needCountry,
-            'need_postal_code' => $this->needPostalCode,
-            'need_cardholder_name' => $this->needCardholderName,
-        ];
-    }
-
-    public function getPublishableKey(): string
-    {
-        return $this->publishableKey;
+        return $this->needCardholderName;
     }
 
     public function getNeedCountry(): bool
@@ -93,8 +83,19 @@ class PaymentProviderStripe extends PaymentProvider
         return $this->needPostalCode;
     }
 
-    public function getNeedCardholderName(): bool
+    public function getPublishableKey(): string
     {
-        return $this->needCardholderName;
+        return $this->publishableKey;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'publishable_key' => $this->publishableKey,
+            'need_country' => $this->needCountry,
+            'need_postal_code' => $this->needPostalCode,
+            'need_cardholder_name' => $this->needCardholderName,
+        ];
     }
 }

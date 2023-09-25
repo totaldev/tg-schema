@@ -17,11 +17,11 @@ class Minithumbnail extends TdObject
     public const TYPE_NAME = 'minithumbnail';
 
     /**
-     * Thumbnail width, usually doesn't exceed 40
+     * The thumbnail in JPEG format
      *
-     * @var int
+     * @var string
      */
-    protected int $width;
+    protected string $data;
 
     /**
      * Thumbnail height, usually doesn't exceed 40
@@ -31,11 +31,11 @@ class Minithumbnail extends TdObject
     protected int $height;
 
     /**
-     * The thumbnail in JPEG format
+     * Thumbnail width, usually doesn't exceed 40
      *
-     * @var string
+     * @var int
      */
-    protected string $data;
+    protected int $width;
 
     public function __construct(int $width, int $height, string $data)
     {
@@ -53,6 +53,21 @@ class Minithumbnail extends TdObject
         );
     }
 
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class Minithumbnail extends TdObject
             'height' => $this->height,
             'data' => $this->data,
         ];
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getData(): string
-    {
-        return $this->data;
     }
 }

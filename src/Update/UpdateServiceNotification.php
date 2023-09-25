@@ -17,18 +17,19 @@ class UpdateServiceNotification extends Update
     public const TYPE_NAME = 'updateServiceNotification';
 
     /**
-     * Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
      * Notification content
      *
      * @var MessageContent
      */
     protected MessageContent $content;
+
+    /**
+     * Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the
+     * second, all local data must be destroyed using Destroy method
+     *
+     * @var string
+     */
+    protected string $type;
 
     public function __construct(string $type, MessageContent $content)
     {
@@ -46,13 +47,9 @@ class UpdateServiceNotification extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getContent(): MessageContent
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type,
-            'content' => $this->content->typeSerialize(),
-        ];
+        return $this->content;
     }
 
     public function getType(): string
@@ -60,8 +57,12 @@ class UpdateServiceNotification extends Update
         return $this->type;
     }
 
-    public function getContent(): MessageContent
+    public function typeSerialize(): array
     {
-        return $this->content;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type,
+            'content' => $this->content->typeSerialize(),
+        ];
     }
 }

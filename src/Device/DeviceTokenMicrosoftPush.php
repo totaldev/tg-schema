@@ -36,16 +36,16 @@ class DeviceTokenMicrosoftPush extends DeviceToken
         );
     }
 
+    public function getChannelUri(): string
+    {
+        return $this->channelUri;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'channel_uri' => $this->channelUri,
         ];
-    }
-
-    public function getChannelUri(): string
-    {
-        return $this->channelUri;
     }
 }

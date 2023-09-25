@@ -17,18 +17,18 @@ class ToggleSupergroupIsForum extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupIsForum';
 
     /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * New value of is_forum
      *
      * @var bool
      */
     protected bool $isForum;
+
+    /**
+     * Identifier of the supergroup
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $isForum)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupIsForum extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsForum(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'is_forum' => $this->isForum,
-        ];
+        return $this->isForum;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupIsForum extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getIsForum(): bool
+    public function typeSerialize(): array
     {
-        return $this->isForum;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'is_forum' => $this->isForum,
+        ];
     }
 }

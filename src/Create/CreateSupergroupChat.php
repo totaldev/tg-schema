@@ -17,18 +17,18 @@ class CreateSupergroupChat extends TdFunction
     public const TYPE_NAME = 'createSupergroupChat';
 
     /**
-     * Supergroup or channel identifier
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
      *
      * @var bool
      */
     protected bool $force;
+
+    /**
+     * Supergroup or channel identifier
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $force)
     {
@@ -44,13 +44,9 @@ class CreateSupergroupChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getForce(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'force' => $this->force,
-        ];
+        return $this->force;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class CreateSupergroupChat extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getForce(): bool
+    public function typeSerialize(): array
     {
-        return $this->force;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'force' => $this->force,
+        ];
     }
 }

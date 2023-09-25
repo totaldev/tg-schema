@@ -35,16 +35,16 @@ class InputStoryAreas extends TdObject
         );
     }
 
+    public function getAreas(): array
+    {
+        return $this->areas;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->areas),
         ];
-    }
-
-    public function getAreas(): array
-    {
-        return $this->areas;
     }
 }

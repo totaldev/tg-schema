@@ -18,11 +18,11 @@ class SetStoryPrivacySettings extends TdFunction
     public const TYPE_NAME = 'setStoryPrivacySettings';
 
     /**
-     * Identifier of the chat that posted the story
+     * The new privacy settigs for the story
      *
-     * @var int
+     * @var StoryPrivacySettings
      */
-    protected int $storySenderChatId;
+    protected StoryPrivacySettings $privacySettings;
 
     /**
      * Identifier of the story
@@ -32,11 +32,11 @@ class SetStoryPrivacySettings extends TdFunction
     protected int $storyId;
 
     /**
-     * The new privacy settigs for the story
+     * Identifier of the chat that posted the story
      *
-     * @var StoryPrivacySettings
+     * @var int
      */
-    protected StoryPrivacySettings $privacySettings;
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId, StoryPrivacySettings $privacySettings)
     {
@@ -54,6 +54,21 @@ class SetStoryPrivacySettings extends TdFunction
         );
     }
 
+    public function getPrivacySettings(): StoryPrivacySettings
+    {
+        return $this->privacySettings;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class SetStoryPrivacySettings extends TdFunction
             'story_id' => $this->storyId,
             'privacy_settings' => $this->privacySettings->typeSerialize(),
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getPrivacySettings(): StoryPrivacySettings
-    {
-        return $this->privacySettings;
     }
 }

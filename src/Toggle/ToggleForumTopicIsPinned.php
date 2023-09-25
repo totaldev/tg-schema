@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+ * Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to
+ * getOption("pinned_forum_topic_count_max") pinned forum topics
  */
 class ToggleForumTopicIsPinned extends TdFunction
 {
@@ -24,18 +25,18 @@ class ToggleForumTopicIsPinned extends TdFunction
     protected int $chatId;
 
     /**
-     * Message thread identifier of the forum topic
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
      * Pass true to pin the topic; pass false to unpin it
      *
      * @var bool
      */
     protected bool $isPinned;
+
+    /**
+     * Message thread identifier of the forum topic
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
 
     public function __construct(int $chatId, int $messageThreadId, bool $isPinned)
     {
@@ -53,6 +54,21 @@ class ToggleForumTopicIsPinned extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +77,5 @@ class ToggleForumTopicIsPinned extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

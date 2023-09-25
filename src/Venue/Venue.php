@@ -18,25 +18,25 @@ class Venue extends TdObject
     public const TYPE_NAME = 'venue';
 
     /**
-     * Venue location; as defined by the sender
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * Venue name; as defined by the sender
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Venue address; as defined by the sender
      *
      * @var string
      */
     protected string $address;
+
+    /**
+     * Identifier of the venue in the provider database; as defined by the sender
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Venue location; as defined by the sender
+     *
+     * @var Location
+     */
+    protected Location $location;
 
     /**
      * Provider of the venue database; as defined by the sender. Currently, only "foursquare" and "gplaces" (Google Places) need to be supported
@@ -46,11 +46,11 @@ class Venue extends TdObject
     protected string $provider;
 
     /**
-     * Identifier of the venue in the provider database; as defined by the sender
+     * Venue name; as defined by the sender
      *
      * @var string
      */
-    protected string $id;
+    protected string $title;
 
     /**
      * Type of the venue in the provider database; as defined by the sender
@@ -61,12 +61,13 @@ class Venue extends TdObject
 
     public function __construct(
         Location $location,
-        string $title,
-        string $address,
-        string $provider,
-        string $id,
-        string $type,
-    ) {
+        string   $title,
+        string   $address,
+        string   $provider,
+        string   $id,
+        string   $type,
+    )
+    {
         $this->location = $location;
         $this->title = $title;
         $this->address = $address;
@@ -87,6 +88,36 @@ class Venue extends TdObject
         );
     }
 
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getProvider(): string
+    {
+        return $this->provider;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -98,35 +129,5 @@ class Venue extends TdObject
             'id' => $this->id,
             'type' => $this->type,
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getAddress(): string
-    {
-        return $this->address;
-    }
-
-    public function getProvider(): string
-    {
-        return $this->provider;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
     }
 }

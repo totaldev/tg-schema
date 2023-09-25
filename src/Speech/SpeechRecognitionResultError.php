@@ -37,16 +37,16 @@ class SpeechRecognitionResultError extends SpeechRecognitionResult
         );
     }
 
+    public function getError(): Error
+    {
+        return $this->error;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'error' => $this->error->typeSerialize(),
         ];
-    }
-
-    public function getError(): Error
-    {
-        return $this->error;
     }
 }

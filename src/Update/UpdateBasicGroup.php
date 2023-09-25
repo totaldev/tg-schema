@@ -37,16 +37,16 @@ class UpdateBasicGroup extends Update
         );
     }
 
+    public function getBasicGroup(): BasicGroup
+    {
+        return $this->basicGroup;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'basic_group' => $this->basicGroup->typeSerialize(),
         ];
-    }
-
-    public function getBasicGroup(): BasicGroup
-    {
-        return $this->basicGroup;
     }
 }

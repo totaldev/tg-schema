@@ -24,18 +24,18 @@ class GetMessageEmbeddingCode extends TdFunction
     protected int $chatId;
 
     /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Pass true to return an HTML code for embedding of the whole media album
      *
      * @var bool
      */
     protected bool $forAlbum;
+
+    /**
+     * Identifier of the message
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     public function __construct(int $chatId, int $messageId, bool $forAlbum)
     {
@@ -53,6 +53,21 @@ class GetMessageEmbeddingCode extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getForAlbum(): bool
+    {
+        return $this->forAlbum;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GetMessageEmbeddingCode extends TdFunction
             'message_id' => $this->messageId,
             'for_album' => $this->forAlbum,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getForAlbum(): bool
-    {
-        return $this->forAlbum;
     }
 }

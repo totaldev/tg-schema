@@ -55,16 +55,6 @@ class UpdateUnreadMessageCount extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
-            'unread_count' => $this->unreadCount,
-            'unread_unmuted_count' => $this->unreadUnmutedCount,
-        ];
-    }
-
     public function getChatList(): ChatList
     {
         return $this->chatList;
@@ -78,5 +68,15 @@ class UpdateUnreadMessageCount extends Update
     public function getUnreadUnmutedCount(): int
     {
         return $this->unreadUnmutedCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'unread_count' => $this->unreadCount,
+            'unread_unmuted_count' => $this->unreadUnmutedCount,
+        ];
     }
 }

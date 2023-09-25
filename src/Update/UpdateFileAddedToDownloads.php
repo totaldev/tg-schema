@@ -18,18 +18,18 @@ class UpdateFileAddedToDownloads extends Update
     public const TYPE_NAME = 'updateFileAddedToDownloads';
 
     /**
-     * The added file download
-     *
-     * @var FileDownload
-     */
-    protected FileDownload $fileDownload;
-
-    /**
      * New number of being downloaded and recently downloaded files found
      *
      * @var DownloadedFileCounts
      */
     protected DownloadedFileCounts $counts;
+
+    /**
+     * The added file download
+     *
+     * @var FileDownload
+     */
+    protected FileDownload $fileDownload;
 
     public function __construct(FileDownload $fileDownload, DownloadedFileCounts $counts)
     {
@@ -47,13 +47,9 @@ class UpdateFileAddedToDownloads extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getCounts(): DownloadedFileCounts
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_download' => $this->fileDownload->typeSerialize(),
-            'counts' => $this->counts->typeSerialize(),
-        ];
+        return $this->counts;
     }
 
     public function getFileDownload(): FileDownload
@@ -61,8 +57,12 @@ class UpdateFileAddedToDownloads extends Update
         return $this->fileDownload;
     }
 
-    public function getCounts(): DownloadedFileCounts
+    public function typeSerialize(): array
     {
-        return $this->counts;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_download' => $this->fileDownload->typeSerialize(),
+            'counts' => $this->counts->typeSerialize(),
+        ];
     }
 }

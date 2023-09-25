@@ -18,6 +18,20 @@ class NotificationTypeNewPushMessage extends NotificationType
     public const TYPE_NAME = 'notificationTypeNewPushMessage';
 
     /**
+     * Push message content
+     *
+     * @var PushMessageContent
+     */
+    protected PushMessageContent $content;
+
+    /**
+     * True, if the message is outgoing
+     *
+     * @var bool
+     */
+    protected bool $isOutgoing;
+
+    /**
      * The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
      *
      * @var int
@@ -38,27 +52,14 @@ class NotificationTypeNewPushMessage extends NotificationType
      */
     protected string $senderName;
 
-    /**
-     * True, if the message is outgoing
-     *
-     * @var bool
-     */
-    protected bool $isOutgoing;
-
-    /**
-     * Push message content
-     *
-     * @var PushMessageContent
-     */
-    protected PushMessageContent $content;
-
     public function __construct(
-        int $messageId,
-        MessageSender $senderId,
-        string $senderName,
-        bool $isOutgoing,
+        int                $messageId,
+        MessageSender      $senderId,
+        string             $senderName,
+        bool               $isOutgoing,
         PushMessageContent $content,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->messageId = $messageId;
@@ -79,16 +80,14 @@ class NotificationTypeNewPushMessage extends NotificationType
         );
     }
 
-    public function typeSerialize(): array
+    public function getContent(): PushMessageContent
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message_id' => $this->messageId,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'sender_name' => $this->senderName,
-            'is_outgoing' => $this->isOutgoing,
-            'content' => $this->content->typeSerialize(),
-        ];
+        return $this->content;
+    }
+
+    public function getIsOutgoing(): bool
+    {
+        return $this->isOutgoing;
     }
 
     public function getMessageId(): int
@@ -106,13 +105,15 @@ class NotificationTypeNewPushMessage extends NotificationType
         return $this->senderName;
     }
 
-    public function getIsOutgoing(): bool
+    public function typeSerialize(): array
     {
-        return $this->isOutgoing;
-    }
-
-    public function getContent(): PushMessageContent
-    {
-        return $this->content;
+        return [
+            '@type' => static::TYPE_NAME,
+            'message_id' => $this->messageId,
+            'sender_id' => $this->senderId->typeSerialize(),
+            'sender_name' => $this->senderName,
+            'is_outgoing' => $this->isOutgoing,
+            'content' => $this->content->typeSerialize(),
+        ];
     }
 }

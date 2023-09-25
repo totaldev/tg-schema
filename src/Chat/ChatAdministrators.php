@@ -35,16 +35,16 @@ class ChatAdministrators extends TdObject
         );
     }
 
+    public function getAdministrators(): array
+    {
+        return $this->administrators;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->administrators),
         ];
-    }
-
-    public function getAdministrators(): array
-    {
-        return $this->administrators;
     }
 }

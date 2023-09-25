@@ -36,16 +36,16 @@ class InputBackgroundPrevious extends InputBackground
         );
     }
 
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message_id' => $this->messageId,
         ];
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
     }
 }

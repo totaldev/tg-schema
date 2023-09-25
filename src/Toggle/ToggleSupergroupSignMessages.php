@@ -17,18 +17,18 @@ class ToggleSupergroupSignMessages extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupSignMessages';
 
     /**
-     * Identifier of the channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * New value of sign_messages
      *
      * @var bool
      */
     protected bool $signMessages;
+
+    /**
+     * Identifier of the channel
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $signMessages)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupSignMessages extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getSignMessages(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'sign_messages' => $this->signMessages,
-        ];
+        return $this->signMessages;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupSignMessages extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getSignMessages(): bool
+    public function typeSerialize(): array
     {
-        return $this->signMessages;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'sign_messages' => $this->signMessages,
+        ];
     }
 }

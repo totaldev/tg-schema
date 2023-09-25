@@ -36,16 +36,16 @@ class InputPassportElementIdentityCard extends InputPassportElement
         );
     }
 
+    public function getIdentityCard(): InputIdentityDocument
+    {
+        return $this->identityCard;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'identity_card' => $this->identityCard->typeSerialize(),
         ];
-    }
-
-    public function getIdentityCard(): InputIdentityDocument
-    {
-        return $this->identityCard;
     }
 }

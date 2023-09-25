@@ -16,18 +16,18 @@ class ChatEventInviteLinkEdited extends ChatEventAction
     public const TYPE_NAME = 'chatEventInviteLinkEdited';
 
     /**
-     * Previous information about the invite link
-     *
-     * @var ChatInviteLink
-     */
-    protected ChatInviteLink $oldInviteLink;
-
-    /**
      * New information about the invite link
      *
      * @var ChatInviteLink
      */
     protected ChatInviteLink $newInviteLink;
+
+    /**
+     * Previous information about the invite link
+     *
+     * @var ChatInviteLink
+     */
+    protected ChatInviteLink $oldInviteLink;
 
     public function __construct(ChatInviteLink $oldInviteLink, ChatInviteLink $newInviteLink)
     {
@@ -45,13 +45,9 @@ class ChatEventInviteLinkEdited extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewInviteLink(): ChatInviteLink
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_invite_link' => $this->oldInviteLink->typeSerialize(),
-            'new_invite_link' => $this->newInviteLink->typeSerialize(),
-        ];
+        return $this->newInviteLink;
     }
 
     public function getOldInviteLink(): ChatInviteLink
@@ -59,8 +55,12 @@ class ChatEventInviteLinkEdited extends ChatEventAction
         return $this->oldInviteLink;
     }
 
-    public function getNewInviteLink(): ChatInviteLink
+    public function typeSerialize(): array
     {
-        return $this->newInviteLink;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_invite_link' => $this->oldInviteLink->typeSerialize(),
+            'new_invite_link' => $this->newInviteLink->typeSerialize(),
+        ];
     }
 }

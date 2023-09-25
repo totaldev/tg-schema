@@ -44,15 +44,6 @@ class BotCommands extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            array_map(fn($x) => $x->typeSerialize(), $this->commands),
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -61,5 +52,14 @@ class BotCommands extends TdObject
     public function getCommands(): array
     {
         return $this->commands;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            array_map(fn($x) => $x->typeSerialize(), $this->commands),
+        ];
     }
 }

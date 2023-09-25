@@ -44,15 +44,6 @@ class CreateTemporaryPassword extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'password' => $this->password,
-            'valid_for' => $this->validFor,
-        ];
-    }
-
     public function getPassword(): string
     {
         return $this->password;
@@ -61,5 +52,14 @@ class CreateTemporaryPassword extends TdFunction
     public function getValidFor(): int
     {
         return $this->validFor;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'password' => $this->password,
+            'valid_for' => $this->validFor,
+        ];
     }
 }

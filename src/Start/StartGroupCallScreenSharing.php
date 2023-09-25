@@ -17,18 +17,18 @@ class StartGroupCallScreenSharing extends TdFunction
     public const TYPE_NAME = 'startGroupCallScreenSharing';
 
     /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
      * Screen sharing audio channel synchronization source identifier; received from tgcalls
      *
      * @var int
      */
     protected int $audioSourceId;
+
+    /**
+     * Group call identifier
+     *
+     * @var int
+     */
+    protected int $groupCallId;
 
     /**
      * Group call join payload; received from tgcalls
@@ -53,6 +53,21 @@ class StartGroupCallScreenSharing extends TdFunction
         );
     }
 
+    public function getAudioSourceId(): int
+    {
+        return $this->audioSourceId;
+    }
+
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getPayload(): string
+    {
+        return $this->payload;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class StartGroupCallScreenSharing extends TdFunction
             'audio_source_id' => $this->audioSourceId,
             'payload' => $this->payload,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getAudioSourceId(): int
-    {
-        return $this->audioSourceId;
-    }
-
-    public function getPayload(): string
-    {
-        return $this->payload;
     }
 }

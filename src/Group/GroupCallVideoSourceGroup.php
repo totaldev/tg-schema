@@ -44,15 +44,6 @@ class GroupCallVideoSourceGroup extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'semantics' => $this->semantics,
-            'source_ids' => $this->sourceIds,
-        ];
-    }
-
     public function getSemantics(): string
     {
         return $this->semantics;
@@ -61,5 +52,14 @@ class GroupCallVideoSourceGroup extends TdObject
     public function getSourceIds(): array
     {
         return $this->sourceIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'semantics' => $this->semantics,
+            'source_ids' => $this->sourceIds,
+        ];
     }
 }

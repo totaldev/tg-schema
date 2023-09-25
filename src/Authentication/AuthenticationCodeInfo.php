@@ -17,25 +17,18 @@ class AuthenticationCodeInfo extends TdObject
     public const TYPE_NAME = 'authenticationCodeInfo';
 
     /**
-     * A phone number that is being authenticated
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    /**
-     * The way the code was sent to the user
-     *
-     * @var AuthenticationCodeType
-     */
-    protected AuthenticationCodeType $type;
-
-    /**
      * The way the next code will be sent to the user; may be null
      *
      * @var AuthenticationCodeType|null
      */
     protected ?AuthenticationCodeType $nextType;
+
+    /**
+     * A phone number that is being authenticated
+     *
+     * @var string
+     */
+    protected string $phoneNumber;
 
     /**
      * Timeout before the code can be re-sent, in seconds
@@ -44,12 +37,20 @@ class AuthenticationCodeInfo extends TdObject
      */
     protected int $timeout;
 
+    /**
+     * The way the code was sent to the user
+     *
+     * @var AuthenticationCodeType
+     */
+    protected AuthenticationCodeType $type;
+
     public function __construct(
-        string $phoneNumber,
-        AuthenticationCodeType $type,
+        string                  $phoneNumber,
+        AuthenticationCodeType  $type,
         ?AuthenticationCodeType $nextType,
-        int $timeout,
-    ) {
+        int                     $timeout,
+    )
+    {
         $this->phoneNumber = $phoneNumber;
         $this->type = $type;
         $this->nextType = $nextType;
@@ -66,6 +67,26 @@ class AuthenticationCodeInfo extends TdObject
         );
     }
 
+    public function getNextType(): ?AuthenticationCodeType
+    {
+        return $this->nextType;
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
+    public function getType(): AuthenticationCodeType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -75,25 +96,5 @@ class AuthenticationCodeInfo extends TdObject
             'next_type' => (isset($this->nextType) ? $this->nextType : null),
             'timeout' => $this->timeout,
         ];
-    }
-
-    public function getPhoneNumber(): string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function getType(): AuthenticationCodeType
-    {
-        return $this->type;
-    }
-
-    public function getNextType(): ?AuthenticationCodeType
-    {
-        return $this->nextType;
-    }
-
-    public function getTimeout(): int
-    {
-        return $this->timeout;
     }
 }

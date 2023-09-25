@@ -19,18 +19,18 @@ class SetScopeNotificationSettings extends TdFunction
     public const TYPE_NAME = 'setScopeNotificationSettings';
 
     /**
-     * Types of chats for which to change the notification settings
-     *
-     * @var NotificationSettingsScope
-     */
-    protected NotificationSettingsScope $scope;
-
-    /**
      * The new notification settings for the given scope
      *
      * @var ScopeNotificationSettings
      */
     protected ScopeNotificationSettings $notificationSettings;
+
+    /**
+     * Types of chats for which to change the notification settings
+     *
+     * @var NotificationSettingsScope
+     */
+    protected NotificationSettingsScope $scope;
 
     public function __construct(NotificationSettingsScope $scope, ScopeNotificationSettings $notificationSettings)
     {
@@ -46,13 +46,9 @@ class SetScopeNotificationSettings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNotificationSettings(): ScopeNotificationSettings
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-        ];
+        return $this->notificationSettings;
     }
 
     public function getScope(): NotificationSettingsScope
@@ -60,8 +56,12 @@ class SetScopeNotificationSettings extends TdFunction
         return $this->scope;
     }
 
-    public function getNotificationSettings(): ScopeNotificationSettings
+    public function typeSerialize(): array
     {
-        return $this->notificationSettings;
+        return [
+            '@type' => static::TYPE_NAME,
+            'scope' => $this->scope->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->typeSerialize(),
+        ];
     }
 }

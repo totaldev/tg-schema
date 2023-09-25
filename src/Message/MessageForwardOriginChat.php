@@ -16,18 +16,18 @@ class MessageForwardOriginChat extends MessageForwardOrigin
     public const TYPE_NAME = 'messageForwardOriginChat';
 
     /**
-     * Identifier of the chat that originally sent the message
-     *
-     * @var int
-     */
-    protected int $senderChatId;
-
-    /**
      * For messages originally sent by an anonymous chat administrator, original message author signature
      *
      * @var string
      */
     protected string $authorSignature;
+
+    /**
+     * Identifier of the chat that originally sent the message
+     *
+     * @var int
+     */
+    protected int $senderChatId;
 
     public function __construct(int $senderChatId, string $authorSignature)
     {
@@ -45,13 +45,9 @@ class MessageForwardOriginChat extends MessageForwardOrigin
         );
     }
 
-    public function typeSerialize(): array
+    public function getAuthorSignature(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sender_chat_id' => $this->senderChatId,
-            'author_signature' => $this->authorSignature,
-        ];
+        return $this->authorSignature;
     }
 
     public function getSenderChatId(): int
@@ -59,8 +55,12 @@ class MessageForwardOriginChat extends MessageForwardOrigin
         return $this->senderChatId;
     }
 
-    public function getAuthorSignature(): string
+    public function typeSerialize(): array
     {
-        return $this->authorSignature;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender_chat_id' => $this->senderChatId,
+            'author_signature' => $this->authorSignature,
+        ];
     }
 }

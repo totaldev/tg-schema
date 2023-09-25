@@ -16,18 +16,18 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
     public const TYPE_NAME = 'chatSourcePublicServiceAnnouncement';
 
     /**
-     * The type of the announcement
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
      * The text of the announcement
      *
      * @var string
      */
     protected string $text;
+
+    /**
+     * The type of the announcement
+     *
+     * @var string
+     */
+    protected string $type;
 
     public function __construct(string $type, string $text)
     {
@@ -45,13 +45,9 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
         );
     }
 
-    public function typeSerialize(): array
+    public function getText(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type,
-            'text' => $this->text,
-        ];
+        return $this->text;
     }
 
     public function getType(): string
@@ -59,8 +55,12 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
         return $this->type;
     }
 
-    public function getText(): string
+    public function typeSerialize(): array
     {
-        return $this->text;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type,
+            'text' => $this->text,
+        ];
     }
 }

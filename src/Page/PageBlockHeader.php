@@ -37,16 +37,16 @@ class PageBlockHeader extends PageBlock
         );
     }
 
+    public function getHeader(): RichText
+    {
+        return $this->header;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'header' => $this->header->typeSerialize(),
         ];
-    }
-
-    public function getHeader(): RichText
-    {
-        return $this->header;
     }
 }

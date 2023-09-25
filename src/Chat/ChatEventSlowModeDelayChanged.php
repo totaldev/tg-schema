@@ -16,18 +16,18 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventSlowModeDelayChanged';
 
     /**
-     * Previous value of slow_mode_delay, in seconds
-     *
-     * @var int
-     */
-    protected int $oldSlowModeDelay;
-
-    /**
      * New value of slow_mode_delay, in seconds
      *
      * @var int
      */
     protected int $newSlowModeDelay;
+
+    /**
+     * Previous value of slow_mode_delay, in seconds
+     *
+     * @var int
+     */
+    protected int $oldSlowModeDelay;
 
     public function __construct(int $oldSlowModeDelay, int $newSlowModeDelay)
     {
@@ -45,13 +45,9 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewSlowModeDelay(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_slow_mode_delay' => $this->oldSlowModeDelay,
-            'new_slow_mode_delay' => $this->newSlowModeDelay,
-        ];
+        return $this->newSlowModeDelay;
     }
 
     public function getOldSlowModeDelay(): int
@@ -59,8 +55,12 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
         return $this->oldSlowModeDelay;
     }
 
-    public function getNewSlowModeDelay(): int
+    public function typeSerialize(): array
     {
-        return $this->newSlowModeDelay;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_slow_mode_delay' => $this->oldSlowModeDelay,
+            'new_slow_mode_delay' => $this->newSlowModeDelay,
+        ];
     }
 }

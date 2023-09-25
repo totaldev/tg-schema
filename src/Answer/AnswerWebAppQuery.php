@@ -11,18 +11,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+ * Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots
+ * only
  */
 class AnswerWebAppQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerWebAppQuery';
-
-    /**
-     * Identifier of the Web App query
-     *
-     * @var string
-     */
-    protected string $webAppQueryId;
 
     /**
      * The result of the query
@@ -30,6 +24,13 @@ class AnswerWebAppQuery extends TdFunction
      * @var InputInlineQueryResult
      */
     protected InputInlineQueryResult $result;
+
+    /**
+     * Identifier of the Web App query
+     *
+     * @var string
+     */
+    protected string $webAppQueryId;
 
     public function __construct(string $webAppQueryId, InputInlineQueryResult $result)
     {
@@ -45,13 +46,9 @@ class AnswerWebAppQuery extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getResult(): InputInlineQueryResult
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'web_app_query_id' => $this->webAppQueryId,
-            'result' => $this->result->typeSerialize(),
-        ];
+        return $this->result;
     }
 
     public function getWebAppQueryId(): string
@@ -59,8 +56,12 @@ class AnswerWebAppQuery extends TdFunction
         return $this->webAppQueryId;
     }
 
-    public function getResult(): InputInlineQueryResult
+    public function typeSerialize(): array
     {
-        return $this->result;
+        return [
+            '@type' => static::TYPE_NAME,
+            'web_app_query_id' => $this->webAppQueryId,
+            'result' => $this->result->typeSerialize(),
+        ];
     }
 }

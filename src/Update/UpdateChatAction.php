@@ -18,6 +18,13 @@ class UpdateChatAction extends Update
     public const TYPE_NAME = 'updateChatAction';
 
     /**
+     * The action
+     *
+     * @var ChatAction
+     */
+    protected ChatAction $action;
+
+    /**
      * Chat identifier
      *
      * @var int
@@ -37,13 +44,6 @@ class UpdateChatAction extends Update
      * @var MessageSender
      */
     protected MessageSender $senderId;
-
-    /**
-     * The action
-     *
-     * @var ChatAction
-     */
-    protected ChatAction $action;
 
     public function __construct(int $chatId, int $messageThreadId, MessageSender $senderId, ChatAction $action)
     {
@@ -65,15 +65,9 @@ class UpdateChatAction extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getAction(): ChatAction
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'action' => $this->action->typeSerialize(),
-        ];
+        return $this->action;
     }
 
     public function getChatId(): int
@@ -91,8 +85,14 @@ class UpdateChatAction extends Update
         return $this->senderId;
     }
 
-    public function getAction(): ChatAction
+    public function typeSerialize(): array
     {
-        return $this->action;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+            'sender_id' => $this->senderId->typeSerialize(),
+            'action' => $this->action->typeSerialize(),
+        ];
     }
 }

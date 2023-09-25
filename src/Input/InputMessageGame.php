@@ -45,15 +45,6 @@ class InputMessageGame extends InputMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'game_short_name' => $this->gameShortName,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -62,5 +53,14 @@ class InputMessageGame extends InputMessageContent
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'game_short_name' => $this->gameShortName,
+        ];
     }
 }

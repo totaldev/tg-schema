@@ -17,18 +17,18 @@ class SearchRecentlyFoundChats extends TdFunction
     public const TYPE_NAME = 'searchRecentlyFoundChats';
 
     /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
      * The maximum number of chats to be returned
      *
      * @var int
      */
     protected int $limit;
+
+    /**
+     * Query to search for
+     *
+     * @var string
+     */
+    protected string $query;
 
     public function __construct(string $query, int $limit)
     {
@@ -44,13 +44,9 @@ class SearchRecentlyFoundChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
     public function getQuery(): string
@@ -58,8 +54,12 @@ class SearchRecentlyFoundChats extends TdFunction
         return $this->query;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'limit' => $this->limit,
+        ];
     }
 }

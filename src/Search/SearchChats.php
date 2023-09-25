@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
+ * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main
+ * chat list
  */
 class SearchChats extends TdFunction
 {
     public const TYPE_NAME = 'searchChats';
-
-    /**
-     * Query to search for. If the query is empty, returns up to 50 recently found chats
-     *
-     * @var string
-     */
-    protected string $query;
 
     /**
      * The maximum number of chats to be returned
@@ -29,6 +23,13 @@ class SearchChats extends TdFunction
      * @var int
      */
     protected int $limit;
+
+    /**
+     * Query to search for. If the query is empty, returns up to 50 recently found chats
+     *
+     * @var string
+     */
+    protected string $query;
 
     public function __construct(string $query, int $limit)
     {
@@ -44,13 +45,9 @@ class SearchChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
     public function getQuery(): string
@@ -58,8 +55,12 @@ class SearchChats extends TdFunction
         return $this->query;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'limit' => $this->limit,
+        ];
     }
 }

@@ -17,11 +17,11 @@ class MessageVideoNote extends MessageContent
     public const TYPE_NAME = 'messageVideoNote';
 
     /**
-     * The video note description
+     * True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
      *
-     * @var VideoNote
+     * @var bool
      */
-    protected VideoNote $videoNote;
+    protected bool $isSecret;
 
     /**
      * True, if at least one of the recipients has viewed the video note
@@ -31,11 +31,11 @@ class MessageVideoNote extends MessageContent
     protected bool $isViewed;
 
     /**
-     * True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
+     * The video note description
      *
-     * @var bool
+     * @var VideoNote
      */
-    protected bool $isSecret;
+    protected VideoNote $videoNote;
 
     public function __construct(VideoNote $videoNote, bool $isViewed, bool $isSecret)
     {
@@ -55,6 +55,21 @@ class MessageVideoNote extends MessageContent
         );
     }
 
+    public function getIsSecret(): bool
+    {
+        return $this->isSecret;
+    }
+
+    public function getIsViewed(): bool
+    {
+        return $this->isViewed;
+    }
+
+    public function getVideoNote(): VideoNote
+    {
+        return $this->videoNote;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class MessageVideoNote extends MessageContent
             'is_viewed' => $this->isViewed,
             'is_secret' => $this->isSecret,
         ];
-    }
-
-    public function getVideoNote(): VideoNote
-    {
-        return $this->videoNote;
-    }
-
-    public function getIsViewed(): bool
-    {
-        return $this->isViewed;
-    }
-
-    public function getIsSecret(): bool
-    {
-        return $this->isSecret;
     }
 }

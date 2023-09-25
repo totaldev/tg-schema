@@ -53,16 +53,6 @@ class SetBotName extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'language_code' => $this->languageCode,
-            'name' => $this->name,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -76,5 +66,15 @@ class SetBotName extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'language_code' => $this->languageCode,
+            'name' => $this->name,
+        ];
     }
 }

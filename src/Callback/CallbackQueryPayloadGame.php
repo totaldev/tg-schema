@@ -36,16 +36,16 @@ class CallbackQueryPayloadGame extends CallbackQueryPayload
         );
     }
 
+    public function getGameShortName(): string
+    {
+        return $this->gameShortName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'game_short_name' => $this->gameShortName,
         ];
-    }
-
-    public function getGameShortName(): string
-    {
-        return $this->gameShortName;
     }
 }

@@ -16,13 +16,6 @@ class InputStoryContentVideo extends InputStoryContent
     public const TYPE_NAME = 'inputStoryContentVideo';
 
     /**
-     * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
-     *
-     * @var InputFile
-     */
-    protected InputFile $video;
-
-    /**
      * File identifiers of the stickers added to the video, if applicable
      *
      * @var int[]
@@ -42,6 +35,14 @@ class InputStoryContentVideo extends InputStoryContent
      * @var bool
      */
     protected bool $isAnimation;
+
+    /**
+     * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key
+     * frames added each second
+     *
+     * @var InputFile
+     */
+    protected InputFile $video;
 
     public function __construct(InputFile $video, array $addedStickerFileIds, float $duration, bool $isAnimation)
     {
@@ -63,22 +64,6 @@ class InputStoryContentVideo extends InputStoryContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
-            'added_sticker_file_ids' => $this->addedStickerFileIds,
-            'duration' => $this->duration,
-            'is_animation' => $this->isAnimation,
-        ];
-    }
-
-    public function getVideo(): InputFile
-    {
-        return $this->video;
-    }
-
     public function getAddedStickerFileIds(): array
     {
         return $this->addedStickerFileIds;
@@ -92,5 +77,21 @@ class InputStoryContentVideo extends InputStoryContent
     public function getIsAnimation(): bool
     {
         return $this->isAnimation;
+    }
+
+    public function getVideo(): InputFile
+    {
+        return $this->video;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'added_sticker_file_ids' => $this->addedStickerFileIds,
+            'duration' => $this->duration,
+            'is_animation' => $this->isAnimation,
+        ];
     }
 }

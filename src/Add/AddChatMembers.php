@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+ * Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat.
+ * Members can't be added to a channel if it has more than 200 members
  */
 class AddChatMembers extends TdFunction
 {
@@ -44,15 +45,6 @@ class AddChatMembers extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class AddChatMembers extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_ids' => $this->userIds,
+        ];
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+ * Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users
+ * right in the chat for own links and owner privileges for other links
  */
 class EditChatInviteLink extends TdFunction
 {
@@ -24,18 +25,11 @@ class EditChatInviteLink extends TdFunction
     protected int $chatId;
 
     /**
-     * Invite link to be edited
+     * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
      *
-     * @var string
+     * @var bool
      */
-    protected string $inviteLink;
-
-    /**
-     * Invite link name; 0-32 characters
-     *
-     * @var string
-     */
-    protected string $name;
+    protected bool $createsJoinRequest;
 
     /**
      * Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -45,6 +39,13 @@ class EditChatInviteLink extends TdFunction
     protected int $expirationDate;
 
     /**
+     * Invite link to be edited
+     *
+     * @var string
+     */
+    protected string $inviteLink;
+
+    /**
      * The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
      *
      * @var int
@@ -52,20 +53,21 @@ class EditChatInviteLink extends TdFunction
     protected int $memberLimit;
 
     /**
-     * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+     * Invite link name; 0-32 characters
      *
-     * @var bool
+     * @var string
      */
-    protected bool $createsJoinRequest;
+    protected string $name;
 
     public function __construct(
-        int $chatId,
+        int    $chatId,
         string $inviteLink,
         string $name,
-        int $expirationDate,
-        int $memberLimit,
-        bool $createsJoinRequest,
-    ) {
+        int    $expirationDate,
+        int    $memberLimit,
+        bool   $createsJoinRequest,
+    )
+    {
         $this->chatId = $chatId;
         $this->inviteLink = $inviteLink;
         $this->name = $name;
@@ -86,6 +88,36 @@ class EditChatInviteLink extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getCreatesJoinRequest(): bool
+    {
+        return $this->createsJoinRequest;
+    }
+
+    public function getExpirationDate(): int
+    {
+        return $this->expirationDate;
+    }
+
+    public function getInviteLink(): string
+    {
+        return $this->inviteLink;
+    }
+
+    public function getMemberLimit(): int
+    {
+        return $this->memberLimit;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -97,35 +129,5 @@ class EditChatInviteLink extends TdFunction
             'member_limit' => $this->memberLimit,
             'creates_join_request' => $this->createsJoinRequest,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getExpirationDate(): int
-    {
-        return $this->expirationDate;
-    }
-
-    public function getMemberLimit(): int
-    {
-        return $this->memberLimit;
-    }
-
-    public function getCreatesJoinRequest(): bool
-    {
-        return $this->createsJoinRequest;
     }
 }

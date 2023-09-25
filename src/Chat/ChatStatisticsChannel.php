@@ -19,34 +19,6 @@ class ChatStatisticsChannel extends ChatStatistics
     public const TYPE_NAME = 'chatStatisticsChannel';
 
     /**
-     * A period to which the statistics applies
-     *
-     * @var DateRange
-     */
-    protected DateRange $period;
-
-    /**
-     * Number of members in the chat
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $memberCount;
-
-    /**
-     * Mean number of times the recently sent messages was viewed
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $meanViewCount;
-
-    /**
-     * Mean number of times the recently sent messages was shared
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $meanShareCount;
-
-    /**
      * A percentage of users with enabled notifications for the chat
      *
      * @var float
@@ -54,11 +26,18 @@ class ChatStatisticsChannel extends ChatStatistics
     protected float $enabledNotificationsPercentage;
 
     /**
-     * A graph containing number of members in the chat
+     * A graph containing number of views of associated with the chat instant views
      *
      * @var StatisticalGraph
      */
-    protected StatisticalGraph $memberCountGraph;
+    protected StatisticalGraph $instantViewInteractionGraph;
+
+    /**
+     * A graph containing number of new member joins per source
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $joinBySourceGraph;
 
     /**
      * A graph containing number of members joined and left the chat
@@ -68,11 +47,67 @@ class ChatStatisticsChannel extends ChatStatistics
     protected StatisticalGraph $joinGraph;
 
     /**
+     * A graph containing number of users viewed chat messages per language
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $languageGraph;
+
+    /**
+     * Mean number of times the recently sent messages was shared
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $meanShareCount;
+
+    /**
+     * Mean number of times the recently sent messages was viewed
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $meanViewCount;
+
+    /**
+     * Number of members in the chat
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $memberCount;
+
+    /**
+     * A graph containing number of members in the chat
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $memberCountGraph;
+
+    /**
+     * A graph containing number of chat message views and shares
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $messageInteractionGraph;
+
+    /**
      * A graph containing number of members muted and unmuted the chat
      *
      * @var StatisticalGraph
      */
     protected StatisticalGraph $muteGraph;
+
+    /**
+     * A period to which the statistics applies
+     *
+     * @var DateRange
+     */
+    protected DateRange $period;
+
+    /**
+     * Detailed statistics about number of views and shares of recently sent messages
+     *
+     * @var ChatStatisticsMessageInteractionInfo[]
+     */
+    protected array $recentMessageInteractions;
 
     /**
      * A graph containing number of message views in a given hour in the last two weeks
@@ -88,47 +123,12 @@ class ChatStatisticsChannel extends ChatStatistics
      */
     protected StatisticalGraph $viewCountBySourceGraph;
 
-    /**
-     * A graph containing number of new member joins per source
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $joinBySourceGraph;
-
-    /**
-     * A graph containing number of users viewed chat messages per language
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $languageGraph;
-
-    /**
-     * A graph containing number of chat message views and shares
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $messageInteractionGraph;
-
-    /**
-     * A graph containing number of views of associated with the chat instant views
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $instantViewInteractionGraph;
-
-    /**
-     * Detailed statistics about number of views and shares of recently sent messages
-     *
-     * @var ChatStatisticsMessageInteractionInfo[]
-     */
-    protected array $recentMessageInteractions;
-
     public function __construct(
-        DateRange $period,
+        DateRange        $period,
         StatisticalValue $memberCount,
         StatisticalValue $meanViewCount,
         StatisticalValue $meanShareCount,
-        float $enabledNotificationsPercentage,
+        float            $enabledNotificationsPercentage,
         StatisticalGraph $memberCountGraph,
         StatisticalGraph $joinGraph,
         StatisticalGraph $muteGraph,
@@ -138,8 +138,9 @@ class ChatStatisticsChannel extends ChatStatistics
         StatisticalGraph $languageGraph,
         StatisticalGraph $messageInteractionGraph,
         StatisticalGraph $instantViewInteractionGraph,
-        array $recentMessageInteractions,
-    ) {
+        array            $recentMessageInteractions,
+    )
+    {
         parent::__construct();
 
         $this->period = $period;
@@ -176,8 +177,83 @@ class ChatStatisticsChannel extends ChatStatistics
             TdSchemaRegistry::fromArray($array['language_graph']),
             TdSchemaRegistry::fromArray($array['message_interaction_graph']),
             TdSchemaRegistry::fromArray($array['instant_view_interaction_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentMessageInteractions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_message_interactions']),
         );
+    }
+
+    public function getEnabledNotificationsPercentage(): float
+    {
+        return $this->enabledNotificationsPercentage;
+    }
+
+    public function getInstantViewInteractionGraph(): StatisticalGraph
+    {
+        return $this->instantViewInteractionGraph;
+    }
+
+    public function getJoinBySourceGraph(): StatisticalGraph
+    {
+        return $this->joinBySourceGraph;
+    }
+
+    public function getJoinGraph(): StatisticalGraph
+    {
+        return $this->joinGraph;
+    }
+
+    public function getLanguageGraph(): StatisticalGraph
+    {
+        return $this->languageGraph;
+    }
+
+    public function getMeanShareCount(): StatisticalValue
+    {
+        return $this->meanShareCount;
+    }
+
+    public function getMeanViewCount(): StatisticalValue
+    {
+        return $this->meanViewCount;
+    }
+
+    public function getMemberCount(): StatisticalValue
+    {
+        return $this->memberCount;
+    }
+
+    public function getMemberCountGraph(): StatisticalGraph
+    {
+        return $this->memberCountGraph;
+    }
+
+    public function getMessageInteractionGraph(): StatisticalGraph
+    {
+        return $this->messageInteractionGraph;
+    }
+
+    public function getMuteGraph(): StatisticalGraph
+    {
+        return $this->muteGraph;
+    }
+
+    public function getPeriod(): DateRange
+    {
+        return $this->period;
+    }
+
+    public function getRecentMessageInteractions(): array
+    {
+        return $this->recentMessageInteractions;
+    }
+
+    public function getViewCountByHourGraph(): StatisticalGraph
+    {
+        return $this->viewCountByHourGraph;
+    }
+
+    public function getViewCountBySourceGraph(): StatisticalGraph
+    {
+        return $this->viewCountBySourceGraph;
     }
 
     public function typeSerialize(): array
@@ -200,80 +276,5 @@ class ChatStatisticsChannel extends ChatStatistics
             'instant_view_interaction_graph' => $this->instantViewInteractionGraph->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->recentMessageInteractions),
         ];
-    }
-
-    public function getPeriod(): DateRange
-    {
-        return $this->period;
-    }
-
-    public function getMemberCount(): StatisticalValue
-    {
-        return $this->memberCount;
-    }
-
-    public function getMeanViewCount(): StatisticalValue
-    {
-        return $this->meanViewCount;
-    }
-
-    public function getMeanShareCount(): StatisticalValue
-    {
-        return $this->meanShareCount;
-    }
-
-    public function getEnabledNotificationsPercentage(): float
-    {
-        return $this->enabledNotificationsPercentage;
-    }
-
-    public function getMemberCountGraph(): StatisticalGraph
-    {
-        return $this->memberCountGraph;
-    }
-
-    public function getJoinGraph(): StatisticalGraph
-    {
-        return $this->joinGraph;
-    }
-
-    public function getMuteGraph(): StatisticalGraph
-    {
-        return $this->muteGraph;
-    }
-
-    public function getViewCountByHourGraph(): StatisticalGraph
-    {
-        return $this->viewCountByHourGraph;
-    }
-
-    public function getViewCountBySourceGraph(): StatisticalGraph
-    {
-        return $this->viewCountBySourceGraph;
-    }
-
-    public function getJoinBySourceGraph(): StatisticalGraph
-    {
-        return $this->joinBySourceGraph;
-    }
-
-    public function getLanguageGraph(): StatisticalGraph
-    {
-        return $this->languageGraph;
-    }
-
-    public function getMessageInteractionGraph(): StatisticalGraph
-    {
-        return $this->messageInteractionGraph;
-    }
-
-    public function getInstantViewInteractionGraph(): StatisticalGraph
-    {
-        return $this->instantViewInteractionGraph;
-    }
-
-    public function getRecentMessageInteractions(): array
-    {
-        return $this->recentMessageInteractions;
     }
 }

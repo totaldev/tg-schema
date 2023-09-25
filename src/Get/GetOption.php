@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
+ * Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before
+ * authorization. Can be called synchronously for options "version" and "commit_hash"
  */
 class GetOption extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetOption extends TdFunction
         );
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'name' => $this->name,
         ];
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 }

@@ -44,15 +44,6 @@ class WebAppInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'launch_id' => $this->launchId,
-            'url' => $this->url,
-        ];
-    }
-
     public function getLaunchId(): int
     {
         return $this->launchId;
@@ -61,5 +52,14 @@ class WebAppInfo extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'launch_id' => $this->launchId,
+            'url' => $this->url,
+        ];
     }
 }

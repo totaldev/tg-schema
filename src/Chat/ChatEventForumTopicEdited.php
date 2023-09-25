@@ -17,18 +17,18 @@ class ChatEventForumTopicEdited extends ChatEventAction
     public const TYPE_NAME = 'chatEventForumTopicEdited';
 
     /**
-     * Old information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $oldTopicInfo;
-
-    /**
      * New information about the topic
      *
      * @var ForumTopicInfo
      */
     protected ForumTopicInfo $newTopicInfo;
+
+    /**
+     * Old information about the topic
+     *
+     * @var ForumTopicInfo
+     */
+    protected ForumTopicInfo $oldTopicInfo;
 
     public function __construct(ForumTopicInfo $oldTopicInfo, ForumTopicInfo $newTopicInfo)
     {
@@ -46,13 +46,9 @@ class ChatEventForumTopicEdited extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewTopicInfo(): ForumTopicInfo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_topic_info' => $this->oldTopicInfo->typeSerialize(),
-            'new_topic_info' => $this->newTopicInfo->typeSerialize(),
-        ];
+        return $this->newTopicInfo;
     }
 
     public function getOldTopicInfo(): ForumTopicInfo
@@ -60,8 +56,12 @@ class ChatEventForumTopicEdited extends ChatEventAction
         return $this->oldTopicInfo;
     }
 
-    public function getNewTopicInfo(): ForumTopicInfo
+    public function typeSerialize(): array
     {
-        return $this->newTopicInfo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_topic_info' => $this->oldTopicInfo->typeSerialize(),
+            'new_topic_info' => $this->newTopicInfo->typeSerialize(),
+        ];
     }
 }

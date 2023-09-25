@@ -36,16 +36,16 @@ class SetLogStream extends TdFunction
         );
     }
 
+    public function getLogStream(): LogStream
+    {
+        return $this->logStream;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'log_stream' => $this->logStream->typeSerialize(),
         ];
-    }
-
-    public function getLogStream(): LogStream
-    {
-        return $this->logStream;
     }
 }

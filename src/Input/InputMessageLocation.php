@@ -17,11 +17,11 @@ class InputMessageLocation extends InputMessageContent
     public const TYPE_NAME = 'inputMessageLocation';
 
     /**
-     * Location to be sent
+     * For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
      *
-     * @var Location
+     * @var int
      */
-    protected Location $location;
+    protected int $heading;
 
     /**
      * Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
@@ -31,14 +31,15 @@ class InputMessageLocation extends InputMessageContent
     protected int $livePeriod;
 
     /**
-     * For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+     * Location to be sent
      *
-     * @var int
+     * @var Location
      */
-    protected int $heading;
+    protected Location $location;
 
     /**
-     * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
+     * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't
+     * be enabled in channels and Saved Messages
      *
      * @var int
      */
@@ -64,6 +65,26 @@ class InputMessageLocation extends InputMessageContent
         );
     }
 
+    public function getHeading(): int
+    {
+        return $this->heading;
+    }
+
+    public function getLivePeriod(): int
+    {
+        return $this->livePeriod;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getProximityAlertRadius(): int
+    {
+        return $this->proximityAlertRadius;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +94,5 @@ class InputMessageLocation extends InputMessageContent
             'heading' => $this->heading,
             'proximity_alert_radius' => $this->proximityAlertRadius,
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getLivePeriod(): int
-    {
-        return $this->livePeriod;
-    }
-
-    public function getHeading(): int
-    {
-        return $this->heading;
-    }
-
-    public function getProximityAlertRadius(): int
-    {
-        return $this->proximityAlertRadius;
     }
 }

@@ -46,15 +46,6 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'volume_level' => $this->volumeLevel,
-        ];
-    }
-
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
@@ -63,5 +54,14 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
     public function getVolumeLevel(): int
     {
         return $this->volumeLevel;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'participant_id' => $this->participantId->typeSerialize(),
+            'volume_level' => $this->volumeLevel,
+        ];
     }
 }

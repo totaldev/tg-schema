@@ -23,7 +23,8 @@ class StickerFullTypeCustomEmoji extends StickerFullType
     protected int $customEmojiId;
 
     /**
-     * True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
+     * True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos,
+     * or another appropriate color in other places
      *
      * @var bool
      */
@@ -45,15 +46,6 @@ class StickerFullTypeCustomEmoji extends StickerFullType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'custom_emoji_id' => $this->customEmojiId,
-            'needs_repainting' => $this->needsRepainting,
-        ];
-    }
-
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
@@ -62,5 +54,14 @@ class StickerFullTypeCustomEmoji extends StickerFullType
     public function getNeedsRepainting(): bool
     {
         return $this->needsRepainting;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'custom_emoji_id' => $this->customEmojiId,
+            'needs_repainting' => $this->needsRepainting,
+        ];
     }
 }

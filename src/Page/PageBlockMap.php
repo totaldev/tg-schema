@@ -19,25 +19,11 @@ class PageBlockMap extends PageBlock
     public const TYPE_NAME = 'pageBlockMap';
 
     /**
-     * Location of the map center
+     * Block caption
      *
-     * @var Location
+     * @var PageBlockCaption
      */
-    protected Location $location;
-
-    /**
-     * Map zoom level
-     *
-     * @var int
-     */
-    protected int $zoom;
-
-    /**
-     * Map width
-     *
-     * @var int
-     */
-    protected int $width;
+    protected PageBlockCaption $caption;
 
     /**
      * Map height
@@ -47,11 +33,25 @@ class PageBlockMap extends PageBlock
     protected int $height;
 
     /**
-     * Block caption
+     * Location of the map center
      *
-     * @var PageBlockCaption
+     * @var Location
      */
-    protected PageBlockCaption $caption;
+    protected Location $location;
+
+    /**
+     * Map width
+     *
+     * @var int
+     */
+    protected int $width;
+
+    /**
+     * Map zoom level
+     *
+     * @var int
+     */
+    protected int $zoom;
 
     public function __construct(Location $location, int $zoom, int $width, int $height, PageBlockCaption $caption)
     {
@@ -75,6 +75,31 @@ class PageBlockMap extends PageBlock
         );
     }
 
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
+    public function getZoom(): int
+    {
+        return $this->zoom;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -85,30 +110,5 @@ class PageBlockMap extends PageBlock
             'height' => $this->height,
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getZoom(): int
-    {
-        return $this->zoom;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getCaption(): PageBlockCaption
-    {
-        return $this->caption;
     }
 }

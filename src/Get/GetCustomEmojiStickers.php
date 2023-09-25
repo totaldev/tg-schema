@@ -35,16 +35,16 @@ class GetCustomEmojiStickers extends TdFunction
         );
     }
 
+    public function getCustomEmojiIds(): array
+    {
+        return $this->customEmojiIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'custom_emoji_ids' => $this->customEmojiIds,
         ];
-    }
-
-    public function getCustomEmojiIds(): array
-    {
-        return $this->customEmojiIds;
     }
 }

@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Email;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the user's phone number
+ * Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the
+ * user's phone number
  */
 class EmailAddressResetStateAvailable extends EmailAddressResetState
 {
@@ -36,16 +37,16 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState
         );
     }
 
+    public function getWaitPeriod(): int
+    {
+        return $this->waitPeriod;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'wait_period' => $this->waitPeriod,
         ];
-    }
-
-    public function getWaitPeriod(): int
-    {
-        return $this->waitPeriod;
     }
 }

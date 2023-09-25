@@ -17,18 +17,18 @@ class TMeUrl extends TdObject
     public const TYPE_NAME = 'tMeUrl';
 
     /**
-     * URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Type of the URL
      *
      * @var TMeUrlType
      */
     protected TMeUrlType $type;
+
+    /**
+     * URL
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, TMeUrlType $type)
     {
@@ -44,13 +44,9 @@ class TMeUrl extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getType(): TMeUrlType
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'type' => $this->type->typeSerialize(),
-        ];
+        return $this->type;
     }
 
     public function getUrl(): string
@@ -58,8 +54,12 @@ class TMeUrl extends TdObject
         return $this->url;
     }
 
-    public function getType(): TMeUrlType
+    public function typeSerialize(): array
     {
-        return $this->type;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

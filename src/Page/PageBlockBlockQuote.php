@@ -17,18 +17,18 @@ class PageBlockBlockQuote extends PageBlock
     public const TYPE_NAME = 'pageBlockBlockQuote';
 
     /**
-     * Quote text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * Quote credit
      *
      * @var RichText
      */
     protected RichText $credit;
+
+    /**
+     * Quote text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     public function __construct(RichText $text, RichText $credit)
     {
@@ -46,13 +46,9 @@ class PageBlockBlockQuote extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
+    public function getCredit(): RichText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
-        ];
+        return $this->credit;
     }
 
     public function getText(): RichText
@@ -60,8 +56,12 @@ class PageBlockBlockQuote extends PageBlock
         return $this->text;
     }
 
-    public function getCredit(): RichText
+    public function typeSerialize(): array
     {
-        return $this->credit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'credit' => $this->credit->typeSerialize(),
+        ];
     }
 }

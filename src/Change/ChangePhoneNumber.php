@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
+ * Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On
+ * success, returns information about the sent code
  */
 class ChangePhoneNumber extends TdFunction
 {
@@ -45,15 +46,6 @@ class ChangePhoneNumber extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
@@ -62,5 +54,14 @@ class ChangePhoneNumber extends TdFunction
     public function getSettings(): PhoneNumberAuthenticationSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'phone_number' => $this->phoneNumber,
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

@@ -18,13 +18,6 @@ class InputPassportElementError extends TdObject
     public const TYPE_NAME = 'inputPassportElementError';
 
     /**
-     * Type of Telegram Passport element that has the error
-     *
-     * @var PassportElementType
-     */
-    protected PassportElementType $type;
-
-    /**
      * Error message
      *
      * @var string
@@ -37,6 +30,13 @@ class InputPassportElementError extends TdObject
      * @var InputPassportElementErrorSource
      */
     protected InputPassportElementErrorSource $source;
+
+    /**
+     * Type of Telegram Passport element that has the error
+     *
+     * @var PassportElementType
+     */
+    protected PassportElementType $type;
 
     public function __construct(PassportElementType $type, string $message, InputPassportElementErrorSource $source)
     {
@@ -54,21 +54,6 @@ class InputPassportElementError extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'message' => $this->message,
-            'source' => $this->source->typeSerialize(),
-        ];
-    }
-
-    public function getType(): PassportElementType
-    {
-        return $this->type;
-    }
-
     public function getMessage(): string
     {
         return $this->message;
@@ -77,5 +62,20 @@ class InputPassportElementError extends TdObject
     public function getSource(): InputPassportElementErrorSource
     {
         return $this->source;
+    }
+
+    public function getType(): PassportElementType
+    {
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'message' => $this->message,
+            'source' => $this->source->typeSerialize(),
+        ];
     }
 }

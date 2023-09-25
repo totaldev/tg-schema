@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Authorization;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
+ * TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call
+ * checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
  */
 class AuthorizationStateWaitEmailAddress extends AuthorizationState
 {
@@ -45,15 +46,6 @@ class AuthorizationStateWaitEmailAddress extends AuthorizationState
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'allow_apple_id' => $this->allowAppleId,
-            'allow_google_id' => $this->allowGoogleId,
-        ];
-    }
-
     public function getAllowAppleId(): bool
     {
         return $this->allowAppleId;
@@ -62,5 +54,14 @@ class AuthorizationStateWaitEmailAddress extends AuthorizationState
     public function getAllowGoogleId(): bool
     {
         return $this->allowGoogleId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'allow_apple_id' => $this->allowAppleId,
+            'allow_google_id' => $this->allowGoogleId,
+        ];
     }
 }

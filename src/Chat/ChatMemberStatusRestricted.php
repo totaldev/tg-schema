@@ -23,18 +23,19 @@ class ChatMemberStatusRestricted extends ChatMemberStatus
     protected bool $isMember;
 
     /**
-     * Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever
-     *
-     * @var int
-     */
-    protected int $restrictedUntilDate;
-
-    /**
      * User permissions in the chat
      *
      * @var ChatPermissions
      */
     protected ChatPermissions $permissions;
+
+    /**
+     * Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less
+     * than 30 seconds from the current time, the user is considered to be restricted forever
+     *
+     * @var int
+     */
+    protected int $restrictedUntilDate;
 
     public function __construct(bool $isMember, int $restrictedUntilDate, ChatPermissions $permissions)
     {
@@ -54,6 +55,21 @@ class ChatMemberStatusRestricted extends ChatMemberStatus
         );
     }
 
+    public function getIsMember(): bool
+    {
+        return $this->isMember;
+    }
+
+    public function getPermissions(): ChatPermissions
+    {
+        return $this->permissions;
+    }
+
+    public function getRestrictedUntilDate(): int
+    {
+        return $this->restrictedUntilDate;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class ChatMemberStatusRestricted extends ChatMemberStatus
             'restricted_until_date' => $this->restrictedUntilDate,
             'permissions' => $this->permissions->typeSerialize(),
         ];
-    }
-
-    public function getIsMember(): bool
-    {
-        return $this->isMember;
-    }
-
-    public function getRestrictedUntilDate(): int
-    {
-        return $this->restrictedUntilDate;
-    }
-
-    public function getPermissions(): ChatPermissions
-    {
-        return $this->permissions;
     }
 }

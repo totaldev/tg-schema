@@ -24,11 +24,26 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
     protected string $id;
 
     /**
-     * URL of the sticker thumbnail, if it exists
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice,
+     * inputMessageLocation, inputMessageVenue or inputMessageContact
      *
-     * @var string
+     * @var InputMessageContent
      */
-    protected string $thumbnailUrl;
+    protected InputMessageContent $inputMessageContent;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * Height of the sticker
+     *
+     * @var int
+     */
+    protected int $stickerHeight;
 
     /**
      * The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
@@ -45,35 +60,22 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
     protected int $stickerWidth;
 
     /**
-     * Height of the sticker
+     * URL of the sticker thumbnail, if it exists
      *
-     * @var int
+     * @var string
      */
-    protected int $stickerHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
+    protected string $thumbnailUrl;
 
     public function __construct(
-        string $id,
-        string $thumbnailUrl,
-        string $stickerUrl,
-        int $stickerWidth,
-        int $stickerHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        string              $thumbnailUrl,
+        string              $stickerUrl,
+        int                 $stickerWidth,
+        int                 $stickerHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -98,28 +100,24 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'thumbnail_url' => $this->thumbnailUrl,
-            'sticker_url' => $this->stickerUrl,
-            'sticker_width' => $this->stickerWidth,
-            'sticker_height' => $this->stickerHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getThumbnailUrl(): string
+    public function getInputMessageContent(): InputMessageContent
     {
-        return $this->thumbnailUrl;
+        return $this->inputMessageContent;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getStickerHeight(): int
+    {
+        return $this->stickerHeight;
     }
 
     public function getStickerUrl(): string
@@ -132,18 +130,22 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
         return $this->stickerWidth;
     }
 
-    public function getStickerHeight(): int
+    public function getThumbnailUrl(): string
     {
-        return $this->stickerHeight;
+        return $this->thumbnailUrl;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function typeSerialize(): array
     {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'thumbnail_url' => $this->thumbnailUrl,
+            'sticker_url' => $this->stickerUrl,
+            'sticker_width' => $this->stickerWidth,
+            'sticker_height' => $this->stickerHeight,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 }

@@ -45,15 +45,6 @@ class AutosaveSettingsException extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class AutosaveSettingsException extends TdObject
     public function getSettings(): ScopeAutosaveSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

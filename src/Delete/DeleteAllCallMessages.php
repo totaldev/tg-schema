@@ -35,16 +35,16 @@ class DeleteAllCallMessages extends TdFunction
         );
     }
 
+    public function getRevoke(): bool
+    {
+        return $this->revoke;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'revoke' => $this->revoke,
         ];
-    }
-
-    public function getRevoke(): bool
-    {
-        return $this->revoke;
     }
 }

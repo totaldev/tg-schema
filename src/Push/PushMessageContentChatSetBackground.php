@@ -36,16 +36,16 @@ class PushMessageContentChatSetBackground extends PushMessageContent
         );
     }
 
+    public function getIsSame(): bool
+    {
+        return $this->isSame;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_same' => $this->isSame,
         ];
-    }
-
-    public function getIsSame(): bool
-    {
-        return $this->isSame;
     }
 }

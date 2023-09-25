@@ -36,16 +36,16 @@ class ChatEventIsForumToggled extends ChatEventAction
         );
     }
 
+    public function getIsForum(): bool
+    {
+        return $this->isForum;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_forum' => $this->isForum,
         ];
-    }
-
-    public function getIsForum(): bool
-    {
-        return $this->isForum;
     }
 }

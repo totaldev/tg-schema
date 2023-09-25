@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+ * Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method
+ * getExternalLinkInfo to find whether a prior user confirmation is needed
  */
 class GetExternalLink extends TdFunction
 {
     public const TYPE_NAME = 'getExternalLink';
-
-    /**
-     * The HTTP link
-     *
-     * @var string
-     */
-    protected string $link;
 
     /**
      * Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
@@ -29,6 +23,13 @@ class GetExternalLink extends TdFunction
      * @var bool
      */
     protected bool $allowWriteAccess;
+
+    /**
+     * The HTTP link
+     *
+     * @var string
+     */
+    protected string $link;
 
     public function __construct(string $link, bool $allowWriteAccess)
     {
@@ -44,13 +45,9 @@ class GetExternalLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowWriteAccess(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'link' => $this->link,
-            'allow_write_access' => $this->allowWriteAccess,
-        ];
+        return $this->allowWriteAccess;
     }
 
     public function getLink(): string
@@ -58,8 +55,12 @@ class GetExternalLink extends TdFunction
         return $this->link;
     }
 
-    public function getAllowWriteAccess(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowWriteAccess;
+        return [
+            '@type' => static::TYPE_NAME,
+            'link' => $this->link,
+            'allow_write_access' => $this->allowWriteAccess,
+        ];
     }
 }

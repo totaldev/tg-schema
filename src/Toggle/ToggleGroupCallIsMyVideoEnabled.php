@@ -44,15 +44,6 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'is_my_video_enabled' => $this->isMyVideoEnabled,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +52,14 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
     public function getIsMyVideoEnabled(): bool
     {
         return $this->isMyVideoEnabled;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'is_my_video_enabled' => $this->isMyVideoEnabled,
+        ];
     }
 }

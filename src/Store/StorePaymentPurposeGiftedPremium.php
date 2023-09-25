@@ -16,11 +16,11 @@ class StorePaymentPurposeGiftedPremium extends StorePaymentPurpose
     public const TYPE_NAME = 'storePaymentPurposeGiftedPremium';
 
     /**
-     * Identifier of the user for which Premium was gifted
+     * Paid amount, in the smallest units of the currency
      *
      * @var int
      */
-    protected int $userId;
+    protected int $amount;
 
     /**
      * ISO 4217 currency code of the payment currency
@@ -30,11 +30,11 @@ class StorePaymentPurposeGiftedPremium extends StorePaymentPurpose
     protected string $currency;
 
     /**
-     * Paid amount, in the smallest units of the currency
+     * Identifier of the user for which Premium was gifted
      *
      * @var int
      */
-    protected int $amount;
+    protected int $userId;
 
     public function __construct(int $userId, string $currency, int $amount)
     {
@@ -54,6 +54,21 @@ class StorePaymentPurposeGiftedPremium extends StorePaymentPurpose
         );
     }
 
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class StorePaymentPurposeGiftedPremium extends StorePaymentPurpose
             'currency' => $this->currency,
             'amount' => $this->amount,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    public function getAmount(): int
-    {
-        return $this->amount;
     }
 }

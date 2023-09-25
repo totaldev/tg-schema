@@ -17,13 +17,6 @@ class PushMessageContentSticker extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentSticker';
 
     /**
-     * Message content; may be null
-     *
-     * @var Sticker|null
-     */
-    protected ?Sticker $sticker;
-
-    /**
      * Emoji corresponding to the sticker; may be empty
      *
      * @var string
@@ -36,6 +29,13 @@ class PushMessageContentSticker extends PushMessageContent
      * @var bool
      */
     protected bool $isPinned;
+
+    /**
+     * Message content; may be null
+     *
+     * @var Sticker|null
+     */
+    protected ?Sticker $sticker;
 
     public function __construct(?Sticker $sticker, string $emoji, bool $isPinned)
     {
@@ -55,21 +55,6 @@ class PushMessageContentSticker extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
-            'emoji' => $this->emoji,
-            'is_pinned' => $this->isPinned,
-        ];
-    }
-
-    public function getSticker(): ?Sticker
-    {
-        return $this->sticker;
-    }
-
     public function getEmoji(): string
     {
         return $this->emoji;
@@ -78,5 +63,20 @@ class PushMessageContentSticker extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function getSticker(): ?Sticker
+    {
+        return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+            'emoji' => $this->emoji,
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

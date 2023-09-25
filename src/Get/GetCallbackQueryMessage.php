@@ -17,6 +17,13 @@ class GetCallbackQueryMessage extends TdFunction
     public const TYPE_NAME = 'getCallbackQueryMessage';
 
     /**
+     * Identifier of the callback query
+     *
+     * @var int
+     */
+    protected int $callbackQueryId;
+
+    /**
      * Identifier of the chat the message belongs to
      *
      * @var int
@@ -29,13 +36,6 @@ class GetCallbackQueryMessage extends TdFunction
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Identifier of the callback query
-     *
-     * @var int
-     */
-    protected int $callbackQueryId;
 
     public function __construct(int $chatId, int $messageId, int $callbackQueryId)
     {
@@ -53,14 +53,9 @@ class GetCallbackQueryMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCallbackQueryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'callback_query_id' => $this->callbackQueryId,
-        ];
+        return $this->callbackQueryId;
     }
 
     public function getChatId(): int
@@ -73,8 +68,13 @@ class GetCallbackQueryMessage extends TdFunction
         return $this->messageId;
     }
 
-    public function getCallbackQueryId(): int
+    public function typeSerialize(): array
     {
-        return $this->callbackQueryId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'callback_query_id' => $this->callbackQueryId,
+        ];
     }
 }

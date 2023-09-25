@@ -18,18 +18,18 @@ class InputSticker extends TdObject
     public const TYPE_NAME = 'inputSticker';
 
     /**
-     * File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
      * String with 1-20 emoji corresponding to the sticker
      *
      * @var string
      */
     protected string $emojis;
+
+    /**
+     * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+     *
+     * @var string[]
+     */
+    protected array $keywords;
 
     /**
      * Position where the mask is placed; pass null if not specified
@@ -39,11 +39,12 @@ class InputSticker extends TdObject
     protected MaskPosition $maskPosition;
 
     /**
-     * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+     * File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP
+     * server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
      *
-     * @var string[]
+     * @var InputFile
      */
-    protected array $keywords;
+    protected InputFile $sticker;
 
     public function __construct(InputFile $sticker, string $emojis, MaskPosition $maskPosition, array $keywords)
     {
@@ -63,6 +64,26 @@ class InputSticker extends TdObject
         );
     }
 
+    public function getEmojis(): string
+    {
+        return $this->emojis;
+    }
+
+    public function getKeywords(): array
+    {
+        return $this->keywords;
+    }
+
+    public function getMaskPosition(): MaskPosition
+    {
+        return $this->maskPosition;
+    }
+
+    public function getSticker(): InputFile
+    {
+        return $this->sticker;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +93,5 @@ class InputSticker extends TdObject
             'mask_position' => $this->maskPosition->typeSerialize(),
             'keywords' => $this->keywords,
         ];
-    }
-
-    public function getSticker(): InputFile
-    {
-        return $this->sticker;
-    }
-
-    public function getEmojis(): string
-    {
-        return $this->emojis;
-    }
-
-    public function getMaskPosition(): MaskPosition
-    {
-        return $this->maskPosition;
-    }
-
-    public function getKeywords(): array
-    {
-        return $this->keywords;
     }
 }

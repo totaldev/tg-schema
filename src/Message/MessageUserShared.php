@@ -16,18 +16,18 @@ class MessageUserShared extends MessageContent
     public const TYPE_NAME = 'messageUserShared';
 
     /**
-     * Identifier of the shared user
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Identifier of the keyboard button with the request
      *
      * @var int
      */
     protected int $buttonId;
+
+    /**
+     * Identifier of the shared user
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, int $buttonId)
     {
@@ -45,13 +45,9 @@ class MessageUserShared extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getButtonId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'button_id' => $this->buttonId,
-        ];
+        return $this->buttonId;
     }
 
     public function getUserId(): int
@@ -59,8 +55,12 @@ class MessageUserShared extends MessageContent
         return $this->userId;
     }
 
-    public function getButtonId(): int
+    public function typeSerialize(): array
     {
-        return $this->buttonId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'button_id' => $this->buttonId,
+        ];
     }
 }

@@ -16,18 +16,18 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
     public const TYPE_NAME = 'deviceTokenFirebaseCloudMessaging';
 
     /**
-     * Device registration token; may be empty to deregister a device
-     *
-     * @var string
-     */
-    protected string $token;
-
-    /**
      * True, if push notifications must be additionally encrypted
      *
      * @var bool
      */
     protected bool $encrypt;
+
+    /**
+     * Device registration token; may be empty to deregister a device
+     *
+     * @var string
+     */
+    protected string $token;
 
     public function __construct(string $token, bool $encrypt)
     {
@@ -45,13 +45,9 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
         );
     }
 
-    public function typeSerialize(): array
+    public function getEncrypt(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'token' => $this->token,
-            'encrypt' => $this->encrypt,
-        ];
+        return $this->encrypt;
     }
 
     public function getToken(): string
@@ -59,8 +55,12 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
         return $this->token;
     }
 
-    public function getEncrypt(): bool
+    public function typeSerialize(): array
     {
-        return $this->encrypt;
+        return [
+            '@type' => static::TYPE_NAME,
+            'token' => $this->token,
+            'encrypt' => $this->encrypt,
+        ];
     }
 }

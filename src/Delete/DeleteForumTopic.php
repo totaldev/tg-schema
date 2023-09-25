@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+ * Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic
+ * has no messages from other users and has at most 11 messages
  */
 class DeleteForumTopic extends TdFunction
 {
@@ -44,15 +45,6 @@ class DeleteForumTopic extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class DeleteForumTopic extends TdFunction
     public function getMessageThreadId(): int
     {
         return $this->messageThreadId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+        ];
     }
 }

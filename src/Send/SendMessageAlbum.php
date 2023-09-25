@@ -15,7 +15,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+ * Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and
+ * audio files can be only grouped in an album with messages of the same type. Returns sent messages
  */
 class SendMessageAlbum extends TdFunction
 {
@@ -29,6 +30,13 @@ class SendMessageAlbum extends TdFunction
     protected int $chatId;
 
     /**
+     * Contents of messages to be sent. At most 10 messages can be added to an album
+     *
+     * @var InputMessageContent[]
+     */
+    protected array $inputMessageContents;
+
+    /**
      * If not 0, a message thread identifier in which the messages will be sent
      *
      * @var int
@@ -36,11 +44,11 @@ class SendMessageAlbum extends TdFunction
     protected int $messageThreadId;
 
     /**
-     * Identifier of the replied message or story; pass null if none
+     * Pass true to get fake messages instead of actually sending them
      *
-     * @var MessageReplyTo
+     * @var bool
      */
-    protected MessageReplyTo $replyTo;
+    protected bool $onlyPreview;
 
     /**
      * Options to be used to send the messages; pass null to use default options
@@ -50,27 +58,21 @@ class SendMessageAlbum extends TdFunction
     protected MessageSendOptions $options;
 
     /**
-     * Contents of messages to be sent. At most 10 messages can be added to an album
+     * Identifier of the replied message or story; pass null if none
      *
-     * @var InputMessageContent[]
+     * @var MessageReplyTo
      */
-    protected array $inputMessageContents;
-
-    /**
-     * Pass true to get fake messages instead of actually sending them
-     *
-     * @var bool
-     */
-    protected bool $onlyPreview;
+    protected MessageReplyTo $replyTo;
 
     public function __construct(
-        int $chatId,
-        int $messageThreadId,
-        MessageReplyTo $replyTo,
+        int                $chatId,
+        int                $messageThreadId,
+        MessageReplyTo     $replyTo,
         MessageSendOptions $options,
-        array $inputMessageContents,
-        bool $onlyPreview,
-    ) {
+        array              $inputMessageContents,
+        bool               $onlyPreview,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageThreadId = $messageThreadId;
         $this->replyTo = $replyTo;
@@ -86,9 +88,39 @@ class SendMessageAlbum extends TdFunction
             $array['message_thread_id'],
             TdSchemaRegistry::fromArray($array['reply_to']),
             TdSchemaRegistry::fromArray($array['options']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['inputMessageContents']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
             $array['only_preview'],
         );
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getInputMessageContents(): array
+    {
+        return $this->inputMessageContents;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
+    public function getOnlyPreview(): bool
+    {
+        return $this->onlyPreview;
+    }
+
+    public function getOptions(): MessageSendOptions
+    {
+        return $this->options;
+    }
+
+    public function getReplyTo(): MessageReplyTo
+    {
+        return $this->replyTo;
     }
 
     public function typeSerialize(): array
@@ -102,35 +134,5 @@ class SendMessageAlbum extends TdFunction
             array_map(fn($x) => $x->typeSerialize(), $this->inputMessageContents),
             'only_preview' => $this->onlyPreview,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getReplyTo(): MessageReplyTo
-    {
-        return $this->replyTo;
-    }
-
-    public function getOptions(): MessageSendOptions
-    {
-        return $this->options;
-    }
-
-    public function getInputMessageContents(): array
-    {
-        return $this->inputMessageContents;
-    }
-
-    public function getOnlyPreview(): bool
-    {
-        return $this->onlyPreview;
     }
 }

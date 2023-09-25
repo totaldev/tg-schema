@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+ * Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if
+ * message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
  */
 class GetMessageLink extends TdFunction
 {
@@ -22,20 +23,6 @@ class GetMessageLink extends TdFunction
      * @var int
      */
     protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
-     *
-     * @var int
-     */
-    protected int $mediaTimestamp;
 
     /**
      * Pass true to create a link for the whole media album
@@ -51,13 +38,29 @@ class GetMessageLink extends TdFunction
      */
     protected bool $inMessageThread;
 
+    /**
+     * If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its
+     * web page preview
+     *
+     * @var int
+     */
+    protected int $mediaTimestamp;
+
+    /**
+     * Identifier of the message
+     *
+     * @var int
+     */
+    protected int $messageId;
+
     public function __construct(
-        int $chatId,
-        int $messageId,
-        int $mediaTimestamp,
+        int  $chatId,
+        int  $messageId,
+        int  $mediaTimestamp,
         bool $forAlbum,
         bool $inMessageThread,
-    ) {
+    )
+    {
         $this->chatId = $chatId;
         $this->messageId = $messageId;
         $this->mediaTimestamp = $mediaTimestamp;
@@ -76,31 +79,9 @@ class GetMessageLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'media_timestamp' => $this->mediaTimestamp,
-            'for_album' => $this->forAlbum,
-            'in_message_thread' => $this->inMessageThread,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getMediaTimestamp(): int
-    {
-        return $this->mediaTimestamp;
     }
 
     public function getForAlbum(): bool
@@ -111,5 +92,27 @@ class GetMessageLink extends TdFunction
     public function getInMessageThread(): bool
     {
         return $this->inMessageThread;
+    }
+
+    public function getMediaTimestamp(): int
+    {
+        return $this->mediaTimestamp;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'media_timestamp' => $this->mediaTimestamp,
+            'for_album' => $this->forAlbum,
+            'in_message_thread' => $this->inMessageThread,
+        ];
     }
 }

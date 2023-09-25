@@ -44,15 +44,6 @@ class CancelDownloadFile extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'only_if_pending' => $this->onlyIfPending,
-        ];
-    }
-
     public function getFileId(): int
     {
         return $this->fileId;
@@ -61,5 +52,14 @@ class CancelDownloadFile extends TdFunction
     public function getOnlyIfPending(): bool
     {
         return $this->onlyIfPending;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'only_if_pending' => $this->onlyIfPending,
+        ];
     }
 }

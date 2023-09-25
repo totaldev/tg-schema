@@ -16,11 +16,11 @@ class UpdateFileDownloads extends Update
     public const TYPE_NAME = 'updateFileDownloads';
 
     /**
-     * Total size of files in the file download list, in bytes
+     * Total downloaded size of files in the file download list, in bytes
      *
      * @var int
      */
-    protected int $totalSize;
+    protected int $downloadedSize;
 
     /**
      * Total number of files in the file download list
@@ -30,11 +30,11 @@ class UpdateFileDownloads extends Update
     protected int $totalCount;
 
     /**
-     * Total downloaded size of files in the file download list, in bytes
+     * Total size of files in the file download list, in bytes
      *
      * @var int
      */
-    protected int $downloadedSize;
+    protected int $totalSize;
 
     public function __construct(int $totalSize, int $totalCount, int $downloadedSize)
     {
@@ -54,6 +54,21 @@ class UpdateFileDownloads extends Update
         );
     }
 
+    public function getDownloadedSize(): int
+    {
+        return $this->downloadedSize;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function getTotalSize(): int
+    {
+        return $this->totalSize;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class UpdateFileDownloads extends Update
             'total_count' => $this->totalCount,
             'downloaded_size' => $this->downloadedSize,
         ];
-    }
-
-    public function getTotalSize(): int
-    {
-        return $this->totalSize;
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getDownloadedSize(): int
-    {
-        return $this->downloadedSize;
     }
 }

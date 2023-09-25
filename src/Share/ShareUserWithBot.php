@@ -17,6 +17,13 @@ class ShareUserWithBot extends TdFunction
     public const TYPE_NAME = 'shareUserWithBot';
 
     /**
+     * Identifier of the button
+     *
+     * @var int
+     */
+    protected int $buttonId;
+
+    /**
      * Identifier of the chat with the bot
      *
      * @var int
@@ -31,11 +38,11 @@ class ShareUserWithBot extends TdFunction
     protected int $messageId;
 
     /**
-     * Identifier of the button
+     * Pass true to check that the user can be shared by the button instead of actually sharing them
      *
-     * @var int
+     * @var bool
      */
-    protected int $buttonId;
+    protected bool $onlyCheck;
 
     /**
      * Identifier of the shared user
@@ -43,13 +50,6 @@ class ShareUserWithBot extends TdFunction
      * @var int
      */
     protected int $sharedUserId;
-
-    /**
-     * Pass true to check that the user can be shared by the button instead of actually sharing them
-     *
-     * @var bool
-     */
-    protected bool $onlyCheck;
 
     public function __construct(int $chatId, int $messageId, int $buttonId, int $sharedUserId, bool $onlyCheck)
     {
@@ -71,16 +71,9 @@ class ShareUserWithBot extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getButtonId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'button_id' => $this->buttonId,
-            'shared_user_id' => $this->sharedUserId,
-            'only_check' => $this->onlyCheck,
-        ];
+        return $this->buttonId;
     }
 
     public function getChatId(): int
@@ -93,9 +86,9 @@ class ShareUserWithBot extends TdFunction
         return $this->messageId;
     }
 
-    public function getButtonId(): int
+    public function getOnlyCheck(): bool
     {
-        return $this->buttonId;
+        return $this->onlyCheck;
     }
 
     public function getSharedUserId(): int
@@ -103,8 +96,15 @@ class ShareUserWithBot extends TdFunction
         return $this->sharedUserId;
     }
 
-    public function getOnlyCheck(): bool
+    public function typeSerialize(): array
     {
-        return $this->onlyCheck;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'button_id' => $this->buttonId,
+            'shared_user_id' => $this->sharedUserId,
+            'only_check' => $this->onlyCheck,
+        ];
     }
 }

@@ -35,16 +35,16 @@ class TestCallVectorInt extends TdFunction
         );
     }
 
+    public function getX(): array
+    {
+        return $this->x;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'x' => $this->x,
         ];
-    }
-
-    public function getX(): array
-    {
-        return $this->x;
     }
 }

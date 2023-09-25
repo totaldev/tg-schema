@@ -35,16 +35,16 @@ class CustomRequestResult extends TdObject
         );
     }
 
+    public function getResult(): string
+    {
+        return $this->result;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'result' => $this->result,
         ];
-    }
-
-    public function getResult(): string
-    {
-        return $this->result;
     }
 }

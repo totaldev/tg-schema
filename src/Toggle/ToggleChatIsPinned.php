@@ -11,18 +11,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+ * Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret
+ * chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
  */
 class ToggleChatIsPinned extends TdFunction
 {
     public const TYPE_NAME = 'toggleChatIsPinned';
-
-    /**
-     * Chat list in which to change the pinned state of the chat
-     *
-     * @var ChatList
-     */
-    protected ChatList $chatList;
 
     /**
      * Chat identifier
@@ -30,6 +24,13 @@ class ToggleChatIsPinned extends TdFunction
      * @var int
      */
     protected int $chatId;
+
+    /**
+     * Chat list in which to change the pinned state of the chat
+     *
+     * @var ChatList
+     */
+    protected ChatList $chatList;
 
     /**
      * Pass true to pin the chat; pass false to unpin it
@@ -54,6 +55,21 @@ class ToggleChatIsPinned extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getChatList(): ChatList
+    {
+        return $this->chatList;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class ToggleChatIsPinned extends TdFunction
             'chat_id' => $this->chatId,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getChatList(): ChatList
-    {
-        return $this->chatList;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

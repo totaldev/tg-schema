@@ -18,25 +18,11 @@ class GetMapThumbnailFile extends TdFunction
     public const TYPE_NAME = 'getMapThumbnailFile';
 
     /**
-     * Location of the map center
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * Map zoom level; 13-20
+     * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
      *
      * @var int
      */
-    protected int $zoom;
-
-    /**
-     * Map width in pixels before applying scale; 16-1024
-     *
-     * @var int
-     */
-    protected int $width;
+    protected int $chatId;
 
     /**
      * Map height in pixels before applying scale; 16-1024
@@ -46,6 +32,13 @@ class GetMapThumbnailFile extends TdFunction
     protected int $height;
 
     /**
+     * Location of the map center
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
      * Map scale; 1-3
      *
      * @var int
@@ -53,11 +46,18 @@ class GetMapThumbnailFile extends TdFunction
     protected int $scale;
 
     /**
-     * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
+     * Map width in pixels before applying scale; 16-1024
      *
      * @var int
      */
-    protected int $chatId;
+    protected int $width;
+
+    /**
+     * Map zoom level; 13-20
+     *
+     * @var int
+     */
+    protected int $zoom;
 
     public function __construct(Location $location, int $zoom, int $width, int $height, int $scale, int $chatId)
     {
@@ -81,6 +81,36 @@ class GetMapThumbnailFile extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getScale(): int
+    {
+        return $this->scale;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
+    public function getZoom(): int
+    {
+        return $this->zoom;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -92,35 +122,5 @@ class GetMapThumbnailFile extends TdFunction
             'scale' => $this->scale,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getZoom(): int
-    {
-        return $this->zoom;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getScale(): int
-    {
-        return $this->scale;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

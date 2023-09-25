@@ -18,13 +18,6 @@ class ChatInviteLinkInfo extends TdObject
     public const TYPE_NAME = 'chatInviteLinkInfo';
 
     /**
-     * Chat identifier of the invite link; 0 if the user has no access to the chat before joining
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * If non-zero, the amount of time for which read access to the chat will remain available, in seconds
      *
      * @var int
@@ -32,25 +25,18 @@ class ChatInviteLinkInfo extends TdObject
     protected int $accessibleFor;
 
     /**
-     * Type of the chat
+     * Chat identifier of the invite link; 0 if the user has no access to the chat before joining
      *
-     * @var InviteLinkChatType
+     * @var int
      */
-    protected InviteLinkChatType $type;
+    protected int $chatId;
 
     /**
-     * Title of the chat
+     * True, if the link only creates join request
      *
-     * @var string
+     * @var bool
      */
-    protected string $title;
-
-    /**
-     * Chat photo; may be null
-     *
-     * @var ChatPhotoInfo|null
-     */
-    protected ?ChatPhotoInfo $photo;
+    protected bool $createsJoinRequest;
 
     /**
      * Chat description
@@ -58,6 +44,34 @@ class ChatInviteLinkInfo extends TdObject
      * @var string
      */
     protected string $description;
+
+    /**
+     * True, if many users reported this chat as a fake account
+     *
+     * @var bool
+     */
+    protected bool $isFake;
+
+    /**
+     * True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
+     *
+     * @var bool
+     */
+    protected bool $isPublic;
+
+    /**
+     * True, if many users reported this chat as a scam
+     *
+     * @var bool
+     */
+    protected bool $isScam;
+
+    /**
+     * True, if the chat is verified
+     *
+     * @var bool
+     */
+    protected bool $isVerified;
 
     /**
      * Number of members in the chat
@@ -74,55 +88,42 @@ class ChatInviteLinkInfo extends TdObject
     protected array $memberUserIds;
 
     /**
-     * True, if the link only creates join request
+     * Chat photo; may be null
      *
-     * @var bool
+     * @var ChatPhotoInfo|null
      */
-    protected bool $createsJoinRequest;
+    protected ?ChatPhotoInfo $photo;
 
     /**
-     * True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
+     * Title of the chat
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isPublic;
+    protected string $title;
 
     /**
-     * True, if the chat is verified
+     * Type of the chat
      *
-     * @var bool
+     * @var InviteLinkChatType
      */
-    protected bool $isVerified;
-
-    /**
-     * True, if many users reported this chat as a scam
-     *
-     * @var bool
-     */
-    protected bool $isScam;
-
-    /**
-     * True, if many users reported this chat as a fake account
-     *
-     * @var bool
-     */
-    protected bool $isFake;
+    protected InviteLinkChatType $type;
 
     public function __construct(
-        int $chatId,
-        int $accessibleFor,
+        int                $chatId,
+        int                $accessibleFor,
         InviteLinkChatType $type,
-        string $title,
-        ?ChatPhotoInfo $photo,
-        string $description,
-        int $memberCount,
-        array $memberUserIds,
-        bool $createsJoinRequest,
-        bool $isPublic,
-        bool $isVerified,
-        bool $isScam,
-        bool $isFake,
-    ) {
+        string             $title,
+        ?ChatPhotoInfo     $photo,
+        string             $description,
+        int                $memberCount,
+        array              $memberUserIds,
+        bool               $createsJoinRequest,
+        bool               $isPublic,
+        bool               $isVerified,
+        bool               $isScam,
+        bool               $isFake,
+    )
+    {
         $this->chatId = $chatId;
         $this->accessibleFor = $accessibleFor;
         $this->type = $type;
@@ -157,6 +158,71 @@ class ChatInviteLinkInfo extends TdObject
         );
     }
 
+    public function getAccessibleFor(): int
+    {
+        return $this->accessibleFor;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getCreatesJoinRequest(): bool
+    {
+        return $this->createsJoinRequest;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getIsFake(): bool
+    {
+        return $this->isFake;
+    }
+
+    public function getIsPublic(): bool
+    {
+        return $this->isPublic;
+    }
+
+    public function getIsScam(): bool
+    {
+        return $this->isScam;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getMemberCount(): int
+    {
+        return $this->memberCount;
+    }
+
+    public function getMemberUserIds(): array
+    {
+        return $this->memberUserIds;
+    }
+
+    public function getPhoto(): ?ChatPhotoInfo
+    {
+        return $this->photo;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getType(): InviteLinkChatType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -175,70 +241,5 @@ class ChatInviteLinkInfo extends TdObject
             'is_scam' => $this->isScam,
             'is_fake' => $this->isFake,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getAccessibleFor(): int
-    {
-        return $this->accessibleFor;
-    }
-
-    public function getType(): InviteLinkChatType
-    {
-        return $this->type;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getPhoto(): ?ChatPhotoInfo
-    {
-        return $this->photo;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getMemberCount(): int
-    {
-        return $this->memberCount;
-    }
-
-    public function getMemberUserIds(): array
-    {
-        return $this->memberUserIds;
-    }
-
-    public function getCreatesJoinRequest(): bool
-    {
-        return $this->createsJoinRequest;
-    }
-
-    public function getIsPublic(): bool
-    {
-        return $this->isPublic;
-    }
-
-    public function getIsVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function getIsScam(): bool
-    {
-        return $this->isScam;
-    }
-
-    public function getIsFake(): bool
-    {
-        return $this->isFake;
     }
 }

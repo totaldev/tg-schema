@@ -11,7 +11,10 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
+ * Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be
+ * used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance,
+ * the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and
+ * message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
  */
 class SearchChatMessages extends TdFunction
 {
@@ -23,6 +26,42 @@ class SearchChatMessages extends TdFunction
      * @var int
      */
     protected int $chatId;
+
+    /**
+     * Additional filter for messages to search; pass null to search for all messages
+     *
+     * @var SearchMessagesFilter
+     */
+    protected SearchMessagesFilter $filter;
+
+    /**
+     * Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+     *
+     * @var int
+     */
+    protected int $fromMessageId;
+
+    /**
+     * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than
+     * -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
+     * If not 0, only messages in the specified thread will be returned; supergroups only
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
+
+    /**
+     * Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+     *
+     * @var int
+     */
+    protected int $offset;
 
     /**
      * Query to search for
@@ -38,51 +77,17 @@ class SearchChatMessages extends TdFunction
      */
     protected MessageSender $senderId;
 
-    /**
-     * Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-     *
-     * @var int
-     */
-    protected int $fromMessageId;
-
-    /**
-     * Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
-     * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Additional filter for messages to search; pass null to search for all messages
-     *
-     * @var SearchMessagesFilter
-     */
-    protected SearchMessagesFilter $filter;
-
-    /**
-     * If not 0, only messages in the specified thread will be returned; supergroups only
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
     public function __construct(
-        int $chatId,
-        string $query,
-        MessageSender $senderId,
-        int $fromMessageId,
-        int $offset,
-        int $limit,
+        int                  $chatId,
+        string               $query,
+        MessageSender        $senderId,
+        int                  $fromMessageId,
+        int                  $offset,
+        int                  $limit,
         SearchMessagesFilter $filter,
-        int $messageThreadId,
-    ) {
+        int                  $messageThreadId,
+    )
+    {
         $this->chatId = $chatId;
         $this->query = $query;
         $this->senderId = $senderId;
@@ -107,6 +112,46 @@ class SearchChatMessages extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFilter(): SearchMessagesFilter
+    {
+        return $this->filter;
+    }
+
+    public function getFromMessageId(): int
+    {
+        return $this->fromMessageId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getSenderId(): MessageSender
+    {
+        return $this->senderId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -120,45 +165,5 @@ class SearchChatMessages extends TdFunction
             'filter' => $this->filter->typeSerialize(),
             'message_thread_id' => $this->messageThreadId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getSenderId(): MessageSender
-    {
-        return $this->senderId;
-    }
-
-    public function getFromMessageId(): int
-    {
-        return $this->fromMessageId;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getFilter(): SearchMessagesFilter
-    {
-        return $this->filter;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 }

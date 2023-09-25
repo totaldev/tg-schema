@@ -54,16 +54,6 @@ class GetCallbackQueryAnswer extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'payload' => $this->payload->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +67,15 @@ class GetCallbackQueryAnswer extends TdFunction
     public function getPayload(): CallbackQueryPayload
     {
         return $this->payload;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'payload' => $this->payload->typeSerialize(),
+        ];
     }
 }

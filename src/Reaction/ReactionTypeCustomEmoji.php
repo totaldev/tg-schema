@@ -36,16 +36,16 @@ class ReactionTypeCustomEmoji extends ReactionType
         );
     }
 
+    public function getCustomEmojiId(): int
+    {
+        return $this->customEmojiId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'custom_emoji_id' => $this->customEmojiId,
         ];
-    }
-
-    public function getCustomEmojiId(): int
-    {
-        return $this->customEmojiId;
     }
 }

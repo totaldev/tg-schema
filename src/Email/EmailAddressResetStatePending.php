@@ -36,16 +36,16 @@ class EmailAddressResetStatePending extends EmailAddressResetState
         );
     }
 
+    public function getResetIn(): int
+    {
+        return $this->resetIn;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'reset_in' => $this->resetIn,
         ];
-    }
-
-    public function getResetIn(): int
-    {
-        return $this->resetIn;
     }
 }

@@ -35,16 +35,16 @@ class RecoveryEmailAddress extends TdObject
         );
     }
 
+    public function getRecoveryEmailAddress(): string
+    {
+        return $this->recoveryEmailAddress;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'recovery_email_address' => $this->recoveryEmailAddress,
         ];
-    }
-
-    public function getRecoveryEmailAddress(): string
-    {
-        return $this->recoveryEmailAddress;
     }
 }

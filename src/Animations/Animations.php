@@ -36,16 +36,16 @@ class Animations extends TdObject
         );
     }
 
+    public function getAnimations(): array
+    {
+        return $this->animations;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->animations),
         ];
-    }
-
-    public function getAnimations(): array
-    {
-        return $this->animations;
     }
 }

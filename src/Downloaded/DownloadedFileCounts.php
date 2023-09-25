@@ -24,18 +24,18 @@ class DownloadedFileCounts extends TdObject
     protected int $activeCount;
 
     /**
-     * Number of paused file downloads found
-     *
-     * @var int
-     */
-    protected int $pausedCount;
-
-    /**
      * Number of completed file downloads found
      *
      * @var int
      */
     protected int $completedCount;
+
+    /**
+     * Number of paused file downloads found
+     *
+     * @var int
+     */
+    protected int $pausedCount;
 
     public function __construct(int $activeCount, int $pausedCount, int $completedCount)
     {
@@ -53,6 +53,21 @@ class DownloadedFileCounts extends TdObject
         );
     }
 
+    public function getActiveCount(): int
+    {
+        return $this->activeCount;
+    }
+
+    public function getCompletedCount(): int
+    {
+        return $this->completedCount;
+    }
+
+    public function getPausedCount(): int
+    {
+        return $this->pausedCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class DownloadedFileCounts extends TdObject
             'paused_count' => $this->pausedCount,
             'completed_count' => $this->completedCount,
         ];
-    }
-
-    public function getActiveCount(): int
-    {
-        return $this->activeCount;
-    }
-
-    public function getPausedCount(): int
-    {
-        return $this->pausedCount;
-    }
-
-    public function getCompletedCount(): int
-    {
-        return $this->completedCount;
     }
 }

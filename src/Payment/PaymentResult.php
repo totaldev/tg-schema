@@ -44,15 +44,6 @@ class PaymentResult extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'success' => $this->success,
-            'verification_url' => $this->verificationUrl,
-        ];
-    }
-
     public function getSuccess(): bool
     {
         return $this->success;
@@ -61,5 +52,14 @@ class PaymentResult extends TdObject
     public function getVerificationUrl(): string
     {
         return $this->verificationUrl;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'success' => $this->success,
+            'verification_url' => $this->verificationUrl,
+        ];
     }
 }

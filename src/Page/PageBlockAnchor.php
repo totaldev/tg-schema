@@ -36,16 +36,16 @@ class PageBlockAnchor extends PageBlock
         );
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'name' => $this->name,
         ];
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 }

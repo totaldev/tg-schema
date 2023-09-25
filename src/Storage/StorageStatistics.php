@@ -17,11 +17,11 @@ class StorageStatistics extends TdObject
     public const TYPE_NAME = 'storageStatistics';
 
     /**
-     * Total size of files, in bytes
+     * Statistics split by chats
      *
-     * @var int
+     * @var StorageStatisticsByChat[]
      */
-    protected int $size;
+    protected array $byChat;
 
     /**
      * Total number of files
@@ -31,11 +31,11 @@ class StorageStatistics extends TdObject
     protected int $count;
 
     /**
-     * Statistics split by chats
+     * Total size of files, in bytes
      *
-     * @var StorageStatisticsByChat[]
+     * @var int
      */
-    protected array $byChat;
+    protected int $size;
 
     public function __construct(int $size, int $count, array $byChat)
     {
@@ -49,8 +49,23 @@ class StorageStatistics extends TdObject
         return new static(
             $array['size'],
             $array['count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['byChat']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['by_chat']),
         );
+    }
+
+    public function getByChat(): array
+    {
+        return $this->byChat;
+    }
+
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    public function getSize(): int
+    {
+        return $this->size;
     }
 
     public function typeSerialize(): array
@@ -61,20 +76,5 @@ class StorageStatistics extends TdObject
             'count' => $this->count,
             array_map(fn($x) => $x->typeSerialize(), $this->byChat),
         ];
-    }
-
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
-    public function getByChat(): array
-    {
-        return $this->byChat;
     }
 }

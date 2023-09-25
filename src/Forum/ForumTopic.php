@@ -20,18 +20,18 @@ class ForumTopic extends TdObject
     public const TYPE_NAME = 'forumTopic';
 
     /**
+     * A draft of a message in the topic; may be null if none
+     *
+     * @var DraftMessage|null
+     */
+    protected ?DraftMessage $draftMessage;
+
+    /**
      * Basic information about the topic
      *
      * @var ForumTopicInfo
      */
     protected ForumTopicInfo $info;
-
-    /**
-     * Last message in the topic; may be null if unknown
-     *
-     * @var Message|null
-     */
-    protected ?Message $lastMessage;
 
     /**
      * True, if the topic is pinned in the topic list
@@ -41,11 +41,11 @@ class ForumTopic extends TdObject
     protected bool $isPinned;
 
     /**
-     * Number of unread messages in the topic
+     * Last message in the topic; may be null if unknown
      *
-     * @var int
+     * @var Message|null
      */
-    protected int $unreadCount;
+    protected ?Message $lastMessage;
 
     /**
      * Identifier of the last read incoming message
@@ -62,6 +62,20 @@ class ForumTopic extends TdObject
     protected int $lastReadOutboxMessageId;
 
     /**
+     * Notification settings for the topic
+     *
+     * @var ChatNotificationSettings
+     */
+    protected ChatNotificationSettings $notificationSettings;
+
+    /**
+     * Number of unread messages in the topic
+     *
+     * @var int
+     */
+    protected int $unreadCount;
+
+    /**
      * Number of unread messages with a mention/reply in the topic
      *
      * @var int
@@ -75,32 +89,19 @@ class ForumTopic extends TdObject
      */
     protected int $unreadReactionCount;
 
-    /**
-     * Notification settings for the topic
-     *
-     * @var ChatNotificationSettings
-     */
-    protected ChatNotificationSettings $notificationSettings;
-
-    /**
-     * A draft of a message in the topic; may be null if none
-     *
-     * @var DraftMessage|null
-     */
-    protected ?DraftMessage $draftMessage;
-
     public function __construct(
-        ForumTopicInfo $info,
-        ?Message $lastMessage,
-        bool $isPinned,
-        int $unreadCount,
-        int $lastReadInboxMessageId,
-        int $lastReadOutboxMessageId,
-        int $unreadMentionCount,
-        int $unreadReactionCount,
+        ForumTopicInfo           $info,
+        ?Message                 $lastMessage,
+        bool                     $isPinned,
+        int                      $unreadCount,
+        int                      $lastReadInboxMessageId,
+        int                      $lastReadOutboxMessageId,
+        int                      $unreadMentionCount,
+        int                      $unreadReactionCount,
         ChatNotificationSettings $notificationSettings,
-        ?DraftMessage $draftMessage,
-    ) {
+        ?DraftMessage            $draftMessage,
+    )
+    {
         $this->info = $info;
         $this->lastMessage = $lastMessage;
         $this->isPinned = $isPinned;
@@ -129,6 +130,56 @@ class ForumTopic extends TdObject
         );
     }
 
+    public function getDraftMessage(): ?DraftMessage
+    {
+        return $this->draftMessage;
+    }
+
+    public function getInfo(): ForumTopicInfo
+    {
+        return $this->info;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getLastMessage(): ?Message
+    {
+        return $this->lastMessage;
+    }
+
+    public function getLastReadInboxMessageId(): int
+    {
+        return $this->lastReadInboxMessageId;
+    }
+
+    public function getLastReadOutboxMessageId(): int
+    {
+        return $this->lastReadOutboxMessageId;
+    }
+
+    public function getNotificationSettings(): ChatNotificationSettings
+    {
+        return $this->notificationSettings;
+    }
+
+    public function getUnreadCount(): int
+    {
+        return $this->unreadCount;
+    }
+
+    public function getUnreadMentionCount(): int
+    {
+        return $this->unreadMentionCount;
+    }
+
+    public function getUnreadReactionCount(): int
+    {
+        return $this->unreadReactionCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -144,55 +195,5 @@ class ForumTopic extends TdObject
             'notification_settings' => $this->notificationSettings->typeSerialize(),
             'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
         ];
-    }
-
-    public function getInfo(): ForumTopicInfo
-    {
-        return $this->info;
-    }
-
-    public function getLastMessage(): ?Message
-    {
-        return $this->lastMessage;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
-    }
-
-    public function getUnreadCount(): int
-    {
-        return $this->unreadCount;
-    }
-
-    public function getLastReadInboxMessageId(): int
-    {
-        return $this->lastReadInboxMessageId;
-    }
-
-    public function getLastReadOutboxMessageId(): int
-    {
-        return $this->lastReadOutboxMessageId;
-    }
-
-    public function getUnreadMentionCount(): int
-    {
-        return $this->unreadMentionCount;
-    }
-
-    public function getUnreadReactionCount(): int
-    {
-        return $this->unreadReactionCount;
-    }
-
-    public function getNotificationSettings(): ChatNotificationSettings
-    {
-        return $this->notificationSettings;
-    }
-
-    public function getDraftMessage(): ?DraftMessage
-    {
-        return $this->draftMessage;
     }
 }

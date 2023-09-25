@@ -35,16 +35,16 @@ class GetStickerSet extends TdFunction
         );
     }
 
+    public function getSetId(): int
+    {
+        return $this->setId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'set_id' => $this->setId,
         ];
-    }
-
-    public function getSetId(): int
-    {
-        return $this->setId;
     }
 }

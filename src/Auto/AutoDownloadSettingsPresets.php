@@ -17,6 +17,13 @@ class AutoDownloadSettingsPresets extends TdObject
     public const TYPE_NAME = 'autoDownloadSettingsPresets';
 
     /**
+     * Preset with highest settings; supposed to be used by default when connected on Wi-Fi
+     *
+     * @var AutoDownloadSettings
+     */
+    protected AutoDownloadSettings $high;
+
+    /**
      * Preset with lowest settings; supposed to be used by default when roaming
      *
      * @var AutoDownloadSettings
@@ -29,13 +36,6 @@ class AutoDownloadSettingsPresets extends TdObject
      * @var AutoDownloadSettings
      */
     protected AutoDownloadSettings $medium;
-
-    /**
-     * Preset with highest settings; supposed to be used by default when connected on Wi-Fi
-     *
-     * @var AutoDownloadSettings
-     */
-    protected AutoDownloadSettings $high;
 
     public function __construct(AutoDownloadSettings $low, AutoDownloadSettings $medium, AutoDownloadSettings $high)
     {
@@ -53,14 +53,9 @@ class AutoDownloadSettingsPresets extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getHigh(): AutoDownloadSettings
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'low' => $this->low->typeSerialize(),
-            'medium' => $this->medium->typeSerialize(),
-            'high' => $this->high->typeSerialize(),
-        ];
+        return $this->high;
     }
 
     public function getLow(): AutoDownloadSettings
@@ -73,8 +68,13 @@ class AutoDownloadSettingsPresets extends TdObject
         return $this->medium;
     }
 
-    public function getHigh(): AutoDownloadSettings
+    public function typeSerialize(): array
     {
-        return $this->high;
+        return [
+            '@type' => static::TYPE_NAME,
+            'low' => $this->low->typeSerialize(),
+            'medium' => $this->medium->typeSerialize(),
+            'high' => $this->high->typeSerialize(),
+        ];
     }
 }

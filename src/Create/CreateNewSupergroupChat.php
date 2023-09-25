@@ -18,18 +18,18 @@ class CreateNewSupergroupChat extends TdFunction
     public const TYPE_NAME = 'createNewSupergroupChat';
 
     /**
-     * Title of the new chat; 1-128 characters
+     * Chat description; 0-255 characters
      *
      * @var string
      */
-    protected string $title;
+    protected string $description;
 
     /**
-     * Pass true to create a forum supergroup chat
+     * Pass true to create a supergroup for importing messages using importMessages
      *
      * @var bool
      */
-    protected bool $isForum;
+    protected bool $forImport;
 
     /**
      * Pass true to create a channel chat; ignored if a forum is created
@@ -39,11 +39,11 @@ class CreateNewSupergroupChat extends TdFunction
     protected bool $isChannel;
 
     /**
-     * Chat description; 0-255 characters
+     * Pass true to create a forum supergroup chat
      *
-     * @var string
+     * @var bool
      */
-    protected string $description;
+    protected bool $isForum;
 
     /**
      * Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
@@ -60,21 +60,22 @@ class CreateNewSupergroupChat extends TdFunction
     protected int $messageAutoDeleteTime;
 
     /**
-     * Pass true to create a supergroup for importing messages using importMessages
+     * Title of the new chat; 1-128 characters
      *
-     * @var bool
+     * @var string
      */
-    protected bool $forImport;
+    protected string $title;
 
     public function __construct(
-        string $title,
-        bool $isForum,
-        bool $isChannel,
-        string $description,
+        string       $title,
+        bool         $isForum,
+        bool         $isChannel,
+        string       $description,
         ChatLocation $location,
-        int $messageAutoDeleteTime,
-        bool $forImport,
-    ) {
+        int          $messageAutoDeleteTime,
+        bool         $forImport,
+    )
+    {
         $this->title = $title;
         $this->isForum = $isForum;
         $this->isChannel = $isChannel;
@@ -97,28 +98,14 @@ class CreateNewSupergroupChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getDescription(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'is_forum' => $this->isForum,
-            'is_channel' => $this->isChannel,
-            'description' => $this->description,
-            'location' => $this->location->typeSerialize(),
-            'message_auto_delete_time' => $this->messageAutoDeleteTime,
-            'for_import' => $this->forImport,
-        ];
+        return $this->description;
     }
 
-    public function getTitle(): string
+    public function getForImport(): bool
     {
-        return $this->title;
-    }
-
-    public function getIsForum(): bool
-    {
-        return $this->isForum;
+        return $this->forImport;
     }
 
     public function getIsChannel(): bool
@@ -126,9 +113,9 @@ class CreateNewSupergroupChat extends TdFunction
         return $this->isChannel;
     }
 
-    public function getDescription(): string
+    public function getIsForum(): bool
     {
-        return $this->description;
+        return $this->isForum;
     }
 
     public function getLocation(): ChatLocation
@@ -141,8 +128,22 @@ class CreateNewSupergroupChat extends TdFunction
         return $this->messageAutoDeleteTime;
     }
 
-    public function getForImport(): bool
+    public function getTitle(): string
     {
-        return $this->forImport;
+        return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'is_forum' => $this->isForum,
+            'is_channel' => $this->isChannel,
+            'description' => $this->description,
+            'location' => $this->location->typeSerialize(),
+            'message_auto_delete_time' => $this->messageAutoDeleteTime,
+            'for_import' => $this->forImport,
+        ];
     }
 }

@@ -17,6 +17,20 @@ class InputMessageDocument extends InputMessageContent
     public const TYPE_NAME = 'inputMessageDocument';
 
     /**
+     * Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $caption;
+
+    /**
+     * If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
+     *
+     * @var bool
+     */
+    protected bool $disableContentTypeDetection;
+
+    /**
      * Document to be sent
      *
      * @var InputFile
@@ -30,26 +44,13 @@ class InputMessageDocument extends InputMessageContent
      */
     protected InputThumbnail $thumbnail;
 
-    /**
-     * If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
-     *
-     * @var bool
-     */
-    protected bool $disableContentTypeDetection;
-
-    /**
-     * Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
     public function __construct(
-        InputFile $document,
+        InputFile      $document,
         InputThumbnail $thumbnail,
-        bool $disableContentTypeDetection,
-        FormattedText $caption,
-    ) {
+        bool           $disableContentTypeDetection,
+        FormattedText  $caption,
+    )
+    {
         parent::__construct();
 
         $this->document = $document;
@@ -68,15 +69,14 @@ class InputMessageDocument extends InputMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'disable_content_type_detection' => $this->disableContentTypeDetection,
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
+    }
+
+    public function getDisableContentTypeDetection(): bool
+    {
+        return $this->disableContentTypeDetection;
     }
 
     public function getDocument(): InputFile
@@ -89,13 +89,14 @@ class InputMessageDocument extends InputMessageContent
         return $this->thumbnail;
     }
 
-    public function getDisableContentTypeDetection(): bool
+    public function typeSerialize(): array
     {
-        return $this->disableContentTypeDetection;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'document' => $this->document->typeSerialize(),
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'disable_content_type_detection' => $this->disableContentTypeDetection,
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

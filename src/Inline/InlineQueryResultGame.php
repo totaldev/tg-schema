@@ -17,18 +17,18 @@ class InlineQueryResultGame extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultGame';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
      * Game result
      *
      * @var Game
      */
     protected Game $game;
+
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
 
     public function __construct(string $id, Game $game)
     {
@@ -46,13 +46,9 @@ class InlineQueryResultGame extends InlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
+    public function getGame(): Game
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'game' => $this->game->typeSerialize(),
-        ];
+        return $this->game;
     }
 
     public function getId(): string
@@ -60,8 +56,12 @@ class InlineQueryResultGame extends InlineQueryResult
         return $this->id;
     }
 
-    public function getGame(): Game
+    public function typeSerialize(): array
     {
-        return $this->game;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'game' => $this->game->typeSerialize(),
+        ];
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
+ * Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio
+ * file or voice note message). An updateMessageContentOpened update will be generated if something has changed
  */
 class OpenMessageContent extends TdFunction
 {
@@ -44,15 +45,6 @@ class OpenMessageContent extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class OpenMessageContent extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

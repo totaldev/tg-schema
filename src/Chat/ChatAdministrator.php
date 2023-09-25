@@ -17,13 +17,6 @@ class ChatAdministrator extends TdObject
     public const TYPE_NAME = 'chatAdministrator';
 
     /**
-     * User identifier of the administrator
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Custom title of the administrator
      *
      * @var string
@@ -36,6 +29,13 @@ class ChatAdministrator extends TdObject
      * @var bool
      */
     protected bool $isOwner;
+
+    /**
+     * User identifier of the administrator
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, string $customTitle, bool $isOwner)
     {
@@ -53,21 +53,6 @@ class ChatAdministrator extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'custom_title' => $this->customTitle,
-            'is_owner' => $this->isOwner,
-        ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
     public function getCustomTitle(): string
     {
         return $this->customTitle;
@@ -76,5 +61,20 @@ class ChatAdministrator extends TdObject
     public function getIsOwner(): bool
     {
         return $this->isOwner;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'custom_title' => $this->customTitle,
+            'is_owner' => $this->isOwner,
+        ];
     }
 }

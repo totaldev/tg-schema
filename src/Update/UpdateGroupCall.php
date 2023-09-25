@@ -37,16 +37,16 @@ class UpdateGroupCall extends Update
         );
     }
 
+    public function getGroupCall(): GroupCall
+    {
+        return $this->groupCall;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'group_call' => $this->groupCall->typeSerialize(),
         ];
-    }
-
-    public function getGroupCall(): GroupCall
-    {
-        return $this->groupCall;
     }
 }

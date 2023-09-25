@@ -17,18 +17,18 @@ class SetBotUpdatesStatus extends TdFunction
     public const TYPE_NAME = 'setBotUpdatesStatus';
 
     /**
-     * The number of pending updates
-     *
-     * @var int
-     */
-    protected int $pendingUpdateCount;
-
-    /**
      * The last error message
      *
      * @var string
      */
     protected string $errorMessage;
+
+    /**
+     * The number of pending updates
+     *
+     * @var int
+     */
+    protected int $pendingUpdateCount;
 
     public function __construct(int $pendingUpdateCount, string $errorMessage)
     {
@@ -44,13 +44,9 @@ class SetBotUpdatesStatus extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getErrorMessage(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'pending_update_count' => $this->pendingUpdateCount,
-            'error_message' => $this->errorMessage,
-        ];
+        return $this->errorMessage;
     }
 
     public function getPendingUpdateCount(): int
@@ -58,8 +54,12 @@ class SetBotUpdatesStatus extends TdFunction
         return $this->pendingUpdateCount;
     }
 
-    public function getErrorMessage(): string
+    public function typeSerialize(): array
     {
-        return $this->errorMessage;
+        return [
+            '@type' => static::TYPE_NAME,
+            'pending_update_count' => $this->pendingUpdateCount,
+            'error_message' => $this->errorMessage,
+        ];
     }
 }

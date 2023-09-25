@@ -17,18 +17,18 @@ class AnswerPreCheckoutQuery extends TdFunction
     public const TYPE_NAME = 'answerPreCheckoutQuery';
 
     /**
-     * Identifier of the pre-checkout query
-     *
-     * @var int
-     */
-    protected int $preCheckoutQueryId;
-
-    /**
      * An error message, empty on success
      *
      * @var string
      */
     protected string $errorMessage;
+
+    /**
+     * Identifier of the pre-checkout query
+     *
+     * @var int
+     */
+    protected int $preCheckoutQueryId;
 
     public function __construct(int $preCheckoutQueryId, string $errorMessage)
     {
@@ -44,13 +44,9 @@ class AnswerPreCheckoutQuery extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getErrorMessage(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'pre_checkout_query_id' => $this->preCheckoutQueryId,
-            'error_message' => $this->errorMessage,
-        ];
+        return $this->errorMessage;
     }
 
     public function getPreCheckoutQueryId(): int
@@ -58,8 +54,12 @@ class AnswerPreCheckoutQuery extends TdFunction
         return $this->preCheckoutQueryId;
     }
 
-    public function getErrorMessage(): string
+    public function typeSerialize(): array
     {
-        return $this->errorMessage;
+        return [
+            '@type' => static::TYPE_NAME,
+            'pre_checkout_query_id' => $this->preCheckoutQueryId,
+            'error_message' => $this->errorMessage,
+        ];
     }
 }

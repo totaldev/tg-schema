@@ -17,13 +17,6 @@ class MessageLinkInfo extends TdObject
     public const TYPE_NAME = 'messageLinkInfo';
 
     /**
-     * True, if the link is a public link for a message or a forum topic in a chat
-     *
-     * @var bool
-     */
-    protected bool $isPublic;
-
-    /**
      * If found, identifier of the chat to which the link points, 0 otherwise
      *
      * @var int
@@ -31,11 +24,26 @@ class MessageLinkInfo extends TdObject
     protected int $chatId;
 
     /**
-     * If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
+     * True, if the whole media album to which the message belongs is linked
+     *
+     * @var bool
+     */
+    protected bool $forAlbum;
+
+    /**
+     * True, if the link is a public link for a message or a forum topic in a chat
+     *
+     * @var bool
+     */
+    protected bool $isPublic;
+
+    /**
+     * Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content
+     * or in its web page preview
      *
      * @var int
      */
-    protected int $messageThreadId;
+    protected int $mediaTimestamp;
 
     /**
      * If found, the linked message; may be null
@@ -45,27 +53,21 @@ class MessageLinkInfo extends TdObject
     protected ?Message $message;
 
     /**
-     * Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
+     * If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
      *
      * @var int
      */
-    protected int $mediaTimestamp;
-
-    /**
-     * True, if the whole media album to which the message belongs is linked
-     *
-     * @var bool
-     */
-    protected bool $forAlbum;
+    protected int $messageThreadId;
 
     public function __construct(
-        bool $isPublic,
-        int $chatId,
-        int $messageThreadId,
+        bool     $isPublic,
+        int      $chatId,
+        int      $messageThreadId,
         ?Message $message,
-        int $mediaTimestamp,
-        bool $forAlbum,
-    ) {
+        int      $mediaTimestamp,
+        bool     $forAlbum,
+    )
+    {
         $this->isPublic = $isPublic;
         $this->chatId = $chatId;
         $this->messageThreadId = $messageThreadId;
@@ -86,6 +88,36 @@ class MessageLinkInfo extends TdObject
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getForAlbum(): bool
+    {
+        return $this->forAlbum;
+    }
+
+    public function getIsPublic(): bool
+    {
+        return $this->isPublic;
+    }
+
+    public function getMediaTimestamp(): int
+    {
+        return $this->mediaTimestamp;
+    }
+
+    public function getMessage(): ?Message
+    {
+        return $this->message;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -97,35 +129,5 @@ class MessageLinkInfo extends TdObject
             'media_timestamp' => $this->mediaTimestamp,
             'for_album' => $this->forAlbum,
         ];
-    }
-
-    public function getIsPublic(): bool
-    {
-        return $this->isPublic;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getMessage(): ?Message
-    {
-        return $this->message;
-    }
-
-    public function getMediaTimestamp(): int
-    {
-        return $this->mediaTimestamp;
-    }
-
-    public function getForAlbum(): bool
-    {
-        return $this->forAlbum;
     }
 }

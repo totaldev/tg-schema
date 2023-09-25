@@ -17,7 +17,8 @@ class GetMessageImportConfirmationText extends TdFunction
     public const TYPE_NAME = 'getMessageImportConfirmationText';
 
     /**
-     * Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+     * Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a
+     * supergroup chat with can_change_info administrator right
      *
      * @var int
      */
@@ -35,16 +36,16 @@ class GetMessageImportConfirmationText extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

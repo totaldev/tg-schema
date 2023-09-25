@@ -25,18 +25,19 @@ class GetChatJoinRequests extends TdFunction
     protected int $chatId;
 
     /**
-     * Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+     * Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users
+     * right in the chat for own links and owner privileges for other links
      *
      * @var string
      */
     protected string $inviteLink;
 
     /**
-     * A query to search for in the first names, last names and usernames of the users to return
+     * The maximum number of requests to join the chat to return
      *
-     * @var string
+     * @var int
      */
-    protected string $query;
+    protected int $limit;
 
     /**
      * A chat join request from which to return next requests; pass null to get results from the beginning
@@ -46,19 +47,20 @@ class GetChatJoinRequests extends TdFunction
     protected ChatJoinRequest $offsetRequest;
 
     /**
-     * The maximum number of requests to join the chat to return
+     * A query to search for in the first names, last names and usernames of the users to return
      *
-     * @var int
+     * @var string
      */
-    protected int $limit;
+    protected string $query;
 
     public function __construct(
-        int $chatId,
-        string $inviteLink,
-        string $query,
+        int             $chatId,
+        string          $inviteLink,
+        string          $query,
         ChatJoinRequest $offsetRequest,
-        int $limit,
-    ) {
+        int             $limit,
+    )
+    {
         $this->chatId = $chatId;
         $this->inviteLink = $inviteLink;
         $this->query = $query;
@@ -77,18 +79,6 @@ class GetChatJoinRequests extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'invite_link' => $this->inviteLink,
-            'query' => $this->query,
-            'offset_request' => $this->offsetRequest->typeSerialize(),
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -99,9 +89,9 @@ class GetChatJoinRequests extends TdFunction
         return $this->inviteLink;
     }
 
-    public function getQuery(): string
+    public function getLimit(): int
     {
-        return $this->query;
+        return $this->limit;
     }
 
     public function getOffsetRequest(): ChatJoinRequest
@@ -109,8 +99,20 @@ class GetChatJoinRequests extends TdFunction
         return $this->offsetRequest;
     }
 
-    public function getLimit(): int
+    public function getQuery(): string
     {
-        return $this->limit;
+        return $this->query;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'invite_link' => $this->inviteLink,
+            'query' => $this->query,
+            'offset_request' => $this->offsetRequest->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 }

@@ -37,16 +37,16 @@ class UpdateFile extends Update
         );
     }
 
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file' => $this->file->typeSerialize(),
         ];
-    }
-
-    public function getFile(): File
-    {
-        return $this->file;
     }
 }

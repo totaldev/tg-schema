@@ -20,18 +20,18 @@ class ToggleMessageSenderIsBlocked extends TdFunction
     public const TYPE_NAME = 'toggleMessageSenderIsBlocked';
 
     /**
-     * Identifier of a message sender to block/unblock
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
      * New value of is_blocked
      *
      * @var bool
      */
     protected bool $isBlocked;
+
+    /**
+     * Identifier of a message sender to block/unblock
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $senderId;
 
     public function __construct(MessageSender $senderId, bool $isBlocked)
     {
@@ -47,13 +47,9 @@ class ToggleMessageSenderIsBlocked extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsBlocked(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'is_blocked' => $this->isBlocked,
-        ];
+        return $this->isBlocked;
     }
 
     public function getSenderId(): MessageSender
@@ -61,8 +57,12 @@ class ToggleMessageSenderIsBlocked extends TdFunction
         return $this->senderId;
     }
 
-    public function getIsBlocked(): bool
+    public function typeSerialize(): array
     {
-        return $this->isBlocked;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender_id' => $this->senderId->typeSerialize(),
+            'is_blocked' => $this->isBlocked,
+        ];
     }
 }

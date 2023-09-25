@@ -26,6 +26,13 @@ class EditMessageText extends TdFunction
     protected int $chatId;
 
     /**
+     * New text content of the message. Must be of type inputMessageText
+     *
+     * @var InputMessageContent
+     */
+    protected InputMessageContent $inputMessageContent;
+
+    /**
      * Identifier of the message
      *
      * @var int
@@ -39,19 +46,13 @@ class EditMessageText extends TdFunction
      */
     protected ReplyMarkup $replyMarkup;
 
-    /**
-     * New text content of the message. Must be of type inputMessageText
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
     public function __construct(
-        int $chatId,
-        int $messageId,
-        ReplyMarkup $replyMarkup,
+        int                 $chatId,
+        int                 $messageId,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         $this->chatId = $chatId;
         $this->messageId = $messageId;
         $this->replyMarkup = $replyMarkup;
@@ -68,20 +69,14 @@ class EditMessageText extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
     }
 
     public function getMessageId(): int
@@ -94,8 +89,14 @@ class EditMessageText extends TdFunction
         return $this->replyMarkup;
     }
 
-    public function getInputMessageContent(): InputMessageContent
+    public function typeSerialize(): array
     {
-        return $this->inputMessageContent;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 }

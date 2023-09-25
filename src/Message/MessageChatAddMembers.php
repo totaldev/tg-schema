@@ -36,16 +36,16 @@ class MessageChatAddMembers extends MessageContent
         );
     }
 
+    public function getMemberUserIds(): array
+    {
+        return $this->memberUserIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'member_user_ids' => $this->memberUserIds,
         ];
-    }
-
-    public function getMemberUserIds(): array
-    {
-        return $this->memberUserIds;
     }
 }

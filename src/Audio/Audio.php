@@ -20,6 +20,28 @@ class Audio extends TdObject
     public const TYPE_NAME = 'audio';
 
     /**
+     * The minithumbnail of the album cover; may be null
+     *
+     * @var Minithumbnail|null
+     */
+    protected ?Minithumbnail $albumCoverMinithumbnail;
+
+    /**
+     * The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio
+     * file; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $albumCoverThumbnail;
+
+    /**
+     * File containing the audio
+     *
+     * @var File
+     */
+    protected File $audio;
+
+    /**
      * Duration of the audio, in seconds; as defined by the sender
      *
      * @var int
@@ -27,18 +49,11 @@ class Audio extends TdObject
     protected int $duration;
 
     /**
-     * Title of the audio; as defined by the sender
+     * Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
      *
-     * @var string
+     * @var Thumbnail[]
      */
-    protected string $title;
-
-    /**
-     * Performer of the audio; as defined by the sender
-     *
-     * @var string
-     */
-    protected string $performer;
+    protected array $externalAlbumCovers;
 
     /**
      * Original name of the file; as defined by the sender
@@ -55,44 +70,31 @@ class Audio extends TdObject
     protected string $mimeType;
 
     /**
-     * The minithumbnail of the album cover; may be null
+     * Performer of the audio; as defined by the sender
      *
-     * @var Minithumbnail|null
+     * @var string
      */
-    protected ?Minithumbnail $albumCoverMinithumbnail;
+    protected string $performer;
 
     /**
-     * The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
+     * Title of the audio; as defined by the sender
      *
-     * @var Thumbnail|null
+     * @var string
      */
-    protected ?Thumbnail $albumCoverThumbnail;
-
-    /**
-     * Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
-     *
-     * @var Thumbnail[]
-     */
-    protected array $externalAlbumCovers;
-
-    /**
-     * File containing the audio
-     *
-     * @var File
-     */
-    protected File $audio;
+    protected string $title;
 
     public function __construct(
-        int $duration,
-        string $title,
-        string $performer,
-        string $fileName,
-        string $mimeType,
+        int            $duration,
+        string         $title,
+        string         $performer,
+        string         $fileName,
+        string         $mimeType,
         ?Minithumbnail $albumCoverMinithumbnail,
-        ?Thumbnail $albumCoverThumbnail,
-        array $externalAlbumCovers,
-        File $audio,
-    ) {
+        ?Thumbnail     $albumCoverThumbnail,
+        array          $externalAlbumCovers,
+        File           $audio,
+    )
+    {
         $this->duration = $duration;
         $this->title = $title;
         $this->performer = $performer;
@@ -114,9 +116,54 @@ class Audio extends TdObject
             $array['mime_type'],
             (isset($array['album_cover_minithumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_minithumbnail']) : null),
             (isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['externalAlbumCovers']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['external_album_covers']),
             TdSchemaRegistry::fromArray($array['audio']),
         );
+    }
+
+    public function getAlbumCoverMinithumbnail(): ?Minithumbnail
+    {
+        return $this->albumCoverMinithumbnail;
+    }
+
+    public function getAlbumCoverThumbnail(): ?Thumbnail
+    {
+        return $this->albumCoverThumbnail;
+    }
+
+    public function getAudio(): File
+    {
+        return $this->audio;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getExternalAlbumCovers(): array
+    {
+        return $this->externalAlbumCovers;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
+    public function getPerformer(): string
+    {
+        return $this->performer;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     public function typeSerialize(): array
@@ -133,50 +180,5 @@ class Audio extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->externalAlbumCovers),
             'audio' => $this->audio->typeSerialize(),
         ];
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getPerformer(): string
-    {
-        return $this->performer;
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    public function getAlbumCoverMinithumbnail(): ?Minithumbnail
-    {
-        return $this->albumCoverMinithumbnail;
-    }
-
-    public function getAlbumCoverThumbnail(): ?Thumbnail
-    {
-        return $this->albumCoverThumbnail;
-    }
-
-    public function getExternalAlbumCovers(): array
-    {
-        return $this->externalAlbumCovers;
-    }
-
-    public function getAudio(): File
-    {
-        return $this->audio;
     }
 }

@@ -17,18 +17,18 @@ class ChatJoinRequests extends TdObject
     public const TYPE_NAME = 'chatJoinRequests';
 
     /**
-     * Approximate total number of requests found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of the requests
      *
      * @var ChatJoinRequest[]
      */
     protected array $requests;
+
+    /**
+     * Approximate total number of requests found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $requests)
     {
@@ -44,13 +44,9 @@ class ChatJoinRequests extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getRequests(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->requests),
-        ];
+        return $this->requests;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class ChatJoinRequests extends TdObject
         return $this->totalCount;
     }
 
-    public function getRequests(): array
+    public function typeSerialize(): array
     {
-        return $this->requests;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->requests),
+        ];
     }
 }

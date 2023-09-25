@@ -45,15 +45,6 @@ class UpdateRecentStickers extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_attached' => $this->isAttached,
-            'sticker_ids' => $this->stickerIds,
-        ];
-    }
-
     public function getIsAttached(): bool
     {
         return $this->isAttached;
@@ -62,5 +53,14 @@ class UpdateRecentStickers extends Update
     public function getStickerIds(): array
     {
         return $this->stickerIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_attached' => $this->isAttached,
+            'sticker_ids' => $this->stickerIds,
+        ];
     }
 }

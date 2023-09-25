@@ -17,18 +17,18 @@ class GetLanguagePackStrings extends TdFunction
     public const TYPE_NAME = 'getLanguagePackStrings';
 
     /**
-     * Language pack identifier of the strings to be returned
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    /**
      * Language pack keys of the strings to be returned; leave empty to request all available strings
      *
      * @var string[]
      */
     protected array $keys;
+
+    /**
+     * Language pack identifier of the strings to be returned
+     *
+     * @var string
+     */
+    protected string $languagePackId;
 
     public function __construct(string $languagePackId, array $keys)
     {
@@ -44,13 +44,9 @@ class GetLanguagePackStrings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getKeys(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'language_pack_id' => $this->languagePackId,
-            'keys' => $this->keys,
-        ];
+        return $this->keys;
     }
 
     public function getLanguagePackId(): string
@@ -58,8 +54,12 @@ class GetLanguagePackStrings extends TdFunction
         return $this->languagePackId;
     }
 
-    public function getKeys(): array
+    public function typeSerialize(): array
     {
-        return $this->keys;
+        return [
+            '@type' => static::TYPE_NAME,
+            'language_pack_id' => $this->languagePackId,
+            'keys' => $this->keys,
+        ];
     }
 }

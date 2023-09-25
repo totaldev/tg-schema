@@ -18,11 +18,11 @@ class SearchInstalledStickerSets extends TdFunction
     public const TYPE_NAME = 'searchInstalledStickerSets';
 
     /**
-     * Type of the sticker sets to search for
+     * The maximum number of sticker sets to return
      *
-     * @var StickerType
+     * @var int
      */
-    protected StickerType $stickerType;
+    protected int $limit;
 
     /**
      * Query to search for
@@ -32,11 +32,11 @@ class SearchInstalledStickerSets extends TdFunction
     protected string $query;
 
     /**
-     * The maximum number of sticker sets to return
+     * Type of the sticker sets to search for
      *
-     * @var int
+     * @var StickerType
      */
-    protected int $limit;
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, string $query, int $limit)
     {
@@ -54,6 +54,21 @@ class SearchInstalledStickerSets extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class SearchInstalledStickerSets extends TdFunction
             'query' => $this->query,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

@@ -17,18 +17,18 @@ class MessageSendingStateFailed extends MessageSendingState
     public const TYPE_NAME = 'messageSendingStateFailed';
 
     /**
-     * The cause of the message sending failure
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    /**
      * True, if the message can be re-sent
      *
      * @var bool
      */
     protected bool $canRetry;
+
+    /**
+     * The cause of the message sending failure
+     *
+     * @var Error
+     */
+    protected Error $error;
 
     /**
      * True, if the message can be re-sent only on behalf of a different sender
@@ -64,25 +64,14 @@ class MessageSendingStateFailed extends MessageSendingState
         );
     }
 
-    public function typeSerialize(): array
+    public function getCanRetry(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'error' => $this->error->typeSerialize(),
-            'can_retry' => $this->canRetry,
-            'need_another_sender' => $this->needAnotherSender,
-            'retry_after' => $this->retryAfter,
-        ];
+        return $this->canRetry;
     }
 
     public function getError(): Error
     {
         return $this->error;
-    }
-
-    public function getCanRetry(): bool
-    {
-        return $this->canRetry;
     }
 
     public function getNeedAnotherSender(): bool
@@ -93,5 +82,16 @@ class MessageSendingStateFailed extends MessageSendingState
     public function getRetryAfter(): float
     {
         return $this->retryAfter;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'error' => $this->error->typeSerialize(),
+            'can_retry' => $this->canRetry,
+            'need_another_sender' => $this->needAnotherSender,
+            'retry_after' => $this->retryAfter,
+        ];
     }
 }

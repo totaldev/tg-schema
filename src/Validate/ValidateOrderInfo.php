@@ -19,6 +19,13 @@ class ValidateOrderInfo extends TdFunction
     public const TYPE_NAME = 'validateOrderInfo';
 
     /**
+     * Pass true to save the order information
+     *
+     * @var bool
+     */
+    protected bool $allowSave;
+
+    /**
      * The invoice
      *
      * @var InputInvoice
@@ -31,13 +38,6 @@ class ValidateOrderInfo extends TdFunction
      * @var OrderInfo
      */
     protected OrderInfo $orderInfo;
-
-    /**
-     * Pass true to save the order information
-     *
-     * @var bool
-     */
-    protected bool $allowSave;
 
     public function __construct(InputInvoice $inputInvoice, OrderInfo $orderInfo, bool $allowSave)
     {
@@ -55,14 +55,9 @@ class ValidateOrderInfo extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowSave(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'input_invoice' => $this->inputInvoice->typeSerialize(),
-            'order_info' => $this->orderInfo->typeSerialize(),
-            'allow_save' => $this->allowSave,
-        ];
+        return $this->allowSave;
     }
 
     public function getInputInvoice(): InputInvoice
@@ -75,8 +70,13 @@ class ValidateOrderInfo extends TdFunction
         return $this->orderInfo;
     }
 
-    public function getAllowSave(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowSave;
+        return [
+            '@type' => static::TYPE_NAME,
+            'input_invoice' => $this->inputInvoice->typeSerialize(),
+            'order_info' => $this->orderInfo->typeSerialize(),
+            'allow_save' => $this->allowSave,
+        ];
     }
 }

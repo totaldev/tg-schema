@@ -17,18 +17,18 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupJoinToSendMessages';
 
     /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * New value of join_to_send_messages
      *
      * @var bool
      */
     protected bool $joinToSendMessages;
+
+    /**
+     * Identifier of the supergroup
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $joinToSendMessages)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getJoinToSendMessages(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'join_to_send_messages' => $this->joinToSendMessages,
-        ];
+        return $this->joinToSendMessages;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getJoinToSendMessages(): bool
+    public function typeSerialize(): array
     {
-        return $this->joinToSendMessages;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'join_to_send_messages' => $this->joinToSendMessages,
+        ];
     }
 }

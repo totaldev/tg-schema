@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
+ * Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is
+ * chosen by TDLib
  */
 class SearchSecretMessages extends TdFunction
 {
@@ -24,11 +25,19 @@ class SearchSecretMessages extends TdFunction
     protected int $chatId;
 
     /**
-     * Query to search for. If empty, searchChatMessages must be used instead
+     * Additional filter for messages to search; pass null to search for all messages
      *
-     * @var string
+     * @var SearchMessagesFilter
      */
-    protected string $query;
+    protected SearchMessagesFilter $filter;
+
+    /**
+     * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller
+     * than the specified limit
+     *
+     * @var int
+     */
+    protected int $limit;
 
     /**
      * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -38,18 +47,11 @@ class SearchSecretMessages extends TdFunction
     protected string $offset;
 
     /**
-     * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+     * Query to search for. If empty, searchChatMessages must be used instead
      *
-     * @var int
+     * @var string
      */
-    protected int $limit;
-
-    /**
-     * Additional filter for messages to search; pass null to search for all messages
-     *
-     * @var SearchMessagesFilter
-     */
-    protected SearchMessagesFilter $filter;
+    protected string $query;
 
     public function __construct(int $chatId, string $query, string $offset, int $limit, SearchMessagesFilter $filter)
     {
@@ -71,6 +73,31 @@ class SearchSecretMessages extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFilter(): SearchMessagesFilter
+    {
+        return $this->filter;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): string
+    {
+        return $this->offset;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +108,5 @@ class SearchSecretMessages extends TdFunction
             'limit' => $this->limit,
             'filter' => $this->filter->typeSerialize(),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getOffset(): string
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getFilter(): SearchMessagesFilter
-    {
-        return $this->filter;
     }
 }

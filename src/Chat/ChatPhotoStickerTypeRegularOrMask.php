@@ -16,18 +16,18 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
     public const TYPE_NAME = 'chatPhotoStickerTypeRegularOrMask';
 
     /**
-     * Sticker set identifier
-     *
-     * @var int
-     */
-    protected int $stickerSetId;
-
-    /**
      * Identifier of the sticker in the set
      *
      * @var int
      */
     protected int $stickerId;
+
+    /**
+     * Sticker set identifier
+     *
+     * @var int
+     */
+    protected int $stickerSetId;
 
     public function __construct(int $stickerSetId, int $stickerId)
     {
@@ -45,13 +45,9 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_set_id' => $this->stickerSetId,
-            'sticker_id' => $this->stickerId,
-        ];
+        return $this->stickerId;
     }
 
     public function getStickerSetId(): int
@@ -59,8 +55,12 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
         return $this->stickerSetId;
     }
 
-    public function getStickerId(): int
+    public function typeSerialize(): array
     {
-        return $this->stickerId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_set_id' => $this->stickerSetId,
+            'sticker_id' => $this->stickerId,
+        ];
     }
 }

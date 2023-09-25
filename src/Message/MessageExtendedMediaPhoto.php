@@ -18,18 +18,18 @@ class MessageExtendedMediaPhoto extends MessageExtendedMedia
     public const TYPE_NAME = 'messageExtendedMediaPhoto';
 
     /**
-     * The photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    /**
      * Photo caption
      *
      * @var FormattedText
      */
     protected FormattedText $caption;
+
+    /**
+     * The photo
+     *
+     * @var Photo
+     */
+    protected Photo $photo;
 
     public function __construct(Photo $photo, FormattedText $caption)
     {
@@ -47,13 +47,9 @@ class MessageExtendedMediaPhoto extends MessageExtendedMedia
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getPhoto(): Photo
@@ -61,8 +57,12 @@ class MessageExtendedMediaPhoto extends MessageExtendedMedia
         return $this->photo;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'photo' => $this->photo->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

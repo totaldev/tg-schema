@@ -18,13 +18,6 @@ class MessagePhoto extends MessageContent
     public const TYPE_NAME = 'messagePhoto';
 
     /**
-     * The photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    /**
      * Photo caption
      *
      * @var FormattedText
@@ -44,6 +37,13 @@ class MessagePhoto extends MessageContent
      * @var bool
      */
     protected bool $isSecret;
+
+    /**
+     * The photo
+     *
+     * @var Photo
+     */
+    protected Photo $photo;
 
     public function __construct(Photo $photo, FormattedText $caption, bool $hasSpoiler, bool $isSecret)
     {
@@ -65,22 +65,6 @@ class MessagePhoto extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-            'has_spoiler' => $this->hasSpoiler,
-            'is_secret' => $this->isSecret,
-        ];
-    }
-
-    public function getPhoto(): Photo
-    {
-        return $this->photo;
-    }
-
     public function getCaption(): FormattedText
     {
         return $this->caption;
@@ -94,5 +78,21 @@ class MessagePhoto extends MessageContent
     public function getIsSecret(): bool
     {
         return $this->isSecret;
+    }
+
+    public function getPhoto(): Photo
+    {
+        return $this->photo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'photo' => $this->photo->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'has_spoiler' => $this->hasSpoiler,
+            'is_secret' => $this->isSecret,
+        ];
     }
 }

@@ -25,18 +25,18 @@ class GetMessageAddedReactions extends TdFunction
     protected int $chatId;
 
     /**
+     * The maximum number of reactions to be returned; must be positive and can't be greater than 100
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Identifier of the message
      *
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Type of the reactions to return; pass null to return all added reactions
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
 
     /**
      * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -46,11 +46,11 @@ class GetMessageAddedReactions extends TdFunction
     protected string $offset;
 
     /**
-     * The maximum number of reactions to be returned; must be positive and can't be greater than 100
+     * Type of the reactions to return; pass null to return all added reactions
      *
-     * @var int
+     * @var ReactionType
      */
-    protected int $limit;
+    protected ReactionType $reactionType;
 
     public function __construct(int $chatId, int $messageId, ReactionType $reactionType, string $offset, int $limit)
     {
@@ -72,6 +72,31 @@ class GetMessageAddedReactions extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getOffset(): string
+    {
+        return $this->offset;
+    }
+
+    public function getReactionType(): ReactionType
+    {
+        return $this->reactionType;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -82,30 +107,5 @@ class GetMessageAddedReactions extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getReactionType(): ReactionType
-    {
-        return $this->reactionType;
-    }
-
-    public function getOffset(): string
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

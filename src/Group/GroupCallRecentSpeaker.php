@@ -18,18 +18,18 @@ class GroupCallRecentSpeaker extends TdObject
     public const TYPE_NAME = 'groupCallRecentSpeaker';
 
     /**
-     * Group call participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
      * True, is the user has spoken recently
      *
      * @var bool
      */
     protected bool $isSpeaking;
+
+    /**
+     * Group call participant identifier
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $participantId;
 
     public function __construct(MessageSender $participantId, bool $isSpeaking)
     {
@@ -45,13 +45,9 @@ class GroupCallRecentSpeaker extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsSpeaking(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'is_speaking' => $this->isSpeaking,
-        ];
+        return $this->isSpeaking;
     }
 
     public function getParticipantId(): MessageSender
@@ -59,8 +55,12 @@ class GroupCallRecentSpeaker extends TdObject
         return $this->participantId;
     }
 
-    public function getIsSpeaking(): bool
+    public function typeSerialize(): array
     {
-        return $this->isSpeaking;
+        return [
+            '@type' => static::TYPE_NAME,
+            'participant_id' => $this->participantId->typeSerialize(),
+            'is_speaking' => $this->isSpeaking,
+        ];
     }
 }

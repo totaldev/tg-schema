@@ -44,15 +44,6 @@ class EmailAddressAuthenticationCodeInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'email_address_pattern' => $this->emailAddressPattern,
-            'length' => $this->length,
-        ];
-    }
-
     public function getEmailAddressPattern(): string
     {
         return $this->emailAddressPattern;
@@ -61,5 +52,14 @@ class EmailAddressAuthenticationCodeInfo extends TdObject
     public function getLength(): int
     {
         return $this->length;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'email_address_pattern' => $this->emailAddressPattern,
+            'length' => $this->length,
+        ];
     }
 }

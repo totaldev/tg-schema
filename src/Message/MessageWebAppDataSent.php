@@ -36,16 +36,16 @@ class MessageWebAppDataSent extends MessageContent
         );
     }
 
+    public function getButtonText(): string
+    {
+        return $this->buttonText;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'button_text' => $this->buttonText,
         ];
-    }
-
-    public function getButtonText(): string
-    {
-        return $this->buttonText;
     }
 }

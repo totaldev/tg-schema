@@ -44,15 +44,6 @@ class SendCallDebugInformation extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'debug_information' => $this->debugInformation,
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
@@ -61,5 +52,14 @@ class SendCallDebugInformation extends TdFunction
     public function getDebugInformation(): string
     {
         return $this->debugInformation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'call_id' => $this->callId,
+            'debug_information' => $this->debugInformation,
+        ];
     }
 }

@@ -45,15 +45,6 @@ class InputStoryArea extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'position' => $this->position->typeSerialize(),
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getPosition(): StoryAreaPosition
     {
         return $this->position;
@@ -62,5 +53,14 @@ class InputStoryArea extends TdObject
     public function getType(): InputStoryAreaType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'position' => $this->position->typeSerialize(),
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

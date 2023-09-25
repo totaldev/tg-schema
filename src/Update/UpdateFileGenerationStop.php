@@ -36,16 +36,16 @@ class UpdateFileGenerationStop extends Update
         );
     }
 
+    public function getGenerationId(): int
+    {
+        return $this->generationId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'generation_id' => $this->generationId,
         ];
-    }
-
-    public function getGenerationId(): int
-    {
-        return $this->generationId;
     }
 }

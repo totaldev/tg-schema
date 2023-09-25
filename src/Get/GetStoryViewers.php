@@ -17,18 +17,18 @@ class GetStoryViewers extends TdFunction
     public const TYPE_NAME = 'getStoryViewers';
 
     /**
-     * Story identifier
+     * The maximum number of story viewers to return
      *
      * @var int
      */
-    protected int $storyId;
+    protected int $limit;
 
     /**
-     * Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
      *
      * @var string
      */
-    protected string $query;
+    protected string $offset;
 
     /**
      * Pass true to get only contacts; pass false to get all relevant viewers
@@ -45,27 +45,28 @@ class GetStoryViewers extends TdFunction
     protected bool $preferWithReaction;
 
     /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+     * Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
      *
      * @var string
      */
-    protected string $offset;
+    protected string $query;
 
     /**
-     * The maximum number of story viewers to return
+     * Story identifier
      *
      * @var int
      */
-    protected int $limit;
+    protected int $storyId;
 
     public function __construct(
-        int $storyId,
+        int    $storyId,
         string $query,
-        bool $onlyContacts,
-        bool $preferWithReaction,
+        bool   $onlyContacts,
+        bool   $preferWithReaction,
         string $offset,
-        int $limit,
-    ) {
+        int    $limit,
+    )
+    {
         $this->storyId = $storyId;
         $this->query = $query;
         $this->onlyContacts = $onlyContacts;
@@ -86,27 +87,14 @@ class GetStoryViewers extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_id' => $this->storyId,
-            'query' => $this->query,
-            'only_contacts' => $this->onlyContacts,
-            'prefer_with_reaction' => $this->preferWithReaction,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
-    public function getStoryId(): int
+    public function getOffset(): string
     {
-        return $this->storyId;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
+        return $this->offset;
     }
 
     public function getOnlyContacts(): bool
@@ -119,13 +107,26 @@ class GetStoryViewers extends TdFunction
         return $this->preferWithReaction;
     }
 
-    public function getOffset(): string
+    public function getQuery(): string
     {
-        return $this->offset;
+        return $this->query;
     }
 
-    public function getLimit(): int
+    public function getStoryId(): int
     {
-        return $this->limit;
+        return $this->storyId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_id' => $this->storyId,
+            'query' => $this->query,
+            'only_contacts' => $this->onlyContacts,
+            'prefer_with_reaction' => $this->preferWithReaction,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+        ];
     }
 }

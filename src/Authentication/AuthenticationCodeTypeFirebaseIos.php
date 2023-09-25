@@ -16,11 +16,11 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     public const TYPE_NAME = 'authenticationCodeTypeFirebaseIos';
 
     /**
-     * Receipt of successful application token validation to compare with receipt from push notification
+     * Length of the code
      *
-     * @var string
+     * @var int
      */
-    protected string $receipt;
+    protected int $length;
 
     /**
      * Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
@@ -30,11 +30,11 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     protected int $pushTimeout;
 
     /**
-     * Length of the code
+     * Receipt of successful application token validation to compare with receipt from push notification
      *
-     * @var int
+     * @var string
      */
-    protected int $length;
+    protected string $receipt;
 
     public function __construct(string $receipt, int $pushTimeout, int $length)
     {
@@ -54,6 +54,21 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
         );
     }
 
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
+    public function getPushTimeout(): int
+    {
+        return $this->pushTimeout;
+    }
+
+    public function getReceipt(): string
+    {
+        return $this->receipt;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
             'push_timeout' => $this->pushTimeout,
             'length' => $this->length,
         ];
-    }
-
-    public function getReceipt(): string
-    {
-        return $this->receipt;
-    }
-
-    public function getPushTimeout(): int
-    {
-        return $this->pushTimeout;
-    }
-
-    public function getLength(): int
-    {
-        return $this->length;
     }
 }

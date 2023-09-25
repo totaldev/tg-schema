@@ -46,15 +46,6 @@ class InlineQueryResultSticker extends InlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -63,5 +54,14 @@ class InlineQueryResultSticker extends InlineQueryResult
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
     }
 }

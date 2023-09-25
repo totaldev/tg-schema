@@ -36,16 +36,16 @@ class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule
         );
     }
 
+    public function getChatIds(): array
+    {
+        return $this->chatIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_ids' => $this->chatIds,
         ];
-    }
-
-    public function getChatIds(): array
-    {
-        return $this->chatIds;
     }
 }

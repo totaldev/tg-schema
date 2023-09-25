@@ -45,15 +45,6 @@ class SetBotProfilePhoto extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'photo' => $this->photo->typeSerialize(),
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -62,5 +53,14 @@ class SetBotProfilePhoto extends TdFunction
     public function getPhoto(): InputChatPhoto
     {
         return $this->photo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'photo' => $this->photo->typeSerialize(),
+        ];
     }
 }

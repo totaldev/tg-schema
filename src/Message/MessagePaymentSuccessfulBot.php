@@ -24,18 +24,11 @@ class MessagePaymentSuccessfulBot extends MessageContent
     protected string $currency;
 
     /**
-     * Total price for the product, in the smallest units of the currency
+     * Invoice payload
      *
-     * @var int
+     * @var string
      */
-    protected int $totalAmount;
-
-    /**
-     * True, if this is a recurring payment
-     *
-     * @var bool
-     */
-    protected bool $isRecurring;
+    protected string $invoicePayload;
 
     /**
      * True, if this is the first recurring payment
@@ -45,18 +38,11 @@ class MessagePaymentSuccessfulBot extends MessageContent
     protected bool $isFirstRecurring;
 
     /**
-     * Invoice payload
+     * True, if this is a recurring payment
      *
-     * @var string
+     * @var bool
      */
-    protected string $invoicePayload;
-
-    /**
-     * Identifier of the shipping option chosen by the user; may be empty if not applicable
-     *
-     * @var string
-     */
-    protected string $shippingOptionId;
+    protected bool $isRecurring;
 
     /**
      * Information about the order; may be null
@@ -66,6 +52,20 @@ class MessagePaymentSuccessfulBot extends MessageContent
     protected ?OrderInfo $orderInfo;
 
     /**
+     * Provider payment identifier
+     *
+     * @var string
+     */
+    protected string $providerPaymentChargeId;
+
+    /**
+     * Identifier of the shipping option chosen by the user; may be empty if not applicable
+     *
+     * @var string
+     */
+    protected string $shippingOptionId;
+
+    /**
      * Telegram payment identifier
      *
      * @var string
@@ -73,23 +73,24 @@ class MessagePaymentSuccessfulBot extends MessageContent
     protected string $telegramPaymentChargeId;
 
     /**
-     * Provider payment identifier
+     * Total price for the product, in the smallest units of the currency
      *
-     * @var string
+     * @var int
      */
-    protected string $providerPaymentChargeId;
+    protected int $totalAmount;
 
     public function __construct(
-        string $currency,
-        int $totalAmount,
-        bool $isRecurring,
-        bool $isFirstRecurring,
-        string $invoicePayload,
-        string $shippingOptionId,
+        string     $currency,
+        int        $totalAmount,
+        bool       $isRecurring,
+        bool       $isFirstRecurring,
+        string     $invoicePayload,
+        string     $shippingOptionId,
         ?OrderInfo $orderInfo,
-        string $telegramPaymentChargeId,
-        string $providerPaymentChargeId,
-    ) {
+        string     $telegramPaymentChargeId,
+        string     $providerPaymentChargeId,
+    )
+    {
         parent::__construct();
 
         $this->currency = $currency;
@@ -118,6 +119,51 @@ class MessagePaymentSuccessfulBot extends MessageContent
         );
     }
 
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getInvoicePayload(): string
+    {
+        return $this->invoicePayload;
+    }
+
+    public function getIsFirstRecurring(): bool
+    {
+        return $this->isFirstRecurring;
+    }
+
+    public function getIsRecurring(): bool
+    {
+        return $this->isRecurring;
+    }
+
+    public function getOrderInfo(): ?OrderInfo
+    {
+        return $this->orderInfo;
+    }
+
+    public function getProviderPaymentChargeId(): string
+    {
+        return $this->providerPaymentChargeId;
+    }
+
+    public function getShippingOptionId(): string
+    {
+        return $this->shippingOptionId;
+    }
+
+    public function getTelegramPaymentChargeId(): string
+    {
+        return $this->telegramPaymentChargeId;
+    }
+
+    public function getTotalAmount(): int
+    {
+        return $this->totalAmount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -132,50 +178,5 @@ class MessagePaymentSuccessfulBot extends MessageContent
             'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
             'provider_payment_charge_id' => $this->providerPaymentChargeId,
         ];
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    public function getTotalAmount(): int
-    {
-        return $this->totalAmount;
-    }
-
-    public function getIsRecurring(): bool
-    {
-        return $this->isRecurring;
-    }
-
-    public function getIsFirstRecurring(): bool
-    {
-        return $this->isFirstRecurring;
-    }
-
-    public function getInvoicePayload(): string
-    {
-        return $this->invoicePayload;
-    }
-
-    public function getShippingOptionId(): string
-    {
-        return $this->shippingOptionId;
-    }
-
-    public function getOrderInfo(): ?OrderInfo
-    {
-        return $this->orderInfo;
-    }
-
-    public function getTelegramPaymentChargeId(): string
-    {
-        return $this->telegramPaymentChargeId;
-    }
-
-    public function getProviderPaymentChargeId(): string
-    {
-        return $this->providerPaymentChargeId;
     }
 }

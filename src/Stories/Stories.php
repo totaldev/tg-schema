@@ -18,18 +18,18 @@ class Stories extends TdObject
     public const TYPE_NAME = 'stories';
 
     /**
-     * Approximate total number of stories found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * The list of stories
      *
      * @var Story[]
      */
     protected array $stories;
+
+    /**
+     * Approximate total number of stories found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $stories)
     {
@@ -45,13 +45,9 @@ class Stories extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getStories(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->stories),
-        ];
+        return $this->stories;
     }
 
     public function getTotalCount(): int
@@ -59,8 +55,12 @@ class Stories extends TdObject
         return $this->totalCount;
     }
 
-    public function getStories(): array
+    public function typeSerialize(): array
     {
-        return $this->stories;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->stories),
+        ];
     }
 }

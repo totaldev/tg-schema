@@ -18,11 +18,11 @@ class TestProxy extends TdFunction
     public const TYPE_NAME = 'testProxy';
 
     /**
-     * Proxy server domain or IP address
+     * Identifier of a datacenter with which to test connection
      *
-     * @var string
+     * @var int
      */
-    protected string $server;
+    protected int $dcId;
 
     /**
      * Proxy server port
@@ -32,18 +32,11 @@ class TestProxy extends TdFunction
     protected int $port;
 
     /**
-     * Proxy type
+     * Proxy server domain or IP address
      *
-     * @var ProxyType
+     * @var string
      */
-    protected ProxyType $type;
-
-    /**
-     * Identifier of a datacenter with which to test connection
-     *
-     * @var int
-     */
-    protected int $dcId;
+    protected string $server;
 
     /**
      * The maximum overall timeout for the request
@@ -51,6 +44,13 @@ class TestProxy extends TdFunction
      * @var float
      */
     protected float $timeout;
+
+    /**
+     * Proxy type
+     *
+     * @var ProxyType
+     */
+    protected ProxyType $type;
 
     public function __construct(string $server, int $port, ProxyType $type, int $dcId, float $timeout)
     {
@@ -72,6 +72,31 @@ class TestProxy extends TdFunction
         );
     }
 
+    public function getDcId(): int
+    {
+        return $this->dcId;
+    }
+
+    public function getPort(): int
+    {
+        return $this->port;
+    }
+
+    public function getServer(): string
+    {
+        return $this->server;
+    }
+
+    public function getTimeout(): float
+    {
+        return $this->timeout;
+    }
+
+    public function getType(): ProxyType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -82,30 +107,5 @@ class TestProxy extends TdFunction
             'dc_id' => $this->dcId,
             'timeout' => $this->timeout,
         ];
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
-    }
-
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
-    }
-
-    public function getDcId(): int
-    {
-        return $this->dcId;
-    }
-
-    public function getTimeout(): float
-    {
-        return $this->timeout;
     }
 }

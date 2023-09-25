@@ -37,16 +37,16 @@ class StoryContentPhoto extends StoryContent
         );
     }
 
+    public function getPhoto(): Photo
+    {
+        return $this->photo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'photo' => $this->photo->typeSerialize(),
         ];
-    }
-
-    public function getPhoto(): Photo
-    {
-        return $this->photo;
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+ * Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the
+ * bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
  */
 class SendBotStartMessage extends TdFunction
 {
@@ -53,16 +54,6 @@ class SendBotStartMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'chat_id' => $this->chatId,
-            'parameter' => $this->parameter,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -76,5 +67,15 @@ class SendBotStartMessage extends TdFunction
     public function getParameter(): string
     {
         return $this->parameter;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'chat_id' => $this->chatId,
+            'parameter' => $this->parameter,
+        ];
     }
 }

@@ -44,15 +44,6 @@ class DeleteChatFolder extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
-            'leave_chat_ids' => $this->leaveChatIds,
-        ];
-    }
-
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
@@ -61,5 +52,14 @@ class DeleteChatFolder extends TdFunction
     public function getLeaveChatIds(): array
     {
         return $this->leaveChatIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_id' => $this->chatFolderId,
+            'leave_chat_ids' => $this->leaveChatIds,
+        ];
     }
 }

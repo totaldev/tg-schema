@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
+ * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called
+ * synchronously
  */
 class GetPushReceiverId extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetPushReceiverId extends TdFunction
         );
     }
 
+    public function getPayload(): string
+    {
+        return $this->payload;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'payload' => $this->payload,
         ];
-    }
-
-    public function getPayload(): string
-    {
-        return $this->payload;
     }
 }

@@ -35,16 +35,16 @@ class GetRecentlyOpenedChats extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

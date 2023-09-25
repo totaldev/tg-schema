@@ -17,18 +17,18 @@ class UserLink extends TdObject
     public const TYPE_NAME = 'userLink';
 
     /**
-     * The URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Left time for which the link is valid, in seconds; 0 if the link is a public username link
      *
      * @var int
      */
     protected int $expiresIn;
+
+    /**
+     * The URL
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, int $expiresIn)
     {
@@ -44,13 +44,9 @@ class UserLink extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getExpiresIn(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'expires_in' => $this->expiresIn,
-        ];
+        return $this->expiresIn;
     }
 
     public function getUrl(): string
@@ -58,8 +54,12 @@ class UserLink extends TdObject
         return $this->url;
     }
 
-    public function getExpiresIn(): int
+    public function typeSerialize(): array
     {
-        return $this->expiresIn;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'expires_in' => $this->expiresIn,
+        ];
     }
 }

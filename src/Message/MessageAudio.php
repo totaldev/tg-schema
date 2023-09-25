@@ -47,15 +47,6 @@ class MessageAudio extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'audio' => $this->audio->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
-    }
-
     public function getAudio(): Audio
     {
         return $this->audio;
@@ -64,5 +55,14 @@ class MessageAudio extends MessageContent
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'audio' => $this->audio->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

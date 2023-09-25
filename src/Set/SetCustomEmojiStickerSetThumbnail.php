@@ -17,18 +17,18 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
     public const TYPE_NAME = 'setCustomEmojiStickerSetThumbnail';
 
     /**
-     * Sticker set name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
      * Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
      *
      * @var int
      */
     protected int $customEmojiId;
+
+    /**
+     * Sticker set name
+     *
+     * @var string
+     */
+    protected string $name;
 
     public function __construct(string $name, int $customEmojiId)
     {
@@ -44,13 +44,9 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCustomEmojiId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'custom_emoji_id' => $this->customEmojiId,
-        ];
+        return $this->customEmojiId;
     }
 
     public function getName(): string
@@ -58,8 +54,12 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
         return $this->name;
     }
 
-    public function getCustomEmojiId(): int
+    public function typeSerialize(): array
     {
-        return $this->customEmojiId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'custom_emoji_id' => $this->customEmojiId,
+        ];
     }
 }

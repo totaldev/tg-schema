@@ -36,16 +36,16 @@ class InputFileId extends InputFile
         );
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'id' => $this->id,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 }

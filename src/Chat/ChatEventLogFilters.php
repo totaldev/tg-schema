@@ -17,25 +17,32 @@ class ChatEventLogFilters extends TdObject
     public const TYPE_NAME = 'chatEventLogFilters';
 
     /**
-     * True, if message edits need to be returned
+     * True, if forum-related actions need to be returned
      *
      * @var bool
      */
-    protected bool $messageEdits;
+    protected bool $forumChanges;
 
     /**
-     * True, if message deletions need to be returned
+     * True, if changes in chat information need to be returned
      *
      * @var bool
      */
-    protected bool $messageDeletions;
+    protected bool $infoChanges;
 
     /**
-     * True, if pin/unpin events need to be returned
+     * True, if changes to invite links need to be returned
      *
      * @var bool
      */
-    protected bool $messagePins;
+    protected bool $inviteLinkChanges;
+
+    /**
+     * True, if invited member events need to be returned
+     *
+     * @var bool
+     */
+    protected bool $memberInvites;
 
     /**
      * True, if members joining events need to be returned
@@ -52,13 +59,6 @@ class ChatEventLogFilters extends TdObject
     protected bool $memberLeaves;
 
     /**
-     * True, if invited member events need to be returned
-     *
-     * @var bool
-     */
-    protected bool $memberInvites;
-
-    /**
      * True, if member promotion/demotion events need to be returned
      *
      * @var bool
@@ -73,11 +73,25 @@ class ChatEventLogFilters extends TdObject
     protected bool $memberRestrictions;
 
     /**
-     * True, if changes in chat information need to be returned
+     * True, if message deletions need to be returned
      *
      * @var bool
      */
-    protected bool $infoChanges;
+    protected bool $messageDeletions;
+
+    /**
+     * True, if message edits need to be returned
+     *
+     * @var bool
+     */
+    protected bool $messageEdits;
+
+    /**
+     * True, if pin/unpin events need to be returned
+     *
+     * @var bool
+     */
+    protected bool $messagePins;
 
     /**
      * True, if changes in chat settings need to be returned
@@ -87,25 +101,11 @@ class ChatEventLogFilters extends TdObject
     protected bool $settingChanges;
 
     /**
-     * True, if changes to invite links need to be returned
-     *
-     * @var bool
-     */
-    protected bool $inviteLinkChanges;
-
-    /**
      * True, if video chat actions need to be returned
      *
      * @var bool
      */
     protected bool $videoChatChanges;
-
-    /**
-     * True, if forum-related actions need to be returned
-     *
-     * @var bool
-     */
-    protected bool $forumChanges;
 
     public function __construct(
         bool $messageEdits,
@@ -121,7 +121,8 @@ class ChatEventLogFilters extends TdObject
         bool $inviteLinkChanges,
         bool $videoChatChanges,
         bool $forumChanges,
-    ) {
+    )
+    {
         $this->messageEdits = $messageEdits;
         $this->messageDeletions = $messageDeletions;
         $this->messagePins = $messagePins;
@@ -156,6 +157,71 @@ class ChatEventLogFilters extends TdObject
         );
     }
 
+    public function getForumChanges(): bool
+    {
+        return $this->forumChanges;
+    }
+
+    public function getInfoChanges(): bool
+    {
+        return $this->infoChanges;
+    }
+
+    public function getInviteLinkChanges(): bool
+    {
+        return $this->inviteLinkChanges;
+    }
+
+    public function getMemberInvites(): bool
+    {
+        return $this->memberInvites;
+    }
+
+    public function getMemberJoins(): bool
+    {
+        return $this->memberJoins;
+    }
+
+    public function getMemberLeaves(): bool
+    {
+        return $this->memberLeaves;
+    }
+
+    public function getMemberPromotions(): bool
+    {
+        return $this->memberPromotions;
+    }
+
+    public function getMemberRestrictions(): bool
+    {
+        return $this->memberRestrictions;
+    }
+
+    public function getMessageDeletions(): bool
+    {
+        return $this->messageDeletions;
+    }
+
+    public function getMessageEdits(): bool
+    {
+        return $this->messageEdits;
+    }
+
+    public function getMessagePins(): bool
+    {
+        return $this->messagePins;
+    }
+
+    public function getSettingChanges(): bool
+    {
+        return $this->settingChanges;
+    }
+
+    public function getVideoChatChanges(): bool
+    {
+        return $this->videoChatChanges;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -174,70 +240,5 @@ class ChatEventLogFilters extends TdObject
             'video_chat_changes' => $this->videoChatChanges,
             'forum_changes' => $this->forumChanges,
         ];
-    }
-
-    public function getMessageEdits(): bool
-    {
-        return $this->messageEdits;
-    }
-
-    public function getMessageDeletions(): bool
-    {
-        return $this->messageDeletions;
-    }
-
-    public function getMessagePins(): bool
-    {
-        return $this->messagePins;
-    }
-
-    public function getMemberJoins(): bool
-    {
-        return $this->memberJoins;
-    }
-
-    public function getMemberLeaves(): bool
-    {
-        return $this->memberLeaves;
-    }
-
-    public function getMemberInvites(): bool
-    {
-        return $this->memberInvites;
-    }
-
-    public function getMemberPromotions(): bool
-    {
-        return $this->memberPromotions;
-    }
-
-    public function getMemberRestrictions(): bool
-    {
-        return $this->memberRestrictions;
-    }
-
-    public function getInfoChanges(): bool
-    {
-        return $this->infoChanges;
-    }
-
-    public function getSettingChanges(): bool
-    {
-        return $this->settingChanges;
-    }
-
-    public function getInviteLinkChanges(): bool
-    {
-        return $this->inviteLinkChanges;
-    }
-
-    public function getVideoChatChanges(): bool
-    {
-        return $this->videoChatChanges;
-    }
-
-    public function getForumChanges(): bool
-    {
-        return $this->forumChanges;
     }
 }

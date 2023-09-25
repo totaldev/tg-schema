@@ -45,15 +45,6 @@ class UpdateChatDefaultDisableNotification extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'default_disable_notification' => $this->defaultDisableNotification,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateChatDefaultDisableNotification extends Update
     public function getDefaultDisableNotification(): bool
     {
         return $this->defaultDisableNotification;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'default_disable_notification' => $this->defaultDisableNotification,
+        ];
     }
 }

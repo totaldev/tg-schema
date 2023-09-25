@@ -17,18 +17,18 @@ class ProcessChatFolderNewChats extends TdFunction
     public const TYPE_NAME = 'processChatFolderNewChats';
 
     /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    /**
      * Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
      *
      * @var int[]
      */
     protected array $addedChatIds;
+
+    /**
+     * Chat folder identifier
+     *
+     * @var int
+     */
+    protected int $chatFolderId;
 
     public function __construct(int $chatFolderId, array $addedChatIds)
     {
@@ -44,13 +44,9 @@ class ProcessChatFolderNewChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAddedChatIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
-            'added_chat_ids' => $this->addedChatIds,
-        ];
+        return $this->addedChatIds;
     }
 
     public function getChatFolderId(): int
@@ -58,8 +54,12 @@ class ProcessChatFolderNewChats extends TdFunction
         return $this->chatFolderId;
     }
 
-    public function getAddedChatIds(): array
+    public function typeSerialize(): array
     {
-        return $this->addedChatIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_id' => $this->chatFolderId,
+            'added_chat_ids' => $this->addedChatIds,
+        ];
     }
 }

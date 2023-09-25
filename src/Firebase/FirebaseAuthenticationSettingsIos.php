@@ -45,15 +45,6 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'device_token' => $this->deviceToken,
-            'is_app_sandbox' => $this->isAppSandbox,
-        ];
-    }
-
     public function getDeviceToken(): string
     {
         return $this->deviceToken;
@@ -62,5 +53,14 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
     public function getIsAppSandbox(): bool
     {
         return $this->isAppSandbox;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'device_token' => $this->deviceToken,
+            'is_app_sandbox' => $this->isAppSandbox,
+        ];
     }
 }

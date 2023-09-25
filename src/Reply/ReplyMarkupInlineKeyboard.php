@@ -37,16 +37,16 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup
         );
     }
 
+    public function getRows(): array
+    {
+        return $this->rows;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->rows),
         ];
-    }
-
-    public function getRows(): array
-    {
-        return $this->rows;
     }
 }

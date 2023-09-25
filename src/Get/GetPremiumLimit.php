@@ -36,16 +36,16 @@ class GetPremiumLimit extends TdFunction
         );
     }
 
+    public function getLimitType(): PremiumLimitType
+    {
+        return $this->limitType;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'limit_type' => $this->limitType->typeSerialize(),
         ];
-    }
-
-    public function getLimitType(): PremiumLimitType
-    {
-        return $this->limitType;
     }
 }

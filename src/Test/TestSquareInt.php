@@ -35,16 +35,16 @@ class TestSquareInt extends TdFunction
         );
     }
 
+    public function getX(): int
+    {
+        return $this->x;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'x' => $this->x,
         ];
-    }
-
-    public function getX(): int
-    {
-        return $this->x;
     }
 }

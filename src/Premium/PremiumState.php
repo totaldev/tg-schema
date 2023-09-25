@@ -18,11 +18,11 @@ class PremiumState extends TdObject
     public const TYPE_NAME = 'premiumState';
 
     /**
-     * Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
+     * The list of available promotion animations for Premium features
      *
-     * @var FormattedText
+     * @var PremiumFeaturePromotionAnimation[]
      */
-    protected FormattedText $state;
+    protected array $animations;
 
     /**
      * The list of available options for buying Telegram Premium
@@ -32,11 +32,11 @@ class PremiumState extends TdObject
     protected array $paymentOptions;
 
     /**
-     * The list of available promotion animations for Premium features
+     * Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
      *
-     * @var PremiumFeaturePromotionAnimation[]
+     * @var FormattedText
      */
-    protected array $animations;
+    protected FormattedText $state;
 
     public function __construct(FormattedText $state, array $paymentOptions, array $animations)
     {
@@ -49,9 +49,24 @@ class PremiumState extends TdObject
     {
         return new static(
             TdSchemaRegistry::fromArray($array['state']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['paymentOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['payment_options']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
         );
+    }
+
+    public function getAnimations(): array
+    {
+        return $this->animations;
+    }
+
+    public function getPaymentOptions(): array
+    {
+        return $this->paymentOptions;
+    }
+
+    public function getState(): FormattedText
+    {
+        return $this->state;
     }
 
     public function typeSerialize(): array
@@ -62,20 +77,5 @@ class PremiumState extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->paymentOptions),
             array_map(fn($x) => $x->typeSerialize(), $this->animations),
         ];
-    }
-
-    public function getState(): FormattedText
-    {
-        return $this->state;
-    }
-
-    public function getPaymentOptions(): array
-    {
-        return $this->paymentOptions;
-    }
-
-    public function getAnimations(): array
-    {
-        return $this->animations;
     }
 }

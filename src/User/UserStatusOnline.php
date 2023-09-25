@@ -36,16 +36,16 @@ class UserStatusOnline extends UserStatus
         );
     }
 
+    public function getExpires(): int
+    {
+        return $this->expires;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'expires' => $this->expires,
         ];
-    }
-
-    public function getExpires(): int
-    {
-        return $this->expires;
     }
 }

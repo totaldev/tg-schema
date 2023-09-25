@@ -18,18 +18,18 @@ class GetCommands extends TdFunction
     public const TYPE_NAME = 'getCommands';
 
     /**
-     * The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-     *
-     * @var BotCommandScope
-     */
-    protected BotCommandScope $scope;
-
-    /**
      * A two-letter ISO 639-1 language code or an empty string
      *
      * @var string
      */
     protected string $languageCode;
+
+    /**
+     * The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+     *
+     * @var BotCommandScope
+     */
+    protected BotCommandScope $scope;
 
     public function __construct(BotCommandScope $scope, string $languageCode)
     {
@@ -45,13 +45,9 @@ class GetCommands extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLanguageCode(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'language_code' => $this->languageCode,
-        ];
+        return $this->languageCode;
     }
 
     public function getScope(): BotCommandScope
@@ -59,8 +55,12 @@ class GetCommands extends TdFunction
         return $this->scope;
     }
 
-    public function getLanguageCode(): string
+    public function typeSerialize(): array
     {
-        return $this->languageCode;
+        return [
+            '@type' => static::TYPE_NAME,
+            'scope' => $this->scope->typeSerialize(),
+            'language_code' => $this->languageCode,
+        ];
     }
 }

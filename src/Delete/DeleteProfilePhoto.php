@@ -35,16 +35,16 @@ class DeleteProfilePhoto extends TdFunction
         );
     }
 
+    public function getProfilePhotoId(): int
+    {
+        return $this->profilePhotoId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'profile_photo_id' => $this->profilePhotoId,
         ];
-    }
-
-    public function getProfilePhotoId(): int
-    {
-        return $this->profilePhotoId;
     }
 }

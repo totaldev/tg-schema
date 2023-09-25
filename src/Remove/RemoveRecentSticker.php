@@ -18,7 +18,8 @@ class RemoveRecentSticker extends TdFunction
     public const TYPE_NAME = 'removeRecentSticker';
 
     /**
-     * Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
+     * Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of
+     * recently sent stickers
      *
      * @var bool
      */
@@ -45,15 +46,6 @@ class RemoveRecentSticker extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_attached' => $this->isAttached,
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
-    }
-
     public function getIsAttached(): bool
     {
         return $this->isAttached;
@@ -62,5 +54,14 @@ class RemoveRecentSticker extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_attached' => $this->isAttached,
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
     }
 }

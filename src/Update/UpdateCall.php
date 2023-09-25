@@ -37,16 +37,16 @@ class UpdateCall extends Update
         );
     }
 
+    public function getCall(): Call
+    {
+        return $this->call;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'call' => $this->call->typeSerialize(),
         ];
-    }
-
-    public function getCall(): Call
-    {
-        return $this->call;
     }
 }

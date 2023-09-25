@@ -26,25 +26,18 @@ class ThemeSettings extends TdObject
     protected int $accentColor;
 
     /**
-     * The background to be used in chats; may be null
-     *
-     * @var Background|null
-     */
-    protected ?Background $background;
-
-    /**
-     * The fill to be used as a background for outgoing messages
-     *
-     * @var BackgroundFill
-     */
-    protected BackgroundFill $outgoingMessageFill;
-
-    /**
      * If true, the freeform gradient fill needs to be animated on every sent message
      *
      * @var bool
      */
     protected bool $animateOutgoingMessageFill;
+
+    /**
+     * The background to be used in chats; may be null
+     *
+     * @var Background|null
+     */
+    protected ?Background $background;
 
     /**
      * Accent color of outgoing messages in ARGB format
@@ -53,13 +46,21 @@ class ThemeSettings extends TdObject
      */
     protected int $outgoingMessageAccentColor;
 
+    /**
+     * The fill to be used as a background for outgoing messages
+     *
+     * @var BackgroundFill
+     */
+    protected BackgroundFill $outgoingMessageFill;
+
     public function __construct(
-        int $accentColor,
-        ?Background $background,
+        int            $accentColor,
+        ?Background    $background,
         BackgroundFill $outgoingMessageFill,
-        bool $animateOutgoingMessageFill,
-        int $outgoingMessageAccentColor,
-    ) {
+        bool           $animateOutgoingMessageFill,
+        int            $outgoingMessageAccentColor,
+    )
+    {
         $this->accentColor = $accentColor;
         $this->background = $background;
         $this->outgoingMessageFill = $outgoingMessageFill;
@@ -78,6 +79,31 @@ class ThemeSettings extends TdObject
         );
     }
 
+    public function getAccentColor(): int
+    {
+        return $this->accentColor;
+    }
+
+    public function getAnimateOutgoingMessageFill(): bool
+    {
+        return $this->animateOutgoingMessageFill;
+    }
+
+    public function getBackground(): ?Background
+    {
+        return $this->background;
+    }
+
+    public function getOutgoingMessageAccentColor(): int
+    {
+        return $this->outgoingMessageAccentColor;
+    }
+
+    public function getOutgoingMessageFill(): BackgroundFill
+    {
+        return $this->outgoingMessageFill;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -88,30 +114,5 @@ class ThemeSettings extends TdObject
             'animate_outgoing_message_fill' => $this->animateOutgoingMessageFill,
             'outgoing_message_accent_color' => $this->outgoingMessageAccentColor,
         ];
-    }
-
-    public function getAccentColor(): int
-    {
-        return $this->accentColor;
-    }
-
-    public function getBackground(): ?Background
-    {
-        return $this->background;
-    }
-
-    public function getOutgoingMessageFill(): BackgroundFill
-    {
-        return $this->outgoingMessageFill;
-    }
-
-    public function getAnimateOutgoingMessageFill(): bool
-    {
-        return $this->animateOutgoingMessageFill;
-    }
-
-    public function getOutgoingMessageAccentColor(): int
-    {
-        return $this->outgoingMessageAccentColor;
     }
 }

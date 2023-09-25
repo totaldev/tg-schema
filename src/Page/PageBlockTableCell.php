@@ -18,18 +18,11 @@ class PageBlockTableCell extends TdObject
     public const TYPE_NAME = 'pageBlockTableCell';
 
     /**
-     * Cell text; may be null. If the text is null, then the cell must be invisible
+     * Horizontal cell content alignment
      *
-     * @var RichText|null
+     * @var PageBlockHorizontalAlignment
      */
-    protected ?RichText $text;
-
-    /**
-     * True, if it is a header cell
-     *
-     * @var bool
-     */
-    protected bool $isHeader;
+    protected PageBlockHorizontalAlignment $align;
 
     /**
      * The number of columns the cell spans
@@ -39,6 +32,13 @@ class PageBlockTableCell extends TdObject
     protected int $colspan;
 
     /**
+     * True, if it is a header cell
+     *
+     * @var bool
+     */
+    protected bool $isHeader;
+
+    /**
      * The number of rows the cell spans
      *
      * @var int
@@ -46,11 +46,11 @@ class PageBlockTableCell extends TdObject
     protected int $rowspan;
 
     /**
-     * Horizontal cell content alignment
+     * Cell text; may be null. If the text is null, then the cell must be invisible
      *
-     * @var PageBlockHorizontalAlignment
+     * @var RichText|null
      */
-    protected PageBlockHorizontalAlignment $align;
+    protected ?RichText $text;
 
     /**
      * Vertical cell content alignment
@@ -60,13 +60,14 @@ class PageBlockTableCell extends TdObject
     protected PageBlockVerticalAlignment $valign;
 
     public function __construct(
-        ?RichText $text,
-        bool $isHeader,
-        int $colspan,
-        int $rowspan,
+        ?RichText                    $text,
+        bool                         $isHeader,
+        int                          $colspan,
+        int                          $rowspan,
         PageBlockHorizontalAlignment $align,
-        PageBlockVerticalAlignment $valign,
-    ) {
+        PageBlockVerticalAlignment   $valign,
+    )
+    {
         $this->text = $text;
         $this->isHeader = $isHeader;
         $this->colspan = $colspan;
@@ -87,6 +88,36 @@ class PageBlockTableCell extends TdObject
         );
     }
 
+    public function getAlign(): PageBlockHorizontalAlignment
+    {
+        return $this->align;
+    }
+
+    public function getColspan(): int
+    {
+        return $this->colspan;
+    }
+
+    public function getIsHeader(): bool
+    {
+        return $this->isHeader;
+    }
+
+    public function getRowspan(): int
+    {
+        return $this->rowspan;
+    }
+
+    public function getText(): ?RichText
+    {
+        return $this->text;
+    }
+
+    public function getValign(): PageBlockVerticalAlignment
+    {
+        return $this->valign;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -98,35 +129,5 @@ class PageBlockTableCell extends TdObject
             'align' => $this->align->typeSerialize(),
             'valign' => $this->valign->typeSerialize(),
         ];
-    }
-
-    public function getText(): ?RichText
-    {
-        return $this->text;
-    }
-
-    public function getIsHeader(): bool
-    {
-        return $this->isHeader;
-    }
-
-    public function getColspan(): int
-    {
-        return $this->colspan;
-    }
-
-    public function getRowspan(): int
-    {
-        return $this->rowspan;
-    }
-
-    public function getAlign(): PageBlockHorizontalAlignment
-    {
-        return $this->align;
-    }
-
-    public function getValign(): PageBlockVerticalAlignment
-    {
-        return $this->valign;
     }
 }

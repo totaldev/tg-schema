@@ -17,13 +17,6 @@ class GroupCallParticipantVideoInfo extends TdObject
     public const TYPE_NAME = 'groupCallParticipantVideoInfo';
 
     /**
-     * List of synchronization source groups of the video
-     *
-     * @var GroupCallVideoSourceGroup[]
-     */
-    protected array $sourceGroups;
-
-    /**
      * Video channel endpoint identifier
      *
      * @var string
@@ -37,6 +30,13 @@ class GroupCallParticipantVideoInfo extends TdObject
      */
     protected bool $isPaused;
 
+    /**
+     * List of synchronization source groups of the video
+     *
+     * @var GroupCallVideoSourceGroup[]
+     */
+    protected array $sourceGroups;
+
     public function __construct(array $sourceGroups, string $endpointId, bool $isPaused)
     {
         $this->sourceGroups = $sourceGroups;
@@ -47,25 +47,10 @@ class GroupCallParticipantVideoInfo extends TdObject
     public static function fromArray(array $array): GroupCallParticipantVideoInfo
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['sourceGroups']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['source_groups']),
             $array['endpoint_id'],
             $array['is_paused'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->sourceGroups),
-            'endpoint_id' => $this->endpointId,
-            'is_paused' => $this->isPaused,
-        ];
-    }
-
-    public function getSourceGroups(): array
-    {
-        return $this->sourceGroups;
     }
 
     public function getEndpointId(): string
@@ -76,5 +61,20 @@ class GroupCallParticipantVideoInfo extends TdObject
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function getSourceGroups(): array
+    {
+        return $this->sourceGroups;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->sourceGroups),
+            'endpoint_id' => $this->endpointId,
+            'is_paused' => $this->isPaused,
+        ];
     }
 }

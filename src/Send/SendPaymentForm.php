@@ -19,18 +19,18 @@ class SendPaymentForm extends TdFunction
     public const TYPE_NAME = 'sendPaymentForm';
 
     /**
+     * The credentials chosen by user for payment
+     *
+     * @var InputCredentials
+     */
+    protected InputCredentials $credentials;
+
+    /**
      * The invoice
      *
      * @var InputInvoice
      */
     protected InputInvoice $inputInvoice;
-
-    /**
-     * Payment form identifier returned by getPaymentForm
-     *
-     * @var int
-     */
-    protected int $paymentFormId;
 
     /**
      * Identifier returned by validateOrderInfo, or an empty string
@@ -40,18 +40,18 @@ class SendPaymentForm extends TdFunction
     protected string $orderInfoId;
 
     /**
+     * Payment form identifier returned by getPaymentForm
+     *
+     * @var int
+     */
+    protected int $paymentFormId;
+
+    /**
      * Identifier of a chosen shipping option, if applicable
      *
      * @var string
      */
     protected string $shippingOptionId;
-
-    /**
-     * The credentials chosen by user for payment
-     *
-     * @var InputCredentials
-     */
-    protected InputCredentials $credentials;
 
     /**
      * Chosen by the user amount of tip in the smallest units of the currency
@@ -61,13 +61,14 @@ class SendPaymentForm extends TdFunction
     protected int $tipAmount;
 
     public function __construct(
-        InputInvoice $inputInvoice,
-        int $paymentFormId,
-        string $orderInfoId,
-        string $shippingOptionId,
+        InputInvoice     $inputInvoice,
+        int              $paymentFormId,
+        string           $orderInfoId,
+        string           $shippingOptionId,
         InputCredentials $credentials,
-        int $tipAmount,
-    ) {
+        int              $tipAmount,
+    )
+    {
         $this->inputInvoice = $inputInvoice;
         $this->paymentFormId = $paymentFormId;
         $this->orderInfoId = $orderInfoId;
@@ -88,6 +89,36 @@ class SendPaymentForm extends TdFunction
         );
     }
 
+    public function getCredentials(): InputCredentials
+    {
+        return $this->credentials;
+    }
+
+    public function getInputInvoice(): InputInvoice
+    {
+        return $this->inputInvoice;
+    }
+
+    public function getOrderInfoId(): string
+    {
+        return $this->orderInfoId;
+    }
+
+    public function getPaymentFormId(): int
+    {
+        return $this->paymentFormId;
+    }
+
+    public function getShippingOptionId(): string
+    {
+        return $this->shippingOptionId;
+    }
+
+    public function getTipAmount(): int
+    {
+        return $this->tipAmount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +130,5 @@ class SendPaymentForm extends TdFunction
             'credentials' => $this->credentials->typeSerialize(),
             'tip_amount' => $this->tipAmount,
         ];
-    }
-
-    public function getInputInvoice(): InputInvoice
-    {
-        return $this->inputInvoice;
-    }
-
-    public function getPaymentFormId(): int
-    {
-        return $this->paymentFormId;
-    }
-
-    public function getOrderInfoId(): string
-    {
-        return $this->orderInfoId;
-    }
-
-    public function getShippingOptionId(): string
-    {
-        return $this->shippingOptionId;
-    }
-
-    public function getCredentials(): InputCredentials
-    {
-        return $this->credentials;
-    }
-
-    public function getTipAmount(): int
-    {
-        return $this->tipAmount;
     }
 }

@@ -44,15 +44,6 @@ class BankCardActionOpenUrl extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'url' => $this->url,
-        ];
-    }
-
     public function getText(): string
     {
         return $this->text;
@@ -61,5 +52,14 @@ class BankCardActionOpenUrl extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'url' => $this->url,
+        ];
     }
 }

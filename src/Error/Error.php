@@ -44,15 +44,6 @@ class Error extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'code' => $this->code,
-            'message' => $this->message,
-        ];
-    }
-
     public function getCode(): int
     {
         return $this->code;
@@ -61,5 +52,14 @@ class Error extends TdObject
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'code' => $this->code,
+            'message' => $this->message,
+        ];
     }
 }

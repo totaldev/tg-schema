@@ -24,18 +24,18 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
     protected string $id;
 
     /**
-     * Voice note
-     *
-     * @var VoiceNote
-     */
-    protected VoiceNote $voiceNote;
-
-    /**
      * Title of the voice note
      *
      * @var string
      */
     protected string $title;
+
+    /**
+     * Voice note
+     *
+     * @var VoiceNote
+     */
+    protected VoiceNote $voiceNote;
 
     public function __construct(string $id, VoiceNote $voiceNote, string $title)
     {
@@ -55,6 +55,21 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
         );
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getVoiceNote(): VoiceNote
+    {
+        return $this->voiceNote;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
             'voice_note' => $this->voiceNote->typeSerialize(),
             'title' => $this->title,
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getVoiceNote(): VoiceNote
-    {
-        return $this->voiceNote;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

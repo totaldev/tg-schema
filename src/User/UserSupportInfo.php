@@ -18,13 +18,6 @@ class UserSupportInfo extends TdObject
     public const TYPE_NAME = 'userSupportInfo';
 
     /**
-     * Information message
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $message;
-
-    /**
      * Information author
      *
      * @var string
@@ -37,6 +30,13 @@ class UserSupportInfo extends TdObject
      * @var int
      */
     protected int $date;
+
+    /**
+     * Information message
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $message;
 
     public function __construct(FormattedText $message, string $author, int $date)
     {
@@ -54,21 +54,6 @@ class UserSupportInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-            'author' => $this->author,
-            'date' => $this->date,
-        ];
-    }
-
-    public function getMessage(): FormattedText
-    {
-        return $this->message;
-    }
-
     public function getAuthor(): string
     {
         return $this->author;
@@ -77,5 +62,20 @@ class UserSupportInfo extends TdObject
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function getMessage(): FormattedText
+    {
+        return $this->message;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'author' => $this->author,
+            'date' => $this->date,
+        ];
     }
 }

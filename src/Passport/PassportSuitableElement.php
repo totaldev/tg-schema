@@ -17,11 +17,11 @@ class PassportSuitableElement extends TdObject
     public const TYPE_NAME = 'passportSuitableElement';
 
     /**
-     * Type of the element
+     * True, if personal details must include the user's name in the language of their country of residence
      *
-     * @var PassportElementType
+     * @var bool
      */
-    protected PassportElementType $type;
+    protected bool $isNativeNameRequired;
 
     /**
      * True, if a selfie is required with the identity document
@@ -38,18 +38,19 @@ class PassportSuitableElement extends TdObject
     protected bool $isTranslationRequired;
 
     /**
-     * True, if personal details must include the user's name in the language of their country of residence
+     * Type of the element
      *
-     * @var bool
+     * @var PassportElementType
      */
-    protected bool $isNativeNameRequired;
+    protected PassportElementType $type;
 
     public function __construct(
         PassportElementType $type,
-        bool $isSelfieRequired,
-        bool $isTranslationRequired,
-        bool $isNativeNameRequired,
-    ) {
+        bool                $isSelfieRequired,
+        bool                $isTranslationRequired,
+        bool                $isNativeNameRequired,
+    )
+    {
         $this->type = $type;
         $this->isSelfieRequired = $isSelfieRequired;
         $this->isTranslationRequired = $isTranslationRequired;
@@ -66,20 +67,9 @@ class PassportSuitableElement extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsNativeNameRequired(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'is_selfie_required' => $this->isSelfieRequired,
-            'is_translation_required' => $this->isTranslationRequired,
-            'is_native_name_required' => $this->isNativeNameRequired,
-        ];
-    }
-
-    public function getType(): PassportElementType
-    {
-        return $this->type;
+        return $this->isNativeNameRequired;
     }
 
     public function getIsSelfieRequired(): bool
@@ -92,8 +82,19 @@ class PassportSuitableElement extends TdObject
         return $this->isTranslationRequired;
     }
 
-    public function getIsNativeNameRequired(): bool
+    public function getType(): PassportElementType
     {
-        return $this->isNativeNameRequired;
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'is_selfie_required' => $this->isSelfieRequired,
+            'is_translation_required' => $this->isTranslationRequired,
+            'is_native_name_required' => $this->isNativeNameRequired,
+        ];
     }
 }

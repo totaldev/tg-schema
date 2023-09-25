@@ -36,16 +36,16 @@ class StatisticalGraphAsync extends StatisticalGraph
         );
     }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'token' => $this->token,
         ];
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
     }
 }

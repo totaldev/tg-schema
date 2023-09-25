@@ -54,16 +54,6 @@ class SendPhoneNumberConfirmationCode extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'hash' => $this->hash,
-            'phone_number' => $this->phoneNumber,
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getHash(): string
     {
         return $this->hash;
@@ -77,5 +67,15 @@ class SendPhoneNumberConfirmationCode extends TdFunction
     public function getSettings(): PhoneNumberAuthenticationSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'hash' => $this->hash,
+            'phone_number' => $this->phoneNumber,
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

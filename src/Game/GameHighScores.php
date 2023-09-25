@@ -35,16 +35,16 @@ class GameHighScores extends TdObject
         );
     }
 
+    public function getScores(): array
+    {
+        return $this->scores;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->scores),
         ];
-    }
-
-    public function getScores(): array
-    {
-        return $this->scores;
     }
 }

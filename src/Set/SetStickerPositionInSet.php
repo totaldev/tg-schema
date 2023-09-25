@@ -18,18 +18,18 @@ class SetStickerPositionInSet extends TdFunction
     public const TYPE_NAME = 'setStickerPositionInSet';
 
     /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
      * New position of the sticker in the set, 0-based
      *
      * @var int
      */
     protected int $position;
+
+    /**
+     * Sticker
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
 
     public function __construct(InputFile $sticker, int $position)
     {
@@ -45,13 +45,9 @@ class SetStickerPositionInSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPosition(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'position' => $this->position,
-        ];
+        return $this->position;
     }
 
     public function getSticker(): InputFile
@@ -59,8 +55,12 @@ class SetStickerPositionInSet extends TdFunction
         return $this->sticker;
     }
 
-    public function getPosition(): int
+    public function typeSerialize(): array
     {
-        return $this->position;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'position' => $this->position,
+        ];
     }
 }

@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Authentication;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
+ * An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be
+ * entered automatically
  */
 class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType
 {
@@ -36,16 +37,16 @@ class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType
         );
     }
 
+    public function getPattern(): string
+    {
+        return $this->pattern;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'pattern' => $this->pattern,
         ];
-    }
-
-    public function getPattern(): string
-    {
-        return $this->pattern;
     }
 }

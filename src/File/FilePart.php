@@ -35,16 +35,16 @@ class FilePart extends TdObject
         );
     }
 
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'data' => $this->data,
         ];
-    }
-
-    public function getData(): string
-    {
-        return $this->data;
     }
 }

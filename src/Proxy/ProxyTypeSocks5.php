@@ -16,18 +16,18 @@ class ProxyTypeSocks5 extends ProxyType
     public const TYPE_NAME = 'proxyTypeSocks5';
 
     /**
-     * Username for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $username;
-
-    /**
      * Password for logging in; may be empty
      *
      * @var string
      */
     protected string $password;
+
+    /**
+     * Username for logging in; may be empty
+     *
+     * @var string
+     */
+    protected string $username;
 
     public function __construct(string $username, string $password)
     {
@@ -45,13 +45,9 @@ class ProxyTypeSocks5 extends ProxyType
         );
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'username' => $this->username,
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 
     public function getUsername(): string
@@ -59,8 +55,12 @@ class ProxyTypeSocks5 extends ProxyType
         return $this->username;
     }
 
-    public function getPassword(): string
+    public function typeSerialize(): array
     {
-        return $this->password;
+        return [
+            '@type' => static::TYPE_NAME,
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
     }
 }

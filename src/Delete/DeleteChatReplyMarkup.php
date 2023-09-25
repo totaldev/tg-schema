@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
+ * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An
+ * updateChatReplyMarkup update will be sent if the reply markup is changed
  */
 class DeleteChatReplyMarkup extends TdFunction
 {
@@ -44,15 +45,6 @@ class DeleteChatReplyMarkup extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class DeleteChatReplyMarkup extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

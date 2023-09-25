@@ -16,18 +16,18 @@ class ChatEventDescriptionChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventDescriptionChanged';
 
     /**
-     * Previous chat description
-     *
-     * @var string
-     */
-    protected string $oldDescription;
-
-    /**
      * New chat description
      *
      * @var string
      */
     protected string $newDescription;
+
+    /**
+     * Previous chat description
+     *
+     * @var string
+     */
+    protected string $oldDescription;
 
     public function __construct(string $oldDescription, string $newDescription)
     {
@@ -45,13 +45,9 @@ class ChatEventDescriptionChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewDescription(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_description' => $this->oldDescription,
-            'new_description' => $this->newDescription,
-        ];
+        return $this->newDescription;
     }
 
     public function getOldDescription(): string
@@ -59,8 +55,12 @@ class ChatEventDescriptionChanged extends ChatEventAction
         return $this->oldDescription;
     }
 
-    public function getNewDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->newDescription;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_description' => $this->oldDescription,
+            'new_description' => $this->newDescription,
+        ];
     }
 }

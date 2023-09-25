@@ -36,16 +36,16 @@ class ChatEventVideoChatEnded extends ChatEventAction
         );
     }
 
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
     }
 }

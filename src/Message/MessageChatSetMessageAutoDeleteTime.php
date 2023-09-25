@@ -16,18 +16,18 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
     public const TYPE_NAME = 'messageChatSetMessageAutoDeleteTime';
 
     /**
-     * New value auto-delete or self-destruct time, in seconds; 0 if disabled
-     *
-     * @var int
-     */
-    protected int $messageAutoDeleteTime;
-
-    /**
      * If not 0, a user identifier, which default setting was automatically applied
      *
      * @var int
      */
     protected int $fromUserId;
+
+    /**
+     * New value auto-delete or self-destruct time, in seconds; 0 if disabled
+     *
+     * @var int
+     */
+    protected int $messageAutoDeleteTime;
 
     public function __construct(int $messageAutoDeleteTime, int $fromUserId)
     {
@@ -45,13 +45,9 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getFromUserId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message_auto_delete_time' => $this->messageAutoDeleteTime,
-            'from_user_id' => $this->fromUserId,
-        ];
+        return $this->fromUserId;
     }
 
     public function getMessageAutoDeleteTime(): int
@@ -59,8 +55,12 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
         return $this->messageAutoDeleteTime;
     }
 
-    public function getFromUserId(): int
+    public function typeSerialize(): array
     {
-        return $this->fromUserId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'message_auto_delete_time' => $this->messageAutoDeleteTime,
+            'from_user_id' => $this->fromUserId,
+        ];
     }
 }

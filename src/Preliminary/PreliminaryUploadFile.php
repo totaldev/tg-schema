@@ -12,7 +12,9 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+ * Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates
+ * updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until
+ * it will be sent in a message
  */
 class PreliminaryUploadFile extends TdFunction
 {
@@ -33,7 +35,8 @@ class PreliminaryUploadFile extends TdFunction
     protected FileType $fileType;
 
     /**
-     * Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
+     * Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first
+     * one for which preliminaryUploadFile was called will be uploaded first
      *
      * @var int
      */
@@ -55,16 +58,6 @@ class PreliminaryUploadFile extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file' => $this->file->typeSerialize(),
-            'file_type' => $this->fileType->typeSerialize(),
-            'priority' => $this->priority,
-        ];
-    }
-
     public function getFile(): InputFile
     {
         return $this->file;
@@ -78,5 +71,15 @@ class PreliminaryUploadFile extends TdFunction
     public function getPriority(): int
     {
         return $this->priority;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file' => $this->file->typeSerialize(),
+            'file_type' => $this->fileType->typeSerialize(),
+            'priority' => $this->priority,
+        ];
     }
 }

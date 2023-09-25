@@ -44,15 +44,6 @@ class ToggleChatHasProtectedContent extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'has_protected_content' => $this->hasProtectedContent,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class ToggleChatHasProtectedContent extends TdFunction
     public function getHasProtectedContent(): bool
     {
         return $this->hasProtectedContent;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'has_protected_content' => $this->hasProtectedContent,
+        ];
     }
 }

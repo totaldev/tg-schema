@@ -35,16 +35,16 @@ class SetBio extends TdFunction
         );
     }
 
+    public function getBio(): string
+    {
+        return $this->bio;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'bio' => $this->bio,
         ];
-    }
-
-    public function getBio(): string
-    {
-        return $this->bio;
     }
 }

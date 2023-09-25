@@ -18,18 +18,18 @@ class ReorderInstalledStickerSets extends TdFunction
     public const TYPE_NAME = 'reorderInstalledStickerSets';
 
     /**
-     * Type of the sticker sets to reorder
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    /**
      * Identifiers of installed sticker sets in the new correct order
      *
      * @var int[]
      */
     protected array $stickerSetIds;
+
+    /**
+     * Type of the sticker sets to reorder
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, array $stickerSetIds)
     {
@@ -45,13 +45,9 @@ class ReorderInstalledStickerSets extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerSetIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'sticker_set_ids' => $this->stickerSetIds,
-        ];
+        return $this->stickerSetIds;
     }
 
     public function getStickerType(): StickerType
@@ -59,8 +55,12 @@ class ReorderInstalledStickerSets extends TdFunction
         return $this->stickerType;
     }
 
-    public function getStickerSetIds(): array
+    public function typeSerialize(): array
     {
-        return $this->stickerSetIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'sticker_set_ids' => $this->stickerSetIds,
+        ];
     }
 }

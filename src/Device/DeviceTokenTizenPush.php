@@ -36,16 +36,16 @@ class DeviceTokenTizenPush extends DeviceToken
         );
     }
 
+    public function getRegId(): string
+    {
+        return $this->regId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'reg_id' => $this->regId,
         ];
-    }
-
-    public function getRegId(): string
-    {
-        return $this->regId;
     }
 }

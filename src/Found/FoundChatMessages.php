@@ -18,13 +18,6 @@ class FoundChatMessages extends TdObject
     public const TYPE_NAME = 'foundChatMessages';
 
     /**
-     * Approximate total number of messages found; -1 if unknown
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of messages
      *
      * @var Message[]
@@ -37,6 +30,13 @@ class FoundChatMessages extends TdObject
      * @var int
      */
     protected int $nextFromMessageId;
+
+    /**
+     * Approximate total number of messages found; -1 if unknown
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $messages, int $nextFromMessageId)
     {
@@ -54,21 +54,6 @@ class FoundChatMessages extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
-            'next_from_message_id' => $this->nextFromMessageId,
-        ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
     public function getMessages(): array
     {
         return $this->messages;
@@ -77,5 +62,20 @@ class FoundChatMessages extends TdObject
     public function getNextFromMessageId(): int
     {
         return $this->nextFromMessageId;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            'next_from_message_id' => $this->nextFromMessageId,
+        ];
     }
 }

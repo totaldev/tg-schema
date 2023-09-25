@@ -17,18 +17,18 @@ class ChatEventMessageEdited extends ChatEventAction
     public const TYPE_NAME = 'chatEventMessageEdited';
 
     /**
-     * The original message before the edit
-     *
-     * @var Message
-     */
-    protected Message $oldMessage;
-
-    /**
      * The message after it was edited
      *
      * @var Message
      */
     protected Message $newMessage;
+
+    /**
+     * The original message before the edit
+     *
+     * @var Message
+     */
+    protected Message $oldMessage;
 
     public function __construct(Message $oldMessage, Message $newMessage)
     {
@@ -46,13 +46,9 @@ class ChatEventMessageEdited extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewMessage(): Message
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_message' => $this->oldMessage->typeSerialize(),
-            'new_message' => $this->newMessage->typeSerialize(),
-        ];
+        return $this->newMessage;
     }
 
     public function getOldMessage(): Message
@@ -60,8 +56,12 @@ class ChatEventMessageEdited extends ChatEventAction
         return $this->oldMessage;
     }
 
-    public function getNewMessage(): Message
+    public function typeSerialize(): array
     {
-        return $this->newMessage;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_message' => $this->oldMessage->typeSerialize(),
+            'new_message' => $this->newMessage->typeSerialize(),
+        ];
     }
 }

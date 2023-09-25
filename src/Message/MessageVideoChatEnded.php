@@ -36,16 +36,16 @@ class MessageVideoChatEnded extends MessageContent
         );
     }
 
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'duration' => $this->duration,
         ];
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
     }
 }

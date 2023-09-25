@@ -36,16 +36,16 @@ class UpdateFavoriteStickers extends Update
         );
     }
 
+    public function getStickerIds(): array
+    {
+        return $this->stickerIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker_ids' => $this->stickerIds,
         ];
-    }
-
-    public function getStickerIds(): array
-    {
-        return $this->stickerIds;
     }
 }

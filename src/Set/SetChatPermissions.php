@@ -45,15 +45,6 @@ class SetChatPermissions extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'permissions' => $this->permissions->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class SetChatPermissions extends TdFunction
     public function getPermissions(): ChatPermissions
     {
         return $this->permissions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'permissions' => $this->permissions->typeSerialize(),
+        ];
     }
 }

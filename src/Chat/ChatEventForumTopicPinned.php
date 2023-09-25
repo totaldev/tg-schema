@@ -17,18 +17,18 @@ class ChatEventForumTopicPinned extends ChatEventAction
     public const TYPE_NAME = 'chatEventForumTopicPinned';
 
     /**
-     * Information about the old pinned topic; may be null
-     *
-     * @var ForumTopicInfo|null
-     */
-    protected ?ForumTopicInfo $oldTopicInfo;
-
-    /**
      * Information about the new pinned topic; may be null
      *
      * @var ForumTopicInfo|null
      */
     protected ?ForumTopicInfo $newTopicInfo;
+
+    /**
+     * Information about the old pinned topic; may be null
+     *
+     * @var ForumTopicInfo|null
+     */
+    protected ?ForumTopicInfo $oldTopicInfo;
 
     public function __construct(?ForumTopicInfo $oldTopicInfo, ?ForumTopicInfo $newTopicInfo)
     {
@@ -46,13 +46,9 @@ class ChatEventForumTopicPinned extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewTopicInfo(): ?ForumTopicInfo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_topic_info' => (isset($this->oldTopicInfo) ? $this->oldTopicInfo : null),
-            'new_topic_info' => (isset($this->newTopicInfo) ? $this->newTopicInfo : null),
-        ];
+        return $this->newTopicInfo;
     }
 
     public function getOldTopicInfo(): ?ForumTopicInfo
@@ -60,8 +56,12 @@ class ChatEventForumTopicPinned extends ChatEventAction
         return $this->oldTopicInfo;
     }
 
-    public function getNewTopicInfo(): ?ForumTopicInfo
+    public function typeSerialize(): array
     {
-        return $this->newTopicInfo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_topic_info' => (isset($this->oldTopicInfo) ? $this->oldTopicInfo : null),
+            'new_topic_info' => (isset($this->newTopicInfo) ? $this->newTopicInfo : null),
+        ];
     }
 }

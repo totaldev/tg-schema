@@ -37,16 +37,16 @@ class AuthorizationStateWaitCode extends AuthorizationState
         );
     }
 
+    public function getCodeInfo(): AuthenticationCodeInfo
+    {
+        return $this->codeInfo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'code_info' => $this->codeInfo->typeSerialize(),
         ];
-    }
-
-    public function getCodeInfo(): AuthenticationCodeInfo
-    {
-        return $this->codeInfo;
     }
 }

@@ -24,11 +24,12 @@ class GetForumTopics extends TdFunction
     protected int $chatId;
 
     /**
-     * Query to search for in the forum topic's name
+     * The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be
+     * smaller than the specified limit
      *
-     * @var string
+     * @var int
      */
-    protected string $query;
+    protected int $limit;
 
     /**
      * The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
@@ -52,20 +53,21 @@ class GetForumTopics extends TdFunction
     protected int $offsetMessageThreadId;
 
     /**
-     * The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+     * Query to search for in the forum topic's name
      *
-     * @var int
+     * @var string
      */
-    protected int $limit;
+    protected string $query;
 
     public function __construct(
-        int $chatId,
+        int    $chatId,
         string $query,
-        int $offsetDate,
-        int $offsetMessageId,
-        int $offsetMessageThreadId,
-        int $limit,
-    ) {
+        int    $offsetDate,
+        int    $offsetMessageId,
+        int    $offsetMessageThreadId,
+        int    $limit,
+    )
+    {
         $this->chatId = $chatId;
         $this->query = $query;
         $this->offsetDate = $offsetDate;
@@ -86,27 +88,14 @@ class GetForumTopics extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'query' => $this->query,
-            'offset_date' => $this->offsetDate,
-            'offset_message_id' => $this->offsetMessageId,
-            'offset_message_thread_id' => $this->offsetMessageThreadId,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
     }
 
-    public function getQuery(): string
+    public function getLimit(): int
     {
-        return $this->query;
+        return $this->limit;
     }
 
     public function getOffsetDate(): int
@@ -124,8 +113,21 @@ class GetForumTopics extends TdFunction
         return $this->offsetMessageThreadId;
     }
 
-    public function getLimit(): int
+    public function getQuery(): string
     {
-        return $this->limit;
+        return $this->query;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'query' => $this->query,
+            'offset_date' => $this->offsetDate,
+            'offset_message_id' => $this->offsetMessageId,
+            'offset_message_thread_id' => $this->offsetMessageThreadId,
+            'limit' => $this->limit,
+        ];
     }
 }

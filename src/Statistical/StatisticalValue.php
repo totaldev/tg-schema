@@ -17,11 +17,11 @@ class StatisticalValue extends TdObject
     public const TYPE_NAME = 'statisticalValue';
 
     /**
-     * The current value
+     * The growth rate of the value, as a percentage
      *
      * @var float
      */
-    protected float $value;
+    protected float $growthRatePercentage;
 
     /**
      * The value for the previous day
@@ -31,11 +31,11 @@ class StatisticalValue extends TdObject
     protected float $previousValue;
 
     /**
-     * The growth rate of the value, as a percentage
+     * The current value
      *
      * @var float
      */
-    protected float $growthRatePercentage;
+    protected float $value;
 
     public function __construct(float $value, float $previousValue, float $growthRatePercentage)
     {
@@ -53,6 +53,21 @@ class StatisticalValue extends TdObject
         );
     }
 
+    public function getGrowthRatePercentage(): float
+    {
+        return $this->growthRatePercentage;
+    }
+
+    public function getPreviousValue(): float
+    {
+        return $this->previousValue;
+    }
+
+    public function getValue(): float
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class StatisticalValue extends TdObject
             'previous_value' => $this->previousValue,
             'growth_rate_percentage' => $this->growthRatePercentage,
         ];
-    }
-
-    public function getValue(): float
-    {
-        return $this->value;
-    }
-
-    public function getPreviousValue(): float
-    {
-        return $this->previousValue;
-    }
-
-    public function getGrowthRatePercentage(): float
-    {
-        return $this->growthRatePercentage;
     }
 }

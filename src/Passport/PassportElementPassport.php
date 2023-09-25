@@ -37,16 +37,16 @@ class PassportElementPassport extends PassportElement
         );
     }
 
+    public function getPassport(): IdentityDocument
+    {
+        return $this->passport;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'passport' => $this->passport->typeSerialize(),
         ];
-    }
-
-    public function getPassport(): IdentityDocument
-    {
-        return $this->passport;
     }
 }

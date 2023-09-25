@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
+ * Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for
+ * each authorization form
  */
 class GetPassportAuthorizationFormAvailableElements extends TdFunction
 {
@@ -44,15 +45,6 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'authorization_form_id' => $this->authorizationFormId,
-            'password' => $this->password,
-        ];
-    }
-
     public function getAuthorizationFormId(): int
     {
         return $this->authorizationFormId;
@@ -61,5 +53,14 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'authorization_form_id' => $this->authorizationFormId,
+            'password' => $this->password,
+        ];
     }
 }

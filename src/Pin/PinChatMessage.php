@@ -24,18 +24,18 @@ class PinChatMessage extends TdFunction
     protected int $chatId;
 
     /**
-     * Identifier of the new pinned message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
      *
      * @var bool
      */
     protected bool $disableNotification;
+
+    /**
+     * Identifier of the new pinned message
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     /**
      * Pass true to pin the message only for self; private chats only
@@ -62,6 +62,26 @@ class PinChatMessage extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getDisableNotification(): bool
+    {
+        return $this->disableNotification;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getOnlyForSelf(): bool
+    {
+        return $this->onlyForSelf;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class PinChatMessage extends TdFunction
             'disable_notification' => $this->disableNotification,
             'only_for_self' => $this->onlyForSelf,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getDisableNotification(): bool
-    {
-        return $this->disableNotification;
-    }
-
-    public function getOnlyForSelf(): bool
-    {
-        return $this->onlyForSelf;
     }
 }

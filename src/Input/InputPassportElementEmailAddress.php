@@ -36,16 +36,16 @@ class InputPassportElementEmailAddress extends InputPassportElement
         );
     }
 
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
-    }
-
-    public function getEmailAddress(): string
-    {
-        return $this->emailAddress;
     }
 }

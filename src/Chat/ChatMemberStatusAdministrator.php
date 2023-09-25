@@ -9,18 +9,12 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
+ * The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new
+ * members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
  */
 class ChatMemberStatusAdministrator extends ChatMemberStatus
 {
     public const TYPE_NAME = 'chatMemberStatusAdministrator';
-
-    /**
-     * A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
-     *
-     * @var string
-     */
-    protected string $customTitle;
 
     /**
      * True, if the current user can edit the administrator privileges for the called user
@@ -28,6 +22,13 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
      * @var bool
      */
     protected bool $canBeEdited;
+
+    /**
+     * A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
+     *
+     * @var string
+     */
+    protected string $customTitle;
 
     /**
      * Rights of the administrator
@@ -54,6 +55,21 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
         );
     }
 
+    public function getCanBeEdited(): bool
+    {
+        return $this->canBeEdited;
+    }
+
+    public function getCustomTitle(): string
+    {
+        return $this->customTitle;
+    }
+
+    public function getRights(): ChatAdministratorRights
+    {
+        return $this->rights;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
             'can_be_edited' => $this->canBeEdited,
             'rights' => $this->rights->typeSerialize(),
         ];
-    }
-
-    public function getCustomTitle(): string
-    {
-        return $this->customTitle;
-    }
-
-    public function getCanBeEdited(): bool
-    {
-        return $this->canBeEdited;
-    }
-
-    public function getRights(): ChatAdministratorRights
-    {
-        return $this->rights;
     }
 }

@@ -35,16 +35,16 @@ class GetNetworkStatistics extends TdFunction
         );
     }
 
+    public function getOnlyCurrent(): bool
+    {
+        return $this->onlyCurrent;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'only_current' => $this->onlyCurrent,
         ];
-    }
-
-    public function getOnlyCurrent(): bool
-    {
-        return $this->onlyCurrent;
     }
 }

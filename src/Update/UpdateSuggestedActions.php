@@ -41,18 +41,9 @@ class UpdateSuggestedActions extends Update
     public static function fromArray(array $array): UpdateSuggestedActions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['addedActions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['removedActions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['added_actions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['removed_actions']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->addedActions),
-            array_map(fn($x) => $x->typeSerialize(), $this->removedActions),
-        ];
     }
 
     public function getAddedActions(): array
@@ -63,5 +54,14 @@ class UpdateSuggestedActions extends Update
     public function getRemovedActions(): array
     {
         return $this->removedActions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->addedActions),
+            array_map(fn($x) => $x->typeSerialize(), $this->removedActions),
+        ];
     }
 }

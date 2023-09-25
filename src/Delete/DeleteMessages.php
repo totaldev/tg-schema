@@ -53,16 +53,6 @@ class DeleteMessages extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_ids' => $this->messageIds,
-            'revoke' => $this->revoke,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +66,15 @@ class DeleteMessages extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_ids' => $this->messageIds,
+            'revoke' => $this->revoke,
+        ];
     }
 }

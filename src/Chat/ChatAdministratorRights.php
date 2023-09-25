@@ -17,32 +17,11 @@ class ChatAdministratorRights extends TdObject
     public const TYPE_NAME = 'chatAdministratorRights';
 
     /**
-     * True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
-     *
-     * @var bool
-     */
-    protected bool $canManageChat;
-
-    /**
      * True, if the administrator can change the chat title, photo, and other settings
      *
      * @var bool
      */
     protected bool $canChangeInfo;
-
-    /**
-     * True, if the administrator can create channel posts; applicable to channels only
-     *
-     * @var bool
-     */
-    protected bool $canPostMessages;
-
-    /**
-     * True, if the administrator can edit messages of other users and pin messages; applicable to channels only
-     *
-     * @var bool
-     */
-    protected bool $canEditMessages;
 
     /**
      * True, if the administrator can delete messages of other users
@@ -52,53 +31,18 @@ class ChatAdministratorRights extends TdObject
     protected bool $canDeleteMessages;
 
     /**
-     * True, if the administrator can invite new users to the chat
+     * True, if the administrator can delete stories posted by other users; applicable to channels only
      *
      * @var bool
      */
-    protected bool $canInviteUsers;
+    protected bool $canDeleteStories;
 
     /**
-     * True, if the administrator can restrict, ban, or unban chat members; always true for channels
+     * True, if the administrator can edit messages of other users and pin messages; applicable to channels only
      *
      * @var bool
      */
-    protected bool $canRestrictMembers;
-
-    /**
-     * True, if the administrator can pin messages; applicable to basic groups and supergroups only
-     *
-     * @var bool
-     */
-    protected bool $canPinMessages;
-
-    /**
-     * True, if the administrator can manage topics; applicable to forum supergroups only
-     *
-     * @var bool
-     */
-    protected bool $canManageTopics;
-
-    /**
-     * True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
-     *
-     * @var bool
-     */
-    protected bool $canPromoteMembers;
-
-    /**
-     * True, if the administrator can manage video chats
-     *
-     * @var bool
-     */
-    protected bool $canManageVideoChats;
-
-    /**
-     * True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
-     *
-     * @var bool
-     */
-    protected bool $canPostStories;
+    protected bool $canEditMessages;
 
     /**
      * True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
@@ -108,11 +52,69 @@ class ChatAdministratorRights extends TdObject
     protected bool $canEditStories;
 
     /**
-     * True, if the administrator can delete stories posted by other users; applicable to channels only
+     * True, if the administrator can invite new users to the chat
      *
      * @var bool
      */
-    protected bool $canDeleteStories;
+    protected bool $canInviteUsers;
+
+    /**
+     * True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel
+     * members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+     *
+     * @var bool
+     */
+    protected bool $canManageChat;
+
+    /**
+     * True, if the administrator can manage topics; applicable to forum supergroups only
+     *
+     * @var bool
+     */
+    protected bool $canManageTopics;
+
+    /**
+     * True, if the administrator can manage video chats
+     *
+     * @var bool
+     */
+    protected bool $canManageVideoChats;
+
+    /**
+     * True, if the administrator can pin messages; applicable to basic groups and supergroups only
+     *
+     * @var bool
+     */
+    protected bool $canPinMessages;
+
+    /**
+     * True, if the administrator can create channel posts; applicable to channels only
+     *
+     * @var bool
+     */
+    protected bool $canPostMessages;
+
+    /**
+     * True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+     *
+     * @var bool
+     */
+    protected bool $canPostStories;
+
+    /**
+     * True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly
+     * promoted by them
+     *
+     * @var bool
+     */
+    protected bool $canPromoteMembers;
+
+    /**
+     * True, if the administrator can restrict, ban, or unban chat members; always true for channels
+     *
+     * @var bool
+     */
+    protected bool $canRestrictMembers;
 
     /**
      * True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
@@ -137,7 +139,8 @@ class ChatAdministratorRights extends TdObject
         bool $canEditStories,
         bool $canDeleteStories,
         bool $isAnonymous,
-    ) {
+    )
+    {
         $this->canManageChat = $canManageChat;
         $this->canChangeInfo = $canChangeInfo;
         $this->canPostMessages = $canPostMessages;
@@ -176,6 +179,81 @@ class ChatAdministratorRights extends TdObject
         );
     }
 
+    public function getCanChangeInfo(): bool
+    {
+        return $this->canChangeInfo;
+    }
+
+    public function getCanDeleteMessages(): bool
+    {
+        return $this->canDeleteMessages;
+    }
+
+    public function getCanDeleteStories(): bool
+    {
+        return $this->canDeleteStories;
+    }
+
+    public function getCanEditMessages(): bool
+    {
+        return $this->canEditMessages;
+    }
+
+    public function getCanEditStories(): bool
+    {
+        return $this->canEditStories;
+    }
+
+    public function getCanInviteUsers(): bool
+    {
+        return $this->canInviteUsers;
+    }
+
+    public function getCanManageChat(): bool
+    {
+        return $this->canManageChat;
+    }
+
+    public function getCanManageTopics(): bool
+    {
+        return $this->canManageTopics;
+    }
+
+    public function getCanManageVideoChats(): bool
+    {
+        return $this->canManageVideoChats;
+    }
+
+    public function getCanPinMessages(): bool
+    {
+        return $this->canPinMessages;
+    }
+
+    public function getCanPostMessages(): bool
+    {
+        return $this->canPostMessages;
+    }
+
+    public function getCanPostStories(): bool
+    {
+        return $this->canPostStories;
+    }
+
+    public function getCanPromoteMembers(): bool
+    {
+        return $this->canPromoteMembers;
+    }
+
+    public function getCanRestrictMembers(): bool
+    {
+        return $this->canRestrictMembers;
+    }
+
+    public function getIsAnonymous(): bool
+    {
+        return $this->isAnonymous;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -196,80 +274,5 @@ class ChatAdministratorRights extends TdObject
             'can_delete_stories' => $this->canDeleteStories,
             'is_anonymous' => $this->isAnonymous,
         ];
-    }
-
-    public function getCanManageChat(): bool
-    {
-        return $this->canManageChat;
-    }
-
-    public function getCanChangeInfo(): bool
-    {
-        return $this->canChangeInfo;
-    }
-
-    public function getCanPostMessages(): bool
-    {
-        return $this->canPostMessages;
-    }
-
-    public function getCanEditMessages(): bool
-    {
-        return $this->canEditMessages;
-    }
-
-    public function getCanDeleteMessages(): bool
-    {
-        return $this->canDeleteMessages;
-    }
-
-    public function getCanInviteUsers(): bool
-    {
-        return $this->canInviteUsers;
-    }
-
-    public function getCanRestrictMembers(): bool
-    {
-        return $this->canRestrictMembers;
-    }
-
-    public function getCanPinMessages(): bool
-    {
-        return $this->canPinMessages;
-    }
-
-    public function getCanManageTopics(): bool
-    {
-        return $this->canManageTopics;
-    }
-
-    public function getCanPromoteMembers(): bool
-    {
-        return $this->canPromoteMembers;
-    }
-
-    public function getCanManageVideoChats(): bool
-    {
-        return $this->canManageVideoChats;
-    }
-
-    public function getCanPostStories(): bool
-    {
-        return $this->canPostStories;
-    }
-
-    public function getCanEditStories(): bool
-    {
-        return $this->canEditStories;
-    }
-
-    public function getCanDeleteStories(): bool
-    {
-        return $this->canDeleteStories;
-    }
-
-    public function getIsAnonymous(): bool
-    {
-        return $this->isAnonymous;
     }
 }

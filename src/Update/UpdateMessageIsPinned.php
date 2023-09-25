@@ -23,18 +23,18 @@ class UpdateMessageIsPinned extends Update
     protected int $chatId;
 
     /**
-     * The message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * True, if the message is pinned
      *
      * @var bool
      */
     protected bool $isPinned;
+
+    /**
+     * The message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     public function __construct(int $chatId, int $messageId, bool $isPinned)
     {
@@ -54,6 +54,21 @@ class UpdateMessageIsPinned extends Update
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class UpdateMessageIsPinned extends Update
             'message_id' => $this->messageId,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

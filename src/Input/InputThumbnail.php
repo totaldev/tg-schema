@@ -19,6 +19,13 @@ class InputThumbnail extends TdObject
     public const TYPE_NAME = 'inputThumbnail';
 
     /**
+     * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
      * Thumbnail file to send. Sending thumbnails by file_id is currently not supported
      *
      * @var InputFile
@@ -31,13 +38,6 @@ class InputThumbnail extends TdObject
      * @var int
      */
     protected int $width;
-
-    /**
-     * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
-     *
-     * @var int
-     */
-    protected int $height;
 
     public function __construct(InputFile $thumbnail, int $width, int $height)
     {
@@ -55,14 +55,9 @@ class InputThumbnail extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getHeight(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'width' => $this->width,
-            'height' => $this->height,
-        ];
+        return $this->height;
     }
 
     public function getThumbnail(): InputFile
@@ -75,8 +70,13 @@ class InputThumbnail extends TdObject
         return $this->width;
     }
 
-    public function getHeight(): int
+    public function typeSerialize(): array
     {
-        return $this->height;
+        return [
+            '@type' => static::TYPE_NAME,
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'width' => $this->width,
+            'height' => $this->height,
+        ];
     }
 }

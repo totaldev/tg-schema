@@ -25,11 +25,18 @@ class Invoice extends TdObject
     protected string $currency;
 
     /**
-     * A list of objects used to calculate the total price of the product
+     * True, if the total price depends on the shipping method
      *
-     * @var LabeledPricePart[]
+     * @var bool
      */
-    protected array $priceParts;
+    protected bool $isFlexible;
+
+    /**
+     * True, if the payment is a test payment
+     *
+     * @var bool
+     */
+    protected bool $isTest;
 
     /**
      * The maximum allowed amount of tip in the smallest units of the currency
@@ -39,32 +46,11 @@ class Invoice extends TdObject
     protected int $maxTipAmount;
 
     /**
-     * Suggested amounts of tip in the smallest units of the currency
-     *
-     * @var int[]
-     */
-    protected array $suggestedTipAmounts;
-
-    /**
-     * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
-     *
-     * @var string
-     */
-    protected string $recurringPaymentTermsOfServiceUrl;
-
-    /**
-     * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
-     *
-     * @var string
-     */
-    protected string $termsOfServiceUrl;
-
-    /**
-     * True, if the payment is a test payment
+     * True, if the user's email address is needed for payment
      *
      * @var bool
      */
-    protected bool $isTest;
+    protected bool $needEmailAddress;
 
     /**
      * True, if the user's name is needed for payment
@@ -81,13 +67,6 @@ class Invoice extends TdObject
     protected bool $needPhoneNumber;
 
     /**
-     * True, if the user's email address is needed for payment
-     *
-     * @var bool
-     */
-    protected bool $needEmailAddress;
-
-    /**
      * True, if the user's shipping address is needed for payment
      *
      * @var bool
@@ -95,11 +74,19 @@ class Invoice extends TdObject
     protected bool $needShippingAddress;
 
     /**
-     * True, if the user's phone number will be sent to the provider
+     * A list of objects used to calculate the total price of the product
      *
-     * @var bool
+     * @var LabeledPricePart[]
      */
-    protected bool $sendPhoneNumberToProvider;
+    protected array $priceParts;
+
+    /**
+     * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept
+     * the terms of service before allowed to pay
+     *
+     * @var string
+     */
+    protected string $recurringPaymentTermsOfServiceUrl;
 
     /**
      * True, if the user's email address will be sent to the provider
@@ -109,28 +96,43 @@ class Invoice extends TdObject
     protected bool $sendEmailAddressToProvider;
 
     /**
-     * True, if the total price depends on the shipping method
+     * True, if the user's phone number will be sent to the provider
      *
      * @var bool
      */
-    protected bool $isFlexible;
+    protected bool $sendPhoneNumberToProvider;
+
+    /**
+     * Suggested amounts of tip in the smallest units of the currency
+     *
+     * @var int[]
+     */
+    protected array $suggestedTipAmounts;
+
+    /**
+     * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
+     *
+     * @var string
+     */
+    protected string $termsOfServiceUrl;
 
     public function __construct(
         string $currency,
-        array $priceParts,
-        int $maxTipAmount,
-        array $suggestedTipAmounts,
+        array  $priceParts,
+        int    $maxTipAmount,
+        array  $suggestedTipAmounts,
         string $recurringPaymentTermsOfServiceUrl,
         string $termsOfServiceUrl,
-        bool $isTest,
-        bool $needName,
-        bool $needPhoneNumber,
-        bool $needEmailAddress,
-        bool $needShippingAddress,
-        bool $sendPhoneNumberToProvider,
-        bool $sendEmailAddressToProvider,
-        bool $isFlexible,
-    ) {
+        bool   $isTest,
+        bool   $needName,
+        bool   $needPhoneNumber,
+        bool   $needEmailAddress,
+        bool   $needShippingAddress,
+        bool   $sendPhoneNumberToProvider,
+        bool   $sendEmailAddressToProvider,
+        bool   $isFlexible,
+    )
+    {
         $this->currency = $currency;
         $this->priceParts = $priceParts;
         $this->maxTipAmount = $maxTipAmount;
@@ -151,7 +153,7 @@ class Invoice extends TdObject
     {
         return new static(
             $array['currency'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['priceParts']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
             $array['max_tip_amount'],
             $array['suggested_tip_amounts'],
             $array['recurring_payment_terms_of_service_url'],
@@ -165,6 +167,76 @@ class Invoice extends TdObject
             $array['send_email_address_to_provider'],
             $array['is_flexible'],
         );
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getIsFlexible(): bool
+    {
+        return $this->isFlexible;
+    }
+
+    public function getIsTest(): bool
+    {
+        return $this->isTest;
+    }
+
+    public function getMaxTipAmount(): int
+    {
+        return $this->maxTipAmount;
+    }
+
+    public function getNeedEmailAddress(): bool
+    {
+        return $this->needEmailAddress;
+    }
+
+    public function getNeedName(): bool
+    {
+        return $this->needName;
+    }
+
+    public function getNeedPhoneNumber(): bool
+    {
+        return $this->needPhoneNumber;
+    }
+
+    public function getNeedShippingAddress(): bool
+    {
+        return $this->needShippingAddress;
+    }
+
+    public function getPriceParts(): array
+    {
+        return $this->priceParts;
+    }
+
+    public function getRecurringPaymentTermsOfServiceUrl(): string
+    {
+        return $this->recurringPaymentTermsOfServiceUrl;
+    }
+
+    public function getSendEmailAddressToProvider(): bool
+    {
+        return $this->sendEmailAddressToProvider;
+    }
+
+    public function getSendPhoneNumberToProvider(): bool
+    {
+        return $this->sendPhoneNumberToProvider;
+    }
+
+    public function getSuggestedTipAmounts(): array
+    {
+        return $this->suggestedTipAmounts;
+    }
+
+    public function getTermsOfServiceUrl(): string
+    {
+        return $this->termsOfServiceUrl;
     }
 
     public function typeSerialize(): array
@@ -186,75 +258,5 @@ class Invoice extends TdObject
             'send_email_address_to_provider' => $this->sendEmailAddressToProvider,
             'is_flexible' => $this->isFlexible,
         ];
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    public function getPriceParts(): array
-    {
-        return $this->priceParts;
-    }
-
-    public function getMaxTipAmount(): int
-    {
-        return $this->maxTipAmount;
-    }
-
-    public function getSuggestedTipAmounts(): array
-    {
-        return $this->suggestedTipAmounts;
-    }
-
-    public function getRecurringPaymentTermsOfServiceUrl(): string
-    {
-        return $this->recurringPaymentTermsOfServiceUrl;
-    }
-
-    public function getTermsOfServiceUrl(): string
-    {
-        return $this->termsOfServiceUrl;
-    }
-
-    public function getIsTest(): bool
-    {
-        return $this->isTest;
-    }
-
-    public function getNeedName(): bool
-    {
-        return $this->needName;
-    }
-
-    public function getNeedPhoneNumber(): bool
-    {
-        return $this->needPhoneNumber;
-    }
-
-    public function getNeedEmailAddress(): bool
-    {
-        return $this->needEmailAddress;
-    }
-
-    public function getNeedShippingAddress(): bool
-    {
-        return $this->needShippingAddress;
-    }
-
-    public function getSendPhoneNumberToProvider(): bool
-    {
-        return $this->sendPhoneNumberToProvider;
-    }
-
-    public function getSendEmailAddressToProvider(): bool
-    {
-        return $this->sendEmailAddressToProvider;
-    }
-
-    public function getIsFlexible(): bool
-    {
-        return $this->isFlexible;
     }
 }

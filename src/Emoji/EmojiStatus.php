@@ -44,15 +44,6 @@ class EmojiStatus extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'custom_emoji_id' => $this->customEmojiId,
-            'expiration_date' => $this->expirationDate,
-        ];
-    }
-
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
@@ -61,5 +52,14 @@ class EmojiStatus extends TdObject
     public function getExpirationDate(): int
     {
         return $this->expirationDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'custom_emoji_id' => $this->customEmojiId,
+            'expiration_date' => $this->expirationDate,
+        ];
     }
 }

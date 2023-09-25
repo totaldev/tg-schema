@@ -12,7 +12,8 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
+ * Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio
+ * channel
  */
 class VoiceNote extends TdObject
 {
@@ -24,13 +25,6 @@ class VoiceNote extends TdObject
      * @var int
      */
     protected int $duration;
-
-    /**
-     * A waveform representation of the voice note in 5-bit format
-     *
-     * @var string
-     */
-    protected string $waveform;
 
     /**
      * MIME type of the file; as defined by the sender
@@ -53,13 +47,21 @@ class VoiceNote extends TdObject
      */
     protected File $voice;
 
+    /**
+     * A waveform representation of the voice note in 5-bit format
+     *
+     * @var string
+     */
+    protected string $waveform;
+
     public function __construct(
-        int $duration,
-        string $waveform,
-        string $mimeType,
+        int                      $duration,
+        string                   $waveform,
+        string                   $mimeType,
         ?SpeechRecognitionResult $speechRecognitionResult,
-        File $voice,
-    ) {
+        File                     $voice,
+    )
+    {
         $this->duration = $duration;
         $this->waveform = $waveform;
         $this->mimeType = $mimeType;
@@ -78,26 +80,9 @@ class VoiceNote extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'duration' => $this->duration,
-            'waveform' => $this->waveform,
-            'mime_type' => $this->mimeType,
-            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
-            'voice' => $this->voice->typeSerialize(),
-        ];
-    }
-
     public function getDuration(): int
     {
         return $this->duration;
-    }
-
-    public function getWaveform(): string
-    {
-        return $this->waveform;
     }
 
     public function getMimeType(): string
@@ -113,5 +98,22 @@ class VoiceNote extends TdObject
     public function getVoice(): File
     {
         return $this->voice;
+    }
+
+    public function getWaveform(): string
+    {
+        return $this->waveform;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'duration' => $this->duration,
+            'waveform' => $this->waveform,
+            'mime_type' => $this->mimeType,
+            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
+            'voice' => $this->voice->typeSerialize(),
+        ];
     }
 }

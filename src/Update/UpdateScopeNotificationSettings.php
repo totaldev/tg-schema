@@ -18,18 +18,18 @@ class UpdateScopeNotificationSettings extends Update
     public const TYPE_NAME = 'updateScopeNotificationSettings';
 
     /**
-     * Types of chats for which notification settings were updated
-     *
-     * @var NotificationSettingsScope
-     */
-    protected NotificationSettingsScope $scope;
-
-    /**
      * The new notification settings
      *
      * @var ScopeNotificationSettings
      */
     protected ScopeNotificationSettings $notificationSettings;
+
+    /**
+     * Types of chats for which notification settings were updated
+     *
+     * @var NotificationSettingsScope
+     */
+    protected NotificationSettingsScope $scope;
 
     public function __construct(NotificationSettingsScope $scope, ScopeNotificationSettings $notificationSettings)
     {
@@ -47,13 +47,9 @@ class UpdateScopeNotificationSettings extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getNotificationSettings(): ScopeNotificationSettings
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-        ];
+        return $this->notificationSettings;
     }
 
     public function getScope(): NotificationSettingsScope
@@ -61,8 +57,12 @@ class UpdateScopeNotificationSettings extends Update
         return $this->scope;
     }
 
-    public function getNotificationSettings(): ScopeNotificationSettings
+    public function typeSerialize(): array
     {
-        return $this->notificationSettings;
+        return [
+            '@type' => static::TYPE_NAME,
+            'scope' => $this->scope->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->typeSerialize(),
+        ];
     }
 }

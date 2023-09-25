@@ -44,15 +44,6 @@ class SendCallSignalingData extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'data' => $this->data,
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
@@ -61,5 +52,14 @@ class SendCallSignalingData extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'call_id' => $this->callId,
+            'data' => $this->data,
+        ];
     }
 }

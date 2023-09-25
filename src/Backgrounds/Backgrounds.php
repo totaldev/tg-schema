@@ -36,16 +36,16 @@ class Backgrounds extends TdObject
         );
     }
 
+    public function getBackgrounds(): array
+    {
+        return $this->backgrounds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->backgrounds),
         ];
-    }
-
-    public function getBackgrounds(): array
-    {
-        return $this->backgrounds;
     }
 }

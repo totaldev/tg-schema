@@ -33,8 +33,13 @@ class UpdateChatThemes extends Update
     public static function fromArray(array $array): UpdateChatThemes
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chatThemes']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
         );
+    }
+
+    public function getChatThemes(): array
+    {
+        return $this->chatThemes;
     }
 
     public function typeSerialize(): array
@@ -43,10 +48,5 @@ class UpdateChatThemes extends Update
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->chatThemes),
         ];
-    }
-
-    public function getChatThemes(): array
-    {
-        return $this->chatThemes;
     }
 }

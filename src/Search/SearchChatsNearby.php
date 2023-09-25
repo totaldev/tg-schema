@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
+ * Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates
+ * updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
  */
 class SearchChatsNearby extends TdFunction
 {
@@ -36,16 +37,16 @@ class SearchChatsNearby extends TdFunction
         );
     }
 
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
     }
 }

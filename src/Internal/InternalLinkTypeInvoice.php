@@ -36,16 +36,16 @@ class InternalLinkTypeInvoice extends InternalLinkType
         );
     }
 
+    public function getInvoiceName(): string
+    {
+        return $this->invoiceName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'invoice_name' => $this->invoiceName,
         ];
-    }
-
-    public function getInvoiceName(): string
-    {
-        return $this->invoiceName;
     }
 }

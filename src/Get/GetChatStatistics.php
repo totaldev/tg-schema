@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+ * Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if
+ * supergroupFullInfo.can_get_statistics == true
  */
 class GetChatStatistics extends TdFunction
 {
@@ -44,15 +45,6 @@ class GetChatStatistics extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'is_dark' => $this->isDark,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class GetChatStatistics extends TdFunction
     public function getIsDark(): bool
     {
         return $this->isDark;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'is_dark' => $this->isDark,
+        ];
     }
 }

@@ -44,15 +44,6 @@ class MessageViewer extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'view_date' => $this->viewDate,
-        ];
-    }
-
     public function getUserId(): int
     {
         return $this->userId;
@@ -61,5 +52,14 @@ class MessageViewer extends TdObject
     public function getViewDate(): int
     {
         return $this->viewDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'view_date' => $this->viewDate,
+        ];
     }
 }

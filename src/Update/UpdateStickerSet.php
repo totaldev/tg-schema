@@ -37,16 +37,16 @@ class UpdateStickerSet extends Update
         );
     }
 
+    public function getStickerSet(): StickerSet
+    {
+        return $this->stickerSet;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker_set' => $this->stickerSet->typeSerialize(),
         ];
-    }
-
-    public function getStickerSet(): StickerSet
-    {
-        return $this->stickerSet;
     }
 }

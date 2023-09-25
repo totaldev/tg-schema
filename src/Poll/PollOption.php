@@ -17,25 +17,11 @@ class PollOption extends TdObject
     public const TYPE_NAME = 'pollOption';
 
     /**
-     * Option text; 1-100 characters
+     * True, if the option is being chosen by a pending setPollAnswer request
      *
-     * @var string
+     * @var bool
      */
-    protected string $text;
-
-    /**
-     * Number of voters for this option, available only for closed or voted polls
-     *
-     * @var int
-     */
-    protected int $voterCount;
-
-    /**
-     * The percentage of votes for this option; 0-100
-     *
-     * @var int
-     */
-    protected int $votePercentage;
+    protected bool $isBeingChosen;
 
     /**
      * True, if the option was chosen by the user
@@ -45,19 +31,34 @@ class PollOption extends TdObject
     protected bool $isChosen;
 
     /**
-     * True, if the option is being chosen by a pending setPollAnswer request
+     * Option text; 1-100 characters
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isBeingChosen;
+    protected string $text;
+
+    /**
+     * The percentage of votes for this option; 0-100
+     *
+     * @var int
+     */
+    protected int $votePercentage;
+
+    /**
+     * Number of voters for this option, available only for closed or voted polls
+     *
+     * @var int
+     */
+    protected int $voterCount;
 
     public function __construct(
         string $text,
-        int $voterCount,
-        int $votePercentage,
-        bool $isChosen,
-        bool $isBeingChosen,
-    ) {
+        int    $voterCount,
+        int    $votePercentage,
+        bool   $isChosen,
+        bool   $isBeingChosen,
+    )
+    {
         $this->text = $text;
         $this->voterCount = $voterCount;
         $this->votePercentage = $votePercentage;
@@ -76,6 +77,31 @@ class PollOption extends TdObject
         );
     }
 
+    public function getIsBeingChosen(): bool
+    {
+        return $this->isBeingChosen;
+    }
+
+    public function getIsChosen(): bool
+    {
+        return $this->isChosen;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
+    public function getVotePercentage(): int
+    {
+        return $this->votePercentage;
+    }
+
+    public function getVoterCount(): int
+    {
+        return $this->voterCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -86,30 +112,5 @@ class PollOption extends TdObject
             'is_chosen' => $this->isChosen,
             'is_being_chosen' => $this->isBeingChosen,
         ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getVoterCount(): int
-    {
-        return $this->voterCount;
-    }
-
-    public function getVotePercentage(): int
-    {
-        return $this->votePercentage;
-    }
-
-    public function getIsChosen(): bool
-    {
-        return $this->isChosen;
-    }
-
-    public function getIsBeingChosen(): bool
-    {
-        return $this->isBeingChosen;
     }
 }

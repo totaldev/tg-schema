@@ -45,15 +45,6 @@ class GetTopChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getCategory(): TopChatCategory
     {
         return $this->category;
@@ -62,5 +53,14 @@ class GetTopChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'category' => $this->category->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 }

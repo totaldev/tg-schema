@@ -36,16 +36,16 @@ class SetDefaultChannelAdministratorRights extends TdFunction
         );
     }
 
+    public function getDefaultChannelAdministratorRights(): ChatAdministratorRights
+    {
+        return $this->defaultChannelAdministratorRights;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights->typeSerialize(),
         ];
-    }
-
-    public function getDefaultChannelAdministratorRights(): ChatAdministratorRights
-    {
-        return $this->defaultChannelAdministratorRights;
     }
 }

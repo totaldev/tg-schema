@@ -36,16 +36,16 @@ class RemoveFavoriteSticker extends TdFunction
         );
     }
 
+    public function getSticker(): InputFile
+    {
+        return $this->sticker;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
-    }
-
-    public function getSticker(): InputFile
-    {
-        return $this->sticker;
     }
 }

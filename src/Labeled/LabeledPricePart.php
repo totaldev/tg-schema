@@ -17,18 +17,18 @@ class LabeledPricePart extends TdObject
     public const TYPE_NAME = 'labeledPricePart';
 
     /**
-     * Label for this portion of the product price
-     *
-     * @var string
-     */
-    protected string $label;
-
-    /**
      * Currency amount in the smallest units of the currency
      *
      * @var int
      */
     protected int $amount;
+
+    /**
+     * Label for this portion of the product price
+     *
+     * @var string
+     */
+    protected string $label;
 
     public function __construct(string $label, int $amount)
     {
@@ -44,13 +44,9 @@ class LabeledPricePart extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAmount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'label' => $this->label,
-            'amount' => $this->amount,
-        ];
+        return $this->amount;
     }
 
     public function getLabel(): string
@@ -58,8 +54,12 @@ class LabeledPricePart extends TdObject
         return $this->label;
     }
 
-    public function getAmount(): int
+    public function typeSerialize(): array
     {
-        return $this->amount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'label' => $this->label,
+            'amount' => $this->amount,
+        ];
     }
 }

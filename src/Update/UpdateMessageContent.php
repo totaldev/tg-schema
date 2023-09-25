@@ -55,16 +55,6 @@ class UpdateMessageContent extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'new_content' => $this->newContent->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -78,5 +68,15 @@ class UpdateMessageContent extends Update
     public function getNewContent(): MessageContent
     {
         return $this->newContent;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'new_content' => $this->newContent->typeSerialize(),
+        ];
     }
 }

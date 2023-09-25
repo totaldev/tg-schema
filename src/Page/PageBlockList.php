@@ -36,16 +36,16 @@ class PageBlockList extends PageBlock
         );
     }
 
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->items),
         ];
-    }
-
-    public function getItems(): array
-    {
-        return $this->items;
     }
 }

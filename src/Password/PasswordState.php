@@ -18,18 +18,18 @@ class PasswordState extends TdObject
     public const TYPE_NAME = 'passwordState';
 
     /**
+     * True, if some Telegram Passport elements were saved
+     *
+     * @var bool
+     */
+    protected bool $hasPassportData;
+
+    /**
      * True, if a 2-step verification password is set
      *
      * @var bool
      */
     protected bool $hasPassword;
-
-    /**
-     * Hint for the password; may be empty
-     *
-     * @var string
-     */
-    protected string $passwordHint;
 
     /**
      * True, if a recovery email is set
@@ -39,25 +39,18 @@ class PasswordState extends TdObject
     protected bool $hasRecoveryEmailAddress;
 
     /**
-     * True, if some Telegram Passport elements were saved
-     *
-     * @var bool
-     */
-    protected bool $hasPassportData;
-
-    /**
-     * Information about the recovery email address to which the confirmation email was sent; may be null
-     *
-     * @var EmailAddressAuthenticationCodeInfo|null
-     */
-    protected ?EmailAddressAuthenticationCodeInfo $recoveryEmailAddressCodeInfo;
-
-    /**
      * Pattern of the email address set up for logging in
      *
      * @var string
      */
     protected string $loginEmailAddressPattern;
+
+    /**
+     * Hint for the password; may be empty
+     *
+     * @var string
+     */
+    protected string $passwordHint;
 
     /**
      * If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
@@ -66,15 +59,23 @@ class PasswordState extends TdObject
      */
     protected int $pendingResetDate;
 
+    /**
+     * Information about the recovery email address to which the confirmation email was sent; may be null
+     *
+     * @var EmailAddressAuthenticationCodeInfo|null
+     */
+    protected ?EmailAddressAuthenticationCodeInfo $recoveryEmailAddressCodeInfo;
+
     public function __construct(
-        bool $hasPassword,
-        string $passwordHint,
-        bool $hasRecoveryEmailAddress,
-        bool $hasPassportData,
+        bool                                $hasPassword,
+        string                              $passwordHint,
+        bool                                $hasRecoveryEmailAddress,
+        bool                                $hasPassportData,
         ?EmailAddressAuthenticationCodeInfo $recoveryEmailAddressCodeInfo,
-        string $loginEmailAddressPattern,
-        int $pendingResetDate,
-    ) {
+        string                              $loginEmailAddressPattern,
+        int                                 $pendingResetDate,
+    )
+    {
         $this->hasPassword = $hasPassword;
         $this->passwordHint = $passwordHint;
         $this->hasRecoveryEmailAddress = $hasRecoveryEmailAddress;
@@ -97,6 +98,41 @@ class PasswordState extends TdObject
         );
     }
 
+    public function getHasPassportData(): bool
+    {
+        return $this->hasPassportData;
+    }
+
+    public function getHasPassword(): bool
+    {
+        return $this->hasPassword;
+    }
+
+    public function getHasRecoveryEmailAddress(): bool
+    {
+        return $this->hasRecoveryEmailAddress;
+    }
+
+    public function getLoginEmailAddressPattern(): string
+    {
+        return $this->loginEmailAddressPattern;
+    }
+
+    public function getPasswordHint(): string
+    {
+        return $this->passwordHint;
+    }
+
+    public function getPendingResetDate(): int
+    {
+        return $this->pendingResetDate;
+    }
+
+    public function getRecoveryEmailAddressCodeInfo(): ?EmailAddressAuthenticationCodeInfo
+    {
+        return $this->recoveryEmailAddressCodeInfo;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -109,40 +145,5 @@ class PasswordState extends TdObject
             'login_email_address_pattern' => $this->loginEmailAddressPattern,
             'pending_reset_date' => $this->pendingResetDate,
         ];
-    }
-
-    public function getHasPassword(): bool
-    {
-        return $this->hasPassword;
-    }
-
-    public function getPasswordHint(): string
-    {
-        return $this->passwordHint;
-    }
-
-    public function getHasRecoveryEmailAddress(): bool
-    {
-        return $this->hasRecoveryEmailAddress;
-    }
-
-    public function getHasPassportData(): bool
-    {
-        return $this->hasPassportData;
-    }
-
-    public function getRecoveryEmailAddressCodeInfo(): ?EmailAddressAuthenticationCodeInfo
-    {
-        return $this->recoveryEmailAddressCodeInfo;
-    }
-
-    public function getLoginEmailAddressPattern(): string
-    {
-        return $this->loginEmailAddressPattern;
-    }
-
-    public function getPendingResetDate(): int
-    {
-        return $this->pendingResetDate;
     }
 }

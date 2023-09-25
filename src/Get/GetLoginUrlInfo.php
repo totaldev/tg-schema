@@ -17,6 +17,13 @@ class GetLoginUrlInfo extends TdFunction
     public const TYPE_NAME = 'getLoginUrlInfo';
 
     /**
+     * Button identifier
+     *
+     * @var int
+     */
+    protected int $buttonId;
+
+    /**
      * Chat identifier of the message with the button
      *
      * @var int
@@ -29,13 +36,6 @@ class GetLoginUrlInfo extends TdFunction
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Button identifier
-     *
-     * @var int
-     */
-    protected int $buttonId;
 
     public function __construct(int $chatId, int $messageId, int $buttonId)
     {
@@ -53,14 +53,9 @@ class GetLoginUrlInfo extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getButtonId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'button_id' => $this->buttonId,
-        ];
+        return $this->buttonId;
     }
 
     public function getChatId(): int
@@ -73,8 +68,13 @@ class GetLoginUrlInfo extends TdFunction
         return $this->messageId;
     }
 
-    public function getButtonId(): int
+    public function typeSerialize(): array
     {
-        return $this->buttonId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'button_id' => $this->buttonId,
+        ];
     }
 }

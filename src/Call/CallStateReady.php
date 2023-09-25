@@ -16,6 +16,34 @@ class CallStateReady extends CallState
     public const TYPE_NAME = 'callStateReady';
 
     /**
+     * True, if peer-to-peer connection is allowed by users privacy settings
+     *
+     * @var bool
+     */
+    protected bool $allowP2p;
+
+    /**
+     * A JSON-encoded call config
+     *
+     * @var string
+     */
+    protected string $config;
+
+    /**
+     * Encryption key emojis fingerprint
+     *
+     * @var string[]
+     */
+    protected array $emojis;
+
+    /**
+     * Call encryption key
+     *
+     * @var string
+     */
+    protected string $encryptionKey;
+
+    /**
      * Call protocols supported by the peer
      *
      * @var CallProtocol
@@ -29,42 +57,15 @@ class CallStateReady extends CallState
      */
     protected array $servers;
 
-    /**
-     * A JSON-encoded call config
-     *
-     * @var string
-     */
-    protected string $config;
-
-    /**
-     * Call encryption key
-     *
-     * @var string
-     */
-    protected string $encryptionKey;
-
-    /**
-     * Encryption key emojis fingerprint
-     *
-     * @var string[]
-     */
-    protected array $emojis;
-
-    /**
-     * True, if peer-to-peer connection is allowed by users privacy settings
-     *
-     * @var bool
-     */
-    protected bool $allowP2p;
-
     public function __construct(
         CallProtocol $protocol,
-        array $servers,
-        string $config,
-        string $encryptionKey,
-        array $emojis,
-        bool $allowP2p,
-    ) {
+        array        $servers,
+        string       $config,
+        string       $encryptionKey,
+        array        $emojis,
+        bool         $allowP2p,
+    )
+    {
         parent::__construct();
 
         $this->protocol = $protocol;
@@ -87,17 +88,24 @@ class CallStateReady extends CallState
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowP2p(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'protocol' => $this->protocol->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->servers),
-            'config' => $this->config,
-            'encryption_key' => $this->encryptionKey,
-            'emojis' => $this->emojis,
-            'allow_p2p' => $this->allowP2p,
-        ];
+        return $this->allowP2p;
+    }
+
+    public function getConfig(): string
+    {
+        return $this->config;
+    }
+
+    public function getEmojis(): array
+    {
+        return $this->emojis;
+    }
+
+    public function getEncryptionKey(): string
+    {
+        return $this->encryptionKey;
     }
 
     public function getProtocol(): CallProtocol
@@ -110,23 +118,16 @@ class CallStateReady extends CallState
         return $this->servers;
     }
 
-    public function getConfig(): string
+    public function typeSerialize(): array
     {
-        return $this->config;
-    }
-
-    public function getEncryptionKey(): string
-    {
-        return $this->encryptionKey;
-    }
-
-    public function getEmojis(): array
-    {
-        return $this->emojis;
-    }
-
-    public function getAllowP2p(): bool
-    {
-        return $this->allowP2p;
+        return [
+            '@type' => static::TYPE_NAME,
+            'protocol' => $this->protocol->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->servers),
+            'config' => $this->config,
+            'encryption_key' => $this->encryptionKey,
+            'emojis' => $this->emojis,
+            'allow_p2p' => $this->allowP2p,
+        ];
     }
 }

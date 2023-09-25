@@ -24,18 +24,18 @@ class PassportAuthorizationForm extends TdObject
     protected int $id;
 
     /**
-     * Telegram Passport elements that must be provided to complete the form
-     *
-     * @var PassportRequiredElement[]
-     */
-    protected array $requiredElements;
-
-    /**
      * URL for the privacy policy of the service; may be empty
      *
      * @var string
      */
     protected string $privacyPolicyUrl;
+
+    /**
+     * Telegram Passport elements that must be provided to complete the form
+     *
+     * @var PassportRequiredElement[]
+     */
+    protected array $requiredElements;
 
     public function __construct(int $id, array $requiredElements, string $privacyPolicyUrl)
     {
@@ -48,9 +48,24 @@ class PassportAuthorizationForm extends TdObject
     {
         return new static(
             $array['id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['requiredElements']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['required_elements']),
             $array['privacy_policy_url'],
         );
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getPrivacyPolicyUrl(): string
+    {
+        return $this->privacyPolicyUrl;
+    }
+
+    public function getRequiredElements(): array
+    {
+        return $this->requiredElements;
     }
 
     public function typeSerialize(): array
@@ -61,20 +76,5 @@ class PassportAuthorizationForm extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->requiredElements),
             'privacy_policy_url' => $this->privacyPolicyUrl,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getRequiredElements(): array
-    {
-        return $this->requiredElements;
-    }
-
-    public function getPrivacyPolicyUrl(): string
-    {
-        return $this->privacyPolicyUrl;
     }
 }

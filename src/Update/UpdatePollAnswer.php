@@ -17,6 +17,13 @@ class UpdatePollAnswer extends Update
     public const TYPE_NAME = 'updatePollAnswer';
 
     /**
+     * 0-based identifiers of answer options, chosen by the user
+     *
+     * @var int[]
+     */
+    protected array $optionIds;
+
+    /**
      * Unique poll identifier
      *
      * @var int
@@ -29,13 +36,6 @@ class UpdatePollAnswer extends Update
      * @var MessageSender
      */
     protected MessageSender $voterId;
-
-    /**
-     * 0-based identifiers of answer options, chosen by the user
-     *
-     * @var int[]
-     */
-    protected array $optionIds;
 
     public function __construct(int $pollId, MessageSender $voterId, array $optionIds)
     {
@@ -55,14 +55,9 @@ class UpdatePollAnswer extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getOptionIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'poll_id' => $this->pollId,
-            'voter_id' => $this->voterId->typeSerialize(),
-            'option_ids' => $this->optionIds,
-        ];
+        return $this->optionIds;
     }
 
     public function getPollId(): int
@@ -75,8 +70,13 @@ class UpdatePollAnswer extends Update
         return $this->voterId;
     }
 
-    public function getOptionIds(): array
+    public function typeSerialize(): array
     {
-        return $this->optionIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'poll_id' => $this->pollId,
+            'voter_id' => $this->voterId->typeSerialize(),
+            'option_ids' => $this->optionIds,
+        ];
     }
 }

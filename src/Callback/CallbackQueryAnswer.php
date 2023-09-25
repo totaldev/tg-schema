@@ -17,18 +17,18 @@ class CallbackQueryAnswer extends TdObject
     public const TYPE_NAME = 'callbackQueryAnswer';
 
     /**
-     * Text of the answer
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
      * True, if an alert must be shown to the user instead of a toast notification
      *
      * @var bool
      */
     protected bool $showAlert;
+
+    /**
+     * Text of the answer
+     *
+     * @var string
+     */
+    protected string $text;
 
     /**
      * URL to be opened
@@ -53,6 +53,21 @@ class CallbackQueryAnswer extends TdObject
         );
     }
 
+    public function getShowAlert(): bool
+    {
+        return $this->showAlert;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class CallbackQueryAnswer extends TdObject
             'show_alert' => $this->showAlert,
             'url' => $this->url,
         ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getShowAlert(): bool
-    {
-        return $this->showAlert;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

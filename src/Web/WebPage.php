@@ -26,97 +26,6 @@ class WebPage extends TdObject
     public const TYPE_NAME = 'webPage';
 
     /**
-     * Original URL of the link
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
-     * URL to display
-     *
-     * @var string
-     */
-    protected string $displayUrl;
-
-    /**
-     * Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
-     * Short name of the site (e.g., Google Docs, App Store)
-     *
-     * @var string
-     */
-    protected string $siteName;
-
-    /**
-     * Title of the content
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Description of the content
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $description;
-
-    /**
-     * Image representing the content; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $photo;
-
-    /**
-     * URL to show in the embedded preview
-     *
-     * @var string
-     */
-    protected string $embedUrl;
-
-    /**
-     * MIME type of the embedded preview, (e.g., text/html or video/mp4)
-     *
-     * @var string
-     */
-    protected string $embedType;
-
-    /**
-     * Width of the embedded preview
-     *
-     * @var int
-     */
-    protected int $embedWidth;
-
-    /**
-     * Height of the embedded preview
-     *
-     * @var int
-     */
-    protected int $embedHeight;
-
-    /**
-     * Duration of the content, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * Author of the content
-     *
-     * @var string
-     */
-    protected string $author;
-
-    /**
      * Preview of the content as an animation, if available; may be null
      *
      * @var Animation|null
@@ -131,6 +40,27 @@ class WebPage extends TdObject
     protected ?Audio $audio;
 
     /**
+     * Author of the content
+     *
+     * @var string
+     */
+    protected string $author;
+
+    /**
+     * Description of the content
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $description;
+
+    /**
+     * URL to display
+     *
+     * @var string
+     */
+    protected string $displayUrl;
+
+    /**
      * Preview of the content as a document, if available; may be null
      *
      * @var Document|null
@@ -138,11 +68,102 @@ class WebPage extends TdObject
     protected ?Document $document;
 
     /**
+     * Duration of the content, in seconds
+     *
+     * @var int
+     */
+    protected int $duration;
+
+    /**
+     * Height of the embedded preview
+     *
+     * @var int
+     */
+    protected int $embedHeight;
+
+    /**
+     * MIME type of the embedded preview, (e.g., text/html or video/mp4)
+     *
+     * @var string
+     */
+    protected string $embedType;
+
+    /**
+     * URL to show in the embedded preview
+     *
+     * @var string
+     */
+    protected string $embedUrl;
+
+    /**
+     * Width of the embedded preview
+     *
+     * @var int
+     */
+    protected int $embedWidth;
+
+    /**
+     * Version of web page instant view (currently, can be 1 or 2); 0 if none
+     *
+     * @var int
+     */
+    protected int $instantViewVersion;
+
+    /**
+     * Image representing the content; may be null
+     *
+     * @var Photo|null
+     */
+    protected ?Photo $photo;
+
+    /**
+     * Short name of the site (e.g., Google Docs, App Store)
+     *
+     * @var string
+     */
+    protected string $siteName;
+
+    /**
      * Preview of the content as a sticker for small WEBP files, if available; may be null
      *
      * @var Sticker|null
      */
     protected ?Sticker $sticker;
+
+    /**
+     * The identifier of the previewed story; 0 if none
+     *
+     * @var int
+     */
+    protected int $storyId;
+
+    /**
+     * The identifier of the sender of the previewed story; 0 if none
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
+
+    /**
+     * Title of the content
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
+     *
+     * @var string
+     */
+    protected string $type;
+
+    /**
+     * Original URL of the link
+     *
+     * @var string
+     */
+    protected string $url;
 
     /**
      * Preview of the content as a video, if available; may be null
@@ -165,52 +186,32 @@ class WebPage extends TdObject
      */
     protected ?VoiceNote $voiceNote;
 
-    /**
-     * The identifier of the sender of the previewed story; 0 if none
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
-     * The identifier of the previewed story; 0 if none
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Version of web page instant view (currently, can be 1 or 2); 0 if none
-     *
-     * @var int
-     */
-    protected int $instantViewVersion;
-
     public function __construct(
-        string $url,
-        string $displayUrl,
-        string $type,
-        string $siteName,
-        string $title,
+        string        $url,
+        string        $displayUrl,
+        string        $type,
+        string        $siteName,
+        string        $title,
         FormattedText $description,
-        ?Photo $photo,
-        string $embedUrl,
-        string $embedType,
-        int $embedWidth,
-        int $embedHeight,
-        int $duration,
-        string $author,
-        ?Animation $animation,
-        ?Audio $audio,
-        ?Document $document,
-        ?Sticker $sticker,
-        ?Video $video,
-        ?VideoNote $videoNote,
-        ?VoiceNote $voiceNote,
-        int $storySenderChatId,
-        int $storyId,
-        int $instantViewVersion,
-    ) {
+        ?Photo        $photo,
+        string        $embedUrl,
+        string        $embedType,
+        int           $embedWidth,
+        int           $embedHeight,
+        int           $duration,
+        string        $author,
+        ?Animation    $animation,
+        ?Audio        $audio,
+        ?Document     $document,
+        ?Sticker      $sticker,
+        ?Video        $video,
+        ?VideoNote    $videoNote,
+        ?VoiceNote    $voiceNote,
+        int           $storySenderChatId,
+        int           $storyId,
+        int           $instantViewVersion,
+    )
+    {
         $this->url = $url;
         $this->displayUrl = $displayUrl;
         $this->type = $type;
@@ -265,6 +266,121 @@ class WebPage extends TdObject
         );
     }
 
+    public function getAnimation(): ?Animation
+    {
+        return $this->animation;
+    }
+
+    public function getAudio(): ?Audio
+    {
+        return $this->audio;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function getDescription(): FormattedText
+    {
+        return $this->description;
+    }
+
+    public function getDisplayUrl(): string
+    {
+        return $this->displayUrl;
+    }
+
+    public function getDocument(): ?Document
+    {
+        return $this->document;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getEmbedHeight(): int
+    {
+        return $this->embedHeight;
+    }
+
+    public function getEmbedType(): string
+    {
+        return $this->embedType;
+    }
+
+    public function getEmbedUrl(): string
+    {
+        return $this->embedUrl;
+    }
+
+    public function getEmbedWidth(): int
+    {
+        return $this->embedWidth;
+    }
+
+    public function getInstantViewVersion(): int
+    {
+        return $this->instantViewVersion;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function getSiteName(): string
+    {
+        return $this->siteName;
+    }
+
+    public function getSticker(): ?Sticker
+    {
+        return $this->sticker;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getVideo(): ?Video
+    {
+        return $this->video;
+    }
+
+    public function getVideoNote(): ?VideoNote
+    {
+        return $this->videoNote;
+    }
+
+    public function getVoiceNote(): ?VoiceNote
+    {
+        return $this->voiceNote;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -293,120 +409,5 @@ class WebPage extends TdObject
             'story_id' => $this->storyId,
             'instant_view_version' => $this->instantViewVersion,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getDisplayUrl(): string
-    {
-        return $this->displayUrl;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function getSiteName(): string
-    {
-        return $this->siteName;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): FormattedText
-    {
-        return $this->description;
-    }
-
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function getEmbedUrl(): string
-    {
-        return $this->embedUrl;
-    }
-
-    public function getEmbedType(): string
-    {
-        return $this->embedType;
-    }
-
-    public function getEmbedWidth(): int
-    {
-        return $this->embedWidth;
-    }
-
-    public function getEmbedHeight(): int
-    {
-        return $this->embedHeight;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getAuthor(): string
-    {
-        return $this->author;
-    }
-
-    public function getAnimation(): ?Animation
-    {
-        return $this->animation;
-    }
-
-    public function getAudio(): ?Audio
-    {
-        return $this->audio;
-    }
-
-    public function getDocument(): ?Document
-    {
-        return $this->document;
-    }
-
-    public function getSticker(): ?Sticker
-    {
-        return $this->sticker;
-    }
-
-    public function getVideo(): ?Video
-    {
-        return $this->video;
-    }
-
-    public function getVideoNote(): ?VideoNote
-    {
-        return $this->videoNote;
-    }
-
-    public function getVoiceNote(): ?VoiceNote
-    {
-        return $this->voiceNote;
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getInstantViewVersion(): int
-    {
-        return $this->instantViewVersion;
     }
 }

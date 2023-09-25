@@ -46,15 +46,6 @@ class UpdateMessageSendSucceeded extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-            'old_message_id' => $this->oldMessageId,
-        ];
-    }
-
     public function getMessage(): Message
     {
         return $this->message;
@@ -63,5 +54,14 @@ class UpdateMessageSendSucceeded extends Update
     public function getOldMessageId(): int
     {
         return $this->oldMessageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'old_message_id' => $this->oldMessageId,
+        ];
     }
 }

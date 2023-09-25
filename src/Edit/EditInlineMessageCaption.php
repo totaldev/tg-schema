@@ -19,6 +19,13 @@ class EditInlineMessageCaption extends TdFunction
     public const TYPE_NAME = 'editInlineMessageCaption';
 
     /**
+     * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $caption;
+
+    /**
      * Inline message identifier
      *
      * @var string
@@ -31,13 +38,6 @@ class EditInlineMessageCaption extends TdFunction
      * @var ReplyMarkup
      */
     protected ReplyMarkup $replyMarkup;
-
-    /**
-     * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
 
     public function __construct(string $inlineMessageId, ReplyMarkup $replyMarkup, FormattedText $caption)
     {
@@ -55,14 +55,9 @@ class EditInlineMessageCaption extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getInlineMessageId(): string
@@ -75,8 +70,13 @@ class EditInlineMessageCaption extends TdFunction
         return $this->replyMarkup;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_message_id' => $this->inlineMessageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

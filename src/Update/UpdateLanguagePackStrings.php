@@ -17,18 +17,18 @@ class UpdateLanguagePackStrings extends Update
     public const TYPE_NAME = 'updateLanguagePackStrings';
 
     /**
-     * Localization target to which the language pack belongs
-     *
-     * @var string
-     */
-    protected string $localizationTarget;
-
-    /**
      * Identifier of the updated language pack
      *
      * @var string
      */
     protected string $languagePackId;
+
+    /**
+     * Localization target to which the language pack belongs
+     *
+     * @var string
+     */
+    protected string $localizationTarget;
 
     /**
      * List of changed language pack strings; empty if all strings have changed
@@ -55,6 +55,21 @@ class UpdateLanguagePackStrings extends Update
         );
     }
 
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
+    }
+
+    public function getLocalizationTarget(): string
+    {
+        return $this->localizationTarget;
+    }
+
+    public function getStrings(): array
+    {
+        return $this->strings;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class UpdateLanguagePackStrings extends Update
             'language_pack_id' => $this->languagePackId,
             array_map(fn($x) => $x->typeSerialize(), $this->strings),
         ];
-    }
-
-    public function getLocalizationTarget(): string
-    {
-        return $this->localizationTarget;
-    }
-
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
-    }
-
-    public function getStrings(): array
-    {
-        return $this->strings;
     }
 }

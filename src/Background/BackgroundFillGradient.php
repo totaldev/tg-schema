@@ -16,13 +16,6 @@ class BackgroundFillGradient extends BackgroundFill
     public const TYPE_NAME = 'backgroundFillGradient';
 
     /**
-     * A top color of the background in the RGB24 format
-     *
-     * @var int
-     */
-    protected int $topColor;
-
-    /**
      * A bottom color of the background in the RGB24 format
      *
      * @var int
@@ -35,6 +28,13 @@ class BackgroundFillGradient extends BackgroundFill
      * @var int
      */
     protected int $rotationAngle;
+
+    /**
+     * A top color of the background in the RGB24 format
+     *
+     * @var int
+     */
+    protected int $topColor;
 
     public function __construct(int $topColor, int $bottomColor, int $rotationAngle)
     {
@@ -54,21 +54,6 @@ class BackgroundFillGradient extends BackgroundFill
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'top_color' => $this->topColor,
-            'bottom_color' => $this->bottomColor,
-            'rotation_angle' => $this->rotationAngle,
-        ];
-    }
-
-    public function getTopColor(): int
-    {
-        return $this->topColor;
-    }
-
     public function getBottomColor(): int
     {
         return $this->bottomColor;
@@ -77,5 +62,20 @@ class BackgroundFillGradient extends BackgroundFill
     public function getRotationAngle(): int
     {
         return $this->rotationAngle;
+    }
+
+    public function getTopColor(): int
+    {
+        return $this->topColor;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'top_color' => $this->topColor,
+            'bottom_color' => $this->bottomColor,
+            'rotation_angle' => $this->rotationAngle,
+        ];
     }
 }

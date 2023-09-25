@@ -24,13 +24,6 @@ class Call extends TdObject
     protected int $id;
 
     /**
-     * Peer user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * True, if the call is outgoing
      *
      * @var bool
@@ -50,6 +43,13 @@ class Call extends TdObject
      * @var CallState
      */
     protected CallState $state;
+
+    /**
+     * Peer user identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $id, int $userId, bool $isOutgoing, bool $isVideo, CallState $state)
     {
@@ -71,26 +71,9 @@ class Call extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'user_id' => $this->userId,
-            'is_outgoing' => $this->isOutgoing,
-            'is_video' => $this->isVideo,
-            'state' => $this->state->typeSerialize(),
-        ];
-    }
-
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
     }
 
     public function getIsOutgoing(): bool
@@ -106,5 +89,22 @@ class Call extends TdObject
     public function getState(): CallState
     {
         return $this->state;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'user_id' => $this->userId,
+            'is_outgoing' => $this->isOutgoing,
+            'is_video' => $this->isVideo,
+            'state' => $this->state->typeSerialize(),
+        ];
     }
 }

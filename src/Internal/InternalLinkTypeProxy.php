@@ -17,18 +17,18 @@ class InternalLinkTypeProxy extends InternalLinkType
     public const TYPE_NAME = 'internalLinkTypeProxy';
 
     /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
      * Proxy server port
      *
      * @var int
      */
     protected int $port;
+
+    /**
+     * Proxy server domain or IP address
+     *
+     * @var string
+     */
+    protected string $server;
 
     /**
      * Type of the proxy
@@ -55,6 +55,21 @@ class InternalLinkTypeProxy extends InternalLinkType
         );
     }
 
+    public function getPort(): int
+    {
+        return $this->port;
+    }
+
+    public function getServer(): string
+    {
+        return $this->server;
+    }
+
+    public function getType(): ProxyType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class InternalLinkTypeProxy extends InternalLinkType
             'port' => $this->port,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
-    }
-
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
     }
 }

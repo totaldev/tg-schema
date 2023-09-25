@@ -20,18 +20,25 @@ class ChatPhoto extends TdObject
     public const TYPE_NAME = 'chatPhoto';
 
     /**
-     * Unique photo identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
      * Point in time (Unix timestamp) when the photo has been added
      *
      * @var int
      */
     protected int $addedDate;
+
+    /**
+     * A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
+     *
+     * @var AnimatedChatPhoto|null
+     */
+    protected ?AnimatedChatPhoto $animation;
+
+    /**
+     * Unique photo identifier
+     *
+     * @var int
+     */
+    protected int $id;
 
     /**
      * Photo minithumbnail; may be null
@@ -48,13 +55,6 @@ class ChatPhoto extends TdObject
     protected array $sizes;
 
     /**
-     * A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
-     *
-     * @var AnimatedChatPhoto|null
-     */
-    protected ?AnimatedChatPhoto $animation;
-
-    /**
      * A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
      *
      * @var AnimatedChatPhoto|null
@@ -69,14 +69,15 @@ class ChatPhoto extends TdObject
     protected ?ChatPhotoSticker $sticker;
 
     public function __construct(
-        int $id,
-        int $addedDate,
-        ?Minithumbnail $minithumbnail,
-        array $sizes,
+        int                $id,
+        int                $addedDate,
+        ?Minithumbnail     $minithumbnail,
+        array              $sizes,
         ?AnimatedChatPhoto $animation,
         ?AnimatedChatPhoto $smallAnimation,
-        ?ChatPhotoSticker $sticker,
-    ) {
+        ?ChatPhotoSticker  $sticker,
+    )
+    {
         $this->id = $id;
         $this->addedDate = $addedDate;
         $this->minithumbnail = $minithumbnail;
@@ -99,28 +100,19 @@ class ChatPhoto extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAddedDate(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'added_date' => $this->addedDate,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->sizes),
-            'animation' => (isset($this->animation) ? $this->animation : null),
-            'small_animation' => (isset($this->smallAnimation) ? $this->smallAnimation : null),
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
-        ];
+        return $this->addedDate;
+    }
+
+    public function getAnimation(): ?AnimatedChatPhoto
+    {
+        return $this->animation;
     }
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getAddedDate(): int
-    {
-        return $this->addedDate;
     }
 
     public function getMinithumbnail(): ?Minithumbnail
@@ -133,11 +125,6 @@ class ChatPhoto extends TdObject
         return $this->sizes;
     }
 
-    public function getAnimation(): ?AnimatedChatPhoto
-    {
-        return $this->animation;
-    }
-
     public function getSmallAnimation(): ?AnimatedChatPhoto
     {
         return $this->smallAnimation;
@@ -146,5 +133,19 @@ class ChatPhoto extends TdObject
     public function getSticker(): ?ChatPhotoSticker
     {
         return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'added_date' => $this->addedDate,
+            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->sizes),
+            'animation' => (isset($this->animation) ? $this->animation : null),
+            'small_animation' => (isset($this->smallAnimation) ? $this->smallAnimation : null),
+            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+        ];
     }
 }

@@ -35,16 +35,16 @@ class GetJsonValue extends TdFunction
         );
     }
 
+    public function getJson(): string
+    {
+        return $this->json;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'json' => $this->json,
         ];
-    }
-
-    public function getJson(): string
-    {
-        return $this->json;
     }
 }

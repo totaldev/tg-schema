@@ -18,18 +18,11 @@ class UpdateNotificationGroup extends Update
     public const TYPE_NAME = 'updateNotificationGroup';
 
     /**
-     * Unique notification group identifier
+     * List of added group notifications, sorted by notification identifier
      *
-     * @var int
+     * @var Notification[]
      */
-    protected int $notificationGroupId;
-
-    /**
-     * New type of the notification group
-     *
-     * @var NotificationGroupType
-     */
-    protected NotificationGroupType $type;
+    protected array $addedNotifications;
 
     /**
      * Identifier of a chat to which all notifications in the group belong
@@ -37,6 +30,13 @@ class UpdateNotificationGroup extends Update
      * @var int
      */
     protected int $chatId;
+
+    /**
+     * Unique notification group identifier
+     *
+     * @var int
+     */
+    protected int $notificationGroupId;
 
     /**
      * Chat identifier, which notification settings must be applied to the added notifications
@@ -53,6 +53,13 @@ class UpdateNotificationGroup extends Update
     protected int $notificationSoundId;
 
     /**
+     * Identifiers of removed group notifications, sorted by notification identifier
+     *
+     * @var int[]
+     */
+    protected array $removedNotificationIds;
+
+    /**
      * Total number of unread notifications in the group, can be bigger than number of active notifications
      *
      * @var int
@@ -60,29 +67,23 @@ class UpdateNotificationGroup extends Update
     protected int $totalCount;
 
     /**
-     * List of added group notifications, sorted by notification identifier
+     * New type of the notification group
      *
-     * @var Notification[]
+     * @var NotificationGroupType
      */
-    protected array $addedNotifications;
-
-    /**
-     * Identifiers of removed group notifications, sorted by notification identifier
-     *
-     * @var int[]
-     */
-    protected array $removedNotificationIds;
+    protected NotificationGroupType $type;
 
     public function __construct(
-        int $notificationGroupId,
+        int                   $notificationGroupId,
         NotificationGroupType $type,
-        int $chatId,
-        int $notificationSettingsChatId,
-        int $notificationSoundId,
-        int $totalCount,
-        array $addedNotifications,
-        array $removedNotificationIds,
-    ) {
+        int                   $chatId,
+        int                   $notificationSettingsChatId,
+        int                   $notificationSoundId,
+        int                   $totalCount,
+        array                 $addedNotifications,
+        array                 $removedNotificationIds,
+    )
+    {
         parent::__construct();
 
         $this->notificationGroupId = $notificationGroupId;
@@ -104,9 +105,49 @@ class UpdateNotificationGroup extends Update
             $array['notification_settings_chat_id'],
             $array['notification_sound_id'],
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['addedNotifications']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['added_notifications']),
             $array['removed_notification_ids'],
         );
+    }
+
+    public function getAddedNotifications(): array
+    {
+        return $this->addedNotifications;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getNotificationGroupId(): int
+    {
+        return $this->notificationGroupId;
+    }
+
+    public function getNotificationSettingsChatId(): int
+    {
+        return $this->notificationSettingsChatId;
+    }
+
+    public function getNotificationSoundId(): int
+    {
+        return $this->notificationSoundId;
+    }
+
+    public function getRemovedNotificationIds(): array
+    {
+        return $this->removedNotificationIds;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function getType(): NotificationGroupType
+    {
+        return $this->type;
     }
 
     public function typeSerialize(): array
@@ -122,45 +163,5 @@ class UpdateNotificationGroup extends Update
             array_map(fn($x) => $x->typeSerialize(), $this->addedNotifications),
             'removed_notification_ids' => $this->removedNotificationIds,
         ];
-    }
-
-    public function getNotificationGroupId(): int
-    {
-        return $this->notificationGroupId;
-    }
-
-    public function getType(): NotificationGroupType
-    {
-        return $this->type;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getNotificationSettingsChatId(): int
-    {
-        return $this->notificationSettingsChatId;
-    }
-
-    public function getNotificationSoundId(): int
-    {
-        return $this->notificationSoundId;
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getAddedNotifications(): array
-    {
-        return $this->addedNotifications;
-    }
-
-    public function getRemovedNotificationIds(): array
-    {
-        return $this->removedNotificationIds;
     }
 }

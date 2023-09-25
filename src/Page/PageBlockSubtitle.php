@@ -37,16 +37,16 @@ class PageBlockSubtitle extends PageBlock
         );
     }
 
+    public function getSubtitle(): RichText
+    {
+        return $this->subtitle;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'subtitle' => $this->subtitle->typeSerialize(),
         ];
-    }
-
-    public function getSubtitle(): RichText
-    {
-        return $this->subtitle;
     }
 }

@@ -17,13 +17,6 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     public const TYPE_NAME = 'vectorPathCommandCubicBezierCurve';
 
     /**
-     * The start control point of the curve
-     *
-     * @var Point
-     */
-    protected Point $startControlPoint;
-
-    /**
      * The end control point of the curve
      *
      * @var Point
@@ -36,6 +29,13 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
      * @var Point
      */
     protected Point $endPoint;
+
+    /**
+     * The start control point of the curve
+     *
+     * @var Point
+     */
+    protected Point $startControlPoint;
 
     public function __construct(Point $startControlPoint, Point $endControlPoint, Point $endPoint)
     {
@@ -55,21 +55,6 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'start_control_point' => $this->startControlPoint->typeSerialize(),
-            'end_control_point' => $this->endControlPoint->typeSerialize(),
-            'end_point' => $this->endPoint->typeSerialize(),
-        ];
-    }
-
-    public function getStartControlPoint(): Point
-    {
-        return $this->startControlPoint;
-    }
-
     public function getEndControlPoint(): Point
     {
         return $this->endControlPoint;
@@ -78,5 +63,20 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     public function getEndPoint(): Point
     {
         return $this->endPoint;
+    }
+
+    public function getStartControlPoint(): Point
+    {
+        return $this->startControlPoint;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'start_control_point' => $this->startControlPoint->typeSerialize(),
+            'end_control_point' => $this->endControlPoint->typeSerialize(),
+            'end_point' => $this->endPoint->typeSerialize(),
+        ];
     }
 }

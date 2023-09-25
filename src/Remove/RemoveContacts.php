@@ -35,16 +35,16 @@ class RemoveContacts extends TdFunction
         );
     }
 
+    public function getUserIds(): array
+    {
+        return $this->userIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'user_ids' => $this->userIds,
         ];
-    }
-
-    public function getUserIds(): array
-    {
-        return $this->userIds;
     }
 }

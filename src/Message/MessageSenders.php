@@ -17,18 +17,18 @@ class MessageSenders extends TdObject
     public const TYPE_NAME = 'messageSenders';
 
     /**
-     * Approximate total number of messages senders found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of message senders
      *
      * @var MessageSender[]
      */
     protected array $senders;
+
+    /**
+     * Approximate total number of messages senders found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $senders)
     {
@@ -44,13 +44,9 @@ class MessageSenders extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getSenders(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->senders),
-        ];
+        return $this->senders;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class MessageSenders extends TdObject
         return $this->totalCount;
     }
 
-    public function getSenders(): array
+    public function typeSerialize(): array
     {
-        return $this->senders;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->senders),
+        ];
     }
 }

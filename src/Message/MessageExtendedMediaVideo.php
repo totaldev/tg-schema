@@ -18,18 +18,18 @@ class MessageExtendedMediaVideo extends MessageExtendedMedia
     public const TYPE_NAME = 'messageExtendedMediaVideo';
 
     /**
-     * The video
-     *
-     * @var Video
-     */
-    protected Video $video;
-
-    /**
      * Photo caption
      *
      * @var FormattedText
      */
     protected FormattedText $caption;
+
+    /**
+     * The video
+     *
+     * @var Video
+     */
+    protected Video $video;
 
     public function __construct(Video $video, FormattedText $caption)
     {
@@ -47,13 +47,9 @@ class MessageExtendedMediaVideo extends MessageExtendedMedia
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getVideo(): Video
@@ -61,8 +57,12 @@ class MessageExtendedMediaVideo extends MessageExtendedMedia
         return $this->video;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

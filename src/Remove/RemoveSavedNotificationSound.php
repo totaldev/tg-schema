@@ -35,16 +35,16 @@ class RemoveSavedNotificationSound extends TdFunction
         );
     }
 
+    public function getNotificationSoundId(): int
+    {
+        return $this->notificationSoundId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'notification_sound_id' => $this->notificationSoundId,
         ];
-    }
-
-    public function getNotificationSoundId(): int
-    {
-        return $this->notificationSoundId;
     }
 }

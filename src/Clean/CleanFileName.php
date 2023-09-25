@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
+ * Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure.
+ * Can be called synchronously
  */
 class CleanFileName extends TdFunction
 {
@@ -35,16 +36,16 @@ class CleanFileName extends TdFunction
         );
     }
 
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file_name' => $this->fileName,
         ];
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
     }
 }

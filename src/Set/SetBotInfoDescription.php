@@ -24,18 +24,18 @@ class SetBotInfoDescription extends TdFunction
     protected int $botUserId;
 
     /**
-     * A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    /**
      * New bot's description on the specified language
      *
      * @var string
      */
     protected string $description;
+
+    /**
+     * A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
+     *
+     * @var string
+     */
+    protected string $languageCode;
 
     public function __construct(int $botUserId, string $languageCode, string $description)
     {
@@ -53,6 +53,21 @@ class SetBotInfoDescription extends TdFunction
         );
     }
 
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getLanguageCode(): string
+    {
+        return $this->languageCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class SetBotInfoDescription extends TdFunction
             'language_code' => $this->languageCode,
             'description' => $this->description,
         ];
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getLanguageCode(): string
-    {
-        return $this->languageCode;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
     }
 }

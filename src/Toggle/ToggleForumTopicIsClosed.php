@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+ * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of
+ * the topic
  */
 class ToggleForumTopicIsClosed extends TdFunction
 {
@@ -24,18 +25,18 @@ class ToggleForumTopicIsClosed extends TdFunction
     protected int $chatId;
 
     /**
-     * Message thread identifier of the forum topic
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
      * Pass true to close the topic; pass false to reopen it
      *
      * @var bool
      */
     protected bool $isClosed;
+
+    /**
+     * Message thread identifier of the forum topic
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
 
     public function __construct(int $chatId, int $messageThreadId, bool $isClosed)
     {
@@ -53,6 +54,21 @@ class ToggleForumTopicIsClosed extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsClosed(): bool
+    {
+        return $this->isClosed;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +77,5 @@ class ToggleForumTopicIsClosed extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'is_closed' => $this->isClosed,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getIsClosed(): bool
-    {
-        return $this->isClosed;
     }
 }

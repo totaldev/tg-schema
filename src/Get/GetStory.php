@@ -17,11 +17,11 @@ class GetStory extends TdFunction
     public const TYPE_NAME = 'getStory';
 
     /**
-     * Identifier of the chat that posted the story
+     * Pass true to get only locally available information without sending network requests
      *
-     * @var int
+     * @var bool
      */
-    protected int $storySenderChatId;
+    protected bool $onlyLocal;
 
     /**
      * Story identifier
@@ -31,11 +31,11 @@ class GetStory extends TdFunction
     protected int $storyId;
 
     /**
-     * Pass true to get only locally available information without sending network requests
+     * Identifier of the chat that posted the story
      *
-     * @var bool
+     * @var int
      */
-    protected bool $onlyLocal;
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId, bool $onlyLocal)
     {
@@ -53,6 +53,21 @@ class GetStory extends TdFunction
         );
     }
 
+    public function getOnlyLocal(): bool
+    {
+        return $this->onlyLocal;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GetStory extends TdFunction
             'story_id' => $this->storyId,
             'only_local' => $this->onlyLocal,
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getOnlyLocal(): bool
-    {
-        return $this->onlyLocal;
     }
 }

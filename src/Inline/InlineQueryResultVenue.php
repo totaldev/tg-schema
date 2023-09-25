@@ -25,18 +25,18 @@ class InlineQueryResultVenue extends InlineQueryResult
     protected string $id;
 
     /**
-     * Venue result
-     *
-     * @var Venue
-     */
-    protected Venue $venue;
-
-    /**
      * Result thumbnail in JPEG format; may be null
      *
      * @var Thumbnail|null
      */
     protected ?Thumbnail $thumbnail;
+
+    /**
+     * Venue result
+     *
+     * @var Venue
+     */
+    protected Venue $venue;
 
     public function __construct(string $id, Venue $venue, ?Thumbnail $thumbnail)
     {
@@ -56,6 +56,21 @@ class InlineQueryResultVenue extends InlineQueryResult
         );
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getVenue(): Venue
+    {
+        return $this->venue;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -64,20 +79,5 @@ class InlineQueryResultVenue extends InlineQueryResult
             'venue' => $this->venue->typeSerialize(),
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getVenue(): Venue
-    {
-        return $this->venue;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
     }
 }

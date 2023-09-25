@@ -54,16 +54,6 @@ class PremiumFeatures extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->features),
-            array_map(fn($x) => $x->typeSerialize(), $this->limits),
-            'payment_link' => (isset($this->paymentLink) ? $this->paymentLink : null),
-        ];
-    }
-
     public function getFeatures(): array
     {
         return $this->features;
@@ -77,5 +67,15 @@ class PremiumFeatures extends TdObject
     public function getPaymentLink(): ?InternalLinkType
     {
         return $this->paymentLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->features),
+            array_map(fn($x) => $x->typeSerialize(), $this->limits),
+            'payment_link' => (isset($this->paymentLink) ? $this->paymentLink : null),
+        ];
     }
 }

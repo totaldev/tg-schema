@@ -44,15 +44,6 @@ class ToggleChatIsMarkedAsUnread extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'is_marked_as_unread' => $this->isMarkedAsUnread,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class ToggleChatIsMarkedAsUnread extends TdFunction
     public function getIsMarkedAsUnread(): bool
     {
         return $this->isMarkedAsUnread;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'is_marked_as_unread' => $this->isMarkedAsUnread,
+        ];
     }
 }

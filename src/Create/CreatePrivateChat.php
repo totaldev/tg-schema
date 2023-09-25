@@ -17,18 +17,18 @@ class CreatePrivateChat extends TdFunction
     public const TYPE_NAME = 'createPrivateChat';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
      *
      * @var bool
      */
     protected bool $force;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, bool $force)
     {
@@ -44,13 +44,9 @@ class CreatePrivateChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getForce(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'force' => $this->force,
-        ];
+        return $this->force;
     }
 
     public function getUserId(): int
@@ -58,8 +54,12 @@ class CreatePrivateChat extends TdFunction
         return $this->userId;
     }
 
-    public function getForce(): bool
+    public function typeSerialize(): array
     {
-        return $this->force;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'force' => $this->force,
+        ];
     }
 }

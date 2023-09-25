@@ -35,16 +35,16 @@ class GetPhoneNumberInfo extends TdFunction
         );
     }
 
+    public function getPhoneNumberPrefix(): string
+    {
+        return $this->phoneNumberPrefix;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'phone_number_prefix' => $this->phoneNumberPrefix,
         ];
-    }
-
-    public function getPhoneNumberPrefix(): string
-    {
-        return $this->phoneNumberPrefix;
     }
 }

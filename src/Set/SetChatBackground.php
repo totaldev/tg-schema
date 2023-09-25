@@ -19,13 +19,6 @@ class SetChatBackground extends TdFunction
     public const TYPE_NAME = 'setChatBackground';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * The input background to use; pass null to create a new filled background or to remove the current background
      *
      * @var InputBackground
@@ -33,11 +26,11 @@ class SetChatBackground extends TdFunction
     protected InputBackground $background;
 
     /**
-     * Background type; pass null to remove the current background
+     * Chat identifier
      *
-     * @var BackgroundType
+     * @var int
      */
-    protected BackgroundType $type;
+    protected int $chatId;
 
     /**
      * Dimming of the background in dark themes, as a percentage; 0-100
@@ -45,6 +38,13 @@ class SetChatBackground extends TdFunction
      * @var int
      */
     protected int $darkThemeDimming;
+
+    /**
+     * Background type; pass null to remove the current background
+     *
+     * @var BackgroundType
+     */
+    protected BackgroundType $type;
 
     public function __construct(int $chatId, InputBackground $background, BackgroundType $type, int $darkThemeDimming)
     {
@@ -64,6 +64,26 @@ class SetChatBackground extends TdFunction
         );
     }
 
+    public function getBackground(): InputBackground
+    {
+        return $this->background;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getDarkThemeDimming(): int
+    {
+        return $this->darkThemeDimming;
+    }
+
+    public function getType(): BackgroundType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class SetChatBackground extends TdFunction
             'type' => $this->type->typeSerialize(),
             'dark_theme_dimming' => $this->darkThemeDimming,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getBackground(): InputBackground
-    {
-        return $this->background;
-    }
-
-    public function getType(): BackgroundType
-    {
-        return $this->type;
-    }
-
-    public function getDarkThemeDimming(): int
-    {
-        return $this->darkThemeDimming;
     }
 }

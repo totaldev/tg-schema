@@ -12,18 +12,19 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
- * Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+ * Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an
+ * inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
  */
 class OpenWebApp extends TdFunction
 {
     public const TYPE_NAME = 'openWebApp';
 
     /**
-     * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+     * Short name of the application; 0-64 English letters, digits, and underscores
      *
-     * @var int
+     * @var string
      */
-    protected int $chatId;
+    protected string $applicationName;
 
     /**
      * Identifier of the bot, providing the Web App
@@ -33,25 +34,11 @@ class OpenWebApp extends TdFunction
     protected int $botUserId;
 
     /**
-     * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+     * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
      *
-     * @var string
+     * @var int
      */
-    protected string $url;
-
-    /**
-     * Preferred Web App theme; pass null to use the default theme
-     *
-     * @var ThemeParameters
-     */
-    protected ThemeParameters $theme;
-
-    /**
-     * Short name of the application; 0-64 English letters, digits, and underscores
-     *
-     * @var string
-     */
-    protected string $applicationName;
+    protected int $chatId;
 
     /**
      * If not 0, a message thread identifier in which the message will be sent
@@ -67,15 +54,30 @@ class OpenWebApp extends TdFunction
      */
     protected MessageReplyTo $replyTo;
 
+    /**
+     * Preferred Web App theme; pass null to use the default theme
+     *
+     * @var ThemeParameters
+     */
+    protected ThemeParameters $theme;
+
+    /**
+     * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+     *
+     * @var string
+     */
+    protected string $url;
+
     public function __construct(
-        int $chatId,
-        int $botUserId,
-        string $url,
+        int             $chatId,
+        int             $botUserId,
+        string          $url,
         ThemeParameters $theme,
-        string $applicationName,
-        int $messageThreadId,
-        MessageReplyTo $replyTo,
-    ) {
+        string          $applicationName,
+        int             $messageThreadId,
+        MessageReplyTo  $replyTo,
+    )
+    {
         $this->chatId = $chatId;
         $this->botUserId = $botUserId;
         $this->url = $url;
@@ -98,6 +100,41 @@ class OpenWebApp extends TdFunction
         );
     }
 
+    public function getApplicationName(): string
+    {
+        return $this->applicationName;
+    }
+
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
+    public function getReplyTo(): MessageReplyTo
+    {
+        return $this->replyTo;
+    }
+
+    public function getTheme(): ThemeParameters
+    {
+        return $this->theme;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -110,40 +147,5 @@ class OpenWebApp extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'reply_to' => $this->replyTo->typeSerialize(),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getTheme(): ThemeParameters
-    {
-        return $this->theme;
-    }
-
-    public function getApplicationName(): string
-    {
-        return $this->applicationName;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getReplyTo(): MessageReplyTo
-    {
-        return $this->replyTo;
     }
 }

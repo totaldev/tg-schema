@@ -46,15 +46,6 @@ class PageBlockAuthorDate extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'author' => $this->author->typeSerialize(),
-            'publish_date' => $this->publishDate,
-        ];
-    }
-
     public function getAuthor(): RichText
     {
         return $this->author;
@@ -63,5 +54,14 @@ class PageBlockAuthorDate extends PageBlock
     public function getPublishDate(): int
     {
         return $this->publishDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'author' => $this->author->typeSerialize(),
+            'publish_date' => $this->publishDate,
+        ];
     }
 }

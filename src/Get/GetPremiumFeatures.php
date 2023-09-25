@@ -36,16 +36,16 @@ class GetPremiumFeatures extends TdFunction
         );
     }
 
+    public function getSource(): PremiumSource
+    {
+        return $this->source;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'source' => $this->source->typeSerialize(),
         ];
-    }
-
-    public function getSource(): PremiumSource
-    {
-        return $this->source;
     }
 }

@@ -16,11 +16,18 @@ class PushMessageContentMediaAlbum extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentMediaAlbum';
 
     /**
-     * Number of messages in the album
+     * True, if the album has at least one audio file
      *
-     * @var int
+     * @var bool
      */
-    protected int $totalCount;
+    protected bool $hasAudios;
+
+    /**
+     * True, if the album has at least one document
+     *
+     * @var bool
+     */
+    protected bool $hasDocuments;
 
     /**
      * True, if the album has at least one photo
@@ -37,26 +44,20 @@ class PushMessageContentMediaAlbum extends PushMessageContent
     protected bool $hasVideos;
 
     /**
-     * True, if the album has at least one audio file
+     * Number of messages in the album
      *
-     * @var bool
+     * @var int
      */
-    protected bool $hasAudios;
-
-    /**
-     * True, if the album has at least one document
-     *
-     * @var bool
-     */
-    protected bool $hasDocuments;
+    protected int $totalCount;
 
     public function __construct(
-        int $totalCount,
+        int  $totalCount,
         bool $hasPhotos,
         bool $hasVideos,
         bool $hasAudios,
         bool $hasDocuments,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->totalCount = $totalCount;
@@ -77,21 +78,14 @@ class PushMessageContentMediaAlbum extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getHasAudios(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'has_photos' => $this->hasPhotos,
-            'has_videos' => $this->hasVideos,
-            'has_audios' => $this->hasAudios,
-            'has_documents' => $this->hasDocuments,
-        ];
+        return $this->hasAudios;
     }
 
-    public function getTotalCount(): int
+    public function getHasDocuments(): bool
     {
-        return $this->totalCount;
+        return $this->hasDocuments;
     }
 
     public function getHasPhotos(): bool
@@ -104,13 +98,20 @@ class PushMessageContentMediaAlbum extends PushMessageContent
         return $this->hasVideos;
     }
 
-    public function getHasAudios(): bool
+    public function getTotalCount(): int
     {
-        return $this->hasAudios;
+        return $this->totalCount;
     }
 
-    public function getHasDocuments(): bool
+    public function typeSerialize(): array
     {
-        return $this->hasDocuments;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            'has_photos' => $this->hasPhotos,
+            'has_videos' => $this->hasVideos,
+            'has_audios' => $this->hasAudios,
+            'has_documents' => $this->hasDocuments,
+        ];
     }
 }

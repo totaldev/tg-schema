@@ -37,16 +37,16 @@ class InputMessageContact extends InputMessageContent
         );
     }
 
+    public function getContact(): Contact
+    {
+        return $this->contact;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'contact' => $this->contact->typeSerialize(),
         ];
-    }
-
-    public function getContact(): Contact
-    {
-        return $this->contact;
     }
 }

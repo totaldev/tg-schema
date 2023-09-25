@@ -36,16 +36,16 @@ class InputFileLocal extends InputFile
         );
     }
 
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'path' => $this->path,
         ];
-    }
-
-    public function getPath(): string
-    {
-        return $this->path;
     }
 }

@@ -63,17 +63,6 @@ class BackgroundTypePattern extends BackgroundType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'fill' => $this->fill->typeSerialize(),
-            'intensity' => $this->intensity,
-            'is_inverted' => $this->isInverted,
-            'is_moving' => $this->isMoving,
-        ];
-    }
-
     public function getFill(): BackgroundFill
     {
         return $this->fill;
@@ -92,5 +81,16 @@ class BackgroundTypePattern extends BackgroundType
     public function getIsMoving(): bool
     {
         return $this->isMoving;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'fill' => $this->fill->typeSerialize(),
+            'intensity' => $this->intensity,
+            'is_inverted' => $this->isInverted,
+            'is_moving' => $this->isMoving,
+        ];
     }
 }

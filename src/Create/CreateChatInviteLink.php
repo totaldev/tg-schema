@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+ * Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in
+ * the chat
  */
 class CreateChatInviteLink extends TdFunction
 {
@@ -24,11 +25,11 @@ class CreateChatInviteLink extends TdFunction
     protected int $chatId;
 
     /**
-     * Invite link name; 0-32 characters
+     * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
      *
-     * @var string
+     * @var bool
      */
-    protected string $name;
+    protected bool $createsJoinRequest;
 
     /**
      * Point in time (Unix timestamp) when the link will expire; pass 0 if never
@@ -45,19 +46,20 @@ class CreateChatInviteLink extends TdFunction
     protected int $memberLimit;
 
     /**
-     * Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+     * Invite link name; 0-32 characters
      *
-     * @var bool
+     * @var string
      */
-    protected bool $createsJoinRequest;
+    protected string $name;
 
     public function __construct(
-        int $chatId,
+        int    $chatId,
         string $name,
-        int $expirationDate,
-        int $memberLimit,
-        bool $createsJoinRequest,
-    ) {
+        int    $expirationDate,
+        int    $memberLimit,
+        bool   $createsJoinRequest,
+    )
+    {
         $this->chatId = $chatId;
         $this->name = $name;
         $this->expirationDate = $expirationDate;
@@ -76,26 +78,14 @@ class CreateChatInviteLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'name' => $this->name,
-            'expiration_date' => $this->expirationDate,
-            'member_limit' => $this->memberLimit,
-            'creates_join_request' => $this->createsJoinRequest,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
     }
 
-    public function getName(): string
+    public function getCreatesJoinRequest(): bool
     {
-        return $this->name;
+        return $this->createsJoinRequest;
     }
 
     public function getExpirationDate(): int
@@ -108,8 +98,20 @@ class CreateChatInviteLink extends TdFunction
         return $this->memberLimit;
     }
 
-    public function getCreatesJoinRequest(): bool
+    public function getName(): string
     {
-        return $this->createsJoinRequest;
+        return $this->name;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'name' => $this->name,
+            'expiration_date' => $this->expirationDate,
+            'member_limit' => $this->memberLimit,
+            'creates_join_request' => $this->createsJoinRequest,
+        ];
     }
 }

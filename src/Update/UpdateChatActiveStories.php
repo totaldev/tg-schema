@@ -37,16 +37,16 @@ class UpdateChatActiveStories extends Update
         );
     }
 
+    public function getActiveStories(): ChatActiveStories
+    {
+        return $this->activeStories;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'active_stories' => $this->activeStories->typeSerialize(),
         ];
-    }
-
-    public function getActiveStories(): ChatActiveStories
-    {
-        return $this->activeStories;
     }
 }

@@ -16,18 +16,18 @@ class ChatEventUsernameChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventUsernameChanged';
 
     /**
-     * Previous chat username
-     *
-     * @var string
-     */
-    protected string $oldUsername;
-
-    /**
      * New chat username
      *
      * @var string
      */
     protected string $newUsername;
+
+    /**
+     * Previous chat username
+     *
+     * @var string
+     */
+    protected string $oldUsername;
 
     public function __construct(string $oldUsername, string $newUsername)
     {
@@ -45,13 +45,9 @@ class ChatEventUsernameChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewUsername(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_username' => $this->oldUsername,
-            'new_username' => $this->newUsername,
-        ];
+        return $this->newUsername;
     }
 
     public function getOldUsername(): string
@@ -59,8 +55,12 @@ class ChatEventUsernameChanged extends ChatEventAction
         return $this->oldUsername;
     }
 
-    public function getNewUsername(): string
+    public function typeSerialize(): array
     {
-        return $this->newUsername;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_username' => $this->oldUsername,
+            'new_username' => $this->newUsername,
+        ];
     }
 }

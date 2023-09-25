@@ -46,15 +46,6 @@ class PageBlockAudio extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'audio' => (isset($this->audio) ? $this->audio : null),
-            'caption' => $this->caption->typeSerialize(),
-        ];
-    }
-
     public function getAudio(): ?Audio
     {
         return $this->audio;
@@ -63,5 +54,14 @@ class PageBlockAudio extends PageBlock
     public function getCaption(): PageBlockCaption
     {
         return $this->caption;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'audio' => (isset($this->audio) ? $this->audio : null),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

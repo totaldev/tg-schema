@@ -19,18 +19,18 @@ class SetUserPrivacySettingRules extends TdFunction
     public const TYPE_NAME = 'setUserPrivacySettingRules';
 
     /**
-     * The privacy setting
-     *
-     * @var UserPrivacySetting
-     */
-    protected UserPrivacySetting $setting;
-
-    /**
      * The new privacy rules
      *
      * @var UserPrivacySettingRules
      */
     protected UserPrivacySettingRules $rules;
+
+    /**
+     * The privacy setting
+     *
+     * @var UserPrivacySetting
+     */
+    protected UserPrivacySetting $setting;
 
     public function __construct(UserPrivacySetting $setting, UserPrivacySettingRules $rules)
     {
@@ -46,13 +46,9 @@ class SetUserPrivacySettingRules extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getRules(): UserPrivacySettingRules
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
-            'rules' => $this->rules->typeSerialize(),
-        ];
+        return $this->rules;
     }
 
     public function getSetting(): UserPrivacySetting
@@ -60,8 +56,12 @@ class SetUserPrivacySettingRules extends TdFunction
         return $this->setting;
     }
 
-    public function getRules(): UserPrivacySettingRules
+    public function typeSerialize(): array
     {
-        return $this->rules;
+        return [
+            '@type' => static::TYPE_NAME,
+            'setting' => $this->setting->typeSerialize(),
+            'rules' => $this->rules->typeSerialize(),
+        ];
     }
 }

@@ -37,16 +37,16 @@ class UpdateConnectionState extends Update
         );
     }
 
+    public function getState(): ConnectionState
+    {
+        return $this->state;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'state' => $this->state->typeSerialize(),
         ];
-    }
-
-    public function getState(): ConnectionState
-    {
-        return $this->state;
     }
 }

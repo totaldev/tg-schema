@@ -36,16 +36,16 @@ class InputCredentialsSaved extends InputCredentials
         );
     }
 
+    public function getSavedCredentialsId(): string
+    {
+        return $this->savedCredentialsId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'saved_credentials_id' => $this->savedCredentialsId,
         ];
-    }
-
-    public function getSavedCredentialsId(): string
-    {
-        return $this->savedCredentialsId;
     }
 }

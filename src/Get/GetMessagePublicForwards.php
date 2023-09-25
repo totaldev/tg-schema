@@ -24,6 +24,14 @@ class GetMessagePublicForwards extends TdFunction
     protected int $chatId;
 
     /**
+     * The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages
+     * is chosen by TDLib and can be smaller than the specified limit
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Message identifier
      *
      * @var int
@@ -36,13 +44,6 @@ class GetMessagePublicForwards extends TdFunction
      * @var string
      */
     protected string $offset;
-
-    /**
-     * The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
 
     public function __construct(int $chatId, int $messageId, string $offset, int $limit)
     {
@@ -62,20 +63,14 @@ class GetMessagePublicForwards extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
     }
 
     public function getMessageId(): int
@@ -88,8 +83,14 @@ class GetMessagePublicForwards extends TdFunction
         return $this->offset;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+        ];
     }
 }

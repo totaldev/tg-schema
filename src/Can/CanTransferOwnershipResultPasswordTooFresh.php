@@ -36,16 +36,16 @@ class CanTransferOwnershipResultPasswordTooFresh extends CanTransferOwnershipRes
         );
     }
 
+    public function getRetryAfter(): int
+    {
+        return $this->retryAfter;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'retry_after' => $this->retryAfter,
         ];
-    }
-
-    public function getRetryAfter(): int
-    {
-        return $this->retryAfter;
     }
 }

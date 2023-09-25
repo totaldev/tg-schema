@@ -37,16 +37,16 @@ class PassportElementUtilityBill extends PassportElement
         );
     }
 
+    public function getUtilityBill(): PersonalDocument
+    {
+        return $this->utilityBill;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'utility_bill' => $this->utilityBill->typeSerialize(),
         ];
-    }
-
-    public function getUtilityBill(): PersonalDocument
-    {
-        return $this->utilityBill;
     }
 }

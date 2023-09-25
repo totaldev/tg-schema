@@ -18,6 +18,13 @@ class VideoChat extends TdObject
     public const TYPE_NAME = 'videoChat';
 
     /**
+     * Default group call participant identifier to join the video chat; may be null
+     *
+     * @var MessageSender|null
+     */
+    protected ?MessageSender $defaultParticipantId;
+
+    /**
      * Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
      *
      * @var int
@@ -30,13 +37,6 @@ class VideoChat extends TdObject
      * @var bool
      */
     protected bool $hasParticipants;
-
-    /**
-     * Default group call participant identifier to join the video chat; may be null
-     *
-     * @var MessageSender|null
-     */
-    protected ?MessageSender $defaultParticipantId;
 
     public function __construct(int $groupCallId, bool $hasParticipants, ?MessageSender $defaultParticipantId)
     {
@@ -54,14 +54,9 @@ class VideoChat extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDefaultParticipantId(): ?MessageSender
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'has_participants' => $this->hasParticipants,
-            'default_participant_id' => (isset($this->defaultParticipantId) ? $this->defaultParticipantId : null),
-        ];
+        return $this->defaultParticipantId;
     }
 
     public function getGroupCallId(): int
@@ -74,8 +69,13 @@ class VideoChat extends TdObject
         return $this->hasParticipants;
     }
 
-    public function getDefaultParticipantId(): ?MessageSender
+    public function typeSerialize(): array
     {
-        return $this->defaultParticipantId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'has_participants' => $this->hasParticipants,
+            'default_participant_id' => (isset($this->defaultParticipantId) ? $this->defaultParticipantId : null),
+        ];
     }
 }

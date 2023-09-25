@@ -35,16 +35,16 @@ class Hashtags extends TdObject
         );
     }
 
+    public function getHashtags(): array
+    {
+        return $this->hashtags;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'hashtags' => $this->hashtags,
         ];
-    }
-
-    public function getHashtags(): array
-    {
-        return $this->hashtags;
     }
 }

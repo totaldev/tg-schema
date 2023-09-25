@@ -35,16 +35,16 @@ class DeleteFile extends TdFunction
         );
     }
 
+    public function getFileId(): int
+    {
+        return $this->fileId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file_id' => $this->fileId,
         ];
-    }
-
-    public function getFileId(): int
-    {
-        return $this->fileId;
     }
 }

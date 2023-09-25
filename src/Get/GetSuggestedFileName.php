@@ -17,18 +17,18 @@ class GetSuggestedFileName extends TdFunction
     public const TYPE_NAME = 'getSuggestedFileName';
 
     /**
-     * Identifier of the file
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
      * Directory in which the file is supposed to be saved
      *
      * @var string
      */
     protected string $directory;
+
+    /**
+     * Identifier of the file
+     *
+     * @var int
+     */
+    protected int $fileId;
 
     public function __construct(int $fileId, string $directory)
     {
@@ -44,13 +44,9 @@ class GetSuggestedFileName extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getDirectory(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'directory' => $this->directory,
-        ];
+        return $this->directory;
     }
 
     public function getFileId(): int
@@ -58,8 +54,12 @@ class GetSuggestedFileName extends TdFunction
         return $this->fileId;
     }
 
-    public function getDirectory(): string
+    public function typeSerialize(): array
     {
-        return $this->directory;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'directory' => $this->directory,
+        ];
     }
 }

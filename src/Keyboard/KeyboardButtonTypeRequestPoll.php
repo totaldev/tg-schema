@@ -16,18 +16,18 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
     public const TYPE_NAME = 'keyboardButtonTypeRequestPoll';
 
     /**
-     * If true, only regular polls must be allowed to create
-     *
-     * @var bool
-     */
-    protected bool $forceRegular;
-
-    /**
      * If true, only polls in quiz mode must be allowed to create
      *
      * @var bool
      */
     protected bool $forceQuiz;
+
+    /**
+     * If true, only regular polls must be allowed to create
+     *
+     * @var bool
+     */
+    protected bool $forceRegular;
 
     public function __construct(bool $forceRegular, bool $forceQuiz)
     {
@@ -45,13 +45,9 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
         );
     }
 
-    public function typeSerialize(): array
+    public function getForceQuiz(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'force_regular' => $this->forceRegular,
-            'force_quiz' => $this->forceQuiz,
-        ];
+        return $this->forceQuiz;
     }
 
     public function getForceRegular(): bool
@@ -59,8 +55,12 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
         return $this->forceRegular;
     }
 
-    public function getForceQuiz(): bool
+    public function typeSerialize(): array
     {
-        return $this->forceQuiz;
+        return [
+            '@type' => static::TYPE_NAME,
+            'force_regular' => $this->forceRegular,
+            'force_quiz' => $this->forceQuiz,
+        ];
     }
 }

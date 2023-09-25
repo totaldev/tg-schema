@@ -25,13 +25,6 @@ class AssignGooglePlayTransaction extends TdFunction
     protected string $packageName;
 
     /**
-     * Identifier of the purchased store product
-     *
-     * @var string
-     */
-    protected string $storeProductId;
-
-    /**
      * Google Play purchase token
      *
      * @var string
@@ -45,12 +38,20 @@ class AssignGooglePlayTransaction extends TdFunction
      */
     protected StorePaymentPurpose $purpose;
 
+    /**
+     * Identifier of the purchased store product
+     *
+     * @var string
+     */
+    protected string $storeProductId;
+
     public function __construct(
-        string $packageName,
-        string $storeProductId,
-        string $purchaseToken,
+        string              $packageName,
+        string              $storeProductId,
+        string              $purchaseToken,
         StorePaymentPurpose $purpose,
-    ) {
+    )
+    {
         $this->packageName = $packageName;
         $this->storeProductId = $storeProductId;
         $this->purchaseToken = $purchaseToken;
@@ -67,25 +68,9 @@ class AssignGooglePlayTransaction extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'package_name' => $this->packageName,
-            'store_product_id' => $this->storeProductId,
-            'purchase_token' => $this->purchaseToken,
-            'purpose' => $this->purpose->typeSerialize(),
-        ];
-    }
-
     public function getPackageName(): string
     {
         return $this->packageName;
-    }
-
-    public function getStoreProductId(): string
-    {
-        return $this->storeProductId;
     }
 
     public function getPurchaseToken(): string
@@ -96,5 +81,21 @@ class AssignGooglePlayTransaction extends TdFunction
     public function getPurpose(): StorePaymentPurpose
     {
         return $this->purpose;
+    }
+
+    public function getStoreProductId(): string
+    {
+        return $this->storeProductId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'package_name' => $this->packageName,
+            'store_product_id' => $this->storeProductId,
+            'purchase_token' => $this->purchaseToken,
+            'purpose' => $this->purpose->typeSerialize(),
+        ];
     }
 }

@@ -18,27 +18,6 @@ class ForumTopicInfo extends TdObject
     public const TYPE_NAME = 'forumTopicInfo';
 
     /**
-     * Message thread identifier of the topic
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
-     * Name of the topic
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Icon of the topic
-     *
-     * @var ForumTopicIcon
-     */
-    protected ForumTopicIcon $icon;
-
-    /**
      * Point in time (Unix timestamp) when the topic was created
      *
      * @var int
@@ -53,18 +32,11 @@ class ForumTopicInfo extends TdObject
     protected MessageSender $creatorId;
 
     /**
-     * True, if the topic is the General topic list
+     * Icon of the topic
      *
-     * @var bool
+     * @var ForumTopicIcon
      */
-    protected bool $isGeneral;
-
-    /**
-     * True, if the topic was created by the current user
-     *
-     * @var bool
-     */
-    protected bool $isOutgoing;
+    protected ForumTopicIcon $icon;
 
     /**
      * True, if the topic is closed
@@ -74,23 +46,52 @@ class ForumTopicInfo extends TdObject
     protected bool $isClosed;
 
     /**
+     * True, if the topic is the General topic list
+     *
+     * @var bool
+     */
+    protected bool $isGeneral;
+
+    /**
      * True, if the topic is hidden above the topic list and closed; for General topic only
      *
      * @var bool
      */
     protected bool $isHidden;
 
+    /**
+     * True, if the topic was created by the current user
+     *
+     * @var bool
+     */
+    protected bool $isOutgoing;
+
+    /**
+     * Message thread identifier of the topic
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
+
+    /**
+     * Name of the topic
+     *
+     * @var string
+     */
+    protected string $name;
+
     public function __construct(
-        int $messageThreadId,
-        string $name,
+        int            $messageThreadId,
+        string         $name,
         ForumTopicIcon $icon,
-        int $creationDate,
-        MessageSender $creatorId,
-        bool $isGeneral,
-        bool $isOutgoing,
-        bool $isClosed,
-        bool $isHidden,
-    ) {
+        int            $creationDate,
+        MessageSender  $creatorId,
+        bool           $isGeneral,
+        bool           $isOutgoing,
+        bool           $isClosed,
+        bool           $isHidden,
+    )
+    {
         $this->messageThreadId = $messageThreadId;
         $this->name = $name;
         $this->icon = $icon;
@@ -117,6 +118,51 @@ class ForumTopicInfo extends TdObject
         );
     }
 
+    public function getCreationDate(): int
+    {
+        return $this->creationDate;
+    }
+
+    public function getCreatorId(): MessageSender
+    {
+        return $this->creatorId;
+    }
+
+    public function getIcon(): ForumTopicIcon
+    {
+        return $this->icon;
+    }
+
+    public function getIsClosed(): bool
+    {
+        return $this->isClosed;
+    }
+
+    public function getIsGeneral(): bool
+    {
+        return $this->isGeneral;
+    }
+
+    public function getIsHidden(): bool
+    {
+        return $this->isHidden;
+    }
+
+    public function getIsOutgoing(): bool
+    {
+        return $this->isOutgoing;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -131,50 +177,5 @@ class ForumTopicInfo extends TdObject
             'is_closed' => $this->isClosed,
             'is_hidden' => $this->isHidden,
         ];
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getIcon(): ForumTopicIcon
-    {
-        return $this->icon;
-    }
-
-    public function getCreationDate(): int
-    {
-        return $this->creationDate;
-    }
-
-    public function getCreatorId(): MessageSender
-    {
-        return $this->creatorId;
-    }
-
-    public function getIsGeneral(): bool
-    {
-        return $this->isGeneral;
-    }
-
-    public function getIsOutgoing(): bool
-    {
-        return $this->isOutgoing;
-    }
-
-    public function getIsClosed(): bool
-    {
-        return $this->isClosed;
-    }
-
-    public function getIsHidden(): bool
-    {
-        return $this->isHidden;
     }
 }

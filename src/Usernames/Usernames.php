@@ -17,14 +17,16 @@ class Usernames extends TdObject
     public const TYPE_NAME = 'usernames';
 
     /**
-     * List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames or reorderSupergroupActiveUsernames
+     * List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames,
+     * reorderBotActiveUsernames or reorderSupergroupActiveUsernames
      *
      * @var string[]
      */
     protected array $activeUsernames;
 
     /**
-     * List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
+     * List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or
+     * toggleSupergroupUsernameIsActive
      *
      * @var string[]
      */
@@ -53,16 +55,6 @@ class Usernames extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'active_usernames' => $this->activeUsernames,
-            'disabled_usernames' => $this->disabledUsernames,
-            'editable_username' => $this->editableUsername,
-        ];
-    }
-
     public function getActiveUsernames(): array
     {
         return $this->activeUsernames;
@@ -76,5 +68,15 @@ class Usernames extends TdObject
     public function getEditableUsername(): string
     {
         return $this->editableUsername;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'active_usernames' => $this->activeUsernames,
+            'disabled_usernames' => $this->disabledUsernames,
+            'editable_username' => $this->editableUsername,
+        ];
     }
 }

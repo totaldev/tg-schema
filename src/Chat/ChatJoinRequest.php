@@ -17,11 +17,11 @@ class ChatJoinRequest extends TdObject
     public const TYPE_NAME = 'chatJoinRequest';
 
     /**
-     * User identifier
+     * A short bio of the user
      *
-     * @var int
+     * @var string
      */
-    protected int $userId;
+    protected string $bio;
 
     /**
      * Point in time (Unix timestamp) when the user sent the join request
@@ -31,11 +31,11 @@ class ChatJoinRequest extends TdObject
     protected int $date;
 
     /**
-     * A short bio of the user
+     * User identifier
      *
-     * @var string
+     * @var int
      */
-    protected string $bio;
+    protected int $userId;
 
     public function __construct(int $userId, int $date, string $bio)
     {
@@ -53,6 +53,21 @@ class ChatJoinRequest extends TdObject
         );
     }
 
+    public function getBio(): string
+    {
+        return $this->bio;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class ChatJoinRequest extends TdObject
             'date' => $this->date,
             'bio' => $this->bio,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getBio(): string
-    {
-        return $this->bio;
     }
 }

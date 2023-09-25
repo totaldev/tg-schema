@@ -44,15 +44,6 @@ class GetInlineGameHighScores extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'user_id' => $this->userId,
-        ];
-    }
-
     public function getInlineMessageId(): string
     {
         return $this->inlineMessageId;
@@ -61,5 +52,14 @@ class GetInlineGameHighScores extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_message_id' => $this->inlineMessageId,
+            'user_id' => $this->userId,
+        ];
     }
 }

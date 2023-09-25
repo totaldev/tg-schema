@@ -45,15 +45,6 @@ class CallStatePending extends CallState
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_created' => $this->isCreated,
-            'is_received' => $this->isReceived,
-        ];
-    }
-
     public function getIsCreated(): bool
     {
         return $this->isCreated;
@@ -62,5 +53,14 @@ class CallStatePending extends CallState
     public function getIsReceived(): bool
     {
         return $this->isReceived;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_created' => $this->isCreated,
+            'is_received' => $this->isReceived,
+        ];
     }
 }

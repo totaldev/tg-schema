@@ -18,11 +18,11 @@ class EmojiCategory extends TdObject
     public const TYPE_NAME = 'emojiCategory';
 
     /**
-     * Name of the category
+     * List of emojis in the category
      *
-     * @var string
+     * @var string[]
      */
-    protected string $name;
+    protected array $emojis;
 
     /**
      * Custom emoji sticker, which represents icon of the category
@@ -32,11 +32,11 @@ class EmojiCategory extends TdObject
     protected Sticker $icon;
 
     /**
-     * List of emojis in the category
+     * Name of the category
      *
-     * @var string[]
+     * @var string
      */
-    protected array $emojis;
+    protected string $name;
 
     public function __construct(string $name, Sticker $icon, array $emojis)
     {
@@ -54,6 +54,21 @@ class EmojiCategory extends TdObject
         );
     }
 
+    public function getEmojis(): array
+    {
+        return $this->emojis;
+    }
+
+    public function getIcon(): Sticker
+    {
+        return $this->icon;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class EmojiCategory extends TdObject
             'icon' => $this->icon->typeSerialize(),
             'emojis' => $this->emojis,
         ];
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getIcon(): Sticker
-    {
-        return $this->icon;
-    }
-
-    public function getEmojis(): array
-    {
-        return $this->emojis;
     }
 }

@@ -36,16 +36,16 @@ class BackgroundFillSolid extends BackgroundFill
         );
     }
 
+    public function getColor(): int
+    {
+        return $this->color;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'color' => $this->color,
         ];
-    }
-
-    public function getColor(): int
-    {
-        return $this->color;
     }
 }

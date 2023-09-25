@@ -35,16 +35,16 @@ class TestCallBytes extends TdFunction
         );
     }
 
+    public function getX(): string
+    {
+        return $this->x;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'x' => $this->x,
         ];
-    }
-
-    public function getX(): string
-    {
-        return $this->x;
     }
 }

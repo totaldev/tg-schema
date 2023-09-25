@@ -44,15 +44,6 @@ class KeyboardButton extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getText(): string
     {
         return $this->text;
@@ -61,5 +52,14 @@ class KeyboardButton extends TdObject
     public function getType(): KeyboardButtonType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

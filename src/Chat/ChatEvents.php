@@ -35,16 +35,16 @@ class ChatEvents extends TdObject
         );
     }
 
+    public function getEvents(): array
+    {
+        return $this->events;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->events),
         ];
-    }
-
-    public function getEvents(): array
-    {
-        return $this->events;
     }
 }

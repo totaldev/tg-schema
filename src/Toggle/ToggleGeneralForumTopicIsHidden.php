@@ -44,15 +44,6 @@ class ToggleGeneralForumTopicIsHidden extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'is_hidden' => $this->isHidden,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class ToggleGeneralForumTopicIsHidden extends TdFunction
     public function getIsHidden(): bool
     {
         return $this->isHidden;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'is_hidden' => $this->isHidden,
+        ];
     }
 }

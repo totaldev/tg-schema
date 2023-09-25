@@ -36,16 +36,16 @@ class PaymentProviderSmartGlocal extends PaymentProvider
         );
     }
 
+    public function getPublicToken(): string
+    {
+        return $this->publicToken;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'public_token' => $this->publicToken,
         ];
-    }
-
-    public function getPublicToken(): string
-    {
-        return $this->publicToken;
     }
 }

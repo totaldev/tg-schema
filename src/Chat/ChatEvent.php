@@ -18,11 +18,11 @@ class ChatEvent extends TdObject
     public const TYPE_NAME = 'chatEvent';
 
     /**
-     * Chat event identifier
+     * The action
      *
-     * @var int
+     * @var ChatEventAction
      */
-    protected int $id;
+    protected ChatEventAction $action;
 
     /**
      * Point in time (Unix timestamp) when the event happened
@@ -32,18 +32,18 @@ class ChatEvent extends TdObject
     protected int $date;
 
     /**
+     * Chat event identifier
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
      * Identifier of the user or chat who performed the action
      *
      * @var MessageSender
      */
     protected MessageSender $memberId;
-
-    /**
-     * The action
-     *
-     * @var ChatEventAction
-     */
-    protected ChatEventAction $action;
 
     public function __construct(int $id, int $date, MessageSender $memberId, ChatEventAction $action)
     {
@@ -63,6 +63,26 @@ class ChatEvent extends TdObject
         );
     }
 
+    public function getAction(): ChatEventAction
+    {
+        return $this->action;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getMemberId(): MessageSender
+    {
+        return $this->memberId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class ChatEvent extends TdObject
             'member_id' => $this->memberId->typeSerialize(),
             'action' => $this->action->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getMemberId(): MessageSender
-    {
-        return $this->memberId;
-    }
-
-    public function getAction(): ChatEventAction
-    {
-        return $this->action;
     }
 }

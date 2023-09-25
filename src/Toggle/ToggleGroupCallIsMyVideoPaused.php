@@ -44,15 +44,6 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'is_my_video_paused' => $this->isMyVideoPaused,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +52,14 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
     public function getIsMyVideoPaused(): bool
     {
         return $this->isMyVideoPaused;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'is_my_video_paused' => $this->isMyVideoPaused,
+        ];
     }
 }

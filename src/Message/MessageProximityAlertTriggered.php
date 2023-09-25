@@ -16,6 +16,13 @@ class MessageProximityAlertTriggered extends MessageContent
     public const TYPE_NAME = 'messageProximityAlertTriggered';
 
     /**
+     * The distance between the users
+     *
+     * @var int
+     */
+    protected int $distance;
+
+    /**
      * The identifier of a user or chat that triggered the proximity alert
      *
      * @var MessageSender
@@ -28,13 +35,6 @@ class MessageProximityAlertTriggered extends MessageContent
      * @var MessageSender
      */
     protected MessageSender $watcherId;
-
-    /**
-     * The distance between the users
-     *
-     * @var int
-     */
-    protected int $distance;
 
     public function __construct(MessageSender $travelerId, MessageSender $watcherId, int $distance)
     {
@@ -54,14 +54,9 @@ class MessageProximityAlertTriggered extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getDistance(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'traveler_id' => $this->travelerId->typeSerialize(),
-            'watcher_id' => $this->watcherId->typeSerialize(),
-            'distance' => $this->distance,
-        ];
+        return $this->distance;
     }
 
     public function getTravelerId(): MessageSender
@@ -74,8 +69,13 @@ class MessageProximityAlertTriggered extends MessageContent
         return $this->watcherId;
     }
 
-    public function getDistance(): int
+    public function typeSerialize(): array
     {
-        return $this->distance;
+        return [
+            '@type' => static::TYPE_NAME,
+            'traveler_id' => $this->travelerId->typeSerialize(),
+            'watcher_id' => $this->watcherId->typeSerialize(),
+            'distance' => $this->distance,
+        ];
     }
 }

@@ -36,16 +36,16 @@ class SupergroupMembersFilterRestricted extends SupergroupMembersFilter
         );
     }
 
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'query' => $this->query,
         ];
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
     }
 }

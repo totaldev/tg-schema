@@ -17,18 +17,18 @@ class ToggleGroupCallEnabledStartNotification extends TdFunction
     public const TYPE_NAME = 'toggleGroupCallEnabledStartNotification';
 
     /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
      * New value of the enabled_start_notification setting
      *
      * @var bool
      */
     protected bool $enabledStartNotification;
+
+    /**
+     * Group call identifier
+     *
+     * @var int
+     */
+    protected int $groupCallId;
 
     public function __construct(int $groupCallId, bool $enabledStartNotification)
     {
@@ -44,13 +44,9 @@ class ToggleGroupCallEnabledStartNotification extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getEnabledStartNotification(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'enabled_start_notification' => $this->enabledStartNotification,
-        ];
+        return $this->enabledStartNotification;
     }
 
     public function getGroupCallId(): int
@@ -58,8 +54,12 @@ class ToggleGroupCallEnabledStartNotification extends TdFunction
         return $this->groupCallId;
     }
 
-    public function getEnabledStartNotification(): bool
+    public function typeSerialize(): array
     {
-        return $this->enabledStartNotification;
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'enabled_start_notification' => $this->enabledStartNotification,
+        ];
     }
 }

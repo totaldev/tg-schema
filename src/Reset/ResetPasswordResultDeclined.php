@@ -36,16 +36,16 @@ class ResetPasswordResultDeclined extends ResetPasswordResult
         );
     }
 
+    public function getRetryDate(): int
+    {
+        return $this->retryDate;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'retry_date' => $this->retryDate,
         ];
-    }
-
-    public function getRetryDate(): int
-    {
-        return $this->retryDate;
     }
 }

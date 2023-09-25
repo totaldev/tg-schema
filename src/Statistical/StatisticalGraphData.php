@@ -45,15 +45,6 @@ class StatisticalGraphData extends StatisticalGraph
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'json_data' => $this->jsonData,
-            'zoom_token' => $this->zoomToken,
-        ];
-    }
-
     public function getJsonData(): string
     {
         return $this->jsonData;
@@ -62,5 +53,14 @@ class StatisticalGraphData extends StatisticalGraph
     public function getZoomToken(): string
     {
         return $this->zoomToken;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'json_data' => $this->jsonData,
+            'zoom_token' => $this->zoomToken,
+        ];
     }
 }

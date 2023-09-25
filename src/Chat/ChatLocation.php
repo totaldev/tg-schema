@@ -18,18 +18,18 @@ class ChatLocation extends TdObject
     public const TYPE_NAME = 'chatLocation';
 
     /**
-     * The location
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
      * Location address; 1-64 characters, as defined by the chat owner
      *
      * @var string
      */
     protected string $address;
+
+    /**
+     * The location
+     *
+     * @var Location
+     */
+    protected Location $location;
 
     public function __construct(Location $location, string $address)
     {
@@ -45,13 +45,9 @@ class ChatLocation extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAddress(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'address' => $this->address,
-        ];
+        return $this->address;
     }
 
     public function getLocation(): Location
@@ -59,8 +55,12 @@ class ChatLocation extends TdObject
         return $this->location;
     }
 
-    public function getAddress(): string
+    public function typeSerialize(): array
     {
-        return $this->address;
+        return [
+            '@type' => static::TYPE_NAME,
+            'location' => $this->location->typeSerialize(),
+            'address' => $this->address,
+        ];
     }
 }

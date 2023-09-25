@@ -35,16 +35,16 @@ class MessageViewers extends TdObject
         );
     }
 
+    public function getViewers(): array
+    {
+        return $this->viewers;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->viewers),
         ];
-    }
-
-    public function getViewers(): array
-    {
-        return $this->viewers;
     }
 }

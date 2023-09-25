@@ -16,13 +16,6 @@ class MessageForumTopicEdited extends MessageContent
     public const TYPE_NAME = 'messageForumTopicEdited';
 
     /**
-     * If non-empty, the new name of the topic
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
      * True, if icon's custom_emoji_id is changed
      *
      * @var bool
@@ -35,6 +28,13 @@ class MessageForumTopicEdited extends MessageContent
      * @var int
      */
     protected int $iconCustomEmojiId;
+
+    /**
+     * If non-empty, the new name of the topic
+     *
+     * @var string
+     */
+    protected string $name;
 
     public function __construct(string $name, bool $editIconCustomEmojiId, int $iconCustomEmojiId)
     {
@@ -54,21 +54,6 @@ class MessageForumTopicEdited extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'edit_icon_custom_emoji_id' => $this->editIconCustomEmojiId,
-            'icon_custom_emoji_id' => $this->iconCustomEmojiId,
-        ];
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getEditIconCustomEmojiId(): bool
     {
         return $this->editIconCustomEmojiId;
@@ -77,5 +62,20 @@ class MessageForumTopicEdited extends MessageContent
     public function getIconCustomEmojiId(): int
     {
         return $this->iconCustomEmojiId;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'edit_icon_custom_emoji_id' => $this->editIconCustomEmojiId,
+            'icon_custom_emoji_id' => $this->iconCustomEmojiId,
+        ];
     }
 }

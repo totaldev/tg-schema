@@ -44,15 +44,6 @@ class GetChatMessageByDate extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'date' => $this->date,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class GetChatMessageByDate extends TdFunction
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'date' => $this->date,
+        ];
     }
 }

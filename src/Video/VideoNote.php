@@ -28,13 +28,6 @@ class VideoNote extends TdObject
     protected int $duration;
 
     /**
-     * A waveform representation of the video note's audio in 5-bit format; may be empty if unknown
-     *
-     * @var string
-     */
-    protected string $waveform;
-
-    /**
      * Video width and height; as defined by the sender
      *
      * @var int
@@ -49,18 +42,18 @@ class VideoNote extends TdObject
     protected ?Minithumbnail $minithumbnail;
 
     /**
-     * Video thumbnail in JPEG format; as defined by the sender; may be null
-     *
-     * @var Thumbnail|null
-     */
-    protected ?Thumbnail $thumbnail;
-
-    /**
      * Result of speech recognition in the video note; may be null
      *
      * @var SpeechRecognitionResult|null
      */
     protected ?SpeechRecognitionResult $speechRecognitionResult;
+
+    /**
+     * Video thumbnail in JPEG format; as defined by the sender; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
 
     /**
      * File containing the video
@@ -69,15 +62,23 @@ class VideoNote extends TdObject
      */
     protected File $video;
 
+    /**
+     * A waveform representation of the video note's audio in 5-bit format; may be empty if unknown
+     *
+     * @var string
+     */
+    protected string $waveform;
+
     public function __construct(
-        int $duration,
-        string $waveform,
-        int $length,
-        ?Minithumbnail $minithumbnail,
-        ?Thumbnail $thumbnail,
+        int                      $duration,
+        string                   $waveform,
+        int                      $length,
+        ?Minithumbnail           $minithumbnail,
+        ?Thumbnail               $thumbnail,
         ?SpeechRecognitionResult $speechRecognitionResult,
-        File $video,
-    ) {
+        File                     $video,
+    )
+    {
         $this->duration = $duration;
         $this->waveform = $waveform;
         $this->length = $length;
@@ -100,28 +101,9 @@ class VideoNote extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'duration' => $this->duration,
-            'waveform' => $this->waveform,
-            'length' => $this->length,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
-            'video' => $this->video->typeSerialize(),
-        ];
-    }
-
     public function getDuration(): int
     {
         return $this->duration;
-    }
-
-    public function getWaveform(): string
-    {
-        return $this->waveform;
     }
 
     public function getLength(): int
@@ -134,18 +116,37 @@ class VideoNote extends TdObject
         return $this->minithumbnail;
     }
 
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
     public function getSpeechRecognitionResult(): ?SpeechRecognitionResult
     {
         return $this->speechRecognitionResult;
     }
 
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
     public function getVideo(): File
     {
         return $this->video;
+    }
+
+    public function getWaveform(): string
+    {
+        return $this->waveform;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'duration' => $this->duration,
+            'waveform' => $this->waveform,
+            'length' => $this->length,
+            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
+            'video' => $this->video->typeSerialize(),
+        ];
     }
 }

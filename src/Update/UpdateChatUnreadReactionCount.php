@@ -45,15 +45,6 @@ class UpdateChatUnreadReactionCount extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'unread_reaction_count' => $this->unreadReactionCount,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateChatUnreadReactionCount extends Update
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'unread_reaction_count' => $this->unreadReactionCount,
+        ];
     }
 }

@@ -16,11 +16,11 @@ class PushMessageContentGameScore extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentGameScore';
 
     /**
-     * Game title, empty for pinned message
+     * True, if the message is a pinned message with the specified content
      *
-     * @var string
+     * @var bool
      */
-    protected string $title;
+    protected bool $isPinned;
 
     /**
      * New score, 0 for pinned message
@@ -30,11 +30,11 @@ class PushMessageContentGameScore extends PushMessageContent
     protected int $score;
 
     /**
-     * True, if the message is a pinned message with the specified content
+     * Game title, empty for pinned message
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isPinned;
+    protected string $title;
 
     public function __construct(string $title, int $score, bool $isPinned)
     {
@@ -54,6 +54,21 @@ class PushMessageContentGameScore extends PushMessageContent
         );
     }
 
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class PushMessageContentGameScore extends PushMessageContent
             'score' => $this->score,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

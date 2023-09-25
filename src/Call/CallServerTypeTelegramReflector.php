@@ -16,18 +16,18 @@ class CallServerTypeTelegramReflector extends CallServerType
     public const TYPE_NAME = 'callServerTypeTelegramReflector';
 
     /**
-     * A peer tag to be used with the reflector
-     *
-     * @var string
-     */
-    protected string $peerTag;
-
-    /**
      * True, if the server uses TCP instead of UDP
      *
      * @var bool
      */
     protected bool $isTcp;
+
+    /**
+     * A peer tag to be used with the reflector
+     *
+     * @var string
+     */
+    protected string $peerTag;
 
     public function __construct(string $peerTag, bool $isTcp)
     {
@@ -45,13 +45,9 @@ class CallServerTypeTelegramReflector extends CallServerType
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsTcp(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'peer_tag' => $this->peerTag,
-            'is_tcp' => $this->isTcp,
-        ];
+        return $this->isTcp;
     }
 
     public function getPeerTag(): string
@@ -59,8 +55,12 @@ class CallServerTypeTelegramReflector extends CallServerType
         return $this->peerTag;
     }
 
-    public function getIsTcp(): bool
+    public function typeSerialize(): array
     {
-        return $this->isTcp;
+        return [
+            '@type' => static::TYPE_NAME,
+            'peer_tag' => $this->peerTag,
+            'is_tcp' => $this->isTcp,
+        ];
     }
 }

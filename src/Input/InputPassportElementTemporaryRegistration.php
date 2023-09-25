@@ -36,16 +36,16 @@ class InputPassportElementTemporaryRegistration extends InputPassportElement
         );
     }
 
+    public function getTemporaryRegistration(): InputPersonalDocument
+    {
+        return $this->temporaryRegistration;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'temporary_registration' => $this->temporaryRegistration->typeSerialize(),
         ];
-    }
-
-    public function getTemporaryRegistration(): InputPersonalDocument
-    {
-        return $this->temporaryRegistration;
     }
 }

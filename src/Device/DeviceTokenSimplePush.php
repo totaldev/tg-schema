@@ -36,16 +36,16 @@ class DeviceTokenSimplePush extends DeviceToken
         );
     }
 
+    public function getEndpoint(): string
+    {
+        return $this->endpoint;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'endpoint' => $this->endpoint,
         ];
-    }
-
-    public function getEndpoint(): string
-    {
-        return $this->endpoint;
     }
 }

@@ -17,13 +17,6 @@ class StoryInfo extends TdObject
     public const TYPE_NAME = 'storyInfo';
 
     /**
-     * Unique story identifier among stories of the given sender
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
      * Point in time (Unix timestamp) when the story was published
      *
      * @var int
@@ -36,6 +29,13 @@ class StoryInfo extends TdObject
      * @var bool
      */
     protected bool $isForCloseFriends;
+
+    /**
+     * Unique story identifier among stories of the given sender
+     *
+     * @var int
+     */
+    protected int $storyId;
 
     public function __construct(int $storyId, int $date, bool $isForCloseFriends)
     {
@@ -53,21 +53,6 @@ class StoryInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_id' => $this->storyId,
-            'date' => $this->date,
-            'is_for_close_friends' => $this->isForCloseFriends,
-        ];
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
     public function getDate(): int
     {
         return $this->date;
@@ -76,5 +61,20 @@ class StoryInfo extends TdObject
     public function getIsForCloseFriends(): bool
     {
         return $this->isForCloseFriends;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_id' => $this->storyId,
+            'date' => $this->date,
+            'is_for_close_friends' => $this->isForCloseFriends,
+        ];
     }
 }

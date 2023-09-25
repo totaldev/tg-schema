@@ -24,11 +24,11 @@ class DiscardCall extends TdFunction
     protected int $callId;
 
     /**
-     * Pass true if the user was disconnected
+     * Identifier of the connection used during the call
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isDisconnected;
+    protected int $connectionId;
 
     /**
      * The call duration, in seconds
@@ -38,18 +38,18 @@ class DiscardCall extends TdFunction
     protected int $duration;
 
     /**
+     * Pass true if the user was disconnected
+     *
+     * @var bool
+     */
+    protected bool $isDisconnected;
+
+    /**
      * Pass true if the call was a video call
      *
      * @var bool
      */
     protected bool $isVideo;
-
-    /**
-     * Identifier of the connection used during the call
-     *
-     * @var int
-     */
-    protected int $connectionId;
 
     public function __construct(int $callId, bool $isDisconnected, int $duration, bool $isVideo, int $connectionId)
     {
@@ -71,6 +71,31 @@ class DiscardCall extends TdFunction
         );
     }
 
+    public function getCallId(): int
+    {
+        return $this->callId;
+    }
+
+    public function getConnectionId(): int
+    {
+        return $this->connectionId;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getIsDisconnected(): bool
+    {
+        return $this->isDisconnected;
+    }
+
+    public function getIsVideo(): bool
+    {
+        return $this->isVideo;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +106,5 @@ class DiscardCall extends TdFunction
             'is_video' => $this->isVideo,
             'connection_id' => $this->connectionId,
         ];
-    }
-
-    public function getCallId(): int
-    {
-        return $this->callId;
-    }
-
-    public function getIsDisconnected(): bool
-    {
-        return $this->isDisconnected;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getIsVideo(): bool
-    {
-        return $this->isVideo;
-    }
-
-    public function getConnectionId(): int
-    {
-        return $this->connectionId;
     }
 }

@@ -16,6 +16,13 @@ class MessageForwardOriginChannel extends MessageForwardOrigin
     public const TYPE_NAME = 'messageForwardOriginChannel';
 
     /**
+     * Original post author signature
+     *
+     * @var string
+     */
+    protected string $authorSignature;
+
+    /**
      * Identifier of the chat from which the message was originally forwarded
      *
      * @var int
@@ -28,13 +35,6 @@ class MessageForwardOriginChannel extends MessageForwardOrigin
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Original post author signature
-     *
-     * @var string
-     */
-    protected string $authorSignature;
 
     public function __construct(int $chatId, int $messageId, string $authorSignature)
     {
@@ -54,14 +54,9 @@ class MessageForwardOriginChannel extends MessageForwardOrigin
         );
     }
 
-    public function typeSerialize(): array
+    public function getAuthorSignature(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'author_signature' => $this->authorSignature,
-        ];
+        return $this->authorSignature;
     }
 
     public function getChatId(): int
@@ -74,8 +69,13 @@ class MessageForwardOriginChannel extends MessageForwardOrigin
         return $this->messageId;
     }
 
-    public function getAuthorSignature(): string
+    public function typeSerialize(): array
     {
-        return $this->authorSignature;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'author_signature' => $this->authorSignature,
+        ];
     }
 }

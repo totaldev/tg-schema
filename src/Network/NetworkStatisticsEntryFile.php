@@ -31,18 +31,18 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     protected NetworkType $networkType;
 
     /**
-     * Total number of bytes sent
-     *
-     * @var int
-     */
-    protected int $sentBytes;
-
-    /**
      * Total number of bytes received
      *
      * @var int
      */
     protected int $receivedBytes;
+
+    /**
+     * Total number of bytes sent
+     *
+     * @var int
+     */
+    protected int $sentBytes;
 
     public function __construct(FileType $fileType, NetworkType $networkType, int $sentBytes, int $receivedBytes)
     {
@@ -64,17 +64,6 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_type' => $this->fileType->typeSerialize(),
-            'network_type' => $this->networkType->typeSerialize(),
-            'sent_bytes' => $this->sentBytes,
-            'received_bytes' => $this->receivedBytes,
-        ];
-    }
-
     public function getFileType(): FileType
     {
         return $this->fileType;
@@ -85,13 +74,24 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         return $this->networkType;
     }
 
+    public function getReceivedBytes(): int
+    {
+        return $this->receivedBytes;
+    }
+
     public function getSentBytes(): int
     {
         return $this->sentBytes;
     }
 
-    public function getReceivedBytes(): int
+    public function typeSerialize(): array
     {
-        return $this->receivedBytes;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_type' => $this->fileType->typeSerialize(),
+            'network_type' => $this->networkType->typeSerialize(),
+            'sent_bytes' => $this->sentBytes,
+            'received_bytes' => $this->receivedBytes,
+        ];
     }
 }

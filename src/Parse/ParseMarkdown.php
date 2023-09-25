@@ -18,7 +18,8 @@ class ParseMarkdown extends TdFunction
     public const TYPE_NAME = 'parseMarkdown';
 
     /**
-     * The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+     * The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold
+     * italic__bold**"
      *
      * @var FormattedText
      */
@@ -36,16 +37,16 @@ class ParseMarkdown extends TdFunction
         );
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text->typeSerialize(),
         ];
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
     }
 }

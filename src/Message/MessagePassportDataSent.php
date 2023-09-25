@@ -37,16 +37,16 @@ class MessagePassportDataSent extends MessageContent
         );
     }
 
+    public function getTypes(): array
+    {
+        return $this->types;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->types),
         ];
-    }
-
-    public function getTypes(): array
-    {
-        return $this->types;
     }
 }

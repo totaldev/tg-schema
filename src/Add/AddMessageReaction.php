@@ -25,6 +25,13 @@ class AddMessageReaction extends TdFunction
     protected int $chatId;
 
     /**
+     * Pass true if the reaction is added with a big animation
+     *
+     * @var bool
+     */
+    protected bool $isBig;
+
+    /**
      * Identifier of the message
      *
      * @var int
@@ -39,13 +46,6 @@ class AddMessageReaction extends TdFunction
     protected ReactionType $reactionType;
 
     /**
-     * Pass true if the reaction is added with a big animation
-     *
-     * @var bool
-     */
-    protected bool $isBig;
-
-    /**
      * Pass true if the reaction needs to be added to recent reactions
      *
      * @var bool
@@ -53,12 +53,13 @@ class AddMessageReaction extends TdFunction
     protected bool $updateRecentReactions;
 
     public function __construct(
-        int $chatId,
-        int $messageId,
+        int          $chatId,
+        int          $messageId,
         ReactionType $reactionType,
-        bool $isBig,
-        bool $updateRecentReactions,
-    ) {
+        bool         $isBig,
+        bool         $updateRecentReactions,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageId = $messageId;
         $this->reactionType = $reactionType;
@@ -77,21 +78,14 @@ class AddMessageReaction extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reaction_type' => $this->reactionType->typeSerialize(),
-            'is_big' => $this->isBig,
-            'update_recent_reactions' => $this->updateRecentReactions,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getIsBig(): bool
+    {
+        return $this->isBig;
     }
 
     public function getMessageId(): int
@@ -104,13 +98,20 @@ class AddMessageReaction extends TdFunction
         return $this->reactionType;
     }
 
-    public function getIsBig(): bool
-    {
-        return $this->isBig;
-    }
-
     public function getUpdateRecentReactions(): bool
     {
         return $this->updateRecentReactions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'reaction_type' => $this->reactionType->typeSerialize(),
+            'is_big' => $this->isBig,
+            'update_recent_reactions' => $this->updateRecentReactions,
+        ];
     }
 }

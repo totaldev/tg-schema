@@ -17,13 +17,6 @@ class Contact extends TdObject
     public const TYPE_NAME = 'contact';
 
     /**
-     * Phone number of the user
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    /**
      * First name of the user; 1-255 characters in length
      *
      * @var string
@@ -38,11 +31,11 @@ class Contact extends TdObject
     protected string $lastName;
 
     /**
-     * Additional data about the user in a form of vCard; 0-2048 bytes in length
+     * Phone number of the user
      *
      * @var string
      */
-    protected string $vcard;
+    protected string $phoneNumber;
 
     /**
      * Identifier of the user, if known; 0 otherwise
@@ -50,6 +43,13 @@ class Contact extends TdObject
      * @var int
      */
     protected int $userId;
+
+    /**
+     * Additional data about the user in a form of vCard; 0-2048 bytes in length
+     *
+     * @var string
+     */
+    protected string $vcard;
 
     public function __construct(string $phoneNumber, string $firstName, string $lastName, string $vcard, int $userId)
     {
@@ -71,23 +71,6 @@ class Contact extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'vcard' => $this->vcard,
-            'user_id' => $this->userId,
-        ];
-    }
-
-    public function getPhoneNumber(): string
-    {
-        return $this->phoneNumber;
-    }
-
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -98,13 +81,30 @@ class Contact extends TdObject
         return $this->lastName;
     }
 
-    public function getVcard(): string
+    public function getPhoneNumber(): string
     {
-        return $this->vcard;
+        return $this->phoneNumber;
     }
 
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function getVcard(): string
+    {
+        return $this->vcard;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'phone_number' => $this->phoneNumber,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'vcard' => $this->vcard,
+            'user_id' => $this->userId,
+        ];
     }
 }

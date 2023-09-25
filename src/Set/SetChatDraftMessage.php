@@ -25,18 +25,18 @@ class SetChatDraftMessage extends TdFunction
     protected int $chatId;
 
     /**
-     * If not 0, a message thread identifier in which the draft was changed
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
      * New draft message; pass null to remove the draft
      *
      * @var DraftMessage
      */
     protected DraftMessage $draftMessage;
+
+    /**
+     * If not 0, a message thread identifier in which the draft was changed
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
 
     public function __construct(int $chatId, int $messageThreadId, DraftMessage $draftMessage)
     {
@@ -54,6 +54,21 @@ class SetChatDraftMessage extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getDraftMessage(): DraftMessage
+    {
+        return $this->draftMessage;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class SetChatDraftMessage extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'draft_message' => $this->draftMessage->typeSerialize(),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getDraftMessage(): DraftMessage
-    {
-        return $this->draftMessage;
     }
 }

@@ -9,18 +9,19 @@ namespace Totaldev\TgSchema\Authorization;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
+ * The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide
+ * the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week
  */
 class AuthorizationStateWaitPassword extends AuthorizationState
 {
     public const TYPE_NAME = 'authorizationStateWaitPassword';
 
     /**
-     * Hint for the password; may be empty
+     * True, if some Telegram Passport elements were saved
      *
-     * @var string
+     * @var bool
      */
-    protected string $passwordHint;
+    protected bool $hasPassportData;
 
     /**
      * True, if a recovery email address has been set up
@@ -30,11 +31,11 @@ class AuthorizationStateWaitPassword extends AuthorizationState
     protected bool $hasRecoveryEmailAddress;
 
     /**
-     * True, if some Telegram Passport elements were saved
+     * Hint for the password; may be empty
      *
-     * @var bool
+     * @var string
      */
-    protected bool $hasPassportData;
+    protected string $passwordHint;
 
     /**
      * Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
@@ -45,10 +46,11 @@ class AuthorizationStateWaitPassword extends AuthorizationState
 
     public function __construct(
         string $passwordHint,
-        bool $hasRecoveryEmailAddress,
-        bool $hasPassportData,
+        bool   $hasRecoveryEmailAddress,
+        bool   $hasPassportData,
         string $recoveryEmailAddressPattern,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->passwordHint = $passwordHint;
@@ -67,6 +69,26 @@ class AuthorizationStateWaitPassword extends AuthorizationState
         );
     }
 
+    public function getHasPassportData(): bool
+    {
+        return $this->hasPassportData;
+    }
+
+    public function getHasRecoveryEmailAddress(): bool
+    {
+        return $this->hasRecoveryEmailAddress;
+    }
+
+    public function getPasswordHint(): string
+    {
+        return $this->passwordHint;
+    }
+
+    public function getRecoveryEmailAddressPattern(): string
+    {
+        return $this->recoveryEmailAddressPattern;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +98,5 @@ class AuthorizationStateWaitPassword extends AuthorizationState
             'has_passport_data' => $this->hasPassportData,
             'recovery_email_address_pattern' => $this->recoveryEmailAddressPattern,
         ];
-    }
-
-    public function getPasswordHint(): string
-    {
-        return $this->passwordHint;
-    }
-
-    public function getHasRecoveryEmailAddress(): bool
-    {
-        return $this->hasRecoveryEmailAddress;
-    }
-
-    public function getHasPassportData(): bool
-    {
-        return $this->hasPassportData;
-    }
-
-    public function getRecoveryEmailAddressPattern(): string
-    {
-        return $this->recoveryEmailAddressPattern;
     }
 }

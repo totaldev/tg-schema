@@ -18,11 +18,12 @@ class GetTrendingStickerSets extends TdFunction
     public const TYPE_NAME = 'getTrendingStickerSets';
 
     /**
-     * Type of the sticker sets to return
+     * The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be
+     * smaller than the specified limit, even if the end of the list has not been reached
      *
-     * @var StickerType
+     * @var int
      */
-    protected StickerType $stickerType;
+    protected int $limit;
 
     /**
      * The offset from which to return the sticker sets; must be non-negative
@@ -32,11 +33,11 @@ class GetTrendingStickerSets extends TdFunction
     protected int $offset;
 
     /**
-     * The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+     * Type of the sticker sets to return
      *
-     * @var int
+     * @var StickerType
      */
-    protected int $limit;
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, int $offset, int $limit)
     {
@@ -54,6 +55,21 @@ class GetTrendingStickerSets extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class GetTrendingStickerSets extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

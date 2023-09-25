@@ -17,18 +17,18 @@ class BankCardInfo extends TdObject
     public const TYPE_NAME = 'bankCardInfo';
 
     /**
-     * Title of the bank card description
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Actions that can be done with the bank card number
      *
      * @var BankCardActionOpenUrl[]
      */
     protected array $actions;
+
+    /**
+     * Title of the bank card description
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $title, array $actions)
     {
@@ -44,13 +44,9 @@ class BankCardInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getActions(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            array_map(fn($x) => $x->typeSerialize(), $this->actions),
-        ];
+        return $this->actions;
     }
 
     public function getTitle(): string
@@ -58,8 +54,12 @@ class BankCardInfo extends TdObject
         return $this->title;
     }
 
-    public function getActions(): array
+    public function typeSerialize(): array
     {
-        return $this->actions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            array_map(fn($x) => $x->typeSerialize(), $this->actions),
+        ];
     }
 }

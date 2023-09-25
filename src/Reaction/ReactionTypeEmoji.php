@@ -36,16 +36,16 @@ class ReactionTypeEmoji extends ReactionType
         );
     }
 
+    public function getEmoji(): string
+    {
+        return $this->emoji;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'emoji' => $this->emoji,
         ];
-    }
-
-    public function getEmoji(): string
-    {
-        return $this->emoji;
     }
 }

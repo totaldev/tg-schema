@@ -17,6 +17,13 @@ class StoryViewers extends TdObject
     public const TYPE_NAME = 'storyViewers';
 
     /**
+     * The offset for the next request. If empty, there are no more results
+     *
+     * @var string
+     */
+    protected string $nextOffset;
+
+    /**
      * Approximate total number of story viewers found
      *
      * @var int
@@ -37,13 +44,6 @@ class StoryViewers extends TdObject
      */
     protected array $viewers;
 
-    /**
-     * The offset for the next request. If empty, there are no more results
-     *
-     * @var string
-     */
-    protected string $nextOffset;
-
     public function __construct(int $totalCount, int $totalReactionCount, array $viewers, string $nextOffset)
     {
         $this->totalCount = $totalCount;
@@ -62,15 +62,9 @@ class StoryViewers extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNextOffset(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'total_reaction_count' => $this->totalReactionCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->viewers),
-            'next_offset' => $this->nextOffset,
-        ];
+        return $this->nextOffset;
     }
 
     public function getTotalCount(): int
@@ -88,8 +82,14 @@ class StoryViewers extends TdObject
         return $this->viewers;
     }
 
-    public function getNextOffset(): string
+    public function typeSerialize(): array
     {
-        return $this->nextOffset;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            'total_reaction_count' => $this->totalReactionCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->viewers),
+            'next_offset' => $this->nextOffset,
+        ];
     }
 }

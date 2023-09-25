@@ -16,18 +16,18 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
     public const TYPE_NAME = 'callbackQueryPayloadDataWithPassword';
 
     /**
-     * The 2-step verification password for the current user
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
      * Data that was attached to the callback button
      *
      * @var string
      */
     protected string $data;
+
+    /**
+     * The 2-step verification password for the current user
+     *
+     * @var string
+     */
+    protected string $password;
 
     public function __construct(string $password, string $data)
     {
@@ -45,13 +45,9 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
         );
     }
 
-    public function typeSerialize(): array
+    public function getData(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'password' => $this->password,
-            'data' => $this->data,
-        ];
+        return $this->data;
     }
 
     public function getPassword(): string
@@ -59,8 +55,12 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
         return $this->password;
     }
 
-    public function getData(): string
+    public function typeSerialize(): array
     {
-        return $this->data;
+        return [
+            '@type' => static::TYPE_NAME,
+            'password' => $this->password,
+            'data' => $this->data,
+        ];
     }
 }

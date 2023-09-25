@@ -17,18 +17,18 @@ class ChatEventMessageDeleted extends ChatEventAction
     public const TYPE_NAME = 'chatEventMessageDeleted';
 
     /**
-     * Deleted message
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    /**
      * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive
      *
      * @var bool
      */
     protected bool $canReportAntiSpamFalsePositive;
+
+    /**
+     * Deleted message
+     *
+     * @var Message
+     */
+    protected Message $message;
 
     public function __construct(Message $message, bool $canReportAntiSpamFalsePositive)
     {
@@ -46,13 +46,9 @@ class ChatEventMessageDeleted extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCanReportAntiSpamFalsePositive(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-            'can_report_anti_spam_false_positive' => $this->canReportAntiSpamFalsePositive,
-        ];
+        return $this->canReportAntiSpamFalsePositive;
     }
 
     public function getMessage(): Message
@@ -60,8 +56,12 @@ class ChatEventMessageDeleted extends ChatEventAction
         return $this->message;
     }
 
-    public function getCanReportAntiSpamFalsePositive(): bool
+    public function typeSerialize(): array
     {
-        return $this->canReportAntiSpamFalsePositive;
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'can_report_anti_spam_false_positive' => $this->canReportAntiSpamFalsePositive,
+        ];
     }
 }

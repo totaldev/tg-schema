@@ -17,11 +17,11 @@ class RecoverPassword extends TdFunction
     public const TYPE_NAME = 'recoverPassword';
 
     /**
-     * Recovery code to check
+     * New password hint; may be empty
      *
      * @var string
      */
-    protected string $recoveryCode;
+    protected string $newHint;
 
     /**
      * New 2-step verification password of the user; may be empty to remove the password
@@ -31,11 +31,11 @@ class RecoverPassword extends TdFunction
     protected string $newPassword;
 
     /**
-     * New password hint; may be empty
+     * Recovery code to check
      *
      * @var string
      */
-    protected string $newHint;
+    protected string $recoveryCode;
 
     public function __construct(string $recoveryCode, string $newPassword, string $newHint)
     {
@@ -53,6 +53,21 @@ class RecoverPassword extends TdFunction
         );
     }
 
+    public function getNewHint(): string
+    {
+        return $this->newHint;
+    }
+
+    public function getNewPassword(): string
+    {
+        return $this->newPassword;
+    }
+
+    public function getRecoveryCode(): string
+    {
+        return $this->recoveryCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class RecoverPassword extends TdFunction
             'new_password' => $this->newPassword,
             'new_hint' => $this->newHint,
         ];
-    }
-
-    public function getRecoveryCode(): string
-    {
-        return $this->recoveryCode;
-    }
-
-    public function getNewPassword(): string
-    {
-        return $this->newPassword;
-    }
-
-    public function getNewHint(): string
-    {
-        return $this->newHint;
     }
 }

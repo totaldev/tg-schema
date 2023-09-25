@@ -35,16 +35,16 @@ class GetBackgrounds extends TdFunction
         );
     }
 
+    public function getForDarkTheme(): bool
+    {
+        return $this->forDarkTheme;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'for_dark_theme' => $this->forDarkTheme,
         ];
-    }
-
-    public function getForDarkTheme(): bool
-    {
-        return $this->forDarkTheme;
     }
 }

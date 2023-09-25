@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
+ * Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30
+ * seconds after generation
  */
 class GetEmojiSuggestionsUrl extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetEmojiSuggestionsUrl extends TdFunction
         );
     }
 
+    public function getLanguageCode(): string
+    {
+        return $this->languageCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'language_code' => $this->languageCode,
         ];
-    }
-
-    public function getLanguageCode(): string
-    {
-        return $this->languageCode;
     }
 }

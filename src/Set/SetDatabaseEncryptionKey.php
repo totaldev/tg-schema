@@ -35,16 +35,16 @@ class SetDatabaseEncryptionKey extends TdFunction
         );
     }
 
+    public function getNewEncryptionKey(): string
+    {
+        return $this->newEncryptionKey;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'new_encryption_key' => $this->newEncryptionKey,
         ];
-    }
-
-    public function getNewEncryptionKey(): string
-    {
-        return $this->newEncryptionKey;
     }
 }

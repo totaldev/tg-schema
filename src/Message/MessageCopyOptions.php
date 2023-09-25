@@ -18,11 +18,11 @@ class MessageCopyOptions extends TdObject
     public const TYPE_NAME = 'messageCopyOptions';
 
     /**
-     * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local
+     * New message caption; pass null to copy message without caption. Ignored if replace_caption is false
      *
-     * @var bool
+     * @var FormattedText
      */
-    protected bool $sendCopy;
+    protected FormattedText $newCaption;
 
     /**
      * True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false
@@ -32,11 +32,12 @@ class MessageCopyOptions extends TdObject
     protected bool $replaceCaption;
 
     /**
-     * New message caption; pass null to copy message without caption. Ignored if replace_caption is false
+     * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or
+     * is local
      *
-     * @var FormattedText
+     * @var bool
      */
-    protected FormattedText $newCaption;
+    protected bool $sendCopy;
 
     public function __construct(bool $sendCopy, bool $replaceCaption, FormattedText $newCaption)
     {
@@ -54,6 +55,21 @@ class MessageCopyOptions extends TdObject
         );
     }
 
+    public function getNewCaption(): FormattedText
+    {
+        return $this->newCaption;
+    }
+
+    public function getReplaceCaption(): bool
+    {
+        return $this->replaceCaption;
+    }
+
+    public function getSendCopy(): bool
+    {
+        return $this->sendCopy;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class MessageCopyOptions extends TdObject
             'replace_caption' => $this->replaceCaption,
             'new_caption' => $this->newCaption->typeSerialize(),
         ];
-    }
-
-    public function getSendCopy(): bool
-    {
-        return $this->sendCopy;
-    }
-
-    public function getReplaceCaption(): bool
-    {
-        return $this->replaceCaption;
-    }
-
-    public function getNewCaption(): FormattedText
-    {
-        return $this->newCaption;
     }
 }

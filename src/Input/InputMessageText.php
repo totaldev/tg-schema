@@ -19,11 +19,11 @@ class InputMessageText extends InputMessageContent
     public const TYPE_NAME = 'inputMessageText';
 
     /**
-     * Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+     * True, if a chat message draft must be deleted
      *
-     * @var FormattedText
+     * @var bool
      */
-    protected FormattedText $text;
+    protected bool $clearDraft;
 
     /**
      * True, if rich web page previews for URLs in the message text must be disabled
@@ -33,11 +33,12 @@ class InputMessageText extends InputMessageContent
     protected bool $disableWebPagePreview;
 
     /**
-     * True, if a chat message draft must be deleted
+     * Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code,
+     * Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
      *
-     * @var bool
+     * @var FormattedText
      */
-    protected bool $clearDraft;
+    protected FormattedText $text;
 
     public function __construct(FormattedText $text, bool $disableWebPagePreview = false, bool $clearDraft = false)
     {
@@ -57,6 +58,21 @@ class InputMessageText extends InputMessageContent
         );
     }
 
+    public function getClearDraft(): bool
+    {
+        return $this->clearDraft;
+    }
+
+    public function getDisableWebPagePreview(): bool
+    {
+        return $this->disableWebPagePreview;
+    }
+
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -65,20 +81,5 @@ class InputMessageText extends InputMessageContent
             'disable_web_page_preview' => $this->disableWebPagePreview,
             'clear_draft' => $this->clearDraft,
         ];
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
-    }
-
-    public function getDisableWebPagePreview(): bool
-    {
-        return $this->disableWebPagePreview;
-    }
-
-    public function getClearDraft(): bool
-    {
-        return $this->clearDraft;
     }
 }

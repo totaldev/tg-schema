@@ -44,15 +44,6 @@ class ReorderSupergroupActiveUsernames extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'usernames' => $this->usernames,
-        ];
-    }
-
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
@@ -61,5 +52,14 @@ class ReorderSupergroupActiveUsernames extends TdFunction
     public function getUsernames(): array
     {
         return $this->usernames;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'usernames' => $this->usernames,
+        ];
     }
 }

@@ -12,7 +12,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+ * Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use
+ * transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
  */
 class SetChatMemberStatus extends TdFunction
 {
@@ -55,16 +56,6 @@ class SetChatMemberStatus extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
-            'status' => $this->status->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -78,5 +69,15 @@ class SetChatMemberStatus extends TdFunction
     public function getStatus(): ChatMemberStatus
     {
         return $this->status;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'member_id' => $this->memberId->typeSerialize(),
+            'status' => $this->status->typeSerialize(),
+        ];
     }
 }

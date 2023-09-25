@@ -24,18 +24,18 @@ class GameHighScore extends TdObject
     protected int $position;
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * User score
      *
      * @var int
      */
     protected int $score;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $position, int $userId, int $score)
     {
@@ -53,6 +53,21 @@ class GameHighScore extends TdObject
         );
     }
 
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GameHighScore extends TdObject
             'user_id' => $this->userId,
             'score' => $this->score,
         ];
-    }
-
-    public function getPosition(): int
-    {
-        return $this->position;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
     }
 }

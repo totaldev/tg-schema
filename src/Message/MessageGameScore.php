@@ -16,18 +16,18 @@ class MessageGameScore extends MessageContent
     public const TYPE_NAME = 'messageGameScore';
 
     /**
-     * Identifier of the message with the game, can be an identifier of a deleted message
-     *
-     * @var int
-     */
-    protected int $gameMessageId;
-
-    /**
      * Identifier of the game; may be different from the games presented in the message with the game
      *
      * @var int
      */
     protected int $gameId;
+
+    /**
+     * Identifier of the message with the game, can be an identifier of a deleted message
+     *
+     * @var int
+     */
+    protected int $gameMessageId;
 
     /**
      * New score
@@ -54,6 +54,21 @@ class MessageGameScore extends MessageContent
         );
     }
 
+    public function getGameId(): int
+    {
+        return $this->gameId;
+    }
+
+    public function getGameMessageId(): int
+    {
+        return $this->gameMessageId;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class MessageGameScore extends MessageContent
             'game_id' => $this->gameId,
             'score' => $this->score,
         ];
-    }
-
-    public function getGameMessageId(): int
-    {
-        return $this->gameMessageId;
-    }
-
-    public function getGameId(): int
-    {
-        return $this->gameId;
-    }
-
-    public function getScore(): int
-    {
-        return $this->score;
     }
 }

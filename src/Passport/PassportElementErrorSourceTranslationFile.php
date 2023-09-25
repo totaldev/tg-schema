@@ -36,16 +36,16 @@ class PassportElementErrorSourceTranslationFile extends PassportElementErrorSour
         );
     }
 
+    public function getFileIndex(): int
+    {
+        return $this->fileIndex;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file_index' => $this->fileIndex,
         ];
-    }
-
-    public function getFileIndex(): int
-    {
-        return $this->fileIndex;
     }
 }

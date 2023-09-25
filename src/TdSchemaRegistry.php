@@ -12,7 +12,7 @@ use InvalidArgumentException;
 
 class TdSchemaRegistry
 {
-    public const VERSION = '1.8.16';
+    public const VERSION = '1.8.19';
 
     public const TYPES = [
         'error' => Error\Error::class,
@@ -183,6 +183,10 @@ class TdSchemaRegistry
         'chatInviteLinkCounts' => Chat\ChatInviteLinkCounts::class,
         'chatInviteLinkMember' => Chat\ChatInviteLinkMember::class,
         'chatInviteLinkMembers' => Chat\ChatInviteLinkMembers::class,
+        'InviteLinkChatType' => Invite\InviteLinkChatType::class,
+        'inviteLinkChatTypeBasicGroup' => Invite\InviteLinkChatTypeBasicGroup::class,
+        'inviteLinkChatTypeSupergroup' => Invite\InviteLinkChatTypeSupergroup::class,
+        'inviteLinkChatTypeChannel' => Invite\InviteLinkChatTypeChannel::class,
         'chatInviteLinkInfo' => Chat\ChatInviteLinkInfo::class,
         'chatJoinRequest' => Chat\ChatJoinRequest::class,
         'chatJoinRequests' => Chat\ChatJoinRequests::class,
@@ -600,6 +604,9 @@ class TdSchemaRegistry
         'MessageSchedulingState' => Message\MessageSchedulingState::class,
         'messageSchedulingStateSendAtDate' => Message\MessageSchedulingStateSendAtDate::class,
         'messageSchedulingStateSendWhenOnline' => Message\MessageSchedulingStateSendWhenOnline::class,
+        'MessageSelfDestructType' => Message\MessageSelfDestructType::class,
+        'messageSelfDestructTypeTimer' => Message\MessageSelfDestructTypeTimer::class,
+        'messageSelfDestructTypeImmediately' => Message\MessageSelfDestructTypeImmediately::class,
         'messageSendOptions' => Message\MessageSendOptions::class,
         'messageCopyOptions' => Message\MessageCopyOptions::class,
         'InputMessageContent' => Input\InputMessageContent::class,
@@ -680,11 +687,13 @@ class TdSchemaRegistry
         'StoryAreaType' => Story\StoryAreaType::class,
         'storyAreaTypeLocation' => Story\StoryAreaTypeLocation::class,
         'storyAreaTypeVenue' => Story\StoryAreaTypeVenue::class,
+        'storyAreaTypeSuggestedReaction' => Story\StoryAreaTypeSuggestedReaction::class,
         'storyArea' => Story\StoryArea::class,
         'InputStoryAreaType' => Input\InputStoryAreaType::class,
         'inputStoryAreaTypeLocation' => Input\InputStoryAreaTypeLocation::class,
         'inputStoryAreaTypeFoundVenue' => Input\InputStoryAreaTypeFoundVenue::class,
         'inputStoryAreaTypePreviousVenue' => Input\InputStoryAreaTypePreviousVenue::class,
+        'inputStoryAreaTypeSuggestedReaction' => Input\InputStoryAreaTypeSuggestedReaction::class,
         'inputStoryArea' => Input\InputStoryArea::class,
         'inputStoryAreas' => Input\InputStoryAreas::class,
         'storyVideo' => Story\StoryVideo::class,
@@ -703,6 +712,9 @@ class TdSchemaRegistry
         'stories' => Stories\Stories::class,
         'storyInfo' => Story\StoryInfo::class,
         'chatActiveStories' => Chat\ChatActiveStories::class,
+        'chatBoostStatus' => Chat\ChatBoostStatus::class,
+        'chatBoost' => Chat\ChatBoost::class,
+        'foundChatBoosts' => Found\FoundChatBoosts::class,
         'CallDiscardReason' => Call\CallDiscardReason::class,
         'callDiscardReasonEmpty' => Call\CallDiscardReasonEmpty::class,
         'callDiscardReasonMissed' => Call\CallDiscardReasonMissed::class,
@@ -881,6 +893,7 @@ class TdSchemaRegistry
         'premiumLimitTypeWeeklySentStoryCount' => Premium\PremiumLimitTypeWeeklySentStoryCount::class,
         'premiumLimitTypeMonthlySentStoryCount' => Premium\PremiumLimitTypeMonthlySentStoryCount::class,
         'premiumLimitTypeStoryCaptionLength' => Premium\PremiumLimitTypeStoryCaptionLength::class,
+        'premiumLimitTypeStorySuggestedReactionAreaCount' => Premium\PremiumLimitTypeStorySuggestedReactionAreaCount::class,
         'PremiumFeature' => Premium\PremiumFeature::class,
         'premiumFeatureIncreasedLimits' => Premium\PremiumFeatureIncreasedLimits::class,
         'premiumFeatureIncreasedUploadFileSize' => Premium\PremiumFeatureIncreasedUploadFileSize::class,
@@ -898,6 +911,7 @@ class TdSchemaRegistry
         'premiumFeatureAppIcons' => Premium\PremiumFeatureAppIcons::class,
         'premiumFeatureRealTimeChatTranslation' => Premium\PremiumFeatureRealTimeChatTranslation::class,
         'premiumFeatureUpgradedStories' => Premium\PremiumFeatureUpgradedStories::class,
+        'premiumFeatureChatBoost' => Premium\PremiumFeatureChatBoost::class,
         'PremiumStoryFeature' => Premium\PremiumStoryFeature::class,
         'premiumStoryFeaturePriorityOrder' => Premium\PremiumStoryFeaturePriorityOrder::class,
         'premiumStoryFeatureStealthMode' => Premium\PremiumStoryFeatureStealthMode::class,
@@ -950,9 +964,17 @@ class TdSchemaRegistry
         'CanSendStoryResult' => Can\CanSendStoryResult::class,
         'canSendStoryResultOk' => Can\CanSendStoryResultOk::class,
         'canSendStoryResultPremiumNeeded' => Can\CanSendStoryResultPremiumNeeded::class,
+        'canSendStoryResultBoostNeeded' => Can\CanSendStoryResultBoostNeeded::class,
         'canSendStoryResultActiveStoryLimitExceeded' => Can\CanSendStoryResultActiveStoryLimitExceeded::class,
         'canSendStoryResultWeeklyLimitExceeded' => Can\CanSendStoryResultWeeklyLimitExceeded::class,
         'canSendStoryResultMonthlyLimitExceeded' => Can\CanSendStoryResultMonthlyLimitExceeded::class,
+        'CanBoostChatResult' => Can\CanBoostChatResult::class,
+        'canBoostChatResultOk' => Can\CanBoostChatResultOk::class,
+        'canBoostChatResultInvalidChat' => Can\CanBoostChatResultInvalidChat::class,
+        'canBoostChatResultAlreadyBoosted' => Can\CanBoostChatResultAlreadyBoosted::class,
+        'canBoostChatResultPremiumNeeded' => Can\CanBoostChatResultPremiumNeeded::class,
+        'canBoostChatResultPremiumSubscriptionNeeded' => Can\CanBoostChatResultPremiumSubscriptionNeeded::class,
+        'canBoostChatResultWaitNeeded' => Can\CanBoostChatResultWaitNeeded::class,
         'CanTransferOwnershipResult' => Can\CanTransferOwnershipResult::class,
         'canTransferOwnershipResultOk' => Can\CanTransferOwnershipResultOk::class,
         'canTransferOwnershipResultPasswordNeeded' => Can\CanTransferOwnershipResultPasswordNeeded::class,
@@ -1041,7 +1063,7 @@ class TdSchemaRegistry
         'storyPrivacySettingsEveryone' => Story\StoryPrivacySettingsEveryone::class,
         'storyPrivacySettingsContacts' => Story\StoryPrivacySettingsContacts::class,
         'storyPrivacySettingsCloseFriends' => Story\StoryPrivacySettingsCloseFriends::class,
-        'storyPrivacySettingsSelectedContacts' => Story\StoryPrivacySettingsSelectedContacts::class,
+        'storyPrivacySettingsSelectedUsers' => Story\StoryPrivacySettingsSelectedUsers::class,
         'UserPrivacySettingRule' => User\UserPrivacySettingRule::class,
         'userPrivacySettingRuleAllowAll' => User\UserPrivacySettingRuleAllowAll::class,
         'userPrivacySettingRuleAllowContacts' => User\UserPrivacySettingRuleAllowContacts::class,
@@ -1085,6 +1107,7 @@ class TdSchemaRegistry
         'sessionTypeXbox' => Session\SessionTypeXbox::class,
         'session' => Session\Session::class,
         'sessions' => Sessions\Sessions::class,
+        'unconfirmedSession' => Unconfirmed\UnconfirmedSession::class,
         'connectedWebsite' => Connected\ConnectedWebsite::class,
         'connectedWebsites' => Connected\ConnectedWebsites::class,
         'ReportReason' => Report\ReportReason::class,
@@ -1111,6 +1134,7 @@ class TdSchemaRegistry
         'internalLinkTypeBotStart' => Internal\InternalLinkTypeBotStart::class,
         'internalLinkTypeBotStartInGroup' => Internal\InternalLinkTypeBotStartInGroup::class,
         'internalLinkTypeChangePhoneNumber' => Internal\InternalLinkTypeChangePhoneNumber::class,
+        'internalLinkTypeChatBoost' => Internal\InternalLinkTypeChatBoost::class,
         'internalLinkTypeChatFolderInvite' => Internal\InternalLinkTypeChatFolderInvite::class,
         'internalLinkTypeChatFolderSettings' => Internal\InternalLinkTypeChatFolderSettings::class,
         'internalLinkTypeChatInvite' => Internal\InternalLinkTypeChatInvite::class,
@@ -1132,6 +1156,7 @@ class TdSchemaRegistry
         'internalLinkTypeQrCodeAuthentication' => Internal\InternalLinkTypeQrCodeAuthentication::class,
         'internalLinkTypeRestorePurchases' => Internal\InternalLinkTypeRestorePurchases::class,
         'internalLinkTypeSettings' => Internal\InternalLinkTypeSettings::class,
+        'internalLinkTypeSideMenuBot' => Internal\InternalLinkTypeSideMenuBot::class,
         'internalLinkTypeStickerSet' => Internal\InternalLinkTypeStickerSet::class,
         'internalLinkTypeStory' => Internal\InternalLinkTypeStory::class,
         'internalLinkTypeTheme' => Internal\InternalLinkTypeTheme::class,
@@ -1144,6 +1169,8 @@ class TdSchemaRegistry
         'internalLinkTypeWebApp' => Internal\InternalLinkTypeWebApp::class,
         'messageLink' => Message\MessageLink::class,
         'messageLinkInfo' => Message\MessageLinkInfo::class,
+        'chatBoostLink' => Chat\ChatBoostLink::class,
+        'chatBoostLinkInfo' => Chat\ChatBoostLinkInfo::class,
         'BlockList' => Block\BlockList::class,
         'blockListMain' => Block\BlockListMain::class,
         'blockListStories' => Block\BlockListStories::class,
@@ -1207,6 +1234,7 @@ class TdSchemaRegistry
         'topChatCategoryInlineBots' => Top\TopChatCategoryInlineBots::class,
         'topChatCategoryCalls' => Top\TopChatCategoryCalls::class,
         'topChatCategoryForwardChats' => Top\TopChatCategoryForwardChats::class,
+        'foundPositions' => Found\FoundPositions::class,
         'TMeUrlType' => Me\TMeUrlType::class,
         'tMeUrlTypeUser' => Me\TMeUrlTypeUser::class,
         'tMeUrlTypeSupergroup' => Me\TMeUrlTypeSupergroup::class,
@@ -1360,6 +1388,7 @@ class TdSchemaRegistry
         'updateConnectionState' => Update\UpdateConnectionState::class,
         'updateTermsOfService' => Update\UpdateTermsOfService::class,
         'updateUsersNearby' => Update\UpdateUsersNearby::class,
+        'updateUnconfirmedSession' => Update\UpdateUnconfirmedSession::class,
         'updateAttachmentMenuBots' => Update\UpdateAttachmentMenuBots::class,
         'updateWebAppMessageSent' => Update\UpdateWebAppMessageSent::class,
         'updateActiveEmojiReactions' => Update\UpdateActiveEmojiReactions::class,
@@ -1674,6 +1703,7 @@ class TdSchemaRegistry
         'setPinnedChats' => Set\SetPinnedChats::class,
         'readChatList' => Read\ReadChatList::class,
         'getStory' => Get\GetStory::class,
+        'getChatsToSendStories' => Get\GetChatsToSendStories::class,
         'canSendStory' => Can\CanSendStory::class,
         'sendStory' => Send\SendStory::class,
         'editStory' => Edit\EditStory::class,
@@ -1685,7 +1715,7 @@ class TdSchemaRegistry
         'setChatActiveStoriesList' => Set\SetChatActiveStoriesList::class,
         'getChatActiveStories' => Get\GetChatActiveStories::class,
         'getChatPinnedStories' => Get\GetChatPinnedStories::class,
-        'getArchivedStories' => Get\GetArchivedStories::class,
+        'getChatArchivedStories' => Get\GetChatArchivedStories::class,
         'openStory' => Open\OpenStory::class,
         'closeStory' => Close\CloseStory::class,
         'getStoryAvailableReactions' => Get\GetStoryAvailableReactions::class,
@@ -1693,6 +1723,12 @@ class TdSchemaRegistry
         'getStoryViewers' => Get\GetStoryViewers::class,
         'reportStory' => Report\ReportStory::class,
         'activateStoryStealthMode' => Activate\ActivateStoryStealthMode::class,
+        'getChatBoostStatus' => Get\GetChatBoostStatus::class,
+        'canBoostChat' => Can\CanBoostChat::class,
+        'boostChat' => Boost\BoostChat::class,
+        'getChatBoostLink' => Get\GetChatBoostLink::class,
+        'getChatBoostLinkInfo' => Get\GetChatBoostLinkInfo::class,
+        'getChatBoosts' => Get\GetChatBoosts::class,
         'getAttachmentMenuBot' => Get\GetAttachmentMenuBot::class,
         'toggleBotIsAddedToAttachmentMenu' => Toggle\ToggleBotIsAddedToAttachmentMenu::class,
         'getThemedEmojiStatuses' => Get\GetThemedEmojiStatuses::class,
@@ -1790,6 +1826,7 @@ class TdSchemaRegistry
         'sharePhoneNumber' => Share\SharePhoneNumber::class,
         'getUserProfilePhotos' => Get\GetUserProfilePhotos::class,
         'getStickers' => Get\GetStickers::class,
+        'getAllStickerEmojis' => Get\GetAllStickerEmojis::class,
         'searchStickers' => Search\SearchStickers::class,
         'getPremiumStickers' => Get\GetPremiumStickers::class,
         'getInstalledStickerSets' => Get\GetInstalledStickerSets::class,
@@ -1847,6 +1884,9 @@ class TdSchemaRegistry
         'getMenuButton' => Get\GetMenuButton::class,
         'setDefaultGroupAdministratorRights' => Set\SetDefaultGroupAdministratorRights::class,
         'setDefaultChannelAdministratorRights' => Set\SetDefaultChannelAdministratorRights::class,
+        'canBotSendMessages' => Can\CanBotSendMessages::class,
+        'allowBotToSendMessages' => Allow\AllowBotToSendMessages::class,
+        'sendWebAppCustomRequest' => Send\SendWebAppCustomRequest::class,
         'setBotName' => Set\SetBotName::class,
         'getBotName' => Get\GetBotName::class,
         'setBotProfilePhoto' => Set\SetBotProfilePhoto::class,
@@ -1859,6 +1899,7 @@ class TdSchemaRegistry
         'getActiveSessions' => Get\GetActiveSessions::class,
         'terminateSession' => Terminate\TerminateSession::class,
         'terminateAllOtherSessions' => Terminate\TerminateAllOtherSessions::class,
+        'confirmSession' => Confirm\ConfirmSession::class,
         'toggleSessionCanAcceptCalls' => Toggle\ToggleSessionCanAcceptCalls::class,
         'toggleSessionCanAcceptSecretChats' => Toggle\ToggleSessionCanAcceptSecretChats::class,
         'setInactiveSessionTtl' => Set\SetInactiveSessionTtl::class,
@@ -1985,6 +2026,7 @@ class TdSchemaRegistry
         'assignAppStoreTransaction' => Assign\AssignAppStoreTransaction::class,
         'assignGooglePlayTransaction' => Assign\AssignGooglePlayTransaction::class,
         'acceptTermsOfService' => Accept\AcceptTermsOfService::class,
+        'searchStringsByPrefix' => Search\SearchStringsByPrefix::class,
         'sendCustomRequest' => Send\SendCustomRequest::class,
         'answerCustomQuery' => Answer\AnswerCustomQuery::class,
         'setAlarm' => Set\SetAlarm::class,
@@ -2031,22 +2073,6 @@ class TdSchemaRegistry
         'testReturnError' => Test\TestReturnError::class,
     ];
 
-    public static function hasType(string $type): bool
-    {
-        return isset(static::TYPES[$type]);
-    }
-
-    public static function getTypeClass(string $type): string
-    {
-        if (!static::hasType($type)) {
-            throw new InvalidArgumentException(
-                sprintf('Type "%s" not found in registry', $type)
-            );
-        }
-
-        return static::TYPES[$type];
-    }
-
     public static function fromArray(array $array): TdObject
     {
         if (!isset($array['@type'])) {
@@ -2060,5 +2086,21 @@ class TdSchemaRegistry
         $obj = call_user_func($typeClass . '::fromArray', $array);
 
         return $obj->setTdExtra($extra);
+    }
+
+    public static function getTypeClass(string $type): string
+    {
+        if (!static::hasType($type)) {
+            throw new InvalidArgumentException(
+                sprintf('Type "%s" not found in registry', $type)
+            );
+        }
+
+        return static::TYPES[$type];
+    }
+
+    public static function hasType(string $type): bool
+    {
+        return isset(static::TYPES[$type]);
     }
 }

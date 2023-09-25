@@ -18,18 +18,18 @@ class PageBlockCaption extends TdObject
     public const TYPE_NAME = 'pageBlockCaption';
 
     /**
-     * Content of the caption
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * Block credit (like HTML tag <cite>)
      *
      * @var RichText
      */
     protected RichText $credit;
+
+    /**
+     * Content of the caption
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     public function __construct(RichText $text, RichText $credit)
     {
@@ -45,13 +45,9 @@ class PageBlockCaption extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getCredit(): RichText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
-        ];
+        return $this->credit;
     }
 
     public function getText(): RichText
@@ -59,8 +55,12 @@ class PageBlockCaption extends TdObject
         return $this->text;
     }
 
-    public function getCredit(): RichText
+    public function typeSerialize(): array
     {
-        return $this->credit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'credit' => $this->credit->typeSerialize(),
+        ];
     }
 }

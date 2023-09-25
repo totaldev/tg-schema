@@ -13,7 +13,9 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+ * Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is
+ * authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress,
+ * authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
  */
 class SetAuthenticationPhoneNumber extends TdFunction
 {
@@ -47,15 +49,6 @@ class SetAuthenticationPhoneNumber extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
@@ -64,5 +57,14 @@ class SetAuthenticationPhoneNumber extends TdFunction
     public function getSettings(): PhoneNumberAuthenticationSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'phone_number' => $this->phoneNumber,
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

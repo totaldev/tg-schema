@@ -53,16 +53,6 @@ class Date extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'day' => $this->day,
-            'month' => $this->month,
-            'year' => $this->year,
-        ];
-    }
-
     public function getDay(): int
     {
         return $this->day;
@@ -76,5 +66,15 @@ class Date extends TdObject
     public function getYear(): int
     {
         return $this->year;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'day' => $this->day,
+            'month' => $this->month,
+            'year' => $this->year,
+        ];
     }
 }

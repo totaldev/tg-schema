@@ -45,15 +45,6 @@ class GetBackgroundUrl extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -62,5 +53,14 @@ class GetBackgroundUrl extends TdFunction
     public function getType(): BackgroundType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

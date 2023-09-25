@@ -36,16 +36,16 @@ class TMeUrlTypeStickerSet extends TMeUrlType
         );
     }
 
+    public function getStickerSetId(): int
+    {
+        return $this->stickerSetId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker_set_id' => $this->stickerSetId,
         ];
-    }
-
-    public function getStickerSetId(): int
-    {
-        return $this->stickerSetId;
     }
 }

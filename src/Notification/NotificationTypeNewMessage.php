@@ -46,15 +46,6 @@ class NotificationTypeNewMessage extends NotificationType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-            'show_preview' => $this->showPreview,
-        ];
-    }
-
     public function getMessage(): Message
     {
         return $this->message;
@@ -63,5 +54,14 @@ class NotificationTypeNewMessage extends NotificationType
     public function getShowPreview(): bool
     {
         return $this->showPreview;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'show_preview' => $this->showPreview,
+        ];
     }
 }

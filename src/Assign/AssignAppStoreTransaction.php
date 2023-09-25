@@ -18,18 +18,18 @@ class AssignAppStoreTransaction extends TdFunction
     public const TYPE_NAME = 'assignAppStoreTransaction';
 
     /**
-     * App Store receipt
-     *
-     * @var string
-     */
-    protected string $receipt;
-
-    /**
      * Transaction purpose
      *
      * @var StorePaymentPurpose
      */
     protected StorePaymentPurpose $purpose;
+
+    /**
+     * App Store receipt
+     *
+     * @var string
+     */
+    protected string $receipt;
 
     public function __construct(string $receipt, StorePaymentPurpose $purpose)
     {
@@ -45,13 +45,9 @@ class AssignAppStoreTransaction extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPurpose(): StorePaymentPurpose
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'receipt' => $this->receipt,
-            'purpose' => $this->purpose->typeSerialize(),
-        ];
+        return $this->purpose;
     }
 
     public function getReceipt(): string
@@ -59,8 +55,12 @@ class AssignAppStoreTransaction extends TdFunction
         return $this->receipt;
     }
 
-    public function getPurpose(): StorePaymentPurpose
+    public function typeSerialize(): array
     {
-        return $this->purpose;
+        return [
+            '@type' => static::TYPE_NAME,
+            'receipt' => $this->receipt,
+            'purpose' => $this->purpose->typeSerialize(),
+        ];
     }
 }

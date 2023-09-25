@@ -35,16 +35,16 @@ class ToggleAllDownloadsArePaused extends TdFunction
         );
     }
 
+    public function getArePaused(): bool
+    {
+        return $this->arePaused;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'are_paused' => $this->arePaused,
         ];
-    }
-
-    public function getArePaused(): bool
-    {
-        return $this->arePaused;
     }
 }

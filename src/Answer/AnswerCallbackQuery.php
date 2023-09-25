@@ -17,18 +17,18 @@ class AnswerCallbackQuery extends TdFunction
     public const TYPE_NAME = 'answerCallbackQuery';
 
     /**
+     * Time during which the result of the query can be cached, in seconds
+     *
+     * @var int
+     */
+    protected int $cacheTime;
+
+    /**
      * Identifier of the callback query
      *
      * @var int
      */
     protected int $callbackQueryId;
-
-    /**
-     * Text of the answer
-     *
-     * @var string
-     */
-    protected string $text;
 
     /**
      * Pass true to show an alert to the user instead of a toast notification
@@ -38,18 +38,18 @@ class AnswerCallbackQuery extends TdFunction
     protected bool $showAlert;
 
     /**
+     * Text of the answer
+     *
+     * @var string
+     */
+    protected string $text;
+
+    /**
      * URL to be opened
      *
      * @var string
      */
     protected string $url;
-
-    /**
-     * Time during which the result of the query can be cached, in seconds
-     *
-     * @var int
-     */
-    protected int $cacheTime;
 
     public function __construct(int $callbackQueryId, string $text, bool $showAlert, string $url, int $cacheTime)
     {
@@ -71,6 +71,31 @@ class AnswerCallbackQuery extends TdFunction
         );
     }
 
+    public function getCacheTime(): int
+    {
+        return $this->cacheTime;
+    }
+
+    public function getCallbackQueryId(): int
+    {
+        return $this->callbackQueryId;
+    }
+
+    public function getShowAlert(): bool
+    {
+        return $this->showAlert;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +106,5 @@ class AnswerCallbackQuery extends TdFunction
             'url' => $this->url,
             'cache_time' => $this->cacheTime,
         ];
-    }
-
-    public function getCallbackQueryId(): int
-    {
-        return $this->callbackQueryId;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getShowAlert(): bool
-    {
-        return $this->showAlert;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getCacheTime(): int
-    {
-        return $this->cacheTime;
     }
 }

@@ -21,11 +21,11 @@ class UnreadReaction extends TdObject
     public const TYPE_NAME = 'unreadReaction';
 
     /**
-     * Type of the reaction
+     * True, if the reaction was added with a big animation
      *
-     * @var ReactionType
+     * @var bool
      */
-    protected ReactionType $type;
+    protected bool $isBig;
 
     /**
      * Identifier of the sender, added the reaction
@@ -35,11 +35,11 @@ class UnreadReaction extends TdObject
     protected MessageSender $senderId;
 
     /**
-     * True, if the reaction was added with a big animation
+     * Type of the reaction
      *
-     * @var bool
+     * @var ReactionType
      */
-    protected bool $isBig;
+    protected ReactionType $type;
 
     public function __construct(ReactionType $type, MessageSender $senderId, bool $isBig)
     {
@@ -57,6 +57,21 @@ class UnreadReaction extends TdObject
         );
     }
 
+    public function getIsBig(): bool
+    {
+        return $this->isBig;
+    }
+
+    public function getSenderId(): MessageSender
+    {
+        return $this->senderId;
+    }
+
+    public function getType(): ReactionType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -65,20 +80,5 @@ class UnreadReaction extends TdObject
             'sender_id' => $this->senderId->typeSerialize(),
             'is_big' => $this->isBig,
         ];
-    }
-
-    public function getType(): ReactionType
-    {
-        return $this->type;
-    }
-
-    public function getSenderId(): MessageSender
-    {
-        return $this->senderId;
-    }
-
-    public function getIsBig(): bool
-    {
-        return $this->isBig;
     }
 }

@@ -45,15 +45,6 @@ class SetChatMessageSender extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_sender_id' => $this->messageSenderId->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class SetChatMessageSender extends TdFunction
     public function getMessageSenderId(): MessageSender
     {
         return $this->messageSenderId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_sender_id' => $this->messageSenderId->typeSerialize(),
+        ];
     }
 }

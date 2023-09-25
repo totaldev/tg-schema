@@ -35,16 +35,16 @@ class EmojiCategories extends TdObject
         );
     }
 
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->categories),
         ];
-    }
-
-    public function getCategories(): array
-    {
-        return $this->categories;
     }
 }

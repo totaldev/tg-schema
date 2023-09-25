@@ -36,16 +36,16 @@ class ChatTypeBasicGroup extends ChatType
         );
     }
 
+    public function getBasicGroupId(): int
+    {
+        return $this->basicGroupId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'basic_group_id' => $this->basicGroupId,
         ];
-    }
-
-    public function getBasicGroupId(): int
-    {
-        return $this->basicGroupId;
     }
 }

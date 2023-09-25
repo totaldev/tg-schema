@@ -18,11 +18,19 @@ class FoundWebApp extends TdObject
     public const TYPE_NAME = 'foundWebApp';
 
     /**
-     * The Web App
+     * True, if the user must be asked for the permission to the bot to send them messages
      *
-     * @var WebApp
+     * @var bool
      */
-    protected WebApp $webApp;
+    protected bool $requestWriteAccess;
+
+    /**
+     * True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown
+     * anyway if the Web App link was hidden
+     *
+     * @var bool
+     */
+    protected bool $skipConfirmation;
 
     /**
      * True, if the app supports "settings_button_pressed" event
@@ -32,25 +40,19 @@ class FoundWebApp extends TdObject
     protected bool $supportsSettings;
 
     /**
-     * True, if the user must be asked for the permission to the bot to send them messages
+     * The Web App
      *
-     * @var bool
+     * @var WebApp
      */
-    protected bool $requestWriteAccess;
-
-    /**
-     * True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
-     *
-     * @var bool
-     */
-    protected bool $skipConfirmation;
+    protected WebApp $webApp;
 
     public function __construct(
         WebApp $webApp,
-        bool $supportsSettings,
-        bool $requestWriteAccess,
-        bool $skipConfirmation,
-    ) {
+        bool   $supportsSettings,
+        bool   $requestWriteAccess,
+        bool   $skipConfirmation,
+    )
+    {
         $this->webApp = $webApp;
         $this->supportsSettings = $supportsSettings;
         $this->requestWriteAccess = $requestWriteAccess;
@@ -67,6 +69,26 @@ class FoundWebApp extends TdObject
         );
     }
 
+    public function getRequestWriteAccess(): bool
+    {
+        return $this->requestWriteAccess;
+    }
+
+    public function getSkipConfirmation(): bool
+    {
+        return $this->skipConfirmation;
+    }
+
+    public function getSupportsSettings(): bool
+    {
+        return $this->supportsSettings;
+    }
+
+    public function getWebApp(): WebApp
+    {
+        return $this->webApp;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +98,5 @@ class FoundWebApp extends TdObject
             'request_write_access' => $this->requestWriteAccess,
             'skip_confirmation' => $this->skipConfirmation,
         ];
-    }
-
-    public function getWebApp(): WebApp
-    {
-        return $this->webApp;
-    }
-
-    public function getSupportsSettings(): bool
-    {
-        return $this->supportsSettings;
-    }
-
-    public function getRequestWriteAccess(): bool
-    {
-        return $this->requestWriteAccess;
-    }
-
-    public function getSkipConfirmation(): bool
-    {
-        return $this->skipConfirmation;
     }
 }

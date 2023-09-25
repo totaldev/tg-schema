@@ -24,6 +24,20 @@ class UpdateUnreadChatCount extends Update
     protected ChatList $chatList;
 
     /**
+     * Total number of chats marked as unread
+     *
+     * @var int
+     */
+    protected int $markedAsUnreadCount;
+
+    /**
+     * Total number of unmuted chats marked as unread
+     *
+     * @var int
+     */
+    protected int $markedAsUnreadUnmutedCount;
+
+    /**
      * Approximate total number of chats in the chat list
      *
      * @var int
@@ -44,28 +58,15 @@ class UpdateUnreadChatCount extends Update
      */
     protected int $unreadUnmutedCount;
 
-    /**
-     * Total number of chats marked as unread
-     *
-     * @var int
-     */
-    protected int $markedAsUnreadCount;
-
-    /**
-     * Total number of unmuted chats marked as unread
-     *
-     * @var int
-     */
-    protected int $markedAsUnreadUnmutedCount;
-
     public function __construct(
         ChatList $chatList,
-        int $totalCount,
-        int $unreadCount,
-        int $unreadUnmutedCount,
-        int $markedAsUnreadCount,
-        int $markedAsUnreadUnmutedCount,
-    ) {
+        int      $totalCount,
+        int      $unreadCount,
+        int      $unreadUnmutedCount,
+        int      $markedAsUnreadCount,
+        int      $markedAsUnreadUnmutedCount,
+    )
+    {
         parent::__construct();
 
         $this->chatList = $chatList;
@@ -88,22 +89,19 @@ class UpdateUnreadChatCount extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
-            'total_count' => $this->totalCount,
-            'unread_count' => $this->unreadCount,
-            'unread_unmuted_count' => $this->unreadUnmutedCount,
-            'marked_as_unread_count' => $this->markedAsUnreadCount,
-            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
-        ];
-    }
-
     public function getChatList(): ChatList
     {
         return $this->chatList;
+    }
+
+    public function getMarkedAsUnreadCount(): int
+    {
+        return $this->markedAsUnreadCount;
+    }
+
+    public function getMarkedAsUnreadUnmutedCount(): int
+    {
+        return $this->markedAsUnreadUnmutedCount;
     }
 
     public function getTotalCount(): int
@@ -121,13 +119,16 @@ class UpdateUnreadChatCount extends Update
         return $this->unreadUnmutedCount;
     }
 
-    public function getMarkedAsUnreadCount(): int
+    public function typeSerialize(): array
     {
-        return $this->markedAsUnreadCount;
-    }
-
-    public function getMarkedAsUnreadUnmutedCount(): int
-    {
-        return $this->markedAsUnreadUnmutedCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'total_count' => $this->totalCount,
+            'unread_count' => $this->unreadCount,
+            'unread_unmuted_count' => $this->unreadUnmutedCount,
+            'marked_as_unread_count' => $this->markedAsUnreadCount,
+            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
+        ];
     }
 }

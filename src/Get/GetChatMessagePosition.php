@@ -25,18 +25,19 @@ class GetChatMessagePosition extends TdFunction
     protected int $chatId;
 
     /**
+     * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and
+     * searchMessagesFilterFailedToSend are unsupported in this function
+     *
+     * @var SearchMessagesFilter
+     */
+    protected SearchMessagesFilter $filter;
+
+    /**
      * Message identifier
      *
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
-     *
-     * @var SearchMessagesFilter
-     */
-    protected SearchMessagesFilter $filter;
 
     /**
      * If not 0, only messages in the specified thread will be considered; supergroups only
@@ -63,6 +64,26 @@ class GetChatMessagePosition extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFilter(): SearchMessagesFilter
+    {
+        return $this->filter;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +93,5 @@ class GetChatMessagePosition extends TdFunction
             'filter' => $this->filter->typeSerialize(),
             'message_thread_id' => $this->messageThreadId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getFilter(): SearchMessagesFilter
-    {
-        return $this->filter;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 }

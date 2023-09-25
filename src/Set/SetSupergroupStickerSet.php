@@ -17,18 +17,18 @@ class SetSupergroupStickerSet extends TdFunction
     public const TYPE_NAME = 'setSupergroupStickerSet';
 
     /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
      *
      * @var int
      */
     protected int $stickerSetId;
+
+    /**
+     * Identifier of the supergroup
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, int $stickerSetId)
     {
@@ -44,13 +44,9 @@ class SetSupergroupStickerSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerSetId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'sticker_set_id' => $this->stickerSetId,
-        ];
+        return $this->stickerSetId;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class SetSupergroupStickerSet extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getStickerSetId(): int
+    public function typeSerialize(): array
     {
-        return $this->stickerSetId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'sticker_set_id' => $this->stickerSetId,
+        ];
     }
 }

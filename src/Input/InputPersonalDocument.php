@@ -44,15 +44,6 @@ class InputPersonalDocument extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->files),
-            array_map(fn($x) => $x->typeSerialize(), $this->translation),
-        ];
-    }
-
     public function getFiles(): array
     {
         return $this->files;
@@ -61,5 +52,14 @@ class InputPersonalDocument extends TdObject
     public function getTranslation(): array
     {
         return $this->translation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->files),
+            array_map(fn($x) => $x->typeSerialize(), $this->translation),
+        ];
     }
 }

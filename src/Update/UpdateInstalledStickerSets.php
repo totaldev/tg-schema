@@ -17,18 +17,18 @@ class UpdateInstalledStickerSets extends Update
     public const TYPE_NAME = 'updateInstalledStickerSets';
 
     /**
-     * Type of the affected stickers
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    /**
      * The new list of installed ordinary sticker sets
      *
      * @var int[]
      */
     protected array $stickerSetIds;
+
+    /**
+     * Type of the affected stickers
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, array $stickerSetIds)
     {
@@ -46,13 +46,9 @@ class UpdateInstalledStickerSets extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerSetIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'sticker_set_ids' => $this->stickerSetIds,
-        ];
+        return $this->stickerSetIds;
     }
 
     public function getStickerType(): StickerType
@@ -60,8 +56,12 @@ class UpdateInstalledStickerSets extends Update
         return $this->stickerType;
     }
 
-    public function getStickerSetIds(): array
+    public function typeSerialize(): array
     {
-        return $this->stickerSetIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'sticker_set_ids' => $this->stickerSetIds,
+        ];
     }
 }

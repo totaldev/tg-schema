@@ -36,16 +36,16 @@ class UpdateActiveEmojiReactions extends Update
         );
     }
 
+    public function getEmojis(): array
+    {
+        return $this->emojis;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'emojis' => $this->emojis,
         ];
-    }
-
-    public function getEmojis(): array
-    {
-        return $this->emojis;
     }
 }

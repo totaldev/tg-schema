@@ -36,16 +36,16 @@ class PushMessageContentMessageForwards extends PushMessageContent
         );
     }
 
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'total_count' => $this->totalCount,
         ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
     }
 }

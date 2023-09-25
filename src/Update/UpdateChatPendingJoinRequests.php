@@ -46,15 +46,6 @@ class UpdateChatPendingJoinRequests extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'pending_join_requests' => (isset($this->pendingJoinRequests) ? $this->pendingJoinRequests : null),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -63,5 +54,14 @@ class UpdateChatPendingJoinRequests extends Update
     public function getPendingJoinRequests(): ?ChatJoinRequestsInfo
     {
         return $this->pendingJoinRequests;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'pending_join_requests' => (isset($this->pendingJoinRequests) ? $this->pendingJoinRequests : null),
+        ];
     }
 }

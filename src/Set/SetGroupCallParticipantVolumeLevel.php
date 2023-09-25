@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+ * Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be
+ * changed for all users with the default volume level
  */
 class SetGroupCallParticipantVolumeLevel extends TdFunction
 {
@@ -54,16 +55,6 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'volume_level' => $this->volumeLevel,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -77,5 +68,15 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
     public function getVolumeLevel(): int
     {
         return $this->volumeLevel;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'participant_id' => $this->participantId->typeSerialize(),
+            'volume_level' => $this->volumeLevel,
+        ];
     }
 }

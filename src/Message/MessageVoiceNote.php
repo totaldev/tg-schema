@@ -18,13 +18,6 @@ class MessageVoiceNote extends MessageContent
     public const TYPE_NAME = 'messageVoiceNote';
 
     /**
-     * The voice note description
-     *
-     * @var VoiceNote
-     */
-    protected VoiceNote $voiceNote;
-
-    /**
      * Voice note caption
      *
      * @var FormattedText
@@ -37,6 +30,13 @@ class MessageVoiceNote extends MessageContent
      * @var bool
      */
     protected bool $isListened;
+
+    /**
+     * The voice note description
+     *
+     * @var VoiceNote
+     */
+    protected VoiceNote $voiceNote;
 
     public function __construct(VoiceNote $voiceNote, FormattedText $caption, bool $isListened)
     {
@@ -56,21 +56,6 @@ class MessageVoiceNote extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'voice_note' => $this->voiceNote->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-            'is_listened' => $this->isListened,
-        ];
-    }
-
-    public function getVoiceNote(): VoiceNote
-    {
-        return $this->voiceNote;
-    }
-
     public function getCaption(): FormattedText
     {
         return $this->caption;
@@ -79,5 +64,20 @@ class MessageVoiceNote extends MessageContent
     public function getIsListened(): bool
     {
         return $this->isListened;
+    }
+
+    public function getVoiceNote(): VoiceNote
+    {
+        return $this->voiceNote;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'voice_note' => $this->voiceNote->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'is_listened' => $this->isListened,
+        ];
     }
 }

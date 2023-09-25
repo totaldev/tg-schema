@@ -24,6 +24,13 @@ class AutoDownloadSettings extends TdObject
     protected bool $isAutoDownloadEnabled;
 
     /**
+     * The maximum size of other file types to be auto-downloaded, in bytes
+     *
+     * @var int
+     */
+    protected int $maxOtherFileSize;
+
+    /**
      * The maximum size of a photo file to be auto-downloaded, in bytes
      *
      * @var int
@@ -36,20 +43,6 @@ class AutoDownloadSettings extends TdObject
      * @var int
      */
     protected int $maxVideoFileSize;
-
-    /**
-     * The maximum size of other file types to be auto-downloaded, in bytes
-     *
-     * @var int
-     */
-    protected int $maxOtherFileSize;
-
-    /**
-     * The maximum suggested bitrate for uploaded videos, in kbit/s
-     *
-     * @var int
-     */
-    protected int $videoUploadBitrate;
 
     /**
      * True, if the beginning of video files needs to be preloaded for instant playback
@@ -79,17 +72,25 @@ class AutoDownloadSettings extends TdObject
      */
     protected bool $useLessDataForCalls;
 
+    /**
+     * The maximum suggested bitrate for uploaded videos, in kbit/s
+     *
+     * @var int
+     */
+    protected int $videoUploadBitrate;
+
     public function __construct(
         bool $isAutoDownloadEnabled,
-        int $maxPhotoFileSize,
-        int $maxVideoFileSize,
-        int $maxOtherFileSize,
-        int $videoUploadBitrate,
+        int  $maxPhotoFileSize,
+        int  $maxVideoFileSize,
+        int  $maxOtherFileSize,
+        int  $videoUploadBitrate,
         bool $preloadLargeVideos,
         bool $preloadNextAudio,
         bool $preloadStories,
         bool $useLessDataForCalls,
-    ) {
+    )
+    {
         $this->isAutoDownloadEnabled = $isAutoDownloadEnabled;
         $this->maxPhotoFileSize = $maxPhotoFileSize;
         $this->maxVideoFileSize = $maxVideoFileSize;
@@ -116,25 +117,14 @@ class AutoDownloadSettings extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_auto_download_enabled' => $this->isAutoDownloadEnabled,
-            'max_photo_file_size' => $this->maxPhotoFileSize,
-            'max_video_file_size' => $this->maxVideoFileSize,
-            'max_other_file_size' => $this->maxOtherFileSize,
-            'video_upload_bitrate' => $this->videoUploadBitrate,
-            'preload_large_videos' => $this->preloadLargeVideos,
-            'preload_next_audio' => $this->preloadNextAudio,
-            'preload_stories' => $this->preloadStories,
-            'use_less_data_for_calls' => $this->useLessDataForCalls,
-        ];
-    }
-
     public function getIsAutoDownloadEnabled(): bool
     {
         return $this->isAutoDownloadEnabled;
+    }
+
+    public function getMaxOtherFileSize(): int
+    {
+        return $this->maxOtherFileSize;
     }
 
     public function getMaxPhotoFileSize(): int
@@ -145,16 +135,6 @@ class AutoDownloadSettings extends TdObject
     public function getMaxVideoFileSize(): int
     {
         return $this->maxVideoFileSize;
-    }
-
-    public function getMaxOtherFileSize(): int
-    {
-        return $this->maxOtherFileSize;
-    }
-
-    public function getVideoUploadBitrate(): int
-    {
-        return $this->videoUploadBitrate;
     }
 
     public function getPreloadLargeVideos(): bool
@@ -175,5 +155,26 @@ class AutoDownloadSettings extends TdObject
     public function getUseLessDataForCalls(): bool
     {
         return $this->useLessDataForCalls;
+    }
+
+    public function getVideoUploadBitrate(): int
+    {
+        return $this->videoUploadBitrate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_auto_download_enabled' => $this->isAutoDownloadEnabled,
+            'max_photo_file_size' => $this->maxPhotoFileSize,
+            'max_video_file_size' => $this->maxVideoFileSize,
+            'max_other_file_size' => $this->maxOtherFileSize,
+            'video_upload_bitrate' => $this->videoUploadBitrate,
+            'preload_large_videos' => $this->preloadLargeVideos,
+            'preload_next_audio' => $this->preloadNextAudio,
+            'preload_stories' => $this->preloadStories,
+            'use_less_data_for_calls' => $this->useLessDataForCalls,
+        ];
     }
 }

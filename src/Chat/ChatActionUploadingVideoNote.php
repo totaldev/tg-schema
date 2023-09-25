@@ -36,16 +36,16 @@ class ChatActionUploadingVideoNote extends ChatAction
         );
     }
 
+    public function getProgress(): int
+    {
+        return $this->progress;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'progress' => $this->progress,
         ];
-    }
-
-    public function getProgress(): int
-    {
-        return $this->progress;
     }
 }

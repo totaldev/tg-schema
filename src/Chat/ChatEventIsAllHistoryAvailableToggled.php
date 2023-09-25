@@ -36,16 +36,16 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
         );
     }
 
+    public function getIsAllHistoryAvailable(): bool
+    {
+        return $this->isAllHistoryAvailable;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_all_history_available' => $this->isAllHistoryAvailable,
         ];
-    }
-
-    public function getIsAllHistoryAvailable(): bool
-    {
-        return $this->isAllHistoryAvailable;
     }
 }

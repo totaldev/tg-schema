@@ -17,18 +17,18 @@ class OpenStory extends TdFunction
     public const TYPE_NAME = 'openStory';
 
     /**
-     * The identifier of the sender of the opened story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
      * The identifier of the story
      *
      * @var int
      */
     protected int $storyId;
+
+    /**
+     * The identifier of the sender of the opened story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId)
     {
@@ -44,13 +44,9 @@ class OpenStory extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStoryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-        ];
+        return $this->storyId;
     }
 
     public function getStorySenderChatId(): int
@@ -58,8 +54,12 @@ class OpenStory extends TdFunction
         return $this->storySenderChatId;
     }
 
-    public function getStoryId(): int
+    public function typeSerialize(): array
     {
-        return $this->storyId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_id' => $this->storyId,
+        ];
     }
 }

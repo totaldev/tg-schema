@@ -17,11 +17,11 @@ class InputMessageVoiceNote extends InputMessageContent
     public const TYPE_NAME = 'inputMessageVoiceNote';
 
     /**
-     * Voice note to be sent
+     * Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
      *
-     * @var InputFile
+     * @var FormattedText
      */
-    protected InputFile $voiceNote;
+    protected FormattedText $caption;
 
     /**
      * Duration of the voice note, in seconds
@@ -31,18 +31,18 @@ class InputMessageVoiceNote extends InputMessageContent
     protected int $duration;
 
     /**
+     * Voice note to be sent
+     *
+     * @var InputFile
+     */
+    protected InputFile $voiceNote;
+
+    /**
      * Waveform representation of the voice note in 5-bit format
      *
      * @var string
      */
     protected string $waveform;
-
-    /**
-     * Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
 
     public function __construct(InputFile $voiceNote, int $duration, string $waveform, FormattedText $caption)
     {
@@ -64,6 +64,26 @@ class InputMessageVoiceNote extends InputMessageContent
         );
     }
 
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getVoiceNote(): InputFile
+    {
+        return $this->voiceNote;
+    }
+
+    public function getWaveform(): string
+    {
+        return $this->waveform;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class InputMessageVoiceNote extends InputMessageContent
             'waveform' => $this->waveform,
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getVoiceNote(): InputFile
-    {
-        return $this->voiceNote;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getWaveform(): string
-    {
-        return $this->waveform;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

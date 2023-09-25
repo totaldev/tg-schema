@@ -37,16 +37,16 @@ class ChatEventForumTopicToggleIsClosed extends ChatEventAction
         );
     }
 
+    public function getTopicInfo(): ForumTopicInfo
+    {
+        return $this->topicInfo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'topic_info' => $this->topicInfo->typeSerialize(),
         ];
-    }
-
-    public function getTopicInfo(): ForumTopicInfo
-    {
-        return $this->topicInfo;
     }
 }

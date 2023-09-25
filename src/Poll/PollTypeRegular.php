@@ -36,16 +36,16 @@ class PollTypeRegular extends PollType
         );
     }
 
+    public function getAllowMultipleAnswers(): bool
+    {
+        return $this->allowMultipleAnswers;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'allow_multiple_answers' => $this->allowMultipleAnswers,
         ];
-    }
-
-    public function getAllowMultipleAnswers(): bool
-    {
-        return $this->allowMultipleAnswers;
     }
 }

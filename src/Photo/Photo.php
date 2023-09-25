@@ -54,16 +54,6 @@ class Photo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'has_stickers' => $this->hasStickers,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->sizes),
-        ];
-    }
-
     public function getHasStickers(): bool
     {
         return $this->hasStickers;
@@ -77,5 +67,15 @@ class Photo extends TdObject
     public function getSizes(): array
     {
         return $this->sizes;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'has_stickers' => $this->hasStickers,
+            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->sizes),
+        ];
     }
 }

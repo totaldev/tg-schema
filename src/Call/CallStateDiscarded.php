@@ -16,20 +16,6 @@ class CallStateDiscarded extends CallState
     public const TYPE_NAME = 'callStateDiscarded';
 
     /**
-     * The reason, why the call has ended
-     *
-     * @var CallDiscardReason
-     */
-    protected CallDiscardReason $reason;
-
-    /**
-     * True, if the call rating must be sent to the server
-     *
-     * @var bool
-     */
-    protected bool $needRating;
-
-    /**
      * True, if the call debug information must be sent to the server
      *
      * @var bool
@@ -43,12 +29,27 @@ class CallStateDiscarded extends CallState
      */
     protected bool $needLog;
 
+    /**
+     * True, if the call rating must be sent to the server
+     *
+     * @var bool
+     */
+    protected bool $needRating;
+
+    /**
+     * The reason, why the call has ended
+     *
+     * @var CallDiscardReason
+     */
+    protected CallDiscardReason $reason;
+
     public function __construct(
         CallDiscardReason $reason,
-        bool $needRating,
-        bool $needDebugInformation,
-        bool $needLog,
-    ) {
+        bool              $needRating,
+        bool              $needDebugInformation,
+        bool              $needLog,
+    )
+    {
         parent::__construct();
 
         $this->reason = $reason;
@@ -67,6 +68,26 @@ class CallStateDiscarded extends CallState
         );
     }
 
+    public function getNeedDebugInformation(): bool
+    {
+        return $this->needDebugInformation;
+    }
+
+    public function getNeedLog(): bool
+    {
+        return $this->needLog;
+    }
+
+    public function getNeedRating(): bool
+    {
+        return $this->needRating;
+    }
+
+    public function getReason(): CallDiscardReason
+    {
+        return $this->reason;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +97,5 @@ class CallStateDiscarded extends CallState
             'need_debug_information' => $this->needDebugInformation,
             'need_log' => $this->needLog,
         ];
-    }
-
-    public function getReason(): CallDiscardReason
-    {
-        return $this->reason;
-    }
-
-    public function getNeedRating(): bool
-    {
-        return $this->needRating;
-    }
-
-    public function getNeedDebugInformation(): bool
-    {
-        return $this->needDebugInformation;
-    }
-
-    public function getNeedLog(): bool
-    {
-        return $this->needLog;
     }
 }

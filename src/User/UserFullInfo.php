@@ -24,25 +24,11 @@ class UserFullInfo extends TdObject
     public const TYPE_NAME = 'userFullInfo';
 
     /**
-     * User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+     * A short user bio; may be null for bots
      *
-     * @var ChatPhoto|null
+     * @var FormattedText|null
      */
-    protected ?ChatPhoto $personalPhoto;
-
-    /**
-     * User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $photo;
-
-    /**
-     * User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $publicPhoto;
+    protected ?FormattedText $bio;
 
     /**
      * Block list to which the user is added; may be null if none
@@ -52,6 +38,13 @@ class UserFullInfo extends TdObject
     protected ?BlockList $blockList;
 
     /**
+     * For bots, information about the bot; may be null if the user isn't a bot
+     *
+     * @var BotInfo|null
+     */
+    protected ?BotInfo $botInfo;
+
+    /**
      * True, if the user can be called
      *
      * @var bool
@@ -59,11 +52,18 @@ class UserFullInfo extends TdObject
     protected bool $canBeCalled;
 
     /**
-     * True, if a video call can be created with the user
+     * Number of group chats where both the other user and the current user are a member; 0 for the current user
+     *
+     * @var int
+     */
+    protected int $groupInCommonCount;
+
+    /**
+     * True, if the user has pinned stories
      *
      * @var bool
      */
-    protected bool $supportsVideoCalls;
+    protected bool $hasPinnedStories;
 
     /**
      * True, if the user can't be called due to their privacy settings
@@ -87,13 +87,6 @@ class UserFullInfo extends TdObject
     protected bool $hasRestrictedVoiceAndVideoNoteMessages;
 
     /**
-     * True, if the user has pinned stories
-     *
-     * @var bool
-     */
-    protected bool $hasPinnedStories;
-
-    /**
      * True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
      *
      * @var bool
@@ -101,11 +94,20 @@ class UserFullInfo extends TdObject
     protected bool $needPhoneNumberPrivacyException;
 
     /**
-     * A short user bio; may be null for bots
+     * User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it
+     * is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
      *
-     * @var FormattedText|null
+     * @var ChatPhoto|null
      */
-    protected ?FormattedText $bio;
+    protected ?ChatPhoto $personalPhoto;
+
+    /**
+     * User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and
+     * personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
+     *
+     * @var ChatPhoto|null
+     */
+    protected ?ChatPhoto $photo;
 
     /**
      * The list of available options for gifting Telegram Premium to the user
@@ -115,36 +117,39 @@ class UserFullInfo extends TdObject
     protected array $premiumGiftOptions;
 
     /**
-     * Number of group chats where both the other user and the current user are a member; 0 for the current user
+     * User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is
+     * empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and
+     * chat.photo. This photo isn't returned in the list of user photos
      *
-     * @var int
+     * @var ChatPhoto|null
      */
-    protected int $groupInCommonCount;
+    protected ?ChatPhoto $publicPhoto;
 
     /**
-     * For bots, information about the bot; may be null if the user isn't a bot
+     * True, if a video call can be created with the user
      *
-     * @var BotInfo|null
+     * @var bool
      */
-    protected ?BotInfo $botInfo;
+    protected bool $supportsVideoCalls;
 
     public function __construct(
-        ?ChatPhoto $personalPhoto,
-        ?ChatPhoto $photo,
-        ?ChatPhoto $publicPhoto,
-        ?BlockList $blockList,
-        bool $canBeCalled,
-        bool $supportsVideoCalls,
-        bool $hasPrivateCalls,
-        bool $hasPrivateForwards,
-        bool $hasRestrictedVoiceAndVideoNoteMessages,
-        bool $hasPinnedStories,
-        bool $needPhoneNumberPrivacyException,
+        ?ChatPhoto     $personalPhoto,
+        ?ChatPhoto     $photo,
+        ?ChatPhoto     $publicPhoto,
+        ?BlockList     $blockList,
+        bool           $canBeCalled,
+        bool           $supportsVideoCalls,
+        bool           $hasPrivateCalls,
+        bool           $hasPrivateForwards,
+        bool           $hasRestrictedVoiceAndVideoNoteMessages,
+        bool           $hasPinnedStories,
+        bool           $needPhoneNumberPrivacyException,
         ?FormattedText $bio,
-        array $premiumGiftOptions,
-        int $groupInCommonCount,
-        ?BotInfo $botInfo,
-    ) {
+        array          $premiumGiftOptions,
+        int            $groupInCommonCount,
+        ?BotInfo       $botInfo,
+    )
+    {
         $this->personalPhoto = $personalPhoto;
         $this->photo = $photo;
         $this->publicPhoto = $publicPhoto;
@@ -177,10 +182,85 @@ class UserFullInfo extends TdObject
             $array['has_pinned_stories'],
             $array['need_phone_number_privacy_exception'],
             (isset($array['bio']) ? TdSchemaRegistry::fromArray($array['bio']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['premiumGiftOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['premium_gift_options']),
             $array['group_in_common_count'],
             (isset($array['bot_info']) ? TdSchemaRegistry::fromArray($array['bot_info']) : null),
         );
+    }
+
+    public function getBio(): ?FormattedText
+    {
+        return $this->bio;
+    }
+
+    public function getBlockList(): ?BlockList
+    {
+        return $this->blockList;
+    }
+
+    public function getBotInfo(): ?BotInfo
+    {
+        return $this->botInfo;
+    }
+
+    public function getCanBeCalled(): bool
+    {
+        return $this->canBeCalled;
+    }
+
+    public function getGroupInCommonCount(): int
+    {
+        return $this->groupInCommonCount;
+    }
+
+    public function getHasPinnedStories(): bool
+    {
+        return $this->hasPinnedStories;
+    }
+
+    public function getHasPrivateCalls(): bool
+    {
+        return $this->hasPrivateCalls;
+    }
+
+    public function getHasPrivateForwards(): bool
+    {
+        return $this->hasPrivateForwards;
+    }
+
+    public function getHasRestrictedVoiceAndVideoNoteMessages(): bool
+    {
+        return $this->hasRestrictedVoiceAndVideoNoteMessages;
+    }
+
+    public function getNeedPhoneNumberPrivacyException(): bool
+    {
+        return $this->needPhoneNumberPrivacyException;
+    }
+
+    public function getPersonalPhoto(): ?ChatPhoto
+    {
+        return $this->personalPhoto;
+    }
+
+    public function getPhoto(): ?ChatPhoto
+    {
+        return $this->photo;
+    }
+
+    public function getPremiumGiftOptions(): array
+    {
+        return $this->premiumGiftOptions;
+    }
+
+    public function getPublicPhoto(): ?ChatPhoto
+    {
+        return $this->publicPhoto;
+    }
+
+    public function getSupportsVideoCalls(): bool
+    {
+        return $this->supportsVideoCalls;
     }
 
     public function typeSerialize(): array
@@ -203,80 +283,5 @@ class UserFullInfo extends TdObject
             'group_in_common_count' => $this->groupInCommonCount,
             'bot_info' => (isset($this->botInfo) ? $this->botInfo : null),
         ];
-    }
-
-    public function getPersonalPhoto(): ?ChatPhoto
-    {
-        return $this->personalPhoto;
-    }
-
-    public function getPhoto(): ?ChatPhoto
-    {
-        return $this->photo;
-    }
-
-    public function getPublicPhoto(): ?ChatPhoto
-    {
-        return $this->publicPhoto;
-    }
-
-    public function getBlockList(): ?BlockList
-    {
-        return $this->blockList;
-    }
-
-    public function getCanBeCalled(): bool
-    {
-        return $this->canBeCalled;
-    }
-
-    public function getSupportsVideoCalls(): bool
-    {
-        return $this->supportsVideoCalls;
-    }
-
-    public function getHasPrivateCalls(): bool
-    {
-        return $this->hasPrivateCalls;
-    }
-
-    public function getHasPrivateForwards(): bool
-    {
-        return $this->hasPrivateForwards;
-    }
-
-    public function getHasRestrictedVoiceAndVideoNoteMessages(): bool
-    {
-        return $this->hasRestrictedVoiceAndVideoNoteMessages;
-    }
-
-    public function getHasPinnedStories(): bool
-    {
-        return $this->hasPinnedStories;
-    }
-
-    public function getNeedPhoneNumberPrivacyException(): bool
-    {
-        return $this->needPhoneNumberPrivacyException;
-    }
-
-    public function getBio(): ?FormattedText
-    {
-        return $this->bio;
-    }
-
-    public function getPremiumGiftOptions(): array
-    {
-        return $this->premiumGiftOptions;
-    }
-
-    public function getGroupInCommonCount(): int
-    {
-        return $this->groupInCommonCount;
-    }
-
-    public function getBotInfo(): ?BotInfo
-    {
-        return $this->botInfo;
     }
 }

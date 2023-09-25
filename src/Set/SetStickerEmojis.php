@@ -18,18 +18,18 @@ class SetStickerEmojis extends TdFunction
     public const TYPE_NAME = 'setStickerEmojis';
 
     /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
      * New string with 1-20 emoji corresponding to the sticker
      *
      * @var string
      */
     protected string $emojis;
+
+    /**
+     * Sticker
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
 
     public function __construct(InputFile $sticker, string $emojis)
     {
@@ -45,13 +45,9 @@ class SetStickerEmojis extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getEmojis(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'emojis' => $this->emojis,
-        ];
+        return $this->emojis;
     }
 
     public function getSticker(): InputFile
@@ -59,8 +55,12 @@ class SetStickerEmojis extends TdFunction
         return $this->sticker;
     }
 
-    public function getEmojis(): string
+    public function typeSerialize(): array
     {
-        return $this->emojis;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'emojis' => $this->emojis,
+        ];
     }
 }

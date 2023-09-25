@@ -16,11 +16,11 @@ class PushMessageContentPoll extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentPoll';
 
     /**
-     * Poll question
+     * True, if the message is a pinned message with the specified content
      *
-     * @var string
+     * @var bool
      */
-    protected string $question;
+    protected bool $isPinned;
 
     /**
      * True, if the poll is regular and not in quiz mode
@@ -30,11 +30,11 @@ class PushMessageContentPoll extends PushMessageContent
     protected bool $isRegular;
 
     /**
-     * True, if the message is a pinned message with the specified content
+     * Poll question
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isPinned;
+    protected string $question;
 
     public function __construct(string $question, bool $isRegular, bool $isPinned)
     {
@@ -54,6 +54,21 @@ class PushMessageContentPoll extends PushMessageContent
         );
     }
 
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getIsRegular(): bool
+    {
+        return $this->isRegular;
+    }
+
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class PushMessageContentPoll extends PushMessageContent
             'is_regular' => $this->isRegular,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getQuestion(): string
-    {
-        return $this->question;
-    }
-
-    public function getIsRegular(): bool
-    {
-        return $this->isRegular;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

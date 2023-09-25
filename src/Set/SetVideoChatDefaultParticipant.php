@@ -45,15 +45,6 @@ class SetVideoChatDefaultParticipant extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'default_participant_id' => $this->defaultParticipantId->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class SetVideoChatDefaultParticipant extends TdFunction
     public function getDefaultParticipantId(): MessageSender
     {
         return $this->defaultParticipantId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'default_participant_id' => $this->defaultParticipantId->typeSerialize(),
+        ];
     }
 }

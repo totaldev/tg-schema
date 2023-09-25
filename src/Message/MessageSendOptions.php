@@ -40,34 +40,37 @@ class MessageSendOptions extends TdObject
     protected bool $protectContent;
 
     /**
-     * Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
-     *
-     * @var bool
-     */
-    protected bool $updateOrderOfInstalledStickerSets;
-
-    /**
-     * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
+     * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages
+     * can't be scheduled
      *
      * @var MessageSchedulingState
      */
     protected MessageSchedulingState $schedulingState;
 
     /**
-     * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+     * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding
+     * updateNewMessage updates
      *
      * @var int
      */
     protected int $sendingId;
 
+    /**
+     * Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
+     *
+     * @var bool
+     */
+    protected bool $updateOrderOfInstalledStickerSets;
+
     public function __construct(
-        bool $disableNotification,
-        bool $fromBackground,
-        bool $protectContent,
-        bool $updateOrderOfInstalledStickerSets,
+        bool                   $disableNotification,
+        bool                   $fromBackground,
+        bool                   $protectContent,
+        bool                   $updateOrderOfInstalledStickerSets,
         MessageSchedulingState $schedulingState,
-        int $sendingId,
-    ) {
+        int                    $sendingId,
+    )
+    {
         $this->disableNotification = $disableNotification;
         $this->fromBackground = $fromBackground;
         $this->protectContent = $protectContent;
@@ -88,19 +91,6 @@ class MessageSendOptions extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'disable_notification' => $this->disableNotification,
-            'from_background' => $this->fromBackground,
-            'protect_content' => $this->protectContent,
-            'update_order_of_installed_sticker_sets' => $this->updateOrderOfInstalledStickerSets,
-            'scheduling_state' => $this->schedulingState->typeSerialize(),
-            'sending_id' => $this->sendingId,
-        ];
-    }
-
     public function getDisableNotification(): bool
     {
         return $this->disableNotification;
@@ -116,11 +106,6 @@ class MessageSendOptions extends TdObject
         return $this->protectContent;
     }
 
-    public function getUpdateOrderOfInstalledStickerSets(): bool
-    {
-        return $this->updateOrderOfInstalledStickerSets;
-    }
-
     public function getSchedulingState(): MessageSchedulingState
     {
         return $this->schedulingState;
@@ -129,5 +114,23 @@ class MessageSendOptions extends TdObject
     public function getSendingId(): int
     {
         return $this->sendingId;
+    }
+
+    public function getUpdateOrderOfInstalledStickerSets(): bool
+    {
+        return $this->updateOrderOfInstalledStickerSets;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'disable_notification' => $this->disableNotification,
+            'from_background' => $this->fromBackground,
+            'protect_content' => $this->protectContent,
+            'update_order_of_installed_sticker_sets' => $this->updateOrderOfInstalledStickerSets,
+            'scheduling_state' => $this->schedulingState->typeSerialize(),
+            'sending_id' => $this->sendingId,
+        ];
     }
 }

@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
+ * Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can
+ * be called synchronously
  */
 class GetMarkdownText extends TdFunction
 {
@@ -36,16 +37,16 @@ class GetMarkdownText extends TdFunction
         );
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text->typeSerialize(),
         ];
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
+ * Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details.
+ * Returns a 404 error if unknown
  */
 class GetPreferredCountryLanguage extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetPreferredCountryLanguage extends TdFunction
         );
     }
 
+    public function getCountryCode(): string
+    {
+        return $this->countryCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'country_code' => $this->countryCode,
         ];
-    }
-
-    public function getCountryCode(): string
-    {
-        return $this->countryCode;
     }
 }

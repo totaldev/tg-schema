@@ -45,15 +45,6 @@ class UpdateChatIsTranslatable extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'is_translatable' => $this->isTranslatable,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateChatIsTranslatable extends Update
     public function getIsTranslatable(): bool
     {
         return $this->isTranslatable;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'is_translatable' => $this->isTranslatable,
+        ];
     }
 }

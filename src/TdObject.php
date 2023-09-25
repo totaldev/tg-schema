@@ -19,16 +19,16 @@ abstract class TdObject implements TdTypeSerializableInterface, JsonSerializable
         return $this->tdExtra;
     }
 
-    public function getTdTypeName(): string
-    {
-        return static::TYPE_NAME;
-    }
-
     public function setTdExtra(?string $tdExtra): self
     {
         $this->tdExtra = $tdExtra;
 
         return $this;
+    }
+
+    public function getTdTypeName(): string
+    {
+        return static::TYPE_NAME;
     }
 
     public function jsonSerialize(): array

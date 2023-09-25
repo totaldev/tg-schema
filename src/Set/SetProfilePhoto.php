@@ -18,18 +18,18 @@ class SetProfilePhoto extends TdFunction
     public const TYPE_NAME = 'setProfilePhoto';
 
     /**
-     * Profile photo to set
-     *
-     * @var InputChatPhoto
-     */
-    protected InputChatPhoto $photo;
-
-    /**
      * Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
      *
      * @var bool
      */
     protected bool $isPublic;
+
+    /**
+     * Profile photo to set
+     *
+     * @var InputChatPhoto
+     */
+    protected InputChatPhoto $photo;
 
     public function __construct(InputChatPhoto $photo, bool $isPublic)
     {
@@ -45,13 +45,9 @@ class SetProfilePhoto extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPublic(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
-            'is_public' => $this->isPublic,
-        ];
+        return $this->isPublic;
     }
 
     public function getPhoto(): InputChatPhoto
@@ -59,8 +55,12 @@ class SetProfilePhoto extends TdFunction
         return $this->photo;
     }
 
-    public function getIsPublic(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPublic;
+        return [
+            '@type' => static::TYPE_NAME,
+            'photo' => $this->photo->typeSerialize(),
+            'is_public' => $this->isPublic,
+        ];
     }
 }

@@ -16,6 +16,13 @@ class MessagePaymentSuccessful extends MessageContent
     public const TYPE_NAME = 'messagePaymentSuccessful';
 
     /**
+     * Currency for the price of the product
+     *
+     * @var string
+     */
+    protected string $currency;
+
+    /**
      * Identifier of the chat, containing the corresponding invoice message
      *
      * @var int
@@ -30,25 +37,11 @@ class MessagePaymentSuccessful extends MessageContent
     protected int $invoiceMessageId;
 
     /**
-     * Currency for the price of the product
+     * Name of the invoice; may be empty if unknown
      *
      * @var string
      */
-    protected string $currency;
-
-    /**
-     * Total price for the product, in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $totalAmount;
-
-    /**
-     * True, if this is a recurring payment
-     *
-     * @var bool
-     */
-    protected bool $isRecurring;
+    protected string $invoiceName;
 
     /**
      * True, if this is the first recurring payment
@@ -58,21 +51,29 @@ class MessagePaymentSuccessful extends MessageContent
     protected bool $isFirstRecurring;
 
     /**
-     * Name of the invoice; may be empty if unknown
+     * True, if this is a recurring payment
      *
-     * @var string
+     * @var bool
      */
-    protected string $invoiceName;
+    protected bool $isRecurring;
+
+    /**
+     * Total price for the product, in the smallest units of the currency
+     *
+     * @var int
+     */
+    protected int $totalAmount;
 
     public function __construct(
-        int $invoiceChatId,
-        int $invoiceMessageId,
+        int    $invoiceChatId,
+        int    $invoiceMessageId,
         string $currency,
-        int $totalAmount,
-        bool $isRecurring,
-        bool $isFirstRecurring,
+        int    $totalAmount,
+        bool   $isRecurring,
+        bool   $isFirstRecurring,
         string $invoiceName,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->invoiceChatId = $invoiceChatId;
@@ -97,18 +98,9 @@ class MessagePaymentSuccessful extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getCurrency(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'invoice_chat_id' => $this->invoiceChatId,
-            'invoice_message_id' => $this->invoiceMessageId,
-            'currency' => $this->currency,
-            'total_amount' => $this->totalAmount,
-            'is_recurring' => $this->isRecurring,
-            'is_first_recurring' => $this->isFirstRecurring,
-            'invoice_name' => $this->invoiceName,
-        ];
+        return $this->currency;
     }
 
     public function getInvoiceChatId(): int
@@ -121,19 +113,9 @@ class MessagePaymentSuccessful extends MessageContent
         return $this->invoiceMessageId;
     }
 
-    public function getCurrency(): string
+    public function getInvoiceName(): string
     {
-        return $this->currency;
-    }
-
-    public function getTotalAmount(): int
-    {
-        return $this->totalAmount;
-    }
-
-    public function getIsRecurring(): bool
-    {
-        return $this->isRecurring;
+        return $this->invoiceName;
     }
 
     public function getIsFirstRecurring(): bool
@@ -141,8 +123,27 @@ class MessagePaymentSuccessful extends MessageContent
         return $this->isFirstRecurring;
     }
 
-    public function getInvoiceName(): string
+    public function getIsRecurring(): bool
     {
-        return $this->invoiceName;
+        return $this->isRecurring;
+    }
+
+    public function getTotalAmount(): int
+    {
+        return $this->totalAmount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'invoice_chat_id' => $this->invoiceChatId,
+            'invoice_message_id' => $this->invoiceMessageId,
+            'currency' => $this->currency,
+            'total_amount' => $this->totalAmount,
+            'is_recurring' => $this->isRecurring,
+            'is_first_recurring' => $this->isFirstRecurring,
+            'invoice_name' => $this->invoiceName,
+        ];
     }
 }

@@ -17,13 +17,6 @@ class PageBlockEmbeddedPost extends PageBlock
     public const TYPE_NAME = 'pageBlockEmbeddedPost';
 
     /**
-     * Web page URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Post author
      *
      * @var string
@@ -36,6 +29,13 @@ class PageBlockEmbeddedPost extends PageBlock
      * @var Photo|null
      */
     protected ?Photo $authorPhoto;
+
+    /**
+     * Post caption
+     *
+     * @var PageBlockCaption
+     */
+    protected PageBlockCaption $caption;
 
     /**
      * Point in time (Unix timestamp) when the post was created; 0 if unknown
@@ -52,20 +52,21 @@ class PageBlockEmbeddedPost extends PageBlock
     protected array $pageBlocks;
 
     /**
-     * Post caption
+     * Web page URL
      *
-     * @var PageBlockCaption
+     * @var string
      */
-    protected PageBlockCaption $caption;
+    protected string $url;
 
     public function __construct(
-        string $url,
-        string $author,
-        ?Photo $authorPhoto,
-        int $date,
-        array $pageBlocks,
+        string           $url,
+        string           $author,
+        ?Photo           $authorPhoto,
+        int              $date,
+        array            $pageBlocks,
         PageBlockCaption $caption,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->url = $url;
@@ -83,9 +84,39 @@ class PageBlockEmbeddedPost extends PageBlock
             $array['author'],
             (isset($array['author_photo']) ? TdSchemaRegistry::fromArray($array['author_photo']) : null),
             $array['date'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['pageBlocks']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             TdSchemaRegistry::fromArray($array['caption']),
         );
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function getAuthorPhoto(): ?Photo
+    {
+        return $this->authorPhoto;
+    }
+
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getPageBlocks(): array
+    {
+        return $this->pageBlocks;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 
     public function typeSerialize(): array
@@ -99,35 +130,5 @@ class PageBlockEmbeddedPost extends PageBlock
             array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getAuthor(): string
-    {
-        return $this->author;
-    }
-
-    public function getAuthorPhoto(): ?Photo
-    {
-        return $this->authorPhoto;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getPageBlocks(): array
-    {
-        return $this->pageBlocks;
-    }
-
-    public function getCaption(): PageBlockCaption
-    {
-        return $this->caption;
     }
 }

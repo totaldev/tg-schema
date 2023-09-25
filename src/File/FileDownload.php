@@ -18,20 +18,6 @@ class FileDownload extends TdObject
     public const TYPE_NAME = 'fileDownload';
 
     /**
-     * File identifier
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
-     * The message with the file
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    /**
      * Point in time (Unix timestamp) when the file was added to the download list
      *
      * @var int
@@ -46,11 +32,25 @@ class FileDownload extends TdObject
     protected int $completeDate;
 
     /**
+     * File identifier
+     *
+     * @var int
+     */
+    protected int $fileId;
+
+    /**
      * True, if downloading of the file is paused
      *
      * @var bool
      */
     protected bool $isPaused;
+
+    /**
+     * The message with the file
+     *
+     * @var Message
+     */
+    protected Message $message;
 
     public function __construct(int $fileId, Message $message, int $addDate, int $completeDate, bool $isPaused)
     {
@@ -72,28 +72,6 @@ class FileDownload extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'message' => $this->message->typeSerialize(),
-            'add_date' => $this->addDate,
-            'complete_date' => $this->completeDate,
-            'is_paused' => $this->isPaused,
-        ];
-    }
-
-    public function getFileId(): int
-    {
-        return $this->fileId;
-    }
-
-    public function getMessage(): Message
-    {
-        return $this->message;
-    }
-
     public function getAddDate(): int
     {
         return $this->addDate;
@@ -104,8 +82,30 @@ class FileDownload extends TdObject
         return $this->completeDate;
     }
 
+    public function getFileId(): int
+    {
+        return $this->fileId;
+    }
+
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function getMessage(): Message
+    {
+        return $this->message;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'message' => $this->message->typeSerialize(),
+            'add_date' => $this->addDate,
+            'complete_date' => $this->completeDate,
+            'is_paused' => $this->isPaused,
+        ];
     }
 }

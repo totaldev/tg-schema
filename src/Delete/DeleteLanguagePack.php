@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
+ * Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack)
+ * or is being synchronized can't be deleted. Can be called before authorization
  */
 class DeleteLanguagePack extends TdFunction
 {
@@ -35,16 +36,16 @@ class DeleteLanguagePack extends TdFunction
         );
     }
 
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
-    }
-
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
     }
 }

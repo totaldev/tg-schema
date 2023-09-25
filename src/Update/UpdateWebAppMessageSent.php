@@ -36,16 +36,16 @@ class UpdateWebAppMessageSent extends Update
         );
     }
 
+    public function getWebAppLaunchId(): int
+    {
+        return $this->webAppLaunchId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'web_app_launch_id' => $this->webAppLaunchId,
         ];
-    }
-
-    public function getWebAppLaunchId(): int
-    {
-        return $this->webAppLaunchId;
     }
 }

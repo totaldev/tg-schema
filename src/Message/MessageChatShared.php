@@ -16,18 +16,18 @@ class MessageChatShared extends MessageContent
     public const TYPE_NAME = 'messageChatShared';
 
     /**
-     * Identifier of the shared chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * Identifier of the keyboard button with the request
      *
      * @var int
      */
     protected int $buttonId;
+
+    /**
+     * Identifier of the shared chat
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, int $buttonId)
     {
@@ -45,13 +45,9 @@ class MessageChatShared extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getButtonId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'button_id' => $this->buttonId,
-        ];
+        return $this->buttonId;
     }
 
     public function getChatId(): int
@@ -59,8 +55,12 @@ class MessageChatShared extends MessageContent
         return $this->chatId;
     }
 
-    public function getButtonId(): int
+    public function typeSerialize(): array
     {
-        return $this->buttonId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'button_id' => $this->buttonId,
+        ];
     }
 }

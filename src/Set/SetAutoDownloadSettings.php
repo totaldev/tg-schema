@@ -46,15 +46,6 @@ class SetAutoDownloadSettings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'settings' => $this->settings->typeSerialize(),
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getSettings(): AutoDownloadSettings
     {
         return $this->settings;
@@ -63,5 +54,14 @@ class SetAutoDownloadSettings extends TdFunction
     public function getType(): NetworkType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'settings' => $this->settings->typeSerialize(),
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

@@ -36,16 +36,16 @@ class SpeechRecognitionResultPending extends SpeechRecognitionResult
         );
     }
 
+    public function getPartialText(): string
+    {
+        return $this->partialText;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'partial_text' => $this->partialText,
         ];
-    }
-
-    public function getPartialText(): string
-    {
-        return $this->partialText;
     }
 }

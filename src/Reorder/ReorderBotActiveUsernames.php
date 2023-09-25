@@ -44,15 +44,6 @@ class ReorderBotActiveUsernames extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'usernames' => $this->usernames,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -61,5 +52,14 @@ class ReorderBotActiveUsernames extends TdFunction
     public function getUsernames(): array
     {
         return $this->usernames;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'usernames' => $this->usernames,
+        ];
     }
 }

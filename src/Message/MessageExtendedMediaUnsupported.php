@@ -37,16 +37,16 @@ class MessageExtendedMediaUnsupported extends MessageExtendedMedia
         );
     }
 
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

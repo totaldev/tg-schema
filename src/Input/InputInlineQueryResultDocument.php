@@ -17,20 +17,6 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     public const TYPE_NAME = 'inputInlineQueryResultDocument';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Title of the resulting file
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Short description of the result, if known
      *
      * @var string
@@ -45,11 +31,40 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     protected string $documentUrl;
 
     /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice,
+     * inputMessageLocation, inputMessageVenue or inputMessageContact
+     *
+     * @var InputMessageContent
+     */
+    protected InputMessageContent $inputMessageContent;
+
+    /**
      * MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
      *
      * @var string
      */
     protected string $mimeType;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * Height of the thumbnail
+     *
+     * @var int
+     */
+    protected int $thumbnailHeight;
 
     /**
      * The URL of the file thumbnail, if it exists
@@ -66,38 +81,25 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     protected int $thumbnailWidth;
 
     /**
-     * Height of the thumbnail
+     * Title of the resulting file
      *
-     * @var int
+     * @var string
      */
-    protected int $thumbnailHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
+    protected string $title;
 
     public function __construct(
-        string $id,
-        string $title,
-        string $description,
-        string $documentUrl,
-        string $mimeType,
-        string $thumbnailUrl,
-        int $thumbnailWidth,
-        int $thumbnailHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        string              $title,
+        string              $description,
+        string              $documentUrl,
+        string              $mimeType,
+        string              $thumbnailUrl,
+        int                 $thumbnailWidth,
+        int                 $thumbnailHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -128,6 +130,56 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getDocumentUrl(): string
+    {
+        return $this->documentUrl;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailHeight(): int
+    {
+        return $this->thumbnailHeight;
+    }
+
+    public function getThumbnailUrl(): string
+    {
+        return $this->thumbnailUrl;
+    }
+
+    public function getThumbnailWidth(): int
+    {
+        return $this->thumbnailWidth;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -143,55 +195,5 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getDocumentUrl(): string
-    {
-        return $this->documentUrl;
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    public function getThumbnailUrl(): string
-    {
-        return $this->thumbnailUrl;
-    }
-
-    public function getThumbnailWidth(): int
-    {
-        return $this->thumbnailWidth;
-    }
-
-    public function getThumbnailHeight(): int
-    {
-        return $this->thumbnailHeight;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

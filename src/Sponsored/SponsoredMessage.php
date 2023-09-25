@@ -19,18 +19,11 @@ class SponsoredMessage extends TdObject
     public const TYPE_NAME = 'sponsoredMessage';
 
     /**
-     * Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
+     * If non-empty, additional information about the sponsored message to be shown along with the message
      *
-     * @var int
+     * @var string
      */
-    protected int $messageId;
-
-    /**
-     * True, if the message needs to be labeled as "recommended" instead of "sponsored"
-     *
-     * @var bool
-     */
-    protected bool $isRecommended;
+    protected string $additionalInfo;
 
     /**
      * Content of the message. Currently, can be only of the type messageText
@@ -40,26 +33,34 @@ class SponsoredMessage extends TdObject
     protected MessageContent $content;
 
     /**
+     * True, if the message needs to be labeled as "recommended" instead of "sponsored"
+     *
+     * @var bool
+     */
+    protected bool $isRecommended;
+
+    /**
+     * Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
      * Information about the sponsor of the message
      *
      * @var MessageSponsor
      */
     protected MessageSponsor $sponsor;
 
-    /**
-     * If non-empty, additional information about the sponsored message to be shown along with the message
-     *
-     * @var string
-     */
-    protected string $additionalInfo;
-
     public function __construct(
-        int $messageId,
-        bool $isRecommended,
+        int            $messageId,
+        bool           $isRecommended,
         MessageContent $content,
         MessageSponsor $sponsor,
-        string $additionalInfo,
-    ) {
+        string         $additionalInfo,
+    )
+    {
         $this->messageId = $messageId;
         $this->isRecommended = $isRecommended;
         $this->content = $content;
@@ -78,6 +79,31 @@ class SponsoredMessage extends TdObject
         );
     }
 
+    public function getAdditionalInfo(): string
+    {
+        return $this->additionalInfo;
+    }
+
+    public function getContent(): MessageContent
+    {
+        return $this->content;
+    }
+
+    public function getIsRecommended(): bool
+    {
+        return $this->isRecommended;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getSponsor(): MessageSponsor
+    {
+        return $this->sponsor;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -88,30 +114,5 @@ class SponsoredMessage extends TdObject
             'sponsor' => $this->sponsor->typeSerialize(),
             'additional_info' => $this->additionalInfo,
         ];
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getIsRecommended(): bool
-    {
-        return $this->isRecommended;
-    }
-
-    public function getContent(): MessageContent
-    {
-        return $this->content;
-    }
-
-    public function getSponsor(): MessageSponsor
-    {
-        return $this->sponsor;
-    }
-
-    public function getAdditionalInfo(): string
-    {
-        return $this->additionalInfo;
     }
 }

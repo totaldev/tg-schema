@@ -53,16 +53,6 @@ class GetStatisticalGraph extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'token' => $this->token,
-            'x' => $this->x,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +66,15 @@ class GetStatisticalGraph extends TdFunction
     public function getX(): int
     {
         return $this->x;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'token' => $this->token,
+            'x' => $this->x,
+        ];
     }
 }

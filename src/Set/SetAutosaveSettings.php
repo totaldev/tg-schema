@@ -46,15 +46,6 @@ class SetAutosaveSettings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getScope(): AutosaveSettingsScope
     {
         return $this->scope;
@@ -63,5 +54,14 @@ class SetAutosaveSettings extends TdFunction
     public function getSettings(): ScopeAutosaveSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'scope' => $this->scope->typeSerialize(),
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

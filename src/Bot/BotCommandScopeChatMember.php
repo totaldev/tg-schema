@@ -45,15 +45,6 @@ class BotCommandScopeChatMember extends BotCommandScope
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'user_id' => $this->userId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class BotCommandScopeChatMember extends BotCommandScope
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_id' => $this->userId,
+        ];
     }
 }

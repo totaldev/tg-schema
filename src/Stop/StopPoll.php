@@ -54,16 +54,6 @@ class StopPoll extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +67,15 @@ class StopPoll extends TdFunction
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+        ];
     }
 }

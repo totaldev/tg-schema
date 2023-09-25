@@ -24,18 +24,19 @@ class GetPollVoters extends TdFunction
     protected int $chatId;
 
     /**
+     * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is
+     * chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Identifier of the message containing the poll
      *
      * @var int
      */
     protected int $messageId;
-
-    /**
-     * 0-based identifier of the answer option
-     *
-     * @var int
-     */
-    protected int $optionId;
 
     /**
      * Number of voters to skip in the result; must be non-negative
@@ -45,11 +46,11 @@ class GetPollVoters extends TdFunction
     protected int $offset;
 
     /**
-     * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+     * 0-based identifier of the answer option
      *
      * @var int
      */
-    protected int $limit;
+    protected int $optionId;
 
     public function __construct(int $chatId, int $messageId, int $optionId, int $offset, int $limit)
     {
@@ -71,6 +72,31 @@ class GetPollVoters extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getOptionId(): int
+    {
+        return $this->optionId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +107,5 @@ class GetPollVoters extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getOptionId(): int
-    {
-        return $this->optionId;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

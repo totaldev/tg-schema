@@ -35,16 +35,16 @@ class MessageAutoDeleteTime extends TdObject
         );
     }
 
+    public function getTime(): int
+    {
+        return $this->time;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'time' => $this->time,
         ];
-    }
-
-    public function getTime(): int
-    {
-        return $this->time;
     }
 }

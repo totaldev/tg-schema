@@ -25,18 +25,18 @@ class GetBlockedMessageSenders extends TdFunction
     protected BlockList $blockList;
 
     /**
-     * Number of users and chats to skip in the result; must be non-negative
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
      * The maximum number of users and chats to return; up to 100
      *
      * @var int
      */
     protected int $limit;
+
+    /**
+     * Number of users and chats to skip in the result; must be non-negative
+     *
+     * @var int
+     */
+    protected int $offset;
 
     public function __construct(BlockList $blockList, int $offset, int $limit)
     {
@@ -54,6 +54,21 @@ class GetBlockedMessageSenders extends TdFunction
         );
     }
 
+    public function getBlockList(): BlockList
+    {
+        return $this->blockList;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class GetBlockedMessageSenders extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getBlockList(): BlockList
-    {
-        return $this->blockList;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

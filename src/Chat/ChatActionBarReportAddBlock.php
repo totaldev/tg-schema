@@ -9,14 +9,17 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+ * The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method
+ * setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an
+ * emoji status, then a notice about emoji status usage must be shown
  */
 class ChatActionBarReportAddBlock extends ChatActionBar
 {
     public const TYPE_NAME = 'chatActionBarReportAddBlock';
 
     /**
-     * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+     * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat
+     * notification settings to default using setChatNotificationSettings
      *
      * @var bool
      */
@@ -45,15 +48,6 @@ class ChatActionBarReportAddBlock extends ChatActionBar
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'can_unarchive' => $this->canUnarchive,
-            'distance' => $this->distance,
-        ];
-    }
-
     public function getCanUnarchive(): bool
     {
         return $this->canUnarchive;
@@ -62,5 +56,14 @@ class ChatActionBarReportAddBlock extends ChatActionBar
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'can_unarchive' => $this->canUnarchive,
+            'distance' => $this->distance,
+        ];
     }
 }

@@ -19,32 +19,11 @@ class WebPageInstantView extends TdObject
     public const TYPE_NAME = 'webPageInstantView';
 
     /**
-     * Content of the web page
+     * An internal link to be opened to leave feedback about the instant view
      *
-     * @var PageBlock[]
+     * @var InternalLinkType
      */
-    protected array $pageBlocks;
-
-    /**
-     * Number of the instant view views; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $viewCount;
-
-    /**
-     * Version of the instant view; currently, can be 1 or 2
-     *
-     * @var int
-     */
-    protected int $version;
-
-    /**
-     * True, if the instant view must be shown from right to left
-     *
-     * @var bool
-     */
-    protected bool $isRtl;
+    protected InternalLinkType $feedbackLink;
 
     /**
      * True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
@@ -54,20 +33,42 @@ class WebPageInstantView extends TdObject
     protected bool $isFull;
 
     /**
-     * An internal link to be opened to leave feedback about the instant view
+     * True, if the instant view must be shown from right to left
      *
-     * @var InternalLinkType
+     * @var bool
      */
-    protected InternalLinkType $feedbackLink;
+    protected bool $isRtl;
+
+    /**
+     * Content of the web page
+     *
+     * @var PageBlock[]
+     */
+    protected array $pageBlocks;
+
+    /**
+     * Version of the instant view; currently, can be 1 or 2
+     *
+     * @var int
+     */
+    protected int $version;
+
+    /**
+     * Number of the instant view views; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $viewCount;
 
     public function __construct(
-        array $pageBlocks,
-        int $viewCount,
-        int $version,
-        bool $isRtl,
-        bool $isFull,
+        array            $pageBlocks,
+        int              $viewCount,
+        int              $version,
+        bool             $isRtl,
+        bool             $isFull,
         InternalLinkType $feedbackLink,
-    ) {
+    )
+    {
         $this->pageBlocks = $pageBlocks;
         $this->viewCount = $viewCount;
         $this->version = $version;
@@ -79,13 +80,43 @@ class WebPageInstantView extends TdObject
     public static function fromArray(array $array): WebPageInstantView
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['pageBlocks']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             $array['view_count'],
             $array['version'],
             $array['is_rtl'],
             $array['is_full'],
             TdSchemaRegistry::fromArray($array['feedback_link']),
         );
+    }
+
+    public function getFeedbackLink(): InternalLinkType
+    {
+        return $this->feedbackLink;
+    }
+
+    public function getIsFull(): bool
+    {
+        return $this->isFull;
+    }
+
+    public function getIsRtl(): bool
+    {
+        return $this->isRtl;
+    }
+
+    public function getPageBlocks(): array
+    {
+        return $this->pageBlocks;
+    }
+
+    public function getVersion(): int
+    {
+        return $this->version;
+    }
+
+    public function getViewCount(): int
+    {
+        return $this->viewCount;
     }
 
     public function typeSerialize(): array
@@ -99,35 +130,5 @@ class WebPageInstantView extends TdObject
             'is_full' => $this->isFull,
             'feedback_link' => $this->feedbackLink->typeSerialize(),
         ];
-    }
-
-    public function getPageBlocks(): array
-    {
-        return $this->pageBlocks;
-    }
-
-    public function getViewCount(): int
-    {
-        return $this->viewCount;
-    }
-
-    public function getVersion(): int
-    {
-        return $this->version;
-    }
-
-    public function getIsRtl(): bool
-    {
-        return $this->isRtl;
-    }
-
-    public function getIsFull(): bool
-    {
-        return $this->isFull;
-    }
-
-    public function getFeedbackLink(): InternalLinkType
-    {
-        return $this->feedbackLink;
     }
 }

@@ -36,16 +36,16 @@ class JsonValueNumber extends JsonValue
         );
     }
 
+    public function getValue(): float
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
-    }
-
-    public function getValue(): float
-    {
-        return $this->value;
     }
 }

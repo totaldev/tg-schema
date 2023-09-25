@@ -18,18 +18,18 @@ class UpdateChatMember extends Update
     public const TYPE_NAME = 'updateChatMember';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * Identifier of the user, changing the rights
      *
      * @var int
      */
     protected int $actorUserId;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     /**
      * Point in time (Unix timestamp) when the user rights was changed
@@ -46,11 +46,11 @@ class UpdateChatMember extends Update
     protected ?ChatInviteLink $inviteLink;
 
     /**
-     * True, if the user has joined the chat using an invite link for a chat folder
+     * New chat member
      *
-     * @var bool
+     * @var ChatMember
      */
-    protected bool $viaChatFolderInviteLink;
+    protected ChatMember $newChatMember;
 
     /**
      * Previous chat member
@@ -60,21 +60,22 @@ class UpdateChatMember extends Update
     protected ChatMember $oldChatMember;
 
     /**
-     * New chat member
+     * True, if the user has joined the chat using an invite link for a chat folder
      *
-     * @var ChatMember
+     * @var bool
      */
-    protected ChatMember $newChatMember;
+    protected bool $viaChatFolderInviteLink;
 
     public function __construct(
-        int $chatId,
-        int $actorUserId,
-        int $date,
+        int             $chatId,
+        int             $actorUserId,
+        int             $date,
         ?ChatInviteLink $inviteLink,
-        bool $viaChatFolderInviteLink,
-        ChatMember $oldChatMember,
-        ChatMember $newChatMember,
-    ) {
+        bool            $viaChatFolderInviteLink,
+        ChatMember      $oldChatMember,
+        ChatMember      $newChatMember,
+    )
+    {
         parent::__construct();
 
         $this->chatId = $chatId;
@@ -99,28 +100,14 @@ class UpdateChatMember extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getActorUserId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'actor_user_id' => $this->actorUserId,
-            'date' => $this->date,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
-            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
-            'old_chat_member' => $this->oldChatMember->typeSerialize(),
-            'new_chat_member' => $this->newChatMember->typeSerialize(),
-        ];
+        return $this->actorUserId;
     }
 
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function getActorUserId(): int
-    {
-        return $this->actorUserId;
     }
 
     public function getDate(): int
@@ -133,9 +120,9 @@ class UpdateChatMember extends Update
         return $this->inviteLink;
     }
 
-    public function getViaChatFolderInviteLink(): bool
+    public function getNewChatMember(): ChatMember
     {
-        return $this->viaChatFolderInviteLink;
+        return $this->newChatMember;
     }
 
     public function getOldChatMember(): ChatMember
@@ -143,8 +130,22 @@ class UpdateChatMember extends Update
         return $this->oldChatMember;
     }
 
-    public function getNewChatMember(): ChatMember
+    public function getViaChatFolderInviteLink(): bool
     {
-        return $this->newChatMember;
+        return $this->viaChatFolderInviteLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'actor_user_id' => $this->actorUserId,
+            'date' => $this->date,
+            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
+            'old_chat_member' => $this->oldChatMember->typeSerialize(),
+            'new_chat_member' => $this->newChatMember->typeSerialize(),
+        ];
     }
 }

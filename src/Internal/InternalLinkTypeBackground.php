@@ -36,16 +36,16 @@ class InternalLinkTypeBackground extends InternalLinkType
         );
     }
 
+    public function getBackgroundName(): string
+    {
+        return $this->backgroundName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'background_name' => $this->backgroundName,
         ];
-    }
-
-    public function getBackgroundName(): string
-    {
-        return $this->backgroundName;
     }
 }

@@ -24,18 +24,18 @@ class PageBlockDetails extends PageBlock
     protected RichText $header;
 
     /**
-     * Block contents
-     *
-     * @var PageBlock[]
-     */
-    protected array $pageBlocks;
-
-    /**
      * True, if the block is open by default
      *
      * @var bool
      */
     protected bool $isOpen;
+
+    /**
+     * Block contents
+     *
+     * @var PageBlock[]
+     */
+    protected array $pageBlocks;
 
     public function __construct(RichText $header, array $pageBlocks, bool $isOpen)
     {
@@ -50,9 +50,24 @@ class PageBlockDetails extends PageBlock
     {
         return new static(
             TdSchemaRegistry::fromArray($array['header']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['pageBlocks']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             $array['is_open'],
         );
+    }
+
+    public function getHeader(): RichText
+    {
+        return $this->header;
+    }
+
+    public function getIsOpen(): bool
+    {
+        return $this->isOpen;
+    }
+
+    public function getPageBlocks(): array
+    {
+        return $this->pageBlocks;
     }
 
     public function typeSerialize(): array
@@ -63,20 +78,5 @@ class PageBlockDetails extends PageBlock
             array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'is_open' => $this->isOpen,
         ];
-    }
-
-    public function getHeader(): RichText
-    {
-        return $this->header;
-    }
-
-    public function getPageBlocks(): array
-    {
-        return $this->pageBlocks;
-    }
-
-    public function getIsOpen(): bool
-    {
-        return $this->isOpen;
     }
 }

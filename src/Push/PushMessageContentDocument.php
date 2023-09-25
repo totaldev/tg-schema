@@ -46,15 +46,6 @@ class PushMessageContentDocument extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'document' => (isset($this->document) ? $this->document : null),
-            'is_pinned' => $this->isPinned,
-        ];
-    }
-
     public function getDocument(): ?Document
     {
         return $this->document;
@@ -63,5 +54,14 @@ class PushMessageContentDocument extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'document' => (isset($this->document) ? $this->document : null),
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

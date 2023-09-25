@@ -17,18 +17,18 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
     public const TYPE_NAME = 'chatEventVideoChatParticipantIsMutedToggled';
 
     /**
-     * Identifier of the affected group call participant
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
      * New value of is_muted
      *
      * @var bool
      */
     protected bool $isMuted;
+
+    /**
+     * Identifier of the affected group call participant
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $participantId;
 
     public function __construct(MessageSender $participantId, bool $isMuted)
     {
@@ -46,13 +46,9 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsMuted(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'is_muted' => $this->isMuted,
-        ];
+        return $this->isMuted;
     }
 
     public function getParticipantId(): MessageSender
@@ -60,8 +56,12 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
         return $this->participantId;
     }
 
-    public function getIsMuted(): bool
+    public function typeSerialize(): array
     {
-        return $this->isMuted;
+        return [
+            '@type' => static::TYPE_NAME,
+            'participant_id' => $this->participantId->typeSerialize(),
+            'is_muted' => $this->isMuted,
+        ];
     }
 }

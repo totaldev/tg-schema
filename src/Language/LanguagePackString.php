@@ -44,15 +44,6 @@ class LanguagePackString extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'key' => $this->key,
-            'value' => $this->value->typeSerialize(),
-        ];
-    }
-
     public function getKey(): string
     {
         return $this->key;
@@ -61,5 +52,14 @@ class LanguagePackString extends TdObject
     public function getValue(): LanguagePackStringValue
     {
         return $this->value;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'key' => $this->key,
+            'value' => $this->value->typeSerialize(),
+        ];
     }
 }

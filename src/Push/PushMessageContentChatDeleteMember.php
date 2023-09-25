@@ -16,13 +16,6 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentChatDeleteMember';
 
     /**
-     * Name of the deleted member
-     *
-     * @var string
-     */
-    protected string $memberName;
-
-    /**
      * True, if the current user was deleted from the group
      *
      * @var bool
@@ -35,6 +28,13 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
      * @var bool
      */
     protected bool $isLeft;
+
+    /**
+     * Name of the deleted member
+     *
+     * @var string
+     */
+    protected string $memberName;
 
     public function __construct(string $memberName, bool $isCurrentUser, bool $isLeft)
     {
@@ -54,21 +54,6 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'member_name' => $this->memberName,
-            'is_current_user' => $this->isCurrentUser,
-            'is_left' => $this->isLeft,
-        ];
-    }
-
-    public function getMemberName(): string
-    {
-        return $this->memberName;
-    }
-
     public function getIsCurrentUser(): bool
     {
         return $this->isCurrentUser;
@@ -77,5 +62,20 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     public function getIsLeft(): bool
     {
         return $this->isLeft;
+    }
+
+    public function getMemberName(): string
+    {
+        return $this->memberName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'member_name' => $this->memberName,
+            'is_current_user' => $this->isCurrentUser,
+            'is_left' => $this->isLeft,
+        ];
     }
 }

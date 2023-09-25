@@ -11,25 +11,19 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+ * Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is
+ * non-empty, then favorite, recently used or trending stickers may also be returned
  */
 class GetStickers extends TdFunction
 {
     public const TYPE_NAME = 'getStickers';
 
     /**
-     * Type of the stickers to return
+     * Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
      *
-     * @var StickerType
+     * @var int
      */
-    protected StickerType $stickerType;
-
-    /**
-     * Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
-     *
-     * @var string
-     */
-    protected string $query;
+    protected int $chatId;
 
     /**
      * The maximum number of stickers to be returned
@@ -39,11 +33,18 @@ class GetStickers extends TdFunction
     protected int $limit;
 
     /**
-     * Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
+     * Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
      *
-     * @var int
+     * @var string
      */
-    protected int $chatId;
+    protected string $query;
+
+    /**
+     * Type of the stickers to return
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, string $query, int $limit, int $chatId)
     {
@@ -63,6 +64,26 @@ class GetStickers extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +93,5 @@ class GetStickers extends TdFunction
             'limit' => $this->limit,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

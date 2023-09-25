@@ -35,16 +35,16 @@ class AcceptTermsOfService extends TdFunction
         );
     }
 
+    public function getTermsOfServiceId(): string
+    {
+        return $this->termsOfServiceId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'terms_of_service_id' => $this->termsOfServiceId,
         ];
-    }
-
-    public function getTermsOfServiceId(): string
-    {
-        return $this->termsOfServiceId;
     }
 }

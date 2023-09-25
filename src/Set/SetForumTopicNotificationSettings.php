@@ -54,16 +54,6 @@ class SetForumTopicNotificationSettings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +67,15 @@ class SetForumTopicNotificationSettings extends TdFunction
     public function getNotificationSettings(): ChatNotificationSettings
     {
         return $this->notificationSettings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+            'notification_settings' => $this->notificationSettings->typeSerialize(),
+        ];
     }
 }

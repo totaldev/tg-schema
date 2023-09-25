@@ -35,16 +35,16 @@ class LogTags extends TdObject
         );
     }
 
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'tags' => $this->tags,
         ];
-    }
-
-    public function getTags(): array
-    {
-        return $this->tags;
     }
 }

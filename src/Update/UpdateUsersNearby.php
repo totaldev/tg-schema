@@ -33,8 +33,13 @@ class UpdateUsersNearby extends Update
     public static function fromArray(array $array): UpdateUsersNearby
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['usersNearby']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['users_nearby']),
         );
+    }
+
+    public function getUsersNearby(): array
+    {
+        return $this->usersNearby;
     }
 
     public function typeSerialize(): array
@@ -43,10 +48,5 @@ class UpdateUsersNearby extends Update
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->usersNearby),
         ];
-    }
-
-    public function getUsersNearby(): array
-    {
-        return $this->usersNearby;
     }
 }

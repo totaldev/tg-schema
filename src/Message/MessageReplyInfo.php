@@ -17,18 +17,11 @@ class MessageReplyInfo extends TdObject
     public const TYPE_NAME = 'messageReplyInfo';
 
     /**
-     * Number of times the message was directly or indirectly replied
+     * Identifier of the last reply to the message
      *
      * @var int
      */
-    protected int $replyCount;
-
-    /**
-     * Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be inaccessible: only their photo and name will be available
-     *
-     * @var MessageSender[]
-     */
-    protected array $recentReplierIds;
+    protected int $lastMessageId;
 
     /**
      * Identifier of the last read incoming reply to the message
@@ -45,19 +38,28 @@ class MessageReplyInfo extends TdObject
     protected int $lastReadOutboxMessageId;
 
     /**
-     * Identifier of the last reply to the message
+     * Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be
+     * inaccessible: only their photo and name will be available
+     *
+     * @var MessageSender[]
+     */
+    protected array $recentReplierIds;
+
+    /**
+     * Number of times the message was directly or indirectly replied
      *
      * @var int
      */
-    protected int $lastMessageId;
+    protected int $replyCount;
 
     public function __construct(
-        int $replyCount,
+        int   $replyCount,
         array $recentReplierIds,
-        int $lastReadInboxMessageId,
-        int $lastReadOutboxMessageId,
-        int $lastMessageId,
-    ) {
+        int   $lastReadInboxMessageId,
+        int   $lastReadOutboxMessageId,
+        int   $lastMessageId,
+    )
+    {
         $this->replyCount = $replyCount;
         $this->recentReplierIds = $recentReplierIds;
         $this->lastReadInboxMessageId = $lastReadInboxMessageId;
@@ -69,33 +71,16 @@ class MessageReplyInfo extends TdObject
     {
         return new static(
             $array['reply_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentReplierIds']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_replier_ids']),
             $array['last_read_inbox_message_id'],
             $array['last_read_outbox_message_id'],
             $array['last_message_id'],
         );
     }
 
-    public function typeSerialize(): array
+    public function getLastMessageId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'reply_count' => $this->replyCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->recentReplierIds),
-            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
-            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
-            'last_message_id' => $this->lastMessageId,
-        ];
-    }
-
-    public function getReplyCount(): int
-    {
-        return $this->replyCount;
-    }
-
-    public function getRecentReplierIds(): array
-    {
-        return $this->recentReplierIds;
+        return $this->lastMessageId;
     }
 
     public function getLastReadInboxMessageId(): int
@@ -108,8 +93,25 @@ class MessageReplyInfo extends TdObject
         return $this->lastReadOutboxMessageId;
     }
 
-    public function getLastMessageId(): int
+    public function getRecentReplierIds(): array
     {
-        return $this->lastMessageId;
+        return $this->recentReplierIds;
+    }
+
+    public function getReplyCount(): int
+    {
+        return $this->replyCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'reply_count' => $this->replyCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->recentReplierIds),
+            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
+            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+            'last_message_id' => $this->lastMessageId,
+        ];
     }
 }

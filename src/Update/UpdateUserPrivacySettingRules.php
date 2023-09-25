@@ -18,18 +18,18 @@ class UpdateUserPrivacySettingRules extends Update
     public const TYPE_NAME = 'updateUserPrivacySettingRules';
 
     /**
-     * The privacy setting
-     *
-     * @var UserPrivacySetting
-     */
-    protected UserPrivacySetting $setting;
-
-    /**
      * New privacy rules
      *
      * @var UserPrivacySettingRules
      */
     protected UserPrivacySettingRules $rules;
+
+    /**
+     * The privacy setting
+     *
+     * @var UserPrivacySetting
+     */
+    protected UserPrivacySetting $setting;
 
     public function __construct(UserPrivacySetting $setting, UserPrivacySettingRules $rules)
     {
@@ -47,13 +47,9 @@ class UpdateUserPrivacySettingRules extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getRules(): UserPrivacySettingRules
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
-            'rules' => $this->rules->typeSerialize(),
-        ];
+        return $this->rules;
     }
 
     public function getSetting(): UserPrivacySetting
@@ -61,8 +57,12 @@ class UpdateUserPrivacySettingRules extends Update
         return $this->setting;
     }
 
-    public function getRules(): UserPrivacySettingRules
+    public function typeSerialize(): array
     {
-        return $this->rules;
+        return [
+            '@type' => static::TYPE_NAME,
+            'setting' => $this->setting->typeSerialize(),
+            'rules' => $this->rules->typeSerialize(),
+        ];
     }
 }

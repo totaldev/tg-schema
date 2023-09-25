@@ -17,18 +17,18 @@ class RemoveFileFromDownloads extends TdFunction
     public const TYPE_NAME = 'removeFileFromDownloads';
 
     /**
-     * Identifier of the downloaded file
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
      * Pass true to delete the file from the TDLib file cache
      *
      * @var bool
      */
     protected bool $deleteFromCache;
+
+    /**
+     * Identifier of the downloaded file
+     *
+     * @var int
+     */
+    protected int $fileId;
 
     public function __construct(int $fileId, bool $deleteFromCache)
     {
@@ -44,13 +44,9 @@ class RemoveFileFromDownloads extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getDeleteFromCache(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'delete_from_cache' => $this->deleteFromCache,
-        ];
+        return $this->deleteFromCache;
     }
 
     public function getFileId(): int
@@ -58,8 +54,12 @@ class RemoveFileFromDownloads extends TdFunction
         return $this->fileId;
     }
 
-    public function getDeleteFromCache(): bool
+    public function typeSerialize(): array
     {
-        return $this->deleteFromCache;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'delete_from_cache' => $this->deleteFromCache,
+        ];
     }
 }

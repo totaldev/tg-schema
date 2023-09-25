@@ -46,15 +46,6 @@ class UpdateChatPhoto extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'photo' => (isset($this->photo) ? $this->photo : null),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -63,5 +54,14 @@ class UpdateChatPhoto extends Update
     public function getPhoto(): ?ChatPhotoInfo
     {
         return $this->photo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'photo' => (isset($this->photo) ? $this->photo : null),
+        ];
     }
 }

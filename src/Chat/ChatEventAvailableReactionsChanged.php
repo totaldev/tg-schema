@@ -16,23 +16,24 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventAvailableReactionsChanged';
 
     /**
-     * Previous chat available reactions
-     *
-     * @var ChatAvailableReactions
-     */
-    protected ChatAvailableReactions $oldAvailableReactions;
-
-    /**
      * New chat available reactions
      *
      * @var ChatAvailableReactions
      */
     protected ChatAvailableReactions $newAvailableReactions;
 
+    /**
+     * Previous chat available reactions
+     *
+     * @var ChatAvailableReactions
+     */
+    protected ChatAvailableReactions $oldAvailableReactions;
+
     public function __construct(
         ChatAvailableReactions $oldAvailableReactions,
         ChatAvailableReactions $newAvailableReactions,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->oldAvailableReactions = $oldAvailableReactions;
@@ -47,13 +48,9 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewAvailableReactions(): ChatAvailableReactions
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_available_reactions' => $this->oldAvailableReactions->typeSerialize(),
-            'new_available_reactions' => $this->newAvailableReactions->typeSerialize(),
-        ];
+        return $this->newAvailableReactions;
     }
 
     public function getOldAvailableReactions(): ChatAvailableReactions
@@ -61,8 +58,12 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
         return $this->oldAvailableReactions;
     }
 
-    public function getNewAvailableReactions(): ChatAvailableReactions
+    public function typeSerialize(): array
     {
-        return $this->newAvailableReactions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_available_reactions' => $this->oldAvailableReactions->typeSerialize(),
+            'new_available_reactions' => $this->newAvailableReactions->typeSerialize(),
+        ];
     }
 }

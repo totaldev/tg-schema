@@ -20,34 +20,6 @@ class Sticker extends TdObject
     public const TYPE_NAME = 'sticker';
 
     /**
-     * Unique sticker identifier within the set; 0 if none
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Identifier of the sticker set to which the sticker belongs; 0 if none
-     *
-     * @var int
-     */
-    protected int $setId;
-
-    /**
-     * Sticker width; as defined by the sender
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Sticker height; as defined by the sender
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
      * Emoji corresponding to the sticker
      *
      * @var string
@@ -69,11 +41,39 @@ class Sticker extends TdObject
     protected StickerFullType $fullType;
 
     /**
+     * Sticker height; as defined by the sender
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * Unique sticker identifier within the set; 0 if none
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
      * Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
      *
      * @var ClosedVectorPath[]
      */
     protected array $outline;
+
+    /**
+     * Identifier of the sticker set to which the sticker belongs; 0 if none
+     *
+     * @var int
+     */
+    protected int $setId;
+
+    /**
+     * File containing the sticker
+     *
+     * @var File
+     */
+    protected File $sticker;
 
     /**
      * Sticker thumbnail in WEBP or JPEG format; may be null
@@ -83,24 +83,25 @@ class Sticker extends TdObject
     protected ?Thumbnail $thumbnail;
 
     /**
-     * File containing the sticker
+     * Sticker width; as defined by the sender
      *
-     * @var File
+     * @var int
      */
-    protected File $sticker;
+    protected int $width;
 
     public function __construct(
-        int $id,
-        int $setId,
-        int $width,
-        int $height,
-        string $emoji,
-        StickerFormat $format,
+        int             $id,
+        int             $setId,
+        int             $width,
+        int             $height,
+        string          $emoji,
+        StickerFormat   $format,
         StickerFullType $fullType,
-        array $outline,
-        ?Thumbnail $thumbnail,
-        File $sticker,
-    ) {
+        array           $outline,
+        ?Thumbnail      $thumbnail,
+        File            $sticker,
+    )
+    {
         $this->id = $id;
         $this->setId = $setId;
         $this->width = $width;
@@ -129,43 +130,6 @@ class Sticker extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'set_id' => $this->setId,
-            'width' => $this->width,
-            'height' => $this->height,
-            'emoji' => $this->emoji,
-            'format' => $this->format->typeSerialize(),
-            'full_type' => $this->fullType->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->outline),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSetId(): int
-    {
-        return $this->setId;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
     public function getEmoji(): string
     {
         return $this->emoji;
@@ -181,9 +145,29 @@ class Sticker extends TdObject
         return $this->fullType;
     }
 
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getOutline(): array
     {
         return $this->outline;
+    }
+
+    public function getSetId(): int
+    {
+        return $this->setId;
+    }
+
+    public function getSticker(): File
+    {
+        return $this->sticker;
     }
 
     public function getThumbnail(): ?Thumbnail
@@ -191,8 +175,25 @@ class Sticker extends TdObject
         return $this->thumbnail;
     }
 
-    public function getSticker(): File
+    public function getWidth(): int
     {
-        return $this->sticker;
+        return $this->width;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'set_id' => $this->setId,
+            'width' => $this->width,
+            'height' => $this->height,
+            'emoji' => $this->emoji,
+            'format' => $this->format->typeSerialize(),
+            'full_type' => $this->fullType->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->outline),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
     }
 }

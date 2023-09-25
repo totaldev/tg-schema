@@ -17,13 +17,6 @@ class InlineQueryResults extends TdObject
     public const TYPE_NAME = 'inlineQueryResults';
 
     /**
-     * Unique identifier of the inline query
-     *
-     * @var int
-     */
-    protected int $inlineQueryId;
-
-    /**
      * Button to be shown above inline query results; may be null
      *
      * @var InlineQueryResultsButton|null
@@ -31,11 +24,11 @@ class InlineQueryResults extends TdObject
     protected ?InlineQueryResultsButton $button;
 
     /**
-     * Results of the query
+     * Unique identifier of the inline query
      *
-     * @var InlineQueryResult[]
+     * @var int
      */
-    protected array $results;
+    protected int $inlineQueryId;
 
     /**
      * The offset for the next request. If empty, there are no more results
@@ -44,12 +37,20 @@ class InlineQueryResults extends TdObject
      */
     protected string $nextOffset;
 
+    /**
+     * Results of the query
+     *
+     * @var InlineQueryResult[]
+     */
+    protected array $results;
+
     public function __construct(
-        int $inlineQueryId,
+        int                       $inlineQueryId,
         ?InlineQueryResultsButton $button,
-        array $results,
-        string $nextOffset,
-    ) {
+        array                     $results,
+        string                    $nextOffset,
+    )
+    {
         $this->inlineQueryId = $inlineQueryId;
         $this->button = $button;
         $this->results = $results;
@@ -66,6 +67,26 @@ class InlineQueryResults extends TdObject
         );
     }
 
+    public function getButton(): ?InlineQueryResultsButton
+    {
+        return $this->button;
+    }
+
+    public function getInlineQueryId(): int
+    {
+        return $this->inlineQueryId;
+    }
+
+    public function getNextOffset(): string
+    {
+        return $this->nextOffset;
+    }
+
+    public function getResults(): array
+    {
+        return $this->results;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -75,25 +96,5 @@ class InlineQueryResults extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->results),
             'next_offset' => $this->nextOffset,
         ];
-    }
-
-    public function getInlineQueryId(): int
-    {
-        return $this->inlineQueryId;
-    }
-
-    public function getButton(): ?InlineQueryResultsButton
-    {
-        return $this->button;
-    }
-
-    public function getResults(): array
-    {
-        return $this->results;
-    }
-
-    public function getNextOffset(): string
-    {
-        return $this->nextOffset;
     }
 }

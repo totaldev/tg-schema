@@ -9,32 +9,12 @@ namespace Totaldev\TgSchema\Language;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
+ * A language pack string which has different forms based on the number of some object it mentions. See
+ * https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
  */
 class LanguagePackStringValuePluralized extends LanguagePackStringValue
 {
     public const TYPE_NAME = 'languagePackStringValuePluralized';
-
-    /**
-     * Value for zero objects
-     *
-     * @var string
-     */
-    protected string $zeroValue;
-
-    /**
-     * Value for one object
-     *
-     * @var string
-     */
-    protected string $oneValue;
-
-    /**
-     * Value for two objects
-     *
-     * @var string
-     */
-    protected string $twoValue;
 
     /**
      * Value for few objects
@@ -51,11 +31,32 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
     protected string $manyValue;
 
     /**
+     * Value for one object
+     *
+     * @var string
+     */
+    protected string $oneValue;
+
+    /**
      * Default value
      *
      * @var string
      */
     protected string $otherValue;
+
+    /**
+     * Value for two objects
+     *
+     * @var string
+     */
+    protected string $twoValue;
+
+    /**
+     * Value for zero objects
+     *
+     * @var string
+     */
+    protected string $zeroValue;
 
     public function __construct(
         string $zeroValue,
@@ -64,7 +65,8 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
         string $fewValue,
         string $manyValue,
         string $otherValue,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->zeroValue = $zeroValue;
@@ -87,6 +89,36 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
         );
     }
 
+    public function getFewValue(): string
+    {
+        return $this->fewValue;
+    }
+
+    public function getManyValue(): string
+    {
+        return $this->manyValue;
+    }
+
+    public function getOneValue(): string
+    {
+        return $this->oneValue;
+    }
+
+    public function getOtherValue(): string
+    {
+        return $this->otherValue;
+    }
+
+    public function getTwoValue(): string
+    {
+        return $this->twoValue;
+    }
+
+    public function getZeroValue(): string
+    {
+        return $this->zeroValue;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -98,35 +130,5 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
             'many_value' => $this->manyValue,
             'other_value' => $this->otherValue,
         ];
-    }
-
-    public function getZeroValue(): string
-    {
-        return $this->zeroValue;
-    }
-
-    public function getOneValue(): string
-    {
-        return $this->oneValue;
-    }
-
-    public function getTwoValue(): string
-    {
-        return $this->twoValue;
-    }
-
-    public function getFewValue(): string
-    {
-        return $this->fewValue;
-    }
-
-    public function getManyValue(): string
-    {
-        return $this->manyValue;
-    }
-
-    public function getOtherValue(): string
-    {
-        return $this->otherValue;
     }
 }

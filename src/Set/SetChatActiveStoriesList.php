@@ -45,15 +45,6 @@ class SetChatActiveStoriesList extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'story_list' => $this->storyList->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class SetChatActiveStoriesList extends TdFunction
     public function getStoryList(): StoryList
     {
         return $this->storyList;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'story_list' => $this->storyList->typeSerialize(),
+        ];
     }
 }

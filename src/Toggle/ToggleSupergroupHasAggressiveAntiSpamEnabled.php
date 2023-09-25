@@ -17,18 +17,18 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupHasAggressiveAntiSpamEnabled';
 
     /**
-     * The identifier of the supergroup, which isn't a broadcast group
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * The new value of has_aggressive_anti_spam_enabled
      *
      * @var bool
      */
     protected bool $hasAggressiveAntiSpamEnabled;
+
+    /**
+     * The identifier of the supergroup, which isn't a broadcast group
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $hasAggressiveAntiSpamEnabled)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getHasAggressiveAntiSpamEnabled(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'has_aggressive_anti_spam_enabled' => $this->hasAggressiveAntiSpamEnabled,
-        ];
+        return $this->hasAggressiveAntiSpamEnabled;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getHasAggressiveAntiSpamEnabled(): bool
+    public function typeSerialize(): array
     {
-        return $this->hasAggressiveAntiSpamEnabled;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'has_aggressive_anti_spam_enabled' => $this->hasAggressiveAntiSpamEnabled,
+        ];
     }
 }

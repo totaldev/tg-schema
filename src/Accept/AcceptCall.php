@@ -45,15 +45,6 @@ class AcceptCall extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'protocol' => $this->protocol->typeSerialize(),
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
@@ -62,5 +53,14 @@ class AcceptCall extends TdFunction
     public function getProtocol(): CallProtocol
     {
         return $this->protocol;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'call_id' => $this->callId,
+            'protocol' => $this->protocol->typeSerialize(),
+        ];
     }
 }

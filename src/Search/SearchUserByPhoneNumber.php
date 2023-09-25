@@ -35,16 +35,16 @@ class SearchUserByPhoneNumber extends TdFunction
         );
     }
 
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'phone_number' => $this->phoneNumber,
         ];
-    }
-
-    public function getPhoneNumber(): string
-    {
-        return $this->phoneNumber;
     }
 }

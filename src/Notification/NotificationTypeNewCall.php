@@ -36,16 +36,16 @@ class NotificationTypeNewCall extends NotificationType
         );
     }
 
+    public function getCallId(): int
+    {
+        return $this->callId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'call_id' => $this->callId,
         ];
-    }
-
-    public function getCallId(): int
-    {
-        return $this->callId;
     }
 }

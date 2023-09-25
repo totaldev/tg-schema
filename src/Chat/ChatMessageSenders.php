@@ -35,16 +35,16 @@ class ChatMessageSenders extends TdObject
         );
     }
 
+    public function getSenders(): array
+    {
+        return $this->senders;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->senders),
         ];
-    }
-
-    public function getSenders(): array
-    {
-        return $this->senders;
     }
 }

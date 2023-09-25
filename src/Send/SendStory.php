@@ -21,18 +21,12 @@ class SendStory extends TdFunction
     public const TYPE_NAME = 'sendStory';
 
     /**
-     * Identifier of the chat that will post the story
+     * Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and
+     * 86400 otherwise
      *
      * @var int
      */
-    protected int $chatId;
-
-    /**
-     * Content of the story
-     *
-     * @var InputStoryContent
-     */
-    protected InputStoryContent $content;
+    protected int $activePeriod;
 
     /**
      * Clickable rectangle areas to be shown on the story media; pass null if none
@@ -49,18 +43,18 @@ class SendStory extends TdFunction
     protected FormattedText $caption;
 
     /**
-     * The privacy settings for the story
-     *
-     * @var StoryPrivacySettings
-     */
-    protected StoryPrivacySettings $privacySettings;
-
-    /**
-     * Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+     * Identifier of the chat that will post the story
      *
      * @var int
      */
-    protected int $activePeriod;
+    protected int $chatId;
+
+    /**
+     * Content of the story
+     *
+     * @var InputStoryContent
+     */
+    protected InputStoryContent $content;
 
     /**
      * Pass true to keep the story accessible after expiration
@@ -70,6 +64,13 @@ class SendStory extends TdFunction
     protected bool $isPinned;
 
     /**
+     * The privacy settings for the story
+     *
+     * @var StoryPrivacySettings
+     */
+    protected StoryPrivacySettings $privacySettings;
+
+    /**
      * Pass true if the content of the story must be protected from forwarding and screenshotting
      *
      * @var bool
@@ -77,15 +78,16 @@ class SendStory extends TdFunction
     protected bool $protectContent;
 
     public function __construct(
-        int $chatId,
-        InputStoryContent $content,
-        InputStoryAreas $areas,
-        FormattedText $caption,
+        int                  $chatId,
+        InputStoryContent    $content,
+        InputStoryAreas      $areas,
+        FormattedText        $caption,
         StoryPrivacySettings $privacySettings,
-        int $activePeriod,
-        bool $isPinned,
-        bool $protectContent,
-    ) {
+        int                  $activePeriod,
+        bool                 $isPinned,
+        bool                 $protectContent,
+    )
+    {
         $this->chatId = $chatId;
         $this->content = $content;
         $this->areas = $areas;
@@ -110,6 +112,46 @@ class SendStory extends TdFunction
         );
     }
 
+    public function getActivePeriod(): int
+    {
+        return $this->activePeriod;
+    }
+
+    public function getAreas(): InputStoryAreas
+    {
+        return $this->areas;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getContent(): InputStoryContent
+    {
+        return $this->content;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getPrivacySettings(): StoryPrivacySettings
+    {
+        return $this->privacySettings;
+    }
+
+    public function getProtectContent(): bool
+    {
+        return $this->protectContent;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -123,45 +165,5 @@ class SendStory extends TdFunction
             'is_pinned' => $this->isPinned,
             'protect_content' => $this->protectContent,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getContent(): InputStoryContent
-    {
-        return $this->content;
-    }
-
-    public function getAreas(): InputStoryAreas
-    {
-        return $this->areas;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
-    }
-
-    public function getPrivacySettings(): StoryPrivacySettings
-    {
-        return $this->privacySettings;
-    }
-
-    public function getActivePeriod(): int
-    {
-        return $this->activePeriod;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
-    }
-
-    public function getProtectContent(): bool
-    {
-        return $this->protectContent;
     }
 }

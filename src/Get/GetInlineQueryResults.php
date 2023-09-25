@@ -32,11 +32,11 @@ class GetInlineQueryResults extends TdFunction
     protected int $chatId;
 
     /**
-     * Location of the user; pass null if unknown or the bot doesn't need user's location
+     * Offset of the first entry to return; use empty string to get the first chunk of results
      *
-     * @var Location
+     * @var string
      */
-    protected Location $userLocation;
+    protected string $offset;
 
     /**
      * Text of the query
@@ -46,11 +46,11 @@ class GetInlineQueryResults extends TdFunction
     protected string $query;
 
     /**
-     * Offset of the first entry to return; use empty string to get the first chunk of results
+     * Location of the user; pass null if unknown or the bot doesn't need user's location
      *
-     * @var string
+     * @var Location
      */
-    protected string $offset;
+    protected Location $userLocation;
 
     public function __construct(int $botUserId, int $chatId, Location $userLocation, string $query, string $offset)
     {
@@ -72,18 +72,6 @@ class GetInlineQueryResults extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'chat_id' => $this->chatId,
-            'user_location' => $this->userLocation->typeSerialize(),
-            'query' => $this->query,
-            'offset' => $this->offset,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -94,9 +82,9 @@ class GetInlineQueryResults extends TdFunction
         return $this->chatId;
     }
 
-    public function getUserLocation(): Location
+    public function getOffset(): string
     {
-        return $this->userLocation;
+        return $this->offset;
     }
 
     public function getQuery(): string
@@ -104,8 +92,20 @@ class GetInlineQueryResults extends TdFunction
         return $this->query;
     }
 
-    public function getOffset(): string
+    public function getUserLocation(): Location
     {
-        return $this->offset;
+        return $this->userLocation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'chat_id' => $this->chatId,
+            'user_location' => $this->userLocation->typeSerialize(),
+            'query' => $this->query,
+            'offset' => $this->offset,
+        ];
     }
 }

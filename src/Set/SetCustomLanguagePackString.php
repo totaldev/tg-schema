@@ -45,15 +45,6 @@ class SetCustomLanguagePackString extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'language_pack_id' => $this->languagePackId,
-            'new_string' => $this->newString->typeSerialize(),
-        ];
-    }
-
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
@@ -62,5 +53,14 @@ class SetCustomLanguagePackString extends TdFunction
     public function getNewString(): LanguagePackString
     {
         return $this->newString;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'language_pack_id' => $this->languagePackId,
+            'new_string' => $this->newString->typeSerialize(),
+        ];
     }
 }

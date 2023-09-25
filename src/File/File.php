@@ -19,25 +19,18 @@ class File extends TdObject
     public const TYPE_NAME = 'file';
 
     /**
-     * Unique file identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * File size, in bytes; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $size;
-
-    /**
      * Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
      *
      * @var int
      */
     protected int $expectedSize;
+
+    /**
+     * Unique file identifier
+     *
+     * @var int
+     */
+    protected int $id;
 
     /**
      * Information about the local copy of the file
@@ -52,6 +45,13 @@ class File extends TdObject
      * @var RemoteFile
      */
     protected RemoteFile $remote;
+
+    /**
+     * File size, in bytes; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $size;
 
     public function __construct(int $id, int $size, int $expectedSize, LocalFile $local, RemoteFile $remote)
     {
@@ -73,31 +73,14 @@ class File extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getExpectedSize(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'size' => $this->size,
-            'expected_size' => $this->expectedSize,
-            'local' => $this->local->typeSerialize(),
-            'remote' => $this->remote->typeSerialize(),
-        ];
+        return $this->expectedSize;
     }
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    public function getExpectedSize(): int
-    {
-        return $this->expectedSize;
     }
 
     public function getLocal(): LocalFile
@@ -108,5 +91,22 @@ class File extends TdObject
     public function getRemote(): RemoteFile
     {
         return $this->remote;
+    }
+
+    public function getSize(): int
+    {
+        return $this->size;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'size' => $this->size,
+            'expected_size' => $this->expectedSize,
+            'local' => $this->local->typeSerialize(),
+            'remote' => $this->remote->typeSerialize(),
+        ];
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+ * Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can
+ * be applied to the chat
  */
 class DeleteChatHistory extends TdFunction
 {
@@ -53,16 +54,6 @@ class DeleteChatHistory extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'remove_from_chat_list' => $this->removeFromChatList,
-            'revoke' => $this->revoke,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +67,15 @@ class DeleteChatHistory extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'remove_from_chat_list' => $this->removeFromChatList,
+            'revoke' => $this->revoke,
+        ];
     }
 }

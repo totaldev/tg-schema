@@ -25,11 +25,26 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
     protected string $id;
 
     /**
-     * Venue result
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation,
+     * inputMessageVenue or inputMessageContact
      *
-     * @var Venue
+     * @var InputMessageContent
      */
-    protected Venue $venue;
+    protected InputMessageContent $inputMessageContent;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * Thumbnail height, if known
+     *
+     * @var int
+     */
+    protected int $thumbnailHeight;
 
     /**
      * URL of the result thumbnail, if it exists
@@ -46,35 +61,22 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
     protected int $thumbnailWidth;
 
     /**
-     * Thumbnail height, if known
+     * Venue result
      *
-     * @var int
+     * @var Venue
      */
-    protected int $thumbnailHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
+    protected Venue $venue;
 
     public function __construct(
-        string $id,
-        Venue $venue,
-        string $thumbnailUrl,
-        int $thumbnailWidth,
-        int $thumbnailHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        Venue               $venue,
+        string              $thumbnailUrl,
+        int                 $thumbnailWidth,
+        int                 $thumbnailHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -99,28 +101,24 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'venue' => $this->venue->typeSerialize(),
-            'thumbnail_url' => $this->thumbnailUrl,
-            'thumbnail_width' => $this->thumbnailWidth,
-            'thumbnail_height' => $this->thumbnailHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getVenue(): Venue
+    public function getInputMessageContent(): InputMessageContent
     {
-        return $this->venue;
+        return $this->inputMessageContent;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailHeight(): int
+    {
+        return $this->thumbnailHeight;
     }
 
     public function getThumbnailUrl(): string
@@ -133,18 +131,22 @@ class InputInlineQueryResultVenue extends InputInlineQueryResult
         return $this->thumbnailWidth;
     }
 
-    public function getThumbnailHeight(): int
+    public function getVenue(): Venue
     {
-        return $this->thumbnailHeight;
+        return $this->venue;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function typeSerialize(): array
     {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'venue' => $this->venue->typeSerialize(),
+            'thumbnail_url' => $this->thumbnailUrl,
+            'thumbnail_width' => $this->thumbnailWidth,
+            'thumbnail_height' => $this->thumbnailHeight,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 }

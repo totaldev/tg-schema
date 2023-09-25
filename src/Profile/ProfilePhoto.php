@@ -19,32 +19,11 @@ class ProfilePhoto extends TdObject
     public const TYPE_NAME = 'profilePhoto';
 
     /**
-     * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
-     *
-     * @var File
-     */
-    protected File $small;
-
-    /**
      * A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
      *
      * @var File
      */
     protected File $big;
-
-    /**
-     * User profile photo minithumbnail; may be null
-     *
-     * @var Minithumbnail|null
-     */
-    protected ?Minithumbnail $minithumbnail;
 
     /**
      * True, if the photo has animated variant
@@ -54,20 +33,42 @@ class ProfilePhoto extends TdObject
     protected bool $hasAnimation;
 
     /**
+     * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
      * True, if the photo is visible only for the current user
      *
      * @var bool
      */
     protected bool $isPersonal;
 
+    /**
+     * User profile photo minithumbnail; may be null
+     *
+     * @var Minithumbnail|null
+     */
+    protected ?Minithumbnail $minithumbnail;
+
+    /**
+     * A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
+     *
+     * @var File
+     */
+    protected File $small;
+
     public function __construct(
-        int $id,
-        File $small,
-        File $big,
+        int            $id,
+        File           $small,
+        File           $big,
         ?Minithumbnail $minithumbnail,
-        bool $hasAnimation,
-        bool $isPersonal,
-    ) {
+        bool           $hasAnimation,
+        bool           $isPersonal,
+    )
+    {
         $this->id = $id;
         $this->small = $small;
         $this->big = $big;
@@ -88,6 +89,36 @@ class ProfilePhoto extends TdObject
         );
     }
 
+    public function getBig(): File
+    {
+        return $this->big;
+    }
+
+    public function getHasAnimation(): bool
+    {
+        return $this->hasAnimation;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsPersonal(): bool
+    {
+        return $this->isPersonal;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getSmall(): File
+    {
+        return $this->small;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +130,5 @@ class ProfilePhoto extends TdObject
             'has_animation' => $this->hasAnimation,
             'is_personal' => $this->isPersonal,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSmall(): File
-    {
-        return $this->small;
-    }
-
-    public function getBig(): File
-    {
-        return $this->big;
-    }
-
-    public function getMinithumbnail(): ?Minithumbnail
-    {
-        return $this->minithumbnail;
-    }
-
-    public function getHasAnimation(): bool
-    {
-        return $this->hasAnimation;
-    }
-
-    public function getIsPersonal(): bool
-    {
-        return $this->isPersonal;
     }
 }

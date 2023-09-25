@@ -37,16 +37,16 @@ class PassportElementAddress extends PassportElement
         );
     }
 
+    public function getAddress(): Address
+    {
+        return $this->address;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'address' => $this->address->typeSerialize(),
         ];
-    }
-
-    public function getAddress(): Address
-    {
-        return $this->address;
     }
 }

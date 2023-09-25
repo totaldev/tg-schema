@@ -37,16 +37,16 @@ class StickerFullTypeMask extends StickerFullType
         );
     }
 
+    public function getMaskPosition(): ?MaskPosition
+    {
+        return $this->maskPosition;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'mask_position' => (isset($this->maskPosition) ? $this->maskPosition : null),
         ];
-    }
-
-    public function getMaskPosition(): ?MaskPosition
-    {
-        return $this->maskPosition;
     }
 }

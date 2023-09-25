@@ -24,18 +24,19 @@ class CreateChatFolderInviteLink extends TdFunction
     protected int $chatFolderId;
 
     /**
+     * Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically
+     * converted to supergroups before link creation
+     *
+     * @var int[]
+     */
+    protected array $chatIds;
+
+    /**
      * Name of the link; 0-32 characters
      *
      * @var string
      */
     protected string $name;
-
-    /**
-     * Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
 
     public function __construct(int $chatFolderId, string $name, array $chatIds)
     {
@@ -53,6 +54,21 @@ class CreateChatFolderInviteLink extends TdFunction
         );
     }
 
+    public function getChatFolderId(): int
+    {
+        return $this->chatFolderId;
+    }
+
+    public function getChatIds(): array
+    {
+        return $this->chatIds;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +77,5 @@ class CreateChatFolderInviteLink extends TdFunction
             'name' => $this->name,
             'chat_ids' => $this->chatIds,
         ];
-    }
-
-    public function getChatFolderId(): int
-    {
-        return $this->chatFolderId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getChatIds(): array
-    {
-        return $this->chatIds;
     }
 }

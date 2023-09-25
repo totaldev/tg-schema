@@ -44,15 +44,6 @@ class TemporaryPasswordState extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'has_password' => $this->hasPassword,
-            'valid_for' => $this->validFor,
-        ];
-    }
-
     public function getHasPassword(): bool
     {
         return $this->hasPassword;
@@ -61,5 +52,14 @@ class TemporaryPasswordState extends TdObject
     public function getValidFor(): int
     {
         return $this->validFor;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'has_password' => $this->hasPassword,
+            'valid_for' => $this->validFor,
+        ];
     }
 }

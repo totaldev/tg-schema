@@ -53,16 +53,6 @@ class GroupCallStream extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'channel_id' => $this->channelId,
-            'scale' => $this->scale,
-            'time_offset' => $this->timeOffset,
-        ];
-    }
-
     public function getChannelId(): int
     {
         return $this->channelId;
@@ -76,5 +66,15 @@ class GroupCallStream extends TdObject
     public function getTimeOffset(): int
     {
         return $this->timeOffset;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'channel_id' => $this->channelId,
+            'scale' => $this->scale,
+            'time_offset' => $this->timeOffset,
+        ];
     }
 }

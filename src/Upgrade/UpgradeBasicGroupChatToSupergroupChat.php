@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+ * Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator
+ * privileges. Deactivates the original basic group
  */
 class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
 {
@@ -35,16 +36,16 @@ class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

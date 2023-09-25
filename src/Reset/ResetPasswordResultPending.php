@@ -36,16 +36,16 @@ class ResetPasswordResultPending extends ResetPasswordResult
         );
     }
 
+    public function getPendingResetDate(): int
+    {
+        return $this->pendingResetDate;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'pending_reset_date' => $this->pendingResetDate,
         ];
-    }
-
-    public function getPendingResetDate(): int
-    {
-        return $this->pendingResetDate;
     }
 }

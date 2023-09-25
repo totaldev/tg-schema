@@ -18,18 +18,18 @@ class GetGroupCallStreamSegment extends TdFunction
     public const TYPE_NAME = 'getGroupCallStreamSegment';
 
     /**
+     * Identifier of an audio/video channel to get as received from tgcalls
+     *
+     * @var int
+     */
+    protected int $channelId;
+
+    /**
      * Group call identifier
      *
      * @var int
      */
     protected int $groupCallId;
-
-    /**
-     * Point in time when the stream segment begins; Unix timestamp in milliseconds
-     *
-     * @var int
-     */
-    protected int $timeOffset;
 
     /**
      * Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
@@ -39,11 +39,11 @@ class GetGroupCallStreamSegment extends TdFunction
     protected int $scale;
 
     /**
-     * Identifier of an audio/video channel to get as received from tgcalls
+     * Point in time when the stream segment begins; Unix timestamp in milliseconds
      *
      * @var int
      */
-    protected int $channelId;
+    protected int $timeOffset;
 
     /**
      * Video quality as received from tgcalls; pass null to get the worst available quality
@@ -53,12 +53,13 @@ class GetGroupCallStreamSegment extends TdFunction
     protected GroupCallVideoQuality $videoQuality;
 
     public function __construct(
-        int $groupCallId,
-        int $timeOffset,
-        int $scale,
-        int $channelId,
+        int                   $groupCallId,
+        int                   $timeOffset,
+        int                   $scale,
+        int                   $channelId,
         GroupCallVideoQuality $videoQuality,
-    ) {
+    )
+    {
         $this->groupCallId = $groupCallId;
         $this->timeOffset = $timeOffset;
         $this->scale = $scale;
@@ -77,6 +78,31 @@ class GetGroupCallStreamSegment extends TdFunction
         );
     }
 
+    public function getChannelId(): int
+    {
+        return $this->channelId;
+    }
+
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getScale(): int
+    {
+        return $this->scale;
+    }
+
+    public function getTimeOffset(): int
+    {
+        return $this->timeOffset;
+    }
+
+    public function getVideoQuality(): GroupCallVideoQuality
+    {
+        return $this->videoQuality;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -87,30 +113,5 @@ class GetGroupCallStreamSegment extends TdFunction
             'channel_id' => $this->channelId,
             'video_quality' => $this->videoQuality->typeSerialize(),
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getTimeOffset(): int
-    {
-        return $this->timeOffset;
-    }
-
-    public function getScale(): int
-    {
-        return $this->scale;
-    }
-
-    public function getChannelId(): int
-    {
-        return $this->channelId;
-    }
-
-    public function getVideoQuality(): GroupCallVideoQuality
-    {
-        return $this->videoQuality;
     }
 }

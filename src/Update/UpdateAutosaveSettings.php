@@ -47,15 +47,6 @@ class UpdateAutosaveSettings extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'settings' => (isset($this->settings) ? $this->settings : null),
-        ];
-    }
-
     public function getScope(): AutosaveSettingsScope
     {
         return $this->scope;
@@ -64,5 +55,14 @@ class UpdateAutosaveSettings extends Update
     public function getSettings(): ?ScopeAutosaveSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'scope' => $this->scope->typeSerialize(),
+            'settings' => (isset($this->settings) ? $this->settings : null),
+        ];
     }
 }

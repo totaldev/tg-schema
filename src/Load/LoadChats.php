@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
+ * Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair
+ * (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
  */
 class LoadChats extends TdFunction
 {
@@ -25,7 +26,8 @@ class LoadChats extends TdFunction
     protected ChatList $chatList;
 
     /**
-     * The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+     * The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified
+     * limit, even if the end of the list is not reached
      *
      * @var int
      */
@@ -45,15 +47,6 @@ class LoadChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatList(): ChatList
     {
         return $this->chatList;
@@ -62,5 +55,14 @@ class LoadChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 }

@@ -45,15 +45,6 @@ class UpdateStoryStealthMode extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'active_until_date' => $this->activeUntilDate,
-            'cooldown_until_date' => $this->cooldownUntilDate,
-        ];
-    }
-
     public function getActiveUntilDate(): int
     {
         return $this->activeUntilDate;
@@ -62,5 +53,14 @@ class UpdateStoryStealthMode extends Update
     public function getCooldownUntilDate(): int
     {
         return $this->cooldownUntilDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'active_until_date' => $this->activeUntilDate,
+            'cooldown_until_date' => $this->cooldownUntilDate,
+        ];
     }
 }

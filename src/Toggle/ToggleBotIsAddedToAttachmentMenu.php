@@ -17,6 +17,13 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
     public const TYPE_NAME = 'toggleBotIsAddedToAttachmentMenu';
 
     /**
+     * Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
+     *
+     * @var bool
+     */
+    protected bool $allowWriteAccess;
+
+    /**
      * Bot's user identifier
      *
      * @var int
@@ -29,13 +36,6 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
      * @var bool
      */
     protected bool $isAdded;
-
-    /**
-     * Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
-     *
-     * @var bool
-     */
-    protected bool $allowWriteAccess;
 
     public function __construct(int $botUserId, bool $isAdded, bool $allowWriteAccess)
     {
@@ -53,14 +53,9 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowWriteAccess(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'is_added' => $this->isAdded,
-            'allow_write_access' => $this->allowWriteAccess,
-        ];
+        return $this->allowWriteAccess;
     }
 
     public function getBotUserId(): int
@@ -73,8 +68,13 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
         return $this->isAdded;
     }
 
-    public function getAllowWriteAccess(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowWriteAccess;
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'is_added' => $this->isAdded,
+            'allow_write_access' => $this->allowWriteAccess,
+        ];
     }
 }

@@ -17,18 +17,11 @@ class InputMessagePoll extends InputMessageContent
     public const TYPE_NAME = 'inputMessagePoll';
 
     /**
-     * Poll question; 1-255 characters (up to 300 characters for bots)
+     * Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
      *
-     * @var string
+     * @var int
      */
-    protected string $question;
-
-    /**
-     * List of poll answer options, 2-10 strings 1-100 characters each
-     *
-     * @var string[]
-     */
-    protected array $options;
+    protected int $closeDate;
 
     /**
      * True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
@@ -38,11 +31,11 @@ class InputMessagePoll extends InputMessageContent
     protected bool $isAnonymous;
 
     /**
-     * Type of the poll
+     * True, if the poll needs to be sent already closed; for bots only
      *
-     * @var PollType
+     * @var bool
      */
-    protected PollType $type;
+    protected bool $isClosed;
 
     /**
      * Amount of time the poll will be active after creation, in seconds; for bots only
@@ -52,28 +45,36 @@ class InputMessagePoll extends InputMessageContent
     protected int $openPeriod;
 
     /**
-     * Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
+     * List of poll answer options, 2-10 strings 1-100 characters each
      *
-     * @var int
+     * @var string[]
      */
-    protected int $closeDate;
+    protected array $options;
 
     /**
-     * True, if the poll needs to be sent already closed; for bots only
+     * Poll question; 1-255 characters (up to 300 characters for bots)
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isClosed;
+    protected string $question;
+
+    /**
+     * Type of the poll
+     *
+     * @var PollType
+     */
+    protected PollType $type;
 
     public function __construct(
-        string $question,
-        array $options,
-        bool $isAnonymous,
+        string   $question,
+        array    $options,
+        bool     $isAnonymous,
         PollType $type,
-        int $openPeriod,
-        int $closeDate,
-        bool $isClosed,
-    ) {
+        int      $openPeriod,
+        int      $closeDate,
+        bool     $isClosed,
+    )
+    {
         parent::__construct();
 
         $this->question = $question;
@@ -98,6 +99,41 @@ class InputMessagePoll extends InputMessageContent
         );
     }
 
+    public function getCloseDate(): int
+    {
+        return $this->closeDate;
+    }
+
+    public function getIsAnonymous(): bool
+    {
+        return $this->isAnonymous;
+    }
+
+    public function getIsClosed(): bool
+    {
+        return $this->isClosed;
+    }
+
+    public function getOpenPeriod(): int
+    {
+        return $this->openPeriod;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
+
+    public function getType(): PollType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -110,40 +146,5 @@ class InputMessagePoll extends InputMessageContent
             'close_date' => $this->closeDate,
             'is_closed' => $this->isClosed,
         ];
-    }
-
-    public function getQuestion(): string
-    {
-        return $this->question;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function getIsAnonymous(): bool
-    {
-        return $this->isAnonymous;
-    }
-
-    public function getType(): PollType
-    {
-        return $this->type;
-    }
-
-    public function getOpenPeriod(): int
-    {
-        return $this->openPeriod;
-    }
-
-    public function getCloseDate(): int
-    {
-        return $this->closeDate;
-    }
-
-    public function getIsClosed(): bool
-    {
-        return $this->isClosed;
     }
 }

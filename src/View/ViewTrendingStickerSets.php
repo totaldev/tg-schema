@@ -35,16 +35,16 @@ class ViewTrendingStickerSets extends TdFunction
         );
     }
 
+    public function getStickerSetIds(): array
+    {
+        return $this->stickerSetIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker_set_ids' => $this->stickerSetIds,
         ];
-    }
-
-    public function getStickerSetIds(): array
-    {
-        return $this->stickerSetIds;
     }
 }

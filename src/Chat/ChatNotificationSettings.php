@@ -17,95 +17,11 @@ class ChatNotificationSettings extends TdObject
     public const TYPE_NAME = 'chatNotificationSettings';
 
     /**
-     * If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
+     * If true, notifications for messages with mentions will be created as for an ordinary unread message
      *
      * @var bool
      */
-    protected bool $useDefaultMuteFor;
-
-    /**
-     * Time left before notifications will be unmuted, in seconds
-     *
-     * @var int
-     */
-    protected int $muteFor;
-
-    /**
-     * If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
-     *
-     * @var bool
-     */
-    protected bool $useDefaultSound;
-
-    /**
-     * Identifier of the notification sound to be played for messages; 0 if sound is disabled
-     *
-     * @var int
-     */
-    protected int $soundId;
-
-    /**
-     * If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
-     *
-     * @var bool
-     */
-    protected bool $useDefaultShowPreview;
-
-    /**
-     * True, if message content must be displayed in notifications
-     *
-     * @var bool
-     */
-    protected bool $showPreview;
-
-    /**
-     * If true, mute_stories is ignored and the value for the relevant type of chat is used instead
-     *
-     * @var bool
-     */
-    protected bool $useDefaultMuteStories;
-
-    /**
-     * True, if story notifications are disabled for the chat
-     *
-     * @var bool
-     */
-    protected bool $muteStories;
-
-    /**
-     * If true, the value for the relevant type of chat is used instead of story_sound_id
-     *
-     * @var bool
-     */
-    protected bool $useDefaultStorySound;
-
-    /**
-     * Identifier of the notification sound to be played for stories; 0 if sound is disabled
-     *
-     * @var int
-     */
-    protected int $storySoundId;
-
-    /**
-     * If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
-     *
-     * @var bool
-     */
-    protected bool $useDefaultShowStorySender;
-
-    /**
-     * True, if the sender of stories must be displayed in notifications
-     *
-     * @var bool
-     */
-    protected bool $showStorySender;
-
-    /**
-     * If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
-     *
-     * @var bool
-     */
-    protected bool $useDefaultDisablePinnedMessageNotifications;
+    protected bool $disableMentionNotifications;
 
     /**
      * If true, notifications for incoming pinned messages will be created as for an ordinary unread message
@@ -115,6 +31,48 @@ class ChatNotificationSettings extends TdObject
     protected bool $disablePinnedMessageNotifications;
 
     /**
+     * Time left before notifications will be unmuted, in seconds
+     *
+     * @var int
+     */
+    protected int $muteFor;
+
+    /**
+     * True, if story notifications are disabled for the chat
+     *
+     * @var bool
+     */
+    protected bool $muteStories;
+
+    /**
+     * True, if message content must be displayed in notifications
+     *
+     * @var bool
+     */
+    protected bool $showPreview;
+
+    /**
+     * True, if the sender of stories must be displayed in notifications
+     *
+     * @var bool
+     */
+    protected bool $showStorySender;
+
+    /**
+     * Identifier of the notification sound to be played for messages; 0 if sound is disabled
+     *
+     * @var int
+     */
+    protected int $soundId;
+
+    /**
+     * Identifier of the notification sound to be played for stories; 0 if sound is disabled
+     *
+     * @var int
+     */
+    protected int $storySoundId;
+
+    /**
      * If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
      *
      * @var bool
@@ -122,30 +80,73 @@ class ChatNotificationSettings extends TdObject
     protected bool $useDefaultDisableMentionNotifications;
 
     /**
-     * If true, notifications for messages with mentions will be created as for an ordinary unread message
+     * If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
      *
      * @var bool
      */
-    protected bool $disableMentionNotifications;
+    protected bool $useDefaultDisablePinnedMessageNotifications;
+
+    /**
+     * If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
+     *
+     * @var bool
+     */
+    protected bool $useDefaultMuteFor;
+
+    /**
+     * If true, mute_stories is ignored and the value for the relevant type of chat is used instead
+     *
+     * @var bool
+     */
+    protected bool $useDefaultMuteStories;
+
+    /**
+     * If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
+     *
+     * @var bool
+     */
+    protected bool $useDefaultShowPreview;
+
+    /**
+     * If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
+     *
+     * @var bool
+     */
+    protected bool $useDefaultShowStorySender;
+
+    /**
+     * If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
+     *
+     * @var bool
+     */
+    protected bool $useDefaultSound;
+
+    /**
+     * If true, the value for the relevant type of chat is used instead of story_sound_id
+     *
+     * @var bool
+     */
+    protected bool $useDefaultStorySound;
 
     public function __construct(
         bool $useDefaultMuteFor,
-        int $muteFor,
+        int  $muteFor,
         bool $useDefaultSound,
-        int $soundId,
+        int  $soundId,
         bool $useDefaultShowPreview,
         bool $showPreview,
         bool $useDefaultMuteStories,
         bool $muteStories,
         bool $useDefaultStorySound,
-        int $storySoundId,
+        int  $storySoundId,
         bool $useDefaultShowStorySender,
         bool $showStorySender,
         bool $useDefaultDisablePinnedMessageNotifications,
         bool $disablePinnedMessageNotifications,
         bool $useDefaultDisableMentionNotifications,
         bool $disableMentionNotifications,
-    ) {
+    )
+    {
         $this->useDefaultMuteFor = $useDefaultMuteFor;
         $this->muteFor = $muteFor;
         $this->useDefaultSound = $useDefaultSound;
@@ -186,6 +187,86 @@ class ChatNotificationSettings extends TdObject
         );
     }
 
+    public function getDisableMentionNotifications(): bool
+    {
+        return $this->disableMentionNotifications;
+    }
+
+    public function getDisablePinnedMessageNotifications(): bool
+    {
+        return $this->disablePinnedMessageNotifications;
+    }
+
+    public function getMuteFor(): int
+    {
+        return $this->muteFor;
+    }
+
+    public function getMuteStories(): bool
+    {
+        return $this->muteStories;
+    }
+
+    public function getShowPreview(): bool
+    {
+        return $this->showPreview;
+    }
+
+    public function getShowStorySender(): bool
+    {
+        return $this->showStorySender;
+    }
+
+    public function getSoundId(): int
+    {
+        return $this->soundId;
+    }
+
+    public function getStorySoundId(): int
+    {
+        return $this->storySoundId;
+    }
+
+    public function getUseDefaultDisableMentionNotifications(): bool
+    {
+        return $this->useDefaultDisableMentionNotifications;
+    }
+
+    public function getUseDefaultDisablePinnedMessageNotifications(): bool
+    {
+        return $this->useDefaultDisablePinnedMessageNotifications;
+    }
+
+    public function getUseDefaultMuteFor(): bool
+    {
+        return $this->useDefaultMuteFor;
+    }
+
+    public function getUseDefaultMuteStories(): bool
+    {
+        return $this->useDefaultMuteStories;
+    }
+
+    public function getUseDefaultShowPreview(): bool
+    {
+        return $this->useDefaultShowPreview;
+    }
+
+    public function getUseDefaultShowStorySender(): bool
+    {
+        return $this->useDefaultShowStorySender;
+    }
+
+    public function getUseDefaultSound(): bool
+    {
+        return $this->useDefaultSound;
+    }
+
+    public function getUseDefaultStorySound(): bool
+    {
+        return $this->useDefaultStorySound;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -207,85 +288,5 @@ class ChatNotificationSettings extends TdObject
             'use_default_disable_mention_notifications' => $this->useDefaultDisableMentionNotifications,
             'disable_mention_notifications' => $this->disableMentionNotifications,
         ];
-    }
-
-    public function getUseDefaultMuteFor(): bool
-    {
-        return $this->useDefaultMuteFor;
-    }
-
-    public function getMuteFor(): int
-    {
-        return $this->muteFor;
-    }
-
-    public function getUseDefaultSound(): bool
-    {
-        return $this->useDefaultSound;
-    }
-
-    public function getSoundId(): int
-    {
-        return $this->soundId;
-    }
-
-    public function getUseDefaultShowPreview(): bool
-    {
-        return $this->useDefaultShowPreview;
-    }
-
-    public function getShowPreview(): bool
-    {
-        return $this->showPreview;
-    }
-
-    public function getUseDefaultMuteStories(): bool
-    {
-        return $this->useDefaultMuteStories;
-    }
-
-    public function getMuteStories(): bool
-    {
-        return $this->muteStories;
-    }
-
-    public function getUseDefaultStorySound(): bool
-    {
-        return $this->useDefaultStorySound;
-    }
-
-    public function getStorySoundId(): int
-    {
-        return $this->storySoundId;
-    }
-
-    public function getUseDefaultShowStorySender(): bool
-    {
-        return $this->useDefaultShowStorySender;
-    }
-
-    public function getShowStorySender(): bool
-    {
-        return $this->showStorySender;
-    }
-
-    public function getUseDefaultDisablePinnedMessageNotifications(): bool
-    {
-        return $this->useDefaultDisablePinnedMessageNotifications;
-    }
-
-    public function getDisablePinnedMessageNotifications(): bool
-    {
-        return $this->disablePinnedMessageNotifications;
-    }
-
-    public function getUseDefaultDisableMentionNotifications(): bool
-    {
-        return $this->useDefaultDisableMentionNotifications;
-    }
-
-    public function getDisableMentionNotifications(): bool
-    {
-        return $this->disableMentionNotifications;
     }
 }

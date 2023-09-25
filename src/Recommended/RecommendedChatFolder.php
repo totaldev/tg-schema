@@ -18,18 +18,18 @@ class RecommendedChatFolder extends TdObject
     public const TYPE_NAME = 'recommendedChatFolder';
 
     /**
-     * The chat folder
-     *
-     * @var ChatFolder
-     */
-    protected ChatFolder $folder;
-
-    /**
      * Chat folder description
      *
      * @var string
      */
     protected string $description;
+
+    /**
+     * The chat folder
+     *
+     * @var ChatFolder
+     */
+    protected ChatFolder $folder;
 
     public function __construct(ChatFolder $folder, string $description)
     {
@@ -45,13 +45,9 @@ class RecommendedChatFolder extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDescription(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'folder' => $this->folder->typeSerialize(),
-            'description' => $this->description,
-        ];
+        return $this->description;
     }
 
     public function getFolder(): ChatFolder
@@ -59,8 +55,12 @@ class RecommendedChatFolder extends TdObject
         return $this->folder;
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
+        return [
+            '@type' => static::TYPE_NAME,
+            'folder' => $this->folder->typeSerialize(),
+            'description' => $this->description,
+        ];
     }
 }

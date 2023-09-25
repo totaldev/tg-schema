@@ -35,16 +35,16 @@ class GetMessageFileType extends TdFunction
         );
     }
 
+    public function getMessageFileHead(): string
+    {
+        return $this->messageFileHead;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message_file_head' => $this->messageFileHead,
         ];
-    }
-
-    public function getMessageFileHead(): string
-    {
-        return $this->messageFileHead;
     }
 }

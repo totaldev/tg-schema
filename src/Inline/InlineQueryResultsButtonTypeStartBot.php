@@ -36,16 +36,16 @@ class InlineQueryResultsButtonTypeStartBot extends InlineQueryResultsButtonType
         );
     }
 
+    public function getParameter(): string
+    {
+        return $this->parameter;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'parameter' => $this->parameter,
         ];
-    }
-
-    public function getParameter(): string
-    {
-        return $this->parameter;
     }
 }

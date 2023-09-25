@@ -16,18 +16,18 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventMessageAutoDeleteTimeChanged';
 
     /**
-     * Previous value of message_auto_delete_time
-     *
-     * @var int
-     */
-    protected int $oldMessageAutoDeleteTime;
-
-    /**
      * New value of message_auto_delete_time
      *
      * @var int
      */
     protected int $newMessageAutoDeleteTime;
+
+    /**
+     * Previous value of message_auto_delete_time
+     *
+     * @var int
+     */
+    protected int $oldMessageAutoDeleteTime;
 
     public function __construct(int $oldMessageAutoDeleteTime, int $newMessageAutoDeleteTime)
     {
@@ -45,13 +45,9 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewMessageAutoDeleteTime(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_message_auto_delete_time' => $this->oldMessageAutoDeleteTime,
-            'new_message_auto_delete_time' => $this->newMessageAutoDeleteTime,
-        ];
+        return $this->newMessageAutoDeleteTime;
     }
 
     public function getOldMessageAutoDeleteTime(): int
@@ -59,8 +55,12 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
         return $this->oldMessageAutoDeleteTime;
     }
 
-    public function getNewMessageAutoDeleteTime(): int
+    public function typeSerialize(): array
     {
-        return $this->newMessageAutoDeleteTime;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_message_auto_delete_time' => $this->oldMessageAutoDeleteTime,
+            'new_message_auto_delete_time' => $this->newMessageAutoDeleteTime,
+        ];
     }
 }

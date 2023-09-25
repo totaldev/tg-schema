@@ -17,18 +17,18 @@ class UpdateChatBackground extends Update
     public const TYPE_NAME = 'updateChatBackground';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * The new chat background; may be null if background was reset to default
      *
      * @var ChatBackground|null
      */
     protected ?ChatBackground $background;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, ?ChatBackground $background)
     {
@@ -46,13 +46,9 @@ class UpdateChatBackground extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getBackground(): ?ChatBackground
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'background' => (isset($this->background) ? $this->background : null),
-        ];
+        return $this->background;
     }
 
     public function getChatId(): int
@@ -60,8 +56,12 @@ class UpdateChatBackground extends Update
         return $this->chatId;
     }
 
-    public function getBackground(): ?ChatBackground
+    public function typeSerialize(): array
     {
-        return $this->background;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'background' => (isset($this->background) ? $this->background : null),
+        ];
     }
 }

@@ -19,18 +19,18 @@ class SetStickerMaskPosition extends TdFunction
     public const TYPE_NAME = 'setStickerMaskPosition';
 
     /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
      * Position where the mask is placed; pass null to remove mask position
      *
      * @var MaskPosition
      */
     protected MaskPosition $maskPosition;
+
+    /**
+     * Sticker
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
 
     public function __construct(InputFile $sticker, MaskPosition $maskPosition)
     {
@@ -46,13 +46,9 @@ class SetStickerMaskPosition extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMaskPosition(): MaskPosition
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'mask_position' => $this->maskPosition->typeSerialize(),
-        ];
+        return $this->maskPosition;
     }
 
     public function getSticker(): InputFile
@@ -60,8 +56,12 @@ class SetStickerMaskPosition extends TdFunction
         return $this->sticker;
     }
 
-    public function getMaskPosition(): MaskPosition
+    public function typeSerialize(): array
     {
-        return $this->maskPosition;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'mask_position' => $this->maskPosition->typeSerialize(),
+        ];
     }
 }

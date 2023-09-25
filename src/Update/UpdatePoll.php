@@ -37,16 +37,16 @@ class UpdatePoll extends Update
         );
     }
 
+    public function getPoll(): Poll
+    {
+        return $this->poll;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'poll' => $this->poll->typeSerialize(),
         ];
-    }
-
-    public function getPoll(): Poll
-    {
-        return $this->poll;
     }
 }

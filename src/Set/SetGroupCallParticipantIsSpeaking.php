@@ -17,18 +17,18 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
     public const TYPE_NAME = 'setGroupCallParticipantIsSpeaking';
 
     /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
      * Group call participant's synchronization audio source identifier, or 0 for the current user
      *
      * @var int
      */
     protected int $audioSource;
+
+    /**
+     * Group call identifier
+     *
+     * @var int
+     */
+    protected int $groupCallId;
 
     /**
      * Pass true if the user is speaking
@@ -53,6 +53,21 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
         );
     }
 
+    public function getAudioSource(): int
+    {
+        return $this->audioSource;
+    }
+
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getIsSpeaking(): bool
+    {
+        return $this->isSpeaking;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
             'audio_source' => $this->audioSource,
             'is_speaking' => $this->isSpeaking,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getAudioSource(): int
-    {
-        return $this->audioSource;
-    }
-
-    public function getIsSpeaking(): bool
-    {
-        return $this->isSpeaking;
     }
 }

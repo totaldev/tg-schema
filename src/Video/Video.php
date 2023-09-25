@@ -27,32 +27,11 @@ class Video extends TdObject
     protected int $duration;
 
     /**
-     * Video width; as defined by the sender
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Video height; as defined by the sender
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
      * Original name of the file; as defined by the sender
      *
      * @var string
      */
     protected string $fileName;
-
-    /**
-     * MIME type of the file; as defined by the sender
-     *
-     * @var string
-     */
-    protected string $mimeType;
 
     /**
      * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
@@ -62,11 +41,18 @@ class Video extends TdObject
     protected bool $hasStickers;
 
     /**
-     * True, if the video is supposed to be streamed
+     * Video height; as defined by the sender
      *
-     * @var bool
+     * @var int
      */
-    protected bool $supportsStreaming;
+    protected int $height;
+
+    /**
+     * MIME type of the file; as defined by the sender
+     *
+     * @var string
+     */
+    protected string $mimeType;
 
     /**
      * Video minithumbnail; may be null
@@ -74,6 +60,13 @@ class Video extends TdObject
      * @var Minithumbnail|null
      */
     protected ?Minithumbnail $minithumbnail;
+
+    /**
+     * True, if the video is supposed to be streamed
+     *
+     * @var bool
+     */
+    protected bool $supportsStreaming;
 
     /**
      * Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
@@ -89,18 +82,26 @@ class Video extends TdObject
      */
     protected File $video;
 
+    /**
+     * Video width; as defined by the sender
+     *
+     * @var int
+     */
+    protected int $width;
+
     public function __construct(
-        int $duration,
-        int $width,
-        int $height,
-        string $fileName,
-        string $mimeType,
-        bool $hasStickers,
-        bool $supportsStreaming,
+        int            $duration,
+        int            $width,
+        int            $height,
+        string         $fileName,
+        string         $mimeType,
+        bool           $hasStickers,
+        bool           $supportsStreaming,
         ?Minithumbnail $minithumbnail,
-        ?Thumbnail $thumbnail,
-        File $video,
-    ) {
+        ?Thumbnail     $thumbnail,
+        File           $video,
+    )
+    {
         $this->duration = $duration;
         $this->width = $width;
         $this->height = $height;
@@ -129,6 +130,56 @@ class Video extends TdObject
         );
     }
 
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
+    public function getHasStickers(): bool
+    {
+        return $this->hasStickers;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getSupportsStreaming(): bool
+    {
+        return $this->supportsStreaming;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getVideo(): File
+    {
+        return $this->video;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -144,55 +195,5 @@ class Video extends TdObject
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
             'video' => $this->video->typeSerialize(),
         ];
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    public function getHasStickers(): bool
-    {
-        return $this->hasStickers;
-    }
-
-    public function getSupportsStreaming(): bool
-    {
-        return $this->supportsStreaming;
-    }
-
-    public function getMinithumbnail(): ?Minithumbnail
-    {
-        return $this->minithumbnail;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getVideo(): File
-    {
-        return $this->video;
     }
 }

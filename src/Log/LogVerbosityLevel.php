@@ -35,16 +35,16 @@ class LogVerbosityLevel extends TdObject
         );
     }
 
+    public function getVerbosityLevel(): int
+    {
+        return $this->verbosityLevel;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'verbosity_level' => $this->verbosityLevel,
         ];
-    }
-
-    public function getVerbosityLevel(): int
-    {
-        return $this->verbosityLevel;
     }
 }

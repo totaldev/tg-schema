@@ -17,18 +17,18 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
     public const TYPE_NAME = 'toggleSessionCanAcceptSecretChats';
 
     /**
-     * Session identifier
-     *
-     * @var int
-     */
-    protected int $sessionId;
-
-    /**
      * Pass true to allow accepting secret chats by the session; pass false otherwise
      *
      * @var bool
      */
     protected bool $canAcceptSecretChats;
+
+    /**
+     * Session identifier
+     *
+     * @var int
+     */
+    protected int $sessionId;
 
     public function __construct(int $sessionId, bool $canAcceptSecretChats)
     {
@@ -44,13 +44,9 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCanAcceptSecretChats(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'session_id' => $this->sessionId,
-            'can_accept_secret_chats' => $this->canAcceptSecretChats,
-        ];
+        return $this->canAcceptSecretChats;
     }
 
     public function getSessionId(): int
@@ -58,8 +54,12 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
         return $this->sessionId;
     }
 
-    public function getCanAcceptSecretChats(): bool
+    public function typeSerialize(): array
     {
-        return $this->canAcceptSecretChats;
+        return [
+            '@type' => static::TYPE_NAME,
+            'session_id' => $this->sessionId,
+            'can_accept_secret_chats' => $this->canAcceptSecretChats,
+        ];
     }
 }

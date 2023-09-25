@@ -11,7 +11,9 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+ * Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse
+ * chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an
+ * enabled message database
  */
 class GetChatSparseMessagePositions extends TdFunction
 {
@@ -25,7 +27,8 @@ class GetChatSparseMessagePositions extends TdFunction
     protected int $chatId;
 
     /**
-     * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+     * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and
+     * searchMessagesFilterUnreadReaction are unsupported in this function
      *
      * @var SearchMessagesFilter
      */
@@ -39,7 +42,8 @@ class GetChatSparseMessagePositions extends TdFunction
     protected int $fromMessageId;
 
     /**
-     * The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+     * The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate
+     * messages
      *
      * @var int
      */
@@ -63,17 +67,6 @@ class GetChatSparseMessagePositions extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'filter' => $this->filter->typeSerialize(),
-            'from_message_id' => $this->fromMessageId,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -92,5 +85,16 @@ class GetChatSparseMessagePositions extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'filter' => $this->filter->typeSerialize(),
+            'from_message_id' => $this->fromMessageId,
+            'limit' => $this->limit,
+        ];
     }
 }

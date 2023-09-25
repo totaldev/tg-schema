@@ -17,18 +17,18 @@ class AttachmentMenuBotColor extends TdObject
     public const TYPE_NAME = 'attachmentMenuBotColor';
 
     /**
-     * Color in the RGB24 format for light themes
-     *
-     * @var int
-     */
-    protected int $lightColor;
-
-    /**
      * Color in the RGB24 format for dark themes
      *
      * @var int
      */
     protected int $darkColor;
+
+    /**
+     * Color in the RGB24 format for light themes
+     *
+     * @var int
+     */
+    protected int $lightColor;
 
     public function __construct(int $lightColor, int $darkColor)
     {
@@ -44,13 +44,9 @@ class AttachmentMenuBotColor extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDarkColor(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'light_color' => $this->lightColor,
-            'dark_color' => $this->darkColor,
-        ];
+        return $this->darkColor;
     }
 
     public function getLightColor(): int
@@ -58,8 +54,12 @@ class AttachmentMenuBotColor extends TdObject
         return $this->lightColor;
     }
 
-    public function getDarkColor(): int
+    public function typeSerialize(): array
     {
-        return $this->darkColor;
+        return [
+            '@type' => static::TYPE_NAME,
+            'light_color' => $this->lightColor,
+            'dark_color' => $this->darkColor,
+        ];
     }
 }

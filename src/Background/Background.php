@@ -18,18 +18,18 @@ class Background extends TdObject
     public const TYPE_NAME = 'background';
 
     /**
+     * Document with the background; may be null. Null only for filled backgrounds
+     *
+     * @var Document|null
+     */
+    protected ?Document $document;
+
+    /**
      * Unique background identifier
      *
      * @var int
      */
     protected int $id;
-
-    /**
-     * True, if this is one of default backgrounds
-     *
-     * @var bool
-     */
-    protected bool $isDefault;
 
     /**
      * True, if the background is dark and is recommended to be used with dark theme
@@ -39,18 +39,18 @@ class Background extends TdObject
     protected bool $isDark;
 
     /**
+     * True, if this is one of default backgrounds
+     *
+     * @var bool
+     */
+    protected bool $isDefault;
+
+    /**
      * Unique background name
      *
      * @var string
      */
     protected string $name;
-
-    /**
-     * Document with the background; may be null. Null only for filled backgrounds
-     *
-     * @var Document|null
-     */
-    protected ?Document $document;
 
     /**
      * Type of the background
@@ -60,13 +60,14 @@ class Background extends TdObject
     protected BackgroundType $type;
 
     public function __construct(
-        int $id,
-        bool $isDefault,
-        bool $isDark,
-        string $name,
-        ?Document $document,
+        int            $id,
+        bool           $isDefault,
+        bool           $isDark,
+        string         $name,
+        ?Document      $document,
         BackgroundType $type,
-    ) {
+    )
+    {
         $this->id = $id;
         $this->isDefault = $isDefault;
         $this->isDark = $isDark;
@@ -87,6 +88,36 @@ class Background extends TdObject
         );
     }
 
+    public function getDocument(): ?Document
+    {
+        return $this->document;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsDark(): bool
+    {
+        return $this->isDark;
+    }
+
+    public function getIsDefault(): bool
+    {
+        return $this->isDefault;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getType(): BackgroundType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -98,35 +129,5 @@ class Background extends TdObject
             'document' => (isset($this->document) ? $this->document : null),
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getIsDefault(): bool
-    {
-        return $this->isDefault;
-    }
-
-    public function getIsDark(): bool
-    {
-        return $this->isDark;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getDocument(): ?Document
-    {
-        return $this->document;
-    }
-
-    public function getType(): BackgroundType
-    {
-        return $this->type;
     }
 }

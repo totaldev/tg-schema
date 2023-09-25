@@ -36,16 +36,16 @@ class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
         );
     }
 
+    public function getMuteNewParticipants(): bool
+    {
+        return $this->muteNewParticipants;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'mute_new_participants' => $this->muteNewParticipants,
         ];
-    }
-
-    public function getMuteNewParticipants(): bool
-    {
-        return $this->muteNewParticipants;
     }
 }

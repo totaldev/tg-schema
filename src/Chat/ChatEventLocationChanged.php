@@ -16,18 +16,18 @@ class ChatEventLocationChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventLocationChanged';
 
     /**
-     * Previous location; may be null
-     *
-     * @var ChatLocation|null
-     */
-    protected ?ChatLocation $oldLocation;
-
-    /**
      * New location; may be null
      *
      * @var ChatLocation|null
      */
     protected ?ChatLocation $newLocation;
+
+    /**
+     * Previous location; may be null
+     *
+     * @var ChatLocation|null
+     */
+    protected ?ChatLocation $oldLocation;
 
     public function __construct(?ChatLocation $oldLocation, ?ChatLocation $newLocation)
     {
@@ -45,13 +45,9 @@ class ChatEventLocationChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewLocation(): ?ChatLocation
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_location' => (isset($this->oldLocation) ? $this->oldLocation : null),
-            'new_location' => (isset($this->newLocation) ? $this->newLocation : null),
-        ];
+        return $this->newLocation;
     }
 
     public function getOldLocation(): ?ChatLocation
@@ -59,8 +55,12 @@ class ChatEventLocationChanged extends ChatEventAction
         return $this->oldLocation;
     }
 
-    public function getNewLocation(): ?ChatLocation
+    public function typeSerialize(): array
     {
-        return $this->newLocation;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_location' => (isset($this->oldLocation) ? $this->oldLocation : null),
+            'new_location' => (isset($this->newLocation) ? $this->newLocation : null),
+        ];
     }
 }

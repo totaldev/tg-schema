@@ -28,18 +28,19 @@ class SendInlineQueryResultMessage extends TdFunction
     protected int $chatId;
 
     /**
+     * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"),
+     * getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+     *
+     * @var bool
+     */
+    protected bool $hideViaBot;
+
+    /**
      * If not 0, a message thread identifier in which the message will be sent
      *
      * @var int
      */
     protected int $messageThreadId;
-
-    /**
-     * Identifier of the replied message or story; pass null if none
-     *
-     * @var MessageReplyTo
-     */
-    protected MessageReplyTo $replyTo;
 
     /**
      * Options to be used to send the message; pass null to use default options
@@ -56,28 +57,29 @@ class SendInlineQueryResultMessage extends TdFunction
     protected int $queryId;
 
     /**
+     * Identifier of the replied message or story; pass null if none
+     *
+     * @var MessageReplyTo
+     */
+    protected MessageReplyTo $replyTo;
+
+    /**
      * Identifier of the inline query result
      *
      * @var string
      */
     protected string $resultId;
 
-    /**
-     * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
-     *
-     * @var bool
-     */
-    protected bool $hideViaBot;
-
     public function __construct(
-        int $chatId,
-        int $messageThreadId,
-        MessageReplyTo $replyTo,
+        int                $chatId,
+        int                $messageThreadId,
+        MessageReplyTo     $replyTo,
         MessageSendOptions $options,
-        int $queryId,
-        string $resultId,
-        bool $hideViaBot,
-    ) {
+        int                $queryId,
+        string             $resultId,
+        bool               $hideViaBot,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageThreadId = $messageThreadId;
         $this->replyTo = $replyTo;
@@ -100,33 +102,19 @@ class SendInlineQueryResultMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'reply_to' => $this->replyTo->typeSerialize(),
-            'options' => $this->options->typeSerialize(),
-            'query_id' => $this->queryId,
-            'result_id' => $this->resultId,
-            'hide_via_bot' => $this->hideViaBot,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
     }
 
+    public function getHideViaBot(): bool
+    {
+        return $this->hideViaBot;
+    }
+
     public function getMessageThreadId(): int
     {
         return $this->messageThreadId;
-    }
-
-    public function getReplyTo(): MessageReplyTo
-    {
-        return $this->replyTo;
     }
 
     public function getOptions(): MessageSendOptions
@@ -139,13 +127,27 @@ class SendInlineQueryResultMessage extends TdFunction
         return $this->queryId;
     }
 
+    public function getReplyTo(): MessageReplyTo
+    {
+        return $this->replyTo;
+    }
+
     public function getResultId(): string
     {
         return $this->resultId;
     }
 
-    public function getHideViaBot(): bool
+    public function typeSerialize(): array
     {
-        return $this->hideViaBot;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+            'reply_to' => $this->replyTo->typeSerialize(),
+            'options' => $this->options->typeSerialize(),
+            'query_id' => $this->queryId,
+            'result_id' => $this->resultId,
+            'hide_via_bot' => $this->hideViaBot,
+        ];
     }
 }

@@ -36,16 +36,16 @@ class MessageSendingStatePending extends MessageSendingState
         );
     }
 
+    public function getSendingId(): int
+    {
+        return $this->sendingId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sending_id' => $this->sendingId,
         ];
-    }
-
-    public function getSendingId(): int
-    {
-        return $this->sendingId;
     }
 }

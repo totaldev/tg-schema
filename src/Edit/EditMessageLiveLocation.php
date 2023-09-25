@@ -12,7 +12,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+ * Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message
+ * after the edit is completed on the server side
  */
 class EditMessageLiveLocation extends TdFunction
 {
@@ -26,18 +27,11 @@ class EditMessageLiveLocation extends TdFunction
     protected int $chatId;
 
     /**
-     * Identifier of the message
+     * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
      *
      * @var int
      */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none; for bots only
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
+    protected int $heading;
 
     /**
      * New location content of the message; pass null to stop sharing the live location
@@ -47,11 +41,11 @@ class EditMessageLiveLocation extends TdFunction
     protected Location $location;
 
     /**
-     * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+     * Identifier of the message
      *
      * @var int
      */
-    protected int $heading;
+    protected int $messageId;
 
     /**
      * The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
@@ -60,14 +54,22 @@ class EditMessageLiveLocation extends TdFunction
      */
     protected int $proximityAlertRadius;
 
+    /**
+     * The new message reply markup; pass null if none; for bots only
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
     public function __construct(
-        int $chatId,
-        int $messageId,
+        int         $chatId,
+        int         $messageId,
         ReplyMarkup $replyMarkup,
-        Location $location,
-        int $heading,
-        int $proximityAlertRadius,
-    ) {
+        Location    $location,
+        int         $heading,
+        int         $proximityAlertRadius,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageId = $messageId;
         $this->replyMarkup = $replyMarkup;
@@ -88,6 +90,36 @@ class EditMessageLiveLocation extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getHeading(): int
+    {
+        return $this->heading;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getProximityAlertRadius(): int
+    {
+        return $this->proximityAlertRadius;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +131,5 @@ class EditMessageLiveLocation extends TdFunction
             'heading' => $this->heading,
             'proximity_alert_radius' => $this->proximityAlertRadius,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getHeading(): int
-    {
-        return $this->heading;
-    }
-
-    public function getProximityAlertRadius(): int
-    {
-        return $this->proximityAlertRadius;
     }
 }

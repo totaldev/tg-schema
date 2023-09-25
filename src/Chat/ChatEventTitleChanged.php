@@ -16,18 +16,18 @@ class ChatEventTitleChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventTitleChanged';
 
     /**
-     * Previous chat title
-     *
-     * @var string
-     */
-    protected string $oldTitle;
-
-    /**
      * New chat title
      *
      * @var string
      */
     protected string $newTitle;
+
+    /**
+     * Previous chat title
+     *
+     * @var string
+     */
+    protected string $oldTitle;
 
     public function __construct(string $oldTitle, string $newTitle)
     {
@@ -45,13 +45,9 @@ class ChatEventTitleChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewTitle(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_title' => $this->oldTitle,
-            'new_title' => $this->newTitle,
-        ];
+        return $this->newTitle;
     }
 
     public function getOldTitle(): string
@@ -59,8 +55,12 @@ class ChatEventTitleChanged extends ChatEventAction
         return $this->oldTitle;
     }
 
-    public function getNewTitle(): string
+    public function typeSerialize(): array
     {
-        return $this->newTitle;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_title' => $this->oldTitle,
+            'new_title' => $this->newTitle,
+        ];
     }
 }

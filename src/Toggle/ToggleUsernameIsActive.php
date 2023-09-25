@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+ * Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message
+ * "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
  */
 class ToggleUsernameIsActive extends TdFunction
 {
     public const TYPE_NAME = 'toggleUsernameIsActive';
-
-    /**
-     * The username to change
-     *
-     * @var string
-     */
-    protected string $username;
 
     /**
      * Pass true to activate the username; pass false to disable it
@@ -29,6 +23,13 @@ class ToggleUsernameIsActive extends TdFunction
      * @var bool
      */
     protected bool $isActive;
+
+    /**
+     * The username to change
+     *
+     * @var string
+     */
+    protected string $username;
 
     public function __construct(string $username, bool $isActive)
     {
@@ -44,13 +45,9 @@ class ToggleUsernameIsActive extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsActive(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'username' => $this->username,
-            'is_active' => $this->isActive,
-        ];
+        return $this->isActive;
     }
 
     public function getUsername(): string
@@ -58,8 +55,12 @@ class ToggleUsernameIsActive extends TdFunction
         return $this->username;
     }
 
-    public function getIsActive(): bool
+    public function typeSerialize(): array
     {
-        return $this->isActive;
+        return [
+            '@type' => static::TYPE_NAME,
+            'username' => $this->username,
+            'is_active' => $this->isActive,
+        ];
     }
 }

@@ -44,15 +44,6 @@ class GetFileDownloadedPrefixSize extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'offset' => $this->offset,
-        ];
-    }
-
     public function getFileId(): int
     {
         return $this->fileId;
@@ -61,5 +52,14 @@ class GetFileDownloadedPrefixSize extends TdFunction
     public function getOffset(): int
     {
         return $this->offset;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'offset' => $this->offset,
+        ];
     }
 }

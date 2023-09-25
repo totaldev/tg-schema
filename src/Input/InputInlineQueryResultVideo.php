@@ -17,20 +17,6 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
     public const TYPE_NAME = 'inputInlineQueryResultVideo';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Title of the result
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * A short description of the result, if known
      *
      * @var string
@@ -38,18 +24,19 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
     protected string $description;
 
     /**
-     * The URL of the video thumbnail (JPEG), if it exists
+     * Unique identifier of the query result
      *
      * @var string
      */
-    protected string $thumbnailUrl;
+    protected string $id;
 
     /**
-     * URL of the embedded video player or video file
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice,
+     * inputMessageLocation, inputMessageVenue or inputMessageContact
      *
-     * @var string
+     * @var InputMessageContent
      */
-    protected string $videoUrl;
+    protected InputMessageContent $inputMessageContent;
 
     /**
      * MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
@@ -59,18 +46,25 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
     protected string $mimeType;
 
     /**
-     * Width of the video
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
      *
-     * @var int
+     * @var ReplyMarkup
      */
-    protected int $videoWidth;
+    protected ReplyMarkup $replyMarkup;
 
     /**
-     * Height of the video
+     * The URL of the video thumbnail (JPEG), if it exists
      *
-     * @var int
+     * @var string
      */
-    protected int $videoHeight;
+    protected string $thumbnailUrl;
+
+    /**
+     * Title of the result
+     *
+     * @var string
+     */
+    protected string $title;
 
     /**
      * Video duration, in seconds
@@ -80,32 +74,40 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
     protected int $videoDuration;
 
     /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     * Height of the video
      *
-     * @var ReplyMarkup
+     * @var int
      */
-    protected ReplyMarkup $replyMarkup;
+    protected int $videoHeight;
 
     /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+     * URL of the embedded video player or video file
      *
-     * @var InputMessageContent
+     * @var string
      */
-    protected InputMessageContent $inputMessageContent;
+    protected string $videoUrl;
+
+    /**
+     * Width of the video
+     *
+     * @var int
+     */
+    protected int $videoWidth;
 
     public function __construct(
-        string $id,
-        string $title,
-        string $description,
-        string $thumbnailUrl,
-        string $videoUrl,
-        string $mimeType,
-        int $videoWidth,
-        int $videoHeight,
-        int $videoDuration,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        string              $title,
+        string              $description,
+        string              $thumbnailUrl,
+        string              $videoUrl,
+        string              $mimeType,
+        int                 $videoWidth,
+        int                 $videoHeight,
+        int                 $videoDuration,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -138,6 +140,61 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailUrl(): string
+    {
+        return $this->thumbnailUrl;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getVideoDuration(): int
+    {
+        return $this->videoDuration;
+    }
+
+    public function getVideoHeight(): int
+    {
+        return $this->videoHeight;
+    }
+
+    public function getVideoUrl(): string
+    {
+        return $this->videoUrl;
+    }
+
+    public function getVideoWidth(): int
+    {
+        return $this->videoWidth;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -154,60 +211,5 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getThumbnailUrl(): string
-    {
-        return $this->thumbnailUrl;
-    }
-
-    public function getVideoUrl(): string
-    {
-        return $this->videoUrl;
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    public function getVideoWidth(): int
-    {
-        return $this->videoWidth;
-    }
-
-    public function getVideoHeight(): int
-    {
-        return $this->videoHeight;
-    }
-
-    public function getVideoDuration(): int
-    {
-        return $this->videoDuration;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

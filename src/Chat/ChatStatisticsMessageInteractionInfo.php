@@ -17,6 +17,13 @@ class ChatStatisticsMessageInteractionInfo extends TdObject
     public const TYPE_NAME = 'chatStatisticsMessageInteractionInfo';
 
     /**
+     * Number of times the message was forwarded
+     *
+     * @var int
+     */
+    protected int $forwardCount;
+
+    /**
      * Message identifier
      *
      * @var int
@@ -29,13 +36,6 @@ class ChatStatisticsMessageInteractionInfo extends TdObject
      * @var int
      */
     protected int $viewCount;
-
-    /**
-     * Number of times the message was forwarded
-     *
-     * @var int
-     */
-    protected int $forwardCount;
 
     public function __construct(int $messageId, int $viewCount, int $forwardCount)
     {
@@ -53,14 +53,9 @@ class ChatStatisticsMessageInteractionInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getForwardCount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message_id' => $this->messageId,
-            'view_count' => $this->viewCount,
-            'forward_count' => $this->forwardCount,
-        ];
+        return $this->forwardCount;
     }
 
     public function getMessageId(): int
@@ -73,8 +68,13 @@ class ChatStatisticsMessageInteractionInfo extends TdObject
         return $this->viewCount;
     }
 
-    public function getForwardCount(): int
+    public function typeSerialize(): array
     {
-        return $this->forwardCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'message_id' => $this->messageId,
+            'view_count' => $this->viewCount,
+            'forward_count' => $this->forwardCount,
+        ];
     }
 }

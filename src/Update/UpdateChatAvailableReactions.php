@@ -17,18 +17,18 @@ class UpdateChatAvailableReactions extends Update
     public const TYPE_NAME = 'updateChatAvailableReactions';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * The new reactions, available in the chat
      *
      * @var ChatAvailableReactions
      */
     protected ChatAvailableReactions $availableReactions;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, ChatAvailableReactions $availableReactions)
     {
@@ -46,13 +46,9 @@ class UpdateChatAvailableReactions extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getAvailableReactions(): ChatAvailableReactions
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'available_reactions' => $this->availableReactions->typeSerialize(),
-        ];
+        return $this->availableReactions;
     }
 
     public function getChatId(): int
@@ -60,8 +56,12 @@ class UpdateChatAvailableReactions extends Update
         return $this->chatId;
     }
 
-    public function getAvailableReactions(): ChatAvailableReactions
+    public function typeSerialize(): array
     {
-        return $this->availableReactions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'available_reactions' => $this->availableReactions->typeSerialize(),
+        ];
     }
 }

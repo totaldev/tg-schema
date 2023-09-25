@@ -18,13 +18,6 @@ class MessageVideo extends MessageContent
     public const TYPE_NAME = 'messageVideo';
 
     /**
-     * The video description
-     *
-     * @var Video
-     */
-    protected Video $video;
-
-    /**
      * Video caption
      *
      * @var FormattedText
@@ -44,6 +37,13 @@ class MessageVideo extends MessageContent
      * @var bool
      */
     protected bool $isSecret;
+
+    /**
+     * The video description
+     *
+     * @var Video
+     */
+    protected Video $video;
 
     public function __construct(Video $video, FormattedText $caption, bool $hasSpoiler, bool $isSecret)
     {
@@ -65,22 +65,6 @@ class MessageVideo extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-            'has_spoiler' => $this->hasSpoiler,
-            'is_secret' => $this->isSecret,
-        ];
-    }
-
-    public function getVideo(): Video
-    {
-        return $this->video;
-    }
-
     public function getCaption(): FormattedText
     {
         return $this->caption;
@@ -94,5 +78,21 @@ class MessageVideo extends MessageContent
     public function getIsSecret(): bool
     {
         return $this->isSecret;
+    }
+
+    public function getVideo(): Video
+    {
+        return $this->video;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'has_spoiler' => $this->hasSpoiler,
+            'is_secret' => $this->isSecret,
+        ];
     }
 }

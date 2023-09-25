@@ -17,11 +17,18 @@ class SearchFileDownloads extends TdFunction
     public const TYPE_NAME = 'searchFileDownloads';
 
     /**
-     * Query to search for; may be empty to return all downloaded files
+     * The maximum number of files to be returned
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
+     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
      *
      * @var string
      */
-    protected string $query;
+    protected string $offset;
 
     /**
      * Pass true to search only for active downloads, including paused
@@ -38,18 +45,11 @@ class SearchFileDownloads extends TdFunction
     protected bool $onlyCompleted;
 
     /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+     * Query to search for; may be empty to return all downloaded files
      *
      * @var string
      */
-    protected string $offset;
-
-    /**
-     * The maximum number of files to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
+    protected string $query;
 
     public function __construct(string $query, bool $onlyActive, bool $onlyCompleted, string $offset, int $limit)
     {
@@ -71,21 +71,14 @@ class SearchFileDownloads extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'only_active' => $this->onlyActive,
-            'only_completed' => $this->onlyCompleted,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
-    public function getQuery(): string
+    public function getOffset(): string
     {
-        return $this->query;
+        return $this->offset;
     }
 
     public function getOnlyActive(): bool
@@ -98,13 +91,20 @@ class SearchFileDownloads extends TdFunction
         return $this->onlyCompleted;
     }
 
-    public function getOffset(): string
+    public function getQuery(): string
     {
-        return $this->offset;
+        return $this->query;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'only_active' => $this->onlyActive,
+            'only_completed' => $this->onlyCompleted,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+        ];
     }
 }

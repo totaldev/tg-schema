@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+ * Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or
+ * updateMessageInteractionInfo for the message
  */
 class GetMessageAvailableReactions extends TdFunction
 {
@@ -53,16 +54,6 @@ class GetMessageAvailableReactions extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'row_size' => $this->rowSize,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +67,15 @@ class GetMessageAvailableReactions extends TdFunction
     public function getRowSize(): int
     {
         return $this->rowSize;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'row_size' => $this->rowSize,
+        ];
     }
 }

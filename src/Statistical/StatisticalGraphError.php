@@ -36,16 +36,16 @@ class StatisticalGraphError extends StatisticalGraph
         );
     }
 
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'error_message' => $this->errorMessage,
         ];
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 }

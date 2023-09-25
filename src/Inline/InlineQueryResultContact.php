@@ -18,18 +18,18 @@ class InlineQueryResultContact extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultContact';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
      * A user contact
      *
      * @var Contact
      */
     protected Contact $contact;
+
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
 
     /**
      * Result thumbnail in JPEG format; may be null
@@ -56,6 +56,21 @@ class InlineQueryResultContact extends InlineQueryResult
         );
     }
 
+    public function getContact(): Contact
+    {
+        return $this->contact;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -64,20 +79,5 @@ class InlineQueryResultContact extends InlineQueryResult
             'contact' => $this->contact->typeSerialize(),
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getContact(): Contact
-    {
-        return $this->contact;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
     }
 }

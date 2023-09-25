@@ -36,16 +36,16 @@ class ChatEventInvitesToggled extends ChatEventAction
         );
     }
 
+    public function getCanInviteUsers(): bool
+    {
+        return $this->canInviteUsers;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'can_invite_users' => $this->canInviteUsers,
         ];
-    }
-
-    public function getCanInviteUsers(): bool
-    {
-        return $this->canInviteUsers;
     }
 }

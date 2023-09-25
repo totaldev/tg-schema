@@ -36,16 +36,16 @@ class DeletePassportElement extends TdFunction
         );
     }
 
+    public function getType(): PassportElementType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getType(): PassportElementType
-    {
-        return $this->type;
     }
 }

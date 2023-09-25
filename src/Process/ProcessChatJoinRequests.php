@@ -17,6 +17,13 @@ class ProcessChatJoinRequests extends TdFunction
     public const TYPE_NAME = 'processChatJoinRequests';
 
     /**
+     * Pass true to approve all requests; pass false to decline them
+     *
+     * @var bool
+     */
+    protected bool $approve;
+
+    /**
      * Chat identifier
      *
      * @var int
@@ -24,18 +31,12 @@ class ProcessChatJoinRequests extends TdFunction
     protected int $chatId;
 
     /**
-     * Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+     * Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users
+     * right in the chat for own links and owner privileges for other links
      *
      * @var string
      */
     protected string $inviteLink;
-
-    /**
-     * Pass true to approve all requests; pass false to decline them
-     *
-     * @var bool
-     */
-    protected bool $approve;
 
     public function __construct(int $chatId, string $inviteLink, bool $approve)
     {
@@ -53,14 +54,9 @@ class ProcessChatJoinRequests extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getApprove(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'invite_link' => $this->inviteLink,
-            'approve' => $this->approve,
-        ];
+        return $this->approve;
     }
 
     public function getChatId(): int
@@ -73,8 +69,13 @@ class ProcessChatJoinRequests extends TdFunction
         return $this->inviteLink;
     }
 
-    public function getApprove(): bool
+    public function typeSerialize(): array
     {
-        return $this->approve;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'invite_link' => $this->inviteLink,
+            'approve' => $this->approve,
+        ];
     }
 }

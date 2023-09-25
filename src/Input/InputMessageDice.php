@@ -16,18 +16,18 @@ class InputMessageDice extends InputMessageContent
     public const TYPE_NAME = 'inputMessageDice';
 
     /**
-     * Emoji on which the dice throw animation is based
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    /**
      * True, if the chat message draft must be deleted
      *
      * @var bool
      */
     protected bool $clearDraft;
+
+    /**
+     * Emoji on which the dice throw animation is based
+     *
+     * @var string
+     */
+    protected string $emoji;
 
     public function __construct(string $emoji, bool $clearDraft)
     {
@@ -45,13 +45,9 @@ class InputMessageDice extends InputMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getClearDraft(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'emoji' => $this->emoji,
-            'clear_draft' => $this->clearDraft,
-        ];
+        return $this->clearDraft;
     }
 
     public function getEmoji(): string
@@ -59,8 +55,12 @@ class InputMessageDice extends InputMessageContent
         return $this->emoji;
     }
 
-    public function getClearDraft(): bool
+    public function typeSerialize(): array
     {
-        return $this->clearDraft;
+        return [
+            '@type' => static::TYPE_NAME,
+            'emoji' => $this->emoji,
+            'clear_draft' => $this->clearDraft,
+        ];
     }
 }

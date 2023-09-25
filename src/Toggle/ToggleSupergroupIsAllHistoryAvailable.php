@@ -17,18 +17,18 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupIsAllHistoryAvailable';
 
     /**
-     * The identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * The new value of is_all_history_available
      *
      * @var bool
      */
     protected bool $isAllHistoryAvailable;
+
+    /**
+     * The identifier of the supergroup
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $isAllHistoryAvailable)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsAllHistoryAvailable(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'is_all_history_available' => $this->isAllHistoryAvailable,
-        ];
+        return $this->isAllHistoryAvailable;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getIsAllHistoryAvailable(): bool
+    public function typeSerialize(): array
     {
-        return $this->isAllHistoryAvailable;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'is_all_history_available' => $this->isAllHistoryAvailable,
+        ];
     }
 }

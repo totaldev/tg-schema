@@ -36,16 +36,16 @@ class TextParseModeMarkdown extends TextParseMode
         );
     }
 
+    public function getVersion(): int
+    {
+        return $this->version;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'version' => $this->version,
         ];
-    }
-
-    public function getVersion(): int
-    {
-        return $this->version;
     }
 }

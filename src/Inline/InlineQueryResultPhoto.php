@@ -17,6 +17,13 @@ class InlineQueryResultPhoto extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultPhoto';
 
     /**
+     * A short description of the result, if known
+     *
+     * @var string
+     */
+    protected string $description;
+
+    /**
      * Unique identifier of the query result
      *
      * @var string
@@ -36,13 +43,6 @@ class InlineQueryResultPhoto extends InlineQueryResult
      * @var string
      */
     protected string $title;
-
-    /**
-     * A short description of the result, if known
-     *
-     * @var string
-     */
-    protected string $description;
 
     public function __construct(string $id, Photo $photo, string $title, string $description)
     {
@@ -64,15 +64,9 @@ class InlineQueryResultPhoto extends InlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
+    public function getDescription(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'photo' => $this->photo->typeSerialize(),
-            'title' => $this->title,
-            'description' => $this->description,
-        ];
+        return $this->description;
     }
 
     public function getId(): string
@@ -90,8 +84,14 @@ class InlineQueryResultPhoto extends InlineQueryResult
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'photo' => $this->photo->typeSerialize(),
+            'title' => $this->title,
+            'description' => $this->description,
+        ];
     }
 }

@@ -36,16 +36,16 @@ class SetDefaultReactionType extends TdFunction
         );
     }
 
+    public function getReactionType(): ReactionType
+    {
+        return $this->reactionType;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'reaction_type' => $this->reactionType->typeSerialize(),
         ];
-    }
-
-    public function getReactionType(): ReactionType
-    {
-        return $this->reactionType;
     }
 }

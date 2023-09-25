@@ -36,16 +36,16 @@ class GetInstalledStickerSets extends TdFunction
         );
     }
 
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker_type' => $this->stickerType->typeSerialize(),
         ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
     }
 }

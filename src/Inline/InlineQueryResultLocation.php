@@ -32,18 +32,18 @@ class InlineQueryResultLocation extends InlineQueryResult
     protected Location $location;
 
     /**
-     * Title of the result
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Result thumbnail in JPEG format; may be null
      *
      * @var Thumbnail|null
      */
     protected ?Thumbnail $thumbnail;
+
+    /**
+     * Title of the result
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $id, Location $location, string $title, ?Thumbnail $thumbnail)
     {
@@ -65,17 +65,6 @@ class InlineQueryResultLocation extends InlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'location' => $this->location->typeSerialize(),
-            'title' => $this->title,
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -86,13 +75,24 @@ class InlineQueryResultLocation extends InlineQueryResult
         return $this->location;
     }
 
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getThumbnail(): ?Thumbnail
+    public function typeSerialize(): array
     {
-        return $this->thumbnail;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'location' => $this->location->typeSerialize(),
+            'title' => $this->title,
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+        ];
     }
 }

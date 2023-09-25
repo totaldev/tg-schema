@@ -16,18 +16,18 @@ class PageBlockSlideshow extends PageBlock
     public const TYPE_NAME = 'pageBlockSlideshow';
 
     /**
-     * Slideshow item contents
-     *
-     * @var PageBlock[]
-     */
-    protected array $pageBlocks;
-
-    /**
      * Block caption
      *
      * @var PageBlockCaption
      */
     protected PageBlockCaption $caption;
+
+    /**
+     * Slideshow item contents
+     *
+     * @var PageBlock[]
+     */
+    protected array $pageBlocks;
 
     public function __construct(array $pageBlocks, PageBlockCaption $caption)
     {
@@ -40,9 +40,19 @@ class PageBlockSlideshow extends PageBlock
     public static function fromArray(array $array): PageBlockSlideshow
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['pageBlocks']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             TdSchemaRegistry::fromArray($array['caption']),
         );
+    }
+
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
+    }
+
+    public function getPageBlocks(): array
+    {
+        return $this->pageBlocks;
     }
 
     public function typeSerialize(): array
@@ -52,15 +62,5 @@ class PageBlockSlideshow extends PageBlock
             array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getPageBlocks(): array
-    {
-        return $this->pageBlocks;
-    }
-
-    public function getCaption(): PageBlockCaption
-    {
-        return $this->caption;
     }
 }

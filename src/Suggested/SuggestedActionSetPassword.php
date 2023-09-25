@@ -16,7 +16,8 @@ class SuggestedActionSetPassword extends SuggestedAction
     public const TYPE_NAME = 'suggestedActionSetPassword';
 
     /**
-     * The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
+     * The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password
+     * for security reasons
      *
      * @var int
      */
@@ -36,16 +37,16 @@ class SuggestedActionSetPassword extends SuggestedAction
         );
     }
 
+    public function getAuthorizationDelay(): int
+    {
+        return $this->authorizationDelay;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'authorization_delay' => $this->authorizationDelay,
         ];
-    }
-
-    public function getAuthorizationDelay(): int
-    {
-        return $this->authorizationDelay;
     }
 }

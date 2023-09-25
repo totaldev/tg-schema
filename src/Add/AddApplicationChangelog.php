@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
+ * Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if
+ * nothing changed
  */
 class AddApplicationChangelog extends TdFunction
 {
@@ -35,16 +36,16 @@ class AddApplicationChangelog extends TdFunction
         );
     }
 
+    public function getPreviousApplicationVersion(): string
+    {
+        return $this->previousApplicationVersion;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'previous_application_version' => $this->previousApplicationVersion,
         ];
-    }
-
-    public function getPreviousApplicationVersion(): string
-    {
-        return $this->previousApplicationVersion;
     }
 }

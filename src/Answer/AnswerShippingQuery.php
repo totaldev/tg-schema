@@ -18,11 +18,11 @@ class AnswerShippingQuery extends TdFunction
     public const TYPE_NAME = 'answerShippingQuery';
 
     /**
-     * Identifier of the shipping query
+     * An error message, empty on success
      *
-     * @var int
+     * @var string
      */
-    protected int $shippingQueryId;
+    protected string $errorMessage;
 
     /**
      * Available shipping options
@@ -32,11 +32,11 @@ class AnswerShippingQuery extends TdFunction
     protected array $shippingOptions;
 
     /**
-     * An error message, empty on success
+     * Identifier of the shipping query
      *
-     * @var string
+     * @var int
      */
-    protected string $errorMessage;
+    protected int $shippingQueryId;
 
     public function __construct(int $shippingQueryId, array $shippingOptions, string $errorMessage)
     {
@@ -49,9 +49,24 @@ class AnswerShippingQuery extends TdFunction
     {
         return new static(
             $array['shipping_query_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
             $array['error_message'],
         );
+    }
+
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    public function getShippingOptions(): array
+    {
+        return $this->shippingOptions;
+    }
+
+    public function getShippingQueryId(): int
+    {
+        return $this->shippingQueryId;
     }
 
     public function typeSerialize(): array
@@ -62,20 +77,5 @@ class AnswerShippingQuery extends TdFunction
             array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
             'error_message' => $this->errorMessage,
         ];
-    }
-
-    public function getShippingQueryId(): int
-    {
-        return $this->shippingQueryId;
-    }
-
-    public function getShippingOptions(): array
-    {
-        return $this->shippingOptions;
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 }

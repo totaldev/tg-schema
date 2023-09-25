@@ -36,16 +36,16 @@ class PushMessageContentChatSetTheme extends PushMessageContent
         );
     }
 
+    public function getThemeName(): string
+    {
+        return $this->themeName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'theme_name' => $this->themeName,
         ];
-    }
-
-    public function getThemeName(): string
-    {
-        return $this->themeName;
     }
 }

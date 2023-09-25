@@ -17,11 +17,11 @@ class MessagePosition extends TdObject
     public const TYPE_NAME = 'messagePosition';
 
     /**
-     * 0-based message position in the full list of suitable messages
+     * Point in time (Unix timestamp) when the message was sent
      *
      * @var int
      */
-    protected int $position;
+    protected int $date;
 
     /**
      * Message identifier
@@ -31,11 +31,11 @@ class MessagePosition extends TdObject
     protected int $messageId;
 
     /**
-     * Point in time (Unix timestamp) when the message was sent
+     * 0-based message position in the full list of suitable messages
      *
      * @var int
      */
-    protected int $date;
+    protected int $position;
 
     public function __construct(int $position, int $messageId, int $date)
     {
@@ -53,6 +53,21 @@ class MessagePosition extends TdObject
         );
     }
 
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class MessagePosition extends TdObject
             'message_id' => $this->messageId,
             'date' => $this->date,
         ];
-    }
-
-    public function getPosition(): int
-    {
-        return $this->position;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
     }
 }

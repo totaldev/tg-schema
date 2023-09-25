@@ -11,18 +11,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+ * Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until
+ * the errors are fixed
  */
 class SetPassportElementErrors extends TdFunction
 {
     public const TYPE_NAME = 'setPassportElementErrors';
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
 
     /**
      * The errors
@@ -30,6 +24,13 @@ class SetPassportElementErrors extends TdFunction
      * @var InputPassportElementError[]
      */
     protected array $errors;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, array $errors)
     {
@@ -45,13 +46,9 @@ class SetPassportElementErrors extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getErrors(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            array_map(fn($x) => $x->typeSerialize(), $this->errors),
-        ];
+        return $this->errors;
     }
 
     public function getUserId(): int
@@ -59,8 +56,12 @@ class SetPassportElementErrors extends TdFunction
         return $this->userId;
     }
 
-    public function getErrors(): array
+    public function typeSerialize(): array
     {
-        return $this->errors;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            array_map(fn($x) => $x->typeSerialize(), $this->errors),
+        ];
     }
 }

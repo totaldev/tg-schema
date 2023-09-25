@@ -44,15 +44,6 @@ class SearchWebApp extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'web_app_short_name' => $this->webAppShortName,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -61,5 +52,14 @@ class SearchWebApp extends TdFunction
     public function getWebAppShortName(): string
     {
         return $this->webAppShortName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'web_app_short_name' => $this->webAppShortName,
+        ];
     }
 }

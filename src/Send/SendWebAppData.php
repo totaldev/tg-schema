@@ -53,16 +53,6 @@ class SendWebAppData extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'button_text' => $this->buttonText,
-            'data' => $this->data,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -76,5 +66,15 @@ class SendWebAppData extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'button_text' => $this->buttonText,
+            'data' => $this->data,
+        ];
     }
 }

@@ -37,16 +37,16 @@ class PageBlockFooter extends PageBlock
         );
     }
 
+    public function getFooter(): RichText
+    {
+        return $this->footer;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'footer' => $this->footer->typeSerialize(),
         ];
-    }
-
-    public function getFooter(): RichText
-    {
-        return $this->footer;
     }
 }

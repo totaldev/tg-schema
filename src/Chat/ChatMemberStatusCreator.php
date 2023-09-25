@@ -54,16 +54,6 @@ class ChatMemberStatusCreator extends ChatMemberStatus
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'custom_title' => $this->customTitle,
-            'is_anonymous' => $this->isAnonymous,
-            'is_member' => $this->isMember,
-        ];
-    }
-
     public function getCustomTitle(): string
     {
         return $this->customTitle;
@@ -77,5 +67,15 @@ class ChatMemberStatusCreator extends ChatMemberStatus
     public function getIsMember(): bool
     {
         return $this->isMember;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'custom_title' => $this->customTitle,
+            'is_anonymous' => $this->isAnonymous,
+            'is_member' => $this->isMember,
+        ];
     }
 }

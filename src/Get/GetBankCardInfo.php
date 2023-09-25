@@ -35,16 +35,16 @@ class GetBankCardInfo extends TdFunction
         );
     }
 
+    public function getBankCardNumber(): string
+    {
+        return $this->bankCardNumber;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'bank_card_number' => $this->bankCardNumber,
         ];
-    }
-
-    public function getBankCardNumber(): string
-    {
-        return $this->bankCardNumber;
     }
 }

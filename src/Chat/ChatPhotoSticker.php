@@ -18,18 +18,18 @@ class ChatPhotoSticker extends TdObject
     public const TYPE_NAME = 'chatPhotoSticker';
 
     /**
-     * Type of the sticker
-     *
-     * @var ChatPhotoStickerType
-     */
-    protected ChatPhotoStickerType $type;
-
-    /**
      * The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported
      *
      * @var BackgroundFill
      */
     protected BackgroundFill $backgroundFill;
+
+    /**
+     * Type of the sticker
+     *
+     * @var ChatPhotoStickerType
+     */
+    protected ChatPhotoStickerType $type;
 
     public function __construct(ChatPhotoStickerType $type, BackgroundFill $backgroundFill)
     {
@@ -45,13 +45,9 @@ class ChatPhotoSticker extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getBackgroundFill(): BackgroundFill
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'background_fill' => $this->backgroundFill->typeSerialize(),
-        ];
+        return $this->backgroundFill;
     }
 
     public function getType(): ChatPhotoStickerType
@@ -59,8 +55,12 @@ class ChatPhotoSticker extends TdObject
         return $this->type;
     }
 
-    public function getBackgroundFill(): BackgroundFill
+    public function typeSerialize(): array
     {
-        return $this->backgroundFill;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'background_fill' => $this->backgroundFill->typeSerialize(),
+        ];
     }
 }

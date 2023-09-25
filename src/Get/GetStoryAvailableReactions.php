@@ -35,16 +35,16 @@ class GetStoryAvailableReactions extends TdFunction
         );
     }
 
+    public function getRowSize(): int
+    {
+        return $this->rowSize;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'row_size' => $this->rowSize,
         ];
-    }
-
-    public function getRowSize(): int
-    {
-        return $this->rowSize;
     }
 }

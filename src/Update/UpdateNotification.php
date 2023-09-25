@@ -17,18 +17,18 @@ class UpdateNotification extends Update
     public const TYPE_NAME = 'updateNotification';
 
     /**
-     * Unique notification group identifier
-     *
-     * @var int
-     */
-    protected int $notificationGroupId;
-
-    /**
      * Changed notification
      *
      * @var Notification
      */
     protected Notification $notification;
+
+    /**
+     * Unique notification group identifier
+     *
+     * @var int
+     */
+    protected int $notificationGroupId;
 
     public function __construct(int $notificationGroupId, Notification $notification)
     {
@@ -46,13 +46,9 @@ class UpdateNotification extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getNotification(): Notification
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
-            'notification' => $this->notification->typeSerialize(),
-        ];
+        return $this->notification;
     }
 
     public function getNotificationGroupId(): int
@@ -60,8 +56,12 @@ class UpdateNotification extends Update
         return $this->notificationGroupId;
     }
 
-    public function getNotification(): Notification
+    public function typeSerialize(): array
     {
-        return $this->notification;
+        return [
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'notification' => $this->notification->typeSerialize(),
+        ];
     }
 }

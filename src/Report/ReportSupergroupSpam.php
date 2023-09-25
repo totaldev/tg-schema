@@ -17,18 +17,18 @@ class ReportSupergroupSpam extends TdFunction
     public const TYPE_NAME = 'reportSupergroupSpam';
 
     /**
-     * Supergroup identifier
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * Identifiers of messages to report
      *
      * @var int[]
      */
     protected array $messageIds;
+
+    /**
+     * Supergroup identifier
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, array $messageIds)
     {
@@ -44,13 +44,9 @@ class ReportSupergroupSpam extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessageIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'message_ids' => $this->messageIds,
-        ];
+        return $this->messageIds;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ReportSupergroupSpam extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getMessageIds(): array
+    public function typeSerialize(): array
     {
-        return $this->messageIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'message_ids' => $this->messageIds,
+        ];
     }
 }

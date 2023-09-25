@@ -36,16 +36,16 @@ class InputPassportElementDriverLicense extends InputPassportElement
         );
     }
 
+    public function getDriverLicense(): InputIdentityDocument
+    {
+        return $this->driverLicense;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'driver_license' => $this->driverLicense->typeSerialize(),
         ];
-    }
-
-    public function getDriverLicense(): InputIdentityDocument
-    {
-        return $this->driverLicense;
     }
 }

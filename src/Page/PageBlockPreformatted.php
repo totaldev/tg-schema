@@ -17,18 +17,18 @@ class PageBlockPreformatted extends PageBlock
     public const TYPE_NAME = 'pageBlockPreformatted';
 
     /**
-     * Paragraph text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * Programming language for which the text needs to be formatted
      *
      * @var string
      */
     protected string $language;
+
+    /**
+     * Paragraph text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     public function __construct(RichText $text, string $language)
     {
@@ -46,13 +46,9 @@ class PageBlockPreformatted extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
+    public function getLanguage(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'language' => $this->language,
-        ];
+        return $this->language;
     }
 
     public function getText(): RichText
@@ -60,8 +56,12 @@ class PageBlockPreformatted extends PageBlock
         return $this->text;
     }
 
-    public function getLanguage(): string
+    public function typeSerialize(): array
     {
-        return $this->language;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'language' => $this->language,
+        ];
     }
 }

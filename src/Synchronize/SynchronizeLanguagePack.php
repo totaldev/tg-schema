@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
+ * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called
+ * explicitly for the current used/base language packs. Can be called before authorization
  */
 class SynchronizeLanguagePack extends TdFunction
 {
@@ -35,16 +36,16 @@ class SynchronizeLanguagePack extends TdFunction
         );
     }
 
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
-    }
-
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
     }
 }

@@ -36,16 +36,16 @@ class RemoveSavedAnimation extends TdFunction
         );
     }
 
+    public function getAnimation(): InputFile
+    {
+        return $this->animation;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'animation' => $this->animation->typeSerialize(),
         ];
-    }
-
-    public function getAnimation(): InputFile
-    {
-        return $this->animation;
     }
 }

@@ -45,15 +45,6 @@ class DeleteChatMessagesBySender extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'sender_id' => $this->senderId->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class DeleteChatMessagesBySender extends TdFunction
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'sender_id' => $this->senderId->typeSerialize(),
+        ];
     }
 }

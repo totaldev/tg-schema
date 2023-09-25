@@ -36,16 +36,16 @@ class AuthenticationCodeTypeSms extends AuthenticationCodeType
         );
     }
 
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'length' => $this->length,
         ];
-    }
-
-    public function getLength(): int
-    {
-        return $this->length;
     }
 }

@@ -17,13 +17,6 @@ class MessageInteractionInfo extends TdObject
     public const TYPE_NAME = 'messageInteractionInfo';
 
     /**
-     * Number of times the message was viewed
-     *
-     * @var int
-     */
-    protected int $viewCount;
-
-    /**
      * Number of times the message was forwarded
      *
      * @var int
@@ -31,18 +24,26 @@ class MessageInteractionInfo extends TdObject
     protected int $forwardCount;
 
     /**
-     * Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
+     * The list of reactions added to the message
+     *
+     * @var MessageReaction[]
+     */
+    protected array $reactions;
+
+    /**
+     * Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and
+     * discussion supergroups for messages, which are not replies itself
      *
      * @var MessageReplyInfo|null
      */
     protected ?MessageReplyInfo $replyInfo;
 
     /**
-     * The list of reactions added to the message
+     * Number of times the message was viewed
      *
-     * @var MessageReaction[]
+     * @var int
      */
-    protected array $reactions;
+    protected int $viewCount;
 
     public function __construct(int $viewCount, int $forwardCount, ?MessageReplyInfo $replyInfo, array $reactions)
     {
@@ -62,6 +63,26 @@ class MessageInteractionInfo extends TdObject
         );
     }
 
+    public function getForwardCount(): int
+    {
+        return $this->forwardCount;
+    }
+
+    public function getReactions(): array
+    {
+        return $this->reactions;
+    }
+
+    public function getReplyInfo(): ?MessageReplyInfo
+    {
+        return $this->replyInfo;
+    }
+
+    public function getViewCount(): int
+    {
+        return $this->viewCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +92,5 @@ class MessageInteractionInfo extends TdObject
             'reply_info' => (isset($this->replyInfo) ? $this->replyInfo : null),
             array_map(fn($x) => $x->typeSerialize(), $this->reactions),
         ];
-    }
-
-    public function getViewCount(): int
-    {
-        return $this->viewCount;
-    }
-
-    public function getForwardCount(): int
-    {
-        return $this->forwardCount;
-    }
-
-    public function getReplyInfo(): ?MessageReplyInfo
-    {
-        return $this->replyInfo;
-    }
-
-    public function getReactions(): array
-    {
-        return $this->reactions;
     }
 }

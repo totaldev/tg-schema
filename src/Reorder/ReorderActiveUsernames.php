@@ -35,16 +35,16 @@ class ReorderActiveUsernames extends TdFunction
         );
     }
 
+    public function getUsernames(): array
+    {
+        return $this->usernames;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'usernames' => $this->usernames,
         ];
-    }
-
-    public function getUsernames(): array
-    {
-        return $this->usernames;
     }
 }

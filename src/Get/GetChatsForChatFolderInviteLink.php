@@ -35,16 +35,16 @@ class GetChatsForChatFolderInviteLink extends TdFunction
         );
     }
 
+    public function getChatFolderId(): int
+    {
+        return $this->chatFolderId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
-    }
-
-    public function getChatFolderId(): int
-    {
-        return $this->chatFolderId;
     }
 }

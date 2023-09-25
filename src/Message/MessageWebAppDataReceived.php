@@ -45,15 +45,6 @@ class MessageWebAppDataReceived extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'button_text' => $this->buttonText,
-            'data' => $this->data,
-        ];
-    }
-
     public function getButtonText(): string
     {
         return $this->buttonText;
@@ -62,5 +53,14 @@ class MessageWebAppDataReceived extends MessageContent
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'button_text' => $this->buttonText,
+            'data' => $this->data,
+        ];
     }
 }

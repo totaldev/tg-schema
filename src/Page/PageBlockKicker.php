@@ -37,16 +37,16 @@ class PageBlockKicker extends PageBlock
         );
     }
 
+    public function getKicker(): RichText
+    {
+        return $this->kicker;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'kicker' => $this->kicker->typeSerialize(),
         ];
-    }
-
-    public function getKicker(): RichText
-    {
-        return $this->kicker;
     }
 }

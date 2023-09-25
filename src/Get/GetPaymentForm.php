@@ -46,15 +46,6 @@ class GetPaymentForm extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'input_invoice' => $this->inputInvoice->typeSerialize(),
-            'theme' => $this->theme->typeSerialize(),
-        ];
-    }
-
     public function getInputInvoice(): InputInvoice
     {
         return $this->inputInvoice;
@@ -63,5 +54,14 @@ class GetPaymentForm extends TdFunction
     public function getTheme(): ThemeParameters
     {
         return $this->theme;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'input_invoice' => $this->inputInvoice->typeSerialize(),
+            'theme' => $this->theme->typeSerialize(),
+        ];
     }
 }

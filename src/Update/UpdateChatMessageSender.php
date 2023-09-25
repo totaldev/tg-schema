@@ -46,15 +46,6 @@ class UpdateChatMessageSender extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_sender_id' => (isset($this->messageSenderId) ? $this->messageSenderId : null),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -63,5 +54,14 @@ class UpdateChatMessageSender extends Update
     public function getMessageSenderId(): ?MessageSender
     {
         return $this->messageSenderId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_sender_id' => (isset($this->messageSenderId) ? $this->messageSenderId : null),
+        ];
     }
 }

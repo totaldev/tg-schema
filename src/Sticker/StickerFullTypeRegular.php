@@ -37,16 +37,16 @@ class StickerFullTypeRegular extends StickerFullType
         );
     }
 
+    public function getPremiumAnimation(): ?File
+    {
+        return $this->premiumAnimation;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'premium_animation' => (isset($this->premiumAnimation) ? $this->premiumAnimation : null),
         ];
-    }
-
-    public function getPremiumAnimation(): ?File
-    {
-        return $this->premiumAnimation;
     }
 }

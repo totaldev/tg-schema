@@ -17,6 +17,13 @@ class ChatFolderInviteLink extends TdObject
     public const TYPE_NAME = 'chatFolderInviteLink';
 
     /**
+     * Identifiers of chats, included in the link
+     *
+     * @var int[]
+     */
+    protected array $chatIds;
+
+    /**
      * The chat folder invite link
      *
      * @var string
@@ -29,13 +36,6 @@ class ChatFolderInviteLink extends TdObject
      * @var string
      */
     protected string $name;
-
-    /**
-     * Identifiers of chats, included in the link
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
 
     public function __construct(string $inviteLink, string $name, array $chatIds)
     {
@@ -53,14 +53,9 @@ class ChatFolderInviteLink extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getChatIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'invite_link' => $this->inviteLink,
-            'name' => $this->name,
-            'chat_ids' => $this->chatIds,
-        ];
+        return $this->chatIds;
     }
 
     public function getInviteLink(): string
@@ -73,8 +68,13 @@ class ChatFolderInviteLink extends TdObject
         return $this->name;
     }
 
-    public function getChatIds(): array
+    public function typeSerialize(): array
     {
-        return $this->chatIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'invite_link' => $this->inviteLink,
+            'name' => $this->name,
+            'chat_ids' => $this->chatIds,
+        ];
     }
 }

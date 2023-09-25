@@ -45,15 +45,6 @@ class UpdateHavePendingNotifications extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'have_delayed_notifications' => $this->haveDelayedNotifications,
-            'have_unreceived_notifications' => $this->haveUnreceivedNotifications,
-        ];
-    }
-
     public function getHaveDelayedNotifications(): bool
     {
         return $this->haveDelayedNotifications;
@@ -62,5 +53,14 @@ class UpdateHavePendingNotifications extends Update
     public function getHaveUnreceivedNotifications(): bool
     {
         return $this->haveUnreceivedNotifications;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'have_delayed_notifications' => $this->haveDelayedNotifications,
+            'have_unreceived_notifications' => $this->haveUnreceivedNotifications,
+        ];
     }
 }

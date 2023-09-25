@@ -10,18 +10,12 @@ use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
+ * The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input
+ * field
  */
 class InternalLinkTypeMessageDraft extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeMessageDraft';
-
-    /**
-     * Message draft text
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
 
     /**
      * True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
@@ -29,6 +23,13 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
      * @var bool
      */
     protected bool $containsLink;
+
+    /**
+     * Message draft text
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $text;
 
     public function __construct(FormattedText $text, bool $containsLink)
     {
@@ -46,13 +47,9 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
+    public function getContainsLink(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'contains_link' => $this->containsLink,
-        ];
+        return $this->containsLink;
     }
 
     public function getText(): FormattedText
@@ -60,8 +57,12 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
         return $this->text;
     }
 
-    public function getContainsLink(): bool
+    public function typeSerialize(): array
     {
-        return $this->containsLink;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'contains_link' => $this->containsLink,
+        ];
     }
 }

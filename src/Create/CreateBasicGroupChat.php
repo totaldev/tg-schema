@@ -44,15 +44,6 @@ class CreateBasicGroupChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'basic_group_id' => $this->basicGroupId,
-            'force' => $this->force,
-        ];
-    }
-
     public function getBasicGroupId(): int
     {
         return $this->basicGroupId;
@@ -61,5 +52,14 @@ class CreateBasicGroupChat extends TdFunction
     public function getForce(): bool
     {
         return $this->force;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'basic_group_id' => $this->basicGroupId,
+            'force' => $this->force,
+        ];
     }
 }

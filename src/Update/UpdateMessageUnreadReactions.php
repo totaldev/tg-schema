@@ -31,18 +31,18 @@ class UpdateMessageUnreadReactions extends Update
     protected int $messageId;
 
     /**
-     * The new list of unread reactions
-     *
-     * @var UnreadReaction[]
-     */
-    protected array $unreadReactions;
-
-    /**
      * The new number of messages with unread reactions left in the chat
      *
      * @var int
      */
     protected int $unreadReactionCount;
+
+    /**
+     * The new list of unread reactions
+     *
+     * @var UnreadReaction[]
+     */
+    protected array $unreadReactions;
 
     public function __construct(int $chatId, int $messageId, array $unreadReactions, int $unreadReactionCount)
     {
@@ -59,20 +59,9 @@ class UpdateMessageUnreadReactions extends Update
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unreadReactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
             $array['unread_reaction_count'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            array_map(fn($x) => $x->typeSerialize(), $this->unreadReactions),
-            'unread_reaction_count' => $this->unreadReactionCount,
-        ];
     }
 
     public function getChatId(): int
@@ -85,13 +74,24 @@ class UpdateMessageUnreadReactions extends Update
         return $this->messageId;
     }
 
+    public function getUnreadReactionCount(): int
+    {
+        return $this->unreadReactionCount;
+    }
+
     public function getUnreadReactions(): array
     {
         return $this->unreadReactions;
     }
 
-    public function getUnreadReactionCount(): int
+    public function typeSerialize(): array
     {
-        return $this->unreadReactionCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            array_map(fn($x) => $x->typeSerialize(), $this->unreadReactions),
+            'unread_reaction_count' => $this->unreadReactionCount,
+        ];
     }
 }

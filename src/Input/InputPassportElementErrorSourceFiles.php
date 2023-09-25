@@ -36,16 +36,16 @@ class InputPassportElementErrorSourceFiles extends InputPassportElementErrorSour
         );
     }
 
+    public function getFileHashes(): array
+    {
+        return $this->fileHashes;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file_hashes' => $this->fileHashes,
         ];
-    }
-
-    public function getFileHashes(): array
-    {
-        return $this->fileHashes;
     }
 }

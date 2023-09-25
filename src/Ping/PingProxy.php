@@ -35,16 +35,16 @@ class PingProxy extends TdFunction
         );
     }
 
+    public function getProxyId(): int
+    {
+        return $this->proxyId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
         ];
-    }
-
-    public function getProxyId(): int
-    {
-        return $this->proxyId;
     }
 }

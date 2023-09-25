@@ -36,16 +36,16 @@ class InputPassportElementUtilityBill extends InputPassportElement
         );
     }
 
+    public function getUtilityBill(): InputPersonalDocument
+    {
+        return $this->utilityBill;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'utility_bill' => $this->utilityBill->typeSerialize(),
         ];
-    }
-
-    public function getUtilityBill(): InputPersonalDocument
-    {
-        return $this->utilityBill;
     }
 }

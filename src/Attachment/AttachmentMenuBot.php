@@ -18,102 +18,25 @@ class AttachmentMenuBot extends TdObject
     public const TYPE_NAME = 'attachmentMenuBot';
 
     /**
+     * Icon for the bot in TGS format for the official Android app; may be null
+     *
+     * @var File|null
+     */
+    protected ?File $androidIcon;
+
+    /**
+     * Icon for the bot in SVG format for the official Android app side menu; may be null
+     *
+     * @var File|null
+     */
+    protected ?File $androidSideMenuIcon;
+
+    /**
      * User identifier of the bot
      *
      * @var int
      */
     protected int $botUserId;
-
-    /**
-     * True, if the bot supports opening from attachment menu in the chat with the bot
-     *
-     * @var bool
-     */
-    protected bool $supportsSelfChat;
-
-    /**
-     * True, if the bot supports opening from attachment menu in private chats with ordinary users
-     *
-     * @var bool
-     */
-    protected bool $supportsUserChats;
-
-    /**
-     * True, if the bot supports opening from attachment menu in private chats with other bots
-     *
-     * @var bool
-     */
-    protected bool $supportsBotChats;
-
-    /**
-     * True, if the bot supports opening from attachment menu in basic group and supergroup chats
-     *
-     * @var bool
-     */
-    protected bool $supportsGroupChats;
-
-    /**
-     * True, if the bot supports opening from attachment menu in channel chats
-     *
-     * @var bool
-     */
-    protected bool $supportsChannelChats;
-
-    /**
-     * True, if the bot supports "settings_button_pressed" event
-     *
-     * @var bool
-     */
-    protected bool $supportsSettings;
-
-    /**
-     * True, if the user must be asked for the permission to send messages to the bot
-     *
-     * @var bool
-     */
-    protected bool $requestWriteAccess;
-
-    /**
-     * True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
-     *
-     * @var bool
-     */
-    protected bool $isAdded;
-
-    /**
-     * True, if the bot must be shown in the attachment menu
-     *
-     * @var bool
-     */
-    protected bool $showInAttachmentMenu;
-
-    /**
-     * True, if the bot must be shown in the side menu
-     *
-     * @var bool
-     */
-    protected bool $showInSideMenu;
-
-    /**
-     * True, if a disclaimer, why the bot is shown in the side menu, is needed
-     *
-     * @var bool
-     */
-    protected bool $showDisclaimerInSideMenu;
-
-    /**
-     * Name for the bot in attachment menu
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Color to highlight selected name of the bot if appropriate; may be null
-     *
-     * @var AttachmentMenuBotColor|null
-     */
-    protected ?AttachmentMenuBotColor $nameColor;
 
     /**
      * Default icon for the bot in SVG format; may be null
@@ -123,11 +46,11 @@ class AttachmentMenuBot extends TdObject
     protected ?File $defaultIcon;
 
     /**
-     * Icon for the bot in SVG format for the official iOS app; may be null
+     * Color to highlight selected icon of the bot if appropriate; may be null
      *
-     * @var File|null
+     * @var AttachmentMenuBotColor|null
      */
-    protected ?File $iosStaticIcon;
+    protected ?AttachmentMenuBotColor $iconColor;
 
     /**
      * Icon for the bot in TGS format for the official iOS app; may be null
@@ -144,18 +67,19 @@ class AttachmentMenuBot extends TdObject
     protected ?File $iosSideMenuIcon;
 
     /**
-     * Icon for the bot in TGS format for the official Android app; may be null
+     * Icon for the bot in SVG format for the official iOS app; may be null
      *
      * @var File|null
      */
-    protected ?File $androidIcon;
+    protected ?File $iosStaticIcon;
 
     /**
-     * Icon for the bot in SVG format for the official Android app side menu; may be null
+     * True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called
+     * and the bot must be added or removed
      *
-     * @var File|null
+     * @var bool
      */
-    protected ?File $androidSideMenuIcon;
+    protected bool $isAdded;
 
     /**
      * Icon for the bot in TGS format for the official native macOS app; may be null
@@ -172,11 +96,88 @@ class AttachmentMenuBot extends TdObject
     protected ?File $macosSideMenuIcon;
 
     /**
-     * Color to highlight selected icon of the bot if appropriate; may be null
+     * Name for the bot in attachment menu
+     *
+     * @var string
+     */
+    protected string $name;
+
+    /**
+     * Color to highlight selected name of the bot if appropriate; may be null
      *
      * @var AttachmentMenuBotColor|null
      */
-    protected ?AttachmentMenuBotColor $iconColor;
+    protected ?AttachmentMenuBotColor $nameColor;
+
+    /**
+     * True, if the user must be asked for the permission to send messages to the bot
+     *
+     * @var bool
+     */
+    protected bool $requestWriteAccess;
+
+    /**
+     * True, if a disclaimer, why the bot is shown in the side menu, is needed
+     *
+     * @var bool
+     */
+    protected bool $showDisclaimerInSideMenu;
+
+    /**
+     * True, if the bot must be shown in the attachment menu
+     *
+     * @var bool
+     */
+    protected bool $showInAttachmentMenu;
+
+    /**
+     * True, if the bot must be shown in the side menu
+     *
+     * @var bool
+     */
+    protected bool $showInSideMenu;
+
+    /**
+     * True, if the bot supports opening from attachment menu in private chats with other bots
+     *
+     * @var bool
+     */
+    protected bool $supportsBotChats;
+
+    /**
+     * True, if the bot supports opening from attachment menu in channel chats
+     *
+     * @var bool
+     */
+    protected bool $supportsChannelChats;
+
+    /**
+     * True, if the bot supports opening from attachment menu in basic group and supergroup chats
+     *
+     * @var bool
+     */
+    protected bool $supportsGroupChats;
+
+    /**
+     * True, if the bot supports opening from attachment menu in the chat with the bot
+     *
+     * @var bool
+     */
+    protected bool $supportsSelfChat;
+
+    /**
+     * True, if the bot supports "settings_button_pressed" event
+     *
+     * @var bool
+     */
+    protected bool $supportsSettings;
+
+    /**
+     * True, if the bot supports opening from attachment menu in private chats with ordinary users
+     *
+     * @var bool
+     */
+    protected bool $supportsUserChats;
 
     /**
      * Default placeholder for opened Web Apps in SVG format; may be null
@@ -186,31 +187,32 @@ class AttachmentMenuBot extends TdObject
     protected ?File $webAppPlaceholder;
 
     public function __construct(
-        int $botUserId,
-        bool $supportsSelfChat,
-        bool $supportsUserChats,
-        bool $supportsBotChats,
-        bool $supportsGroupChats,
-        bool $supportsChannelChats,
-        bool $supportsSettings,
-        bool $requestWriteAccess,
-        bool $isAdded,
-        bool $showInAttachmentMenu,
-        bool $showInSideMenu,
-        bool $showDisclaimerInSideMenu,
-        string $name,
+        int                     $botUserId,
+        bool                    $supportsSelfChat,
+        bool                    $supportsUserChats,
+        bool                    $supportsBotChats,
+        bool                    $supportsGroupChats,
+        bool                    $supportsChannelChats,
+        bool                    $supportsSettings,
+        bool                    $requestWriteAccess,
+        bool                    $isAdded,
+        bool                    $showInAttachmentMenu,
+        bool                    $showInSideMenu,
+        bool                    $showDisclaimerInSideMenu,
+        string                  $name,
         ?AttachmentMenuBotColor $nameColor,
-        ?File $defaultIcon,
-        ?File $iosStaticIcon,
-        ?File $iosAnimatedIcon,
-        ?File $iosSideMenuIcon,
-        ?File $androidIcon,
-        ?File $androidSideMenuIcon,
-        ?File $macosIcon,
-        ?File $macosSideMenuIcon,
+        ?File                   $defaultIcon,
+        ?File                   $iosStaticIcon,
+        ?File                   $iosAnimatedIcon,
+        ?File                   $iosSideMenuIcon,
+        ?File                   $androidIcon,
+        ?File                   $androidSideMenuIcon,
+        ?File                   $macosIcon,
+        ?File                   $macosSideMenuIcon,
         ?AttachmentMenuBotColor $iconColor,
-        ?File $webAppPlaceholder,
-    ) {
+        ?File                   $webAppPlaceholder,
+    )
+    {
         $this->botUserId = $botUserId;
         $this->supportsSelfChat = $supportsSelfChat;
         $this->supportsUserChats = $supportsUserChats;
@@ -267,6 +269,126 @@ class AttachmentMenuBot extends TdObject
         );
     }
 
+    public function getAndroidIcon(): ?File
+    {
+        return $this->androidIcon;
+    }
+
+    public function getAndroidSideMenuIcon(): ?File
+    {
+        return $this->androidSideMenuIcon;
+    }
+
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getDefaultIcon(): ?File
+    {
+        return $this->defaultIcon;
+    }
+
+    public function getIconColor(): ?AttachmentMenuBotColor
+    {
+        return $this->iconColor;
+    }
+
+    public function getIosAnimatedIcon(): ?File
+    {
+        return $this->iosAnimatedIcon;
+    }
+
+    public function getIosSideMenuIcon(): ?File
+    {
+        return $this->iosSideMenuIcon;
+    }
+
+    public function getIosStaticIcon(): ?File
+    {
+        return $this->iosStaticIcon;
+    }
+
+    public function getIsAdded(): bool
+    {
+        return $this->isAdded;
+    }
+
+    public function getMacosIcon(): ?File
+    {
+        return $this->macosIcon;
+    }
+
+    public function getMacosSideMenuIcon(): ?File
+    {
+        return $this->macosSideMenuIcon;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getNameColor(): ?AttachmentMenuBotColor
+    {
+        return $this->nameColor;
+    }
+
+    public function getRequestWriteAccess(): bool
+    {
+        return $this->requestWriteAccess;
+    }
+
+    public function getShowDisclaimerInSideMenu(): bool
+    {
+        return $this->showDisclaimerInSideMenu;
+    }
+
+    public function getShowInAttachmentMenu(): bool
+    {
+        return $this->showInAttachmentMenu;
+    }
+
+    public function getShowInSideMenu(): bool
+    {
+        return $this->showInSideMenu;
+    }
+
+    public function getSupportsBotChats(): bool
+    {
+        return $this->supportsBotChats;
+    }
+
+    public function getSupportsChannelChats(): bool
+    {
+        return $this->supportsChannelChats;
+    }
+
+    public function getSupportsGroupChats(): bool
+    {
+        return $this->supportsGroupChats;
+    }
+
+    public function getSupportsSelfChat(): bool
+    {
+        return $this->supportsSelfChat;
+    }
+
+    public function getSupportsSettings(): bool
+    {
+        return $this->supportsSettings;
+    }
+
+    public function getSupportsUserChats(): bool
+    {
+        return $this->supportsUserChats;
+    }
+
+    public function getWebAppPlaceholder(): ?File
+    {
+        return $this->webAppPlaceholder;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -296,125 +418,5 @@ class AttachmentMenuBot extends TdObject
             'icon_color' => (isset($this->iconColor) ? $this->iconColor : null),
             'web_app_placeholder' => (isset($this->webAppPlaceholder) ? $this->webAppPlaceholder : null),
         ];
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getSupportsSelfChat(): bool
-    {
-        return $this->supportsSelfChat;
-    }
-
-    public function getSupportsUserChats(): bool
-    {
-        return $this->supportsUserChats;
-    }
-
-    public function getSupportsBotChats(): bool
-    {
-        return $this->supportsBotChats;
-    }
-
-    public function getSupportsGroupChats(): bool
-    {
-        return $this->supportsGroupChats;
-    }
-
-    public function getSupportsChannelChats(): bool
-    {
-        return $this->supportsChannelChats;
-    }
-
-    public function getSupportsSettings(): bool
-    {
-        return $this->supportsSettings;
-    }
-
-    public function getRequestWriteAccess(): bool
-    {
-        return $this->requestWriteAccess;
-    }
-
-    public function getIsAdded(): bool
-    {
-        return $this->isAdded;
-    }
-
-    public function getShowInAttachmentMenu(): bool
-    {
-        return $this->showInAttachmentMenu;
-    }
-
-    public function getShowInSideMenu(): bool
-    {
-        return $this->showInSideMenu;
-    }
-
-    public function getShowDisclaimerInSideMenu(): bool
-    {
-        return $this->showDisclaimerInSideMenu;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getNameColor(): ?AttachmentMenuBotColor
-    {
-        return $this->nameColor;
-    }
-
-    public function getDefaultIcon(): ?File
-    {
-        return $this->defaultIcon;
-    }
-
-    public function getIosStaticIcon(): ?File
-    {
-        return $this->iosStaticIcon;
-    }
-
-    public function getIosAnimatedIcon(): ?File
-    {
-        return $this->iosAnimatedIcon;
-    }
-
-    public function getIosSideMenuIcon(): ?File
-    {
-        return $this->iosSideMenuIcon;
-    }
-
-    public function getAndroidIcon(): ?File
-    {
-        return $this->androidIcon;
-    }
-
-    public function getAndroidSideMenuIcon(): ?File
-    {
-        return $this->androidSideMenuIcon;
-    }
-
-    public function getMacosIcon(): ?File
-    {
-        return $this->macosIcon;
-    }
-
-    public function getMacosSideMenuIcon(): ?File
-    {
-        return $this->macosSideMenuIcon;
-    }
-
-    public function getIconColor(): ?AttachmentMenuBotColor
-    {
-        return $this->iconColor;
-    }
-
-    public function getWebAppPlaceholder(): ?File
-    {
-        return $this->webAppPlaceholder;
     }
 }

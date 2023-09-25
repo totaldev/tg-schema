@@ -17,18 +17,18 @@ class ImportedContacts extends TdObject
     public const TYPE_NAME = 'importedContacts';
 
     /**
-     * User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    /**
      * The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
      *
      * @var int[]
      */
     protected array $importerCount;
+
+    /**
+     * User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
+     *
+     * @var int[]
+     */
+    protected array $userIds;
 
     public function __construct(array $userIds, array $importerCount)
     {
@@ -44,13 +44,9 @@ class ImportedContacts extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getImporterCount(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_ids' => $this->userIds,
-            'importer_count' => $this->importerCount,
-        ];
+        return $this->importerCount;
     }
 
     public function getUserIds(): array
@@ -58,8 +54,12 @@ class ImportedContacts extends TdObject
         return $this->userIds;
     }
 
-    public function getImporterCount(): array
+    public function typeSerialize(): array
     {
-        return $this->importerCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_ids' => $this->userIds,
+            'importer_count' => $this->importerCount,
+        ];
     }
 }

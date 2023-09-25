@@ -18,11 +18,11 @@ class ChatTheme extends TdObject
     public const TYPE_NAME = 'chatTheme';
 
     /**
-     * Theme name
+     * Theme settings for a dark chat theme
      *
-     * @var string
+     * @var ThemeSettings
      */
-    protected string $name;
+    protected ThemeSettings $darkSettings;
 
     /**
      * Theme settings for a light chat theme
@@ -32,11 +32,11 @@ class ChatTheme extends TdObject
     protected ThemeSettings $lightSettings;
 
     /**
-     * Theme settings for a dark chat theme
+     * Theme name
      *
-     * @var ThemeSettings
+     * @var string
      */
-    protected ThemeSettings $darkSettings;
+    protected string $name;
 
     public function __construct(string $name, ThemeSettings $lightSettings, ThemeSettings $darkSettings)
     {
@@ -54,6 +54,21 @@ class ChatTheme extends TdObject
         );
     }
 
+    public function getDarkSettings(): ThemeSettings
+    {
+        return $this->darkSettings;
+    }
+
+    public function getLightSettings(): ThemeSettings
+    {
+        return $this->lightSettings;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class ChatTheme extends TdObject
             'light_settings' => $this->lightSettings->typeSerialize(),
             'dark_settings' => $this->darkSettings->typeSerialize(),
         ];
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getLightSettings(): ThemeSettings
-    {
-        return $this->lightSettings;
-    }
-
-    public function getDarkSettings(): ThemeSettings
-    {
-        return $this->darkSettings;
     }
 }

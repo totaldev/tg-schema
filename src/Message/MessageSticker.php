@@ -17,18 +17,18 @@ class MessageSticker extends MessageContent
     public const TYPE_NAME = 'messageSticker';
 
     /**
-     * The sticker description
-     *
-     * @var Sticker
-     */
-    protected Sticker $sticker;
-
-    /**
      * True, if premium animation of the sticker must be played
      *
      * @var bool
      */
     protected bool $isPremium;
+
+    /**
+     * The sticker description
+     *
+     * @var Sticker
+     */
+    protected Sticker $sticker;
 
     public function __construct(Sticker $sticker, bool $isPremium)
     {
@@ -46,13 +46,9 @@ class MessageSticker extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPremium(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'is_premium' => $this->isPremium,
-        ];
+        return $this->isPremium;
     }
 
     public function getSticker(): Sticker
@@ -60,8 +56,12 @@ class MessageSticker extends MessageContent
         return $this->sticker;
     }
 
-    public function getIsPremium(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPremium;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'is_premium' => $this->isPremium,
+        ];
     }
 }

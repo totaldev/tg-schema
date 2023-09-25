@@ -35,16 +35,16 @@ class Count extends TdObject
         );
     }
 
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'count' => $this->count,
         ];
-    }
-
-    public function getCount(): int
-    {
-        return $this->count;
     }
 }

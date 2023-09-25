@@ -55,16 +55,6 @@ class PageBlockAnimation extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animation' => (isset($this->animation) ? $this->animation : null),
-            'caption' => $this->caption->typeSerialize(),
-            'need_autoplay' => $this->needAutoplay,
-        ];
-    }
-
     public function getAnimation(): ?Animation
     {
         return $this->animation;
@@ -78,5 +68,15 @@ class PageBlockAnimation extends PageBlock
     public function getNeedAutoplay(): bool
     {
         return $this->needAutoplay;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'animation' => (isset($this->animation) ? $this->animation : null),
+            'caption' => $this->caption->typeSerialize(),
+            'need_autoplay' => $this->needAutoplay,
+        ];
     }
 }

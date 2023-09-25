@@ -16,6 +16,20 @@ class InputMessageSticker extends InputMessageContent
     public const TYPE_NAME = 'inputMessageSticker';
 
     /**
+     * Emoji used to choose the sticker
+     *
+     * @var string
+     */
+    protected string $emoji;
+
+    /**
+     * Sticker height
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
      * Sticker to be sent
      *
      * @var InputFile
@@ -35,20 +49,6 @@ class InputMessageSticker extends InputMessageContent
      * @var int
      */
     protected int $width;
-
-    /**
-     * Sticker height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Emoji used to choose the sticker
-     *
-     * @var string
-     */
-    protected string $emoji;
 
     public function __construct(InputFile $sticker, InputThumbnail $thumbnail, int $width, int $height, string $emoji)
     {
@@ -72,16 +72,14 @@ class InputMessageSticker extends InputMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getEmoji(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'width' => $this->width,
-            'height' => $this->height,
-            'emoji' => $this->emoji,
-        ];
+        return $this->emoji;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
     }
 
     public function getSticker(): InputFile
@@ -99,13 +97,15 @@ class InputMessageSticker extends InputMessageContent
         return $this->width;
     }
 
-    public function getHeight(): int
+    public function typeSerialize(): array
     {
-        return $this->height;
-    }
-
-    public function getEmoji(): string
-    {
-        return $this->emoji;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'width' => $this->width,
+            'height' => $this->height,
+            'emoji' => $this->emoji,
+        ];
     }
 }

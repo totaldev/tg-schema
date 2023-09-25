@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+ * Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be
+ * forwarded, null will be returned instead of the message
  */
 class ForwardMessages extends TdFunction
 {
@@ -23,13 +24,6 @@ class ForwardMessages extends TdFunction
      * @var int
      */
     protected int $chatId;
-
-    /**
-     * If not 0, a message thread identifier in which the message will be sent; for forum threads only
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
 
     /**
      * Identifier of the chat from which to forward messages
@@ -46,18 +40,25 @@ class ForwardMessages extends TdFunction
     protected array $messageIds;
 
     /**
+     * If not 0, a message thread identifier in which the message will be sent; for forum threads only
+     *
+     * @var int
+     */
+    protected int $messageThreadId;
+
+    /**
+     * Pass true to get fake messages instead of actually forwarding them
+     *
+     * @var bool
+     */
+    protected bool $onlyPreview;
+
+    /**
      * Options to be used to send the messages; pass null to use default options
      *
      * @var MessageSendOptions
      */
     protected MessageSendOptions $options;
-
-    /**
-     * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
-     *
-     * @var bool
-     */
-    protected bool $sendCopy;
 
     /**
      * Pass true to remove media captions of message copies. Ignored if send_copy is false
@@ -67,22 +68,24 @@ class ForwardMessages extends TdFunction
     protected bool $removeCaption;
 
     /**
-     * Pass true to get fake messages instead of actually forwarding them
+     * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are
+     * local
      *
      * @var bool
      */
-    protected bool $onlyPreview;
+    protected bool $sendCopy;
 
     public function __construct(
-        int $chatId,
-        int $messageThreadId,
-        int $fromChatId,
-        array $messageIds,
+        int                $chatId,
+        int                $messageThreadId,
+        int                $fromChatId,
+        array              $messageIds,
         MessageSendOptions $options,
-        bool $sendCopy,
-        bool $removeCaption,
-        bool $onlyPreview,
-    ) {
+        bool               $sendCopy,
+        bool               $removeCaption,
+        bool               $onlyPreview,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageThreadId = $messageThreadId;
         $this->fromChatId = $fromChatId;
@@ -107,6 +110,46 @@ class ForwardMessages extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFromChatId(): int
+    {
+        return $this->fromChatId;
+    }
+
+    public function getMessageIds(): array
+    {
+        return $this->messageIds;
+    }
+
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
+    public function getOnlyPreview(): bool
+    {
+        return $this->onlyPreview;
+    }
+
+    public function getOptions(): MessageSendOptions
+    {
+        return $this->options;
+    }
+
+    public function getRemoveCaption(): bool
+    {
+        return $this->removeCaption;
+    }
+
+    public function getSendCopy(): bool
+    {
+        return $this->sendCopy;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -120,45 +163,5 @@ class ForwardMessages extends TdFunction
             'remove_caption' => $this->removeCaption,
             'only_preview' => $this->onlyPreview,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
-    public function getFromChatId(): int
-    {
-        return $this->fromChatId;
-    }
-
-    public function getMessageIds(): array
-    {
-        return $this->messageIds;
-    }
-
-    public function getOptions(): MessageSendOptions
-    {
-        return $this->options;
-    }
-
-    public function getSendCopy(): bool
-    {
-        return $this->sendCopy;
-    }
-
-    public function getRemoveCaption(): bool
-    {
-        return $this->removeCaption;
-    }
-
-    public function getOnlyPreview(): bool
-    {
-        return $this->onlyPreview;
     }
 }

@@ -17,18 +17,18 @@ class RtmpUrl extends TdObject
     public const TYPE_NAME = 'rtmpUrl';
 
     /**
-     * The URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Stream key
      *
      * @var string
      */
     protected string $streamKey;
+
+    /**
+     * The URL
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, string $streamKey)
     {
@@ -44,13 +44,9 @@ class RtmpUrl extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getStreamKey(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'stream_key' => $this->streamKey,
-        ];
+        return $this->streamKey;
     }
 
     public function getUrl(): string
@@ -58,8 +54,12 @@ class RtmpUrl extends TdObject
         return $this->url;
     }
 
-    public function getStreamKey(): string
+    public function typeSerialize(): array
     {
-        return $this->streamKey;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'stream_key' => $this->streamKey,
+        ];
     }
 }

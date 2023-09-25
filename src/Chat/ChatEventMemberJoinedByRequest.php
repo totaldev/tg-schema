@@ -45,15 +45,6 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'approver_user_id' => $this->approverUserId,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
-        ];
-    }
-
     public function getApproverUserId(): int
     {
         return $this->approverUserId;
@@ -62,5 +53,14 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
     public function getInviteLink(): ?ChatInviteLink
     {
         return $this->inviteLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'approver_user_id' => $this->approverUserId,
+            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+        ];
     }
 }

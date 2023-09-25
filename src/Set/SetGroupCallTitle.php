@@ -44,15 +44,6 @@ class SetGroupCallTitle extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'title' => $this->title,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +52,14 @@ class SetGroupCallTitle extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'title' => $this->title,
+        ];
     }
 }

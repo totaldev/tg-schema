@@ -62,17 +62,6 @@ class ReportChatPhoto extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'file_id' => $this->fileId,
-            'reason' => $this->reason->typeSerialize(),
-            'text' => $this->text,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -91,5 +80,16 @@ class ReportChatPhoto extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'file_id' => $this->fileId,
+            'reason' => $this->reason->typeSerialize(),
+            'text' => $this->text,
+        ];
     }
 }

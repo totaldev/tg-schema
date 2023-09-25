@@ -18,18 +18,18 @@ class Sessions extends TdObject
     public const TYPE_NAME = 'sessions';
 
     /**
-     * List of sessions
-     *
-     * @var Session[]
-     */
-    protected array $sessions;
-
-    /**
      * Number of days of inactivity before sessions will automatically be terminated; 1-366 days
      *
      * @var int
      */
     protected int $inactiveSessionTtlDays;
+
+    /**
+     * List of sessions
+     *
+     * @var Session[]
+     */
+    protected array $sessions;
 
     public function __construct(array $sessions, int $inactiveSessionTtlDays)
     {
@@ -45,13 +45,9 @@ class Sessions extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getInactiveSessionTtlDays(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->sessions),
-            'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
-        ];
+        return $this->inactiveSessionTtlDays;
     }
 
     public function getSessions(): array
@@ -59,8 +55,12 @@ class Sessions extends TdObject
         return $this->sessions;
     }
 
-    public function getInactiveSessionTtlDays(): int
+    public function typeSerialize(): array
     {
-        return $this->inactiveSessionTtlDays;
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->sessions),
+            'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
+        ];
     }
 }

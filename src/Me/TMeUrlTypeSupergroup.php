@@ -36,16 +36,16 @@ class TMeUrlTypeSupergroup extends TMeUrlType
         );
     }
 
+    public function getSupergroupId(): int
+    {
+        return $this->supergroupId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
-    }
-
-    public function getSupergroupId(): int
-    {
-        return $this->supergroupId;
     }
 }

@@ -19,25 +19,26 @@ class SetCommands extends TdFunction
     public const TYPE_NAME = 'setCommands';
 
     /**
-     * The scope to which the commands are relevant; pass null to change commands in the default bot command scope
+     * List of the bot's commands
      *
-     * @var BotCommandScope
+     * @var BotCommand[]
      */
-    protected BotCommandScope $scope;
+    protected array $commands;
 
     /**
-     * A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+     * A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no
+     * dedicated commands
      *
      * @var string
      */
     protected string $languageCode;
 
     /**
-     * List of the bot's commands
+     * The scope to which the commands are relevant; pass null to change commands in the default bot command scope
      *
-     * @var BotCommand[]
+     * @var BotCommandScope
      */
-    protected array $commands;
+    protected BotCommandScope $scope;
 
     public function __construct(BotCommandScope $scope, string $languageCode, array $commands)
     {
@@ -55,6 +56,21 @@ class SetCommands extends TdFunction
         );
     }
 
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
+
+    public function getLanguageCode(): string
+    {
+        return $this->languageCode;
+    }
+
+    public function getScope(): BotCommandScope
+    {
+        return $this->scope;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +79,5 @@ class SetCommands extends TdFunction
             'language_code' => $this->languageCode,
             array_map(fn($x) => $x->typeSerialize(), $this->commands),
         ];
-    }
-
-    public function getScope(): BotCommandScope
-    {
-        return $this->scope;
-    }
-
-    public function getLanguageCode(): string
-    {
-        return $this->languageCode;
-    }
-
-    public function getCommands(): array
-    {
-        return $this->commands;
     }
 }

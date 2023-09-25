@@ -36,16 +36,16 @@ class ChatEventSignMessagesToggled extends ChatEventAction
         );
     }
 
+    public function getSignMessages(): bool
+    {
+        return $this->signMessages;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sign_messages' => $this->signMessages,
         ];
-    }
-
-    public function getSignMessages(): bool
-    {
-        return $this->signMessages;
     }
 }

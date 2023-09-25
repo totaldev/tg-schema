@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
+ * Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to
+ * create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
  */
 class DeleteAccount extends TdFunction
 {
     public const TYPE_NAME = 'deleteAccount';
-
-    /**
-     * The reason why the account was deleted; optional
-     *
-     * @var string
-     */
-    protected string $reason;
 
     /**
      * The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
@@ -29,6 +23,13 @@ class DeleteAccount extends TdFunction
      * @var string
      */
     protected string $password;
+
+    /**
+     * The reason why the account was deleted; optional
+     *
+     * @var string
+     */
+    protected string $reason;
 
     public function __construct(string $reason, string $password)
     {
@@ -44,13 +45,9 @@ class DeleteAccount extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'reason' => $this->reason,
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 
     public function getReason(): string
@@ -58,8 +55,12 @@ class DeleteAccount extends TdFunction
         return $this->reason;
     }
 
-    public function getPassword(): string
+    public function typeSerialize(): array
     {
-        return $this->password;
+        return [
+            '@type' => static::TYPE_NAME,
+            'reason' => $this->reason,
+            'password' => $this->password,
+        ];
     }
 }

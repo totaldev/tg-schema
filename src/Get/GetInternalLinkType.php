@@ -35,16 +35,16 @@ class GetInternalLinkType extends TdFunction
         );
     }
 
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'link' => $this->link,
         ];
-    }
-
-    public function getLink(): string
-    {
-        return $this->link;
     }
 }

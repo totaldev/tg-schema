@@ -16,14 +16,8 @@ class InputFileGenerated extends InputFile
     public const TYPE_NAME = 'inputFileGenerated';
 
     /**
-     * Local path to a file from which the file is generated; may be empty if there is no such file
-     *
-     * @var string
-     */
-    protected string $originalPath;
-
-    /**
-     * String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
+     * String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are
+     * reserved for internal TDLib usage
      *
      * @var string
      */
@@ -35,6 +29,13 @@ class InputFileGenerated extends InputFile
      * @var int
      */
     protected int $expectedSize;
+
+    /**
+     * Local path to a file from which the file is generated; may be empty if there is no such file
+     *
+     * @var string
+     */
+    protected string $originalPath;
 
     public function __construct(string $originalPath, string $conversion, int $expectedSize)
     {
@@ -54,21 +55,6 @@ class InputFileGenerated extends InputFile
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'original_path' => $this->originalPath,
-            'conversion' => $this->conversion,
-            'expected_size' => $this->expectedSize,
-        ];
-    }
-
-    public function getOriginalPath(): string
-    {
-        return $this->originalPath;
-    }
-
     public function getConversion(): string
     {
         return $this->conversion;
@@ -77,5 +63,20 @@ class InputFileGenerated extends InputFile
     public function getExpectedSize(): int
     {
         return $this->expectedSize;
+    }
+
+    public function getOriginalPath(): string
+    {
+        return $this->originalPath;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'original_path' => $this->originalPath,
+            'conversion' => $this->conversion,
+            'expected_size' => $this->expectedSize,
+        ];
     }
 }

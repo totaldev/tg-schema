@@ -47,15 +47,6 @@ class UpdateChatIsBlocked extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'is_blocked' => $this->isBlocked,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -64,5 +55,14 @@ class UpdateChatIsBlocked extends Update
     public function getIsBlocked(): bool
     {
         return $this->isBlocked;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'is_blocked' => $this->isBlocked,
+        ];
     }
 }

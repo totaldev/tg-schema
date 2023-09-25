@@ -36,16 +36,16 @@ class UpdateNewCustomEvent extends Update
         );
     }
 
+    public function getEvent(): string
+    {
+        return $this->event;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'event' => $this->event,
         ];
-    }
-
-    public function getEvent(): string
-    {
-        return $this->event;
     }
 }

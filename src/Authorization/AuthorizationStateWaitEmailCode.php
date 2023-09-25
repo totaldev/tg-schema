@@ -46,11 +46,12 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
     protected ?EmailAddressResetState $emailAddressResetState;
 
     public function __construct(
-        bool $allowAppleId,
-        bool $allowGoogleId,
+        bool                               $allowAppleId,
+        bool                               $allowGoogleId,
         EmailAddressAuthenticationCodeInfo $codeInfo,
-        ?EmailAddressResetState $emailAddressResetState,
-    ) {
+        ?EmailAddressResetState            $emailAddressResetState,
+    )
+    {
         parent::__construct();
 
         $this->allowAppleId = $allowAppleId;
@@ -67,17 +68,6 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
             TdSchemaRegistry::fromArray($array['code_info']),
             (isset($array['email_address_reset_state']) ? TdSchemaRegistry::fromArray($array['email_address_reset_state']) : null),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'allow_apple_id' => $this->allowAppleId,
-            'allow_google_id' => $this->allowGoogleId,
-            'code_info' => $this->codeInfo->typeSerialize(),
-            'email_address_reset_state' => (isset($this->emailAddressResetState) ? $this->emailAddressResetState : null),
-        ];
     }
 
     public function getAllowAppleId(): bool
@@ -98,5 +88,16 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
     public function getEmailAddressResetState(): ?EmailAddressResetState
     {
         return $this->emailAddressResetState;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'allow_apple_id' => $this->allowAppleId,
+            'allow_google_id' => $this->allowGoogleId,
+            'code_info' => $this->codeInfo->typeSerialize(),
+            'email_address_reset_state' => (isset($this->emailAddressResetState) ? $this->emailAddressResetState : null),
+        ];
     }
 }

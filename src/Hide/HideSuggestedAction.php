@@ -36,16 +36,16 @@ class HideSuggestedAction extends TdFunction
         );
     }
 
+    public function getAction(): SuggestedAction
+    {
+        return $this->action;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'action' => $this->action->typeSerialize(),
         ];
-    }
-
-    public function getAction(): SuggestedAction
-    {
-        return $this->action;
     }
 }

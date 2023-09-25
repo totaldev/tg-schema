@@ -17,18 +17,18 @@ class ToggleSupergroupJoinByRequest extends TdFunction
     public const TYPE_NAME = 'toggleSupergroupJoinByRequest';
 
     /**
-     * Identifier of the channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
      * New value of join_by_request
      *
      * @var bool
      */
     protected bool $joinByRequest;
+
+    /**
+     * Identifier of the channel
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, bool $joinByRequest)
     {
@@ -44,13 +44,9 @@ class ToggleSupergroupJoinByRequest extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getJoinByRequest(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'join_by_request' => $this->joinByRequest,
-        ];
+        return $this->joinByRequest;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +54,12 @@ class ToggleSupergroupJoinByRequest extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getJoinByRequest(): bool
+    public function typeSerialize(): array
     {
-        return $this->joinByRequest;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'join_by_request' => $this->joinByRequest,
+        ];
     }
 }

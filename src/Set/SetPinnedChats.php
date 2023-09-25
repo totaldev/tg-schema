@@ -18,18 +18,18 @@ class SetPinnedChats extends TdFunction
     public const TYPE_NAME = 'setPinnedChats';
 
     /**
-     * Chat list in which to change the order of pinned chats
-     *
-     * @var ChatList
-     */
-    protected ChatList $chatList;
-
-    /**
      * The new list of pinned chats
      *
      * @var int[]
      */
     protected array $chatIds;
+
+    /**
+     * Chat list in which to change the order of pinned chats
+     *
+     * @var ChatList
+     */
+    protected ChatList $chatList;
 
     public function __construct(ChatList $chatList, array $chatIds)
     {
@@ -45,13 +45,9 @@ class SetPinnedChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getChatIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
-            'chat_ids' => $this->chatIds,
-        ];
+        return $this->chatIds;
     }
 
     public function getChatList(): ChatList
@@ -59,8 +55,12 @@ class SetPinnedChats extends TdFunction
         return $this->chatList;
     }
 
-    public function getChatIds(): array
+    public function typeSerialize(): array
     {
-        return $this->chatIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_ids' => $this->chatIds,
+        ];
     }
 }

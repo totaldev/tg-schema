@@ -37,16 +37,16 @@ class TargetChatInternalLink extends TargetChat
         );
     }
 
+    public function getLink(): InternalLinkType
+    {
+        return $this->link;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'link' => $this->link->typeSerialize(),
         ];
-    }
-
-    public function getLink(): InternalLinkType
-    {
-        return $this->link;
     }
 }

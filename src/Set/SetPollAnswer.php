@@ -53,16 +53,6 @@ class SetPollAnswer extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'option_ids' => $this->optionIds,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +66,15 @@ class SetPollAnswer extends TdFunction
     public function getOptionIds(): array
     {
         return $this->optionIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'option_ids' => $this->optionIds,
+        ];
     }
 }

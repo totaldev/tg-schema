@@ -16,18 +16,18 @@ class CallServerTypeWebrtc extends CallServerType
     public const TYPE_NAME = 'callServerTypeWebrtc';
 
     /**
-     * Username to be used for authentication
-     *
-     * @var string
-     */
-    protected string $username;
-
-    /**
      * Authentication password
      *
      * @var string
      */
     protected string $password;
+
+    /**
+     * True, if the server supports STUN
+     *
+     * @var bool
+     */
+    protected bool $supportsStun;
 
     /**
      * True, if the server supports TURN
@@ -37,11 +37,11 @@ class CallServerTypeWebrtc extends CallServerType
     protected bool $supportsTurn;
 
     /**
-     * True, if the server supports STUN
+     * Username to be used for authentication
      *
-     * @var bool
+     * @var string
      */
-    protected bool $supportsStun;
+    protected string $username;
 
     public function __construct(string $username, string $password, bool $supportsTurn, bool $supportsStun)
     {
@@ -63,6 +63,26 @@ class CallServerTypeWebrtc extends CallServerType
         );
     }
 
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getSupportsStun(): bool
+    {
+        return $this->supportsStun;
+    }
+
+    public function getSupportsTurn(): bool
+    {
+        return $this->supportsTurn;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class CallServerTypeWebrtc extends CallServerType
             'supports_turn' => $this->supportsTurn,
             'supports_stun' => $this->supportsStun,
         ];
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function getSupportsTurn(): bool
-    {
-        return $this->supportsTurn;
-    }
-
-    public function getSupportsStun(): bool
-    {
-        return $this->supportsStun;
     }
 }

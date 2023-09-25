@@ -18,13 +18,6 @@ class InputIdentityDocument extends TdObject
     public const TYPE_NAME = 'inputIdentityDocument';
 
     /**
-     * Document number; 1-24 characters
-     *
-     * @var string
-     */
-    protected string $number;
-
-    /**
      * Document expiration date; pass null if not applicable
      *
      * @var Date
@@ -37,6 +30,13 @@ class InputIdentityDocument extends TdObject
      * @var InputFile
      */
     protected InputFile $frontSide;
+
+    /**
+     * Document number; 1-24 characters
+     *
+     * @var string
+     */
+    protected string $number;
 
     /**
      * Reverse side of the document; only for driver license and identity card; pass null otherwise
@@ -60,13 +60,14 @@ class InputIdentityDocument extends TdObject
     protected array $translation;
 
     public function __construct(
-        string $number,
-        Date $expirationDate,
+        string    $number,
+        Date      $expirationDate,
         InputFile $frontSide,
         InputFile $reverseSide,
         InputFile $selfie,
-        array $translation,
-    ) {
+        array     $translation,
+    )
+    {
         $this->number = $number;
         $this->expirationDate = $expirationDate;
         $this->frontSide = $frontSide;
@@ -87,24 +88,6 @@ class InputIdentityDocument extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'number' => $this->number,
-            'expiration_date' => $this->expirationDate->typeSerialize(),
-            'front_side' => $this->frontSide->typeSerialize(),
-            'reverse_side' => $this->reverseSide->typeSerialize(),
-            'selfie' => $this->selfie->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->translation),
-        ];
-    }
-
-    public function getNumber(): string
-    {
-        return $this->number;
-    }
-
     public function getExpirationDate(): Date
     {
         return $this->expirationDate;
@@ -113,6 +96,11 @@ class InputIdentityDocument extends TdObject
     public function getFrontSide(): InputFile
     {
         return $this->frontSide;
+    }
+
+    public function getNumber(): string
+    {
+        return $this->number;
     }
 
     public function getReverseSide(): InputFile
@@ -128,5 +116,18 @@ class InputIdentityDocument extends TdObject
     public function getTranslation(): array
     {
         return $this->translation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'number' => $this->number,
+            'expiration_date' => $this->expirationDate->typeSerialize(),
+            'front_side' => $this->frontSide->typeSerialize(),
+            'reverse_side' => $this->reverseSide->typeSerialize(),
+            'selfie' => $this->selfie->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->translation),
+        ];
     }
 }

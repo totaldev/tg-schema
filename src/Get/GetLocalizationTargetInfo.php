@@ -35,16 +35,16 @@ class GetLocalizationTargetInfo extends TdFunction
         );
     }
 
+    public function getOnlyLocal(): bool
+    {
+        return $this->onlyLocal;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'only_local' => $this->onlyLocal,
         ];
-    }
-
-    public function getOnlyLocal(): bool
-    {
-        return $this->onlyLocal;
     }
 }

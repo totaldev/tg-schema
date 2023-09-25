@@ -44,15 +44,6 @@ class RemoveNotification extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
-            'notification_id' => $this->notificationId,
-        ];
-    }
-
     public function getNotificationGroupId(): int
     {
         return $this->notificationGroupId;
@@ -61,5 +52,14 @@ class RemoveNotification extends TdFunction
     public function getNotificationId(): int
     {
         return $this->notificationId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'notification_id' => $this->notificationId,
+        ];
     }
 }

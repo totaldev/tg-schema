@@ -16,20 +16,6 @@ class InputMessageVideoNote extends InputMessageContent
     public const TYPE_NAME = 'inputMessageVideoNote';
 
     /**
-     * Video note to be sent
-     *
-     * @var InputFile
-     */
-    protected InputFile $videoNote;
-
-    /**
-     * Video thumbnail; pass null to skip thumbnail uploading
-     *
-     * @var InputThumbnail
-     */
-    protected InputThumbnail $thumbnail;
-
-    /**
      * Duration of the video, in seconds
      *
      * @var int
@@ -42,6 +28,20 @@ class InputMessageVideoNote extends InputMessageContent
      * @var int
      */
     protected int $length;
+
+    /**
+     * Video thumbnail; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
+     */
+    protected InputThumbnail $thumbnail;
+
+    /**
+     * Video note to be sent
+     *
+     * @var InputFile
+     */
+    protected InputFile $videoNote;
 
     public function __construct(InputFile $videoNote, InputThumbnail $thumbnail, int $duration, int $length)
     {
@@ -63,6 +63,26 @@ class InputMessageVideoNote extends InputMessageContent
         );
     }
 
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
+    public function getThumbnail(): InputThumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getVideoNote(): InputFile
+    {
+        return $this->videoNote;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class InputMessageVideoNote extends InputMessageContent
             'duration' => $this->duration,
             'length' => $this->length,
         ];
-    }
-
-    public function getVideoNote(): InputFile
-    {
-        return $this->videoNote;
-    }
-
-    public function getThumbnail(): InputThumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getLength(): int
-    {
-        return $this->length;
     }
 }

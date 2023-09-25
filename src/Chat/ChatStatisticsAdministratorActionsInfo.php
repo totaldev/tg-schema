@@ -17,11 +17,11 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
     public const TYPE_NAME = 'chatStatisticsAdministratorActionsInfo';
 
     /**
-     * Administrator user identifier
+     * Number of users banned by the administrator
      *
      * @var int
      */
-    protected int $userId;
+    protected int $bannedUserCount;
 
     /**
      * Number of messages deleted by the administrator
@@ -31,18 +31,18 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
     protected int $deletedMessageCount;
 
     /**
-     * Number of users banned by the administrator
-     *
-     * @var int
-     */
-    protected int $bannedUserCount;
-
-    /**
      * Number of users restricted by the administrator
      *
      * @var int
      */
     protected int $restrictedUserCount;
+
+    /**
+     * Administrator user identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, int $deletedMessageCount, int $bannedUserCount, int $restrictedUserCount)
     {
@@ -62,6 +62,26 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
         );
     }
 
+    public function getBannedUserCount(): int
+    {
+        return $this->bannedUserCount;
+    }
+
+    public function getDeletedMessageCount(): int
+    {
+        return $this->deletedMessageCount;
+    }
+
+    public function getRestrictedUserCount(): int
+    {
+        return $this->restrictedUserCount;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
             'banned_user_count' => $this->bannedUserCount,
             'restricted_user_count' => $this->restrictedUserCount,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getDeletedMessageCount(): int
-    {
-        return $this->deletedMessageCount;
-    }
-
-    public function getBannedUserCount(): int
-    {
-        return $this->bannedUserCount;
-    }
-
-    public function getRestrictedUserCount(): int
-    {
-        return $this->restrictedUserCount;
     }
 }

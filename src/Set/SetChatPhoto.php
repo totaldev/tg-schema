@@ -45,15 +45,6 @@ class SetChatPhoto extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'photo' => $this->photo->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class SetChatPhoto extends TdFunction
     public function getPhoto(): InputChatPhoto
     {
         return $this->photo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'photo' => $this->photo->typeSerialize(),
+        ];
     }
 }

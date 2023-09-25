@@ -44,15 +44,6 @@ class RegisterUser extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-        ];
-    }
-
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -61,5 +52,14 @@ class RegisterUser extends TdFunction
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+        ];
     }
 }

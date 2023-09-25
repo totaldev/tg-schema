@@ -35,16 +35,16 @@ class GroupCallStreams extends TdObject
         );
     }
 
+    public function getStreams(): array
+    {
+        return $this->streams;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->streams),
         ];
-    }
-
-    public function getStreams(): array
-    {
-        return $this->streams;
     }
 }

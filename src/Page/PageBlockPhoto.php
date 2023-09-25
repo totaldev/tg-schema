@@ -17,18 +17,18 @@ class PageBlockPhoto extends PageBlock
     public const TYPE_NAME = 'pageBlockPhoto';
 
     /**
-     * Photo file; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $photo;
-
-    /**
      * Photo caption
      *
      * @var PageBlockCaption
      */
     protected PageBlockCaption $caption;
+
+    /**
+     * Photo file; may be null
+     *
+     * @var Photo|null
+     */
+    protected ?Photo $photo;
 
     /**
      * URL that needs to be opened when the photo is clicked
@@ -55,6 +55,21 @@ class PageBlockPhoto extends PageBlock
         );
     }
 
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class PageBlockPhoto extends PageBlock
             'caption' => $this->caption->typeSerialize(),
             'url' => $this->url,
         ];
-    }
-
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function getCaption(): PageBlockCaption
-    {
-        return $this->caption;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

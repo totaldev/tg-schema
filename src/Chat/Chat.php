@@ -24,60 +24,25 @@ class Chat extends TdObject
     public const TYPE_NAME = 'chat';
 
     /**
-     * Chat unique identifier
+     * Information about actions which must be possible to do through the chat action bar; may be null if none
      *
-     * @var int
+     * @var ChatActionBar|null
      */
-    protected int $id;
+    protected ?ChatActionBar $actionBar;
 
     /**
-     * Type of the chat
+     * Types of reaction, available in the chat
      *
-     * @var ChatType
+     * @var ChatAvailableReactions
      */
-    protected ChatType $type;
+    protected ChatAvailableReactions $availableReactions;
 
     /**
-     * Chat title
+     * Background set for the chat; may be null if none
      *
-     * @var string
+     * @var ChatBackground|null
      */
-    protected string $title;
-
-    /**
-     * Chat photo; may be null
-     *
-     * @var ChatPhotoInfo|null
-     */
-    protected ?ChatPhotoInfo $photo;
-
-    /**
-     * Actions that non-administrator chat members are allowed to take in the chat
-     *
-     * @var ChatPermissions
-     */
-    protected ChatPermissions $permissions;
-
-    /**
-     * Last message in the chat; may be null if none or unknown
-     *
-     * @var Message|null
-     */
-    protected ?Message $lastMessage;
-
-    /**
-     * Positions of the chat in chat lists
-     *
-     * @var ChatPosition[]
-     */
-    protected array $positions;
-
-    /**
-     * Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
-     *
-     * @var MessageSender|null
-     */
-    protected ?MessageSender $messageSenderId;
+    protected ?ChatBackground $background;
 
     /**
      * Block list to which the chat is added; may be null if none
@@ -87,32 +52,11 @@ class Chat extends TdObject
     protected ?BlockList $blockList;
 
     /**
-     * True, if chat content can't be saved locally, forwarded, or copied
+     * True, if the chat messages can be deleted for all users
      *
      * @var bool
      */
-    protected bool $hasProtectedContent;
-
-    /**
-     * True, if translation of all messages in the chat must be suggested to the user
-     *
-     * @var bool
-     */
-    protected bool $isTranslatable;
-
-    /**
-     * True, if the chat is marked as unread
-     *
-     * @var bool
-     */
-    protected bool $isMarkedAsUnread;
-
-    /**
-     * True, if the chat has scheduled messages
-     *
-     * @var bool
-     */
-    protected bool $hasScheduledMessages;
+    protected bool $canBeDeletedForAllUsers;
 
     /**
      * True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
@@ -122,18 +66,19 @@ class Chat extends TdObject
     protected bool $canBeDeletedOnlyForSelf;
 
     /**
-     * True, if the chat messages can be deleted for all users
-     *
-     * @var bool
-     */
-    protected bool $canBeDeletedForAllUsers;
-
-    /**
      * True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
      *
      * @var bool
      */
     protected bool $canBeReported;
+
+    /**
+     * Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.)
+     * Persistent if the message database is used
+     *
+     * @var string
+     */
+    protected string $clientData;
 
     /**
      * Default value of the disable_notification parameter, used when a message is sent to the chat
@@ -143,11 +88,53 @@ class Chat extends TdObject
     protected bool $defaultDisableNotification;
 
     /**
-     * Number of unread messages in the chat
+     * A draft of a message in the chat; may be null if none
+     *
+     * @var DraftMessage|null
+     */
+    protected ?DraftMessage $draftMessage;
+
+    /**
+     * True, if chat content can't be saved locally, forwarded, or copied
+     *
+     * @var bool
+     */
+    protected bool $hasProtectedContent;
+
+    /**
+     * True, if the chat has scheduled messages
+     *
+     * @var bool
+     */
+    protected bool $hasScheduledMessages;
+
+    /**
+     * Chat unique identifier
      *
      * @var int
      */
-    protected int $unreadCount;
+    protected int $id;
+
+    /**
+     * True, if the chat is marked as unread
+     *
+     * @var bool
+     */
+    protected bool $isMarkedAsUnread;
+
+    /**
+     * True, if translation of all messages in the chat must be suggested to the user
+     *
+     * @var bool
+     */
+    protected bool $isTranslatable;
+
+    /**
+     * Last message in the chat; may be null if none or unknown
+     *
+     * @var Message|null
+     */
+    protected ?Message $lastMessage;
 
     /**
      * Identifier of the last read incoming message
@@ -164,6 +151,91 @@ class Chat extends TdObject
     protected int $lastReadOutboxMessageId;
 
     /**
+     * Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the
+     * message or its content is viewed. Auto-delete timer in other chats starts from the send date
+     *
+     * @var int
+     */
+    protected int $messageAutoDeleteTime;
+
+    /**
+     * Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
+     *
+     * @var MessageSender|null
+     */
+    protected ?MessageSender $messageSenderId;
+
+    /**
+     * Notification settings for the chat
+     *
+     * @var ChatNotificationSettings
+     */
+    protected ChatNotificationSettings $notificationSettings;
+
+    /**
+     * Information about pending join requests; may be null if none
+     *
+     * @var ChatJoinRequestsInfo|null
+     */
+    protected ?ChatJoinRequestsInfo $pendingJoinRequests;
+
+    /**
+     * Actions that non-administrator chat members are allowed to take in the chat
+     *
+     * @var ChatPermissions
+     */
+    protected ChatPermissions $permissions;
+
+    /**
+     * Chat photo; may be null
+     *
+     * @var ChatPhotoInfo|null
+     */
+    protected ?ChatPhotoInfo $photo;
+
+    /**
+     * Positions of the chat in chat lists
+     *
+     * @var ChatPosition[]
+     */
+    protected array $positions;
+
+    /**
+     * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+     *
+     * @var int
+     */
+    protected int $replyMarkupMessageId;
+
+    /**
+     * If non-empty, name of a theme, set for the chat
+     *
+     * @var string
+     */
+    protected string $themeName;
+
+    /**
+     * Chat title
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Type of the chat
+     *
+     * @var ChatType
+     */
+    protected ChatType $type;
+
+    /**
+     * Number of unread messages in the chat
+     *
+     * @var int
+     */
+    protected int $unreadCount;
+
+    /**
      * Number of unread messages with a mention/reply in the chat
      *
      * @var int
@@ -178,117 +250,48 @@ class Chat extends TdObject
     protected int $unreadReactionCount;
 
     /**
-     * Notification settings for the chat
-     *
-     * @var ChatNotificationSettings
-     */
-    protected ChatNotificationSettings $notificationSettings;
-
-    /**
-     * Types of reaction, available in the chat
-     *
-     * @var ChatAvailableReactions
-     */
-    protected ChatAvailableReactions $availableReactions;
-
-    /**
-     * Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
-     *
-     * @var int
-     */
-    protected int $messageAutoDeleteTime;
-
-    /**
-     * Background set for the chat; may be null if none
-     *
-     * @var ChatBackground|null
-     */
-    protected ?ChatBackground $background;
-
-    /**
-     * If non-empty, name of a theme, set for the chat
-     *
-     * @var string
-     */
-    protected string $themeName;
-
-    /**
-     * Information about actions which must be possible to do through the chat action bar; may be null if none
-     *
-     * @var ChatActionBar|null
-     */
-    protected ?ChatActionBar $actionBar;
-
-    /**
      * Information about video chat of the chat
      *
      * @var VideoChat
      */
     protected VideoChat $videoChat;
 
-    /**
-     * Information about pending join requests; may be null if none
-     *
-     * @var ChatJoinRequestsInfo|null
-     */
-    protected ?ChatJoinRequestsInfo $pendingJoinRequests;
-
-    /**
-     * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-     *
-     * @var int
-     */
-    protected int $replyMarkupMessageId;
-
-    /**
-     * A draft of a message in the chat; may be null if none
-     *
-     * @var DraftMessage|null
-     */
-    protected ?DraftMessage $draftMessage;
-
-    /**
-     * Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
-     *
-     * @var string
-     */
-    protected string $clientData;
-
     public function __construct(
-        int $id,
-        ChatType $type,
-        string $title,
-        ?ChatPhotoInfo $photo,
-        ChatPermissions $permissions,
-        ?Message $lastMessage,
-        array $positions,
-        ?MessageSender $messageSenderId,
-        ?BlockList $blockList,
-        bool $hasProtectedContent,
-        bool $isTranslatable,
-        bool $isMarkedAsUnread,
-        bool $hasScheduledMessages,
-        bool $canBeDeletedOnlyForSelf,
-        bool $canBeDeletedForAllUsers,
-        bool $canBeReported,
-        bool $defaultDisableNotification,
-        int $unreadCount,
-        int $lastReadInboxMessageId,
-        int $lastReadOutboxMessageId,
-        int $unreadMentionCount,
-        int $unreadReactionCount,
+        int                      $id,
+        ChatType                 $type,
+        string                   $title,
+        ?ChatPhotoInfo           $photo,
+        ChatPermissions          $permissions,
+        ?Message                 $lastMessage,
+        array                    $positions,
+        ?MessageSender           $messageSenderId,
+        ?BlockList               $blockList,
+        bool                     $hasProtectedContent,
+        bool                     $isTranslatable,
+        bool                     $isMarkedAsUnread,
+        bool                     $hasScheduledMessages,
+        bool                     $canBeDeletedOnlyForSelf,
+        bool                     $canBeDeletedForAllUsers,
+        bool                     $canBeReported,
+        bool                     $defaultDisableNotification,
+        int                      $unreadCount,
+        int                      $lastReadInboxMessageId,
+        int                      $lastReadOutboxMessageId,
+        int                      $unreadMentionCount,
+        int                      $unreadReactionCount,
         ChatNotificationSettings $notificationSettings,
-        ChatAvailableReactions $availableReactions,
-        int $messageAutoDeleteTime,
-        ?ChatBackground $background,
-        string $themeName,
-        ?ChatActionBar $actionBar,
-        VideoChat $videoChat,
-        ?ChatJoinRequestsInfo $pendingJoinRequests,
-        int $replyMarkupMessageId,
-        ?DraftMessage $draftMessage,
-        string $clientData,
-    ) {
+        ChatAvailableReactions   $availableReactions,
+        int                      $messageAutoDeleteTime,
+        ?ChatBackground          $background,
+        string                   $themeName,
+        ?ChatActionBar           $actionBar,
+        VideoChat                $videoChat,
+        ?ChatJoinRequestsInfo    $pendingJoinRequests,
+        int                      $replyMarkupMessageId,
+        ?DraftMessage            $draftMessage,
+        string                   $clientData,
+    )
+    {
         $this->id = $id;
         $this->type = $type;
         $this->title = $title;
@@ -363,6 +366,171 @@ class Chat extends TdObject
         );
     }
 
+    public function getActionBar(): ?ChatActionBar
+    {
+        return $this->actionBar;
+    }
+
+    public function getAvailableReactions(): ChatAvailableReactions
+    {
+        return $this->availableReactions;
+    }
+
+    public function getBackground(): ?ChatBackground
+    {
+        return $this->background;
+    }
+
+    public function getBlockList(): ?BlockList
+    {
+        return $this->blockList;
+    }
+
+    public function getCanBeDeletedForAllUsers(): bool
+    {
+        return $this->canBeDeletedForAllUsers;
+    }
+
+    public function getCanBeDeletedOnlyForSelf(): bool
+    {
+        return $this->canBeDeletedOnlyForSelf;
+    }
+
+    public function getCanBeReported(): bool
+    {
+        return $this->canBeReported;
+    }
+
+    public function getClientData(): string
+    {
+        return $this->clientData;
+    }
+
+    public function getDefaultDisableNotification(): bool
+    {
+        return $this->defaultDisableNotification;
+    }
+
+    public function getDraftMessage(): ?DraftMessage
+    {
+        return $this->draftMessage;
+    }
+
+    public function getHasProtectedContent(): bool
+    {
+        return $this->hasProtectedContent;
+    }
+
+    public function getHasScheduledMessages(): bool
+    {
+        return $this->hasScheduledMessages;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsMarkedAsUnread(): bool
+    {
+        return $this->isMarkedAsUnread;
+    }
+
+    public function getIsTranslatable(): bool
+    {
+        return $this->isTranslatable;
+    }
+
+    public function getLastMessage(): ?Message
+    {
+        return $this->lastMessage;
+    }
+
+    public function getLastReadInboxMessageId(): int
+    {
+        return $this->lastReadInboxMessageId;
+    }
+
+    public function getLastReadOutboxMessageId(): int
+    {
+        return $this->lastReadOutboxMessageId;
+    }
+
+    public function getMessageAutoDeleteTime(): int
+    {
+        return $this->messageAutoDeleteTime;
+    }
+
+    public function getMessageSenderId(): ?MessageSender
+    {
+        return $this->messageSenderId;
+    }
+
+    public function getNotificationSettings(): ChatNotificationSettings
+    {
+        return $this->notificationSettings;
+    }
+
+    public function getPendingJoinRequests(): ?ChatJoinRequestsInfo
+    {
+        return $this->pendingJoinRequests;
+    }
+
+    public function getPermissions(): ChatPermissions
+    {
+        return $this->permissions;
+    }
+
+    public function getPhoto(): ?ChatPhotoInfo
+    {
+        return $this->photo;
+    }
+
+    public function getPositions(): array
+    {
+        return $this->positions;
+    }
+
+    public function getReplyMarkupMessageId(): int
+    {
+        return $this->replyMarkupMessageId;
+    }
+
+    public function getThemeName(): string
+    {
+        return $this->themeName;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getType(): ChatType
+    {
+        return $this->type;
+    }
+
+    public function getUnreadCount(): int
+    {
+        return $this->unreadCount;
+    }
+
+    public function getUnreadMentionCount(): int
+    {
+        return $this->unreadMentionCount;
+    }
+
+    public function getUnreadReactionCount(): int
+    {
+        return $this->unreadReactionCount;
+    }
+
+    public function getVideoChat(): VideoChat
+    {
+        return $this->videoChat;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -401,170 +569,5 @@ class Chat extends TdObject
             'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
             'client_data' => $this->clientData,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getType(): ChatType
-    {
-        return $this->type;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getPhoto(): ?ChatPhotoInfo
-    {
-        return $this->photo;
-    }
-
-    public function getPermissions(): ChatPermissions
-    {
-        return $this->permissions;
-    }
-
-    public function getLastMessage(): ?Message
-    {
-        return $this->lastMessage;
-    }
-
-    public function getPositions(): array
-    {
-        return $this->positions;
-    }
-
-    public function getMessageSenderId(): ?MessageSender
-    {
-        return $this->messageSenderId;
-    }
-
-    public function getBlockList(): ?BlockList
-    {
-        return $this->blockList;
-    }
-
-    public function getHasProtectedContent(): bool
-    {
-        return $this->hasProtectedContent;
-    }
-
-    public function getIsTranslatable(): bool
-    {
-        return $this->isTranslatable;
-    }
-
-    public function getIsMarkedAsUnread(): bool
-    {
-        return $this->isMarkedAsUnread;
-    }
-
-    public function getHasScheduledMessages(): bool
-    {
-        return $this->hasScheduledMessages;
-    }
-
-    public function getCanBeDeletedOnlyForSelf(): bool
-    {
-        return $this->canBeDeletedOnlyForSelf;
-    }
-
-    public function getCanBeDeletedForAllUsers(): bool
-    {
-        return $this->canBeDeletedForAllUsers;
-    }
-
-    public function getCanBeReported(): bool
-    {
-        return $this->canBeReported;
-    }
-
-    public function getDefaultDisableNotification(): bool
-    {
-        return $this->defaultDisableNotification;
-    }
-
-    public function getUnreadCount(): int
-    {
-        return $this->unreadCount;
-    }
-
-    public function getLastReadInboxMessageId(): int
-    {
-        return $this->lastReadInboxMessageId;
-    }
-
-    public function getLastReadOutboxMessageId(): int
-    {
-        return $this->lastReadOutboxMessageId;
-    }
-
-    public function getUnreadMentionCount(): int
-    {
-        return $this->unreadMentionCount;
-    }
-
-    public function getUnreadReactionCount(): int
-    {
-        return $this->unreadReactionCount;
-    }
-
-    public function getNotificationSettings(): ChatNotificationSettings
-    {
-        return $this->notificationSettings;
-    }
-
-    public function getAvailableReactions(): ChatAvailableReactions
-    {
-        return $this->availableReactions;
-    }
-
-    public function getMessageAutoDeleteTime(): int
-    {
-        return $this->messageAutoDeleteTime;
-    }
-
-    public function getBackground(): ?ChatBackground
-    {
-        return $this->background;
-    }
-
-    public function getThemeName(): string
-    {
-        return $this->themeName;
-    }
-
-    public function getActionBar(): ?ChatActionBar
-    {
-        return $this->actionBar;
-    }
-
-    public function getVideoChat(): VideoChat
-    {
-        return $this->videoChat;
-    }
-
-    public function getPendingJoinRequests(): ?ChatJoinRequestsInfo
-    {
-        return $this->pendingJoinRequests;
-    }
-
-    public function getReplyMarkupMessageId(): int
-    {
-        return $this->replyMarkupMessageId;
-    }
-
-    public function getDraftMessage(): ?DraftMessage
-    {
-        return $this->draftMessage;
-    }
-
-    public function getClientData(): string
-    {
-        return $this->clientData;
     }
 }

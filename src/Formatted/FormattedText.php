@@ -20,18 +20,20 @@ class FormattedText extends TdObject
     public const TYPE_NAME = 'formattedText';
 
     /**
+     * Entities contained in the text. Entities can be nested, but must not mutually intersect with each other. Pre, Code and PreCode entities can't contain
+     * other entities. Bold, Italic, Underline, Strikethrough, and Spoiler entities can contain and can be part of any other entities. All other entities can't
+     * contain each other
+     *
+     * @var TextEntity[]
+     */
+    protected array $entities;
+
+    /**
      * The text
      *
      * @var string
      */
     protected string $text;
-
-    /**
-     * Entities contained in the text. Entities can be nested, but must not mutually intersect with each other. Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline, Strikethrough, and Spoiler entities can contain and can be part of any other entities. All other entities can't contain each other
-     *
-     * @var TextEntity[]
-     */
-    protected array $entities;
 
     public function __construct(string $text, array $entities = [])
     {
@@ -47,13 +49,9 @@ class FormattedText extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getEntities(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            array_map(fn($x) => $x->typeSerialize(), $this->entities),
-        ];
+        return $this->entities;
     }
 
     public function getText(): string
@@ -61,8 +59,12 @@ class FormattedText extends TdObject
         return $this->text;
     }
 
-    public function getEntities(): array
+    public function typeSerialize(): array
     {
-        return $this->entities;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            array_map(fn($x) => $x->typeSerialize(), $this->entities),
+        ];
     }
 }

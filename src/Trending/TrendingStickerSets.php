@@ -18,11 +18,11 @@ class TrendingStickerSets extends TdObject
     public const TYPE_NAME = 'trendingStickerSets';
 
     /**
-     * Approximate total number of trending sticker sets
+     * True, if the list contains sticker sets with premium stickers
      *
-     * @var int
+     * @var bool
      */
-    protected int $totalCount;
+    protected bool $isPremium;
 
     /**
      * List of trending sticker sets
@@ -32,11 +32,11 @@ class TrendingStickerSets extends TdObject
     protected array $sets;
 
     /**
-     * True, if the list contains sticker sets with premium stickers
+     * Approximate total number of trending sticker sets
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isPremium;
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $sets, bool $isPremium)
     {
@@ -54,6 +54,21 @@ class TrendingStickerSets extends TdObject
         );
     }
 
+    public function getIsPremium(): bool
+    {
+        return $this->isPremium;
+    }
+
+    public function getSets(): array
+    {
+        return $this->sets;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class TrendingStickerSets extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->sets),
             'is_premium' => $this->isPremium,
         ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getSets(): array
-    {
-        return $this->sets;
-    }
-
-    public function getIsPremium(): bool
-    {
-        return $this->isPremium;
     }
 }

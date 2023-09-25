@@ -17,11 +17,11 @@ class StorageStatisticsFast extends TdObject
     public const TYPE_NAME = 'storageStatisticsFast';
 
     /**
-     * Approximate total size of files, in bytes
+     * Size of the database
      *
      * @var int
      */
-    protected int $filesSize;
+    protected int $databaseSize;
 
     /**
      * Approximate number of files
@@ -31,11 +31,11 @@ class StorageStatisticsFast extends TdObject
     protected int $fileCount;
 
     /**
-     * Size of the database
+     * Approximate total size of files, in bytes
      *
      * @var int
      */
-    protected int $databaseSize;
+    protected int $filesSize;
 
     /**
      * Size of the language pack database
@@ -57,7 +57,8 @@ class StorageStatisticsFast extends TdObject
         int $databaseSize,
         int $languagePackDatabaseSize,
         int $logSize,
-    ) {
+    )
+    {
         $this->filesSize = $filesSize;
         $this->fileCount = $fileCount;
         $this->databaseSize = $databaseSize;
@@ -76,21 +77,9 @@ class StorageStatisticsFast extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDatabaseSize(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'files_size' => $this->filesSize,
-            'file_count' => $this->fileCount,
-            'database_size' => $this->databaseSize,
-            'language_pack_database_size' => $this->languagePackDatabaseSize,
-            'log_size' => $this->logSize,
-        ];
-    }
-
-    public function getFilesSize(): int
-    {
-        return $this->filesSize;
+        return $this->databaseSize;
     }
 
     public function getFileCount(): int
@@ -98,9 +87,9 @@ class StorageStatisticsFast extends TdObject
         return $this->fileCount;
     }
 
-    public function getDatabaseSize(): int
+    public function getFilesSize(): int
     {
-        return $this->databaseSize;
+        return $this->filesSize;
     }
 
     public function getLanguagePackDatabaseSize(): int
@@ -111,5 +100,17 @@ class StorageStatisticsFast extends TdObject
     public function getLogSize(): int
     {
         return $this->logSize;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'files_size' => $this->filesSize,
+            'file_count' => $this->fileCount,
+            'database_size' => $this->databaseSize,
+            'language_pack_database_size' => $this->languagePackDatabaseSize,
+            'log_size' => $this->logSize,
+        ];
     }
 }

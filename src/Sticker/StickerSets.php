@@ -17,18 +17,18 @@ class StickerSets extends TdObject
     public const TYPE_NAME = 'stickerSets';
 
     /**
-     * Approximate total number of sticker sets found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of sticker sets
      *
      * @var StickerSetInfo[]
      */
     protected array $sets;
+
+    /**
+     * Approximate total number of sticker sets found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $sets)
     {
@@ -44,13 +44,9 @@ class StickerSets extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getSets(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->sets),
-        ];
+        return $this->sets;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class StickerSets extends TdObject
         return $this->totalCount;
     }
 
-    public function getSets(): array
+    public function typeSerialize(): array
     {
-        return $this->sets;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->sets),
+        ];
     }
 }

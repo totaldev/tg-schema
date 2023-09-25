@@ -16,11 +16,11 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
     public const TYPE_NAME = 'inlineKeyboardButtonTypeLoginUrl';
 
     /**
-     * An HTTP URL to pass to getLoginUrlInfo
+     * If non-empty, new text of the button in forwarded messages
      *
      * @var string
      */
-    protected string $url;
+    protected string $forwardText;
 
     /**
      * Unique button identifier
@@ -30,11 +30,11 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
     protected int $id;
 
     /**
-     * If non-empty, new text of the button in forwarded messages
+     * An HTTP URL to pass to getLoginUrlInfo
      *
      * @var string
      */
-    protected string $forwardText;
+    protected string $url;
 
     public function __construct(string $url, int $id, string $forwardText)
     {
@@ -54,6 +54,21 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
         );
     }
 
+    public function getForwardText(): string
+    {
+        return $this->forwardText;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
             'id' => $this->id,
             'forward_text' => $this->forwardText,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getForwardText(): string
-    {
-        return $this->forwardText;
     }
 }

@@ -36,16 +36,16 @@ class MessageFileTypeGroup extends MessageFileType
         );
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

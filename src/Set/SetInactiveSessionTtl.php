@@ -35,16 +35,16 @@ class SetInactiveSessionTtl extends TdFunction
         );
     }
 
+    public function getInactiveSessionTtlDays(): int
+    {
+        return $this->inactiveSessionTtlDays;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
         ];
-    }
-
-    public function getInactiveSessionTtlDays(): int
-    {
-        return $this->inactiveSessionTtlDays;
     }
 }

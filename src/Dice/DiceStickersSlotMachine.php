@@ -24,11 +24,11 @@ class DiceStickersSlotMachine extends DiceStickers
     protected Sticker $background;
 
     /**
-     * The animated sticker with the lever animation. The lever animation must play once in the initial dice state
+     * The animated sticker with the center reel
      *
      * @var Sticker
      */
-    protected Sticker $lever;
+    protected Sticker $centerReel;
 
     /**
      * The animated sticker with the left reel
@@ -38,11 +38,11 @@ class DiceStickersSlotMachine extends DiceStickers
     protected Sticker $leftReel;
 
     /**
-     * The animated sticker with the center reel
+     * The animated sticker with the lever animation. The lever animation must play once in the initial dice state
      *
      * @var Sticker
      */
-    protected Sticker $centerReel;
+    protected Sticker $lever;
 
     /**
      * The animated sticker with the right reel
@@ -57,7 +57,8 @@ class DiceStickersSlotMachine extends DiceStickers
         Sticker $leftReel,
         Sticker $centerReel,
         Sticker $rightReel,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->background = $background;
@@ -78,6 +79,31 @@ class DiceStickersSlotMachine extends DiceStickers
         );
     }
 
+    public function getBackground(): Sticker
+    {
+        return $this->background;
+    }
+
+    public function getCenterReel(): Sticker
+    {
+        return $this->centerReel;
+    }
+
+    public function getLeftReel(): Sticker
+    {
+        return $this->leftReel;
+    }
+
+    public function getLever(): Sticker
+    {
+        return $this->lever;
+    }
+
+    public function getRightReel(): Sticker
+    {
+        return $this->rightReel;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -88,30 +114,5 @@ class DiceStickersSlotMachine extends DiceStickers
             'center_reel' => $this->centerReel->typeSerialize(),
             'right_reel' => $this->rightReel->typeSerialize(),
         ];
-    }
-
-    public function getBackground(): Sticker
-    {
-        return $this->background;
-    }
-
-    public function getLever(): Sticker
-    {
-        return $this->lever;
-    }
-
-    public function getLeftReel(): Sticker
-    {
-        return $this->leftReel;
-    }
-
-    public function getCenterReel(): Sticker
-    {
-        return $this->centerReel;
-    }
-
-    public function getRightReel(): Sticker
-    {
-        return $this->rightReel;
     }
 }

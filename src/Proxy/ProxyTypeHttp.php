@@ -16,11 +16,11 @@ class ProxyTypeHttp extends ProxyType
     public const TYPE_NAME = 'proxyTypeHttp';
 
     /**
-     * Username for logging in; may be empty
+     * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
      *
-     * @var string
+     * @var bool
      */
-    protected string $username;
+    protected bool $httpOnly;
 
     /**
      * Password for logging in; may be empty
@@ -30,11 +30,11 @@ class ProxyTypeHttp extends ProxyType
     protected string $password;
 
     /**
-     * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+     * Username for logging in; may be empty
      *
-     * @var bool
+     * @var string
      */
-    protected bool $httpOnly;
+    protected string $username;
 
     public function __construct(string $username, string $password, bool $httpOnly)
     {
@@ -54,6 +54,21 @@ class ProxyTypeHttp extends ProxyType
         );
     }
 
+    public function getHttpOnly(): bool
+    {
+        return $this->httpOnly;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class ProxyTypeHttp extends ProxyType
             'password' => $this->password,
             'http_only' => $this->httpOnly,
         ];
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function getHttpOnly(): bool
-    {
-        return $this->httpOnly;
     }
 }

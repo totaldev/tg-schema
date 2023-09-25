@@ -17,11 +17,11 @@ class AddedReactions extends TdObject
     public const TYPE_NAME = 'addedReactions';
 
     /**
-     * The total number of found reactions
+     * The offset for the next request. If empty, there are no more results
      *
-     * @var int
+     * @var string
      */
-    protected int $totalCount;
+    protected string $nextOffset;
 
     /**
      * The list of added reactions
@@ -31,11 +31,11 @@ class AddedReactions extends TdObject
     protected array $reactions;
 
     /**
-     * The offset for the next request. If empty, there are no more results
+     * The total number of found reactions
      *
-     * @var string
+     * @var int
      */
-    protected string $nextOffset;
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $reactions, string $nextOffset)
     {
@@ -53,6 +53,21 @@ class AddedReactions extends TdObject
         );
     }
 
+    public function getNextOffset(): string
+    {
+        return $this->nextOffset;
+    }
+
+    public function getReactions(): array
+    {
+        return $this->reactions;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class AddedReactions extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->reactions),
             'next_offset' => $this->nextOffset,
         ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getReactions(): array
-    {
-        return $this->reactions;
-    }
-
-    public function getNextOffset(): string
-    {
-        return $this->nextOffset;
     }
 }

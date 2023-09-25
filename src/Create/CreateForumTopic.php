@@ -25,18 +25,19 @@ class CreateForumTopic extends TdFunction
     protected int $chatId;
 
     /**
+     * Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom
+     * emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+     *
+     * @var ForumTopicIcon
+     */
+    protected ForumTopicIcon $icon;
+
+    /**
      * Name of the topic; 1-128 characters
      *
      * @var string
      */
     protected string $name;
-
-    /**
-     * Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
-     *
-     * @var ForumTopicIcon
-     */
-    protected ForumTopicIcon $icon;
 
     public function __construct(int $chatId, string $name, ForumTopicIcon $icon)
     {
@@ -54,6 +55,21 @@ class CreateForumTopic extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIcon(): ForumTopicIcon
+    {
+        return $this->icon;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +78,5 @@ class CreateForumTopic extends TdFunction
             'name' => $this->name,
             'icon' => $this->icon->typeSerialize(),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getIcon(): ForumTopicIcon
-    {
-        return $this->icon;
     }
 }

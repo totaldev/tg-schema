@@ -36,16 +36,16 @@ class PassportElementErrorSourceDataField extends PassportElementErrorSource
         );
     }
 
+    public function getFieldName(): string
+    {
+        return $this->fieldName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'field_name' => $this->fieldName,
         ];
-    }
-
-    public function getFieldName(): string
-    {
-        return $this->fieldName;
     }
 }

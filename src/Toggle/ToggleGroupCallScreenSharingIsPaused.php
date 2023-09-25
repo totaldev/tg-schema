@@ -44,15 +44,6 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'is_paused' => $this->isPaused,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +52,14 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'is_paused' => $this->isPaused,
+        ];
     }
 }

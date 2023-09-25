@@ -18,13 +18,6 @@ class DraftMessage extends TdObject
     public const TYPE_NAME = 'draftMessage';
 
     /**
-     * Identifier of the replied message; 0 if none
-     *
-     * @var int
-     */
-    protected int $replyToMessageId;
-
-    /**
      * Point in time (Unix timestamp) when the draft was created
      *
      * @var int
@@ -37,6 +30,13 @@ class DraftMessage extends TdObject
      * @var InputMessageContent
      */
     protected InputMessageContent $inputMessageText;
+
+    /**
+     * Identifier of the replied message; 0 if none
+     *
+     * @var int
+     */
+    protected int $replyToMessageId;
 
     public function __construct(int $replyToMessageId, int $date, InputMessageContent $inputMessageText)
     {
@@ -54,21 +54,6 @@ class DraftMessage extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'reply_to_message_id' => $this->replyToMessageId,
-            'date' => $this->date,
-            'input_message_text' => $this->inputMessageText->typeSerialize(),
-        ];
-    }
-
-    public function getReplyToMessageId(): int
-    {
-        return $this->replyToMessageId;
-    }
-
     public function getDate(): int
     {
         return $this->date;
@@ -77,5 +62,20 @@ class DraftMessage extends TdObject
     public function getInputMessageText(): InputMessageContent
     {
         return $this->inputMessageText;
+    }
+
+    public function getReplyToMessageId(): int
+    {
+        return $this->replyToMessageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'reply_to_message_id' => $this->replyToMessageId,
+            'date' => $this->date,
+            'input_message_text' => $this->inputMessageText->typeSerialize(),
+        ];
     }
 }

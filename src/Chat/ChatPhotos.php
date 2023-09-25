@@ -17,18 +17,18 @@ class ChatPhotos extends TdObject
     public const TYPE_NAME = 'chatPhotos';
 
     /**
-     * Total number of photos
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of photos
      *
      * @var ChatPhoto[]
      */
     protected array $photos;
+
+    /**
+     * Total number of photos
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $photos)
     {
@@ -44,13 +44,9 @@ class ChatPhotos extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getPhotos(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->photos),
-        ];
+        return $this->photos;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class ChatPhotos extends TdObject
         return $this->totalCount;
     }
 
-    public function getPhotos(): array
+    public function typeSerialize(): array
     {
-        return $this->photos;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->photos),
+        ];
     }
 }

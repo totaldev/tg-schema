@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+ * Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from
+ * chatEventMessageDeleted with can_report_anti_spam_false_positive == true
  */
 class ReportSupergroupAntiSpamFalsePositive extends TdFunction
 {
     public const TYPE_NAME = 'reportSupergroupAntiSpamFalsePositive';
-
-    /**
-     * Supergroup identifier
-     *
-     * @var int
-     */
-    protected int $supergroupId;
 
     /**
      * Identifier of the erroneously deleted message
@@ -29,6 +23,13 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
      * @var int
      */
     protected int $messageId;
+
+    /**
+     * Supergroup identifier
+     *
+     * @var int
+     */
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, int $messageId)
     {
@@ -44,13 +45,9 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessageId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'message_id' => $this->messageId,
-        ];
+        return $this->messageId;
     }
 
     public function getSupergroupId(): int
@@ -58,8 +55,12 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getMessageId(): int
+    public function typeSerialize(): array
     {
-        return $this->messageId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

@@ -18,11 +18,32 @@ class UpdateNewInlineQuery extends Update
     public const TYPE_NAME = 'updateNewInlineQuery';
 
     /**
+     * The type of the chat from which the query originated; may be null if unknown
+     *
+     * @var ChatType|null
+     */
+    protected ?ChatType $chatType;
+
+    /**
      * Unique query identifier
      *
      * @var int
      */
     protected int $id;
+
+    /**
+     * Offset of the first entry to return
+     *
+     * @var string
+     */
+    protected string $offset;
+
+    /**
+     * Text of the query
+     *
+     * @var string
+     */
+    protected string $query;
 
     /**
      * Identifier of the user who sent the query
@@ -38,35 +59,15 @@ class UpdateNewInlineQuery extends Update
      */
     protected ?Location $userLocation;
 
-    /**
-     * The type of the chat from which the query originated; may be null if unknown
-     *
-     * @var ChatType|null
-     */
-    protected ?ChatType $chatType;
-
-    /**
-     * Text of the query
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * Offset of the first entry to return
-     *
-     * @var string
-     */
-    protected string $offset;
-
     public function __construct(
-        int $id,
-        int $senderUserId,
+        int       $id,
+        int       $senderUserId,
         ?Location $userLocation,
         ?ChatType $chatType,
-        string $query,
-        string $offset,
-    ) {
+        string    $query,
+        string    $offset,
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -89,22 +90,24 @@ class UpdateNewInlineQuery extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getChatType(): ?ChatType
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'sender_user_id' => $this->senderUserId,
-            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
-            'chat_type' => (isset($this->chatType) ? $this->chatType : null),
-            'query' => $this->query,
-            'offset' => $this->offset,
-        ];
+        return $this->chatType;
     }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getOffset(): string
+    {
+        return $this->offset;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
     }
 
     public function getSenderUserId(): int
@@ -117,18 +120,16 @@ class UpdateNewInlineQuery extends Update
         return $this->userLocation;
     }
 
-    public function getChatType(): ?ChatType
+    public function typeSerialize(): array
     {
-        return $this->chatType;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getOffset(): string
-    {
-        return $this->offset;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'sender_user_id' => $this->senderUserId,
+            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
+            'chat_type' => (isset($this->chatType) ? $this->chatType : null),
+            'query' => $this->query,
+            'offset' => $this->offset,
+        ];
     }
 }

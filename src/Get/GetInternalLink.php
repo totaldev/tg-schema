@@ -18,18 +18,18 @@ class GetInternalLink extends TdFunction
     public const TYPE_NAME = 'getInternalLink';
 
     /**
-     * Expected type of the link
-     *
-     * @var InternalLinkType
-     */
-    protected InternalLinkType $type;
-
-    /**
      * Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
      *
      * @var bool
      */
     protected bool $isHttp;
+
+    /**
+     * Expected type of the link
+     *
+     * @var InternalLinkType
+     */
+    protected InternalLinkType $type;
 
     public function __construct(InternalLinkType $type, bool $isHttp)
     {
@@ -45,13 +45,9 @@ class GetInternalLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsHttp(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'is_http' => $this->isHttp,
-        ];
+        return $this->isHttp;
     }
 
     public function getType(): InternalLinkType
@@ -59,8 +55,12 @@ class GetInternalLink extends TdFunction
         return $this->type;
     }
 
-    public function getIsHttp(): bool
+    public function typeSerialize(): array
     {
-        return $this->isHttp;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'is_http' => $this->isHttp,
+        ];
     }
 }

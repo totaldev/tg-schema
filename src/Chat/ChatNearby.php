@@ -44,15 +44,6 @@ class ChatNearby extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'distance' => $this->distance,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class ChatNearby extends TdObject
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'distance' => $this->distance,
+        ];
     }
 }

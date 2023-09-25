@@ -17,11 +17,11 @@ class GetGroupsInCommon extends TdFunction
     public const TYPE_NAME = 'getGroupsInCommon';
 
     /**
-     * User identifier
+     * The maximum number of chats to be returned; up to 100
      *
      * @var int
      */
-    protected int $userId;
+    protected int $limit;
 
     /**
      * Chat identifier starting from which to return chats; use 0 for the first request
@@ -31,11 +31,11 @@ class GetGroupsInCommon extends TdFunction
     protected int $offsetChatId;
 
     /**
-     * The maximum number of chats to be returned; up to 100
+     * User identifier
      *
      * @var int
      */
-    protected int $limit;
+    protected int $userId;
 
     public function __construct(int $userId, int $offsetChatId, int $limit)
     {
@@ -53,6 +53,21 @@ class GetGroupsInCommon extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffsetChatId(): int
+    {
+        return $this->offsetChatId;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GetGroupsInCommon extends TdFunction
             'offset_chat_id' => $this->offsetChatId,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getOffsetChatId(): int
-    {
-        return $this->offsetChatId;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

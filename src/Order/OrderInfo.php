@@ -18,6 +18,13 @@ class OrderInfo extends TdObject
     public const TYPE_NAME = 'orderInfo';
 
     /**
+     * Email address of the user
+     *
+     * @var string
+     */
+    protected string $emailAddress;
+
+    /**
      * Name of the user
      *
      * @var string
@@ -30,13 +37,6 @@ class OrderInfo extends TdObject
      * @var string
      */
     protected string $phoneNumber;
-
-    /**
-     * Email address of the user
-     *
-     * @var string
-     */
-    protected string $emailAddress;
 
     /**
      * Shipping address for this order; may be null
@@ -63,15 +63,9 @@ class OrderInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getEmailAddress(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'phone_number' => $this->phoneNumber,
-            'email_address' => $this->emailAddress,
-            'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
-        ];
+        return $this->emailAddress;
     }
 
     public function getName(): string
@@ -84,13 +78,19 @@ class OrderInfo extends TdObject
         return $this->phoneNumber;
     }
 
-    public function getEmailAddress(): string
-    {
-        return $this->emailAddress;
-    }
-
     public function getShippingAddress(): ?Address
     {
         return $this->shippingAddress;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'phone_number' => $this->phoneNumber,
+            'email_address' => $this->emailAddress,
+            'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
+        ];
     }
 }

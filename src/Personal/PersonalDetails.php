@@ -18,53 +18,25 @@ class PersonalDetails extends TdObject
     public const TYPE_NAME = 'personalDetails';
 
     /**
-     * First name of the user written in English; 1-255 characters
-     *
-     * @var string
-     */
-    protected string $firstName;
-
-    /**
-     * Middle name of the user written in English; 0-255 characters
-     *
-     * @var string
-     */
-    protected string $middleName;
-
-    /**
-     * Last name of the user written in English; 1-255 characters
-     *
-     * @var string
-     */
-    protected string $lastName;
-
-    /**
-     * Native first name of the user; 1-255 characters
-     *
-     * @var string
-     */
-    protected string $nativeFirstName;
-
-    /**
-     * Native middle name of the user; 0-255 characters
-     *
-     * @var string
-     */
-    protected string $nativeMiddleName;
-
-    /**
-     * Native last name of the user; 1-255 characters
-     *
-     * @var string
-     */
-    protected string $nativeLastName;
-
-    /**
      * Birthdate of the user
      *
      * @var Date
      */
     protected Date $birthdate;
+
+    /**
+     * A two-letter ISO 3166-1 alpha-2 country code of the user's country
+     *
+     * @var string
+     */
+    protected string $countryCode;
+
+    /**
+     * First name of the user written in English; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $firstName;
 
     /**
      * Gender of the user, "male" or "female"
@@ -74,11 +46,39 @@ class PersonalDetails extends TdObject
     protected string $gender;
 
     /**
-     * A two-letter ISO 3166-1 alpha-2 country code of the user's country
+     * Last name of the user written in English; 1-255 characters
      *
      * @var string
      */
-    protected string $countryCode;
+    protected string $lastName;
+
+    /**
+     * Middle name of the user written in English; 0-255 characters
+     *
+     * @var string
+     */
+    protected string $middleName;
+
+    /**
+     * Native first name of the user; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeFirstName;
+
+    /**
+     * Native last name of the user; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeLastName;
+
+    /**
+     * Native middle name of the user; 0-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeMiddleName;
 
     /**
      * A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
@@ -94,11 +94,12 @@ class PersonalDetails extends TdObject
         string $nativeFirstName,
         string $nativeMiddleName,
         string $nativeLastName,
-        Date $birthdate,
+        Date   $birthdate,
         string $gender,
         string $countryCode,
         string $residenceCountryCode,
-    ) {
+    )
+    {
         $this->firstName = $firstName;
         $this->middleName = $middleName;
         $this->lastName = $lastName;
@@ -127,6 +128,56 @@ class PersonalDetails extends TdObject
         );
     }
 
+    public function getBirthdate(): Date
+    {
+        return $this->birthdate;
+    }
+
+    public function getCountryCode(): string
+    {
+        return $this->countryCode;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getMiddleName(): string
+    {
+        return $this->middleName;
+    }
+
+    public function getNativeFirstName(): string
+    {
+        return $this->nativeFirstName;
+    }
+
+    public function getNativeLastName(): string
+    {
+        return $this->nativeLastName;
+    }
+
+    public function getNativeMiddleName(): string
+    {
+        return $this->nativeMiddleName;
+    }
+
+    public function getResidenceCountryCode(): string
+    {
+        return $this->residenceCountryCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -142,55 +193,5 @@ class PersonalDetails extends TdObject
             'country_code' => $this->countryCode,
             'residence_country_code' => $this->residenceCountryCode,
         ];
-    }
-
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
-    public function getMiddleName(): string
-    {
-        return $this->middleName;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    public function getNativeFirstName(): string
-    {
-        return $this->nativeFirstName;
-    }
-
-    public function getNativeMiddleName(): string
-    {
-        return $this->nativeMiddleName;
-    }
-
-    public function getNativeLastName(): string
-    {
-        return $this->nativeLastName;
-    }
-
-    public function getBirthdate(): Date
-    {
-        return $this->birthdate;
-    }
-
-    public function getGender(): string
-    {
-        return $this->gender;
-    }
-
-    public function getCountryCode(): string
-    {
-        return $this->countryCode;
-    }
-
-    public function getResidenceCountryCode(): string
-    {
-        return $this->residenceCountryCode;
     }
 }

@@ -16,13 +16,6 @@ class ChatActionBarJoinRequest extends ChatActionBar
     public const TYPE_NAME = 'chatActionBarJoinRequest';
 
     /**
-     * Title of the chat to which the join request was sent
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * True, if the join request was sent to a channel chat
      *
      * @var bool
@@ -35,6 +28,13 @@ class ChatActionBarJoinRequest extends ChatActionBar
      * @var int
      */
     protected int $requestDate;
+
+    /**
+     * Title of the chat to which the join request was sent
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $title, bool $isChannel, int $requestDate)
     {
@@ -54,21 +54,6 @@ class ChatActionBarJoinRequest extends ChatActionBar
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'is_channel' => $this->isChannel,
-            'request_date' => $this->requestDate,
-        ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
     public function getIsChannel(): bool
     {
         return $this->isChannel;
@@ -77,5 +62,20 @@ class ChatActionBarJoinRequest extends ChatActionBar
     public function getRequestDate(): int
     {
         return $this->requestDate;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'is_channel' => $this->isChannel,
+            'request_date' => $this->requestDate,
+        ];
     }
 }

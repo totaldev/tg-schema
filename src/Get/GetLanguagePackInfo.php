@@ -35,16 +35,16 @@ class GetLanguagePackInfo extends TdFunction
         );
     }
 
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
-    }
-
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
     }
 }

@@ -18,18 +18,18 @@ class AvailableReaction extends TdObject
     public const TYPE_NAME = 'availableReaction';
 
     /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    /**
      * True, if Telegram Premium is needed to send the reaction
      *
      * @var bool
      */
     protected bool $needsPremium;
+
+    /**
+     * Type of the reaction
+     *
+     * @var ReactionType
+     */
+    protected ReactionType $type;
 
     public function __construct(ReactionType $type, bool $needsPremium)
     {
@@ -45,13 +45,9 @@ class AvailableReaction extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedsPremium(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'needs_premium' => $this->needsPremium,
-        ];
+        return $this->needsPremium;
     }
 
     public function getType(): ReactionType
@@ -59,8 +55,12 @@ class AvailableReaction extends TdObject
         return $this->type;
     }
 
-    public function getNeedsPremium(): bool
+    public function typeSerialize(): array
     {
-        return $this->needsPremium;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'needs_premium' => $this->needsPremium,
+        ];
     }
 }

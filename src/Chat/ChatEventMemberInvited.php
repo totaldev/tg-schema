@@ -16,18 +16,18 @@ class ChatEventMemberInvited extends ChatEventAction
     public const TYPE_NAME = 'chatEventMemberInvited';
 
     /**
-     * New member user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * New member status
      *
      * @var ChatMemberStatus
      */
     protected ChatMemberStatus $status;
+
+    /**
+     * New member user identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, ChatMemberStatus $status)
     {
@@ -45,13 +45,9 @@ class ChatEventMemberInvited extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStatus(): ChatMemberStatus
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'status' => $this->status->typeSerialize(),
-        ];
+        return $this->status;
     }
 
     public function getUserId(): int
@@ -59,8 +55,12 @@ class ChatEventMemberInvited extends ChatEventAction
         return $this->userId;
     }
 
-    public function getStatus(): ChatMemberStatus
+    public function typeSerialize(): array
     {
-        return $this->status;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'status' => $this->status->typeSerialize(),
+        ];
     }
 }

@@ -36,16 +36,16 @@ class GetWebPagePreview extends TdFunction
         );
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text->typeSerialize(),
         ];
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
     }
 }

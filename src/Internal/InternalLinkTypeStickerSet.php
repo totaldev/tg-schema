@@ -16,18 +16,18 @@ class InternalLinkTypeStickerSet extends InternalLinkType
     public const TYPE_NAME = 'internalLinkTypeStickerSet';
 
     /**
-     * Name of the sticker set
-     *
-     * @var string
-     */
-    protected string $stickerSetName;
-
-    /**
      * True, if the sticker set is expected to contain custom emoji
      *
      * @var bool
      */
     protected bool $expectCustomEmoji;
+
+    /**
+     * Name of the sticker set
+     *
+     * @var string
+     */
+    protected string $stickerSetName;
 
     public function __construct(string $stickerSetName, bool $expectCustomEmoji)
     {
@@ -45,13 +45,9 @@ class InternalLinkTypeStickerSet extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
+    public function getExpectCustomEmoji(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_set_name' => $this->stickerSetName,
-            'expect_custom_emoji' => $this->expectCustomEmoji,
-        ];
+        return $this->expectCustomEmoji;
     }
 
     public function getStickerSetName(): string
@@ -59,8 +55,12 @@ class InternalLinkTypeStickerSet extends InternalLinkType
         return $this->stickerSetName;
     }
 
-    public function getExpectCustomEmoji(): bool
+    public function typeSerialize(): array
     {
-        return $this->expectCustomEmoji;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_set_name' => $this->stickerSetName,
+            'expect_custom_emoji' => $this->expectCustomEmoji,
+        ];
     }
 }

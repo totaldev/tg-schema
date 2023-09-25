@@ -16,18 +16,18 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
     public const TYPE_NAME = 'supergroupMembersFilterMention';
 
     /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
      * If non-zero, the identifier of the current message thread
      *
      * @var int
      */
     protected int $messageThreadId;
+
+    /**
+     * Query to search for
+     *
+     * @var string
+     */
+    protected string $query;
 
     public function __construct(string $query, int $messageThreadId)
     {
@@ -45,13 +45,9 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessageThreadId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'message_thread_id' => $this->messageThreadId,
-        ];
+        return $this->messageThreadId;
     }
 
     public function getQuery(): string
@@ -59,8 +55,12 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         return $this->query;
     }
 
-    public function getMessageThreadId(): int
+    public function typeSerialize(): array
     {
-        return $this->messageThreadId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'message_thread_id' => $this->messageThreadId,
+        ];
     }
 }

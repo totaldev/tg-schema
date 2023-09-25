@@ -17,13 +17,6 @@ class PremiumLimit extends TdObject
     public const TYPE_NAME = 'premiumLimit';
 
     /**
-     * The type of the limit
-     *
-     * @var PremiumLimitType
-     */
-    protected PremiumLimitType $type;
-
-    /**
      * Default value of the limit
      *
      * @var int
@@ -36,6 +29,13 @@ class PremiumLimit extends TdObject
      * @var int
      */
     protected int $premiumValue;
+
+    /**
+     * The type of the limit
+     *
+     * @var PremiumLimitType
+     */
+    protected PremiumLimitType $type;
 
     public function __construct(PremiumLimitType $type, int $defaultValue, int $premiumValue)
     {
@@ -53,21 +53,6 @@ class PremiumLimit extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'default_value' => $this->defaultValue,
-            'premium_value' => $this->premiumValue,
-        ];
-    }
-
-    public function getType(): PremiumLimitType
-    {
-        return $this->type;
-    }
-
     public function getDefaultValue(): int
     {
         return $this->defaultValue;
@@ -76,5 +61,20 @@ class PremiumLimit extends TdObject
     public function getPremiumValue(): int
     {
         return $this->premiumValue;
+    }
+
+    public function getType(): PremiumLimitType
+    {
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'default_value' => $this->defaultValue,
+            'premium_value' => $this->premiumValue,
+        ];
     }
 }

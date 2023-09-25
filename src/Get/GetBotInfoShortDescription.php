@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+ * Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if
+ * userTypeBot.can_be_edited == true
  */
 class GetBotInfoShortDescription extends TdFunction
 {
@@ -44,15 +45,6 @@ class GetBotInfoShortDescription extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'language_code' => $this->languageCode,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -61,5 +53,14 @@ class GetBotInfoShortDescription extends TdFunction
     public function getLanguageCode(): string
     {
         return $this->languageCode;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'language_code' => $this->languageCode,
+        ];
     }
 }

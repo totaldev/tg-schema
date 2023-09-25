@@ -16,18 +16,18 @@ class MessageSponsorTypePrivateChannel extends MessageSponsorType
     public const TYPE_NAME = 'messageSponsorTypePrivateChannel';
 
     /**
-     * Title of the chat
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Invite link for the channel
      *
      * @var string
      */
     protected string $inviteLink;
+
+    /**
+     * Title of the chat
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $title, string $inviteLink)
     {
@@ -45,13 +45,9 @@ class MessageSponsorTypePrivateChannel extends MessageSponsorType
         );
     }
 
-    public function typeSerialize(): array
+    public function getInviteLink(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'invite_link' => $this->inviteLink,
-        ];
+        return $this->inviteLink;
     }
 
     public function getTitle(): string
@@ -59,8 +55,12 @@ class MessageSponsorTypePrivateChannel extends MessageSponsorType
         return $this->title;
     }
 
-    public function getInviteLink(): string
+    public function typeSerialize(): array
     {
-        return $this->inviteLink;
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'invite_link' => $this->inviteLink,
+        ];
     }
 }

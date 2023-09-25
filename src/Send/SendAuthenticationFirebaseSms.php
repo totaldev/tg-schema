@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+ * Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the
+ * server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
  */
 class SendAuthenticationFirebaseSms extends TdFunction
 {
@@ -35,16 +36,16 @@ class SendAuthenticationFirebaseSms extends TdFunction
         );
     }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'token' => $this->token,
         ];
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
     }
 }

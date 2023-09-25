@@ -36,16 +36,16 @@ class ImportContacts extends TdFunction
         );
     }
 
+    public function getContacts(): array
+    {
+        return $this->contacts;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->contacts),
         ];
-    }
-
-    public function getContacts(): array
-    {
-        return $this->contacts;
     }
 }

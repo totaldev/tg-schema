@@ -36,16 +36,16 @@ class GetScopeNotificationSettings extends TdFunction
         );
     }
 
+    public function getScope(): NotificationSettingsScope
+    {
+        return $this->scope;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'scope' => $this->scope->typeSerialize(),
         ];
-    }
-
-    public function getScope(): NotificationSettingsScope
-    {
-        return $this->scope;
     }
 }

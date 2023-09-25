@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
+ * Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also
+ * changed
  */
 class EditMessageSchedulingState extends TdFunction
 {
@@ -54,16 +55,6 @@ class EditMessageSchedulingState extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'scheduling_state' => $this->schedulingState->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +68,15 @@ class EditMessageSchedulingState extends TdFunction
     public function getSchedulingState(): MessageSchedulingState
     {
         return $this->schedulingState;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'scheduling_state' => $this->schedulingState->typeSerialize(),
+        ];
     }
 }

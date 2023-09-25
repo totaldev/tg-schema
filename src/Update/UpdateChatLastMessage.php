@@ -11,7 +11,8 @@ use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
+ * The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added
+ * to the chat in this case
  */
 class UpdateChatLastMessage extends Update
 {
@@ -56,16 +57,6 @@ class UpdateChatLastMessage extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'last_message' => (isset($this->lastMessage) ? $this->lastMessage : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->positions),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -79,5 +70,15 @@ class UpdateChatLastMessage extends Update
     public function getPositions(): array
     {
         return $this->positions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'last_message' => (isset($this->lastMessage) ? $this->lastMessage : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->positions),
+        ];
     }
 }

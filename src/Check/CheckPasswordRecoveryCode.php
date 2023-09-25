@@ -35,16 +35,16 @@ class CheckPasswordRecoveryCode extends TdFunction
         );
     }
 
+    public function getRecoveryCode(): string
+    {
+        return $this->recoveryCode;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'recovery_code' => $this->recoveryCode,
         ];
-    }
-
-    public function getRecoveryCode(): string
-    {
-        return $this->recoveryCode;
     }
 }

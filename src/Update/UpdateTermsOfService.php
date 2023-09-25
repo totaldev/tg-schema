@@ -10,18 +10,12 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Terms\TermsOfService;
 
 /**
- * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
+ * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason
+ * "Decline ToS update"
  */
 class UpdateTermsOfService extends Update
 {
     public const TYPE_NAME = 'updateTermsOfService';
-
-    /**
-     * Identifier of the terms of service
-     *
-     * @var string
-     */
-    protected string $termsOfServiceId;
 
     /**
      * The new terms of service
@@ -29,6 +23,13 @@ class UpdateTermsOfService extends Update
      * @var TermsOfService
      */
     protected TermsOfService $termsOfService;
+
+    /**
+     * Identifier of the terms of service
+     *
+     * @var string
+     */
+    protected string $termsOfServiceId;
 
     public function __construct(string $termsOfServiceId, TermsOfService $termsOfService)
     {
@@ -46,13 +47,9 @@ class UpdateTermsOfService extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getTermsOfService(): TermsOfService
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'terms_of_service_id' => $this->termsOfServiceId,
-            'terms_of_service' => $this->termsOfService->typeSerialize(),
-        ];
+        return $this->termsOfService;
     }
 
     public function getTermsOfServiceId(): string
@@ -60,8 +57,12 @@ class UpdateTermsOfService extends Update
         return $this->termsOfServiceId;
     }
 
-    public function getTermsOfService(): TermsOfService
+    public function typeSerialize(): array
     {
-        return $this->termsOfService;
+        return [
+            '@type' => static::TYPE_NAME,
+            'terms_of_service_id' => $this->termsOfServiceId,
+            'terms_of_service' => $this->termsOfService->typeSerialize(),
+        ];
     }
 }

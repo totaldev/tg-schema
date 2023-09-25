@@ -19,18 +19,27 @@ class AnimatedEmoji extends TdObject
     public const TYPE_NAME = 'animatedEmoji';
 
     /**
-     * Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, it can have arbitrary format different from stickerFormatTgs
+     * Emoji modifier fitzpatrick type; 0-6; 0 if none
+     *
+     * @var int
+     */
+    protected int $fitzpatrickType;
+
+    /**
+     * File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG
+     * container
+     *
+     * @var File|null
+     */
+    protected ?File $sound;
+
+    /**
+     * Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, it can have arbitrary format different from
+     * stickerFormatTgs
      *
      * @var Sticker|null
      */
     protected ?Sticker $sticker;
-
-    /**
-     * Expected width of the sticker, which can be used if the sticker is null
-     *
-     * @var int
-     */
-    protected int $stickerWidth;
 
     /**
      * Expected height of the sticker, which can be used if the sticker is null
@@ -40,26 +49,20 @@ class AnimatedEmoji extends TdObject
     protected int $stickerHeight;
 
     /**
-     * Emoji modifier fitzpatrick type; 0-6; 0 if none
+     * Expected width of the sticker, which can be used if the sticker is null
      *
      * @var int
      */
-    protected int $fitzpatrickType;
-
-    /**
-     * File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
-     *
-     * @var File|null
-     */
-    protected ?File $sound;
+    protected int $stickerWidth;
 
     public function __construct(
         ?Sticker $sticker,
-        int $stickerWidth,
-        int $stickerHeight,
-        int $fitzpatrickType,
-        ?File $sound,
-    ) {
+        int      $stickerWidth,
+        int      $stickerHeight,
+        int      $fitzpatrickType,
+        ?File    $sound,
+    )
+    {
         $this->sticker = $sticker;
         $this->stickerWidth = $stickerWidth;
         $this->stickerHeight = $stickerHeight;
@@ -78,6 +81,31 @@ class AnimatedEmoji extends TdObject
         );
     }
 
+    public function getFitzpatrickType(): int
+    {
+        return $this->fitzpatrickType;
+    }
+
+    public function getSound(): ?File
+    {
+        return $this->sound;
+    }
+
+    public function getSticker(): ?Sticker
+    {
+        return $this->sticker;
+    }
+
+    public function getStickerHeight(): int
+    {
+        return $this->stickerHeight;
+    }
+
+    public function getStickerWidth(): int
+    {
+        return $this->stickerWidth;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -88,30 +116,5 @@ class AnimatedEmoji extends TdObject
             'fitzpatrick_type' => $this->fitzpatrickType,
             'sound' => (isset($this->sound) ? $this->sound : null),
         ];
-    }
-
-    public function getSticker(): ?Sticker
-    {
-        return $this->sticker;
-    }
-
-    public function getStickerWidth(): int
-    {
-        return $this->stickerWidth;
-    }
-
-    public function getStickerHeight(): int
-    {
-        return $this->stickerHeight;
-    }
-
-    public function getFitzpatrickType(): int
-    {
-        return $this->fitzpatrickType;
-    }
-
-    public function getSound(): ?File
-    {
-        return $this->sound;
     }
 }

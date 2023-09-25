@@ -36,16 +36,16 @@ class SetArchiveChatListSettings extends TdFunction
         );
     }
 
+    public function getSettings(): ArchiveChatListSettings
+    {
+        return $this->settings;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'settings' => $this->settings->typeSerialize(),
         ];
-    }
-
-    public function getSettings(): ArchiveChatListSettings
-    {
-        return $this->settings;
     }
 }

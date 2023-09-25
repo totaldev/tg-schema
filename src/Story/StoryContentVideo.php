@@ -16,18 +16,18 @@ class StoryContentVideo extends StoryContent
     public const TYPE_NAME = 'storyContentVideo';
 
     /**
-     * The video in MPEG4 format
-     *
-     * @var StoryVideo
-     */
-    protected StoryVideo $video;
-
-    /**
      * Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
      *
      * @var StoryVideo|null
      */
     protected ?StoryVideo $alternativeVideo;
+
+    /**
+     * The video in MPEG4 format
+     *
+     * @var StoryVideo
+     */
+    protected StoryVideo $video;
 
     public function __construct(StoryVideo $video, ?StoryVideo $alternativeVideo)
     {
@@ -45,13 +45,9 @@ class StoryContentVideo extends StoryContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getAlternativeVideo(): ?StoryVideo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
-            'alternative_video' => (isset($this->alternativeVideo) ? $this->alternativeVideo : null),
-        ];
+        return $this->alternativeVideo;
     }
 
     public function getVideo(): StoryVideo
@@ -59,8 +55,12 @@ class StoryContentVideo extends StoryContent
         return $this->video;
     }
 
-    public function getAlternativeVideo(): ?StoryVideo
+    public function typeSerialize(): array
     {
-        return $this->alternativeVideo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'video' => $this->video->typeSerialize(),
+            'alternative_video' => (isset($this->alternativeVideo) ? $this->alternativeVideo : null),
+        ];
     }
 }

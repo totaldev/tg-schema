@@ -17,27 +17,6 @@ class StoryAreaPosition extends TdObject
     public const TYPE_NAME = 'storyAreaPosition';
 
     /**
-     * The abscissa of the rectangle's center, as a percentage of the media width
-     *
-     * @var float
-     */
-    protected float $xPercentage;
-
-    /**
-     * The ordinate of the rectangle's center, as a percentage of the media height
-     *
-     * @var float
-     */
-    protected float $yPercentage;
-
-    /**
-     * The width of the rectangle, as a percentage of the media width
-     *
-     * @var float
-     */
-    protected float $widthPercentage;
-
-    /**
      * The ordinate of the rectangle's center, as a percentage of the media height
      *
      * @var float
@@ -51,13 +30,35 @@ class StoryAreaPosition extends TdObject
      */
     protected float $rotationAngle;
 
+    /**
+     * The width of the rectangle, as a percentage of the media width
+     *
+     * @var float
+     */
+    protected float $widthPercentage;
+
+    /**
+     * The abscissa of the rectangle's center, as a percentage of the media width
+     *
+     * @var float
+     */
+    protected float $xPercentage;
+
+    /**
+     * The ordinate of the rectangle's center, as a percentage of the media height
+     *
+     * @var float
+     */
+    protected float $yPercentage;
+
     public function __construct(
         float $xPercentage,
         float $yPercentage,
         float $widthPercentage,
         float $heightPercentage,
         float $rotationAngle,
-    ) {
+    )
+    {
         $this->xPercentage = $xPercentage;
         $this->yPercentage = $yPercentage;
         $this->widthPercentage = $widthPercentage;
@@ -76,16 +77,19 @@ class StoryAreaPosition extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getHeightPercentage(): float
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'x_percentage' => $this->xPercentage,
-            'y_percentage' => $this->yPercentage,
-            'width_percentage' => $this->widthPercentage,
-            'height_percentage' => $this->heightPercentage,
-            'rotation_angle' => $this->rotationAngle,
-        ];
+        return $this->heightPercentage;
+    }
+
+    public function getRotationAngle(): float
+    {
+        return $this->rotationAngle;
+    }
+
+    public function getWidthPercentage(): float
+    {
+        return $this->widthPercentage;
     }
 
     public function getXPercentage(): float
@@ -98,18 +102,15 @@ class StoryAreaPosition extends TdObject
         return $this->yPercentage;
     }
 
-    public function getWidthPercentage(): float
+    public function typeSerialize(): array
     {
-        return $this->widthPercentage;
-    }
-
-    public function getHeightPercentage(): float
-    {
-        return $this->heightPercentage;
-    }
-
-    public function getRotationAngle(): float
-    {
-        return $this->rotationAngle;
+        return [
+            '@type' => static::TYPE_NAME,
+            'x_percentage' => $this->xPercentage,
+            'y_percentage' => $this->yPercentage,
+            'width_percentage' => $this->widthPercentage,
+            'height_percentage' => $this->heightPercentage,
+            'rotation_angle' => $this->rotationAngle,
+        ];
     }
 }

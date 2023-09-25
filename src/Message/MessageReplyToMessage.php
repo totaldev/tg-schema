@@ -16,7 +16,8 @@ class MessageReplyToMessage extends MessageReplyTo
     public const TYPE_NAME = 'messageReplyToMessage';
 
     /**
-     * The identifier of the chat to which the replied message belongs; ignored for outgoing replies. For example, messages in the Replies chat are replies to messages in different chats
+     * The identifier of the chat to which the replied message belongs; ignored for outgoing replies. For example, messages in the Replies chat are replies to
+     * messages in different chats
      *
      * @var int
      */
@@ -45,15 +46,6 @@ class MessageReplyToMessage extends MessageReplyTo
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +54,14 @@ class MessageReplyToMessage extends MessageReplyTo
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

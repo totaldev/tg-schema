@@ -18,18 +18,18 @@ class Messages extends TdObject
     public const TYPE_NAME = 'messages';
 
     /**
-     * Approximate total number of messages found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of messages; messages may be null
      *
      * @var Message[]|null
      */
     protected ?array $messages;
+
+    /**
+     * Approximate total number of messages found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, ?array $messages)
     {
@@ -45,13 +45,9 @@ class Messages extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessages(): ?array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            (isset($this->messages) ? array_map(fn($x) => $x->typeSerialize(), $this->messages) : null),
-        ];
+        return $this->messages;
     }
 
     public function getTotalCount(): int
@@ -59,8 +55,12 @@ class Messages extends TdObject
         return $this->totalCount;
     }
 
-    public function getMessages(): ?array
+    public function typeSerialize(): array
     {
-        return $this->messages;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            (isset($this->messages) ? array_map(fn($x) => $x->typeSerialize(), $this->messages) : null),
+        ];
     }
 }

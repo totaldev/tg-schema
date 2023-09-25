@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
+ * Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to
+ * maintain chat lists in a consistent state
  */
 class GetChats extends TdFunction
 {
@@ -45,15 +46,6 @@ class GetChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatList(): ChatList
     {
         return $this->chatList;
@@ -62,5 +54,14 @@ class GetChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 }

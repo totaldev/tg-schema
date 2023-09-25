@@ -36,16 +36,16 @@ class SetLocation extends TdFunction
         );
     }
 
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
         ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
     }
 }

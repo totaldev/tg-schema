@@ -17,18 +17,19 @@ class GetGroupCallInviteLink extends TdFunction
     public const TYPE_NAME = 'getGroupCallInviteLink';
 
     /**
+     * Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires
+     * groupCall.can_be_managed group call flag
+     *
+     * @var bool
+     */
+    protected bool $canSelfUnmute;
+
+    /**
      * Group call identifier
      *
      * @var int
      */
     protected int $groupCallId;
-
-    /**
-     * Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
-     *
-     * @var bool
-     */
-    protected bool $canSelfUnmute;
 
     public function __construct(int $groupCallId, bool $canSelfUnmute)
     {
@@ -44,13 +45,9 @@ class GetGroupCallInviteLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCanSelfUnmute(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'can_self_unmute' => $this->canSelfUnmute,
-        ];
+        return $this->canSelfUnmute;
     }
 
     public function getGroupCallId(): int
@@ -58,8 +55,12 @@ class GetGroupCallInviteLink extends TdFunction
         return $this->groupCallId;
     }
 
-    public function getCanSelfUnmute(): bool
+    public function typeSerialize(): array
     {
-        return $this->canSelfUnmute;
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'can_self_unmute' => $this->canSelfUnmute,
+        ];
     }
 }

@@ -44,15 +44,6 @@ class InviteGroupCallParticipants extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +52,14 @@ class InviteGroupCallParticipants extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'user_ids' => $this->userIds,
+        ];
     }
 }

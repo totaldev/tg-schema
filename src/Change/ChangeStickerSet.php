@@ -17,11 +17,11 @@ class ChangeStickerSet extends TdFunction
     public const TYPE_NAME = 'changeStickerSet';
 
     /**
-     * Identifier of the sticker set
+     * The new value of is_archived. A sticker set can't be installed and archived simultaneously
      *
-     * @var int
+     * @var bool
      */
-    protected int $setId;
+    protected bool $isArchived;
 
     /**
      * The new value of is_installed
@@ -31,11 +31,11 @@ class ChangeStickerSet extends TdFunction
     protected bool $isInstalled;
 
     /**
-     * The new value of is_archived. A sticker set can't be installed and archived simultaneously
+     * Identifier of the sticker set
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isArchived;
+    protected int $setId;
 
     public function __construct(int $setId, bool $isInstalled, bool $isArchived)
     {
@@ -53,6 +53,21 @@ class ChangeStickerSet extends TdFunction
         );
     }
 
+    public function getIsArchived(): bool
+    {
+        return $this->isArchived;
+    }
+
+    public function getIsInstalled(): bool
+    {
+        return $this->isInstalled;
+    }
+
+    public function getSetId(): int
+    {
+        return $this->setId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class ChangeStickerSet extends TdFunction
             'is_installed' => $this->isInstalled,
             'is_archived' => $this->isArchived,
         ];
-    }
-
-    public function getSetId(): int
-    {
-        return $this->setId;
-    }
-
-    public function getIsInstalled(): bool
-    {
-        return $this->isInstalled;
-    }
-
-    public function getIsArchived(): bool
-    {
-        return $this->isArchived;
     }
 }

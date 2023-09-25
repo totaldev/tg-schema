@@ -17,18 +17,11 @@ class InlineQueryResultArticle extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultArticle';
 
     /**
-     * Unique identifier of the query result
+     * A short description of the result
      *
      * @var string
      */
-    protected string $id;
-
-    /**
-     * URL of the result, if it exists
-     *
-     * @var string
-     */
-    protected string $url;
+    protected string $description;
 
     /**
      * True, if the URL must be not shown
@@ -38,18 +31,11 @@ class InlineQueryResultArticle extends InlineQueryResult
     protected bool $hideUrl;
 
     /**
-     * Title of the result
+     * Unique identifier of the query result
      *
      * @var string
      */
-    protected string $title;
-
-    /**
-     * A short description of the result
-     *
-     * @var string
-     */
-    protected string $description;
+    protected string $id;
 
     /**
      * Result thumbnail in JPEG format; may be null
@@ -58,14 +44,29 @@ class InlineQueryResultArticle extends InlineQueryResult
      */
     protected ?Thumbnail $thumbnail;
 
+    /**
+     * Title of the result
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * URL of the result, if it exists
+     *
+     * @var string
+     */
+    protected string $url;
+
     public function __construct(
-        string $id,
-        string $url,
-        bool $hideUrl,
-        string $title,
-        string $description,
+        string     $id,
+        string     $url,
+        bool       $hideUrl,
+        string     $title,
+        string     $description,
         ?Thumbnail $thumbnail,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -88,6 +89,36 @@ class InlineQueryResultArticle extends InlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getHideUrl(): bool
+    {
+        return $this->hideUrl;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +130,5 @@ class InlineQueryResultArticle extends InlineQueryResult
             'description' => $this->description,
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getHideUrl(): bool
-    {
-        return $this->hideUrl;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
     }
 }

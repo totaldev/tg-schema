@@ -37,16 +37,16 @@ class StoryAreaTypeVenue extends StoryAreaType
         );
     }
 
+    public function getVenue(): Venue
+    {
+        return $this->venue;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'venue' => $this->venue->typeSerialize(),
         ];
-    }
-
-    public function getVenue(): Venue
-    {
-        return $this->venue;
     }
 }

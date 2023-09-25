@@ -16,18 +16,18 @@ class MessageStory extends MessageContent
     public const TYPE_NAME = 'messageStory';
 
     /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
      * Story identifier
      *
      * @var int
      */
     protected int $storyId;
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     /**
      * True, if the story was automatically forwarded because of a mention of the user
@@ -54,6 +54,21 @@ class MessageStory extends MessageContent
         );
     }
 
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
+    public function getViaMention(): bool
+    {
+        return $this->viaMention;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class MessageStory extends MessageContent
             'story_id' => $this->storyId,
             'via_mention' => $this->viaMention,
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getViaMention(): bool
-    {
-        return $this->viaMention;
     }
 }

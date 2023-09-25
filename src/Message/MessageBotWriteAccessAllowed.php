@@ -17,18 +17,18 @@ class MessageBotWriteAccessAllowed extends MessageContent
     public const TYPE_NAME = 'messageBotWriteAccessAllowed';
 
     /**
-     * Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
-     *
-     * @var WebApp|null
-     */
-    protected ?WebApp $webApp;
-
-    /**
      * True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
      *
      * @var bool
      */
     protected bool $byRequest;
+
+    /**
+     * Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
+     *
+     * @var WebApp|null
+     */
+    protected ?WebApp $webApp;
 
     public function __construct(?WebApp $webApp, bool $byRequest)
     {
@@ -46,13 +46,9 @@ class MessageBotWriteAccessAllowed extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getByRequest(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'web_app' => (isset($this->webApp) ? $this->webApp : null),
-            'by_request' => $this->byRequest,
-        ];
+        return $this->byRequest;
     }
 
     public function getWebApp(): ?WebApp
@@ -60,8 +56,12 @@ class MessageBotWriteAccessAllowed extends MessageContent
         return $this->webApp;
     }
 
-    public function getByRequest(): bool
+    public function typeSerialize(): array
     {
-        return $this->byRequest;
+        return [
+            '@type' => static::TYPE_NAME,
+            'web_app' => (isset($this->webApp) ? $this->webApp : null),
+            'by_request' => $this->byRequest,
+        ];
     }
 }

@@ -37,16 +37,16 @@ class PageBlockSubheader extends PageBlock
         );
     }
 
+    public function getSubheader(): RichText
+    {
+        return $this->subheader;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'subheader' => $this->subheader->typeSerialize(),
         ];
-    }
-
-    public function getSubheader(): RichText
-    {
-        return $this->subheader;
     }
 }

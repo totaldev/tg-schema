@@ -17,11 +17,11 @@ class InlineQueryResultDocument extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultDocument';
 
     /**
-     * Unique identifier of the query result
+     * Document description
      *
      * @var string
      */
-    protected string $id;
+    protected string $description;
 
     /**
      * Document
@@ -31,18 +31,18 @@ class InlineQueryResultDocument extends InlineQueryResult
     protected Document $document;
 
     /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
      * Document title
      *
      * @var string
      */
     protected string $title;
-
-    /**
-     * Document description
-     *
-     * @var string
-     */
-    protected string $description;
 
     public function __construct(string $id, Document $document, string $title, string $description)
     {
@@ -64,6 +64,26 @@ class InlineQueryResultDocument extends InlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getDocument(): Document
+    {
+        return $this->document;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class InlineQueryResultDocument extends InlineQueryResult
             'title' => $this->title,
             'description' => $this->description,
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getDocument(): Document
-    {
-        return $this->document;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
     }
 }

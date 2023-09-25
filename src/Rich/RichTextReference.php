@@ -16,18 +16,18 @@ class RichTextReference extends RichText
     public const TYPE_NAME = 'richTextReference';
 
     /**
-     * The text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * The name of a richTextAnchor object, which is the first element of the target richTexts object
      *
      * @var string
      */
     protected string $anchorName;
+
+    /**
+     * The text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     /**
      * An HTTP URL, opening the reference
@@ -54,6 +54,21 @@ class RichTextReference extends RichText
         );
     }
 
+    public function getAnchorName(): string
+    {
+        return $this->anchorName;
+    }
+
+    public function getText(): RichText
+    {
+        return $this->text;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class RichTextReference extends RichText
             'anchor_name' => $this->anchorName,
             'url' => $this->url,
         ];
-    }
-
-    public function getText(): RichText
-    {
-        return $this->text;
-    }
-
-    public function getAnchorName(): string
-    {
-        return $this->anchorName;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

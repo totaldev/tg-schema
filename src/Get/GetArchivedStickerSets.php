@@ -18,11 +18,11 @@ class GetArchivedStickerSets extends TdFunction
     public const TYPE_NAME = 'getArchivedStickerSets';
 
     /**
-     * Type of the sticker sets to return
+     * The maximum number of sticker sets to return; up to 100
      *
-     * @var StickerType
+     * @var int
      */
-    protected StickerType $stickerType;
+    protected int $limit;
 
     /**
      * Identifier of the sticker set from which to return the result
@@ -32,11 +32,11 @@ class GetArchivedStickerSets extends TdFunction
     protected int $offsetStickerSetId;
 
     /**
-     * The maximum number of sticker sets to return; up to 100
+     * Type of the sticker sets to return
      *
-     * @var int
+     * @var StickerType
      */
-    protected int $limit;
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, int $offsetStickerSetId, int $limit)
     {
@@ -54,6 +54,21 @@ class GetArchivedStickerSets extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffsetStickerSetId(): int
+    {
+        return $this->offsetStickerSetId;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class GetArchivedStickerSets extends TdFunction
             'offset_sticker_set_id' => $this->offsetStickerSetId,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
-    public function getOffsetStickerSetId(): int
-    {
-        return $this->offsetStickerSetId;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

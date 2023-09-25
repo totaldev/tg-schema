@@ -35,16 +35,16 @@ class GetFileExtension extends TdFunction
         );
     }
 
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'mime_type' => $this->mimeType,
         ];
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
     }
 }

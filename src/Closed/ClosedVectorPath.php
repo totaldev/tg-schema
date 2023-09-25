@@ -36,16 +36,16 @@ class ClosedVectorPath extends TdObject
         );
     }
 
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->commands),
         ];
-    }
-
-    public function getCommands(): array
-    {
-        return $this->commands;
     }
 }

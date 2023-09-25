@@ -11,18 +11,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+ * Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally,
+ * administrator privileges may be required for some filters
  */
 class GetSupergroupMembers extends TdFunction
 {
     public const TYPE_NAME = 'getSupergroupMembers';
-
-    /**
-     * Identifier of the supergroup or channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
 
     /**
      * The type of users to return; pass null to use supergroupMembersFilterRecent
@@ -32,6 +26,13 @@ class GetSupergroupMembers extends TdFunction
     protected SupergroupMembersFilter $filter;
 
     /**
+     * The maximum number of users be returned; up to 200
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Number of users to skip
      *
      * @var int
@@ -39,11 +40,11 @@ class GetSupergroupMembers extends TdFunction
     protected int $offset;
 
     /**
-     * The maximum number of users be returned; up to 200
+     * Identifier of the supergroup or channel
      *
      * @var int
      */
-    protected int $limit;
+    protected int $supergroupId;
 
     public function __construct(int $supergroupId, SupergroupMembersFilter $filter, int $offset, int $limit)
     {
@@ -63,6 +64,26 @@ class GetSupergroupMembers extends TdFunction
         );
     }
 
+    public function getFilter(): SupergroupMembersFilter
+    {
+        return $this->filter;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getSupergroupId(): int
+    {
+        return $this->supergroupId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +93,5 @@ class GetSupergroupMembers extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getSupergroupId(): int
-    {
-        return $this->supergroupId;
-    }
-
-    public function getFilter(): SupergroupMembersFilter
-    {
-        return $this->filter;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

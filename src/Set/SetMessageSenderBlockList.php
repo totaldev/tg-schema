@@ -19,18 +19,18 @@ class SetMessageSenderBlockList extends TdFunction
     public const TYPE_NAME = 'setMessageSenderBlockList';
 
     /**
-     * Identifier of a message sender to block/unblock
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
      * New block list for the message sender; pass null to unblock the message sender
      *
      * @var BlockList
      */
     protected BlockList $blockList;
+
+    /**
+     * Identifier of a message sender to block/unblock
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $senderId;
 
     public function __construct(MessageSender $senderId, BlockList $blockList)
     {
@@ -46,13 +46,9 @@ class SetMessageSenderBlockList extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getBlockList(): BlockList
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'block_list' => $this->blockList->typeSerialize(),
-        ];
+        return $this->blockList;
     }
 
     public function getSenderId(): MessageSender
@@ -60,8 +56,12 @@ class SetMessageSenderBlockList extends TdFunction
         return $this->senderId;
     }
 
-    public function getBlockList(): BlockList
+    public function typeSerialize(): array
     {
-        return $this->blockList;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender_id' => $this->senderId->typeSerialize(),
+            'block_list' => $this->blockList->typeSerialize(),
+        ];
     }
 }

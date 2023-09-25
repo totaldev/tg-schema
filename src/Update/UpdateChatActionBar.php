@@ -17,18 +17,18 @@ class UpdateChatActionBar extends Update
     public const TYPE_NAME = 'updateChatActionBar';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * The new value of the action bar; may be null
      *
      * @var ChatActionBar|null
      */
     protected ?ChatActionBar $actionBar;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, ?ChatActionBar $actionBar)
     {
@@ -46,13 +46,9 @@ class UpdateChatActionBar extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getActionBar(): ?ChatActionBar
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
-        ];
+        return $this->actionBar;
     }
 
     public function getChatId(): int
@@ -60,8 +56,12 @@ class UpdateChatActionBar extends Update
         return $this->chatId;
     }
 
-    public function getActionBar(): ?ChatActionBar
+    public function typeSerialize(): array
     {
-        return $this->actionBar;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
+        ];
     }
 }

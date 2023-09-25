@@ -20,18 +20,19 @@ class SendMessage extends TdFunction
 
     public function __construct(
         /** Target chat */
-        protected int $chatId,
+        protected int                     $chatId,
         /** The content of the message to be sent */
-        protected InputMessageContent $inputMessageContent,
+        protected InputMessageContent     $inputMessageContent,
         /** If not 0, a message thread identifier in which the message will be sent */
-        protected int $messageThreadId = 0,
+        protected int                     $messageThreadId = 0,
         /** Identifier of the replied message or story; pass null if none */
-        protected MessageReplyTo|null $replyTo = null,
+        protected MessageReplyTo|null     $replyTo = null,
         /** Options to be used to send the message; pass null to use default options */
         protected MessageSendOptions|null $options = null,
         /** Markup for replying to the message; pass null if none; for bots only */
-        protected ReplyMarkup|null $replyMarkup = null,
-    ) {
+        protected ReplyMarkup|null        $replyMarkup = null,
+    )
+    {
     }
 
     public static function fromArray(array $array): SendMessage
@@ -46,32 +47,19 @@ class SendMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-            'message_thread_id' => $this->messageThreadId,
-            'reply_to' => $this->replyTo?->typeSerialize(),
-            'options' => $this->options?->typeSerialize(),
-            'reply_markup' => $this->replyMarkup?->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
     }
 
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
     public function getMessageThreadId(): int
     {
         return $this->messageThreadId;
-    }
-
-    public function getReplyTo(): MessageReplyTo
-    {
-        return $this->replyTo;
     }
 
     public function getOptions(): MessageSendOptions
@@ -84,8 +72,21 @@ class SendMessage extends TdFunction
         return $this->replyMarkup;
     }
 
-    public function getInputMessageContent(): InputMessageContent
+    public function getReplyTo(): MessageReplyTo
     {
-        return $this->inputMessageContent;
+        return $this->replyTo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'message_thread_id' => $this->messageThreadId,
+            'reply_to' => $this->replyTo?->typeSerialize(),
+            'options' => $this->options?->typeSerialize(),
+            'reply_markup' => $this->replyMarkup?->typeSerialize(),
+        ];
     }
 }

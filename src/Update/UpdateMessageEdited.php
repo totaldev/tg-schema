@@ -24,18 +24,18 @@ class UpdateMessageEdited extends Update
     protected int $chatId;
 
     /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Point in time (Unix timestamp) when the message was edited
      *
      * @var int
      */
     protected int $editDate;
+
+    /**
+     * Message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     /**
      * New message reply markup; may be null
@@ -64,6 +64,26 @@ class UpdateMessageEdited extends Update
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getEditDate(): int
+    {
+        return $this->editDate;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getReplyMarkup(): ?ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class UpdateMessageEdited extends Update
             'edit_date' => $this->editDate,
             'reply_markup' => (isset($this->replyMarkup) ? $this->replyMarkup : null),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getEditDate(): int
-    {
-        return $this->editDate;
-    }
-
-    public function getReplyMarkup(): ?ReplyMarkup
-    {
-        return $this->replyMarkup;
     }
 }

@@ -55,16 +55,6 @@ class PushMessageContentAnimation extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animation' => (isset($this->animation) ? $this->animation : null),
-            'caption' => $this->caption,
-            'is_pinned' => $this->isPinned,
-        ];
-    }
-
     public function getAnimation(): ?Animation
     {
         return $this->animation;
@@ -78,5 +68,15 @@ class PushMessageContentAnimation extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'animation' => (isset($this->animation) ? $this->animation : null),
+            'caption' => $this->caption,
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

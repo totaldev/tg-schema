@@ -46,15 +46,6 @@ class UpdateForumTopicInfo extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'info' => $this->info->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -63,5 +54,14 @@ class UpdateForumTopicInfo extends Update
     public function getInfo(): ForumTopicInfo
     {
         return $this->info;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'info' => $this->info->typeSerialize(),
+        ];
     }
 }

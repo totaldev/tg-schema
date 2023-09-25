@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
+ * Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen
+ * phone number or the chosen email address must be verified first
  */
 class SetPassportElement extends TdFunction
 {
@@ -45,15 +46,6 @@ class SetPassportElement extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'element' => $this->element->typeSerialize(),
-            'password' => $this->password,
-        ];
-    }
-
     public function getElement(): InputPassportElement
     {
         return $this->element;
@@ -62,5 +54,14 @@ class SetPassportElement extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'element' => $this->element->typeSerialize(),
+            'password' => $this->password,
+        ];
     }
 }

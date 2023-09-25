@@ -44,15 +44,6 @@ class Users extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getTotalCount(): int
     {
         return $this->totalCount;
@@ -61,5 +52,14 @@ class Users extends TdObject
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            'user_ids' => $this->userIds,
+        ];
     }
 }

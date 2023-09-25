@@ -26,18 +26,18 @@ class SetBackground extends TdFunction
     protected InputBackground $background;
 
     /**
-     * Background type; pass null to use the default type of the remote background or to remove the current background
-     *
-     * @var BackgroundType
-     */
-    protected BackgroundType $type;
-
-    /**
      * Pass true if the background is changed for a dark theme
      *
      * @var bool
      */
     protected bool $forDarkTheme;
+
+    /**
+     * Background type; pass null to use the default type of the remote background or to remove the current background
+     *
+     * @var BackgroundType
+     */
+    protected BackgroundType $type;
 
     public function __construct(InputBackground $background, BackgroundType $type, bool $forDarkTheme)
     {
@@ -55,6 +55,21 @@ class SetBackground extends TdFunction
         );
     }
 
+    public function getBackground(): InputBackground
+    {
+        return $this->background;
+    }
+
+    public function getForDarkTheme(): bool
+    {
+        return $this->forDarkTheme;
+    }
+
+    public function getType(): BackgroundType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class SetBackground extends TdFunction
             'type' => $this->type->typeSerialize(),
             'for_dark_theme' => $this->forDarkTheme,
         ];
-    }
-
-    public function getBackground(): InputBackground
-    {
-        return $this->background;
-    }
-
-    public function getType(): BackgroundType
-    {
-        return $this->type;
-    }
-
-    public function getForDarkTheme(): bool
-    {
-        return $this->forDarkTheme;
     }
 }

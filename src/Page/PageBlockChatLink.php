@@ -17,18 +17,18 @@ class PageBlockChatLink extends PageBlock
     public const TYPE_NAME = 'pageBlockChatLink';
 
     /**
-     * Chat title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Chat photo; may be null
      *
      * @var ChatPhotoInfo|null
      */
     protected ?ChatPhotoInfo $photo;
+
+    /**
+     * Chat title
+     *
+     * @var string
+     */
+    protected string $title;
 
     /**
      * Chat username by which all other information about the chat can be resolved
@@ -55,6 +55,21 @@ class PageBlockChatLink extends PageBlock
         );
     }
 
+    public function getPhoto(): ?ChatPhotoInfo
+    {
+        return $this->photo;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class PageBlockChatLink extends PageBlock
             'photo' => (isset($this->photo) ? $this->photo : null),
             'username' => $this->username,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getPhoto(): ?ChatPhotoInfo
-    {
-        return $this->photo;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
     }
 }

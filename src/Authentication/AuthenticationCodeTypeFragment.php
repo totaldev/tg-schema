@@ -16,18 +16,18 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
     public const TYPE_NAME = 'authenticationCodeTypeFragment';
 
     /**
-     * URL to open to receive the code
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Length of the code
      *
      * @var int
      */
     protected int $length;
+
+    /**
+     * URL to open to receive the code
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, int $length)
     {
@@ -45,13 +45,9 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
         );
     }
 
-    public function typeSerialize(): array
+    public function getLength(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'length' => $this->length,
-        ];
+        return $this->length;
     }
 
     public function getUrl(): string
@@ -59,8 +55,12 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
         return $this->url;
     }
 
-    public function getLength(): int
+    public function typeSerialize(): array
     {
-        return $this->length;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'length' => $this->length,
+        ];
     }
 }

@@ -19,11 +19,12 @@ class UploadStickerFile extends TdFunction
     public const TYPE_NAME = 'uploadStickerFile';
 
     /**
-     * Sticker file owner; ignored for regular users
+     * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP
+     * server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
      *
-     * @var int
+     * @var InputFile
      */
-    protected int $userId;
+    protected InputFile $sticker;
 
     /**
      * Sticker format
@@ -33,11 +34,11 @@ class UploadStickerFile extends TdFunction
     protected StickerFormat $stickerFormat;
 
     /**
-     * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     * Sticker file owner; ignored for regular users
      *
-     * @var InputFile
+     * @var int
      */
-    protected InputFile $sticker;
+    protected int $userId;
 
     public function __construct(int $userId, StickerFormat $stickerFormat, InputFile $sticker)
     {
@@ -55,6 +56,21 @@ class UploadStickerFile extends TdFunction
         );
     }
 
+    public function getSticker(): InputFile
+    {
+        return $this->sticker;
+    }
+
+    public function getStickerFormat(): StickerFormat
+    {
+        return $this->stickerFormat;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +79,5 @@ class UploadStickerFile extends TdFunction
             'sticker_format' => $this->stickerFormat->typeSerialize(),
             'sticker' => $this->sticker->typeSerialize(),
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getStickerFormat(): StickerFormat
-    {
-        return $this->stickerFormat;
-    }
-
-    public function getSticker(): InputFile
-    {
-        return $this->sticker;
     }
 }

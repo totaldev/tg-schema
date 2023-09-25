@@ -46,15 +46,6 @@ class UpdateChatVideoChat extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'video_chat' => $this->videoChat->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -63,5 +54,14 @@ class UpdateChatVideoChat extends Update
     public function getVideoChat(): VideoChat
     {
         return $this->videoChat;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'video_chat' => $this->videoChat->typeSerialize(),
+        ];
     }
 }

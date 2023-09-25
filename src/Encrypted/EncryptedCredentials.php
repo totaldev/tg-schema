@@ -53,16 +53,6 @@ class EncryptedCredentials extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'data' => $this->data,
-            'hash' => $this->hash,
-            'secret' => $this->secret,
-        ];
-    }
-
     public function getData(): string
     {
         return $this->data;
@@ -76,5 +66,15 @@ class EncryptedCredentials extends TdObject
     public function getSecret(): string
     {
         return $this->secret;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'data' => $this->data,
+            'hash' => $this->hash,
+            'secret' => $this->secret,
+        ];
     }
 }

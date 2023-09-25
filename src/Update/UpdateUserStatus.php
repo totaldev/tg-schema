@@ -17,18 +17,18 @@ class UpdateUserStatus extends Update
     public const TYPE_NAME = 'updateUserStatus';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * New status of the user
      *
      * @var UserStatus
      */
     protected UserStatus $status;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, UserStatus $status)
     {
@@ -46,13 +46,9 @@ class UpdateUserStatus extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getStatus(): UserStatus
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'status' => $this->status->typeSerialize(),
-        ];
+        return $this->status;
     }
 
     public function getUserId(): int
@@ -60,8 +56,12 @@ class UpdateUserStatus extends Update
         return $this->userId;
     }
 
-    public function getStatus(): UserStatus
+    public function typeSerialize(): array
     {
-        return $this->status;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'status' => $this->status->typeSerialize(),
+        ];
     }
 }

@@ -17,13 +17,6 @@ class PremiumStatePaymentOption extends TdObject
     public const TYPE_NAME = 'premiumStatePaymentOption';
 
     /**
-     * Information about the payment option
-     *
-     * @var PremiumPaymentOption
-     */
-    protected PremiumPaymentOption $paymentOption;
-
-    /**
      * True, if this is the currently used Telegram Premium subscription option
      *
      * @var bool
@@ -44,12 +37,20 @@ class PremiumStatePaymentOption extends TdObject
      */
     protected string $lastTransactionId;
 
+    /**
+     * Information about the payment option
+     *
+     * @var PremiumPaymentOption
+     */
+    protected PremiumPaymentOption $paymentOption;
+
     public function __construct(
         PremiumPaymentOption $paymentOption,
-        bool $isCurrent,
-        bool $isUpgrade,
-        string $lastTransactionId,
-    ) {
+        bool                 $isCurrent,
+        bool                 $isUpgrade,
+        string               $lastTransactionId,
+    )
+    {
         $this->paymentOption = $paymentOption;
         $this->isCurrent = $isCurrent;
         $this->isUpgrade = $isUpgrade;
@@ -66,22 +67,6 @@ class PremiumStatePaymentOption extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'payment_option' => $this->paymentOption->typeSerialize(),
-            'is_current' => $this->isCurrent,
-            'is_upgrade' => $this->isUpgrade,
-            'last_transaction_id' => $this->lastTransactionId,
-        ];
-    }
-
-    public function getPaymentOption(): PremiumPaymentOption
-    {
-        return $this->paymentOption;
-    }
-
     public function getIsCurrent(): bool
     {
         return $this->isCurrent;
@@ -95,5 +80,21 @@ class PremiumStatePaymentOption extends TdObject
     public function getLastTransactionId(): string
     {
         return $this->lastTransactionId;
+    }
+
+    public function getPaymentOption(): PremiumPaymentOption
+    {
+        return $this->paymentOption;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'payment_option' => $this->paymentOption->typeSerialize(),
+            'is_current' => $this->isCurrent,
+            'is_upgrade' => $this->isUpgrade,
+            'last_transaction_id' => $this->lastTransactionId,
+        ];
     }
 }

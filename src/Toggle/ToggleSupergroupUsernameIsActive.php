@@ -10,11 +10,19 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+ * Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be
+ * disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
  */
 class ToggleSupergroupUsernameIsActive extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupUsernameIsActive';
+
+    /**
+     * Pass true to activate the username; pass false to disable it
+     *
+     * @var bool
+     */
+    protected bool $isActive;
 
     /**
      * Identifier of the supergroup or channel
@@ -29,13 +37,6 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
      * @var string
      */
     protected string $username;
-
-    /**
-     * Pass true to activate the username; pass false to disable it
-     *
-     * @var bool
-     */
-    protected bool $isActive;
 
     public function __construct(int $supergroupId, string $username, bool $isActive)
     {
@@ -53,14 +54,9 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsActive(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'username' => $this->username,
-            'is_active' => $this->isActive,
-        ];
+        return $this->isActive;
     }
 
     public function getSupergroupId(): int
@@ -73,8 +69,13 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
         return $this->username;
     }
 
-    public function getIsActive(): bool
+    public function typeSerialize(): array
     {
-        return $this->isActive;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'username' => $this->username,
+            'is_active' => $this->isActive,
+        ];
     }
 }

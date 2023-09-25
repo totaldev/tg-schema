@@ -18,18 +18,18 @@ class UpdateTrendingStickerSets extends Update
     public const TYPE_NAME = 'updateTrendingStickerSets';
 
     /**
-     * Type of the affected stickers
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    /**
      * The prefix of the list of trending sticker sets with the newest trending sticker sets
      *
      * @var TrendingStickerSets
      */
     protected TrendingStickerSets $stickerSets;
+
+    /**
+     * Type of the affected stickers
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, TrendingStickerSets $stickerSets)
     {
@@ -47,13 +47,9 @@ class UpdateTrendingStickerSets extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerSets(): TrendingStickerSets
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'sticker_sets' => $this->stickerSets->typeSerialize(),
-        ];
+        return $this->stickerSets;
     }
 
     public function getStickerType(): StickerType
@@ -61,8 +57,12 @@ class UpdateTrendingStickerSets extends Update
         return $this->stickerType;
     }
 
-    public function getStickerSets(): TrendingStickerSets
+    public function typeSerialize(): array
     {
-        return $this->stickerSets;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'sticker_sets' => $this->stickerSets->typeSerialize(),
+        ];
     }
 }

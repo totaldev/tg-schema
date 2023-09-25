@@ -17,20 +17,6 @@ class UpdateNewPreCheckoutQuery extends Update
     public const TYPE_NAME = 'updateNewPreCheckoutQuery';
 
     /**
-     * Unique query identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Identifier of the user who sent the query
-     *
-     * @var int
-     */
-    protected int $senderUserId;
-
-    /**
      * Currency for the product price
      *
      * @var string
@@ -38,11 +24,11 @@ class UpdateNewPreCheckoutQuery extends Update
     protected string $currency;
 
     /**
-     * Total price for the product, in the smallest units of the currency
+     * Unique query identifier
      *
      * @var int
      */
-    protected int $totalAmount;
+    protected int $id;
 
     /**
      * Invoice payload
@@ -52,6 +38,20 @@ class UpdateNewPreCheckoutQuery extends Update
     protected string $invoicePayload;
 
     /**
+     * Information about the order; may be null
+     *
+     * @var OrderInfo|null
+     */
+    protected ?OrderInfo $orderInfo;
+
+    /**
+     * Identifier of the user who sent the query
+     *
+     * @var int
+     */
+    protected int $senderUserId;
+
+    /**
      * Identifier of a shipping option chosen by the user; may be empty if not applicable
      *
      * @var string
@@ -59,21 +59,22 @@ class UpdateNewPreCheckoutQuery extends Update
     protected string $shippingOptionId;
 
     /**
-     * Information about the order; may be null
+     * Total price for the product, in the smallest units of the currency
      *
-     * @var OrderInfo|null
+     * @var int
      */
-    protected ?OrderInfo $orderInfo;
+    protected int $totalAmount;
 
     public function __construct(
-        int $id,
-        int $senderUserId,
-        string $currency,
-        int $totalAmount,
-        string $invoicePayload,
-        string $shippingOptionId,
+        int        $id,
+        int        $senderUserId,
+        string     $currency,
+        int        $totalAmount,
+        string     $invoicePayload,
+        string     $shippingOptionId,
         ?OrderInfo $orderInfo,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -98,6 +99,41 @@ class UpdateNewPreCheckoutQuery extends Update
         );
     }
 
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getInvoicePayload(): string
+    {
+        return $this->invoicePayload;
+    }
+
+    public function getOrderInfo(): ?OrderInfo
+    {
+        return $this->orderInfo;
+    }
+
+    public function getSenderUserId(): int
+    {
+        return $this->senderUserId;
+    }
+
+    public function getShippingOptionId(): string
+    {
+        return $this->shippingOptionId;
+    }
+
+    public function getTotalAmount(): int
+    {
+        return $this->totalAmount;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -110,40 +146,5 @@ class UpdateNewPreCheckoutQuery extends Update
             'shipping_option_id' => $this->shippingOptionId,
             'order_info' => (isset($this->orderInfo) ? $this->orderInfo : null),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSenderUserId(): int
-    {
-        return $this->senderUserId;
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    public function getTotalAmount(): int
-    {
-        return $this->totalAmount;
-    }
-
-    public function getInvoicePayload(): string
-    {
-        return $this->invoicePayload;
-    }
-
-    public function getShippingOptionId(): string
-    {
-        return $this->shippingOptionId;
-    }
-
-    public function getOrderInfo(): ?OrderInfo
-    {
-        return $this->orderInfo;
     }
 }

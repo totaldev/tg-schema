@@ -17,18 +17,18 @@ class MessageForumTopicCreated extends MessageContent
     public const TYPE_NAME = 'messageForumTopicCreated';
 
     /**
-     * Name of the topic
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
      * Icon of the topic
      *
      * @var ForumTopicIcon
      */
     protected ForumTopicIcon $icon;
+
+    /**
+     * Name of the topic
+     *
+     * @var string
+     */
+    protected string $name;
 
     public function __construct(string $name, ForumTopicIcon $icon)
     {
@@ -46,13 +46,9 @@ class MessageForumTopicCreated extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIcon(): ForumTopicIcon
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'icon' => $this->icon->typeSerialize(),
-        ];
+        return $this->icon;
     }
 
     public function getName(): string
@@ -60,8 +56,12 @@ class MessageForumTopicCreated extends MessageContent
         return $this->name;
     }
 
-    public function getIcon(): ForumTopicIcon
+    public function typeSerialize(): array
     {
-        return $this->icon;
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'icon' => $this->icon->typeSerialize(),
+        ];
     }
 }

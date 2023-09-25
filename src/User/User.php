@@ -20,53 +20,11 @@ class User extends TdObject
     public const TYPE_NAME = 'user';
 
     /**
-     * User identifier
+     * True, if the user added the current bot to attachment menu; only available to bots
      *
-     * @var int
+     * @var bool
      */
-    protected int $id;
-
-    /**
-     * First name of the user
-     *
-     * @var string
-     */
-    protected string $firstName;
-
-    /**
-     * Last name of the user
-     *
-     * @var string
-     */
-    protected string $lastName;
-
-    /**
-     * Usernames of the user; may be null
-     *
-     * @var Usernames|null
-     */
-    protected ?Usernames $usernames;
-
-    /**
-     * Phone number of the user
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    /**
-     * Current online status of the user
-     *
-     * @var UserStatus
-     */
-    protected UserStatus $status;
-
-    /**
-     * Profile photo of the user; may be null
-     *
-     * @var ProfilePhoto|null
-     */
-    protected ?ProfilePhoto $profilePhoto;
+    protected bool $addedToAttachmentMenu;
 
     /**
      * Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only
@@ -76,67 +34,11 @@ class User extends TdObject
     protected ?EmojiStatus $emojiStatus;
 
     /**
-     * The user is a contact of the current user
-     *
-     * @var bool
-     */
-    protected bool $isContact;
-
-    /**
-     * The user is a contact of the current user and the current user is a contact of the user
-     *
-     * @var bool
-     */
-    protected bool $isMutualContact;
-
-    /**
-     * The user is a close friend of the current user; implies that the user is a contact
-     *
-     * @var bool
-     */
-    protected bool $isCloseFriend;
-
-    /**
-     * True, if the user is verified
-     *
-     * @var bool
-     */
-    protected bool $isVerified;
-
-    /**
-     * True, if the user is a Telegram Premium user
-     *
-     * @var bool
-     */
-    protected bool $isPremium;
-
-    /**
-     * True, if the user is Telegram support account
-     *
-     * @var bool
-     */
-    protected bool $isSupport;
-
-    /**
-     * If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
+     * First name of the user
      *
      * @var string
      */
-    protected string $restrictionReason;
-
-    /**
-     * True, if many users reported this user as a scam
-     *
-     * @var bool
-     */
-    protected bool $isScam;
-
-    /**
-     * True, if many users reported this user as a fake account
-     *
-     * @var bool
-     */
-    protected bool $isFake;
+    protected string $firstName;
 
     /**
      * True, if the user has non-expired stories available to the current user
@@ -153,18 +55,75 @@ class User extends TdObject
     protected bool $hasUnreadActiveStories;
 
     /**
-     * If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
+     * If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any
+     * method
      *
      * @var bool
      */
     protected bool $haveAccess;
 
     /**
-     * Type of the user
+     * User identifier
      *
-     * @var UserType
+     * @var int
      */
-    protected UserType $type;
+    protected int $id;
+
+    /**
+     * The user is a close friend of the current user; implies that the user is a contact
+     *
+     * @var bool
+     */
+    protected bool $isCloseFriend;
+
+    /**
+     * The user is a contact of the current user
+     *
+     * @var bool
+     */
+    protected bool $isContact;
+
+    /**
+     * True, if many users reported this user as a fake account
+     *
+     * @var bool
+     */
+    protected bool $isFake;
+
+    /**
+     * The user is a contact of the current user and the current user is a contact of the user
+     *
+     * @var bool
+     */
+    protected bool $isMutualContact;
+
+    /**
+     * True, if the user is a Telegram Premium user
+     *
+     * @var bool
+     */
+    protected bool $isPremium;
+
+    /**
+     * True, if many users reported this user as a scam
+     *
+     * @var bool
+     */
+    protected bool $isScam;
+
+    /**
+     * True, if the user is Telegram support account
+     *
+     * @var bool
+     */
+    protected bool $isSupport;
+
+    /**
+     * True, if the user is verified
+     *
+     * @var bool
+     */
+    protected bool $isVerified;
 
     /**
      * IETF language tag of the user's language; only available to bots
@@ -174,37 +133,80 @@ class User extends TdObject
     protected string $languageCode;
 
     /**
-     * True, if the user added the current bot to attachment menu; only available to bots
+     * Last name of the user
      *
-     * @var bool
+     * @var string
      */
-    protected bool $addedToAttachmentMenu;
+    protected string $lastName;
+
+    /**
+     * Phone number of the user
+     *
+     * @var string
+     */
+    protected string $phoneNumber;
+
+    /**
+     * Profile photo of the user; may be null
+     *
+     * @var ProfilePhoto|null
+     */
+    protected ?ProfilePhoto $profilePhoto;
+
+    /**
+     * If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
+     *
+     * @var string
+     */
+    protected string $restrictionReason;
+
+    /**
+     * Current online status of the user
+     *
+     * @var UserStatus
+     */
+    protected UserStatus $status;
+
+    /**
+     * Type of the user
+     *
+     * @var UserType
+     */
+    protected UserType $type;
+
+    /**
+     * Usernames of the user; may be null
+     *
+     * @var Usernames|null
+     */
+    protected ?Usernames $usernames;
 
     public function __construct(
-        int $id,
-        string $firstName,
-        string $lastName,
-        ?Usernames $usernames,
-        string $phoneNumber,
-        UserStatus $status,
+        int           $id,
+        string        $firstName,
+        string        $lastName,
+        ?Usernames    $usernames,
+        string        $phoneNumber,
+        UserStatus    $status,
         ?ProfilePhoto $profilePhoto,
-        ?EmojiStatus $emojiStatus,
-        bool $isContact,
-        bool $isMutualContact,
-        bool $isCloseFriend,
-        bool $isVerified,
-        bool $isPremium,
-        bool $isSupport,
-        string $restrictionReason,
-        bool $isScam,
-        bool $isFake,
-        bool $hasActiveStories,
-        bool $hasUnreadActiveStories,
-        bool $haveAccess,
-        UserType $type,
-        string $languageCode,
-        bool $addedToAttachmentMenu,
-    ) {
+        ?EmojiStatus  $emojiStatus,
+        bool          $isContact,
+        bool          $isMutualContact,
+        bool          $isCloseFriend,
+        bool          $isVerified,
+        bool          $isPremium,
+        bool          $isSupport,
+        string        $restrictionReason,
+        bool          $isScam,
+        bool          $isFake,
+        bool          $hasActiveStories,
+        bool          $hasUnreadActiveStories,
+        bool          $haveAccess,
+        UserType      $type,
+        string        $languageCode,
+        bool          $addedToAttachmentMenu,
+    )
+    {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -259,6 +261,121 @@ class User extends TdObject
         );
     }
 
+    public function getAddedToAttachmentMenu(): bool
+    {
+        return $this->addedToAttachmentMenu;
+    }
+
+    public function getEmojiStatus(): ?EmojiStatus
+    {
+        return $this->emojiStatus;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getHasActiveStories(): bool
+    {
+        return $this->hasActiveStories;
+    }
+
+    public function getHasUnreadActiveStories(): bool
+    {
+        return $this->hasUnreadActiveStories;
+    }
+
+    public function getHaveAccess(): bool
+    {
+        return $this->haveAccess;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsCloseFriend(): bool
+    {
+        return $this->isCloseFriend;
+    }
+
+    public function getIsContact(): bool
+    {
+        return $this->isContact;
+    }
+
+    public function getIsFake(): bool
+    {
+        return $this->isFake;
+    }
+
+    public function getIsMutualContact(): bool
+    {
+        return $this->isMutualContact;
+    }
+
+    public function getIsPremium(): bool
+    {
+        return $this->isPremium;
+    }
+
+    public function getIsScam(): bool
+    {
+        return $this->isScam;
+    }
+
+    public function getIsSupport(): bool
+    {
+        return $this->isSupport;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getLanguageCode(): string
+    {
+        return $this->languageCode;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function getProfilePhoto(): ?ProfilePhoto
+    {
+        return $this->profilePhoto;
+    }
+
+    public function getRestrictionReason(): string
+    {
+        return $this->restrictionReason;
+    }
+
+    public function getStatus(): UserStatus
+    {
+        return $this->status;
+    }
+
+    public function getType(): UserType
+    {
+        return $this->type;
+    }
+
+    public function getUsernames(): ?Usernames
+    {
+        return $this->usernames;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -287,120 +404,5 @@ class User extends TdObject
             'language_code' => $this->languageCode,
             'added_to_attachment_menu' => $this->addedToAttachmentMenu,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    public function getUsernames(): ?Usernames
-    {
-        return $this->usernames;
-    }
-
-    public function getPhoneNumber(): string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function getStatus(): UserStatus
-    {
-        return $this->status;
-    }
-
-    public function getProfilePhoto(): ?ProfilePhoto
-    {
-        return $this->profilePhoto;
-    }
-
-    public function getEmojiStatus(): ?EmojiStatus
-    {
-        return $this->emojiStatus;
-    }
-
-    public function getIsContact(): bool
-    {
-        return $this->isContact;
-    }
-
-    public function getIsMutualContact(): bool
-    {
-        return $this->isMutualContact;
-    }
-
-    public function getIsCloseFriend(): bool
-    {
-        return $this->isCloseFriend;
-    }
-
-    public function getIsVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function getIsPremium(): bool
-    {
-        return $this->isPremium;
-    }
-
-    public function getIsSupport(): bool
-    {
-        return $this->isSupport;
-    }
-
-    public function getRestrictionReason(): string
-    {
-        return $this->restrictionReason;
-    }
-
-    public function getIsScam(): bool
-    {
-        return $this->isScam;
-    }
-
-    public function getIsFake(): bool
-    {
-        return $this->isFake;
-    }
-
-    public function getHasActiveStories(): bool
-    {
-        return $this->hasActiveStories;
-    }
-
-    public function getHasUnreadActiveStories(): bool
-    {
-        return $this->hasUnreadActiveStories;
-    }
-
-    public function getHaveAccess(): bool
-    {
-        return $this->haveAccess;
-    }
-
-    public function getType(): UserType
-    {
-        return $this->type;
-    }
-
-    public function getLanguageCode(): string
-    {
-        return $this->languageCode;
-    }
-
-    public function getAddedToAttachmentMenu(): bool
-    {
-        return $this->addedToAttachmentMenu;
     }
 }

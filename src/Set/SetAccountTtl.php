@@ -36,16 +36,16 @@ class SetAccountTtl extends TdFunction
         );
     }
 
+    public function getTtl(): AccountTtl
+    {
+        return $this->ttl;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'ttl' => $this->ttl->typeSerialize(),
         ];
-    }
-
-    public function getTtl(): AccountTtl
-    {
-        return $this->ttl;
     }
 }

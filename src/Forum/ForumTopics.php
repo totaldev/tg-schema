@@ -17,20 +17,6 @@ class ForumTopics extends TdObject
     public const TYPE_NAME = 'forumTopics';
 
     /**
-     * Approximate total number of forum topics found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * List of forum topics
-     *
-     * @var ForumTopic[]
-     */
-    protected array $topics;
-
-    /**
      * Offset date for the next getForumTopics request
      *
      * @var int
@@ -51,13 +37,28 @@ class ForumTopics extends TdObject
      */
     protected int $nextOffsetMessageThreadId;
 
+    /**
+     * List of forum topics
+     *
+     * @var ForumTopic[]
+     */
+    protected array $topics;
+
+    /**
+     * Approximate total number of forum topics found
+     *
+     * @var int
+     */
+    protected int $totalCount;
+
     public function __construct(
-        int $totalCount,
+        int   $totalCount,
         array $topics,
-        int $nextOffsetDate,
-        int $nextOffsetMessageId,
-        int $nextOffsetMessageThreadId,
-    ) {
+        int   $nextOffsetDate,
+        int   $nextOffsetMessageId,
+        int   $nextOffsetMessageThreadId,
+    )
+    {
         $this->totalCount = $totalCount;
         $this->topics = $topics;
         $this->nextOffsetDate = $nextOffsetDate;
@@ -76,28 +77,6 @@ class ForumTopics extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->topics),
-            'next_offset_date' => $this->nextOffsetDate,
-            'next_offset_message_id' => $this->nextOffsetMessageId,
-            'next_offset_message_thread_id' => $this->nextOffsetMessageThreadId,
-        ];
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getTopics(): array
-    {
-        return $this->topics;
-    }
-
     public function getNextOffsetDate(): int
     {
         return $this->nextOffsetDate;
@@ -111,5 +90,27 @@ class ForumTopics extends TdObject
     public function getNextOffsetMessageThreadId(): int
     {
         return $this->nextOffsetMessageThreadId;
+    }
+
+    public function getTopics(): array
+    {
+        return $this->topics;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->topics),
+            'next_offset_date' => $this->nextOffsetDate,
+            'next_offset_message_id' => $this->nextOffsetMessageId,
+            'next_offset_message_thread_id' => $this->nextOffsetMessageThreadId,
+        ];
     }
 }

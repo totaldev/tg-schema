@@ -36,16 +36,16 @@ class InputChatPhotoPrevious extends InputChatPhoto
         );
     }
 
+    public function getChatPhotoId(): int
+    {
+        return $this->chatPhotoId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_photo_id' => $this->chatPhotoId,
         ];
-    }
-
-    public function getChatPhotoId(): int
-    {
-        return $this->chatPhotoId;
     }
 }

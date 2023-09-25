@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
+ * Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check
+ * whether all participants have already been loaded
  */
 class LoadGroupCallParticipants extends TdFunction
 {
@@ -44,15 +45,6 @@ class LoadGroupCallParticipants extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -61,5 +53,14 @@ class LoadGroupCallParticipants extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'limit' => $this->limit,
+        ];
     }
 }

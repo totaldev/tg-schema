@@ -36,16 +36,16 @@ class UserStatusOffline extends UserStatus
         );
     }
 
+    public function getWasOnline(): int
+    {
+        return $this->wasOnline;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'was_online' => $this->wasOnline,
         ];
-    }
-
-    public function getWasOnline(): int
-    {
-        return $this->wasOnline;
     }
 }

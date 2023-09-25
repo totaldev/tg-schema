@@ -18,48 +18,6 @@ class EmojiReaction extends TdObject
     public const TYPE_NAME = 'emojiReaction';
 
     /**
-     * Text representation of the reaction
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    /**
-     * Reaction title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * True, if the reaction can be added to new messages and enabled in chats
-     *
-     * @var bool
-     */
-    protected bool $isActive;
-
-    /**
-     * Static icon for the reaction
-     *
-     * @var Sticker
-     */
-    protected Sticker $staticIcon;
-
-    /**
-     * Appear animation for the reaction
-     *
-     * @var Sticker
-     */
-    protected Sticker $appearAnimation;
-
-    /**
-     * Select animation for the reaction
-     *
-     * @var Sticker
-     */
-    protected Sticker $selectAnimation;
-
-    /**
      * Activate animation for the reaction
      *
      * @var Sticker
@@ -67,11 +25,11 @@ class EmojiReaction extends TdObject
     protected Sticker $activateAnimation;
 
     /**
-     * Effect animation for the reaction
+     * Appear animation for the reaction
      *
      * @var Sticker
      */
-    protected Sticker $effectAnimation;
+    protected Sticker $appearAnimation;
 
     /**
      * Around animation for the reaction; may be null
@@ -87,18 +45,61 @@ class EmojiReaction extends TdObject
      */
     protected ?Sticker $centerAnimation;
 
+    /**
+     * Effect animation for the reaction
+     *
+     * @var Sticker
+     */
+    protected Sticker $effectAnimation;
+
+    /**
+     * Text representation of the reaction
+     *
+     * @var string
+     */
+    protected string $emoji;
+
+    /**
+     * True, if the reaction can be added to new messages and enabled in chats
+     *
+     * @var bool
+     */
+    protected bool $isActive;
+
+    /**
+     * Select animation for the reaction
+     *
+     * @var Sticker
+     */
+    protected Sticker $selectAnimation;
+
+    /**
+     * Static icon for the reaction
+     *
+     * @var Sticker
+     */
+    protected Sticker $staticIcon;
+
+    /**
+     * Reaction title
+     *
+     * @var string
+     */
+    protected string $title;
+
     public function __construct(
-        string $emoji,
-        string $title,
-        bool $isActive,
-        Sticker $staticIcon,
-        Sticker $appearAnimation,
-        Sticker $selectAnimation,
-        Sticker $activateAnimation,
-        Sticker $effectAnimation,
+        string   $emoji,
+        string   $title,
+        bool     $isActive,
+        Sticker  $staticIcon,
+        Sticker  $appearAnimation,
+        Sticker  $selectAnimation,
+        Sticker  $activateAnimation,
+        Sticker  $effectAnimation,
         ?Sticker $aroundAnimation,
         ?Sticker $centerAnimation,
-    ) {
+    )
+    {
         $this->emoji = $emoji;
         $this->title = $title;
         $this->isActive = $isActive;
@@ -127,6 +128,56 @@ class EmojiReaction extends TdObject
         );
     }
 
+    public function getActivateAnimation(): Sticker
+    {
+        return $this->activateAnimation;
+    }
+
+    public function getAppearAnimation(): Sticker
+    {
+        return $this->appearAnimation;
+    }
+
+    public function getAroundAnimation(): ?Sticker
+    {
+        return $this->aroundAnimation;
+    }
+
+    public function getCenterAnimation(): ?Sticker
+    {
+        return $this->centerAnimation;
+    }
+
+    public function getEffectAnimation(): Sticker
+    {
+        return $this->effectAnimation;
+    }
+
+    public function getEmoji(): string
+    {
+        return $this->emoji;
+    }
+
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function getSelectAnimation(): Sticker
+    {
+        return $this->selectAnimation;
+    }
+
+    public function getStaticIcon(): Sticker
+    {
+        return $this->staticIcon;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -142,55 +193,5 @@ class EmojiReaction extends TdObject
             'around_animation' => (isset($this->aroundAnimation) ? $this->aroundAnimation : null),
             'center_animation' => (isset($this->centerAnimation) ? $this->centerAnimation : null),
         ];
-    }
-
-    public function getEmoji(): string
-    {
-        return $this->emoji;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getIsActive(): bool
-    {
-        return $this->isActive;
-    }
-
-    public function getStaticIcon(): Sticker
-    {
-        return $this->staticIcon;
-    }
-
-    public function getAppearAnimation(): Sticker
-    {
-        return $this->appearAnimation;
-    }
-
-    public function getSelectAnimation(): Sticker
-    {
-        return $this->selectAnimation;
-    }
-
-    public function getActivateAnimation(): Sticker
-    {
-        return $this->activateAnimation;
-    }
-
-    public function getEffectAnimation(): Sticker
-    {
-        return $this->effectAnimation;
-    }
-
-    public function getAroundAnimation(): ?Sticker
-    {
-        return $this->aroundAnimation;
-    }
-
-    public function getCenterAnimation(): ?Sticker
-    {
-        return $this->centerAnimation;
     }
 }

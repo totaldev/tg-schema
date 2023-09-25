@@ -16,18 +16,18 @@ class RichTextEmailAddress extends RichText
     public const TYPE_NAME = 'richTextEmailAddress';
 
     /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * Email address
      *
      * @var string
      */
     protected string $emailAddress;
+
+    /**
+     * Text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     public function __construct(RichText $text, string $emailAddress)
     {
@@ -45,13 +45,9 @@ class RichTextEmailAddress extends RichText
         );
     }
 
-    public function typeSerialize(): array
+    public function getEmailAddress(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'email_address' => $this->emailAddress,
-        ];
+        return $this->emailAddress;
     }
 
     public function getText(): RichText
@@ -59,8 +55,12 @@ class RichTextEmailAddress extends RichText
         return $this->text;
     }
 
-    public function getEmailAddress(): string
+    public function typeSerialize(): array
     {
-        return $this->emailAddress;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'email_address' => $this->emailAddress,
+        ];
     }
 }

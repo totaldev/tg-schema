@@ -37,16 +37,16 @@ class PassportElementPassportRegistration extends PassportElement
         );
     }
 
+    public function getPassportRegistration(): PersonalDocument
+    {
+        return $this->passportRegistration;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'passport_registration' => $this->passportRegistration->typeSerialize(),
         ];
-    }
-
-    public function getPassportRegistration(): PersonalDocument
-    {
-        return $this->passportRegistration;
     }
 }

@@ -18,18 +18,18 @@ class SetMenuButton extends TdFunction
     public const TYPE_NAME = 'setMenuButton';
 
     /**
-     * Identifier of the user or 0 to set menu button for all users
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * New menu button
      *
      * @var BotMenuButton
      */
     protected BotMenuButton $menuButton;
+
+    /**
+     * Identifier of the user or 0 to set menu button for all users
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, BotMenuButton $menuButton)
     {
@@ -45,13 +45,9 @@ class SetMenuButton extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMenuButton(): BotMenuButton
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'menu_button' => $this->menuButton->typeSerialize(),
-        ];
+        return $this->menuButton;
     }
 
     public function getUserId(): int
@@ -59,8 +55,12 @@ class SetMenuButton extends TdFunction
         return $this->userId;
     }
 
-    public function getMenuButton(): BotMenuButton
+    public function typeSerialize(): array
     {
-        return $this->menuButton;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'menu_button' => $this->menuButton->typeSerialize(),
+        ];
     }
 }

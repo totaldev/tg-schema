@@ -20,25 +20,18 @@ class Animation extends TdObject
     public const TYPE_NAME = 'animation';
 
     /**
+     * File containing the animation
+     *
+     * @var File
+     */
+    protected File $animation;
+
+    /**
      * Duration of the animation, in seconds; as defined by the sender
      *
      * @var int
      */
     protected int $duration;
-
-    /**
-     * Width of the animation
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Height of the animation
-     *
-     * @var int
-     */
-    protected int $height;
 
     /**
      * Original name of the file; as defined by the sender
@@ -48,18 +41,25 @@ class Animation extends TdObject
     protected string $fileName;
 
     /**
-     * MIME type of the file, usually "image/gif" or "video/mp4"
-     *
-     * @var string
-     */
-    protected string $mimeType;
-
-    /**
      * True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
      *
      * @var bool
      */
     protected bool $hasStickers;
+
+    /**
+     * Height of the animation
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * MIME type of the file, usually "image/gif" or "video/mp4"
+     *
+     * @var string
+     */
+    protected string $mimeType;
 
     /**
      * Animation minithumbnail; may be null
@@ -76,23 +76,24 @@ class Animation extends TdObject
     protected ?Thumbnail $thumbnail;
 
     /**
-     * File containing the animation
+     * Width of the animation
      *
-     * @var File
+     * @var int
      */
-    protected File $animation;
+    protected int $width;
 
     public function __construct(
-        int $duration,
-        int $width,
-        int $height,
-        string $fileName,
-        string $mimeType,
-        bool $hasStickers,
+        int            $duration,
+        int            $width,
+        int            $height,
+        string         $fileName,
+        string         $mimeType,
+        bool           $hasStickers,
         ?Minithumbnail $minithumbnail,
-        ?Thumbnail $thumbnail,
-        File $animation,
-    ) {
+        ?Thumbnail     $thumbnail,
+        File           $animation,
+    )
+    {
         $this->duration = $duration;
         $this->width = $width;
         $this->height = $height;
@@ -119,6 +120,51 @@ class Animation extends TdObject
         );
     }
 
+    public function getAnimation(): File
+    {
+        return $this->animation;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
+    public function getHasStickers(): bool
+    {
+        return $this->hasStickers;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getMimeType(): string
+    {
+        return $this->mimeType;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -133,50 +179,5 @@ class Animation extends TdObject
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
             'animation' => $this->animation->typeSerialize(),
         ];
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
-    }
-
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    public function getHasStickers(): bool
-    {
-        return $this->hasStickers;
-    }
-
-    public function getMinithumbnail(): ?Minithumbnail
-    {
-        return $this->minithumbnail;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getAnimation(): File
-    {
-        return $this->animation;
     }
 }

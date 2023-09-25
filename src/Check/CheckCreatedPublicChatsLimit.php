@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
+ * Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased
+ * with Telegram Premium
  */
 class CheckCreatedPublicChatsLimit extends TdFunction
 {
@@ -36,16 +37,16 @@ class CheckCreatedPublicChatsLimit extends TdFunction
         );
     }
 
+    public function getType(): PublicChatType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getType(): PublicChatType
-    {
-        return $this->type;
     }
 }

@@ -35,16 +35,16 @@ class LanguagePackStrings extends TdObject
         );
     }
 
+    public function getStrings(): array
+    {
+        return $this->strings;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->strings),
         ];
-    }
-
-    public function getStrings(): array
-    {
-        return $this->strings;
     }
 }

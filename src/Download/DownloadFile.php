@@ -24,11 +24,12 @@ class DownloadFile extends TdFunction
     protected int $fileId;
 
     /**
-     * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+     * Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download
+     * without a limit
      *
      * @var int
      */
-    protected int $priority;
+    protected int $limit;
 
     /**
      * The starting position from which the file needs to be downloaded
@@ -38,14 +39,16 @@ class DownloadFile extends TdFunction
     protected int $offset;
 
     /**
-     * Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
+     * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the
+     * last one for which downloadFile/addFileToDownloads was called will be downloaded first
      *
      * @var int
      */
-    protected int $limit;
+    protected int $priority;
 
     /**
-     * Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
+     * Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different
+     * offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
      *
      * @var bool
      */
@@ -71,6 +74,31 @@ class DownloadFile extends TdFunction
         );
     }
 
+    public function getFileId(): int
+    {
+        return $this->fileId;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getPriority(): int
+    {
+        return $this->priority;
+    }
+
+    public function getSynchronous(): bool
+    {
+        return $this->synchronous;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -81,30 +109,5 @@ class DownloadFile extends TdFunction
             'limit' => $this->limit,
             'synchronous' => $this->synchronous,
         ];
-    }
-
-    public function getFileId(): int
-    {
-        return $this->fileId;
-    }
-
-    public function getPriority(): int
-    {
-        return $this->priority;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getSynchronous(): bool
-    {
-        return $this->synchronous;
     }
 }

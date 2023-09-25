@@ -16,18 +16,18 @@ class RichTextAnchorLink extends RichText
     public const TYPE_NAME = 'richTextAnchorLink';
 
     /**
-     * The link text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
      * The anchor name. If the name is empty, the link must bring back to top
      *
      * @var string
      */
     protected string $anchorName;
+
+    /**
+     * The link text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
 
     /**
      * An HTTP URL, opening the anchor
@@ -54,6 +54,21 @@ class RichTextAnchorLink extends RichText
         );
     }
 
+    public function getAnchorName(): string
+    {
+        return $this->anchorName;
+    }
+
+    public function getText(): RichText
+    {
+        return $this->text;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class RichTextAnchorLink extends RichText
             'anchor_name' => $this->anchorName,
             'url' => $this->url,
         ];
-    }
-
-    public function getText(): RichText
-    {
-        return $this->text;
-    }
-
-    public function getAnchorName(): string
-    {
-        return $this->anchorName;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

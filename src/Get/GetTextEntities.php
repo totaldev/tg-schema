@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+ * Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called
+ * synchronously
  */
 class GetTextEntities extends TdFunction
 {
@@ -35,16 +36,16 @@ class GetTextEntities extends TdFunction
         );
     }
 
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text,
         ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
     }
 }

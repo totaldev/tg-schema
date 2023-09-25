@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+ * Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing
+ * story_id). For optimal performance, the number of returned stories is chosen by TDLib
  */
 class GetChatPinnedStories extends TdFunction
 {
@@ -31,7 +32,8 @@ class GetChatPinnedStories extends TdFunction
     protected int $fromStoryId;
 
     /**
-     * The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+     * The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the
+     * specified limit
      *
      * @var int
      */
@@ -53,16 +55,6 @@ class GetChatPinnedStories extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'from_story_id' => $this->fromStoryId,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -76,5 +68,15 @@ class GetChatPinnedStories extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'from_story_id' => $this->fromStoryId,
+            'limit' => $this->limit,
+        ];
     }
 }

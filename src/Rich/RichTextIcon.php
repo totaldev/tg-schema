@@ -24,18 +24,18 @@ class RichTextIcon extends RichText
     protected Document $document;
 
     /**
-     * Width of a bounding box in which the image must be shown; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
      * Height of a bounding box in which the image must be shown; 0 if unknown
      *
      * @var int
      */
     protected int $height;
+
+    /**
+     * Width of a bounding box in which the image must be shown; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $width;
 
     public function __construct(Document $document, int $width, int $height)
     {
@@ -55,6 +55,21 @@ class RichTextIcon extends RichText
         );
     }
 
+    public function getDocument(): Document
+    {
+        return $this->document;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class RichTextIcon extends RichText
             'width' => $this->width,
             'height' => $this->height,
         ];
-    }
-
-    public function getDocument(): Document
-    {
-        return $this->document;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
     }
 }

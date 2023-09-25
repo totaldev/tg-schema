@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+ * Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return
+ * partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
  */
 class GetChatMessageCalendar extends TdFunction
 {
@@ -25,7 +26,8 @@ class GetChatMessageCalendar extends TdFunction
     protected int $chatId;
 
     /**
-     * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+     * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and
+     * searchMessagesFilterUnreadReaction are unsupported in this function
      *
      * @var SearchMessagesFilter
      */
@@ -54,16 +56,6 @@ class GetChatMessageCalendar extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'filter' => $this->filter->typeSerialize(),
-            'from_message_id' => $this->fromMessageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -77,5 +69,15 @@ class GetChatMessageCalendar extends TdFunction
     public function getFromMessageId(): int
     {
         return $this->fromMessageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'filter' => $this->filter->typeSerialize(),
+            'from_message_id' => $this->fromMessageId,
+        ];
     }
 }

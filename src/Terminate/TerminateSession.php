@@ -35,16 +35,16 @@ class TerminateSession extends TdFunction
         );
     }
 
+    public function getSessionId(): int
+    {
+        return $this->sessionId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'session_id' => $this->sessionId,
         ];
-    }
-
-    public function getSessionId(): int
-    {
-        return $this->sessionId;
     }
 }

@@ -35,16 +35,16 @@ class GetFileMimeType extends TdFunction
         );
     }
 
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'file_name' => $this->fileName,
         ];
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
     }
 }

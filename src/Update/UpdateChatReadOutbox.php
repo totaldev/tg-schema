@@ -45,15 +45,6 @@ class UpdateChatReadOutbox extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateChatReadOutbox extends Update
     public function getLastReadOutboxMessageId(): int
     {
         return $this->lastReadOutboxMessageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+        ];
     }
 }

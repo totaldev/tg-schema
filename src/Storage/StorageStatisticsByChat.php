@@ -17,18 +17,18 @@ class StorageStatisticsByChat extends TdObject
     public const TYPE_NAME = 'storageStatisticsByChat';
 
     /**
+     * Statistics split by file types
+     *
+     * @var StorageStatisticsByFileType[]
+     */
+    protected array $byFileType;
+
+    /**
      * Chat identifier; 0 if none
      *
      * @var int
      */
     protected int $chatId;
-
-    /**
-     * Total size of the files in the chat, in bytes
-     *
-     * @var int
-     */
-    protected int $size;
 
     /**
      * Total number of files in the chat
@@ -38,11 +38,11 @@ class StorageStatisticsByChat extends TdObject
     protected int $count;
 
     /**
-     * Statistics split by file types
+     * Total size of the files in the chat, in bytes
      *
-     * @var StorageStatisticsByFileType[]
+     * @var int
      */
-    protected array $byFileType;
+    protected int $size;
 
     public function __construct(int $chatId, int $size, int $count, array $byFileType)
     {
@@ -58,8 +58,28 @@ class StorageStatisticsByChat extends TdObject
             $array['chat_id'],
             $array['size'],
             $array['count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['byFileType']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['by_file_type']),
         );
+    }
+
+    public function getByFileType(): array
+    {
+        return $this->byFileType;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    public function getSize(): int
+    {
+        return $this->size;
     }
 
     public function typeSerialize(): array
@@ -71,25 +91,5 @@ class StorageStatisticsByChat extends TdObject
             'count' => $this->count,
             array_map(fn($x) => $x->typeSerialize(), $this->byFileType),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
-    public function getByFileType(): array
-    {
-        return $this->byFileType;
     }
 }

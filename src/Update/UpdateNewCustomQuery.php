@@ -16,18 +16,18 @@ class UpdateNewCustomQuery extends Update
     public const TYPE_NAME = 'updateNewCustomQuery';
 
     /**
-     * The query identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
      * JSON-serialized query data
      *
      * @var string
      */
     protected string $data;
+
+    /**
+     * The query identifier
+     *
+     * @var int
+     */
+    protected int $id;
 
     /**
      * Query timeout
@@ -54,6 +54,21 @@ class UpdateNewCustomQuery extends Update
         );
     }
 
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class UpdateNewCustomQuery extends Update
             'data' => $this->data,
             'timeout' => $this->timeout,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
-    public function getTimeout(): int
-    {
-        return $this->timeout;
     }
 }

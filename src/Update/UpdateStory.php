@@ -37,16 +37,16 @@ class UpdateStory extends Update
         );
     }
 
+    public function getStory(): Story
+    {
+        return $this->story;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'story' => $this->story->typeSerialize(),
         ];
-    }
-
-    public function getStory(): Story
-    {
-        return $this->story;
     }
 }

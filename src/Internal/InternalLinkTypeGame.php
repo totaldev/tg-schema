@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Internal;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
+ * The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send
+ * the game, and then call sendMessage with inputMessageGame
  */
 class InternalLinkTypeGame extends InternalLinkType
 {
@@ -45,15 +46,6 @@ class InternalLinkTypeGame extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_username' => $this->botUsername,
-            'game_short_name' => $this->gameShortName,
-        ];
-    }
-
     public function getBotUsername(): string
     {
         return $this->botUsername;
@@ -62,5 +54,14 @@ class InternalLinkTypeGame extends InternalLinkType
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_username' => $this->botUsername,
+            'game_short_name' => $this->gameShortName,
+        ];
     }
 }

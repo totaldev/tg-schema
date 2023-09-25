@@ -36,16 +36,16 @@ class MessageWebsiteConnected extends MessageContent
         );
     }
 
+    public function getDomainName(): string
+    {
+        return $this->domainName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'domain_name' => $this->domainName,
         ];
-    }
-
-    public function getDomainName(): string
-    {
-        return $this->domainName;
     }
 }

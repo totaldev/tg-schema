@@ -36,16 +36,16 @@ class InputPassportElementErrorSourceUnspecified extends InputPassportElementErr
         );
     }
 
+    public function getElementHash(): string
+    {
+        return $this->elementHash;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'element_hash' => $this->elementHash,
         ];
-    }
-
-    public function getElementHash(): string
-    {
-        return $this->elementHash;
     }
 }

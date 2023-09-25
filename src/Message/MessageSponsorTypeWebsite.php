@@ -16,18 +16,18 @@ class MessageSponsorTypeWebsite extends MessageSponsorType
     public const TYPE_NAME = 'messageSponsorTypeWebsite';
 
     /**
-     * URL of the website
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * Name of the website
      *
      * @var string
      */
     protected string $name;
+
+    /**
+     * URL of the website
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, string $name)
     {
@@ -45,13 +45,9 @@ class MessageSponsorTypeWebsite extends MessageSponsorType
         );
     }
 
-    public function typeSerialize(): array
+    public function getName(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'name' => $this->name,
-        ];
+        return $this->name;
     }
 
     public function getUrl(): string
@@ -59,8 +55,12 @@ class MessageSponsorTypeWebsite extends MessageSponsorType
         return $this->url;
     }
 
-    public function getName(): string
+    public function typeSerialize(): array
     {
-        return $this->name;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'name' => $this->name,
+        ];
     }
 }

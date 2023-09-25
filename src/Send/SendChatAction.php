@@ -18,6 +18,13 @@ class SendChatAction extends TdFunction
     public const TYPE_NAME = 'sendChatAction';
 
     /**
+     * The action description; pass null to cancel the currently active action
+     *
+     * @var ChatAction
+     */
+    protected ChatAction $action;
+
+    /**
      * Chat identifier
      *
      * @var int
@@ -30,13 +37,6 @@ class SendChatAction extends TdFunction
      * @var int
      */
     protected int $messageThreadId;
-
-    /**
-     * The action description; pass null to cancel the currently active action
-     *
-     * @var ChatAction
-     */
-    protected ChatAction $action;
 
     public function __construct(int $chatId, int $messageThreadId, ChatAction $action)
     {
@@ -54,14 +54,9 @@ class SendChatAction extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAction(): ChatAction
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'action' => $this->action->typeSerialize(),
-        ];
+        return $this->action;
     }
 
     public function getChatId(): int
@@ -74,8 +69,13 @@ class SendChatAction extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getAction(): ChatAction
+    public function typeSerialize(): array
     {
-        return $this->action;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+            'action' => $this->action->typeSerialize(),
+        ];
     }
 }

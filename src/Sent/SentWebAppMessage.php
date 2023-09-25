@@ -35,16 +35,16 @@ class SentWebAppMessage extends TdObject
         );
     }
 
+    public function getInlineMessageId(): string
+    {
+        return $this->inlineMessageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'inline_message_id' => $this->inlineMessageId,
         ];
-    }
-
-    public function getInlineMessageId(): string
-    {
-        return $this->inlineMessageId;
     }
 }

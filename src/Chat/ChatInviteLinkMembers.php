@@ -17,18 +17,18 @@ class ChatInviteLinkMembers extends TdObject
     public const TYPE_NAME = 'chatInviteLinkMembers';
 
     /**
-     * Approximate total number of chat members found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of chat members, joined a chat via an invite link
      *
      * @var ChatInviteLinkMember[]
      */
     protected array $members;
+
+    /**
+     * Approximate total number of chat members found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $members)
     {
@@ -44,13 +44,9 @@ class ChatInviteLinkMembers extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getMembers(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->members),
-        ];
+        return $this->members;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class ChatInviteLinkMembers extends TdObject
         return $this->totalCount;
     }
 
-    public function getMembers(): array
+    public function typeSerialize(): array
     {
-        return $this->members;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->members),
+        ];
     }
 }

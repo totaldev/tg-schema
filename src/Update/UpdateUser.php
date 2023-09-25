@@ -37,16 +37,16 @@ class UpdateUser extends Update
         );
     }
 
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'user' => $this->user->typeSerialize(),
         ];
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
     }
 }

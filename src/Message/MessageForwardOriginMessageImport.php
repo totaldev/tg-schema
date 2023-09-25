@@ -36,16 +36,16 @@ class MessageForwardOriginMessageImport extends MessageForwardOrigin
         );
     }
 
+    public function getSenderName(): string
+    {
+        return $this->senderName;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sender_name' => $this->senderName,
         ];
-    }
-
-    public function getSenderName(): string
-    {
-        return $this->senderName;
     }
 }

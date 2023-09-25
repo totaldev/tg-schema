@@ -17,6 +17,13 @@ class ProcessChatJoinRequest extends TdFunction
     public const TYPE_NAME = 'processChatJoinRequest';
 
     /**
+     * Pass true to approve the request; pass false to decline it
+     *
+     * @var bool
+     */
+    protected bool $approve;
+
+    /**
      * Chat identifier
      *
      * @var int
@@ -29,13 +36,6 @@ class ProcessChatJoinRequest extends TdFunction
      * @var int
      */
     protected int $userId;
-
-    /**
-     * Pass true to approve the request; pass false to decline it
-     *
-     * @var bool
-     */
-    protected bool $approve;
 
     public function __construct(int $chatId, int $userId, bool $approve)
     {
@@ -53,14 +53,9 @@ class ProcessChatJoinRequest extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getApprove(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'user_id' => $this->userId,
-            'approve' => $this->approve,
-        ];
+        return $this->approve;
     }
 
     public function getChatId(): int
@@ -73,8 +68,13 @@ class ProcessChatJoinRequest extends TdFunction
         return $this->userId;
     }
 
-    public function getApprove(): bool
+    public function typeSerialize(): array
     {
-        return $this->approve;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_id' => $this->userId,
+            'approve' => $this->approve,
+        ];
     }
 }

@@ -25,18 +25,18 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
     protected int $groupCallId;
 
     /**
-     * Participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
      * Pass true to mute the user; pass false to unmute them
      *
      * @var bool
      */
     protected bool $isMuted;
+
+    /**
+     * Participant identifier
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $participantId;
 
     public function __construct(int $groupCallId, MessageSender $participantId, bool $isMuted)
     {
@@ -54,6 +54,21 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
         );
     }
 
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getIsMuted(): bool
+    {
+        return $this->isMuted;
+    }
+
+    public function getParticipantId(): MessageSender
+    {
+        return $this->participantId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
             'participant_id' => $this->participantId->typeSerialize(),
             'is_muted' => $this->isMuted,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getParticipantId(): MessageSender
-    {
-        return $this->participantId;
-    }
-
-    public function getIsMuted(): bool
-    {
-        return $this->isMuted;
     }
 }

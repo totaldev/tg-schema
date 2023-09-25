@@ -18,13 +18,6 @@ class SearchStickers extends TdFunction
     public const TYPE_NAME = 'searchStickers';
 
     /**
-     * Type of the stickers to return
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    /**
      * Space-separated list of emoji to search for; must be non-empty
      *
      * @var string
@@ -37,6 +30,13 @@ class SearchStickers extends TdFunction
      * @var int
      */
     protected int $limit;
+
+    /**
+     * Type of the stickers to return
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
 
     public function __construct(StickerType $stickerType, string $emojis, int $limit)
     {
@@ -54,21 +54,6 @@ class SearchStickers extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'emojis' => $this->emojis,
-            'limit' => $this->limit,
-        ];
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
     public function getEmojis(): string
     {
         return $this->emojis;
@@ -77,5 +62,20 @@ class SearchStickers extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'emojis' => $this->emojis,
+            'limit' => $this->limit,
+        ];
     }
 }

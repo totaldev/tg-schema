@@ -25,11 +25,11 @@ class SearchChatMembers extends TdFunction
     protected int $chatId;
 
     /**
-     * Query to search for
+     * The type of users to search for; pass null to search among all chat members
      *
-     * @var string
+     * @var ChatMembersFilter
      */
-    protected string $query;
+    protected ChatMembersFilter $filter;
 
     /**
      * The maximum number of users to be returned; up to 200
@@ -39,11 +39,11 @@ class SearchChatMembers extends TdFunction
     protected int $limit;
 
     /**
-     * The type of users to search for; pass null to search among all chat members
+     * Query to search for
      *
-     * @var ChatMembersFilter
+     * @var string
      */
-    protected ChatMembersFilter $filter;
+    protected string $query;
 
     public function __construct(int $chatId, string $query, int $limit, ChatMembersFilter $filter)
     {
@@ -63,6 +63,26 @@ class SearchChatMembers extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFilter(): ChatMembersFilter
+    {
+        return $this->filter;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class SearchChatMembers extends TdFunction
             'limit' => $this->limit,
             'filter' => $this->filter->typeSerialize(),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getFilter(): ChatMembersFilter
-    {
-        return $this->filter;
     }
 }

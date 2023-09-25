@@ -36,16 +36,16 @@ class RichTextFixed extends RichText
         );
     }
 
+    public function getText(): RichText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'text' => $this->text->typeSerialize(),
         ];
-    }
-
-    public function getText(): RichText
-    {
-        return $this->text;
     }
 }

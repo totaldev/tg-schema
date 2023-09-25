@@ -45,15 +45,6 @@ class SendPhoneNumberVerificationCode extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'phone_number' => $this->phoneNumber,
-            'settings' => $this->settings->typeSerialize(),
-        ];
-    }
-
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
@@ -62,5 +53,14 @@ class SendPhoneNumberVerificationCode extends TdFunction
     public function getSettings(): PhoneNumberAuthenticationSettings
     {
         return $this->settings;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'phone_number' => $this->phoneNumber,
+            'settings' => $this->settings->typeSerialize(),
+        ];
     }
 }

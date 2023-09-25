@@ -18,18 +18,18 @@ class PremiumFeaturePromotionAnimation extends TdObject
     public const TYPE_NAME = 'premiumFeaturePromotionAnimation';
 
     /**
-     * Premium feature
-     *
-     * @var PremiumFeature
-     */
-    protected PremiumFeature $feature;
-
-    /**
      * Promotion animation for the feature
      *
      * @var Animation
      */
     protected Animation $animation;
+
+    /**
+     * Premium feature
+     *
+     * @var PremiumFeature
+     */
+    protected PremiumFeature $feature;
 
     public function __construct(PremiumFeature $feature, Animation $animation)
     {
@@ -45,13 +45,9 @@ class PremiumFeaturePromotionAnimation extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAnimation(): Animation
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'feature' => $this->feature->typeSerialize(),
-            'animation' => $this->animation->typeSerialize(),
-        ];
+        return $this->animation;
     }
 
     public function getFeature(): PremiumFeature
@@ -59,8 +55,12 @@ class PremiumFeaturePromotionAnimation extends TdObject
         return $this->feature;
     }
 
-    public function getAnimation(): Animation
+    public function typeSerialize(): array
     {
-        return $this->animation;
+        return [
+            '@type' => static::TYPE_NAME,
+            'feature' => $this->feature->typeSerialize(),
+            'animation' => $this->animation->typeSerialize(),
+        ];
     }
 }

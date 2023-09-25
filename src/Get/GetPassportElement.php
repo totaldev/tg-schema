@@ -18,18 +18,18 @@ class GetPassportElement extends TdFunction
     public const TYPE_NAME = 'getPassportElement';
 
     /**
-     * Telegram Passport element type
-     *
-     * @var PassportElementType
-     */
-    protected PassportElementType $type;
-
-    /**
      * The 2-step verification password of the current user
      *
      * @var string
      */
     protected string $password;
+
+    /**
+     * Telegram Passport element type
+     *
+     * @var PassportElementType
+     */
+    protected PassportElementType $type;
 
     public function __construct(PassportElementType $type, string $password)
     {
@@ -45,13 +45,9 @@ class GetPassportElement extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 
     public function getType(): PassportElementType
@@ -59,8 +55,12 @@ class GetPassportElement extends TdFunction
         return $this->type;
     }
 
-    public function getPassword(): string
+    public function typeSerialize(): array
     {
-        return $this->password;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'password' => $this->password,
+        ];
     }
 }

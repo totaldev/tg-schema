@@ -37,16 +37,16 @@ class DiceStickersRegular extends DiceStickers
         );
     }
 
+    public function getSticker(): Sticker
+    {
+        return $this->sticker;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
-    }
-
-    public function getSticker(): Sticker
-    {
-        return $this->sticker;
     }
 }

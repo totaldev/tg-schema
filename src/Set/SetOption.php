@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
+ * Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be
+ * called before authorization
  */
 class SetOption extends TdFunction
 {
@@ -45,15 +46,6 @@ class SetOption extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'value' => $this->value->typeSerialize(),
-        ];
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -62,5 +54,14 @@ class SetOption extends TdFunction
     public function getValue(): OptionValue
     {
         return $this->value;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'value' => $this->value->typeSerialize(),
+        ];
     }
 }

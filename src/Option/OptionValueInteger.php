@@ -36,16 +36,16 @@ class OptionValueInteger extends OptionValue
         );
     }
 
+    public function getValue(): int
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
-    }
-
-    public function getValue(): int
-    {
-        return $this->value;
     }
 }

@@ -45,15 +45,6 @@ class RemoveTopChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
-            'chat_id' => $this->chatId,
-        ];
-    }
-
     public function getCategory(): TopChatCategory
     {
         return $this->category;
@@ -62,5 +53,14 @@ class RemoveTopChat extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'category' => $this->category->typeSerialize(),
+            'chat_id' => $this->chatId,
+        ];
     }
 }

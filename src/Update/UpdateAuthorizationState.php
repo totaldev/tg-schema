@@ -37,16 +37,16 @@ class UpdateAuthorizationState extends Update
         );
     }
 
+    public function getAuthorizationState(): AuthorizationState
+    {
+        return $this->authorizationState;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'authorization_state' => $this->authorizationState->typeSerialize(),
         ];
-    }
-
-    public function getAuthorizationState(): AuthorizationState
-    {
-        return $this->authorizationState;
     }
 }

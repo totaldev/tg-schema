@@ -16,18 +16,18 @@ class InputCredentialsNew extends InputCredentials
     public const TYPE_NAME = 'inputCredentialsNew';
 
     /**
-     * JSON-encoded data with the credential identifier from the payment provider
-     *
-     * @var string
-     */
-    protected string $data;
-
-    /**
      * True, if the credential identifier can be saved on the server side
      *
      * @var bool
      */
     protected bool $allowSave;
+
+    /**
+     * JSON-encoded data with the credential identifier from the payment provider
+     *
+     * @var string
+     */
+    protected string $data;
 
     public function __construct(string $data, bool $allowSave)
     {
@@ -45,13 +45,9 @@ class InputCredentialsNew extends InputCredentials
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowSave(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'data' => $this->data,
-            'allow_save' => $this->allowSave,
-        ];
+        return $this->allowSave;
     }
 
     public function getData(): string
@@ -59,8 +55,12 @@ class InputCredentialsNew extends InputCredentials
         return $this->data;
     }
 
-    public function getAllowSave(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowSave;
+        return [
+            '@type' => static::TYPE_NAME,
+            'data' => $this->data,
+            'allow_save' => $this->allowSave,
+        ];
     }
 }

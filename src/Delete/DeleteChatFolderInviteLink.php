@@ -44,15 +44,6 @@ class DeleteChatFolderInviteLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
-            'invite_link' => $this->inviteLink,
-        ];
-    }
-
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
@@ -61,5 +52,14 @@ class DeleteChatFolderInviteLink extends TdFunction
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_id' => $this->chatFolderId,
+            'invite_link' => $this->inviteLink,
+        ];
     }
 }

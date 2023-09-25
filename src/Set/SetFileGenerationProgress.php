@@ -17,18 +17,18 @@ class SetFileGenerationProgress extends TdFunction
     public const TYPE_NAME = 'setFileGenerationProgress';
 
     /**
-     * The identifier of the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    /**
      * Expected size of the generated file, in bytes; 0 if unknown
      *
      * @var int
      */
     protected int $expectedSize;
+
+    /**
+     * The identifier of the generation process
+     *
+     * @var int
+     */
+    protected int $generationId;
 
     /**
      * The number of bytes already generated
@@ -53,6 +53,21 @@ class SetFileGenerationProgress extends TdFunction
         );
     }
 
+    public function getExpectedSize(): int
+    {
+        return $this->expectedSize;
+    }
+
+    public function getGenerationId(): int
+    {
+        return $this->generationId;
+    }
+
+    public function getLocalPrefixSize(): int
+    {
+        return $this->localPrefixSize;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class SetFileGenerationProgress extends TdFunction
             'expected_size' => $this->expectedSize,
             'local_prefix_size' => $this->localPrefixSize,
         ];
-    }
-
-    public function getGenerationId(): int
-    {
-        return $this->generationId;
-    }
-
-    public function getExpectedSize(): int
-    {
-        return $this->expectedSize;
-    }
-
-    public function getLocalPrefixSize(): int
-    {
-        return $this->localPrefixSize;
     }
 }

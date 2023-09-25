@@ -19,11 +19,11 @@ class AddedReaction extends TdObject
     public const TYPE_NAME = 'addedReaction';
 
     /**
-     * Type of the reaction
+     * Point in time (Unix timestamp) when the reaction was added
      *
-     * @var ReactionType
+     * @var int
      */
-    protected ReactionType $type;
+    protected int $date;
 
     /**
      * Identifier of the chat member, applied the reaction
@@ -33,11 +33,11 @@ class AddedReaction extends TdObject
     protected MessageSender $senderId;
 
     /**
-     * Point in time (Unix timestamp) when the reaction was added
+     * Type of the reaction
      *
-     * @var int
+     * @var ReactionType
      */
-    protected int $date;
+    protected ReactionType $type;
 
     public function __construct(ReactionType $type, MessageSender $senderId, int $date)
     {
@@ -55,6 +55,21 @@ class AddedReaction extends TdObject
         );
     }
 
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getSenderId(): MessageSender
+    {
+        return $this->senderId;
+    }
+
+    public function getType(): ReactionType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class AddedReaction extends TdObject
             'sender_id' => $this->senderId->typeSerialize(),
             'date' => $this->date,
         ];
-    }
-
-    public function getType(): ReactionType
-    {
-        return $this->type;
-    }
-
-    public function getSenderId(): MessageSender
-    {
-        return $this->senderId;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
     }
 }

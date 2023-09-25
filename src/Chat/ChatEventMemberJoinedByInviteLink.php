@@ -45,15 +45,6 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'invite_link' => $this->inviteLink->typeSerialize(),
-            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
-        ];
-    }
-
     public function getInviteLink(): ChatInviteLink
     {
         return $this->inviteLink;
@@ -62,5 +53,14 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
     public function getViaChatFolderInviteLink(): bool
     {
         return $this->viaChatFolderInviteLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'invite_link' => $this->inviteLink->typeSerialize(),
+            'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
+        ];
     }
 }

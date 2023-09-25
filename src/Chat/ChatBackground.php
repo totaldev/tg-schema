@@ -45,15 +45,6 @@ class ChatBackground extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'background' => $this->background->typeSerialize(),
-            'dark_theme_dimming' => $this->darkThemeDimming,
-        ];
-    }
-
     public function getBackground(): Background
     {
         return $this->background;
@@ -62,5 +53,14 @@ class ChatBackground extends TdObject
     public function getDarkThemeDimming(): int
     {
         return $this->darkThemeDimming;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'background' => $this->background->typeSerialize(),
+            'dark_theme_dimming' => $this->darkThemeDimming,
+        ];
     }
 }

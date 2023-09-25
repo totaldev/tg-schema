@@ -36,16 +36,16 @@ class MessageForumTopicIsClosedToggled extends MessageContent
         );
     }
 
+    public function getIsClosed(): bool
+    {
+        return $this->isClosed;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_closed' => $this->isClosed,
         ];
-    }
-
-    public function getIsClosed(): bool
-    {
-        return $this->isClosed;
     }
 }

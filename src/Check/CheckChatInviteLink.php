@@ -35,16 +35,16 @@ class CheckChatInviteLink extends TdFunction
         );
     }
 
+    public function getInviteLink(): string
+    {
+        return $this->inviteLink;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
         ];
-    }
-
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
     }
 }

@@ -17,18 +17,18 @@ class ChatStatisticsInviterInfo extends TdObject
     public const TYPE_NAME = 'chatStatisticsInviterInfo';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Number of new members invited by the user
      *
      * @var int
      */
     protected int $addedMemberCount;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, int $addedMemberCount)
     {
@@ -44,13 +44,9 @@ class ChatStatisticsInviterInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAddedMemberCount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'added_member_count' => $this->addedMemberCount,
-        ];
+        return $this->addedMemberCount;
     }
 
     public function getUserId(): int
@@ -58,8 +54,12 @@ class ChatStatisticsInviterInfo extends TdObject
         return $this->userId;
     }
 
-    public function getAddedMemberCount(): int
+    public function typeSerialize(): array
     {
-        return $this->addedMemberCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'added_member_count' => $this->addedMemberCount,
+        ];
     }
 }

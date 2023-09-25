@@ -36,16 +36,16 @@ class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
         );
     }
 
+    public function getHasAggressiveAntiSpamEnabled(): bool
+    {
+        return $this->hasAggressiveAntiSpamEnabled;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'has_aggressive_anti_spam_enabled' => $this->hasAggressiveAntiSpamEnabled,
         ];
-    }
-
-    public function getHasAggressiveAntiSpamEnabled(): bool
-    {
-        return $this->hasAggressiveAntiSpamEnabled;
     }
 }

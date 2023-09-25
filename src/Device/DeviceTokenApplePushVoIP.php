@@ -23,18 +23,18 @@ class DeviceTokenApplePushVoIP extends DeviceToken
     protected string $deviceToken;
 
     /**
-     * True, if App Sandbox is enabled
-     *
-     * @var bool
-     */
-    protected bool $isAppSandbox;
-
-    /**
      * True, if push notifications must be additionally encrypted
      *
      * @var bool
      */
     protected bool $encrypt;
+
+    /**
+     * True, if App Sandbox is enabled
+     *
+     * @var bool
+     */
+    protected bool $isAppSandbox;
 
     public function __construct(string $deviceToken, bool $isAppSandbox, bool $encrypt)
     {
@@ -54,6 +54,21 @@ class DeviceTokenApplePushVoIP extends DeviceToken
         );
     }
 
+    public function getDeviceToken(): string
+    {
+        return $this->deviceToken;
+    }
+
+    public function getEncrypt(): bool
+    {
+        return $this->encrypt;
+    }
+
+    public function getIsAppSandbox(): bool
+    {
+        return $this->isAppSandbox;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class DeviceTokenApplePushVoIP extends DeviceToken
             'is_app_sandbox' => $this->isAppSandbox,
             'encrypt' => $this->encrypt,
         ];
-    }
-
-    public function getDeviceToken(): string
-    {
-        return $this->deviceToken;
-    }
-
-    public function getIsAppSandbox(): bool
-    {
-        return $this->isAppSandbox;
-    }
-
-    public function getEncrypt(): bool
-    {
-        return $this->encrypt;
     }
 }

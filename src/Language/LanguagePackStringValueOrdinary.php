@@ -36,16 +36,16 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue
         );
     }
 
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
-    }
-
-    public function getValue(): string
-    {
-        return $this->value;
     }
 }

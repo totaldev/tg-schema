@@ -45,15 +45,6 @@ class EditChatFolder extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
-            'folder' => $this->folder->typeSerialize(),
-        ];
-    }
-
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
@@ -62,5 +53,14 @@ class EditChatFolder extends TdFunction
     public function getFolder(): ChatFolder
     {
         return $this->folder;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_id' => $this->chatFolderId,
+            'folder' => $this->folder->typeSerialize(),
+        ];
     }
 }

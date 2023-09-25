@@ -20,6 +20,13 @@ class Document extends TdObject
     public const TYPE_NAME = 'document';
 
     /**
+     * File containing the document
+     *
+     * @var File
+     */
+    protected File $document;
+
+    /**
      * Original name of the file; as defined by the sender
      *
      * @var string
@@ -47,20 +54,14 @@ class Document extends TdObject
      */
     protected ?Thumbnail $thumbnail;
 
-    /**
-     * File containing the document
-     *
-     * @var File
-     */
-    protected File $document;
-
     public function __construct(
-        string $fileName,
-        string $mimeType,
+        string         $fileName,
+        string         $mimeType,
         ?Minithumbnail $minithumbnail,
-        ?Thumbnail $thumbnail,
-        File $document,
-    ) {
+        ?Thumbnail     $thumbnail,
+        File           $document,
+    )
+    {
         $this->fileName = $fileName;
         $this->mimeType = $mimeType;
         $this->minithumbnail = $minithumbnail;
@@ -79,16 +80,9 @@ class Document extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDocument(): File
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_name' => $this->fileName,
-            'mime_type' => $this->mimeType,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'document' => $this->document->typeSerialize(),
-        ];
+        return $this->document;
     }
 
     public function getFileName(): string
@@ -111,8 +105,15 @@ class Document extends TdObject
         return $this->thumbnail;
     }
 
-    public function getDocument(): File
+    public function typeSerialize(): array
     {
-        return $this->document;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_name' => $this->fileName,
+            'mime_type' => $this->mimeType,
+            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'document' => $this->document->typeSerialize(),
+        ];
     }
 }

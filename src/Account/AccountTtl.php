@@ -35,16 +35,16 @@ class AccountTtl extends TdObject
         );
     }
 
+    public function getDays(): int
+    {
+        return $this->days;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'days' => $this->days,
         ];
-    }
-
-    public function getDays(): int
-    {
-        return $this->days;
     }
 }

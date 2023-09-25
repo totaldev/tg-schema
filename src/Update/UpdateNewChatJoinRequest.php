@@ -25,6 +25,13 @@ class UpdateNewChatJoinRequest extends Update
     protected int $chatId;
 
     /**
+     * The invite link, which was used to send join request; may be null
+     *
+     * @var ChatInviteLink|null
+     */
+    protected ?ChatInviteLink $inviteLink;
+
+    /**
      * Join request
      *
      * @var ChatJoinRequest
@@ -37,13 +44,6 @@ class UpdateNewChatJoinRequest extends Update
      * @var int
      */
     protected int $userChatId;
-
-    /**
-     * The invite link, which was used to send join request; may be null
-     *
-     * @var ChatInviteLink|null
-     */
-    protected ?ChatInviteLink $inviteLink;
 
     public function __construct(int $chatId, ChatJoinRequest $request, int $userChatId, ?ChatInviteLink $inviteLink)
     {
@@ -65,20 +65,14 @@ class UpdateNewChatJoinRequest extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'request' => $this->request->typeSerialize(),
-            'user_chat_id' => $this->userChatId,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getInviteLink(): ?ChatInviteLink
+    {
+        return $this->inviteLink;
     }
 
     public function getRequest(): ChatJoinRequest
@@ -91,8 +85,14 @@ class UpdateNewChatJoinRequest extends Update
         return $this->userChatId;
     }
 
-    public function getInviteLink(): ?ChatInviteLink
+    public function typeSerialize(): array
     {
-        return $this->inviteLink;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'request' => $this->request->typeSerialize(),
+            'user_chat_id' => $this->userChatId,
+            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+        ];
     }
 }

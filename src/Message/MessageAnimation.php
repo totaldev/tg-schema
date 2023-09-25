@@ -65,17 +65,6 @@ class MessageAnimation extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animation' => $this->animation->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-            'has_spoiler' => $this->hasSpoiler,
-            'is_secret' => $this->isSecret,
-        ];
-    }
-
     public function getAnimation(): Animation
     {
         return $this->animation;
@@ -94,5 +83,16 @@ class MessageAnimation extends MessageContent
     public function getIsSecret(): bool
     {
         return $this->isSecret;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'animation' => $this->animation->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'has_spoiler' => $this->hasSpoiler,
+            'is_secret' => $this->isSecret,
+        ];
     }
 }

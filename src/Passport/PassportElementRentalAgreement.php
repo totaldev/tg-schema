@@ -37,16 +37,16 @@ class PassportElementRentalAgreement extends PassportElement
         );
     }
 
+    public function getRentalAgreement(): PersonalDocument
+    {
+        return $this->rentalAgreement;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'rental_agreement' => $this->rentalAgreement->typeSerialize(),
         ];
-    }
-
-    public function getRentalAgreement(): PersonalDocument
-    {
-        return $this->rentalAgreement;
     }
 }

@@ -17,18 +17,18 @@ class MessagePositions extends TdObject
     public const TYPE_NAME = 'messagePositions';
 
     /**
-     * Total number of messages found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * List of message positions
      *
      * @var MessagePosition[]
      */
     protected array $positions;
+
+    /**
+     * Total number of messages found
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, array $positions)
     {
@@ -44,13 +44,9 @@ class MessagePositions extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getPositions(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->positions),
-        ];
+        return $this->positions;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class MessagePositions extends TdObject
         return $this->totalCount;
     }
 
-    public function getPositions(): array
+    public function typeSerialize(): array
     {
-        return $this->positions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            array_map(fn($x) => $x->typeSerialize(), $this->positions),
+        ];
     }
 }

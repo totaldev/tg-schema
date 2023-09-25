@@ -36,16 +36,16 @@ class SetDefaultGroupAdministratorRights extends TdFunction
         );
     }
 
+    public function getDefaultGroupAdministratorRights(): ChatAdministratorRights
+    {
+        return $this->defaultGroupAdministratorRights;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'default_group_administrator_rights' => $this->defaultGroupAdministratorRights->typeSerialize(),
         ];
-    }
-
-    public function getDefaultGroupAdministratorRights(): ChatAdministratorRights
-    {
-        return $this->defaultGroupAdministratorRights;
     }
 }

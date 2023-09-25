@@ -36,16 +36,16 @@ class BackgroundFillFreeformGradient extends BackgroundFill
         );
     }
 
+    public function getColors(): array
+    {
+        return $this->colors;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'colors' => $this->colors,
         ];
-    }
-
-    public function getColors(): array
-    {
-        return $this->colors;
     }
 }

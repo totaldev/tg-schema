@@ -20,32 +20,11 @@ class Game extends TdObject
     public const TYPE_NAME = 'game';
 
     /**
-     * Unique game identifier
+     * Game animation; may be null
      *
-     * @var int
+     * @var Animation|null
      */
-    protected int $id;
-
-    /**
-     * Game short name
-     *
-     * @var string
-     */
-    protected string $shortName;
-
-    /**
-     * Game title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Game text, usually containing scoreboards for a game
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
+    protected ?Animation $animation;
 
     /**
      * Game description
@@ -55,6 +34,13 @@ class Game extends TdObject
     protected string $description;
 
     /**
+     * Unique game identifier
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
      * Game photo
      *
      * @var Photo
@@ -62,21 +48,36 @@ class Game extends TdObject
     protected Photo $photo;
 
     /**
-     * Game animation; may be null
+     * Game short name
      *
-     * @var Animation|null
+     * @var string
      */
-    protected ?Animation $animation;
+    protected string $shortName;
+
+    /**
+     * Game text, usually containing scoreboards for a game
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $text;
+
+    /**
+     * Game title
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(
-        int $id,
-        string $shortName,
-        string $title,
+        int           $id,
+        string        $shortName,
+        string        $title,
         FormattedText $text,
-        string $description,
-        Photo $photo,
-        ?Animation $animation,
-    ) {
+        string        $description,
+        Photo         $photo,
+        ?Animation    $animation,
+    )
+    {
         $this->id = $id;
         $this->shortName = $shortName;
         $this->title = $title;
@@ -99,6 +100,41 @@ class Game extends TdObject
         );
     }
 
+    public function getAnimation(): ?Animation
+    {
+        return $this->animation;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getPhoto(): Photo
+    {
+        return $this->photo;
+    }
+
+    public function getShortName(): string
+    {
+        return $this->shortName;
+    }
+
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -111,40 +147,5 @@ class Game extends TdObject
             'photo' => $this->photo->typeSerialize(),
             'animation' => (isset($this->animation) ? $this->animation : null),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getShortName(): string
-    {
-        return $this->shortName;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getPhoto(): Photo
-    {
-        return $this->photo;
-    }
-
-    public function getAnimation(): ?Animation
-    {
-        return $this->animation;
     }
 }

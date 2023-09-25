@@ -44,15 +44,6 @@ class SavedCredentials extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'title' => $this->title,
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -61,5 +52,14 @@ class SavedCredentials extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'title' => $this->title,
+        ];
     }
 }

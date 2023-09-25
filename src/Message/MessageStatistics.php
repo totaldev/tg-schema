@@ -36,16 +36,16 @@ class MessageStatistics extends TdObject
         );
     }
 
+    public function getMessageInteractionGraph(): StatisticalGraph
+    {
+        return $this->messageInteractionGraph;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message_interaction_graph' => $this->messageInteractionGraph->typeSerialize(),
         ];
-    }
-
-    public function getMessageInteractionGraph(): StatisticalGraph
-    {
-        return $this->messageInteractionGraph;
     }
 }

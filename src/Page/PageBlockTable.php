@@ -64,17 +64,6 @@ class PageBlockTable extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'caption' => $this->caption->typeSerialize(),
-            array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->cells),
-            'is_bordered' => $this->isBordered,
-            'is_striped' => $this->isStriped,
-        ];
-    }
-
     public function getCaption(): RichText
     {
         return $this->caption;
@@ -93,5 +82,16 @@ class PageBlockTable extends PageBlock
     public function getIsStriped(): bool
     {
         return $this->isStriped;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'caption' => $this->caption->typeSerialize(),
+            array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->cells),
+            'is_bordered' => $this->isBordered,
+            'is_striped' => $this->isStriped,
+        ];
     }
 }

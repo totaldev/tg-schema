@@ -17,20 +17,6 @@ class MessageLocation extends MessageContent
     public const TYPE_NAME = 'messageLocation';
 
     /**
-     * The location description
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * Time relative to the message send date, for which the location can be updated, in seconds
-     *
-     * @var int
-     */
-    protected int $livePeriod;
-
-    /**
      * Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
      *
      * @var int
@@ -45,7 +31,22 @@ class MessageLocation extends MessageContent
     protected int $heading;
 
     /**
-     * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
+     * Time relative to the message send date, for which the location can be updated, in seconds
+     *
+     * @var int
+     */
+    protected int $livePeriod;
+
+    /**
+     * The location description
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
+     * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available
+     * only to the message sender
      *
      * @var int
      */
@@ -53,11 +54,12 @@ class MessageLocation extends MessageContent
 
     public function __construct(
         Location $location,
-        int $livePeriod,
-        int $expiresIn,
-        int $heading,
-        int $proximityAlertRadius,
-    ) {
+        int      $livePeriod,
+        int      $expiresIn,
+        int      $heading,
+        int      $proximityAlertRadius,
+    )
+    {
         parent::__construct();
 
         $this->location = $location;
@@ -78,28 +80,6 @@ class MessageLocation extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'live_period' => $this->livePeriod,
-            'expires_in' => $this->expiresIn,
-            'heading' => $this->heading,
-            'proximity_alert_radius' => $this->proximityAlertRadius,
-        ];
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getLivePeriod(): int
-    {
-        return $this->livePeriod;
-    }
-
     public function getExpiresIn(): int
     {
         return $this->expiresIn;
@@ -110,8 +90,30 @@ class MessageLocation extends MessageContent
         return $this->heading;
     }
 
+    public function getLivePeriod(): int
+    {
+        return $this->livePeriod;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
     public function getProximityAlertRadius(): int
     {
         return $this->proximityAlertRadius;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'location' => $this->location->typeSerialize(),
+            'live_period' => $this->livePeriod,
+            'expires_in' => $this->expiresIn,
+            'heading' => $this->heading,
+            'proximity_alert_radius' => $this->proximityAlertRadius,
+        ];
     }
 }

@@ -36,16 +36,16 @@ class TextEntityTypePreCode extends TextEntityType
         );
     }
 
+    public function getLanguage(): string
+    {
+        return $this->language;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'language' => $this->language,
         ];
-    }
-
-    public function getLanguage(): string
-    {
-        return $this->language;
     }
 }

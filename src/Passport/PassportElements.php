@@ -35,16 +35,16 @@ class PassportElements extends TdObject
         );
     }
 
+    public function getElements(): array
+    {
+        return $this->elements;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->elements),
         ];
-    }
-
-    public function getElements(): array
-    {
-        return $this->elements;
     }
 }

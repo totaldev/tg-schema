@@ -19,60 +19,11 @@ class Story extends TdObject
     public const TYPE_NAME = 'story';
 
     /**
-     * Unique story identifier among stories of the given sender
+     * Clickable areas to be shown on the story content
      *
-     * @var int
+     * @var StoryArea[]
      */
-    protected int $id;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $senderChatId;
-
-    /**
-     * Point in time (Unix timestamp) when the story was published
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * True, if the story is being sent by the current user
-     *
-     * @var bool
-     */
-    protected bool $isBeingSent;
-
-    /**
-     * True, if the story is being edited by the current user
-     *
-     * @var bool
-     */
-    protected bool $isBeingEdited;
-
-    /**
-     * True, if the story was edited
-     *
-     * @var bool
-     */
-    protected bool $isEdited;
-
-    /**
-     * True, if the story is saved in the sender's profile and will be available there after expiration
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * True, if the story is visible only for the current user
-     *
-     * @var bool
-     */
-    protected bool $isVisibleOnlyForSelf;
+    protected array $areas;
 
     /**
      * True, if the story can be deleted
@@ -103,13 +54,6 @@ class Story extends TdObject
     protected bool $canBeReplied;
 
     /**
-     * True, if the story's is_pinned value can be changed
-     *
-     * @var bool
-     */
-    protected bool $canToggleIsPinned;
-
-    /**
      * True, if users viewed the story can be received through getStoryViewers
      *
      * @var bool
@@ -117,18 +61,18 @@ class Story extends TdObject
     protected bool $canGetViewers;
 
     /**
-     * True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+     * True, if the story's is_pinned value can be changed
      *
      * @var bool
      */
-    protected bool $hasExpiredViewers;
+    protected bool $canToggleIsPinned;
 
     /**
-     * Information about interactions with the story; may be null if the story isn't owned or there were no interactions
+     * Caption of the story
      *
-     * @var StoryInteractionInfo|null
+     * @var FormattedText
      */
-    protected ?StoryInteractionInfo $interactionInfo;
+    protected FormattedText $caption;
 
     /**
      * Type of the chosen reaction; may be null if none
@@ -138,13 +82,6 @@ class Story extends TdObject
     protected ?ReactionType $chosenReactionType;
 
     /**
-     * Privacy rules affecting story visibility; may be approximate for non-owned stories
-     *
-     * @var StoryPrivacySettings
-     */
-    protected StoryPrivacySettings $privacySettings;
-
-    /**
      * Content of the story
      *
      * @var StoryContent
@@ -152,42 +89,106 @@ class Story extends TdObject
     protected StoryContent $content;
 
     /**
-     * Clickable areas to be shown on the story content
+     * Point in time (Unix timestamp) when the story was published
      *
-     * @var StoryArea[]
+     * @var int
      */
-    protected array $areas;
+    protected int $date;
 
     /**
-     * Caption of the story
+     * True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
      *
-     * @var FormattedText
+     * @var bool
      */
-    protected FormattedText $caption;
+    protected bool $hasExpiredViewers;
+
+    /**
+     * Unique story identifier among stories of the given sender
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
+     * Information about interactions with the story; may be null if the story isn't owned or there were no interactions
+     *
+     * @var StoryInteractionInfo|null
+     */
+    protected ?StoryInteractionInfo $interactionInfo;
+
+    /**
+     * True, if the story is being edited by the current user
+     *
+     * @var bool
+     */
+    protected bool $isBeingEdited;
+
+    /**
+     * True, if the story is being sent by the current user
+     *
+     * @var bool
+     */
+    protected bool $isBeingSent;
+
+    /**
+     * True, if the story was edited
+     *
+     * @var bool
+     */
+    protected bool $isEdited;
+
+    /**
+     * True, if the story is saved in the sender's profile and will be available there after expiration
+     *
+     * @var bool
+     */
+    protected bool $isPinned;
+
+    /**
+     * True, if the story is visible only for the current user
+     *
+     * @var bool
+     */
+    protected bool $isVisibleOnlyForSelf;
+
+    /**
+     * Privacy rules affecting story visibility; may be approximate for non-owned stories
+     *
+     * @var StoryPrivacySettings
+     */
+    protected StoryPrivacySettings $privacySettings;
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $senderChatId;
 
     public function __construct(
-        int $id,
-        int $senderChatId,
-        int $date,
-        bool $isBeingSent,
-        bool $isBeingEdited,
-        bool $isEdited,
-        bool $isPinned,
-        bool $isVisibleOnlyForSelf,
-        bool $canBeDeleted,
-        bool $canBeEdited,
-        bool $canBeForwarded,
-        bool $canBeReplied,
-        bool $canToggleIsPinned,
-        bool $canGetViewers,
-        bool $hasExpiredViewers,
+        int                   $id,
+        int                   $senderChatId,
+        int                   $date,
+        bool                  $isBeingSent,
+        bool                  $isBeingEdited,
+        bool                  $isEdited,
+        bool                  $isPinned,
+        bool                  $isVisibleOnlyForSelf,
+        bool                  $canBeDeleted,
+        bool                  $canBeEdited,
+        bool                  $canBeForwarded,
+        bool                  $canBeReplied,
+        bool                  $canToggleIsPinned,
+        bool                  $canGetViewers,
+        bool                  $hasExpiredViewers,
         ?StoryInteractionInfo $interactionInfo,
-        ?ReactionType $chosenReactionType,
-        StoryPrivacySettings $privacySettings,
-        StoryContent $content,
-        array $areas,
-        FormattedText $caption,
-    ) {
+        ?ReactionType         $chosenReactionType,
+        StoryPrivacySettings  $privacySettings,
+        StoryContent          $content,
+        array                 $areas,
+        FormattedText         $caption,
+    )
+    {
         $this->id = $id;
         $this->senderChatId = $senderChatId;
         $this->date = $date;
@@ -238,6 +239,111 @@ class Story extends TdObject
         );
     }
 
+    public function getAreas(): array
+    {
+        return $this->areas;
+    }
+
+    public function getCanBeDeleted(): bool
+    {
+        return $this->canBeDeleted;
+    }
+
+    public function getCanBeEdited(): bool
+    {
+        return $this->canBeEdited;
+    }
+
+    public function getCanBeForwarded(): bool
+    {
+        return $this->canBeForwarded;
+    }
+
+    public function getCanBeReplied(): bool
+    {
+        return $this->canBeReplied;
+    }
+
+    public function getCanGetViewers(): bool
+    {
+        return $this->canGetViewers;
+    }
+
+    public function getCanToggleIsPinned(): bool
+    {
+        return $this->canToggleIsPinned;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getChosenReactionType(): ?ReactionType
+    {
+        return $this->chosenReactionType;
+    }
+
+    public function getContent(): StoryContent
+    {
+        return $this->content;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getHasExpiredViewers(): bool
+    {
+        return $this->hasExpiredViewers;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getInteractionInfo(): ?StoryInteractionInfo
+    {
+        return $this->interactionInfo;
+    }
+
+    public function getIsBeingEdited(): bool
+    {
+        return $this->isBeingEdited;
+    }
+
+    public function getIsBeingSent(): bool
+    {
+        return $this->isBeingSent;
+    }
+
+    public function getIsEdited(): bool
+    {
+        return $this->isEdited;
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getIsVisibleOnlyForSelf(): bool
+    {
+        return $this->isVisibleOnlyForSelf;
+    }
+
+    public function getPrivacySettings(): StoryPrivacySettings
+    {
+        return $this->privacySettings;
+    }
+
+    public function getSenderChatId(): int
+    {
+        return $this->senderChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -264,110 +370,5 @@ class Story extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->areas),
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSenderChatId(): int
-    {
-        return $this->senderChatId;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getIsBeingSent(): bool
-    {
-        return $this->isBeingSent;
-    }
-
-    public function getIsBeingEdited(): bool
-    {
-        return $this->isBeingEdited;
-    }
-
-    public function getIsEdited(): bool
-    {
-        return $this->isEdited;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
-    }
-
-    public function getIsVisibleOnlyForSelf(): bool
-    {
-        return $this->isVisibleOnlyForSelf;
-    }
-
-    public function getCanBeDeleted(): bool
-    {
-        return $this->canBeDeleted;
-    }
-
-    public function getCanBeEdited(): bool
-    {
-        return $this->canBeEdited;
-    }
-
-    public function getCanBeForwarded(): bool
-    {
-        return $this->canBeForwarded;
-    }
-
-    public function getCanBeReplied(): bool
-    {
-        return $this->canBeReplied;
-    }
-
-    public function getCanToggleIsPinned(): bool
-    {
-        return $this->canToggleIsPinned;
-    }
-
-    public function getCanGetViewers(): bool
-    {
-        return $this->canGetViewers;
-    }
-
-    public function getHasExpiredViewers(): bool
-    {
-        return $this->hasExpiredViewers;
-    }
-
-    public function getInteractionInfo(): ?StoryInteractionInfo
-    {
-        return $this->interactionInfo;
-    }
-
-    public function getChosenReactionType(): ?ReactionType
-    {
-        return $this->chosenReactionType;
-    }
-
-    public function getPrivacySettings(): StoryPrivacySettings
-    {
-        return $this->privacySettings;
-    }
-
-    public function getContent(): StoryContent
-    {
-        return $this->content;
-    }
-
-    public function getAreas(): array
-    {
-        return $this->areas;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

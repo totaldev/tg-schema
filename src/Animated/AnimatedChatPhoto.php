@@ -18,18 +18,18 @@ class AnimatedChatPhoto extends TdObject
     public const TYPE_NAME = 'animatedChatPhoto';
 
     /**
-     * Animation width and height
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
      * Information about the animation file
      *
      * @var File
      */
     protected File $file;
+
+    /**
+     * Animation width and height
+     *
+     * @var int
+     */
+    protected int $length;
 
     /**
      * Timestamp of the frame, used as a static chat photo
@@ -54,6 +54,21 @@ class AnimatedChatPhoto extends TdObject
         );
     }
 
+    public function getFile(): File
+    {
+        return $this->file;
+    }
+
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
+    public function getMainFrameTimestamp(): float
+    {
+        return $this->mainFrameTimestamp;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class AnimatedChatPhoto extends TdObject
             'file' => $this->file->typeSerialize(),
             'main_frame_timestamp' => $this->mainFrameTimestamp,
         ];
-    }
-
-    public function getLength(): int
-    {
-        return $this->length;
-    }
-
-    public function getFile(): File
-    {
-        return $this->file;
-    }
-
-    public function getMainFrameTimestamp(): float
-    {
-        return $this->mainFrameTimestamp;
     }
 }

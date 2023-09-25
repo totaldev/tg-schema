@@ -17,18 +17,18 @@ class UpdateBasicGroupFullInfo extends Update
     public const TYPE_NAME = 'updateBasicGroupFullInfo';
 
     /**
-     * Identifier of a basic group
-     *
-     * @var int
-     */
-    protected int $basicGroupId;
-
-    /**
      * New full information about the group
      *
      * @var BasicGroupFullInfo
      */
     protected BasicGroupFullInfo $basicGroupFullInfo;
+
+    /**
+     * Identifier of a basic group
+     *
+     * @var int
+     */
+    protected int $basicGroupId;
 
     public function __construct(int $basicGroupId, BasicGroupFullInfo $basicGroupFullInfo)
     {
@@ -46,13 +46,9 @@ class UpdateBasicGroupFullInfo extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getBasicGroupFullInfo(): BasicGroupFullInfo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'basic_group_id' => $this->basicGroupId,
-            'basic_group_full_info' => $this->basicGroupFullInfo->typeSerialize(),
-        ];
+        return $this->basicGroupFullInfo;
     }
 
     public function getBasicGroupId(): int
@@ -60,8 +56,12 @@ class UpdateBasicGroupFullInfo extends Update
         return $this->basicGroupId;
     }
 
-    public function getBasicGroupFullInfo(): BasicGroupFullInfo
+    public function typeSerialize(): array
     {
-        return $this->basicGroupFullInfo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'basic_group_id' => $this->basicGroupId,
+            'basic_group_full_info' => $this->basicGroupFullInfo->typeSerialize(),
+        ];
     }
 }

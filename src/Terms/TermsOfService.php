@@ -18,13 +18,6 @@ class TermsOfService extends TdObject
     public const TYPE_NAME = 'termsOfService';
 
     /**
-     * Text of the terms of service
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    /**
      * The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
      *
      * @var int
@@ -37,6 +30,13 @@ class TermsOfService extends TdObject
      * @var bool
      */
     protected bool $showPopup;
+
+    /**
+     * Text of the terms of service
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $text;
 
     public function __construct(FormattedText $text, int $minUserAge, bool $showPopup)
     {
@@ -54,21 +54,6 @@ class TermsOfService extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'min_user_age' => $this->minUserAge,
-            'show_popup' => $this->showPopup,
-        ];
-    }
-
-    public function getText(): FormattedText
-    {
-        return $this->text;
-    }
-
     public function getMinUserAge(): int
     {
         return $this->minUserAge;
@@ -77,5 +62,20 @@ class TermsOfService extends TdObject
     public function getShowPopup(): bool
     {
         return $this->showPopup;
+    }
+
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'min_user_age' => $this->minUserAge,
+            'show_popup' => $this->showPopup,
+        ];
     }
 }

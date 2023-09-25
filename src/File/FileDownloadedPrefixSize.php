@@ -35,16 +35,16 @@ class FileDownloadedPrefixSize extends TdObject
         );
     }
 
+    public function getSize(): int
+    {
+        return $this->size;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'size' => $this->size,
         ];
-    }
-
-    public function getSize(): int
-    {
-        return $this->size;
     }
 }

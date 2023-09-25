@@ -16,13 +16,6 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentChatAddMembers';
 
     /**
-     * Name of the added member
-     *
-     * @var string
-     */
-    protected string $memberName;
-
-    /**
      * True, if the current user was added to the group
      *
      * @var bool
@@ -35,6 +28,13 @@ class PushMessageContentChatAddMembers extends PushMessageContent
      * @var bool
      */
     protected bool $isReturned;
+
+    /**
+     * Name of the added member
+     *
+     * @var string
+     */
+    protected string $memberName;
 
     public function __construct(string $memberName, bool $isCurrentUser, bool $isReturned)
     {
@@ -54,21 +54,6 @@ class PushMessageContentChatAddMembers extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'member_name' => $this->memberName,
-            'is_current_user' => $this->isCurrentUser,
-            'is_returned' => $this->isReturned,
-        ];
-    }
-
-    public function getMemberName(): string
-    {
-        return $this->memberName;
-    }
-
     public function getIsCurrentUser(): bool
     {
         return $this->isCurrentUser;
@@ -77,5 +62,20 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public function getIsReturned(): bool
     {
         return $this->isReturned;
+    }
+
+    public function getMemberName(): string
+    {
+        return $this->memberName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'member_name' => $this->memberName,
+            'is_current_user' => $this->isCurrentUser,
+            'is_returned' => $this->isReturned,
+        ];
     }
 }

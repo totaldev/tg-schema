@@ -17,18 +17,18 @@ class SearchHashtags extends TdFunction
     public const TYPE_NAME = 'searchHashtags';
 
     /**
-     * Hashtag prefix to search for
-     *
-     * @var string
-     */
-    protected string $prefix;
-
-    /**
      * The maximum number of hashtags to be returned
      *
      * @var int
      */
     protected int $limit;
+
+    /**
+     * Hashtag prefix to search for
+     *
+     * @var string
+     */
+    protected string $prefix;
 
     public function __construct(string $prefix, int $limit)
     {
@@ -44,13 +44,9 @@ class SearchHashtags extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'prefix' => $this->prefix,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
     public function getPrefix(): string
@@ -58,8 +54,12 @@ class SearchHashtags extends TdFunction
         return $this->prefix;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'prefix' => $this->prefix,
+            'limit' => $this->limit,
+        ];
     }
 }

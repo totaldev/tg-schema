@@ -37,16 +37,16 @@ class MessageChatChangePhoto extends MessageContent
         );
     }
 
+    public function getPhoto(): ChatPhoto
+    {
+        return $this->photo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'photo' => $this->photo->typeSerialize(),
         ];
-    }
-
-    public function getPhoto(): ChatPhoto
-    {
-        return $this->photo;
     }
 }

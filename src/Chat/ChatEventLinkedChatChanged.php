@@ -16,18 +16,18 @@ class ChatEventLinkedChatChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventLinkedChatChanged';
 
     /**
-     * Previous supergroup linked chat identifier
-     *
-     * @var int
-     */
-    protected int $oldLinkedChatId;
-
-    /**
      * New supergroup linked chat identifier
      *
      * @var int
      */
     protected int $newLinkedChatId;
+
+    /**
+     * Previous supergroup linked chat identifier
+     *
+     * @var int
+     */
+    protected int $oldLinkedChatId;
 
     public function __construct(int $oldLinkedChatId, int $newLinkedChatId)
     {
@@ -45,13 +45,9 @@ class ChatEventLinkedChatChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewLinkedChatId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_linked_chat_id' => $this->oldLinkedChatId,
-            'new_linked_chat_id' => $this->newLinkedChatId,
-        ];
+        return $this->newLinkedChatId;
     }
 
     public function getOldLinkedChatId(): int
@@ -59,8 +55,12 @@ class ChatEventLinkedChatChanged extends ChatEventAction
         return $this->oldLinkedChatId;
     }
 
-    public function getNewLinkedChatId(): int
+    public function typeSerialize(): array
     {
-        return $this->newLinkedChatId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_linked_chat_id' => $this->oldLinkedChatId,
+            'new_linked_chat_id' => $this->newLinkedChatId,
+        ];
     }
 }

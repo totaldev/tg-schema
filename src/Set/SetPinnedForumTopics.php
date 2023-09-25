@@ -44,15 +44,6 @@ class SetPinnedForumTopics extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_ids' => $this->messageThreadIds,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class SetPinnedForumTopics extends TdFunction
     public function getMessageThreadIds(): array
     {
         return $this->messageThreadIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_ids' => $this->messageThreadIds,
+        ];
     }
 }

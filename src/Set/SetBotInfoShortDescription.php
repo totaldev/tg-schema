@@ -53,16 +53,6 @@ class SetBotInfoShortDescription extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'language_code' => $this->languageCode,
-            'short_description' => $this->shortDescription,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -76,5 +66,15 @@ class SetBotInfoShortDescription extends TdFunction
     public function getShortDescription(): string
     {
         return $this->shortDescription;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'language_code' => $this->languageCode,
+            'short_description' => $this->shortDescription,
+        ];
     }
 }

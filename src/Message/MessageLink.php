@@ -17,18 +17,18 @@ class MessageLink extends TdObject
     public const TYPE_NAME = 'messageLink';
 
     /**
-     * The link
-     *
-     * @var string
-     */
-    protected string $link;
-
-    /**
      * True, if the link will work for non-members of the chat
      *
      * @var bool
      */
     protected bool $isPublic;
+
+    /**
+     * The link
+     *
+     * @var string
+     */
+    protected string $link;
 
     public function __construct(string $link, bool $isPublic)
     {
@@ -44,13 +44,9 @@ class MessageLink extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPublic(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'link' => $this->link,
-            'is_public' => $this->isPublic,
-        ];
+        return $this->isPublic;
     }
 
     public function getLink(): string
@@ -58,8 +54,12 @@ class MessageLink extends TdObject
         return $this->link;
     }
 
-    public function getIsPublic(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPublic;
+        return [
+            '@type' => static::TYPE_NAME,
+            'link' => $this->link,
+            'is_public' => $this->isPublic,
+        ];
     }
 }

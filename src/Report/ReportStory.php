@@ -17,11 +17,11 @@ class ReportStory extends TdFunction
     public const TYPE_NAME = 'reportStory';
 
     /**
-     * The identifier of the sender of the story to report
+     * The reason for reporting the story
      *
-     * @var int
+     * @var ReportReason
      */
-    protected int $storySenderChatId;
+    protected ReportReason $reason;
 
     /**
      * The identifier of the story to report
@@ -31,11 +31,11 @@ class ReportStory extends TdFunction
     protected int $storyId;
 
     /**
-     * The reason for reporting the story
+     * The identifier of the sender of the story to report
      *
-     * @var ReportReason
+     * @var int
      */
-    protected ReportReason $reason;
+    protected int $storySenderChatId;
 
     /**
      * Additional report details; 0-1024 characters
@@ -62,6 +62,26 @@ class ReportStory extends TdFunction
         );
     }
 
+    public function getReason(): ReportReason
+    {
+        return $this->reason;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class ReportStory extends TdFunction
             'reason' => $this->reason->typeSerialize(),
             'text' => $this->text,
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getReason(): ReportReason
-    {
-        return $this->reason;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
     }
 }

@@ -16,18 +16,18 @@ class ChatEventPhotoChanged extends ChatEventAction
     public const TYPE_NAME = 'chatEventPhotoChanged';
 
     /**
-     * Previous chat photo value; may be null
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $oldPhoto;
-
-    /**
      * New chat photo value; may be null
      *
      * @var ChatPhoto|null
      */
     protected ?ChatPhoto $newPhoto;
+
+    /**
+     * Previous chat photo value; may be null
+     *
+     * @var ChatPhoto|null
+     */
+    protected ?ChatPhoto $oldPhoto;
 
     public function __construct(?ChatPhoto $oldPhoto, ?ChatPhoto $newPhoto)
     {
@@ -45,13 +45,9 @@ class ChatEventPhotoChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewPhoto(): ?ChatPhoto
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_photo' => (isset($this->oldPhoto) ? $this->oldPhoto : null),
-            'new_photo' => (isset($this->newPhoto) ? $this->newPhoto : null),
-        ];
+        return $this->newPhoto;
     }
 
     public function getOldPhoto(): ?ChatPhoto
@@ -59,8 +55,12 @@ class ChatEventPhotoChanged extends ChatEventAction
         return $this->oldPhoto;
     }
 
-    public function getNewPhoto(): ?ChatPhoto
+    public function typeSerialize(): array
     {
-        return $this->newPhoto;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_photo' => (isset($this->oldPhoto) ? $this->oldPhoto : null),
+            'new_photo' => (isset($this->newPhoto) ? $this->newPhoto : null),
+        ];
     }
 }

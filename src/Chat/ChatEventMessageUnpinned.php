@@ -37,16 +37,16 @@ class ChatEventMessageUnpinned extends ChatEventAction
         );
     }
 
+    public function getMessage(): Message
+    {
+        return $this->message;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
         ];
-    }
-
-    public function getMessage(): Message
-    {
-        return $this->message;
     }
 }

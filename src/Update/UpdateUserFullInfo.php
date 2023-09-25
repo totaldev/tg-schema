@@ -17,18 +17,18 @@ class UpdateUserFullInfo extends Update
     public const TYPE_NAME = 'updateUserFullInfo';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * New full information about the user
      *
      * @var UserFullInfo
      */
     protected UserFullInfo $userFullInfo;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, UserFullInfo $userFullInfo)
     {
@@ -46,13 +46,9 @@ class UpdateUserFullInfo extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getUserFullInfo(): UserFullInfo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'user_full_info' => $this->userFullInfo->typeSerialize(),
-        ];
+        return $this->userFullInfo;
     }
 
     public function getUserId(): int
@@ -60,8 +56,12 @@ class UpdateUserFullInfo extends Update
         return $this->userId;
     }
 
-    public function getUserFullInfo(): UserFullInfo
+    public function typeSerialize(): array
     {
-        return $this->userFullInfo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'user_full_info' => $this->userFullInfo->typeSerialize(),
+        ];
     }
 }

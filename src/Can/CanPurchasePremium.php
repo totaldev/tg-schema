@@ -36,16 +36,16 @@ class CanPurchasePremium extends TdFunction
         );
     }
 
+    public function getPurpose(): StorePaymentPurpose
+    {
+        return $this->purpose;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'purpose' => $this->purpose->typeSerialize(),
         ];
-    }
-
-    public function getPurpose(): StorePaymentPurpose
-    {
-        return $this->purpose;
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
+ * Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is
+ * authorizationStateWaitEmailAddress
  */
 class SetAuthenticationEmailAddress extends TdFunction
 {
@@ -35,16 +36,16 @@ class SetAuthenticationEmailAddress extends TdFunction
         );
     }
 
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
-    }
-
-    public function getEmailAddress(): string
-    {
-        return $this->emailAddress;
     }
 }

@@ -36,16 +36,16 @@ class KeyboardButtonTypeWebApp extends KeyboardButtonType
         );
     }
 
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'url' => $this->url,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

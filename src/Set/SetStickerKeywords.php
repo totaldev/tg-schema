@@ -18,18 +18,18 @@ class SetStickerKeywords extends TdFunction
     public const TYPE_NAME = 'setStickerKeywords';
 
     /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
      * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
      *
      * @var string[]
      */
     protected array $keywords;
+
+    /**
+     * Sticker
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
 
     public function __construct(InputFile $sticker, array $keywords)
     {
@@ -45,13 +45,9 @@ class SetStickerKeywords extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getKeywords(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'keywords' => $this->keywords,
-        ];
+        return $this->keywords;
     }
 
     public function getSticker(): InputFile
@@ -59,8 +55,12 @@ class SetStickerKeywords extends TdFunction
         return $this->sticker;
     }
 
-    public function getKeywords(): array
+    public function typeSerialize(): array
     {
-        return $this->keywords;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'keywords' => $this->keywords,
+        ];
     }
 }

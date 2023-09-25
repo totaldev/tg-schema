@@ -36,16 +36,16 @@ class EditCustomLanguagePackInfo extends TdFunction
         );
     }
 
+    public function getInfo(): LanguagePackInfo
+    {
+        return $this->info;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'info' => $this->info->typeSerialize(),
         ];
-    }
-
-    public function getInfo(): LanguagePackInfo
-    {
-        return $this->info;
     }
 }

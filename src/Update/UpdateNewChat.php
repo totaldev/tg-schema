@@ -10,7 +10,8 @@ use Totaldev\TgSchema\Chat\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
+ * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will
+ * be reported through separate updates
  */
 class UpdateNewChat extends Update
 {
@@ -37,16 +38,16 @@ class UpdateNewChat extends Update
         );
     }
 
+    public function getChat(): Chat
+    {
+        return $this->chat;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat' => $this->chat->typeSerialize(),
         ];
-    }
-
-    public function getChat(): Chat
-    {
-        return $this->chat;
     }
 }

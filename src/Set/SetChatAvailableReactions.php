@@ -18,18 +18,18 @@ class SetChatAvailableReactions extends TdFunction
     public const TYPE_NAME = 'setChatAvailableReactions';
 
     /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * Reactions available in the chat. All emoji reactions must be active
      *
      * @var ChatAvailableReactions
      */
     protected ChatAvailableReactions $availableReactions;
+
+    /**
+     * Identifier of the chat
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, ChatAvailableReactions $availableReactions)
     {
@@ -45,13 +45,9 @@ class SetChatAvailableReactions extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAvailableReactions(): ChatAvailableReactions
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'available_reactions' => $this->availableReactions->typeSerialize(),
-        ];
+        return $this->availableReactions;
     }
 
     public function getChatId(): int
@@ -59,8 +55,12 @@ class SetChatAvailableReactions extends TdFunction
         return $this->chatId;
     }
 
-    public function getAvailableReactions(): ChatAvailableReactions
+    public function typeSerialize(): array
     {
-        return $this->availableReactions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'available_reactions' => $this->availableReactions->typeSerialize(),
+        ];
     }
 }

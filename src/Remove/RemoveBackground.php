@@ -35,16 +35,16 @@ class RemoveBackground extends TdFunction
         );
     }
 
+    public function getBackgroundId(): int
+    {
+        return $this->backgroundId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'background_id' => $this->backgroundId,
         ];
-    }
-
-    public function getBackgroundId(): int
-    {
-        return $this->backgroundId;
     }
 }

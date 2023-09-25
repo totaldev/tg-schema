@@ -36,16 +36,16 @@ class PushMessageContentRecurringPayment extends PushMessageContent
         );
     }
 
+    public function getAmount(): string
+    {
+        return $this->amount;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'amount' => $this->amount,
         ];
-    }
-
-    public function getAmount(): string
-    {
-        return $this->amount;
     }
 }

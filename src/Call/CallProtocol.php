@@ -17,6 +17,27 @@ class CallProtocol extends TdObject
     public const TYPE_NAME = 'callProtocol';
 
     /**
+     * List of supported tgcalls versions
+     *
+     * @var string[]
+     */
+    protected array $libraryVersions;
+
+    /**
+     * The maximum supported API layer; use 92
+     *
+     * @var int
+     */
+    protected int $maxLayer;
+
+    /**
+     * The minimum supported API layer; use 65
+     *
+     * @var int
+     */
+    protected int $minLayer;
+
+    /**
      * True, if UDP peer-to-peer connections are supported
      *
      * @var bool
@@ -30,34 +51,14 @@ class CallProtocol extends TdObject
      */
     protected bool $udpReflector;
 
-    /**
-     * The minimum supported API layer; use 65
-     *
-     * @var int
-     */
-    protected int $minLayer;
-
-    /**
-     * The maximum supported API layer; use 92
-     *
-     * @var int
-     */
-    protected int $maxLayer;
-
-    /**
-     * List of supported tgcalls versions
-     *
-     * @var string[]
-     */
-    protected array $libraryVersions;
-
     public function __construct(
-        bool $udpP2p,
-        bool $udpReflector,
-        int $minLayer,
-        int $maxLayer,
+        bool  $udpP2p,
+        bool  $udpReflector,
+        int   $minLayer,
+        int   $maxLayer,
         array $libraryVersions,
-    ) {
+    )
+    {
         $this->udpP2p = $udpP2p;
         $this->udpReflector = $udpReflector;
         $this->minLayer = $minLayer;
@@ -76,16 +77,19 @@ class CallProtocol extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getLibraryVersions(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'udp_p2p' => $this->udpP2p,
-            'udp_reflector' => $this->udpReflector,
-            'min_layer' => $this->minLayer,
-            'max_layer' => $this->maxLayer,
-            'library_versions' => $this->libraryVersions,
-        ];
+        return $this->libraryVersions;
+    }
+
+    public function getMaxLayer(): int
+    {
+        return $this->maxLayer;
+    }
+
+    public function getMinLayer(): int
+    {
+        return $this->minLayer;
     }
 
     public function getUdpP2p(): bool
@@ -98,18 +102,15 @@ class CallProtocol extends TdObject
         return $this->udpReflector;
     }
 
-    public function getMinLayer(): int
+    public function typeSerialize(): array
     {
-        return $this->minLayer;
-    }
-
-    public function getMaxLayer(): int
-    {
-        return $this->maxLayer;
-    }
-
-    public function getLibraryVersions(): array
-    {
-        return $this->libraryVersions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'udp_p2p' => $this->udpP2p,
+            'udp_reflector' => $this->udpReflector,
+            'min_layer' => $this->minLayer,
+            'max_layer' => $this->maxLayer,
+            'library_versions' => $this->libraryVersions,
+        ];
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+ * Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of
+ * the topic
  */
 class EditForumTopic extends TdFunction
 {
@@ -22,6 +23,21 @@ class EditForumTopic extends TdFunction
      * @var int
      */
     protected int $chatId;
+
+    /**
+     * Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+     *
+     * @var bool
+     */
+    protected bool $editIconCustomEmoji;
+
+    /**
+     * Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users
+     * can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+     *
+     * @var int
+     */
+    protected int $iconCustomEmojiId;
 
     /**
      * Message thread identifier of the forum topic
@@ -37,27 +53,14 @@ class EditForumTopic extends TdFunction
      */
     protected string $name;
 
-    /**
-     * Pass true to edit the icon of the topic. Icon of the General topic can't be edited
-     *
-     * @var bool
-     */
-    protected bool $editIconCustomEmoji;
-
-    /**
-     * Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
-     *
-     * @var int
-     */
-    protected int $iconCustomEmojiId;
-
     public function __construct(
-        int $chatId,
-        int $messageThreadId,
+        int    $chatId,
+        int    $messageThreadId,
         string $name,
-        bool $editIconCustomEmoji,
-        int $iconCustomEmojiId,
-    ) {
+        bool   $editIconCustomEmoji,
+        int    $iconCustomEmojiId,
+    )
+    {
         $this->chatId = $chatId;
         $this->messageThreadId = $messageThreadId;
         $this->name = $name;
@@ -76,21 +79,19 @@ class EditForumTopic extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'name' => $this->name,
-            'edit_icon_custom_emoji' => $this->editIconCustomEmoji,
-            'icon_custom_emoji_id' => $this->iconCustomEmojiId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getEditIconCustomEmoji(): bool
+    {
+        return $this->editIconCustomEmoji;
+    }
+
+    public function getIconCustomEmojiId(): int
+    {
+        return $this->iconCustomEmojiId;
     }
 
     public function getMessageThreadId(): int
@@ -103,13 +104,15 @@ class EditForumTopic extends TdFunction
         return $this->name;
     }
 
-    public function getEditIconCustomEmoji(): bool
+    public function typeSerialize(): array
     {
-        return $this->editIconCustomEmoji;
-    }
-
-    public function getIconCustomEmojiId(): int
-    {
-        return $this->iconCustomEmojiId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_thread_id' => $this->messageThreadId,
+            'name' => $this->name,
+            'edit_icon_custom_emoji' => $this->editIconCustomEmoji,
+            'icon_custom_emoji_id' => $this->iconCustomEmojiId,
+        ];
     }
 }

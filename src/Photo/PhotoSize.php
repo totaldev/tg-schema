@@ -18,11 +18,11 @@ class PhotoSize extends TdObject
     public const TYPE_NAME = 'photoSize';
 
     /**
-     * Image type (see https://core.telegram.org/constructor/photoSize)
+     * Image height
      *
-     * @var string
+     * @var int
      */
-    protected string $type;
+    protected int $height;
 
     /**
      * Information about the image file
@@ -32,25 +32,25 @@ class PhotoSize extends TdObject
     protected File $photo;
 
     /**
-     * Image width
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Image height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
      * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
      *
      * @var int[]
      */
     protected array $progressiveSizes;
+
+    /**
+     * Image type (see https://core.telegram.org/constructor/photoSize)
+     *
+     * @var string
+     */
+    protected string $type;
+
+    /**
+     * Image width
+     *
+     * @var int
+     */
+    protected int $width;
 
     public function __construct(string $type, File $photo, int $width, int $height, array $progressiveSizes)
     {
@@ -72,6 +72,31 @@ class PhotoSize extends TdObject
         );
     }
 
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getPhoto(): File
+    {
+        return $this->photo;
+    }
+
+    public function getProgressiveSizes(): array
+    {
+        return $this->progressiveSizes;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -82,30 +107,5 @@ class PhotoSize extends TdObject
             'height' => $this->height,
             'progressive_sizes' => $this->progressiveSizes,
         ];
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function getPhoto(): File
-    {
-        return $this->photo;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getProgressiveSizes(): array
-    {
-        return $this->progressiveSizes;
     }
 }

@@ -44,15 +44,6 @@ class BotCommand extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'command' => $this->command,
-            'description' => $this->description,
-        ];
-    }
-
     public function getCommand(): string
     {
         return $this->command;
@@ -61,5 +52,14 @@ class BotCommand extends TdObject
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'command' => $this->command,
+            'description' => $this->description,
+        ];
     }
 }

@@ -17,18 +17,18 @@ class UpdateStorySendSucceeded extends Update
     public const TYPE_NAME = 'updateStorySendSucceeded';
 
     /**
-     * The sent story
-     *
-     * @var Story
-     */
-    protected Story $story;
-
-    /**
      * The previous temporary story identifier
      *
      * @var int
      */
     protected int $oldStoryId;
+
+    /**
+     * The sent story
+     *
+     * @var Story
+     */
+    protected Story $story;
 
     public function __construct(Story $story, int $oldStoryId)
     {
@@ -46,13 +46,9 @@ class UpdateStorySendSucceeded extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getOldStoryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story' => $this->story->typeSerialize(),
-            'old_story_id' => $this->oldStoryId,
-        ];
+        return $this->oldStoryId;
     }
 
     public function getStory(): Story
@@ -60,8 +56,12 @@ class UpdateStorySendSucceeded extends Update
         return $this->story;
     }
 
-    public function getOldStoryId(): int
+    public function typeSerialize(): array
     {
-        return $this->oldStoryId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story' => $this->story->typeSerialize(),
+            'old_story_id' => $this->oldStoryId,
+        ];
     }
 }

@@ -35,16 +35,16 @@ class DatabaseStatistics extends TdObject
         );
     }
 
+    public function getStatistics(): string
+    {
+        return $this->statistics;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'statistics' => $this->statistics,
         ];
-    }
-
-    public function getStatistics(): string
-    {
-        return $this->statistics;
     }
 }

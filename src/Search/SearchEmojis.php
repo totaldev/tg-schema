@@ -17,13 +17,6 @@ class SearchEmojis extends TdFunction
     public const TYPE_NAME = 'searchEmojis';
 
     /**
-     * Text to search for
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
      * Pass true if only emojis, which exactly match the text, needs to be returned
      *
      * @var bool
@@ -36,6 +29,13 @@ class SearchEmojis extends TdFunction
      * @var string[]
      */
     protected array $inputLanguageCodes;
+
+    /**
+     * Text to search for
+     *
+     * @var string
+     */
+    protected string $text;
 
     public function __construct(string $text, bool $exactMatch, array $inputLanguageCodes)
     {
@@ -53,21 +53,6 @@ class SearchEmojis extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'exact_match' => $this->exactMatch,
-            'input_language_codes' => $this->inputLanguageCodes,
-        ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
     public function getExactMatch(): bool
     {
         return $this->exactMatch;
@@ -76,5 +61,20 @@ class SearchEmojis extends TdFunction
     public function getInputLanguageCodes(): array
     {
         return $this->inputLanguageCodes;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'exact_match' => $this->exactMatch,
+            'input_language_codes' => $this->inputLanguageCodes,
+        ];
     }
 }

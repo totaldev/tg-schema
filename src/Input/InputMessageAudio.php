@@ -17,6 +17,13 @@ class InputMessageAudio extends InputMessageContent
     public const TYPE_NAME = 'inputMessageAudio';
 
     /**
+     * Thumbnail of the cover for the album; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
+     */
+    protected InputThumbnail $albumCoverThumbnail;
+
+    /**
      * Audio file to be sent
      *
      * @var InputFile
@@ -24,11 +31,11 @@ class InputMessageAudio extends InputMessageContent
     protected InputFile $audio;
 
     /**
-     * Thumbnail of the cover for the album; pass null to skip thumbnail uploading
+     * Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
      *
-     * @var InputThumbnail
+     * @var FormattedText
      */
-    protected InputThumbnail $albumCoverThumbnail;
+    protected FormattedText $caption;
 
     /**
      * Duration of the audio, in seconds; may be replaced by the server
@@ -38,13 +45,6 @@ class InputMessageAudio extends InputMessageContent
     protected int $duration;
 
     /**
-     * Title of the audio; 0-64 characters; may be replaced by the server
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * Performer of the audio; 0-64 characters, may be replaced by the server
      *
      * @var string
@@ -52,20 +52,21 @@ class InputMessageAudio extends InputMessageContent
     protected string $performer;
 
     /**
-     * Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+     * Title of the audio; 0-64 characters; may be replaced by the server
      *
-     * @var FormattedText
+     * @var string
      */
-    protected FormattedText $caption;
+    protected string $title;
 
     public function __construct(
-        InputFile $audio,
+        InputFile      $audio,
         InputThumbnail $albumCoverThumbnail,
-        int $duration,
-        string $title,
-        string $performer,
-        FormattedText $caption,
-    ) {
+        int            $duration,
+        string         $title,
+        string         $performer,
+        FormattedText  $caption,
+    )
+    {
         parent::__construct();
 
         $this->audio = $audio;
@@ -88,6 +89,36 @@ class InputMessageAudio extends InputMessageContent
         );
     }
 
+    public function getAlbumCoverThumbnail(): InputThumbnail
+    {
+        return $this->albumCoverThumbnail;
+    }
+
+    public function getAudio(): InputFile
+    {
+        return $this->audio;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getPerformer(): string
+    {
+        return $this->performer;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +130,5 @@ class InputMessageAudio extends InputMessageContent
             'performer' => $this->performer,
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getAudio(): InputFile
-    {
-        return $this->audio;
-    }
-
-    public function getAlbumCoverThumbnail(): InputThumbnail
-    {
-        return $this->albumCoverThumbnail;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getPerformer(): string
-    {
-        return $this->performer;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

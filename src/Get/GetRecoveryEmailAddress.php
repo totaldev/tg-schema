@@ -35,16 +35,16 @@ class GetRecoveryEmailAddress extends TdFunction
         );
     }
 
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'password' => $this->password,
         ];
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
     }
 }

@@ -45,15 +45,6 @@ class MessageVideoChatScheduled extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'start_date' => $this->startDate,
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -62,5 +53,14 @@ class MessageVideoChatScheduled extends MessageContent
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'start_date' => $this->startDate,
+        ];
     }
 }

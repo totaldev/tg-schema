@@ -44,15 +44,6 @@ class SetStickerSetTitle extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'title' => $this->title,
-        ];
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -61,5 +52,14 @@ class SetStickerSetTitle extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'title' => $this->title,
+        ];
     }
 }

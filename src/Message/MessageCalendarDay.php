@@ -17,18 +17,18 @@ class MessageCalendarDay extends TdObject
     public const TYPE_NAME = 'messageCalendarDay';
 
     /**
-     * Total number of found messages sent on the day
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * First message sent on the day
      *
      * @var Message
      */
     protected Message $message;
+
+    /**
+     * Total number of found messages sent on the day
+     *
+     * @var int
+     */
+    protected int $totalCount;
 
     public function __construct(int $totalCount, Message $message)
     {
@@ -44,13 +44,9 @@ class MessageCalendarDay extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessage(): Message
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'message' => $this->message->typeSerialize(),
-        ];
+        return $this->message;
     }
 
     public function getTotalCount(): int
@@ -58,8 +54,12 @@ class MessageCalendarDay extends TdObject
         return $this->totalCount;
     }
 
-    public function getMessage(): Message
+    public function typeSerialize(): array
     {
-        return $this->message;
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            'message' => $this->message->typeSerialize(),
+        ];
     }
 }

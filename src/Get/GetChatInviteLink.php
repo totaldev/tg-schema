@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+ * Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to
+ * get other links
  */
 class GetChatInviteLink extends TdFunction
 {
@@ -44,15 +45,6 @@ class GetChatInviteLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'invite_link' => $this->inviteLink,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +53,14 @@ class GetChatInviteLink extends TdFunction
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'invite_link' => $this->inviteLink,
+        ];
     }
 }

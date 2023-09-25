@@ -17,11 +17,11 @@ class GetUserProfilePhotos extends TdFunction
     public const TYPE_NAME = 'getUserProfilePhotos';
 
     /**
-     * User identifier
+     * The maximum number of photos to be returned; up to 100
      *
      * @var int
      */
-    protected int $userId;
+    protected int $limit;
 
     /**
      * The number of photos to skip; must be non-negative
@@ -31,11 +31,11 @@ class GetUserProfilePhotos extends TdFunction
     protected int $offset;
 
     /**
-     * The maximum number of photos to be returned; up to 100
+     * User identifier
      *
      * @var int
      */
-    protected int $limit;
+    protected int $userId;
 
     public function __construct(int $userId, int $offset, int $limit)
     {
@@ -53,6 +53,21 @@ class GetUserProfilePhotos extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GetUserProfilePhotos extends TdFunction
             'offset' => $this->offset,
             'limit' => $this->limit,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 }

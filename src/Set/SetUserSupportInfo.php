@@ -18,18 +18,18 @@ class SetUserSupportInfo extends TdFunction
     public const TYPE_NAME = 'setUserSupportInfo';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * New information message
      *
      * @var FormattedText
      */
     protected FormattedText $message;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, FormattedText $message)
     {
@@ -45,13 +45,9 @@ class SetUserSupportInfo extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMessage(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'message' => $this->message->typeSerialize(),
-        ];
+        return $this->message;
     }
 
     public function getUserId(): int
@@ -59,8 +55,12 @@ class SetUserSupportInfo extends TdFunction
         return $this->userId;
     }
 
-    public function getMessage(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->message;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'message' => $this->message->typeSerialize(),
+        ];
     }
 }

@@ -16,11 +16,11 @@ class ChatEventMemberPromoted extends ChatEventAction
     public const TYPE_NAME = 'chatEventMemberPromoted';
 
     /**
-     * Affected chat member user identifier
+     * New status of the chat member
      *
-     * @var int
+     * @var ChatMemberStatus
      */
-    protected int $userId;
+    protected ChatMemberStatus $newStatus;
 
     /**
      * Previous status of the chat member
@@ -30,11 +30,11 @@ class ChatEventMemberPromoted extends ChatEventAction
     protected ChatMemberStatus $oldStatus;
 
     /**
-     * New status of the chat member
+     * Affected chat member user identifier
      *
-     * @var ChatMemberStatus
+     * @var int
      */
-    protected ChatMemberStatus $newStatus;
+    protected int $userId;
 
     public function __construct(int $userId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
     {
@@ -54,6 +54,21 @@ class ChatEventMemberPromoted extends ChatEventAction
         );
     }
 
+    public function getNewStatus(): ChatMemberStatus
+    {
+        return $this->newStatus;
+    }
+
+    public function getOldStatus(): ChatMemberStatus
+    {
+        return $this->oldStatus;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class ChatEventMemberPromoted extends ChatEventAction
             'old_status' => $this->oldStatus->typeSerialize(),
             'new_status' => $this->newStatus->typeSerialize(),
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getOldStatus(): ChatMemberStatus
-    {
-        return $this->oldStatus;
-    }
-
-    public function getNewStatus(): ChatMemberStatus
-    {
-        return $this->newStatus;
     }
 }

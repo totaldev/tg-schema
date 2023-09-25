@@ -35,16 +35,16 @@ class GetAttachmentMenuBot extends TdFunction
         );
     }
 
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
         ];
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
     }
 }

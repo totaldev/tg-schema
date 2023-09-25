@@ -45,15 +45,6 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_restore' => $this->isRestore,
-            'is_upgrade' => $this->isUpgrade,
-        ];
-    }
-
     public function getIsRestore(): bool
     {
         return $this->isRestore;
@@ -62,5 +53,14 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
     public function getIsUpgrade(): bool
     {
         return $this->isUpgrade;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_restore' => $this->isRestore,
+            'is_upgrade' => $this->isUpgrade,
+        ];
     }
 }

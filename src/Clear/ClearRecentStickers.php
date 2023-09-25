@@ -35,16 +35,16 @@ class ClearRecentStickers extends TdFunction
         );
     }
 
+    public function getIsAttached(): bool
+    {
+        return $this->isAttached;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_attached' => $this->isAttached,
         ];
-    }
-
-    public function getIsAttached(): bool
-    {
-        return $this->isAttached;
     }
 }

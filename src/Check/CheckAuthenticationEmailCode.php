@@ -36,16 +36,16 @@ class CheckAuthenticationEmailCode extends TdFunction
         );
     }
 
+    public function getCode(): EmailAddressAuthentication
+    {
+        return $this->code;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'code' => $this->code->typeSerialize(),
         ];
-    }
-
-    public function getCode(): EmailAddressAuthentication
-    {
-        return $this->code;
     }
 }

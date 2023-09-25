@@ -19,13 +19,6 @@ class FoundFileDownloads extends TdObject
     public const TYPE_NAME = 'foundFileDownloads';
 
     /**
-     * Total number of suitable files, ignoring offset
-     *
-     * @var DownloadedFileCounts
-     */
-    protected DownloadedFileCounts $totalCounts;
-
-    /**
      * The list of files
      *
      * @var FileDownload[]
@@ -38,6 +31,13 @@ class FoundFileDownloads extends TdObject
      * @var string
      */
     protected string $nextOffset;
+
+    /**
+     * Total number of suitable files, ignoring offset
+     *
+     * @var DownloadedFileCounts
+     */
+    protected DownloadedFileCounts $totalCounts;
 
     public function __construct(DownloadedFileCounts $totalCounts, array $files, string $nextOffset)
     {
@@ -55,21 +55,6 @@ class FoundFileDownloads extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_counts' => $this->totalCounts->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->files),
-            'next_offset' => $this->nextOffset,
-        ];
-    }
-
-    public function getTotalCounts(): DownloadedFileCounts
-    {
-        return $this->totalCounts;
-    }
-
     public function getFiles(): array
     {
         return $this->files;
@@ -78,5 +63,20 @@ class FoundFileDownloads extends TdObject
     public function getNextOffset(): string
     {
         return $this->nextOffset;
+    }
+
+    public function getTotalCounts(): DownloadedFileCounts
+    {
+        return $this->totalCounts;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'total_counts' => $this->totalCounts->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->files),
+            'next_offset' => $this->nextOffset,
+        ];
     }
 }

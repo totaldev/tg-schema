@@ -30,13 +30,6 @@ class KeyboardButtonTypeRequestUser extends KeyboardButtonType
     protected bool $restrictUserIsBot;
 
     /**
-     * True, if the shared user must be a bot; otherwise, the shared user must no be a bot. Ignored if restrict_user_is_bot is false
-     *
-     * @var bool
-     */
-    protected bool $userIsBot;
-
-    /**
      * True, if the shared user must or must not be a Telegram Premium user
      *
      * @var bool
@@ -44,19 +37,28 @@ class KeyboardButtonTypeRequestUser extends KeyboardButtonType
     protected bool $restrictUserIsPremium;
 
     /**
-     * True, if the shared user must be a Telegram Premium user; otherwise, the shared user must no be a Telegram Premium user. Ignored if restrict_user_is_premium is false
+     * True, if the shared user must be a bot; otherwise, the shared user must no be a bot. Ignored if restrict_user_is_bot is false
+     *
+     * @var bool
+     */
+    protected bool $userIsBot;
+
+    /**
+     * True, if the shared user must be a Telegram Premium user; otherwise, the shared user must no be a Telegram Premium user. Ignored if
+     * restrict_user_is_premium is false
      *
      * @var bool
      */
     protected bool $userIsPremium;
 
     public function __construct(
-        int $id,
+        int  $id,
         bool $restrictUserIsBot,
         bool $userIsBot,
         bool $restrictUserIsPremium,
         bool $userIsPremium,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -77,18 +79,6 @@ class KeyboardButtonTypeRequestUser extends KeyboardButtonType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'restrict_user_is_bot' => $this->restrictUserIsBot,
-            'user_is_bot' => $this->userIsBot,
-            'restrict_user_is_premium' => $this->restrictUserIsPremium,
-            'user_is_premium' => $this->userIsPremium,
-        ];
-    }
-
     public function getId(): int
     {
         return $this->id;
@@ -99,18 +89,30 @@ class KeyboardButtonTypeRequestUser extends KeyboardButtonType
         return $this->restrictUserIsBot;
     }
 
-    public function getUserIsBot(): bool
-    {
-        return $this->userIsBot;
-    }
-
     public function getRestrictUserIsPremium(): bool
     {
         return $this->restrictUserIsPremium;
     }
 
+    public function getUserIsBot(): bool
+    {
+        return $this->userIsBot;
+    }
+
     public function getUserIsPremium(): bool
     {
         return $this->userIsPremium;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'restrict_user_is_bot' => $this->restrictUserIsBot,
+            'user_is_bot' => $this->userIsBot,
+            'restrict_user_is_premium' => $this->restrictUserIsPremium,
+            'user_is_premium' => $this->userIsPremium,
+        ];
     }
 }

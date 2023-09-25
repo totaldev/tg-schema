@@ -17,18 +17,18 @@ class InlineQueryResultVideo extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultVideo';
 
     /**
+     * Description of the video
+     *
+     * @var string
+     */
+    protected string $description;
+
+    /**
      * Unique identifier of the query result
      *
      * @var string
      */
     protected string $id;
-
-    /**
-     * Video
-     *
-     * @var Video
-     */
-    protected Video $video;
 
     /**
      * Title of the video
@@ -38,11 +38,11 @@ class InlineQueryResultVideo extends InlineQueryResult
     protected string $title;
 
     /**
-     * Description of the video
+     * Video
      *
-     * @var string
+     * @var Video
      */
-    protected string $description;
+    protected Video $video;
 
     public function __construct(string $id, Video $video, string $title, string $description)
     {
@@ -64,6 +64,26 @@ class InlineQueryResultVideo extends InlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getVideo(): Video
+    {
+        return $this->video;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class InlineQueryResultVideo extends InlineQueryResult
             'title' => $this->title,
             'description' => $this->description,
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getVideo(): Video
-    {
-        return $this->video;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
     }
 }

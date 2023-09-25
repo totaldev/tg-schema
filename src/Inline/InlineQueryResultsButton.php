@@ -44,15 +44,6 @@ class InlineQueryResultsButton extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getText(): string
     {
         return $this->text;
@@ -61,5 +52,14 @@ class InlineQueryResultsButton extends TdObject
     public function getType(): InlineQueryResultsButtonType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

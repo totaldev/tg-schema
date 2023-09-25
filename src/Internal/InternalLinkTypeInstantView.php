@@ -16,18 +16,18 @@ class InternalLinkTypeInstantView extends InternalLinkType
     public const TYPE_NAME = 'internalLinkTypeInstantView';
 
     /**
-     * URL to be passed to getWebPageInstantView
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * An URL to open if getWebPageInstantView fails
      *
      * @var string
      */
     protected string $fallbackUrl;
+
+    /**
+     * URL to be passed to getWebPageInstantView
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, string $fallbackUrl)
     {
@@ -45,13 +45,9 @@ class InternalLinkTypeInstantView extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
+    public function getFallbackUrl(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'fallback_url' => $this->fallbackUrl,
-        ];
+        return $this->fallbackUrl;
     }
 
     public function getUrl(): string
@@ -59,8 +55,12 @@ class InternalLinkTypeInstantView extends InternalLinkType
         return $this->url;
     }
 
-    public function getFallbackUrl(): string
+    public function typeSerialize(): array
     {
-        return $this->fallbackUrl;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'fallback_url' => $this->fallbackUrl,
+        ];
     }
 }

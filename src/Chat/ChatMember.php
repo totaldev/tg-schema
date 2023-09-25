@@ -18,13 +18,6 @@ class ChatMember extends TdObject
     public const TYPE_NAME = 'chatMember';
 
     /**
-     * Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    /**
      * Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
      *
      * @var int
@@ -39,6 +32,14 @@ class ChatMember extends TdObject
     protected int $joinedChatDate;
 
     /**
+     * Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned
+     * members and these chats must be supergroups or channels
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $memberId;
+
+    /**
      * Status of the member in the chat
      *
      * @var ChatMemberStatus
@@ -46,11 +47,12 @@ class ChatMember extends TdObject
     protected ChatMemberStatus $status;
 
     public function __construct(
-        MessageSender $memberId,
-        int $inviterUserId,
-        int $joinedChatDate,
+        MessageSender    $memberId,
+        int              $inviterUserId,
+        int              $joinedChatDate,
         ChatMemberStatus $status,
-    ) {
+    )
+    {
         $this->memberId = $memberId;
         $this->inviterUserId = $inviterUserId;
         $this->joinedChatDate = $joinedChatDate;
@@ -67,22 +69,6 @@ class ChatMember extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'member_id' => $this->memberId->typeSerialize(),
-            'inviter_user_id' => $this->inviterUserId,
-            'joined_chat_date' => $this->joinedChatDate,
-            'status' => $this->status->typeSerialize(),
-        ];
-    }
-
-    public function getMemberId(): MessageSender
-    {
-        return $this->memberId;
-    }
-
     public function getInviterUserId(): int
     {
         return $this->inviterUserId;
@@ -93,8 +79,24 @@ class ChatMember extends TdObject
         return $this->joinedChatDate;
     }
 
+    public function getMemberId(): MessageSender
+    {
+        return $this->memberId;
+    }
+
     public function getStatus(): ChatMemberStatus
     {
         return $this->status;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'member_id' => $this->memberId->typeSerialize(),
+            'inviter_user_id' => $this->inviterUserId,
+            'joined_chat_date' => $this->joinedChatDate,
+            'status' => $this->status->typeSerialize(),
+        ];
     }
 }

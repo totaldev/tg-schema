@@ -17,18 +17,18 @@ class RemoveNotificationGroup extends TdFunction
     public const TYPE_NAME = 'removeNotificationGroup';
 
     /**
-     * Notification group identifier
-     *
-     * @var int
-     */
-    protected int $notificationGroupId;
-
-    /**
      * The maximum identifier of removed notifications
      *
      * @var int
      */
     protected int $maxNotificationId;
+
+    /**
+     * Notification group identifier
+     *
+     * @var int
+     */
+    protected int $notificationGroupId;
 
     public function __construct(int $notificationGroupId, int $maxNotificationId)
     {
@@ -44,13 +44,9 @@ class RemoveNotificationGroup extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getMaxNotificationId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
-            'max_notification_id' => $this->maxNotificationId,
-        ];
+        return $this->maxNotificationId;
     }
 
     public function getNotificationGroupId(): int
@@ -58,8 +54,12 @@ class RemoveNotificationGroup extends TdFunction
         return $this->notificationGroupId;
     }
 
-    public function getMaxNotificationId(): int
+    public function typeSerialize(): array
     {
-        return $this->maxNotificationId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'max_notification_id' => $this->maxNotificationId,
+        ];
     }
 }

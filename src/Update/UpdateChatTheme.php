@@ -45,15 +45,6 @@ class UpdateChatTheme extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'theme_name' => $this->themeName,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +53,14 @@ class UpdateChatTheme extends Update
     public function getThemeName(): string
     {
         return $this->themeName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'theme_name' => $this->themeName,
+        ];
     }
 }

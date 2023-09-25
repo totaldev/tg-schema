@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+ * Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires
+ * administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
  */
 class GetChatEventLog extends TdFunction
 {
@@ -25,11 +26,11 @@ class GetChatEventLog extends TdFunction
     protected int $chatId;
 
     /**
-     * Search query by which to filter events
+     * The types of events to return; pass null to get chat events of all types
      *
-     * @var string
+     * @var ChatEventLogFilters
      */
-    protected string $query;
+    protected ChatEventLogFilters $filters;
 
     /**
      * Identifier of an event from which to return results. Use 0 to get results from the latest events
@@ -46,11 +47,11 @@ class GetChatEventLog extends TdFunction
     protected int $limit;
 
     /**
-     * The types of events to return; pass null to get chat events of all types
+     * Search query by which to filter events
      *
-     * @var ChatEventLogFilters
+     * @var string
      */
-    protected ChatEventLogFilters $filters;
+    protected string $query;
 
     /**
      * User identifiers by which to filter events. By default, events relating to all users will be returned
@@ -60,13 +61,14 @@ class GetChatEventLog extends TdFunction
     protected array $userIds;
 
     public function __construct(
-        int $chatId,
-        string $query,
-        int $fromEventId,
-        int $limit,
+        int                 $chatId,
+        string              $query,
+        int                 $fromEventId,
+        int                 $limit,
         ChatEventLogFilters $filters,
-        array $userIds,
-    ) {
+        array               $userIds,
+    )
+    {
         $this->chatId = $chatId;
         $this->query = $query;
         $this->fromEventId = $fromEventId;
@@ -87,27 +89,14 @@ class GetChatEventLog extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'query' => $this->query,
-            'from_event_id' => $this->fromEventId,
-            'limit' => $this->limit,
-            'filters' => $this->filters->typeSerialize(),
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
     }
 
-    public function getQuery(): string
+    public function getFilters(): ChatEventLogFilters
     {
-        return $this->query;
+        return $this->filters;
     }
 
     public function getFromEventId(): int
@@ -120,13 +109,26 @@ class GetChatEventLog extends TdFunction
         return $this->limit;
     }
 
-    public function getFilters(): ChatEventLogFilters
+    public function getQuery(): string
     {
-        return $this->filters;
+        return $this->query;
     }
 
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'query' => $this->query,
+            'from_event_id' => $this->fromEventId,
+            'limit' => $this->limit,
+            'filters' => $this->filters->typeSerialize(),
+            'user_ids' => $this->userIds,
+        ];
     }
 }

@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
+ * Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not
+ * be deleted
  */
 class DeleteChatMessagesByDate extends TdFunction
 {
@@ -24,18 +25,18 @@ class DeleteChatMessagesByDate extends TdFunction
     protected int $chatId;
 
     /**
-     * The minimum date of the messages to delete
-     *
-     * @var int
-     */
-    protected int $minDate;
-
-    /**
      * The maximum date of the messages to delete
      *
      * @var int
      */
     protected int $maxDate;
+
+    /**
+     * The minimum date of the messages to delete
+     *
+     * @var int
+     */
+    protected int $minDate;
 
     /**
      * Pass true to delete chat messages for all users; private chats only
@@ -62,6 +63,26 @@ class DeleteChatMessagesByDate extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getMaxDate(): int
+    {
+        return $this->maxDate;
+    }
+
+    public function getMinDate(): int
+    {
+        return $this->minDate;
+    }
+
+    public function getRevoke(): bool
+    {
+        return $this->revoke;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +92,5 @@ class DeleteChatMessagesByDate extends TdFunction
             'max_date' => $this->maxDate,
             'revoke' => $this->revoke,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMinDate(): int
-    {
-        return $this->minDate;
-    }
-
-    public function getMaxDate(): int
-    {
-        return $this->maxDate;
-    }
-
-    public function getRevoke(): bool
-    {
-        return $this->revoke;
     }
 }

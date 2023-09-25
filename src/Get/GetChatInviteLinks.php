@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+ * Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own
+ * links and owner privileges to get other links
  */
 class GetChatInviteLinks extends TdFunction
 {
@@ -38,6 +39,13 @@ class GetChatInviteLinks extends TdFunction
     protected bool $isRevoked;
 
     /**
+     * The maximum number of invite links to return; up to 100
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
      * Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
      *
      * @var int
@@ -51,21 +59,15 @@ class GetChatInviteLinks extends TdFunction
      */
     protected string $offsetInviteLink;
 
-    /**
-     * The maximum number of invite links to return; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
     public function __construct(
-        int $chatId,
-        int $creatorUserId,
-        bool $isRevoked,
-        int $offsetDate,
+        int    $chatId,
+        int    $creatorUserId,
+        bool   $isRevoked,
+        int    $offsetDate,
         string $offsetInviteLink,
-        int $limit,
-    ) {
+        int    $limit,
+    )
+    {
         $this->chatId = $chatId;
         $this->creatorUserId = $creatorUserId;
         $this->isRevoked = $isRevoked;
@@ -86,19 +88,6 @@ class GetChatInviteLinks extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'creator_user_id' => $this->creatorUserId,
-            'is_revoked' => $this->isRevoked,
-            'offset_date' => $this->offsetDate,
-            'offset_invite_link' => $this->offsetInviteLink,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -114,6 +103,11 @@ class GetChatInviteLinks extends TdFunction
         return $this->isRevoked;
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
     public function getOffsetDate(): int
     {
         return $this->offsetDate;
@@ -124,8 +118,16 @@ class GetChatInviteLinks extends TdFunction
         return $this->offsetInviteLink;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'creator_user_id' => $this->creatorUserId,
+            'is_revoked' => $this->isRevoked,
+            'offset_date' => $this->offsetDate,
+            'offset_invite_link' => $this->offsetInviteLink,
+            'limit' => $this->limit,
+        ];
     }
 }

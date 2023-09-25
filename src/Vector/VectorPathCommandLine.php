@@ -37,16 +37,16 @@ class VectorPathCommandLine extends VectorPathCommand
         );
     }
 
+    public function getEndPoint(): Point
+    {
+        return $this->endPoint;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'end_point' => $this->endPoint->typeSerialize(),
         ];
-    }
-
-    public function getEndPoint(): Point
-    {
-        return $this->endPoint;
     }
 }

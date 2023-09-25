@@ -16,18 +16,18 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
     public const TYPE_NAME = 'authenticationCodeTypeFirebaseAndroid';
 
     /**
-     * Nonce to pass to the SafetyNet Attestation API
-     *
-     * @var string
-     */
-    protected string $nonce;
-
-    /**
      * Length of the code
      *
      * @var int
      */
     protected int $length;
+
+    /**
+     * Nonce to pass to the SafetyNet Attestation API
+     *
+     * @var string
+     */
+    protected string $nonce;
 
     public function __construct(string $nonce, int $length)
     {
@@ -45,13 +45,9 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
         );
     }
 
-    public function typeSerialize(): array
+    public function getLength(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'nonce' => $this->nonce,
-            'length' => $this->length,
-        ];
+        return $this->length;
     }
 
     public function getNonce(): string
@@ -59,8 +55,12 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
         return $this->nonce;
     }
 
-    public function getLength(): int
+    public function typeSerialize(): array
     {
-        return $this->length;
+        return [
+            '@type' => static::TYPE_NAME,
+            'nonce' => $this->nonce,
+            'length' => $this->length,
+        ];
     }
 }

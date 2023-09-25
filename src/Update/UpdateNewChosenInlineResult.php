@@ -17,18 +17,11 @@ class UpdateNewChosenInlineResult extends Update
     public const TYPE_NAME = 'updateNewChosenInlineResult';
 
     /**
-     * Identifier of the user who sent the query
+     * Identifier of the sent inline message, if known
      *
-     * @var int
+     * @var string
      */
-    protected int $senderUserId;
-
-    /**
-     * User location; may be null
-     *
-     * @var Location|null
-     */
-    protected ?Location $userLocation;
+    protected string $inlineMessageId;
 
     /**
      * Text of the query
@@ -45,19 +38,27 @@ class UpdateNewChosenInlineResult extends Update
     protected string $resultId;
 
     /**
-     * Identifier of the sent inline message, if known
+     * Identifier of the user who sent the query
      *
-     * @var string
+     * @var int
      */
-    protected string $inlineMessageId;
+    protected int $senderUserId;
+
+    /**
+     * User location; may be null
+     *
+     * @var Location|null
+     */
+    protected ?Location $userLocation;
 
     public function __construct(
-        int $senderUserId,
+        int       $senderUserId,
         ?Location $userLocation,
-        string $query,
-        string $resultId,
-        string $inlineMessageId,
-    ) {
+        string    $query,
+        string    $resultId,
+        string    $inlineMessageId,
+    )
+    {
         parent::__construct();
 
         $this->senderUserId = $senderUserId;
@@ -78,26 +79,9 @@ class UpdateNewChosenInlineResult extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getInlineMessageId(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sender_user_id' => $this->senderUserId,
-            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
-            'query' => $this->query,
-            'result_id' => $this->resultId,
-            'inline_message_id' => $this->inlineMessageId,
-        ];
-    }
-
-    public function getSenderUserId(): int
-    {
-        return $this->senderUserId;
-    }
-
-    public function getUserLocation(): ?Location
-    {
-        return $this->userLocation;
+        return $this->inlineMessageId;
     }
 
     public function getQuery(): string
@@ -110,8 +94,25 @@ class UpdateNewChosenInlineResult extends Update
         return $this->resultId;
     }
 
-    public function getInlineMessageId(): string
+    public function getSenderUserId(): int
     {
-        return $this->inlineMessageId;
+        return $this->senderUserId;
+    }
+
+    public function getUserLocation(): ?Location
+    {
+        return $this->userLocation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender_user_id' => $this->senderUserId,
+            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
+            'query' => $this->query,
+            'result_id' => $this->resultId,
+            'inline_message_id' => $this->inlineMessageId,
+        ];
     }
 }

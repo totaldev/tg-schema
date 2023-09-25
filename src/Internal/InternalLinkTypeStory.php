@@ -9,18 +9,12 @@ namespace Totaldev\TgSchema\Internal;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+ * The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given
+ * story identifier
  */
 class InternalLinkTypeStory extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeStory';
-
-    /**
-     * Username of the sender of the story
-     *
-     * @var string
-     */
-    protected string $storySenderUsername;
 
     /**
      * Story identifier
@@ -28,6 +22,13 @@ class InternalLinkTypeStory extends InternalLinkType
      * @var int
      */
     protected int $storyId;
+
+    /**
+     * Username of the sender of the story
+     *
+     * @var string
+     */
+    protected string $storySenderUsername;
 
     public function __construct(string $storySenderUsername, int $storyId)
     {
@@ -45,13 +46,9 @@ class InternalLinkTypeStory extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
+    public function getStoryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_username' => $this->storySenderUsername,
-            'story_id' => $this->storyId,
-        ];
+        return $this->storyId;
     }
 
     public function getStorySenderUsername(): string
@@ -59,8 +56,12 @@ class InternalLinkTypeStory extends InternalLinkType
         return $this->storySenderUsername;
     }
 
-    public function getStoryId(): int
+    public function typeSerialize(): array
     {
-        return $this->storyId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_sender_username' => $this->storySenderUsername,
+            'story_id' => $this->storyId,
+        ];
     }
 }

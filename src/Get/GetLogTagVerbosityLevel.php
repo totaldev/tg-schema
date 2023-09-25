@@ -35,16 +35,16 @@ class GetLogTagVerbosityLevel extends TdFunction
         );
     }
 
+    public function getTag(): string
+    {
+        return $this->tag;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'tag' => $this->tag,
         ];
-    }
-
-    public function getTag(): string
-    {
-        return $this->tag;
     }
 }

@@ -19,39 +19,11 @@ class PageBlockEmbedded extends PageBlock
     public const TYPE_NAME = 'pageBlockEmbedded';
 
     /**
-     * Web page URL, if available
+     * True, if scrolling needs to be allowed
      *
-     * @var string
+     * @var bool
      */
-    protected string $url;
-
-    /**
-     * HTML-markup of the embedded page
-     *
-     * @var string
-     */
-    protected string $html;
-
-    /**
-     * Poster photo, if available; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $posterPhoto;
-
-    /**
-     * Block width; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Block height; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $height;
+    protected bool $allowScrolling;
 
     /**
      * Block caption
@@ -61,6 +33,20 @@ class PageBlockEmbedded extends PageBlock
     protected PageBlockCaption $caption;
 
     /**
+     * Block height; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * HTML-markup of the embedded page
+     *
+     * @var string
+     */
+    protected string $html;
+
+    /**
      * True, if the block must be full width
      *
      * @var bool
@@ -68,22 +54,37 @@ class PageBlockEmbedded extends PageBlock
     protected bool $isFullWidth;
 
     /**
-     * True, if scrolling needs to be allowed
+     * Poster photo, if available; may be null
      *
-     * @var bool
+     * @var Photo|null
      */
-    protected bool $allowScrolling;
+    protected ?Photo $posterPhoto;
+
+    /**
+     * Web page URL, if available
+     *
+     * @var string
+     */
+    protected string $url;
+
+    /**
+     * Block width; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $width;
 
     public function __construct(
-        string $url,
-        string $html,
-        ?Photo $posterPhoto,
-        int $width,
-        int $height,
+        string           $url,
+        string           $html,
+        ?Photo           $posterPhoto,
+        int              $width,
+        int              $height,
         PageBlockCaption $caption,
-        bool $isFullWidth,
-        bool $allowScrolling,
-    ) {
+        bool             $isFullWidth,
+        bool             $allowScrolling,
+    )
+    {
         parent::__construct();
 
         $this->url = $url;
@@ -110,6 +111,46 @@ class PageBlockEmbedded extends PageBlock
         );
     }
 
+    public function getAllowScrolling(): bool
+    {
+        return $this->allowScrolling;
+    }
+
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getHtml(): string
+    {
+        return $this->html;
+    }
+
+    public function getIsFullWidth(): bool
+    {
+        return $this->isFullWidth;
+    }
+
+    public function getPosterPhoto(): ?Photo
+    {
+        return $this->posterPhoto;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -123,45 +164,5 @@ class PageBlockEmbedded extends PageBlock
             'is_full_width' => $this->isFullWidth,
             'allow_scrolling' => $this->allowScrolling,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function getHtml(): string
-    {
-        return $this->html;
-    }
-
-    public function getPosterPhoto(): ?Photo
-    {
-        return $this->posterPhoto;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getCaption(): PageBlockCaption
-    {
-        return $this->caption;
-    }
-
-    public function getIsFullWidth(): bool
-    {
-        return $this->isFullWidth;
-    }
-
-    public function getAllowScrolling(): bool
-    {
-        return $this->allowScrolling;
     }
 }

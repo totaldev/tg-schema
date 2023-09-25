@@ -24,18 +24,18 @@ class RateSpeechRecognition extends TdFunction
     protected int $chatId;
 
     /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Pass true if the speech recognition is good
      *
      * @var bool
      */
     protected bool $isGood;
+
+    /**
+     * Identifier of the message
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     public function __construct(int $chatId, int $messageId, bool $isGood)
     {
@@ -53,6 +53,21 @@ class RateSpeechRecognition extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsGood(): bool
+    {
+        return $this->isGood;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class RateSpeechRecognition extends TdFunction
             'message_id' => $this->messageId,
             'is_good' => $this->isGood,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getIsGood(): bool
-    {
-        return $this->isGood;
     }
 }

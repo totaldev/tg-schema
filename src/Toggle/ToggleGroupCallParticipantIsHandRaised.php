@@ -25,18 +25,18 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
     protected int $groupCallId;
 
     /**
-     * Participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
      * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
      *
      * @var bool
      */
     protected bool $isHandRaised;
+
+    /**
+     * Participant identifier
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $participantId;
 
     public function __construct(int $groupCallId, MessageSender $participantId, bool $isHandRaised)
     {
@@ -54,6 +54,21 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
         );
     }
 
+    public function getGroupCallId(): int
+    {
+        return $this->groupCallId;
+    }
+
+    public function getIsHandRaised(): bool
+    {
+        return $this->isHandRaised;
+    }
+
+    public function getParticipantId(): MessageSender
+    {
+        return $this->participantId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
             'participant_id' => $this->participantId->typeSerialize(),
             'is_hand_raised' => $this->isHandRaised,
         ];
-    }
-
-    public function getGroupCallId(): int
-    {
-        return $this->groupCallId;
-    }
-
-    public function getParticipantId(): MessageSender
-    {
-        return $this->participantId;
-    }
-
-    public function getIsHandRaised(): bool
-    {
-        return $this->isHandRaised;
     }
 }

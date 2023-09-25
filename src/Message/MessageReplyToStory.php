@@ -16,18 +16,18 @@ class MessageReplyToStory extends MessageReplyTo
     public const TYPE_NAME = 'messageReplyToStory';
 
     /**
-     * The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
      * The identifier of the replied story
      *
      * @var int
      */
     protected int $storyId;
+
+    /**
+     * The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId)
     {
@@ -45,13 +45,9 @@ class MessageReplyToStory extends MessageReplyTo
         );
     }
 
-    public function typeSerialize(): array
+    public function getStoryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-        ];
+        return $this->storyId;
     }
 
     public function getStorySenderChatId(): int
@@ -59,8 +55,12 @@ class MessageReplyToStory extends MessageReplyTo
         return $this->storySenderChatId;
     }
 
-    public function getStoryId(): int
+    public function typeSerialize(): array
     {
-        return $this->storyId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_id' => $this->storyId,
+        ];
     }
 }

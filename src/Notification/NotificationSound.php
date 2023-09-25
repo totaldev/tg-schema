@@ -18,18 +18,11 @@ class NotificationSound extends TdObject
     public const TYPE_NAME = 'notificationSound';
 
     /**
-     * Unique identifier of the notification sound
+     * Arbitrary data, defined while the sound was uploaded
      *
-     * @var int
+     * @var string
      */
-    protected int $id;
-
-    /**
-     * Duration of the sound, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
+    protected string $data;
 
     /**
      * Point in time (Unix timestamp) when the sound was created
@@ -39,18 +32,18 @@ class NotificationSound extends TdObject
     protected int $date;
 
     /**
-     * Title of the notification sound
+     * Duration of the sound, in seconds
      *
-     * @var string
+     * @var int
      */
-    protected string $title;
+    protected int $duration;
 
     /**
-     * Arbitrary data, defined while the sound was uploaded
+     * Unique identifier of the notification sound
      *
-     * @var string
+     * @var int
      */
-    protected string $data;
+    protected int $id;
 
     /**
      * File containing the sound
@@ -58,6 +51,13 @@ class NotificationSound extends TdObject
      * @var File
      */
     protected File $sound;
+
+    /**
+     * Title of the notification sound
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(int $id, int $duration, int $date, string $title, string $data, File $sound)
     {
@@ -81,6 +81,36 @@ class NotificationSound extends TdObject
         );
     }
 
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getSound(): File
+    {
+        return $this->sound;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -92,35 +122,5 @@ class NotificationSound extends TdObject
             'data' => $this->data,
             'sound' => $this->sound->typeSerialize(),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
-    public function getSound(): File
-    {
-        return $this->sound;
     }
 }

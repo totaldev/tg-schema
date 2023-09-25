@@ -44,15 +44,6 @@ class AnswerCustomQuery extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'custom_query_id' => $this->customQueryId,
-            'data' => $this->data,
-        ];
-    }
-
     public function getCustomQueryId(): int
     {
         return $this->customQueryId;
@@ -61,5 +52,14 @@ class AnswerCustomQuery extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'custom_query_id' => $this->customQueryId,
+            'data' => $this->data,
+        ];
     }
 }

@@ -18,6 +18,13 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     public const TYPE_NAME = 'inputInlineQueryResultContact';
 
     /**
+     * User contact
+     *
+     * @var Contact
+     */
+    protected Contact $contact;
+
+    /**
      * Unique identifier of the query result
      *
      * @var string
@@ -25,11 +32,26 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     protected string $id;
 
     /**
-     * User contact
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation,
+     * inputMessageVenue or inputMessageContact
      *
-     * @var Contact
+     * @var InputMessageContent
      */
-    protected Contact $contact;
+    protected InputMessageContent $inputMessageContent;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * Thumbnail height, if known
+     *
+     * @var int
+     */
+    protected int $thumbnailHeight;
 
     /**
      * URL of the result thumbnail, if it exists
@@ -45,36 +67,16 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
      */
     protected int $thumbnailWidth;
 
-    /**
-     * Thumbnail height, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
     public function __construct(
-        string $id,
-        Contact $contact,
-        string $thumbnailUrl,
-        int $thumbnailWidth,
-        int $thumbnailHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        Contact             $contact,
+        string              $thumbnailUrl,
+        int                 $thumbnailWidth,
+        int                 $thumbnailHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -99,18 +101,9 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
+    public function getContact(): Contact
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'contact' => $this->contact->typeSerialize(),
-            'thumbnail_url' => $this->thumbnailUrl,
-            'thumbnail_width' => $this->thumbnailWidth,
-            'thumbnail_height' => $this->thumbnailHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
+        return $this->contact;
     }
 
     public function getId(): string
@@ -118,9 +111,19 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
         return $this->id;
     }
 
-    public function getContact(): Contact
+    public function getInputMessageContent(): InputMessageContent
     {
-        return $this->contact;
+        return $this->inputMessageContent;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailHeight(): int
+    {
+        return $this->thumbnailHeight;
     }
 
     public function getThumbnailUrl(): string
@@ -133,18 +136,17 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
         return $this->thumbnailWidth;
     }
 
-    public function getThumbnailHeight(): int
+    public function typeSerialize(): array
     {
-        return $this->thumbnailHeight;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'contact' => $this->contact->typeSerialize(),
+            'thumbnail_url' => $this->thumbnailUrl,
+            'thumbnail_width' => $this->thumbnailWidth,
+            'thumbnail_height' => $this->thumbnailHeight,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 }

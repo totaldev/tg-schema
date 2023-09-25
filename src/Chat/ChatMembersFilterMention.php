@@ -36,16 +36,16 @@ class ChatMembersFilterMention extends ChatMembersFilter
         );
     }
 
+    public function getMessageThreadId(): int
+    {
+        return $this->messageThreadId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'message_thread_id' => $this->messageThreadId,
         ];
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 }

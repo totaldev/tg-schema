@@ -19,6 +19,13 @@ class EditMessageCaption extends TdFunction
     public const TYPE_NAME = 'editMessageCaption';
 
     /**
+     * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $caption;
+
+    /**
      * The chat the message belongs to
      *
      * @var int
@@ -39,13 +46,6 @@ class EditMessageCaption extends TdFunction
      */
     protected ReplyMarkup $replyMarkup;
 
-    /**
-     * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
     public function __construct(int $chatId, int $messageId, ReplyMarkup $replyMarkup, FormattedText $caption)
     {
         $this->chatId = $chatId;
@@ -64,15 +64,9 @@ class EditMessageCaption extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getChatId(): int
@@ -90,8 +84,14 @@ class EditMessageCaption extends TdFunction
         return $this->replyMarkup;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

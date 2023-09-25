@@ -44,15 +44,6 @@ class Point extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'x' => $this->x,
-            'y' => $this->y,
-        ];
-    }
-
     public function getX(): float
     {
         return $this->x;
@@ -61,5 +52,14 @@ class Point extends TdObject
     public function getY(): float
     {
         return $this->y;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'x' => $this->x,
+            'y' => $this->y,
+        ];
     }
 }

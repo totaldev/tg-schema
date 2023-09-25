@@ -36,16 +36,16 @@ class PremiumSourceLink extends PremiumSource
         );
     }
 
+    public function getReferrer(): string
+    {
+        return $this->referrer;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'referrer' => $this->referrer,
         ];
-    }
-
-    public function getReferrer(): string
-    {
-        return $this->referrer;
     }
 }

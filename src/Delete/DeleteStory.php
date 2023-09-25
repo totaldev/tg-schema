@@ -17,18 +17,18 @@ class DeleteStory extends TdFunction
     public const TYPE_NAME = 'deleteStory';
 
     /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
      * Identifier of the story to delete
      *
      * @var int
      */
     protected int $storyId;
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId)
     {
@@ -44,13 +44,9 @@ class DeleteStory extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStoryId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-        ];
+        return $this->storyId;
     }
 
     public function getStorySenderChatId(): int
@@ -58,8 +54,12 @@ class DeleteStory extends TdFunction
         return $this->storySenderChatId;
     }
 
-    public function getStoryId(): int
+    public function typeSerialize(): array
     {
-        return $this->storyId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_id' => $this->storyId,
+        ];
     }
 }

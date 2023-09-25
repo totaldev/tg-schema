@@ -24,7 +24,8 @@ class PollTypeQuiz extends PollType
     protected int $correctOptionId;
 
     /**
-     * Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
+     * Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet
+     * unanswered poll
      *
      * @var FormattedText
      */
@@ -46,15 +47,6 @@ class PollTypeQuiz extends PollType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'correct_option_id' => $this->correctOptionId,
-            'explanation' => $this->explanation->typeSerialize(),
-        ];
-    }
-
     public function getCorrectOptionId(): int
     {
         return $this->correctOptionId;
@@ -63,5 +55,14 @@ class PollTypeQuiz extends PollType
     public function getExplanation(): FormattedText
     {
         return $this->explanation;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'correct_option_id' => $this->correctOptionId,
+            'explanation' => $this->explanation->typeSerialize(),
+        ];
     }
 }

@@ -35,16 +35,16 @@ class TestVectorIntObject extends TdObject
         );
     }
 
+    public function getValue(): array
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->value),
         ];
-    }
-
-    public function getValue(): array
-    {
-        return $this->value;
     }
 }

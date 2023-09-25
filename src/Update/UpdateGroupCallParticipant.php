@@ -10,7 +10,8 @@ use Totaldev\TgSchema\Group\GroupCallParticipant;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
+ * Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call
+ * is joined or being joined
  */
 class UpdateGroupCallParticipant extends Update
 {
@@ -46,15 +47,6 @@ class UpdateGroupCallParticipant extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'participant' => $this->participant->typeSerialize(),
-        ];
-    }
-
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
@@ -63,5 +55,14 @@ class UpdateGroupCallParticipant extends Update
     public function getParticipant(): GroupCallParticipant
     {
         return $this->participant;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'group_call_id' => $this->groupCallId,
+            'participant' => $this->participant->typeSerialize(),
+        ];
     }
 }

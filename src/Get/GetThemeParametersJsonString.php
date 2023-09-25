@@ -36,16 +36,16 @@ class GetThemeParametersJsonString extends TdFunction
         );
     }
 
+    public function getTheme(): ThemeParameters
+    {
+        return $this->theme;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'theme' => $this->theme->typeSerialize(),
         ];
-    }
-
-    public function getTheme(): ThemeParameters
-    {
-        return $this->theme;
     }
 }

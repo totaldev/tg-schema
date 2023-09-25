@@ -37,16 +37,16 @@ class UpdateAttachmentMenuBots extends Update
         );
     }
 
+    public function getBots(): array
+    {
+        return $this->bots;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->bots),
         ];
-    }
-
-    public function getBots(): array
-    {
-        return $this->bots;
     }
 }

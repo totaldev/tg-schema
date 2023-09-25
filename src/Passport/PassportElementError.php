@@ -17,13 +17,6 @@ class PassportElementError extends TdObject
     public const TYPE_NAME = 'passportElementError';
 
     /**
-     * Type of the Telegram Passport element which has the error
-     *
-     * @var PassportElementType
-     */
-    protected PassportElementType $type;
-
-    /**
      * Error message
      *
      * @var string
@@ -36,6 +29,13 @@ class PassportElementError extends TdObject
      * @var PassportElementErrorSource
      */
     protected PassportElementErrorSource $source;
+
+    /**
+     * Type of the Telegram Passport element which has the error
+     *
+     * @var PassportElementType
+     */
+    protected PassportElementType $type;
 
     public function __construct(PassportElementType $type, string $message, PassportElementErrorSource $source)
     {
@@ -53,21 +53,6 @@ class PassportElementError extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'message' => $this->message,
-            'source' => $this->source->typeSerialize(),
-        ];
-    }
-
-    public function getType(): PassportElementType
-    {
-        return $this->type;
-    }
-
     public function getMessage(): string
     {
         return $this->message;
@@ -76,5 +61,20 @@ class PassportElementError extends TdObject
     public function getSource(): PassportElementErrorSource
     {
         return $this->source;
+    }
+
+    public function getType(): PassportElementType
+    {
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'message' => $this->message,
+            'source' => $this->source->typeSerialize(),
+        ];
     }
 }

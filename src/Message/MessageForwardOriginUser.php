@@ -36,16 +36,16 @@ class MessageForwardOriginUser extends MessageForwardOrigin
         );
     }
 
+    public function getSenderUserId(): int
+    {
+        return $this->senderUserId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sender_user_id' => $this->senderUserId,
         ];
-    }
-
-    public function getSenderUserId(): int
-    {
-        return $this->senderUserId;
     }
 }

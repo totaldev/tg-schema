@@ -44,15 +44,6 @@ class PassportElementsWithErrors extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->elements),
-            array_map(fn($x) => $x->typeSerialize(), $this->errors),
-        ];
-    }
-
     public function getElements(): array
     {
         return $this->elements;
@@ -61,5 +52,14 @@ class PassportElementsWithErrors extends TdObject
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->elements),
+            array_map(fn($x) => $x->typeSerialize(), $this->errors),
+        ];
     }
 }

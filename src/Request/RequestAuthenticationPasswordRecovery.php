@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+ * Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization
+ * state is authorizationStateWaitPassword
  */
 class RequestAuthenticationPasswordRecovery extends TdFunction
 {

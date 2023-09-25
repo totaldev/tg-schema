@@ -36,16 +36,16 @@ class MessageChatDeleteMember extends MessageContent
         );
     }
 
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
     }
 }

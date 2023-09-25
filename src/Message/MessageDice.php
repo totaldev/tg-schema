@@ -17,11 +17,11 @@ class MessageDice extends MessageContent
     public const TYPE_NAME = 'messageDice';
 
     /**
-     * The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+     * Emoji on which the dice throw animation is based
      *
-     * @var DiceStickers|null
+     * @var string
      */
-    protected ?DiceStickers $initialState;
+    protected string $emoji;
 
     /**
      * The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
@@ -31,18 +31,11 @@ class MessageDice extends MessageContent
     protected ?DiceStickers $finalState;
 
     /**
-     * Emoji on which the dice throw animation is based
+     * The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
      *
-     * @var string
+     * @var DiceStickers|null
      */
-    protected string $emoji;
-
-    /**
-     * The dice value. If the value is 0, the dice don't have final state yet
-     *
-     * @var int
-     */
-    protected int $value;
+    protected ?DiceStickers $initialState;
 
     /**
      * Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
@@ -51,13 +44,21 @@ class MessageDice extends MessageContent
      */
     protected int $successAnimationFrameNumber;
 
+    /**
+     * The dice value. If the value is 0, the dice don't have final state yet
+     *
+     * @var int
+     */
+    protected int $value;
+
     public function __construct(
         ?DiceStickers $initialState,
         ?DiceStickers $finalState,
-        string $emoji,
-        int $value,
-        int $successAnimationFrameNumber,
-    ) {
+        string        $emoji,
+        int           $value,
+        int           $successAnimationFrameNumber,
+    )
+    {
         parent::__construct();
 
         $this->initialState = $initialState;
@@ -78,6 +79,31 @@ class MessageDice extends MessageContent
         );
     }
 
+    public function getEmoji(): string
+    {
+        return $this->emoji;
+    }
+
+    public function getFinalState(): ?DiceStickers
+    {
+        return $this->finalState;
+    }
+
+    public function getInitialState(): ?DiceStickers
+    {
+        return $this->initialState;
+    }
+
+    public function getSuccessAnimationFrameNumber(): int
+    {
+        return $this->successAnimationFrameNumber;
+    }
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -88,30 +114,5 @@ class MessageDice extends MessageContent
             'value' => $this->value,
             'success_animation_frame_number' => $this->successAnimationFrameNumber,
         ];
-    }
-
-    public function getInitialState(): ?DiceStickers
-    {
-        return $this->initialState;
-    }
-
-    public function getFinalState(): ?DiceStickers
-    {
-        return $this->finalState;
-    }
-
-    public function getEmoji(): string
-    {
-        return $this->emoji;
-    }
-
-    public function getValue(): int
-    {
-        return $this->value;
-    }
-
-    public function getSuccessAnimationFrameNumber(): int
-    {
-        return $this->successAnimationFrameNumber;
     }
 }

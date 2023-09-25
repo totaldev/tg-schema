@@ -17,13 +17,6 @@ class UpdateFileDownload extends Update
     public const TYPE_NAME = 'updateFileDownload';
 
     /**
-     * File identifier
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
      * Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
      *
      * @var int
@@ -31,18 +24,25 @@ class UpdateFileDownload extends Update
     protected int $completeDate;
 
     /**
-     * True, if downloading of the file is paused
-     *
-     * @var bool
-     */
-    protected bool $isPaused;
-
-    /**
      * New number of being downloaded and recently downloaded files found
      *
      * @var DownloadedFileCounts
      */
     protected DownloadedFileCounts $counts;
+
+    /**
+     * File identifier
+     *
+     * @var int
+     */
+    protected int $fileId;
+
+    /**
+     * True, if downloading of the file is paused
+     *
+     * @var bool
+     */
+    protected bool $isPaused;
 
     public function __construct(int $fileId, int $completeDate, bool $isPaused, DownloadedFileCounts $counts)
     {
@@ -64,6 +64,26 @@ class UpdateFileDownload extends Update
         );
     }
 
+    public function getCompleteDate(): int
+    {
+        return $this->completeDate;
+    }
+
+    public function getCounts(): DownloadedFileCounts
+    {
+        return $this->counts;
+    }
+
+    public function getFileId(): int
+    {
+        return $this->fileId;
+    }
+
+    public function getIsPaused(): bool
+    {
+        return $this->isPaused;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class UpdateFileDownload extends Update
             'is_paused' => $this->isPaused,
             'counts' => $this->counts->typeSerialize(),
         ];
-    }
-
-    public function getFileId(): int
-    {
-        return $this->fileId;
-    }
-
-    public function getCompleteDate(): int
-    {
-        return $this->completeDate;
-    }
-
-    public function getIsPaused(): bool
-    {
-        return $this->isPaused;
-    }
-
-    public function getCounts(): DownloadedFileCounts
-    {
-        return $this->counts;
     }
 }

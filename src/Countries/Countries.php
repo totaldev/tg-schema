@@ -36,16 +36,16 @@ class Countries extends TdObject
         );
     }
 
+    public function getCountries(): array
+    {
+        return $this->countries;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->countries),
         ];
-    }
-
-    public function getCountries(): array
-    {
-        return $this->countries;
     }
 }

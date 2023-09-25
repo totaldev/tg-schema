@@ -17,18 +17,18 @@ class PageBlockRelatedArticles extends PageBlock
     public const TYPE_NAME = 'pageBlockRelatedArticles';
 
     /**
-     * Block header
-     *
-     * @var RichText
-     */
-    protected RichText $header;
-
-    /**
      * List of related articles
      *
      * @var PageBlockRelatedArticle[]
      */
     protected array $articles;
+
+    /**
+     * Block header
+     *
+     * @var RichText
+     */
+    protected RichText $header;
 
     public function __construct(RichText $header, array $articles)
     {
@@ -46,13 +46,9 @@ class PageBlockRelatedArticles extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
+    public function getArticles(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'header' => $this->header->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->articles),
-        ];
+        return $this->articles;
     }
 
     public function getHeader(): RichText
@@ -60,8 +56,12 @@ class PageBlockRelatedArticles extends PageBlock
         return $this->header;
     }
 
-    public function getArticles(): array
+    public function typeSerialize(): array
     {
-        return $this->articles;
+        return [
+            '@type' => static::TYPE_NAME,
+            'header' => $this->header->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->articles),
+        ];
     }
 }

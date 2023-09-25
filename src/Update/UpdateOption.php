@@ -46,15 +46,6 @@ class UpdateOption extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'value' => $this->value->typeSerialize(),
-        ];
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -63,5 +54,14 @@ class UpdateOption extends Update
     public function getValue(): OptionValue
     {
         return $this->value;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'value' => $this->value->typeSerialize(),
+        ];
     }
 }

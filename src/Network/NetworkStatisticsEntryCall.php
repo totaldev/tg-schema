@@ -16,18 +16,18 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
     public const TYPE_NAME = 'networkStatisticsEntryCall';
 
     /**
+     * Total call duration, in seconds
+     *
+     * @var float
+     */
+    protected float $duration;
+
+    /**
      * Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
      *
      * @var NetworkType
      */
     protected NetworkType $networkType;
-
-    /**
-     * Total number of bytes sent
-     *
-     * @var int
-     */
-    protected int $sentBytes;
 
     /**
      * Total number of bytes received
@@ -37,11 +37,11 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
     protected int $receivedBytes;
 
     /**
-     * Total call duration, in seconds
+     * Total number of bytes sent
      *
-     * @var float
+     * @var int
      */
-    protected float $duration;
+    protected int $sentBytes;
 
     public function __construct(NetworkType $networkType, int $sentBytes, int $receivedBytes, float $duration)
     {
@@ -63,6 +63,26 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
         );
     }
 
+    public function getDuration(): float
+    {
+        return $this->duration;
+    }
+
+    public function getNetworkType(): NetworkType
+    {
+        return $this->networkType;
+    }
+
+    public function getReceivedBytes(): int
+    {
+        return $this->receivedBytes;
+    }
+
+    public function getSentBytes(): int
+    {
+        return $this->sentBytes;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
             'received_bytes' => $this->receivedBytes,
             'duration' => $this->duration,
         ];
-    }
-
-    public function getNetworkType(): NetworkType
-    {
-        return $this->networkType;
-    }
-
-    public function getSentBytes(): int
-    {
-        return $this->sentBytes;
-    }
-
-    public function getReceivedBytes(): int
-    {
-        return $this->receivedBytes;
-    }
-
-    public function getDuration(): float
-    {
-        return $this->duration;
     }
 }

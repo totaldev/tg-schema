@@ -44,15 +44,6 @@ class SponsoredMessages extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
-            'messages_between' => $this->messagesBetween,
-        ];
-    }
-
     public function getMessages(): array
     {
         return $this->messages;
@@ -61,5 +52,14 @@ class SponsoredMessages extends TdObject
     public function getMessagesBetween(): int
     {
         return $this->messagesBetween;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            'messages_between' => $this->messagesBetween,
+        ];
     }
 }

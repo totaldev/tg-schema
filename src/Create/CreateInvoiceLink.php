@@ -36,16 +36,16 @@ class CreateInvoiceLink extends TdFunction
         );
     }
 
+    public function getInvoice(): InputMessageContent
+    {
+        return $this->invoice;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'invoice' => $this->invoice->typeSerialize(),
         ];
-    }
-
-    public function getInvoice(): InputMessageContent
-    {
-        return $this->invoice;
     }
 }

@@ -36,16 +36,16 @@ class InputPassportElementInternalPassport extends InputPassportElement
         );
     }
 
+    public function getInternalPassport(): InputIdentityDocument
+    {
+        return $this->internalPassport;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'internal_passport' => $this->internalPassport->typeSerialize(),
         ];
-    }
-
-    public function getInternalPassport(): InputIdentityDocument
-    {
-        return $this->internalPassport;
     }
 }

@@ -24,11 +24,11 @@ class GetPassportAuthorizationForm extends TdFunction
     protected int $botUserId;
 
     /**
-     * Telegram Passport element types requested by the service
+     * Unique request identifier provided by the service
      *
      * @var string
      */
-    protected string $scope;
+    protected string $nonce;
 
     /**
      * Service's public key
@@ -38,11 +38,11 @@ class GetPassportAuthorizationForm extends TdFunction
     protected string $publicKey;
 
     /**
-     * Unique request identifier provided by the service
+     * Telegram Passport element types requested by the service
      *
      * @var string
      */
-    protected string $nonce;
+    protected string $scope;
 
     public function __construct(int $botUserId, string $scope, string $publicKey, string $nonce)
     {
@@ -62,6 +62,26 @@ class GetPassportAuthorizationForm extends TdFunction
         );
     }
 
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getNonce(): string
+    {
+        return $this->nonce;
+    }
+
+    public function getPublicKey(): string
+    {
+        return $this->publicKey;
+    }
+
+    public function getScope(): string
+    {
+        return $this->scope;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class GetPassportAuthorizationForm extends TdFunction
             'public_key' => $this->publicKey,
             'nonce' => $this->nonce,
         ];
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getScope(): string
-    {
-        return $this->scope;
-    }
-
-    public function getPublicKey(): string
-    {
-        return $this->publicKey;
-    }
-
-    public function getNonce(): string
-    {
-        return $this->nonce;
     }
 }

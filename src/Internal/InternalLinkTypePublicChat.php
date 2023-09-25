@@ -36,16 +36,16 @@ class InternalLinkTypePublicChat extends InternalLinkType
         );
     }
 
+    public function getChatUsername(): string
+    {
+        return $this->chatUsername;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_username' => $this->chatUsername,
         ];
-    }
-
-    public function getChatUsername(): string
-    {
-        return $this->chatUsername;
     }
 }

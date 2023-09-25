@@ -10,25 +10,12 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+ * Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the
+ * new recovery email address is confirmed
  */
 class SetPassword extends TdFunction
 {
     public const TYPE_NAME = 'setPassword';
-
-    /**
-     * Previous 2-step verification password of the user
-     *
-     * @var string
-     */
-    protected string $oldPassword;
-
-    /**
-     * New 2-step verification password of the user; may be empty to remove the password
-     *
-     * @var string
-     */
-    protected string $newPassword;
 
     /**
      * New password hint; may be empty
@@ -38,11 +25,11 @@ class SetPassword extends TdFunction
     protected string $newHint;
 
     /**
-     * Pass true to change also the recovery email address
+     * New 2-step verification password of the user; may be empty to remove the password
      *
-     * @var bool
+     * @var string
      */
-    protected bool $setRecoveryEmailAddress;
+    protected string $newPassword;
 
     /**
      * New recovery email address; may be empty
@@ -51,13 +38,28 @@ class SetPassword extends TdFunction
      */
     protected string $newRecoveryEmailAddress;
 
+    /**
+     * Previous 2-step verification password of the user
+     *
+     * @var string
+     */
+    protected string $oldPassword;
+
+    /**
+     * Pass true to change also the recovery email address
+     *
+     * @var bool
+     */
+    protected bool $setRecoveryEmailAddress;
+
     public function __construct(
         string $oldPassword,
         string $newPassword,
         string $newHint,
-        bool $setRecoveryEmailAddress,
+        bool   $setRecoveryEmailAddress,
         string $newRecoveryEmailAddress,
-    ) {
+    )
+    {
         $this->oldPassword = $oldPassword;
         $this->newPassword = $newPassword;
         $this->newHint = $newHint;
@@ -76,6 +78,31 @@ class SetPassword extends TdFunction
         );
     }
 
+    public function getNewHint(): string
+    {
+        return $this->newHint;
+    }
+
+    public function getNewPassword(): string
+    {
+        return $this->newPassword;
+    }
+
+    public function getNewRecoveryEmailAddress(): string
+    {
+        return $this->newRecoveryEmailAddress;
+    }
+
+    public function getOldPassword(): string
+    {
+        return $this->oldPassword;
+    }
+
+    public function getSetRecoveryEmailAddress(): bool
+    {
+        return $this->setRecoveryEmailAddress;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -86,30 +113,5 @@ class SetPassword extends TdFunction
             'set_recovery_email_address' => $this->setRecoveryEmailAddress,
             'new_recovery_email_address' => $this->newRecoveryEmailAddress,
         ];
-    }
-
-    public function getOldPassword(): string
-    {
-        return $this->oldPassword;
-    }
-
-    public function getNewPassword(): string
-    {
-        return $this->newPassword;
-    }
-
-    public function getNewHint(): string
-    {
-        return $this->newHint;
-    }
-
-    public function getSetRecoveryEmailAddress(): bool
-    {
-        return $this->setRecoveryEmailAddress;
-    }
-
-    public function getNewRecoveryEmailAddress(): string
-    {
-        return $this->newRecoveryEmailAddress;
     }
 }

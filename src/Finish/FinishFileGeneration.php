@@ -18,18 +18,18 @@ class FinishFileGeneration extends TdFunction
     public const TYPE_NAME = 'finishFileGeneration';
 
     /**
-     * The identifier of the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    /**
      * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
      *
      * @var Error
      */
     protected Error $error;
+
+    /**
+     * The identifier of the generation process
+     *
+     * @var int
+     */
+    protected int $generationId;
 
     public function __construct(int $generationId, Error $error)
     {
@@ -45,13 +45,9 @@ class FinishFileGeneration extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getError(): Error
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'generation_id' => $this->generationId,
-            'error' => $this->error->typeSerialize(),
-        ];
+        return $this->error;
     }
 
     public function getGenerationId(): int
@@ -59,8 +55,12 @@ class FinishFileGeneration extends TdFunction
         return $this->generationId;
     }
 
-    public function getError(): Error
+    public function typeSerialize(): array
     {
-        return $this->error;
+        return [
+            '@type' => static::TYPE_NAME,
+            'generation_id' => $this->generationId,
+            'error' => $this->error->typeSerialize(),
+        ];
     }
 }

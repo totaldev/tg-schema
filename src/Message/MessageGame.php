@@ -37,16 +37,16 @@ class MessageGame extends MessageContent
         );
     }
 
+    public function getGame(): Game
+    {
+        return $this->game;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'game' => $this->game->typeSerialize(),
         ];
-    }
-
-    public function getGame(): Game
-    {
-        return $this->game;
     }
 }

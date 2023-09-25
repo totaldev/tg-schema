@@ -37,16 +37,16 @@ class PageBlockTitle extends PageBlock
         );
     }
 
+    public function getTitle(): RichText
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title->typeSerialize(),
         ];
-    }
-
-    public function getTitle(): RichText
-    {
-        return $this->title;
     }
 }

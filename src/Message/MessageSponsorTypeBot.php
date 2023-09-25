@@ -46,15 +46,6 @@ class MessageSponsorTypeBot extends MessageSponsorType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'link' => $this->link->typeSerialize(),
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -63,5 +54,14 @@ class MessageSponsorTypeBot extends MessageSponsorType
     public function getLink(): InternalLinkType
     {
         return $this->link;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'link' => $this->link->typeSerialize(),
+        ];
     }
 }

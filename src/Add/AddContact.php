@@ -25,7 +25,8 @@ class AddContact extends TdFunction
     protected Contact $contact;
 
     /**
-     * Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+     * Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if
+     * needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
      *
      * @var bool
      */
@@ -45,15 +46,6 @@ class AddContact extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'contact' => $this->contact->typeSerialize(),
-            'share_phone_number' => $this->sharePhoneNumber,
-        ];
-    }
-
     public function getContact(): Contact
     {
         return $this->contact;
@@ -62,5 +54,14 @@ class AddContact extends TdFunction
     public function getSharePhoneNumber(): bool
     {
         return $this->sharePhoneNumber;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'contact' => $this->contact->typeSerialize(),
+            'share_phone_number' => $this->sharePhoneNumber,
+        ];
     }
 }

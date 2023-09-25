@@ -35,16 +35,16 @@ class GetSecretChat extends TdFunction
         );
     }
 
+    public function getSecretChatId(): int
+    {
+        return $this->secretChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'secret_chat_id' => $this->secretChatId,
         ];
-    }
-
-    public function getSecretChatId(): int
-    {
-        return $this->secretChatId;
     }
 }

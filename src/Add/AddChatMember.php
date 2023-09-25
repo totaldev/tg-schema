@@ -24,18 +24,19 @@ class AddChatMember extends TdFunction
     protected int $chatId;
 
     /**
+     * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is
+     * a bot
+     *
+     * @var int
+     */
+    protected int $forwardLimit;
+
+    /**
      * Identifier of the user
      *
      * @var int
      */
     protected int $userId;
-
-    /**
-     * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
-     *
-     * @var int
-     */
-    protected int $forwardLimit;
 
     public function __construct(int $chatId, int $userId, int $forwardLimit)
     {
@@ -53,6 +54,21 @@ class AddChatMember extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getForwardLimit(): int
+    {
+        return $this->forwardLimit;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +77,5 @@ class AddChatMember extends TdFunction
             'user_id' => $this->userId,
             'forward_limit' => $this->forwardLimit,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    public function getForwardLimit(): int
-    {
-        return $this->forwardLimit;
     }
 }

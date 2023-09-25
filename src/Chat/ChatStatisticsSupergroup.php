@@ -19,76 +19,6 @@ class ChatStatisticsSupergroup extends ChatStatistics
     public const TYPE_NAME = 'chatStatisticsSupergroup';
 
     /**
-     * A period to which the statistics applies
-     *
-     * @var DateRange
-     */
-    protected DateRange $period;
-
-    /**
-     * Number of members in the chat
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $memberCount;
-
-    /**
-     * Number of messages sent to the chat
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $messageCount;
-
-    /**
-     * Number of users who viewed messages in the chat
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $viewerCount;
-
-    /**
-     * Number of users who sent messages to the chat
-     *
-     * @var StatisticalValue
-     */
-    protected StatisticalValue $senderCount;
-
-    /**
-     * A graph containing number of members in the chat
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $memberCountGraph;
-
-    /**
-     * A graph containing number of members joined and left the chat
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $joinGraph;
-
-    /**
-     * A graph containing number of new member joins per source
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $joinBySourceGraph;
-
-    /**
-     * A graph containing distribution of active users per language
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $languageGraph;
-
-    /**
-     * A graph containing distribution of sent messages by content type
-     *
-     * @var StatisticalGraph
-     */
-    protected StatisticalGraph $messageContentGraph;
-
-    /**
      * A graph containing number of different actions in the chat
      *
      * @var StatisticalGraph
@@ -103,18 +33,67 @@ class ChatStatisticsSupergroup extends ChatStatistics
     protected StatisticalGraph $dayGraph;
 
     /**
-     * A graph containing distribution of message views per day of week
+     * A graph containing number of new member joins per source
      *
      * @var StatisticalGraph
      */
-    protected StatisticalGraph $weekGraph;
+    protected StatisticalGraph $joinBySourceGraph;
 
     /**
-     * List of users sent most messages in the last week
+     * A graph containing number of members joined and left the chat
      *
-     * @var ChatStatisticsMessageSenderInfo[]
+     * @var StatisticalGraph
      */
-    protected array $topSenders;
+    protected StatisticalGraph $joinGraph;
+
+    /**
+     * A graph containing distribution of active users per language
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $languageGraph;
+
+    /**
+     * Number of members in the chat
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $memberCount;
+
+    /**
+     * A graph containing number of members in the chat
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $memberCountGraph;
+
+    /**
+     * A graph containing distribution of sent messages by content type
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $messageContentGraph;
+
+    /**
+     * Number of messages sent to the chat
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $messageCount;
+
+    /**
+     * A period to which the statistics applies
+     *
+     * @var DateRange
+     */
+    protected DateRange $period;
+
+    /**
+     * Number of users who sent messages to the chat
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $senderCount;
 
     /**
      * List of most active administrators in the last week
@@ -130,8 +109,29 @@ class ChatStatisticsSupergroup extends ChatStatistics
      */
     protected array $topInviters;
 
+    /**
+     * List of users sent most messages in the last week
+     *
+     * @var ChatStatisticsMessageSenderInfo[]
+     */
+    protected array $topSenders;
+
+    /**
+     * Number of users who viewed messages in the chat
+     *
+     * @var StatisticalValue
+     */
+    protected StatisticalValue $viewerCount;
+
+    /**
+     * A graph containing distribution of message views per day of week
+     *
+     * @var StatisticalGraph
+     */
+    protected StatisticalGraph $weekGraph;
+
     public function __construct(
-        DateRange $period,
+        DateRange        $period,
         StatisticalValue $memberCount,
         StatisticalValue $messageCount,
         StatisticalValue $viewerCount,
@@ -144,10 +144,11 @@ class ChatStatisticsSupergroup extends ChatStatistics
         StatisticalGraph $actionGraph,
         StatisticalGraph $dayGraph,
         StatisticalGraph $weekGraph,
-        array $topSenders,
-        array $topAdministrators,
-        array $topInviters,
-    ) {
+        array            $topSenders,
+        array            $topAdministrators,
+        array            $topInviters,
+    )
+    {
         parent::__construct();
 
         $this->period = $period;
@@ -184,10 +185,90 @@ class ChatStatisticsSupergroup extends ChatStatistics
             TdSchemaRegistry::fromArray($array['action_graph']),
             TdSchemaRegistry::fromArray($array['day_graph']),
             TdSchemaRegistry::fromArray($array['week_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topSenders']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topAdministrators']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topInviters']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_senders']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_administrators']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_inviters']),
         );
+    }
+
+    public function getActionGraph(): StatisticalGraph
+    {
+        return $this->actionGraph;
+    }
+
+    public function getDayGraph(): StatisticalGraph
+    {
+        return $this->dayGraph;
+    }
+
+    public function getJoinBySourceGraph(): StatisticalGraph
+    {
+        return $this->joinBySourceGraph;
+    }
+
+    public function getJoinGraph(): StatisticalGraph
+    {
+        return $this->joinGraph;
+    }
+
+    public function getLanguageGraph(): StatisticalGraph
+    {
+        return $this->languageGraph;
+    }
+
+    public function getMemberCount(): StatisticalValue
+    {
+        return $this->memberCount;
+    }
+
+    public function getMemberCountGraph(): StatisticalGraph
+    {
+        return $this->memberCountGraph;
+    }
+
+    public function getMessageContentGraph(): StatisticalGraph
+    {
+        return $this->messageContentGraph;
+    }
+
+    public function getMessageCount(): StatisticalValue
+    {
+        return $this->messageCount;
+    }
+
+    public function getPeriod(): DateRange
+    {
+        return $this->period;
+    }
+
+    public function getSenderCount(): StatisticalValue
+    {
+        return $this->senderCount;
+    }
+
+    public function getTopAdministrators(): array
+    {
+        return $this->topAdministrators;
+    }
+
+    public function getTopInviters(): array
+    {
+        return $this->topInviters;
+    }
+
+    public function getTopSenders(): array
+    {
+        return $this->topSenders;
+    }
+
+    public function getViewerCount(): StatisticalValue
+    {
+        return $this->viewerCount;
+    }
+
+    public function getWeekGraph(): StatisticalGraph
+    {
+        return $this->weekGraph;
     }
 
     public function typeSerialize(): array
@@ -211,85 +292,5 @@ class ChatStatisticsSupergroup extends ChatStatistics
             array_map(fn($x) => $x->typeSerialize(), $this->topAdministrators),
             array_map(fn($x) => $x->typeSerialize(), $this->topInviters),
         ];
-    }
-
-    public function getPeriod(): DateRange
-    {
-        return $this->period;
-    }
-
-    public function getMemberCount(): StatisticalValue
-    {
-        return $this->memberCount;
-    }
-
-    public function getMessageCount(): StatisticalValue
-    {
-        return $this->messageCount;
-    }
-
-    public function getViewerCount(): StatisticalValue
-    {
-        return $this->viewerCount;
-    }
-
-    public function getSenderCount(): StatisticalValue
-    {
-        return $this->senderCount;
-    }
-
-    public function getMemberCountGraph(): StatisticalGraph
-    {
-        return $this->memberCountGraph;
-    }
-
-    public function getJoinGraph(): StatisticalGraph
-    {
-        return $this->joinGraph;
-    }
-
-    public function getJoinBySourceGraph(): StatisticalGraph
-    {
-        return $this->joinBySourceGraph;
-    }
-
-    public function getLanguageGraph(): StatisticalGraph
-    {
-        return $this->languageGraph;
-    }
-
-    public function getMessageContentGraph(): StatisticalGraph
-    {
-        return $this->messageContentGraph;
-    }
-
-    public function getActionGraph(): StatisticalGraph
-    {
-        return $this->actionGraph;
-    }
-
-    public function getDayGraph(): StatisticalGraph
-    {
-        return $this->dayGraph;
-    }
-
-    public function getWeekGraph(): StatisticalGraph
-    {
-        return $this->weekGraph;
-    }
-
-    public function getTopSenders(): array
-    {
-        return $this->topSenders;
-    }
-
-    public function getTopAdministrators(): array
-    {
-        return $this->topAdministrators;
-    }
-
-    public function getTopInviters(): array
-    {
-        return $this->topInviters;
     }
 }

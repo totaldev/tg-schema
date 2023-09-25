@@ -36,16 +36,16 @@ class Stickers extends TdObject
         );
     }
 
+    public function getStickers(): array
+    {
+        return $this->stickers;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->stickers),
         ];
-    }
-
-    public function getStickers(): array
-    {
-        return $this->stickers;
     }
 }

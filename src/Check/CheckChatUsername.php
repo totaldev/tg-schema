@@ -44,15 +44,6 @@ class CheckChatUsername extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'username' => $this->username,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -61,5 +52,14 @@ class CheckChatUsername extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'username' => $this->username,
+        ];
     }
 }

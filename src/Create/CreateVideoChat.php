@@ -24,25 +24,26 @@ class CreateVideoChat extends TdFunction
     protected int $chatId;
 
     /**
-     * Group call title; if empty, chat title will be used
+     * Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
      *
-     * @var string
+     * @var bool
      */
-    protected string $title;
+    protected bool $isRtmpStream;
 
     /**
-     * Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+     * Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must
+     * be at least 10 seconds and at most 8 days in the future
      *
      * @var int
      */
     protected int $startDate;
 
     /**
-     * Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+     * Group call title; if empty, chat title will be used
      *
-     * @var bool
+     * @var string
      */
-    protected bool $isRtmpStream;
+    protected string $title;
 
     public function __construct(int $chatId, string $title, int $startDate, bool $isRtmpStream)
     {
@@ -62,6 +63,26 @@ class CreateVideoChat extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsRtmpStream(): bool
+    {
+        return $this->isRtmpStream;
+    }
+
+    public function getStartDate(): int
+    {
+        return $this->startDate;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +92,5 @@ class CreateVideoChat extends TdFunction
             'start_date' => $this->startDate,
             'is_rtmp_stream' => $this->isRtmpStream,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getStartDate(): int
-    {
-        return $this->startDate;
-    }
-
-    public function getIsRtmpStream(): bool
-    {
-        return $this->isRtmpStream;
     }
 }

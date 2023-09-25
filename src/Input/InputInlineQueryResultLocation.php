@@ -25,11 +25,12 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
     protected string $id;
 
     /**
-     * Location result
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation,
+     * inputMessageVenue or inputMessageContact
      *
-     * @var Location
+     * @var InputMessageContent
      */
-    protected Location $location;
+    protected InputMessageContent $inputMessageContent;
 
     /**
      * Amount of time relative to the message sent time until the location can be updated, in seconds
@@ -39,11 +40,25 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
     protected int $livePeriod;
 
     /**
-     * Title of the result
+     * Location result
      *
-     * @var string
+     * @var Location
      */
-    protected string $title;
+    protected Location $location;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * Thumbnail height, if known
+     *
+     * @var int
+     */
+    protected int $thumbnailHeight;
 
     /**
      * URL of the result thumbnail, if it exists
@@ -60,37 +75,24 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
     protected int $thumbnailWidth;
 
     /**
-     * Thumbnail height, if known
+     * Title of the result
      *
-     * @var int
+     * @var string
      */
-    protected int $thumbnailHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
+    protected string $title;
 
     public function __construct(
-        string $id,
-        Location $location,
-        int $livePeriod,
-        string $title,
-        string $thumbnailUrl,
-        int $thumbnailWidth,
-        int $thumbnailHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        Location            $location,
+        int                 $livePeriod,
+        string              $title,
+        string              $thumbnailUrl,
+        int                 $thumbnailWidth,
+        int                 $thumbnailHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -119,6 +121,51 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
         );
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getLivePeriod(): int
+    {
+        return $this->livePeriod;
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailHeight(): int
+    {
+        return $this->thumbnailHeight;
+    }
+
+    public function getThumbnailUrl(): string
+    {
+        return $this->thumbnailUrl;
+    }
+
+    public function getThumbnailWidth(): int
+    {
+        return $this->thumbnailWidth;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -133,50 +180,5 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
-    public function getLivePeriod(): int
-    {
-        return $this->livePeriod;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getThumbnailUrl(): string
-    {
-        return $this->thumbnailUrl;
-    }
-
-    public function getThumbnailWidth(): int
-    {
-        return $this->thumbnailWidth;
-    }
-
-    public function getThumbnailHeight(): int
-    {
-        return $this->thumbnailHeight;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

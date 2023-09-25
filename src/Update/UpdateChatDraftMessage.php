@@ -11,7 +11,8 @@ use Totaldev\TgSchema\Draft\DraftMessage;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
+ * A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the
+ * content of the draft, this update mustn't be applied
  */
 class UpdateChatDraftMessage extends Update
 {
@@ -56,16 +57,6 @@ class UpdateChatDraftMessage extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->positions),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -79,5 +70,15 @@ class UpdateChatDraftMessage extends Update
     public function getPositions(): array
     {
         return $this->positions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
+            array_map(fn($x) => $x->typeSerialize(), $this->positions),
+        ];
     }
 }

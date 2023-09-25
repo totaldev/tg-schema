@@ -36,16 +36,16 @@ class DeviceTokenWindowsPush extends DeviceToken
         );
     }
 
+    public function getAccessToken(): string
+    {
+        return $this->accessToken;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'access_token' => $this->accessToken,
         ];
-    }
-
-    public function getAccessToken(): string
-    {
-        return $this->accessToken;
     }
 }

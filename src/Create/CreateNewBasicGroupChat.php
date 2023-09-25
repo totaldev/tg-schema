@@ -17,11 +17,11 @@ class CreateNewBasicGroupChat extends TdFunction
     public const TYPE_NAME = 'createNewBasicGroupChat';
 
     /**
-     * Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
+     * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
      *
-     * @var int[]
+     * @var int
      */
-    protected array $userIds;
+    protected int $messageAutoDeleteTime;
 
     /**
      * Title of the new basic group; 1-128 characters
@@ -31,11 +31,11 @@ class CreateNewBasicGroupChat extends TdFunction
     protected string $title;
 
     /**
-     * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+     * Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
      *
-     * @var int
+     * @var int[]
      */
-    protected int $messageAutoDeleteTime;
+    protected array $userIds;
 
     public function __construct(array $userIds, string $title, int $messageAutoDeleteTime)
     {
@@ -53,6 +53,21 @@ class CreateNewBasicGroupChat extends TdFunction
         );
     }
 
+    public function getMessageAutoDeleteTime(): int
+    {
+        return $this->messageAutoDeleteTime;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getUserIds(): array
+    {
+        return $this->userIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class CreateNewBasicGroupChat extends TdFunction
             'title' => $this->title,
             'message_auto_delete_time' => $this->messageAutoDeleteTime,
         ];
-    }
-
-    public function getUserIds(): array
-    {
-        return $this->userIds;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getMessageAutoDeleteTime(): int
-    {
-        return $this->messageAutoDeleteTime;
     }
 }

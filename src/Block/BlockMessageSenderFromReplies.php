@@ -17,11 +17,11 @@ class BlockMessageSenderFromReplies extends TdFunction
     public const TYPE_NAME = 'blockMessageSenderFromReplies';
 
     /**
-     * The identifier of an incoming message in the Replies chat
+     * Pass true to delete all messages from the same sender
      *
-     * @var int
+     * @var bool
      */
-    protected int $messageId;
+    protected bool $deleteAllMessages;
 
     /**
      * Pass true to delete the message
@@ -31,11 +31,11 @@ class BlockMessageSenderFromReplies extends TdFunction
     protected bool $deleteMessage;
 
     /**
-     * Pass true to delete all messages from the same sender
+     * The identifier of an incoming message in the Replies chat
      *
-     * @var bool
+     * @var int
      */
-    protected bool $deleteAllMessages;
+    protected int $messageId;
 
     /**
      * Pass true to report the sender to the Telegram moderators
@@ -62,6 +62,26 @@ class BlockMessageSenderFromReplies extends TdFunction
         );
     }
 
+    public function getDeleteAllMessages(): bool
+    {
+        return $this->deleteAllMessages;
+    }
+
+    public function getDeleteMessage(): bool
+    {
+        return $this->deleteMessage;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
+    public function getReportSpam(): bool
+    {
+        return $this->reportSpam;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -71,25 +91,5 @@ class BlockMessageSenderFromReplies extends TdFunction
             'delete_all_messages' => $this->deleteAllMessages,
             'report_spam' => $this->reportSpam,
         ];
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getDeleteMessage(): bool
-    {
-        return $this->deleteMessage;
-    }
-
-    public function getDeleteAllMessages(): bool
-    {
-        return $this->deleteAllMessages;
-    }
-
-    public function getReportSpam(): bool
-    {
-        return $this->reportSpam;
     }
 }

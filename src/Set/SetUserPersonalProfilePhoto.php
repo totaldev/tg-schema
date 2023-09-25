@@ -18,18 +18,18 @@ class SetUserPersonalProfilePhoto extends TdFunction
     public const TYPE_NAME = 'setUserPersonalProfilePhoto';
 
     /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
      *
      * @var InputChatPhoto
      */
     protected InputChatPhoto $photo;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, InputChatPhoto $photo)
     {
@@ -45,13 +45,9 @@ class SetUserPersonalProfilePhoto extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPhoto(): InputChatPhoto
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'photo' => $this->photo->typeSerialize(),
-        ];
+        return $this->photo;
     }
 
     public function getUserId(): int
@@ -59,8 +55,12 @@ class SetUserPersonalProfilePhoto extends TdFunction
         return $this->userId;
     }
 
-    public function getPhoto(): InputChatPhoto
+    public function typeSerialize(): array
     {
-        return $this->photo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'photo' => $this->photo->typeSerialize(),
+        ];
     }
 }

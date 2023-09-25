@@ -10,7 +10,8 @@ use Totaldev\TgSchema\Notification\NotificationGroup;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+ * Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it
+ * comes once before any updateNotification and updateNotificationGroup update
  */
 class UpdateActiveNotifications extends Update
 {
@@ -37,16 +38,16 @@ class UpdateActiveNotifications extends Update
         );
     }
 
+    public function getGroups(): array
+    {
+        return $this->groups;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->groups),
         ];
-    }
-
-    public function getGroups(): array
-    {
-        return $this->groups;
     }
 }

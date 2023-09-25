@@ -24,18 +24,18 @@ class ThemeParameters extends TdObject
     protected int $backgroundColor;
 
     /**
-     * A secondary color for the background in the RGB24 format
+     * A color of the buttons in the RGB24 format
      *
      * @var int
      */
-    protected int $secondaryBackgroundColor;
+    protected int $buttonColor;
 
     /**
-     * A color of text in the RGB24 format
+     * A color of text on the buttons in the RGB24 format
      *
      * @var int
      */
-    protected int $textColor;
+    protected int $buttonTextColor;
 
     /**
      * A color of hints in the RGB24 format
@@ -52,18 +52,18 @@ class ThemeParameters extends TdObject
     protected int $linkColor;
 
     /**
-     * A color of the buttons in the RGB24 format
+     * A secondary color for the background in the RGB24 format
      *
      * @var int
      */
-    protected int $buttonColor;
+    protected int $secondaryBackgroundColor;
 
     /**
-     * A color of text on the buttons in the RGB24 format
+     * A color of text in the RGB24 format
      *
      * @var int
      */
-    protected int $buttonTextColor;
+    protected int $textColor;
 
     public function __construct(
         int $backgroundColor,
@@ -73,7 +73,8 @@ class ThemeParameters extends TdObject
         int $linkColor,
         int $buttonColor,
         int $buttonTextColor,
-    ) {
+    )
+    {
         $this->backgroundColor = $backgroundColor;
         $this->secondaryBackgroundColor = $secondaryBackgroundColor;
         $this->textColor = $textColor;
@@ -96,33 +97,19 @@ class ThemeParameters extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'background_color' => $this->backgroundColor,
-            'secondary_background_color' => $this->secondaryBackgroundColor,
-            'text_color' => $this->textColor,
-            'hint_color' => $this->hintColor,
-            'link_color' => $this->linkColor,
-            'button_color' => $this->buttonColor,
-            'button_text_color' => $this->buttonTextColor,
-        ];
-    }
-
     public function getBackgroundColor(): int
     {
         return $this->backgroundColor;
     }
 
-    public function getSecondaryBackgroundColor(): int
+    public function getButtonColor(): int
     {
-        return $this->secondaryBackgroundColor;
+        return $this->buttonColor;
     }
 
-    public function getTextColor(): int
+    public function getButtonTextColor(): int
     {
-        return $this->textColor;
+        return $this->buttonTextColor;
     }
 
     public function getHintColor(): int
@@ -135,13 +122,27 @@ class ThemeParameters extends TdObject
         return $this->linkColor;
     }
 
-    public function getButtonColor(): int
+    public function getSecondaryBackgroundColor(): int
     {
-        return $this->buttonColor;
+        return $this->secondaryBackgroundColor;
     }
 
-    public function getButtonTextColor(): int
+    public function getTextColor(): int
     {
-        return $this->buttonTextColor;
+        return $this->textColor;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'background_color' => $this->backgroundColor,
+            'secondary_background_color' => $this->secondaryBackgroundColor,
+            'text_color' => $this->textColor,
+            'hint_color' => $this->hintColor,
+            'link_color' => $this->linkColor,
+            'button_color' => $this->buttonColor,
+            'button_text_color' => $this->buttonTextColor,
+        ];
     }
 }

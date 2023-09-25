@@ -18,18 +18,11 @@ class MessageExtendedMediaPreview extends MessageExtendedMedia
     public const TYPE_NAME = 'messageExtendedMediaPreview';
 
     /**
-     * Media width; 0 if unknown
+     * Media caption
      *
-     * @var int
+     * @var FormattedText
      */
-    protected int $width;
-
-    /**
-     * Media height; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $height;
+    protected FormattedText $caption;
 
     /**
      * Media duration; 0 if unknown
@@ -39,6 +32,13 @@ class MessageExtendedMediaPreview extends MessageExtendedMedia
     protected int $duration;
 
     /**
+     * Media height; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
      * Media minithumbnail; may be null
      *
      * @var Minithumbnail|null
@@ -46,19 +46,20 @@ class MessageExtendedMediaPreview extends MessageExtendedMedia
     protected ?Minithumbnail $minithumbnail;
 
     /**
-     * Media caption
+     * Media width; 0 if unknown
      *
-     * @var FormattedText
+     * @var int
      */
-    protected FormattedText $caption;
+    protected int $width;
 
     public function __construct(
-        int $width,
-        int $height,
-        int $duration,
+        int            $width,
+        int            $height,
+        int            $duration,
         ?Minithumbnail $minithumbnail,
-        FormattedText $caption,
-    ) {
+        FormattedText  $caption,
+    )
+    {
         parent::__construct();
 
         $this->width = $width;
@@ -79,6 +80,31 @@ class MessageExtendedMediaPreview extends MessageExtendedMedia
         );
     }
 
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -89,30 +115,5 @@ class MessageExtendedMediaPreview extends MessageExtendedMedia
             'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
-    }
-
-    public function getMinithumbnail(): ?Minithumbnail
-    {
-        return $this->minithumbnail;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

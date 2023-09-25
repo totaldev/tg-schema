@@ -46,15 +46,6 @@ class MessageAnimatedEmoji extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animated_emoji' => $this->animatedEmoji->typeSerialize(),
-            'emoji' => $this->emoji,
-        ];
-    }
-
     public function getAnimatedEmoji(): AnimatedEmoji
     {
         return $this->animatedEmoji;
@@ -63,5 +54,14 @@ class MessageAnimatedEmoji extends MessageContent
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'animated_emoji' => $this->animatedEmoji->typeSerialize(),
+            'emoji' => $this->emoji,
+        ];
     }
 }

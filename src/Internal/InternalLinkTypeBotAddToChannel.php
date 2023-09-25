@@ -10,18 +10,15 @@ use Totaldev\TgSchema\Chat\ChatAdministratorRights;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+ * The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username
+ * and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive
+ * the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine
+ * received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and
+ * confirmed rights
  */
 class InternalLinkTypeBotAddToChannel extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeBotAddToChannel';
-
-    /**
-     * Username of the bot
-     *
-     * @var string
-     */
-    protected string $botUsername;
 
     /**
      * Expected administrator rights for the bot
@@ -29,6 +26,13 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
      * @var ChatAdministratorRights
      */
     protected ChatAdministratorRights $administratorRights;
+
+    /**
+     * Username of the bot
+     *
+     * @var string
+     */
+    protected string $botUsername;
 
     public function __construct(string $botUsername, ChatAdministratorRights $administratorRights)
     {
@@ -46,13 +50,9 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
         );
     }
 
-    public function typeSerialize(): array
+    public function getAdministratorRights(): ChatAdministratorRights
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_username' => $this->botUsername,
-            'administrator_rights' => $this->administratorRights->typeSerialize(),
-        ];
+        return $this->administratorRights;
     }
 
     public function getBotUsername(): string
@@ -60,8 +60,12 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
         return $this->botUsername;
     }
 
-    public function getAdministratorRights(): ChatAdministratorRights
+    public function typeSerialize(): array
     {
-        return $this->administratorRights;
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_username' => $this->botUsername,
+            'administrator_rights' => $this->administratorRights->typeSerialize(),
+        ];
     }
 }

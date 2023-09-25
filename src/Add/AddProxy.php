@@ -18,11 +18,11 @@ class AddProxy extends TdFunction
     public const TYPE_NAME = 'addProxy';
 
     /**
-     * Proxy server domain or IP address
+     * Pass true to immediately enable the proxy
      *
-     * @var string
+     * @var bool
      */
-    protected string $server;
+    protected bool $enable;
 
     /**
      * Proxy server port
@@ -32,11 +32,11 @@ class AddProxy extends TdFunction
     protected int $port;
 
     /**
-     * Pass true to immediately enable the proxy
+     * Proxy server domain or IP address
      *
-     * @var bool
+     * @var string
      */
-    protected bool $enable;
+    protected string $server;
 
     /**
      * Proxy type
@@ -63,6 +63,26 @@ class AddProxy extends TdFunction
         );
     }
 
+    public function getEnable(): bool
+    {
+        return $this->enable;
+    }
+
+    public function getPort(): int
+    {
+        return $this->port;
+    }
+
+    public function getServer(): string
+    {
+        return $this->server;
+    }
+
+    public function getType(): ProxyType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class AddProxy extends TdFunction
             'enable' => $this->enable,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
-    }
-
-    public function getPort(): int
-    {
-        return $this->port;
-    }
-
-    public function getEnable(): bool
-    {
-        return $this->enable;
-    }
-
-    public function getType(): ProxyType
-    {
-        return $this->type;
     }
 }

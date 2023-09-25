@@ -37,16 +37,16 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
         );
     }
 
+    public function getReactions(): array
+    {
+        return $this->reactions;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->reactions),
         ];
-    }
-
-    public function getReactions(): array
-    {
-        return $this->reactions;
     }
 }

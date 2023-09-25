@@ -10,7 +10,8 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+ * Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with
+ * the text of the message needs to be sent if the sticker is played
  */
 class UpdateAnimatedEmojiMessageClicked extends Update
 {
@@ -55,16 +56,6 @@ class UpdateAnimatedEmojiMessageClicked extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -78,5 +69,15 @@ class UpdateAnimatedEmojiMessageClicked extends Update
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
     }
 }

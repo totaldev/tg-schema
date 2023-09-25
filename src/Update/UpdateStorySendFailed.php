@@ -19,13 +19,6 @@ class UpdateStorySendFailed extends Update
     public const TYPE_NAME = 'updateStorySendFailed';
 
     /**
-     * The failed to send story
-     *
-     * @var Story
-     */
-    protected Story $story;
-
-    /**
      * The cause of the story sending failure
      *
      * @var Error
@@ -38,6 +31,13 @@ class UpdateStorySendFailed extends Update
      * @var CanSendStoryResult|null
      */
     protected ?CanSendStoryResult $errorType;
+
+    /**
+     * The failed to send story
+     *
+     * @var Story
+     */
+    protected Story $story;
 
     public function __construct(Story $story, Error $error, ?CanSendStoryResult $errorType)
     {
@@ -57,21 +57,6 @@ class UpdateStorySendFailed extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story' => $this->story->typeSerialize(),
-            'error' => $this->error->typeSerialize(),
-            'error_type' => (isset($this->errorType) ? $this->errorType : null),
-        ];
-    }
-
-    public function getStory(): Story
-    {
-        return $this->story;
-    }
-
     public function getError(): Error
     {
         return $this->error;
@@ -80,5 +65,20 @@ class UpdateStorySendFailed extends Update
     public function getErrorType(): ?CanSendStoryResult
     {
         return $this->errorType;
+    }
+
+    public function getStory(): Story
+    {
+        return $this->story;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'story' => $this->story->typeSerialize(),
+            'error' => $this->error->typeSerialize(),
+            'error_type' => (isset($this->errorType) ? $this->errorType : null),
+        ];
     }
 }

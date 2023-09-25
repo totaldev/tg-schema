@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
+ * Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the
+ * list, its position isn't changed
  */
 class AddSavedNotificationSound extends TdFunction
 {
@@ -36,16 +37,16 @@ class AddSavedNotificationSound extends TdFunction
         );
     }
 
+    public function getSound(): InputFile
+    {
+        return $this->sound;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'sound' => $this->sound->typeSerialize(),
         ];
-    }
-
-    public function getSound(): InputFile
-    {
-        return $this->sound;
     }
 }

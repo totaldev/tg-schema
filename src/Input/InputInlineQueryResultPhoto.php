@@ -17,20 +17,6 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     public const TYPE_NAME = 'inputInlineQueryResultPhoto';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Title of the result, if known
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * A short description of the result, if known
      *
      * @var string
@@ -38,11 +24,26 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     protected string $description;
 
     /**
-     * URL of the photo thumbnail, if it exists
+     * Unique identifier of the query result
      *
      * @var string
      */
-    protected string $thumbnailUrl;
+    protected string $id;
+
+    /**
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice,
+     * inputMessageLocation, inputMessageVenue or inputMessageContact
+     *
+     * @var InputMessageContent
+     */
+    protected InputMessageContent $inputMessageContent;
+
+    /**
+     * Height of the photo
+     *
+     * @var int
+     */
+    protected int $photoHeight;
 
     /**
      * The URL of the JPEG photo (photo size must not exceed 5MB)
@@ -59,13 +60,6 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     protected int $photoWidth;
 
     /**
-     * Height of the photo
-     *
-     * @var int
-     */
-    protected int $photoHeight;
-
-    /**
      * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
      *
      * @var ReplyMarkup
@@ -73,23 +67,31 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     protected ReplyMarkup $replyMarkup;
 
     /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+     * URL of the photo thumbnail, if it exists
      *
-     * @var InputMessageContent
+     * @var string
      */
-    protected InputMessageContent $inputMessageContent;
+    protected string $thumbnailUrl;
+
+    /**
+     * Title of the result, if known
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(
-        string $id,
-        string $title,
-        string $description,
-        string $thumbnailUrl,
-        string $photoUrl,
-        int $photoWidth,
-        int $photoHeight,
-        ReplyMarkup $replyMarkup,
+        string              $id,
+        string              $title,
+        string              $description,
+        string              $thumbnailUrl,
+        string              $photoUrl,
+        int                 $photoWidth,
+        int                 $photoHeight,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->id = $id;
@@ -118,6 +120,51 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
         );
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getPhotoHeight(): int
+    {
+        return $this->photoHeight;
+    }
+
+    public function getPhotoUrl(): string
+    {
+        return $this->photoUrl;
+    }
+
+    public function getPhotoWidth(): int
+    {
+        return $this->photoWidth;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailUrl(): string
+    {
+        return $this->thumbnailUrl;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -132,50 +179,5 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getThumbnailUrl(): string
-    {
-        return $this->thumbnailUrl;
-    }
-
-    public function getPhotoUrl(): string
-    {
-        return $this->photoUrl;
-    }
-
-    public function getPhotoWidth(): int
-    {
-        return $this->photoWidth;
-    }
-
-    public function getPhotoHeight(): int
-    {
-        return $this->photoHeight;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

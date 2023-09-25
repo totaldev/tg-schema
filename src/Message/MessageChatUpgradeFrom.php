@@ -16,18 +16,18 @@ class MessageChatUpgradeFrom extends MessageContent
     public const TYPE_NAME = 'messageChatUpgradeFrom';
 
     /**
-     * Title of the newly created supergroup
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * The identifier of the original basic group
      *
      * @var int
      */
     protected int $basicGroupId;
+
+    /**
+     * Title of the newly created supergroup
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $title, int $basicGroupId)
     {
@@ -45,13 +45,9 @@ class MessageChatUpgradeFrom extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getBasicGroupId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'basic_group_id' => $this->basicGroupId,
-        ];
+        return $this->basicGroupId;
     }
 
     public function getTitle(): string
@@ -59,8 +55,12 @@ class MessageChatUpgradeFrom extends MessageContent
         return $this->title;
     }
 
-    public function getBasicGroupId(): int
+    public function typeSerialize(): array
     {
-        return $this->basicGroupId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'basic_group_id' => $this->basicGroupId,
+        ];
     }
 }

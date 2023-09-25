@@ -37,16 +37,16 @@ class UpdateSupergroup extends Update
         );
     }
 
+    public function getSupergroup(): Supergroup
+    {
+        return $this->supergroup;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'supergroup' => $this->supergroup->typeSerialize(),
         ];
-    }
-
-    public function getSupergroup(): Supergroup
-    {
-        return $this->supergroup;
     }
 }

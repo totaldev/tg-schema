@@ -17,18 +17,18 @@ class PushMessageContentVoiceNote extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentVoiceNote';
 
     /**
-     * Message content; may be null
-     *
-     * @var VoiceNote|null
-     */
-    protected ?VoiceNote $voiceNote;
-
-    /**
      * True, if the message is a pinned message with the specified content
      *
      * @var bool
      */
     protected bool $isPinned;
+
+    /**
+     * Message content; may be null
+     *
+     * @var VoiceNote|null
+     */
+    protected ?VoiceNote $voiceNote;
 
     public function __construct(?VoiceNote $voiceNote, bool $isPinned)
     {
@@ -46,13 +46,9 @@ class PushMessageContentVoiceNote extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
-            'is_pinned' => $this->isPinned,
-        ];
+        return $this->isPinned;
     }
 
     public function getVoiceNote(): ?VoiceNote
@@ -60,8 +56,12 @@ class PushMessageContentVoiceNote extends PushMessageContent
         return $this->voiceNote;
     }
 
-    public function getIsPinned(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPinned;
+        return [
+            '@type' => static::TYPE_NAME,
+            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

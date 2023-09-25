@@ -35,16 +35,16 @@ class SetAlarm extends TdFunction
         );
     }
 
+    public function getSeconds(): float
+    {
+        return $this->seconds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'seconds' => $this->seconds,
         ];
-    }
-
-    public function getSeconds(): float
-    {
-        return $this->seconds;
     }
 }

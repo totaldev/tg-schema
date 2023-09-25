@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
+ * Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public.
+ * Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
  */
 class SearchPublicChats extends TdFunction
 {
@@ -35,16 +36,16 @@ class SearchPublicChats extends TdFunction
         );
     }
 
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'query' => $this->query,
         ];
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
     }
 }

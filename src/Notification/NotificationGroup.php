@@ -17,6 +17,13 @@ class NotificationGroup extends TdObject
     public const TYPE_NAME = 'notificationGroup';
 
     /**
+     * Identifier of a chat to which all notifications in the group belong
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
      * Unique persistent auto-incremented from 1 identifier of the notification group
      *
      * @var int
@@ -24,18 +31,11 @@ class NotificationGroup extends TdObject
     protected int $id;
 
     /**
-     * Type of the group
+     * The list of active notifications
      *
-     * @var NotificationGroupType
+     * @var Notification[]
      */
-    protected NotificationGroupType $type;
-
-    /**
-     * Identifier of a chat to which all notifications in the group belong
-     *
-     * @var int
-     */
-    protected int $chatId;
+    protected array $notifications;
 
     /**
      * Total number of active notifications in the group
@@ -45,19 +45,20 @@ class NotificationGroup extends TdObject
     protected int $totalCount;
 
     /**
-     * The list of active notifications
+     * Type of the group
      *
-     * @var Notification[]
+     * @var NotificationGroupType
      */
-    protected array $notifications;
+    protected NotificationGroupType $type;
 
     public function __construct(
-        int $id,
+        int                   $id,
         NotificationGroupType $type,
-        int $chatId,
-        int $totalCount,
-        array $notifications,
-    ) {
+        int                   $chatId,
+        int                   $totalCount,
+        array                 $notifications,
+    )
+    {
         $this->id = $id;
         $this->type = $type;
         $this->chatId = $chatId;
@@ -76,6 +77,31 @@ class NotificationGroup extends TdObject
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getNotifications(): array
+    {
+        return $this->notifications;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function getType(): NotificationGroupType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -86,30 +112,5 @@ class NotificationGroup extends TdObject
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->notifications),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getType(): NotificationGroupType
-    {
-        return $this->type;
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getNotifications(): array
-    {
-        return $this->notifications;
     }
 }

@@ -17,11 +17,11 @@ class ToggleStoryIsPinned extends TdFunction
     public const TYPE_NAME = 'toggleStoryIsPinned';
 
     /**
-     * Identifier of the chat that posted the story
+     * Pass true to make the story accessible after expiration; pass false to make it private
      *
-     * @var int
+     * @var bool
      */
-    protected int $storySenderChatId;
+    protected bool $isPinned;
 
     /**
      * Identifier of the story
@@ -31,11 +31,11 @@ class ToggleStoryIsPinned extends TdFunction
     protected int $storyId;
 
     /**
-     * Pass true to make the story accessible after expiration; pass false to make it private
+     * Identifier of the chat that posted the story
      *
-     * @var bool
+     * @var int
      */
-    protected bool $isPinned;
+    protected int $storySenderChatId;
 
     public function __construct(int $storySenderChatId, int $storyId, bool $isPinned)
     {
@@ -53,6 +53,21 @@ class ToggleStoryIsPinned extends TdFunction
         );
     }
 
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class ToggleStoryIsPinned extends TdFunction
             'story_id' => $this->storyId,
             'is_pinned' => $this->isPinned,
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
     }
 }

@@ -16,18 +16,18 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
     public const TYPE_NAME = 'inputStoryAreaTypePreviousVenue';
 
     /**
-     * Provider of the venue
-     *
-     * @var string
-     */
-    protected string $venueProvider;
-
-    /**
      * Identifier of the venue in the provider database
      *
      * @var string
      */
     protected string $venueId;
+
+    /**
+     * Provider of the venue
+     *
+     * @var string
+     */
+    protected string $venueProvider;
 
     public function __construct(string $venueProvider, string $venueId)
     {
@@ -45,13 +45,9 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
         );
     }
 
-    public function typeSerialize(): array
+    public function getVenueId(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'venue_provider' => $this->venueProvider,
-            'venue_id' => $this->venueId,
-        ];
+        return $this->venueId;
     }
 
     public function getVenueProvider(): string
@@ -59,8 +55,12 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
         return $this->venueProvider;
     }
 
-    public function getVenueId(): string
+    public function typeSerialize(): array
     {
-        return $this->venueId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'venue_provider' => $this->venueProvider,
+            'venue_id' => $this->venueId,
+        ];
     }
 }

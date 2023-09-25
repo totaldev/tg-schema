@@ -36,16 +36,16 @@ class GetChatFolderChatCount extends TdFunction
         );
     }
 
+    public function getFolder(): ChatFolder
+    {
+        return $this->folder;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'folder' => $this->folder->typeSerialize(),
         ];
-    }
-
-    public function getFolder(): ChatFolder
-    {
-        return $this->folder;
     }
 }

@@ -10,11 +10,20 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+ * Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the
+ * number of returned messages is chosen by TDLib
  */
 class SearchCallMessages extends TdFunction
 {
     public const TYPE_NAME = 'searchCallMessages';
+
+    /**
+     * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller
+     * than the specified limit
+     *
+     * @var int
+     */
+    protected int $limit;
 
     /**
      * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -22,13 +31,6 @@ class SearchCallMessages extends TdFunction
      * @var string
      */
     protected string $offset;
-
-    /**
-     * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
 
     /**
      * Pass true to search only for messages with missed/declined calls
@@ -53,6 +55,21 @@ class SearchCallMessages extends TdFunction
         );
     }
 
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function getOffset(): string
+    {
+        return $this->offset;
+    }
+
+    public function getOnlyMissed(): bool
+    {
+        return $this->onlyMissed;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +78,5 @@ class SearchCallMessages extends TdFunction
             'limit' => $this->limit,
             'only_missed' => $this->onlyMissed,
         ];
-    }
-
-    public function getOffset(): string
-    {
-        return $this->offset;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getOnlyMissed(): bool
-    {
-        return $this->onlyMissed;
     }
 }

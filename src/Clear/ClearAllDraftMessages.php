@@ -35,16 +35,16 @@ class ClearAllDraftMessages extends TdFunction
         );
     }
 
+    public function getExcludeSecretChats(): bool
+    {
+        return $this->excludeSecretChats;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'exclude_secret_chats' => $this->excludeSecretChats,
         ];
-    }
-
-    public function getExcludeSecretChats(): bool
-    {
-        return $this->excludeSecretChats;
     }
 }

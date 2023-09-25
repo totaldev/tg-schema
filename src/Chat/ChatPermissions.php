@@ -17,69 +17,6 @@ class ChatPermissions extends TdObject
     public const TYPE_NAME = 'chatPermissions';
 
     /**
-     * True, if the user can send text messages, contacts, invoices, locations, and venues
-     *
-     * @var bool
-     */
-    protected bool $canSendBasicMessages;
-
-    /**
-     * True, if the user can send music files
-     *
-     * @var bool
-     */
-    protected bool $canSendAudios;
-
-    /**
-     * True, if the user can send documents
-     *
-     * @var bool
-     */
-    protected bool $canSendDocuments;
-
-    /**
-     * True, if the user can send audio photos
-     *
-     * @var bool
-     */
-    protected bool $canSendPhotos;
-
-    /**
-     * True, if the user can send audio videos
-     *
-     * @var bool
-     */
-    protected bool $canSendVideos;
-
-    /**
-     * True, if the user can send video notes
-     *
-     * @var bool
-     */
-    protected bool $canSendVideoNotes;
-
-    /**
-     * True, if the user can send voice notes
-     *
-     * @var bool
-     */
-    protected bool $canSendVoiceNotes;
-
-    /**
-     * True, if the user can send polls
-     *
-     * @var bool
-     */
-    protected bool $canSendPolls;
-
-    /**
-     * True, if the user can send animations, games, stickers, and dice and use inline bots
-     *
-     * @var bool
-     */
-    protected bool $canSendOtherMessages;
-
-    /**
      * True, if the user may add a web page preview to their messages
      *
      * @var bool
@@ -101,6 +38,13 @@ class ChatPermissions extends TdObject
     protected bool $canInviteUsers;
 
     /**
+     * True, if the user can manage topics
+     *
+     * @var bool
+     */
+    protected bool $canManageTopics;
+
+    /**
      * True, if the user can pin messages
      *
      * @var bool
@@ -108,11 +52,67 @@ class ChatPermissions extends TdObject
     protected bool $canPinMessages;
 
     /**
-     * True, if the user can manage topics
+     * True, if the user can send music files
      *
      * @var bool
      */
-    protected bool $canManageTopics;
+    protected bool $canSendAudios;
+
+    /**
+     * True, if the user can send text messages, contacts, invoices, locations, and venues
+     *
+     * @var bool
+     */
+    protected bool $canSendBasicMessages;
+
+    /**
+     * True, if the user can send documents
+     *
+     * @var bool
+     */
+    protected bool $canSendDocuments;
+
+    /**
+     * True, if the user can send animations, games, stickers, and dice and use inline bots
+     *
+     * @var bool
+     */
+    protected bool $canSendOtherMessages;
+
+    /**
+     * True, if the user can send audio photos
+     *
+     * @var bool
+     */
+    protected bool $canSendPhotos;
+
+    /**
+     * True, if the user can send polls
+     *
+     * @var bool
+     */
+    protected bool $canSendPolls;
+
+    /**
+     * True, if the user can send video notes
+     *
+     * @var bool
+     */
+    protected bool $canSendVideoNotes;
+
+    /**
+     * True, if the user can send audio videos
+     *
+     * @var bool
+     */
+    protected bool $canSendVideos;
+
+    /**
+     * True, if the user can send voice notes
+     *
+     * @var bool
+     */
+    protected bool $canSendVoiceNotes;
 
     public function __construct(
         bool $canSendBasicMessages,
@@ -129,7 +129,8 @@ class ChatPermissions extends TdObject
         bool $canInviteUsers,
         bool $canPinMessages,
         bool $canManageTopics,
-    ) {
+    )
+    {
         $this->canSendBasicMessages = $canSendBasicMessages;
         $this->canSendAudios = $canSendAudios;
         $this->canSendDocuments = $canSendDocuments;
@@ -166,6 +167,76 @@ class ChatPermissions extends TdObject
         );
     }
 
+    public function getCanAddWebPagePreviews(): bool
+    {
+        return $this->canAddWebPagePreviews;
+    }
+
+    public function getCanChangeInfo(): bool
+    {
+        return $this->canChangeInfo;
+    }
+
+    public function getCanInviteUsers(): bool
+    {
+        return $this->canInviteUsers;
+    }
+
+    public function getCanManageTopics(): bool
+    {
+        return $this->canManageTopics;
+    }
+
+    public function getCanPinMessages(): bool
+    {
+        return $this->canPinMessages;
+    }
+
+    public function getCanSendAudios(): bool
+    {
+        return $this->canSendAudios;
+    }
+
+    public function getCanSendBasicMessages(): bool
+    {
+        return $this->canSendBasicMessages;
+    }
+
+    public function getCanSendDocuments(): bool
+    {
+        return $this->canSendDocuments;
+    }
+
+    public function getCanSendOtherMessages(): bool
+    {
+        return $this->canSendOtherMessages;
+    }
+
+    public function getCanSendPhotos(): bool
+    {
+        return $this->canSendPhotos;
+    }
+
+    public function getCanSendPolls(): bool
+    {
+        return $this->canSendPolls;
+    }
+
+    public function getCanSendVideoNotes(): bool
+    {
+        return $this->canSendVideoNotes;
+    }
+
+    public function getCanSendVideos(): bool
+    {
+        return $this->canSendVideos;
+    }
+
+    public function getCanSendVoiceNotes(): bool
+    {
+        return $this->canSendVoiceNotes;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -185,75 +256,5 @@ class ChatPermissions extends TdObject
             'can_pin_messages' => $this->canPinMessages,
             'can_manage_topics' => $this->canManageTopics,
         ];
-    }
-
-    public function getCanSendBasicMessages(): bool
-    {
-        return $this->canSendBasicMessages;
-    }
-
-    public function getCanSendAudios(): bool
-    {
-        return $this->canSendAudios;
-    }
-
-    public function getCanSendDocuments(): bool
-    {
-        return $this->canSendDocuments;
-    }
-
-    public function getCanSendPhotos(): bool
-    {
-        return $this->canSendPhotos;
-    }
-
-    public function getCanSendVideos(): bool
-    {
-        return $this->canSendVideos;
-    }
-
-    public function getCanSendVideoNotes(): bool
-    {
-        return $this->canSendVideoNotes;
-    }
-
-    public function getCanSendVoiceNotes(): bool
-    {
-        return $this->canSendVoiceNotes;
-    }
-
-    public function getCanSendPolls(): bool
-    {
-        return $this->canSendPolls;
-    }
-
-    public function getCanSendOtherMessages(): bool
-    {
-        return $this->canSendOtherMessages;
-    }
-
-    public function getCanAddWebPagePreviews(): bool
-    {
-        return $this->canAddWebPagePreviews;
-    }
-
-    public function getCanChangeInfo(): bool
-    {
-        return $this->canChangeInfo;
-    }
-
-    public function getCanInviteUsers(): bool
-    {
-        return $this->canInviteUsers;
-    }
-
-    public function getCanPinMessages(): bool
-    {
-        return $this->canPinMessages;
-    }
-
-    public function getCanManageTopics(): bool
-    {
-        return $this->canManageTopics;
     }
 }

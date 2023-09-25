@@ -17,18 +17,18 @@ class CountryInfo extends TdObject
     public const TYPE_NAME = 'countryInfo';
 
     /**
+     * List of country calling codes
+     *
+     * @var string[]
+     */
+    protected array $callingCodes;
+
+    /**
      * A two-letter ISO 3166-1 alpha-2 country code
      *
      * @var string
      */
     protected string $countryCode;
-
-    /**
-     * Native name of the country
-     *
-     * @var string
-     */
-    protected string $name;
 
     /**
      * English name of the country
@@ -45,19 +45,20 @@ class CountryInfo extends TdObject
     protected bool $isHidden;
 
     /**
-     * List of country calling codes
+     * Native name of the country
      *
-     * @var string[]
+     * @var string
      */
-    protected array $callingCodes;
+    protected string $name;
 
     public function __construct(
         string $countryCode,
         string $name,
         string $englishName,
-        bool $isHidden,
-        array $callingCodes,
-    ) {
+        bool   $isHidden,
+        array  $callingCodes,
+    )
+    {
         $this->countryCode = $countryCode;
         $this->name = $name;
         $this->englishName = $englishName;
@@ -76,26 +77,14 @@ class CountryInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getCallingCodes(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'country_code' => $this->countryCode,
-            'name' => $this->name,
-            'english_name' => $this->englishName,
-            'is_hidden' => $this->isHidden,
-            'calling_codes' => $this->callingCodes,
-        ];
+        return $this->callingCodes;
     }
 
     public function getCountryCode(): string
     {
         return $this->countryCode;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     public function getEnglishName(): string
@@ -108,8 +97,20 @@ class CountryInfo extends TdObject
         return $this->isHidden;
     }
 
-    public function getCallingCodes(): array
+    public function getName(): string
     {
-        return $this->callingCodes;
+        return $this->name;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'country_code' => $this->countryCode,
+            'name' => $this->name,
+            'english_name' => $this->englishName,
+            'is_hidden' => $this->isHidden,
+            'calling_codes' => $this->callingCodes,
+        ];
     }
 }

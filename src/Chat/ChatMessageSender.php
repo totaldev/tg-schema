@@ -18,18 +18,18 @@ class ChatMessageSender extends TdObject
     public const TYPE_NAME = 'chatMessageSender';
 
     /**
-     * Available message senders
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $sender;
-
-    /**
      * True, if Telegram Premium is needed to use the message sender
      *
      * @var bool
      */
     protected bool $needsPremium;
+
+    /**
+     * Available message senders
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $sender;
 
     public function __construct(MessageSender $sender, bool $needsPremium)
     {
@@ -45,13 +45,9 @@ class ChatMessageSender extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedsPremium(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sender' => $this->sender->typeSerialize(),
-            'needs_premium' => $this->needsPremium,
-        ];
+        return $this->needsPremium;
     }
 
     public function getSender(): MessageSender
@@ -59,8 +55,12 @@ class ChatMessageSender extends TdObject
         return $this->sender;
     }
 
-    public function getNeedsPremium(): bool
+    public function typeSerialize(): array
     {
-        return $this->needsPremium;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender' => $this->sender->typeSerialize(),
+            'needs_premium' => $this->needsPremium,
+        ];
     }
 }

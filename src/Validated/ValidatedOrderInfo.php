@@ -41,17 +41,8 @@ class ValidatedOrderInfo extends TdObject
     {
         return new static(
             $array['order_info_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'order_info_id' => $this->orderInfoId,
-            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
-        ];
     }
 
     public function getOrderInfoId(): string
@@ -62,5 +53,14 @@ class ValidatedOrderInfo extends TdObject
     public function getShippingOptions(): array
     {
         return $this->shippingOptions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'order_info_id' => $this->orderInfoId,
+            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
+        ];
     }
 }

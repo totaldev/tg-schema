@@ -36,16 +36,16 @@ class SetEmojiStatus extends TdFunction
         );
     }
 
+    public function getEmojiStatus(): EmojiStatus
+    {
+        return $this->emojiStatus;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'emoji_status' => $this->emojiStatus->typeSerialize(),
         ];
-    }
-
-    public function getEmojiStatus(): EmojiStatus
-    {
-        return $this->emojiStatus;
     }
 }

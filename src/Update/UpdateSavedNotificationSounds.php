@@ -36,16 +36,16 @@ class UpdateSavedNotificationSounds extends Update
         );
     }
 
+    public function getNotificationSoundIds(): array
+    {
+        return $this->notificationSoundIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'notification_sound_ids' => $this->notificationSoundIds,
         ];
-    }
-
-    public function getNotificationSoundIds(): array
-    {
-        return $this->notificationSoundIds;
     }
 }

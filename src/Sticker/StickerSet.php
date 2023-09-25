@@ -20,46 +20,19 @@ class StickerSet extends TdObject
     public const TYPE_NAME = 'stickerSet';
 
     /**
+     * A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a
+     * fixed emoji from the corresponding Sticker object
+     *
+     * @var Emojis[]
+     */
+    protected array $emojis;
+
+    /**
      * Identifier of the sticker set
      *
      * @var int
      */
     protected int $id;
-
-    /**
-     * Title of the sticker set
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Name of the sticker set
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
-     *
-     * @var Thumbnail|null
-     */
-    protected ?Thumbnail $thumbnail;
-
-    /**
-     * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-     *
-     * @var ClosedVectorPath[]
-     */
-    protected array $thumbnailOutline;
-
-    /**
-     * True, if the sticker set has been installed by the current user
-     *
-     * @var bool
-     */
-    protected bool $isInstalled;
 
     /**
      * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
@@ -69,11 +42,32 @@ class StickerSet extends TdObject
     protected bool $isArchived;
 
     /**
+     * True, if the sticker set has been installed by the current user
+     *
+     * @var bool
+     */
+    protected bool $isInstalled;
+
+    /**
      * True, if the sticker set is official
      *
      * @var bool
      */
     protected bool $isOfficial;
+
+    /**
+     * True for already viewed trending sticker sets
+     *
+     * @var bool
+     */
+    protected bool $isViewed;
+
+    /**
+     * Name of the sticker set
+     *
+     * @var string
+     */
+    protected string $name;
 
     /**
      * Format of the stickers in the set
@@ -90,13 +84,6 @@ class StickerSet extends TdObject
     protected StickerType $stickerType;
 
     /**
-     * True for already viewed trending sticker sets
-     *
-     * @var bool
-     */
-    protected bool $isViewed;
-
-    /**
      * List of stickers in this set
      *
      * @var Sticker[]
@@ -104,27 +91,43 @@ class StickerSet extends TdObject
     protected array $stickers;
 
     /**
-     * A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+     * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is
+     * changed
      *
-     * @var Emojis[]
+     * @var Thumbnail|null
      */
-    protected array $emojis;
+    protected ?Thumbnail $thumbnail;
+
+    /**
+     * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
+     *
+     * @var ClosedVectorPath[]
+     */
+    protected array $thumbnailOutline;
+
+    /**
+     * Title of the sticker set
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(
-        int $id,
-        string $title,
-        string $name,
-        ?Thumbnail $thumbnail,
-        array $thumbnailOutline,
-        bool $isInstalled,
-        bool $isArchived,
-        bool $isOfficial,
+        int           $id,
+        string        $title,
+        string        $name,
+        ?Thumbnail    $thumbnail,
+        array         $thumbnailOutline,
+        bool          $isInstalled,
+        bool          $isArchived,
+        bool          $isOfficial,
         StickerFormat $stickerFormat,
-        StickerType $stickerType,
-        bool $isViewed,
-        array $stickers,
-        array $emojis,
-    ) {
+        StickerType   $stickerType,
+        bool          $isViewed,
+        array         $stickers,
+        array         $emojis,
+    )
+    {
         $this->id = $id;
         $this->title = $title;
         $this->name = $name;
@@ -147,7 +150,7 @@ class StickerSet extends TdObject
             $array['title'],
             $array['name'],
             (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['thumbnailOutline']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['thumbnail_outline']),
             $array['is_installed'],
             $array['is_archived'],
             $array['is_official'],
@@ -157,6 +160,71 @@ class StickerSet extends TdObject
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['emojis']),
         );
+    }
+
+    public function getEmojis(): array
+    {
+        return $this->emojis;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIsArchived(): bool
+    {
+        return $this->isArchived;
+    }
+
+    public function getIsInstalled(): bool
+    {
+        return $this->isInstalled;
+    }
+
+    public function getIsOfficial(): bool
+    {
+        return $this->isOfficial;
+    }
+
+    public function getIsViewed(): bool
+    {
+        return $this->isViewed;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getStickerFormat(): StickerFormat
+    {
+        return $this->stickerFormat;
+    }
+
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
+    public function getStickers(): array
+    {
+        return $this->stickers;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getThumbnailOutline(): array
+    {
+        return $this->thumbnailOutline;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     public function typeSerialize(): array
@@ -177,70 +245,5 @@ class StickerSet extends TdObject
             array_map(fn($x) => $x->typeSerialize(), $this->stickers),
             array_map(fn($x) => $x->typeSerialize(), $this->emojis),
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getThumbnailOutline(): array
-    {
-        return $this->thumbnailOutline;
-    }
-
-    public function getIsInstalled(): bool
-    {
-        return $this->isInstalled;
-    }
-
-    public function getIsArchived(): bool
-    {
-        return $this->isArchived;
-    }
-
-    public function getIsOfficial(): bool
-    {
-        return $this->isOfficial;
-    }
-
-    public function getStickerFormat(): StickerFormat
-    {
-        return $this->stickerFormat;
-    }
-
-    public function getStickerType(): StickerType
-    {
-        return $this->stickerType;
-    }
-
-    public function getIsViewed(): bool
-    {
-        return $this->isViewed;
-    }
-
-    public function getStickers(): array
-    {
-        return $this->stickers;
-    }
-
-    public function getEmojis(): array
-    {
-        return $this->emojis;
     }
 }

@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Internal;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+ * The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the
+ * given referrer to process the link
  */
 class InternalLinkTypePremiumFeatures extends InternalLinkType
 {
@@ -36,16 +37,16 @@ class InternalLinkTypePremiumFeatures extends InternalLinkType
         );
     }
 
+    public function getReferrer(): string
+    {
+        return $this->referrer;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'referrer' => $this->referrer,
         ];
-    }
-
-    public function getReferrer(): string
-    {
-        return $this->referrer;
     }
 }

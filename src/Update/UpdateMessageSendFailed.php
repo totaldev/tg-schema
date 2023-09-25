@@ -11,11 +11,19 @@ use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
+ * A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead
+ * of this update
  */
 class UpdateMessageSendFailed extends Update
 {
     public const TYPE_NAME = 'updateMessageSendFailed';
+
+    /**
+     * The cause of the message sending failure
+     *
+     * @var Error
+     */
+    protected Error $error;
 
     /**
      * The failed to send message
@@ -30,13 +38,6 @@ class UpdateMessageSendFailed extends Update
      * @var int
      */
     protected int $oldMessageId;
-
-    /**
-     * The cause of the message sending failure
-     *
-     * @var Error
-     */
-    protected Error $error;
 
     public function __construct(Message $message, int $oldMessageId, Error $error)
     {
@@ -56,14 +57,9 @@ class UpdateMessageSendFailed extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getError(): Error
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-            'old_message_id' => $this->oldMessageId,
-            'error' => $this->error->typeSerialize(),
-        ];
+        return $this->error;
     }
 
     public function getMessage(): Message
@@ -76,8 +72,13 @@ class UpdateMessageSendFailed extends Update
         return $this->oldMessageId;
     }
 
-    public function getError(): Error
+    public function typeSerialize(): array
     {
-        return $this->error;
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'old_message_id' => $this->oldMessageId,
+            'error' => $this->error->typeSerialize(),
+        ];
     }
 }

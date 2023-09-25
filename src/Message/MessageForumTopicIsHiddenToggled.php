@@ -36,16 +36,16 @@ class MessageForumTopicIsHiddenToggled extends MessageContent
         );
     }
 
+    public function getIsHidden(): bool
+    {
+        return $this->isHidden;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'is_hidden' => $this->isHidden,
         ];
-    }
-
-    public function getIsHidden(): bool
-    {
-        return $this->isHidden;
     }
 }

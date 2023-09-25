@@ -16,18 +16,18 @@ class LoginUrlInfoOpen extends LoginUrlInfo
     public const TYPE_NAME = 'loginUrlInfoOpen';
 
     /**
-     * The URL to open
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
      * True, if there is no need to show an ordinary open URL confirmation
      *
      * @var bool
      */
     protected bool $skipConfirmation;
+
+    /**
+     * The URL to open
+     *
+     * @var string
+     */
+    protected string $url;
 
     public function __construct(string $url, bool $skipConfirmation)
     {
@@ -45,13 +45,9 @@ class LoginUrlInfoOpen extends LoginUrlInfo
         );
     }
 
-    public function typeSerialize(): array
+    public function getSkipConfirmation(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
-            'skip_confirmation' => $this->skipConfirmation,
-        ];
+        return $this->skipConfirmation;
     }
 
     public function getUrl(): string
@@ -59,8 +55,12 @@ class LoginUrlInfoOpen extends LoginUrlInfo
         return $this->url;
     }
 
-    public function getSkipConfirmation(): bool
+    public function typeSerialize(): array
     {
-        return $this->skipConfirmation;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'skip_confirmation' => $this->skipConfirmation,
+        ];
     }
 }

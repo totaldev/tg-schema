@@ -17,11 +17,11 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     public const TYPE_NAME = 'replyMarkupShowKeyboard';
 
     /**
-     * A list of rows of bot keyboard buttons
+     * If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
      *
-     * @var KeyboardButton[][]
+     * @var string
      */
-    protected array $rows;
+    protected string $inputFieldPlaceholder;
 
     /**
      * True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden
@@ -31,11 +31,12 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     protected bool $isPersistent;
 
     /**
-     * True, if the application needs to resize the keyboard vertically
+     * True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned
+     * users and for the target user of a reply
      *
      * @var bool
      */
-    protected bool $resizeKeyboard;
+    protected bool $isPersonal;
 
     /**
      * True, if the application needs to hide the keyboard after use
@@ -45,27 +46,28 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     protected bool $oneTime;
 
     /**
-     * True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
+     * True, if the application needs to resize the keyboard vertically
      *
      * @var bool
      */
-    protected bool $isPersonal;
+    protected bool $resizeKeyboard;
 
     /**
-     * If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
+     * A list of rows of bot keyboard buttons
      *
-     * @var string
+     * @var KeyboardButton[][]
      */
-    protected string $inputFieldPlaceholder;
+    protected array $rows;
 
     public function __construct(
-        array $rows,
-        bool $isPersistent,
-        bool $resizeKeyboard,
-        bool $oneTime,
-        bool $isPersonal,
+        array  $rows,
+        bool   $isPersistent,
+        bool   $resizeKeyboard,
+        bool   $oneTime,
+        bool   $isPersonal,
         string $inputFieldPlaceholder,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->rows = $rows;
@@ -88,6 +90,36 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
         );
     }
 
+    public function getInputFieldPlaceholder(): string
+    {
+        return $this->inputFieldPlaceholder;
+    }
+
+    public function getIsPersistent(): bool
+    {
+        return $this->isPersistent;
+    }
+
+    public function getIsPersonal(): bool
+    {
+        return $this->isPersonal;
+    }
+
+    public function getOneTime(): bool
+    {
+        return $this->oneTime;
+    }
+
+    public function getResizeKeyboard(): bool
+    {
+        return $this->resizeKeyboard;
+    }
+
+    public function getRows(): array
+    {
+        return $this->rows;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -99,35 +131,5 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
             'is_personal' => $this->isPersonal,
             'input_field_placeholder' => $this->inputFieldPlaceholder,
         ];
-    }
-
-    public function getRows(): array
-    {
-        return $this->rows;
-    }
-
-    public function getIsPersistent(): bool
-    {
-        return $this->isPersistent;
-    }
-
-    public function getResizeKeyboard(): bool
-    {
-        return $this->resizeKeyboard;
-    }
-
-    public function getOneTime(): bool
-    {
-        return $this->oneTime;
-    }
-
-    public function getIsPersonal(): bool
-    {
-        return $this->isPersonal;
-    }
-
-    public function getInputFieldPlaceholder(): string
-    {
-        return $this->inputFieldPlaceholder;
     }
 }

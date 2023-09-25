@@ -17,18 +17,18 @@ class MessageChatSetBackground extends MessageContent
     public const TYPE_NAME = 'messageChatSetBackground';
 
     /**
-     * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
-     *
-     * @var int
-     */
-    protected int $oldBackgroundMessageId;
-
-    /**
      * The new background
      *
      * @var ChatBackground
      */
     protected ChatBackground $background;
+
+    /**
+     * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
+     *
+     * @var int
+     */
+    protected int $oldBackgroundMessageId;
 
     public function __construct(int $oldBackgroundMessageId, ChatBackground $background)
     {
@@ -46,13 +46,9 @@ class MessageChatSetBackground extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getBackground(): ChatBackground
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_background_message_id' => $this->oldBackgroundMessageId,
-            'background' => $this->background->typeSerialize(),
-        ];
+        return $this->background;
     }
 
     public function getOldBackgroundMessageId(): int
@@ -60,8 +56,12 @@ class MessageChatSetBackground extends MessageContent
         return $this->oldBackgroundMessageId;
     }
 
-    public function getBackground(): ChatBackground
+    public function typeSerialize(): array
     {
-        return $this->background;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_background_message_id' => $this->oldBackgroundMessageId,
+            'background' => $this->background->typeSerialize(),
+        ];
     }
 }

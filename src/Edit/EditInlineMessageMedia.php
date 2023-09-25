@@ -26,24 +26,26 @@ class EditInlineMessageMedia extends TdFunction
     protected string $inlineMessageId;
 
     /**
+     * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or
+     * inputMessageVideo
+     *
+     * @var InputMessageContent
+     */
+    protected InputMessageContent $inputMessageContent;
+
+    /**
      * The new message reply markup; pass null if none; for bots only
      *
      * @var ReplyMarkup
      */
     protected ReplyMarkup $replyMarkup;
 
-    /**
-     * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
     public function __construct(
-        string $inlineMessageId,
-        ReplyMarkup $replyMarkup,
+        string              $inlineMessageId,
+        ReplyMarkup         $replyMarkup,
         InputMessageContent $inputMessageContent,
-    ) {
+    )
+    {
         $this->inlineMessageId = $inlineMessageId;
         $this->replyMarkup = $replyMarkup;
         $this->inputMessageContent = $inputMessageContent;
@@ -58,6 +60,21 @@ class EditInlineMessageMedia extends TdFunction
         );
     }
 
+    public function getInlineMessageId(): string
+    {
+        return $this->inlineMessageId;
+    }
+
+    public function getInputMessageContent(): InputMessageContent
+    {
+        return $this->inputMessageContent;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -66,20 +83,5 @@ class EditInlineMessageMedia extends TdFunction
             'reply_markup' => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
-    }
-
-    public function getInlineMessageId(): string
-    {
-        return $this->inlineMessageId;
-    }
-
-    public function getReplyMarkup(): ReplyMarkup
-    {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
     }
 }

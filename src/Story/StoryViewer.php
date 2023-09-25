@@ -19,20 +19,6 @@ class StoryViewer extends TdObject
     public const TYPE_NAME = 'storyViewer';
 
     /**
-     * User identifier of the viewer
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * Approximate point in time (Unix timestamp) when the story was viewed
-     *
-     * @var int
-     */
-    protected int $viewDate;
-
-    /**
      * Block list to which the user is added; may be null if none
      *
      * @var BlockList|null
@@ -45,6 +31,20 @@ class StoryViewer extends TdObject
      * @var ReactionType|null
      */
     protected ?ReactionType $chosenReactionType;
+
+    /**
+     * User identifier of the viewer
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * Approximate point in time (Unix timestamp) when the story was viewed
+     *
+     * @var int
+     */
+    protected int $viewDate;
 
     public function __construct(int $userId, int $viewDate, ?BlockList $blockList, ?ReactionType $chosenReactionType)
     {
@@ -64,15 +64,14 @@ class StoryViewer extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getBlockList(): ?BlockList
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'view_date' => $this->viewDate,
-            'block_list' => (isset($this->blockList) ? $this->blockList : null),
-            'chosen_reaction_type' => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
-        ];
+        return $this->blockList;
+    }
+
+    public function getChosenReactionType(): ?ReactionType
+    {
+        return $this->chosenReactionType;
     }
 
     public function getUserId(): int
@@ -85,13 +84,14 @@ class StoryViewer extends TdObject
         return $this->viewDate;
     }
 
-    public function getBlockList(): ?BlockList
+    public function typeSerialize(): array
     {
-        return $this->blockList;
-    }
-
-    public function getChosenReactionType(): ?ReactionType
-    {
-        return $this->chosenReactionType;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'view_date' => $this->viewDate,
+            'block_list' => (isset($this->blockList) ? $this->blockList : null),
+            'chosen_reaction_type' => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
+        ];
     }
 }

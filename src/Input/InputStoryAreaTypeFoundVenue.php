@@ -45,15 +45,6 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query_id' => $this->queryId,
-            'result_id' => $this->resultId,
-        ];
-    }
-
     public function getQueryId(): int
     {
         return $this->queryId;
@@ -62,5 +53,14 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
     public function getResultId(): string
     {
         return $this->resultId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'query_id' => $this->queryId,
+            'result_id' => $this->resultId,
+        ];
     }
 }

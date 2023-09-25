@@ -45,15 +45,6 @@ class EditInlineMessageReplyMarkup extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-        ];
-    }
-
     public function getInlineMessageId(): string
     {
         return $this->inlineMessageId;
@@ -62,5 +53,14 @@ class EditInlineMessageReplyMarkup extends TdFunction
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_message_id' => $this->inlineMessageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+        ];
     }
 }

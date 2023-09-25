@@ -19,32 +19,11 @@ class AnswerInlineQuery extends TdFunction
     public const TYPE_NAME = 'answerInlineQuery';
 
     /**
-     * Identifier of the inline query
-     *
-     * @var int
-     */
-    protected int $inlineQueryId;
-
-    /**
-     * Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
-     *
-     * @var bool
-     */
-    protected bool $isPersonal;
-
-    /**
      * Button to be shown above inline query results; pass null if none
      *
      * @var InlineQueryResultsButton
      */
     protected InlineQueryResultsButton $button;
-
-    /**
-     * The results of the query
-     *
-     * @var InputInlineQueryResult[]
-     */
-    protected array $results;
 
     /**
      * Allowed time to cache the results of the query, in seconds
@@ -54,20 +33,43 @@ class AnswerInlineQuery extends TdFunction
     protected int $cacheTime;
 
     /**
+     * Identifier of the inline query
+     *
+     * @var int
+     */
+    protected int $inlineQueryId;
+
+    /**
+     * Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the
+     * same query
+     *
+     * @var bool
+     */
+    protected bool $isPersonal;
+
+    /**
      * Offset for the next inline query; pass an empty string if there are no more results
      *
      * @var string
      */
     protected string $nextOffset;
 
+    /**
+     * The results of the query
+     *
+     * @var InputInlineQueryResult[]
+     */
+    protected array $results;
+
     public function __construct(
-        int $inlineQueryId,
-        bool $isPersonal,
+        int                      $inlineQueryId,
+        bool                     $isPersonal,
         InlineQueryResultsButton $button,
-        array $results,
-        int $cacheTime,
-        string $nextOffset,
-    ) {
+        array                    $results,
+        int                      $cacheTime,
+        string                   $nextOffset,
+    )
+    {
         $this->inlineQueryId = $inlineQueryId;
         $this->isPersonal = $isPersonal;
         $this->button = $button;
@@ -88,17 +90,14 @@ class AnswerInlineQuery extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getButton(): InlineQueryResultsButton
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'inline_query_id' => $this->inlineQueryId,
-            'is_personal' => $this->isPersonal,
-            'button' => $this->button->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->results),
-            'cache_time' => $this->cacheTime,
-            'next_offset' => $this->nextOffset,
-        ];
+        return $this->button;
+    }
+
+    public function getCacheTime(): int
+    {
+        return $this->cacheTime;
     }
 
     public function getInlineQueryId(): int
@@ -111,9 +110,9 @@ class AnswerInlineQuery extends TdFunction
         return $this->isPersonal;
     }
 
-    public function getButton(): InlineQueryResultsButton
+    public function getNextOffset(): string
     {
-        return $this->button;
+        return $this->nextOffset;
     }
 
     public function getResults(): array
@@ -121,13 +120,16 @@ class AnswerInlineQuery extends TdFunction
         return $this->results;
     }
 
-    public function getCacheTime(): int
+    public function typeSerialize(): array
     {
-        return $this->cacheTime;
-    }
-
-    public function getNextOffset(): string
-    {
-        return $this->nextOffset;
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_query_id' => $this->inlineQueryId,
+            'is_personal' => $this->isPersonal,
+            'button' => $this->button->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->results),
+            'cache_time' => $this->cacheTime,
+            'next_offset' => $this->nextOffset,
+        ];
     }
 }

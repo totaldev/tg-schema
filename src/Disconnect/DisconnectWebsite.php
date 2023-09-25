@@ -35,16 +35,16 @@ class DisconnectWebsite extends TdFunction
         );
     }
 
+    public function getWebsiteId(): int
+    {
+        return $this->websiteId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'website_id' => $this->websiteId,
         ];
-    }
-
-    public function getWebsiteId(): int
-    {
-        return $this->websiteId;
     }
 }

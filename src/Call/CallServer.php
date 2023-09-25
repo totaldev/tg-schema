@@ -71,18 +71,6 @@ class CallServer extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'ip_address' => $this->ipAddress,
-            'ipv6_address' => $this->ipv6Address,
-            'port' => $this->port,
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
     public function getId(): int
     {
         return $this->id;
@@ -106,5 +94,17 @@ class CallServer extends TdObject
     public function getType(): CallServerType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'ip_address' => $this->ipAddress,
+            'ipv6_address' => $this->ipv6Address,
+            'port' => $this->port,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 }

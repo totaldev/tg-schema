@@ -17,18 +17,18 @@ class NetworkStatistics extends TdObject
     public const TYPE_NAME = 'networkStatistics';
 
     /**
-     * Point in time (Unix timestamp) from which the statistics are collected
-     *
-     * @var int
-     */
-    protected int $sinceDate;
-
-    /**
      * Network statistics entries
      *
      * @var NetworkStatisticsEntry[]
      */
     protected array $entries;
+
+    /**
+     * Point in time (Unix timestamp) from which the statistics are collected
+     *
+     * @var int
+     */
+    protected int $sinceDate;
 
     public function __construct(int $sinceDate, array $entries)
     {
@@ -44,13 +44,9 @@ class NetworkStatistics extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getEntries(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'since_date' => $this->sinceDate,
-            array_map(fn($x) => $x->typeSerialize(), $this->entries),
-        ];
+        return $this->entries;
     }
 
     public function getSinceDate(): int
@@ -58,8 +54,12 @@ class NetworkStatistics extends TdObject
         return $this->sinceDate;
     }
 
-    public function getEntries(): array
+    public function typeSerialize(): array
     {
-        return $this->entries;
+        return [
+            '@type' => static::TYPE_NAME,
+            'since_date' => $this->sinceDate,
+            array_map(fn($x) => $x->typeSerialize(), $this->entries),
+        ];
     }
 }

@@ -16,18 +16,18 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
     public const TYPE_NAME = 'inputPassportElementErrorSourceDataField';
 
     /**
-     * Field name
-     *
-     * @var string
-     */
-    protected string $fieldName;
-
-    /**
      * Current data hash
      *
      * @var string
      */
     protected string $dataHash;
+
+    /**
+     * Field name
+     *
+     * @var string
+     */
+    protected string $fieldName;
 
     public function __construct(string $fieldName, string $dataHash)
     {
@@ -45,13 +45,9 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
         );
     }
 
-    public function typeSerialize(): array
+    public function getDataHash(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'field_name' => $this->fieldName,
-            'data_hash' => $this->dataHash,
-        ];
+        return $this->dataHash;
     }
 
     public function getFieldName(): string
@@ -59,8 +55,12 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
         return $this->fieldName;
     }
 
-    public function getDataHash(): string
+    public function typeSerialize(): array
     {
-        return $this->dataHash;
+        return [
+            '@type' => static::TYPE_NAME,
+            'field_name' => $this->fieldName,
+            'data_hash' => $this->dataHash,
+        ];
     }
 }

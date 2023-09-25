@@ -17,18 +17,18 @@ class PageBlockVoiceNote extends PageBlock
     public const TYPE_NAME = 'pageBlockVoiceNote';
 
     /**
-     * Voice note; may be null
-     *
-     * @var VoiceNote|null
-     */
-    protected ?VoiceNote $voiceNote;
-
-    /**
      * Voice note caption
      *
      * @var PageBlockCaption
      */
     protected PageBlockCaption $caption;
+
+    /**
+     * Voice note; may be null
+     *
+     * @var VoiceNote|null
+     */
+    protected ?VoiceNote $voiceNote;
 
     public function __construct(?VoiceNote $voiceNote, PageBlockCaption $caption)
     {
@@ -46,13 +46,9 @@ class PageBlockVoiceNote extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): PageBlockCaption
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getVoiceNote(): ?VoiceNote
@@ -60,8 +56,12 @@ class PageBlockVoiceNote extends PageBlock
         return $this->voiceNote;
     }
 
-    public function getCaption(): PageBlockCaption
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type' => static::TYPE_NAME,
+            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

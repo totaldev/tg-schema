@@ -18,6 +18,13 @@ class StorageStatisticsByFileType extends TdObject
     public const TYPE_NAME = 'storageStatisticsByFileType';
 
     /**
+     * Total number of files
+     *
+     * @var int
+     */
+    protected int $count;
+
+    /**
      * File type
      *
      * @var FileType
@@ -30,13 +37,6 @@ class StorageStatisticsByFileType extends TdObject
      * @var int
      */
     protected int $size;
-
-    /**
-     * Total number of files
-     *
-     * @var int
-     */
-    protected int $count;
 
     public function __construct(FileType $fileType, int $size, int $count)
     {
@@ -54,14 +54,9 @@ class StorageStatisticsByFileType extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getCount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_type' => $this->fileType->typeSerialize(),
-            'size' => $this->size,
-            'count' => $this->count,
-        ];
+        return $this->count;
     }
 
     public function getFileType(): FileType
@@ -74,8 +69,13 @@ class StorageStatisticsByFileType extends TdObject
         return $this->size;
     }
 
-    public function getCount(): int
+    public function typeSerialize(): array
     {
-        return $this->count;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_type' => $this->fileType->typeSerialize(),
+            'size' => $this->size,
+            'count' => $this->count,
+        ];
     }
 }

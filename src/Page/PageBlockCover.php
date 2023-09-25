@@ -36,16 +36,16 @@ class PageBlockCover extends PageBlock
         );
     }
 
+    public function getCover(): PageBlock
+    {
+        return $this->cover;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'cover' => $this->cover->typeSerialize(),
         ];
-    }
-
-    public function getCover(): PageBlock
-    {
-        return $this->cover;
     }
 }

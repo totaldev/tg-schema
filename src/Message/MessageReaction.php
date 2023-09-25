@@ -18,20 +18,6 @@ class MessageReaction extends TdObject
     public const TYPE_NAME = 'messageReaction';
 
     /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    /**
-     * Number of times the reaction was added
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
      * True, if the reaction is chosen by the current user
      *
      * @var bool
@@ -44,6 +30,20 @@ class MessageReaction extends TdObject
      * @var MessageSender[]
      */
     protected array $recentSenderIds;
+
+    /**
+     * Number of times the reaction was added
+     *
+     * @var int
+     */
+    protected int $totalCount;
+
+    /**
+     * Type of the reaction
+     *
+     * @var ReactionType
+     */
+    protected ReactionType $type;
 
     public function __construct(ReactionType $type, int $totalCount, bool $isChosen, array $recentSenderIds)
     {
@@ -59,8 +59,28 @@ class MessageReaction extends TdObject
             TdSchemaRegistry::fromArray($array['type']),
             $array['total_count'],
             $array['is_chosen'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentSenderIds']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
         );
+    }
+
+    public function getIsChosen(): bool
+    {
+        return $this->isChosen;
+    }
+
+    public function getRecentSenderIds(): array
+    {
+        return $this->recentSenderIds;
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
+    }
+
+    public function getType(): ReactionType
+    {
+        return $this->type;
     }
 
     public function typeSerialize(): array
@@ -72,25 +92,5 @@ class MessageReaction extends TdObject
             'is_chosen' => $this->isChosen,
             array_map(fn($x) => $x->typeSerialize(), $this->recentSenderIds),
         ];
-    }
-
-    public function getType(): ReactionType
-    {
-        return $this->type;
-    }
-
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
-    public function getIsChosen(): bool
-    {
-        return $this->isChosen;
-    }
-
-    public function getRecentSenderIds(): array
-    {
-        return $this->recentSenderIds;
     }
 }

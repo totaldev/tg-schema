@@ -17,18 +17,18 @@ class UpdateChatBlockList extends Update
     public const TYPE_NAME = 'updateChatBlockList';
 
     /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
      * Block list to which the chat is added; may be null if none
      *
      * @var BlockList|null
      */
     protected ?BlockList $blockList;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     public function __construct(int $chatId, ?BlockList $blockList)
     {
@@ -46,13 +46,9 @@ class UpdateChatBlockList extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getBlockList(): ?BlockList
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'block_list' => (isset($this->blockList) ? $this->blockList : null),
-        ];
+        return $this->blockList;
     }
 
     public function getChatId(): int
@@ -60,8 +56,12 @@ class UpdateChatBlockList extends Update
         return $this->chatId;
     }
 
-    public function getBlockList(): ?BlockList
+    public function typeSerialize(): array
     {
-        return $this->blockList;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'block_list' => (isset($this->blockList) ? $this->blockList : null),
+        ];
     }
 }

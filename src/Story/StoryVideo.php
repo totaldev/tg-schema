@@ -27,11 +27,11 @@ class StoryVideo extends TdObject
     protected float $duration;
 
     /**
-     * Video width
+     * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
      *
-     * @var int
+     * @var bool
      */
-    protected int $width;
+    protected bool $hasStickers;
 
     /**
      * Video height
@@ -39,13 +39,6 @@ class StoryVideo extends TdObject
      * @var int
      */
     protected int $height;
-
-    /**
-     * True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
-     *
-     * @var bool
-     */
-    protected bool $hasStickers;
 
     /**
      * True, if the video has no sound
@@ -62,18 +55,18 @@ class StoryVideo extends TdObject
     protected ?Minithumbnail $minithumbnail;
 
     /**
-     * Video thumbnail in JPEG or MPEG4 format; may be null
-     *
-     * @var Thumbnail|null
-     */
-    protected ?Thumbnail $thumbnail;
-
-    /**
      * Size of file prefix, which is supposed to be preloaded, in bytes
      *
      * @var int
      */
     protected int $preloadPrefixSize;
+
+    /**
+     * Video thumbnail in JPEG or MPEG4 format; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
 
     /**
      * File containing the video
@@ -82,17 +75,25 @@ class StoryVideo extends TdObject
      */
     protected File $video;
 
+    /**
+     * Video width
+     *
+     * @var int
+     */
+    protected int $width;
+
     public function __construct(
-        float $duration,
-        int $width,
-        int $height,
-        bool $hasStickers,
-        bool $isAnimation,
+        float          $duration,
+        int            $width,
+        int            $height,
+        bool           $hasStickers,
+        bool           $isAnimation,
         ?Minithumbnail $minithumbnail,
-        ?Thumbnail $thumbnail,
-        int $preloadPrefixSize,
-        File $video,
-    ) {
+        ?Thumbnail     $thumbnail,
+        int            $preloadPrefixSize,
+        File           $video,
+    )
+    {
         $this->duration = $duration;
         $this->width = $width;
         $this->height = $height;
@@ -119,6 +120,51 @@ class StoryVideo extends TdObject
         );
     }
 
+    public function getDuration(): float
+    {
+        return $this->duration;
+    }
+
+    public function getHasStickers(): bool
+    {
+        return $this->hasStickers;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getIsAnimation(): bool
+    {
+        return $this->isAnimation;
+    }
+
+    public function getMinithumbnail(): ?Minithumbnail
+    {
+        return $this->minithumbnail;
+    }
+
+    public function getPreloadPrefixSize(): int
+    {
+        return $this->preloadPrefixSize;
+    }
+
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getVideo(): File
+    {
+        return $this->video;
+    }
+
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -133,50 +179,5 @@ class StoryVideo extends TdObject
             'preload_prefix_size' => $this->preloadPrefixSize,
             'video' => $this->video->typeSerialize(),
         ];
-    }
-
-    public function getDuration(): float
-    {
-        return $this->duration;
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
-    }
-
-    public function getHasStickers(): bool
-    {
-        return $this->hasStickers;
-    }
-
-    public function getIsAnimation(): bool
-    {
-        return $this->isAnimation;
-    }
-
-    public function getMinithumbnail(): ?Minithumbnail
-    {
-        return $this->minithumbnail;
-    }
-
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
-    public function getPreloadPrefixSize(): int
-    {
-        return $this->preloadPrefixSize;
-    }
-
-    public function getVideo(): File
-    {
-        return $this->video;
     }
 }

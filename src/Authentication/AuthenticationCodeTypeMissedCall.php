@@ -9,18 +9,12 @@ namespace Totaldev\TgSchema\Authentication;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user
+ * An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the
+ * code that must be entered manually by the user
  */
 class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeMissedCall';
-
-    /**
-     * Prefix of the phone number from which the call will be made
-     *
-     * @var string
-     */
-    protected string $phoneNumberPrefix;
 
     /**
      * Number of digits in the code, excluding the prefix
@@ -28,6 +22,13 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
      * @var int
      */
     protected int $length;
+
+    /**
+     * Prefix of the phone number from which the call will be made
+     *
+     * @var string
+     */
+    protected string $phoneNumberPrefix;
 
     public function __construct(string $phoneNumberPrefix, int $length)
     {
@@ -45,13 +46,9 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
         );
     }
 
-    public function typeSerialize(): array
+    public function getLength(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'phone_number_prefix' => $this->phoneNumberPrefix,
-            'length' => $this->length,
-        ];
+        return $this->length;
     }
 
     public function getPhoneNumberPrefix(): string
@@ -59,8 +56,12 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
         return $this->phoneNumberPrefix;
     }
 
-    public function getLength(): int
+    public function typeSerialize(): array
     {
-        return $this->length;
+        return [
+            '@type' => static::TYPE_NAME,
+            'phone_number_prefix' => $this->phoneNumberPrefix,
+            'length' => $this->length,
+        ];
     }
 }

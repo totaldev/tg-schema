@@ -24,6 +24,14 @@ class EditChatFolderInviteLink extends TdFunction
     protected int $chatFolderId;
 
     /**
+     * New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be
+     * automatically converted to supergroups before link editing
+     *
+     * @var int[]
+     */
+    protected array $chatIds;
+
+    /**
      * Invite link to be edited
      *
      * @var string
@@ -36,13 +44,6 @@ class EditChatFolderInviteLink extends TdFunction
      * @var string
      */
     protected string $name;
-
-    /**
-     * New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
 
     public function __construct(int $chatFolderId, string $inviteLink, string $name, array $chatIds)
     {
@@ -62,20 +63,14 @@ class EditChatFolderInviteLink extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_id' => $this->chatFolderId,
-            'invite_link' => $this->inviteLink,
-            'name' => $this->name,
-            'chat_ids' => $this->chatIds,
-        ];
-    }
-
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
+    }
+
+    public function getChatIds(): array
+    {
+        return $this->chatIds;
     }
 
     public function getInviteLink(): string
@@ -88,8 +83,14 @@ class EditChatFolderInviteLink extends TdFunction
         return $this->name;
     }
 
-    public function getChatIds(): array
+    public function typeSerialize(): array
     {
-        return $this->chatIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_id' => $this->chatFolderId,
+            'invite_link' => $this->inviteLink,
+            'name' => $this->name,
+            'chat_ids' => $this->chatIds,
+        ];
     }
 }

@@ -16,18 +16,18 @@ class MessageBasicGroupChatCreate extends MessageContent
     public const TYPE_NAME = 'messageBasicGroupChatCreate';
 
     /**
-     * Title of the basic group
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
      * User identifiers of members in the basic group
      *
      * @var int[]
      */
     protected array $memberUserIds;
+
+    /**
+     * Title of the basic group
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(string $title, array $memberUserIds)
     {
@@ -45,13 +45,9 @@ class MessageBasicGroupChatCreate extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getMemberUserIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'member_user_ids' => $this->memberUserIds,
-        ];
+        return $this->memberUserIds;
     }
 
     public function getTitle(): string
@@ -59,8 +55,12 @@ class MessageBasicGroupChatCreate extends MessageContent
         return $this->title;
     }
 
-    public function getMemberUserIds(): array
+    public function typeSerialize(): array
     {
-        return $this->memberUserIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'member_user_ids' => $this->memberUserIds,
+        ];
     }
 }

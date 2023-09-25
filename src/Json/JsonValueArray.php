@@ -36,16 +36,16 @@ class JsonValueArray extends JsonValue
         );
     }
 
+    public function getValues(): array
+    {
+        return $this->values;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->values),
         ];
-    }
-
-    public function getValues(): array
-    {
-        return $this->values;
     }
 }

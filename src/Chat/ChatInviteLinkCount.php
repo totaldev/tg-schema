@@ -17,13 +17,6 @@ class ChatInviteLinkCount extends TdObject
     public const TYPE_NAME = 'chatInviteLinkCount';
 
     /**
-     * Administrator's user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Number of active invite links
      *
      * @var int
@@ -36,6 +29,13 @@ class ChatInviteLinkCount extends TdObject
      * @var int
      */
     protected int $revokedInviteLinkCount;
+
+    /**
+     * Administrator's user identifier
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, int $inviteLinkCount, int $revokedInviteLinkCount)
     {
@@ -53,21 +53,6 @@ class ChatInviteLinkCount extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'invite_link_count' => $this->inviteLinkCount,
-            'revoked_invite_link_count' => $this->revokedInviteLinkCount,
-        ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
     public function getInviteLinkCount(): int
     {
         return $this->inviteLinkCount;
@@ -76,5 +61,20 @@ class ChatInviteLinkCount extends TdObject
     public function getRevokedInviteLinkCount(): int
     {
         return $this->revokedInviteLinkCount;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'invite_link_count' => $this->inviteLinkCount,
+            'revoked_invite_link_count' => $this->revokedInviteLinkCount,
+        ];
     }
 }

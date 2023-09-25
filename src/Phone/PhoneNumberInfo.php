@@ -32,7 +32,8 @@ class PhoneNumberInfo extends TdObject
     protected string $countryCallingCode;
 
     /**
-     * The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
+     * The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be
+     * entered by the user
      *
      * @var string
      */
@@ -47,10 +48,11 @@ class PhoneNumberInfo extends TdObject
 
     public function __construct(
         ?CountryInfo $country,
-        string $countryCallingCode,
-        string $formattedPhoneNumber,
-        bool $isAnonymous,
-    ) {
+        string       $countryCallingCode,
+        string       $formattedPhoneNumber,
+        bool         $isAnonymous,
+    )
+    {
         $this->country = $country;
         $this->countryCallingCode = $countryCallingCode;
         $this->formattedPhoneNumber = $formattedPhoneNumber;
@@ -65,17 +67,6 @@ class PhoneNumberInfo extends TdObject
             $array['formatted_phone_number'],
             $array['is_anonymous'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'country' => (isset($this->country) ? $this->country : null),
-            'country_calling_code' => $this->countryCallingCode,
-            'formatted_phone_number' => $this->formattedPhoneNumber,
-            'is_anonymous' => $this->isAnonymous,
-        ];
     }
 
     public function getCountry(): ?CountryInfo
@@ -96,5 +87,16 @@ class PhoneNumberInfo extends TdObject
     public function getIsAnonymous(): bool
     {
         return $this->isAnonymous;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'country' => (isset($this->country) ? $this->country : null),
+            'country_calling_code' => $this->countryCallingCode,
+            'formatted_phone_number' => $this->formattedPhoneNumber,
+            'is_anonymous' => $this->isAnonymous,
+        ];
     }
 }

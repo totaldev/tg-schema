@@ -18,11 +18,18 @@ class GetWebAppLinkUrl extends TdFunction
     public const TYPE_NAME = 'getWebAppLinkUrl';
 
     /**
-     * Identifier of the chat in which the link was clicked; pass 0 if none
+     * Pass true if the current user allowed the bot to send them messages
      *
-     * @var int
+     * @var bool
      */
-    protected int $chatId;
+    protected bool $allowWriteAccess;
+
+    /**
+     * Short name of the application; 0-64 English letters, digits, and underscores
+     *
+     * @var string
+     */
+    protected string $applicationName;
 
     /**
      * Identifier of the target bot
@@ -32,11 +39,11 @@ class GetWebAppLinkUrl extends TdFunction
     protected int $botUserId;
 
     /**
-     * Short name of the Web App
+     * Identifier of the chat in which the link was clicked; pass 0 if none
      *
-     * @var string
+     * @var int
      */
-    protected string $webAppShortName;
+    protected int $chatId;
 
     /**
      * Start parameter from internalLinkTypeWebApp
@@ -53,28 +60,22 @@ class GetWebAppLinkUrl extends TdFunction
     protected ThemeParameters $theme;
 
     /**
-     * Short name of the application; 0-64 English letters, digits, and underscores
+     * Short name of the Web App
      *
      * @var string
      */
-    protected string $applicationName;
-
-    /**
-     * Pass true if the current user allowed the bot to send them messages
-     *
-     * @var bool
-     */
-    protected bool $allowWriteAccess;
+    protected string $webAppShortName;
 
     public function __construct(
-        int $chatId,
-        int $botUserId,
-        string $webAppShortName,
-        string $startParameter,
+        int             $chatId,
+        int             $botUserId,
+        string          $webAppShortName,
+        string          $startParameter,
         ThemeParameters $theme,
-        string $applicationName,
-        bool $allowWriteAccess,
-    ) {
+        string          $applicationName,
+        bool            $allowWriteAccess,
+    )
+    {
         $this->chatId = $chatId;
         $this->botUserId = $botUserId;
         $this->webAppShortName = $webAppShortName;
@@ -97,23 +98,14 @@ class GetWebAppLinkUrl extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowWriteAccess(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'bot_user_id' => $this->botUserId,
-            'web_app_short_name' => $this->webAppShortName,
-            'start_parameter' => $this->startParameter,
-            'theme' => $this->theme->typeSerialize(),
-            'application_name' => $this->applicationName,
-            'allow_write_access' => $this->allowWriteAccess,
-        ];
+        return $this->allowWriteAccess;
     }
 
-    public function getChatId(): int
+    public function getApplicationName(): string
     {
-        return $this->chatId;
+        return $this->applicationName;
     }
 
     public function getBotUserId(): int
@@ -121,9 +113,9 @@ class GetWebAppLinkUrl extends TdFunction
         return $this->botUserId;
     }
 
-    public function getWebAppShortName(): string
+    public function getChatId(): int
     {
-        return $this->webAppShortName;
+        return $this->chatId;
     }
 
     public function getStartParameter(): string
@@ -136,13 +128,22 @@ class GetWebAppLinkUrl extends TdFunction
         return $this->theme;
     }
 
-    public function getApplicationName(): string
+    public function getWebAppShortName(): string
     {
-        return $this->applicationName;
+        return $this->webAppShortName;
     }
 
-    public function getAllowWriteAccess(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowWriteAccess;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'bot_user_id' => $this->botUserId,
+            'web_app_short_name' => $this->webAppShortName,
+            'start_parameter' => $this->startParameter,
+            'theme' => $this->theme->typeSerialize(),
+            'application_name' => $this->applicationName,
+            'allow_write_access' => $this->allowWriteAccess,
+        ];
     }
 }

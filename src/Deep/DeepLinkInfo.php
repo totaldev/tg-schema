@@ -18,18 +18,18 @@ class DeepLinkInfo extends TdObject
     public const TYPE_NAME = 'deepLinkInfo';
 
     /**
-     * Text to be shown to the user
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    /**
      * True, if the user must be asked to update the application
      *
      * @var bool
      */
     protected bool $needUpdateApplication;
+
+    /**
+     * Text to be shown to the user
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $text;
 
     public function __construct(FormattedText $text, bool $needUpdateApplication)
     {
@@ -45,13 +45,9 @@ class DeepLinkInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedUpdateApplication(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'need_update_application' => $this->needUpdateApplication,
-        ];
+        return $this->needUpdateApplication;
     }
 
     public function getText(): FormattedText
@@ -59,8 +55,12 @@ class DeepLinkInfo extends TdObject
         return $this->text;
     }
 
-    public function getNeedUpdateApplication(): bool
+    public function typeSerialize(): array
     {
-        return $this->needUpdateApplication;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'need_update_application' => $this->needUpdateApplication,
+        ];
     }
 }

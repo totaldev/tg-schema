@@ -23,11 +23,11 @@ class UpdateDeleteMessages extends Update
     protected int $chatId;
 
     /**
-     * Identifiers of the deleted messages
+     * True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
      *
-     * @var int[]
+     * @var bool
      */
-    protected array $messageIds;
+    protected bool $fromCache;
 
     /**
      * True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
@@ -37,11 +37,11 @@ class UpdateDeleteMessages extends Update
     protected bool $isPermanent;
 
     /**
-     * True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
+     * Identifiers of the deleted messages
      *
-     * @var bool
+     * @var int[]
      */
-    protected bool $fromCache;
+    protected array $messageIds;
 
     public function __construct(int $chatId, array $messageIds, bool $isPermanent, bool $fromCache)
     {
@@ -63,6 +63,26 @@ class UpdateDeleteMessages extends Update
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getFromCache(): bool
+    {
+        return $this->fromCache;
+    }
+
+    public function getIsPermanent(): bool
+    {
+        return $this->isPermanent;
+    }
+
+    public function getMessageIds(): array
+    {
+        return $this->messageIds;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -72,25 +92,5 @@ class UpdateDeleteMessages extends Update
             'is_permanent' => $this->isPermanent,
             'from_cache' => $this->fromCache,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageIds(): array
-    {
-        return $this->messageIds;
-    }
-
-    public function getIsPermanent(): bool
-    {
-        return $this->isPermanent;
-    }
-
-    public function getFromCache(): bool
-    {
-        return $this->fromCache;
     }
 }

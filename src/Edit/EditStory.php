@@ -20,27 +20,6 @@ class EditStory extends TdFunction
     public const TYPE_NAME = 'editStory';
 
     /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
-     * Identifier of the story to edit
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * New content of the story; pass null to keep the current content
-     *
-     * @var InputStoryContent
-     */
-    protected InputStoryContent $content;
-
-    /**
      * New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
      *
      * @var InputStoryAreas
@@ -54,13 +33,35 @@ class EditStory extends TdFunction
      */
     protected FormattedText $caption;
 
+    /**
+     * New content of the story; pass null to keep the current content
+     *
+     * @var InputStoryContent
+     */
+    protected InputStoryContent $content;
+
+    /**
+     * Identifier of the story to edit
+     *
+     * @var int
+     */
+    protected int $storyId;
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
+
     public function __construct(
-        int $storySenderChatId,
-        int $storyId,
+        int               $storySenderChatId,
+        int               $storyId,
         InputStoryContent $content,
-        InputStoryAreas $areas,
-        FormattedText $caption,
-    ) {
+        InputStoryAreas   $areas,
+        FormattedText     $caption,
+    )
+    {
         $this->storySenderChatId = $storySenderChatId;
         $this->storyId = $storyId;
         $this->content = $content;
@@ -79,6 +80,31 @@ class EditStory extends TdFunction
         );
     }
 
+    public function getAreas(): InputStoryAreas
+    {
+        return $this->areas;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+
+    public function getContent(): InputStoryContent
+    {
+        return $this->content;
+    }
+
+    public function getStoryId(): int
+    {
+        return $this->storyId;
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -89,30 +115,5 @@ class EditStory extends TdFunction
             'areas' => $this->areas->typeSerialize(),
             'caption' => $this->caption->typeSerialize(),
         ];
-    }
-
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
-    public function getStoryId(): int
-    {
-        return $this->storyId;
-    }
-
-    public function getContent(): InputStoryContent
-    {
-        return $this->content;
-    }
-
-    public function getAreas(): InputStoryAreas
-    {
-        return $this->areas;
-    }
-
-    public function getCaption(): FormattedText
-    {
-        return $this->caption;
     }
 }

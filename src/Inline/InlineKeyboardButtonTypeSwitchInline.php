@@ -46,15 +46,6 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'target_chat' => $this->targetChat->typeSerialize(),
-        ];
-    }
-
     public function getQuery(): string
     {
         return $this->query;
@@ -63,5 +54,14 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
     public function getTargetChat(): TargetChat
     {
         return $this->targetChat;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'target_chat' => $this->targetChat->typeSerialize(),
+        ];
     }
 }

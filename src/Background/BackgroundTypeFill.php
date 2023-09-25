@@ -36,16 +36,16 @@ class BackgroundTypeFill extends BackgroundType
         );
     }
 
+    public function getFill(): BackgroundFill
+    {
+        return $this->fill;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'fill' => $this->fill->typeSerialize(),
         ];
-    }
-
-    public function getFill(): BackgroundFill
-    {
-        return $this->fill;
     }
 }

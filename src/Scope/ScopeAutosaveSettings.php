@@ -53,16 +53,6 @@ class ScopeAutosaveSettings extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'autosave_photos' => $this->autosavePhotos,
-            'autosave_videos' => $this->autosaveVideos,
-            'max_video_file_size' => $this->maxVideoFileSize,
-        ];
-    }
-
     public function getAutosavePhotos(): bool
     {
         return $this->autosavePhotos;
@@ -76,5 +66,15 @@ class ScopeAutosaveSettings extends TdObject
     public function getMaxVideoFileSize(): int
     {
         return $this->maxVideoFileSize;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'autosave_photos' => $this->autosavePhotos,
+            'autosave_videos' => $this->autosaveVideos,
+            'max_video_file_size' => $this->maxVideoFileSize,
+        ];
     }
 }

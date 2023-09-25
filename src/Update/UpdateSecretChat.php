@@ -37,16 +37,16 @@ class UpdateSecretChat extends Update
         );
     }
 
+    public function getSecretChat(): SecretChat
+    {
+        return $this->secretChat;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'secret_chat' => $this->secretChat->typeSerialize(),
         ];
-    }
-
-    public function getSecretChat(): SecretChat
-    {
-        return $this->secretChat;
     }
 }

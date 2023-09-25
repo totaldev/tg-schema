@@ -17,18 +17,18 @@ class PushMessageContentVideoNote extends PushMessageContent
     public const TYPE_NAME = 'pushMessageContentVideoNote';
 
     /**
-     * Message content; may be null
-     *
-     * @var VideoNote|null
-     */
-    protected ?VideoNote $videoNote;
-
-    /**
      * True, if the message is a pinned message with the specified content
      *
      * @var bool
      */
     protected bool $isPinned;
+
+    /**
+     * Message content; may be null
+     *
+     * @var VideoNote|null
+     */
+    protected ?VideoNote $videoNote;
 
     public function __construct(?VideoNote $videoNote, bool $isPinned)
     {
@@ -46,13 +46,9 @@ class PushMessageContentVideoNote extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
-            'is_pinned' => $this->isPinned,
-        ];
+        return $this->isPinned;
     }
 
     public function getVideoNote(): ?VideoNote
@@ -60,8 +56,12 @@ class PushMessageContentVideoNote extends PushMessageContent
         return $this->videoNote;
     }
 
-    public function getIsPinned(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPinned;
+        return [
+            '@type' => static::TYPE_NAME,
+            'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

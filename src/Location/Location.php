@@ -17,6 +17,13 @@ class Location extends TdObject
     public const TYPE_NAME = 'location';
 
     /**
+     * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
+     *
+     * @var float
+     */
+    protected float $horizontalAccuracy;
+
+    /**
      * Latitude of the location in degrees; as defined by the sender
      *
      * @var float
@@ -29,13 +36,6 @@ class Location extends TdObject
      * @var float
      */
     protected float $longitude;
-
-    /**
-     * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
-     *
-     * @var float
-     */
-    protected float $horizontalAccuracy;
 
     public function __construct(float $latitude, float $longitude, float $horizontalAccuracy)
     {
@@ -53,14 +53,9 @@ class Location extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getHorizontalAccuracy(): float
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'horizontal_accuracy' => $this->horizontalAccuracy,
-        ];
+        return $this->horizontalAccuracy;
     }
 
     public function getLatitude(): float
@@ -73,8 +68,13 @@ class Location extends TdObject
         return $this->longitude;
     }
 
-    public function getHorizontalAccuracy(): float
+    public function typeSerialize(): array
     {
-        return $this->horizontalAccuracy;
+        return [
+            '@type' => static::TYPE_NAME,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'horizontal_accuracy' => $this->horizontalAccuracy,
+        ];
     }
 }

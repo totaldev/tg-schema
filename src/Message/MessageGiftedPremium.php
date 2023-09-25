@@ -17,20 +17,6 @@ class MessageGiftedPremium extends MessageContent
     public const TYPE_NAME = 'messageGiftedPremium';
 
     /**
-     * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
-     *
-     * @var int
-     */
-    protected int $gifterUserId;
-
-    /**
-     * Currency for the paid amount
-     *
-     * @var string
-     */
-    protected string $currency;
-
-    /**
      * The paid amount, in the smallest units of the currency
      *
      * @var int
@@ -52,6 +38,20 @@ class MessageGiftedPremium extends MessageContent
     protected int $cryptocurrencyAmount;
 
     /**
+     * Currency for the paid amount
+     *
+     * @var string
+     */
+    protected string $currency;
+
+    /**
+     * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+     *
+     * @var int
+     */
+    protected int $gifterUserId;
+
+    /**
      * Number of month the Telegram Premium subscription will be active
      *
      * @var int
@@ -66,14 +66,15 @@ class MessageGiftedPremium extends MessageContent
     protected ?Sticker $sticker;
 
     public function __construct(
-        int $gifterUserId,
-        string $currency,
-        int $amount,
-        string $cryptocurrency,
-        int $cryptocurrencyAmount,
-        int $monthCount,
+        int      $gifterUserId,
+        string   $currency,
+        int      $amount,
+        string   $cryptocurrency,
+        int      $cryptocurrencyAmount,
+        int      $monthCount,
         ?Sticker $sticker,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->gifterUserId = $gifterUserId;
@@ -98,30 +99,6 @@ class MessageGiftedPremium extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'gifter_user_id' => $this->gifterUserId,
-            'currency' => $this->currency,
-            'amount' => $this->amount,
-            'cryptocurrency' => $this->cryptocurrency,
-            'cryptocurrency_amount' => $this->cryptocurrencyAmount,
-            'month_count' => $this->monthCount,
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
-        ];
-    }
-
-    public function getGifterUserId(): int
-    {
-        return $this->gifterUserId;
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
     public function getAmount(): int
     {
         return $this->amount;
@@ -137,6 +114,16 @@ class MessageGiftedPremium extends MessageContent
         return $this->cryptocurrencyAmount;
     }
 
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getGifterUserId(): int
+    {
+        return $this->gifterUserId;
+    }
+
     public function getMonthCount(): int
     {
         return $this->monthCount;
@@ -145,5 +132,19 @@ class MessageGiftedPremium extends MessageContent
     public function getSticker(): ?Sticker
     {
         return $this->sticker;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'gifter_user_id' => $this->gifterUserId,
+            'currency' => $this->currency,
+            'amount' => $this->amount,
+            'cryptocurrency' => $this->cryptocurrency,
+            'cryptocurrency_amount' => $this->cryptocurrencyAmount,
+            'month_count' => $this->monthCount,
+            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+        ];
     }
 }

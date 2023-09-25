@@ -17,20 +17,6 @@ class ConnectedWebsite extends TdObject
     public const TYPE_NAME = 'connectedWebsite';
 
     /**
-     * Website identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * The domain name of the website
-     *
-     * @var string
-     */
-    protected string $domainName;
-
-    /**
      * User identifier of a bot linked with the website
      *
      * @var int
@@ -45,25 +31,18 @@ class ConnectedWebsite extends TdObject
     protected string $browser;
 
     /**
-     * Operating system the browser is running on
+     * The domain name of the website
      *
      * @var string
      */
-    protected string $platform;
+    protected string $domainName;
 
     /**
-     * Point in time (Unix timestamp) when the user was logged in
+     * Website identifier
      *
      * @var int
      */
-    protected int $logInDate;
-
-    /**
-     * Point in time (Unix timestamp) when obtained authorization was last used
-     *
-     * @var int
-     */
-    protected int $lastActiveDate;
+    protected int $id;
 
     /**
      * IP address from which the user was logged in, in human-readable format
@@ -73,23 +52,45 @@ class ConnectedWebsite extends TdObject
     protected string $ipAddress;
 
     /**
+     * Point in time (Unix timestamp) when obtained authorization was last used
+     *
+     * @var int
+     */
+    protected int $lastActiveDate;
+
+    /**
      * Human-readable description of a country and a region from which the user was logged in, based on the IP address
      *
      * @var string
      */
     protected string $location;
 
+    /**
+     * Point in time (Unix timestamp) when the user was logged in
+     *
+     * @var int
+     */
+    protected int $logInDate;
+
+    /**
+     * Operating system the browser is running on
+     *
+     * @var string
+     */
+    protected string $platform;
+
     public function __construct(
-        int $id,
+        int    $id,
         string $domainName,
-        int $botUserId,
+        int    $botUserId,
         string $browser,
         string $platform,
-        int $logInDate,
-        int $lastActiveDate,
+        int    $logInDate,
+        int    $lastActiveDate,
         string $ipAddress,
         string $location,
-    ) {
+    )
+    {
         $this->id = $id;
         $this->domainName = $domainName;
         $this->botUserId = $botUserId;
@@ -116,6 +117,51 @@ class ConnectedWebsite extends TdObject
         );
     }
 
+    public function getBotUserId(): int
+    {
+        return $this->botUserId;
+    }
+
+    public function getBrowser(): string
+    {
+        return $this->browser;
+    }
+
+    public function getDomainName(): string
+    {
+        return $this->domainName;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getIpAddress(): string
+    {
+        return $this->ipAddress;
+    }
+
+    public function getLastActiveDate(): int
+    {
+        return $this->lastActiveDate;
+    }
+
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    public function getLogInDate(): int
+    {
+        return $this->logInDate;
+    }
+
+    public function getPlatform(): string
+    {
+        return $this->platform;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -130,50 +176,5 @@ class ConnectedWebsite extends TdObject
             'ip_address' => $this->ipAddress,
             'location' => $this->location,
         ];
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getDomainName(): string
-    {
-        return $this->domainName;
-    }
-
-    public function getBotUserId(): int
-    {
-        return $this->botUserId;
-    }
-
-    public function getBrowser(): string
-    {
-        return $this->browser;
-    }
-
-    public function getPlatform(): string
-    {
-        return $this->platform;
-    }
-
-    public function getLogInDate(): int
-    {
-        return $this->logInDate;
-    }
-
-    public function getLastActiveDate(): int
-    {
-        return $this->lastActiveDate;
-    }
-
-    public function getIpAddress(): string
-    {
-        return $this->ipAddress;
-    }
-
-    public function getLocation(): string
-    {
-        return $this->location;
     }
 }

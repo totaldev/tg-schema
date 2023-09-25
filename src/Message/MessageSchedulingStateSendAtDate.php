@@ -36,16 +36,16 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState
         );
     }
 
+    public function getSendDate(): int
+    {
+        return $this->sendDate;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'send_date' => $this->sendDate,
         ];
-    }
-
-    public function getSendDate(): int
-    {
-        return $this->sendDate;
     }
 }

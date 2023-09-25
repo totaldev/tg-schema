@@ -12,7 +12,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+ * Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For
+ * optimal performance, the number of returned stories is chosen by TDLib
  */
 class GetArchivedStories extends TdFunction
 {
@@ -26,7 +27,8 @@ class GetArchivedStories extends TdFunction
     protected int $fromStoryId;
 
     /**
-     * The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+     * The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the
+     * specified limit
      *
      * @var int
      */
@@ -46,15 +48,6 @@ class GetArchivedStories extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'from_story_id' => $this->fromStoryId,
-            'limit' => $this->limit,
-        ];
-    }
-
     public function getFromStoryId(): int
     {
         return $this->fromStoryId;
@@ -63,5 +56,14 @@ class GetArchivedStories extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'from_story_id' => $this->fromStoryId,
+            'limit' => $this->limit,
+        ];
     }
 }

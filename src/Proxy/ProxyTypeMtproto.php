@@ -36,16 +36,16 @@ class ProxyTypeMtproto extends ProxyType
         );
     }
 
+    public function getSecret(): string
+    {
+        return $this->secret;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'secret' => $this->secret,
         ];
-    }
-
-    public function getSecret(): string
-    {
-        return $this->secret;
     }
 }

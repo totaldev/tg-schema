@@ -19,18 +19,11 @@ class WebApp extends TdObject
     public const TYPE_NAME = 'webApp';
 
     /**
-     * Web App short name
+     * Web App animation; may be null
      *
-     * @var string
+     * @var Animation|null
      */
-    protected string $shortName;
-
-    /**
-     * Web App title
-     *
-     * @var string
-     */
-    protected string $title;
+    protected ?Animation $animation;
 
     /**
      * Web App description
@@ -47,19 +40,27 @@ class WebApp extends TdObject
     protected Photo $photo;
 
     /**
-     * Web App animation; may be null
+     * Web App short name
      *
-     * @var Animation|null
+     * @var string
      */
-    protected ?Animation $animation;
+    protected string $shortName;
+
+    /**
+     * Web App title
+     *
+     * @var string
+     */
+    protected string $title;
 
     public function __construct(
-        string $shortName,
-        string $title,
-        string $description,
-        Photo $photo,
+        string     $shortName,
+        string     $title,
+        string     $description,
+        Photo      $photo,
         ?Animation $animation,
-    ) {
+    )
+    {
         $this->shortName = $shortName;
         $this->title = $title;
         $this->description = $description;
@@ -78,26 +79,9 @@ class WebApp extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAnimation(): ?Animation
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'short_name' => $this->shortName,
-            'title' => $this->title,
-            'description' => $this->description,
-            'photo' => $this->photo->typeSerialize(),
-            'animation' => (isset($this->animation) ? $this->animation : null),
-        ];
-    }
-
-    public function getShortName(): string
-    {
-        return $this->shortName;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
+        return $this->animation;
     }
 
     public function getDescription(): string
@@ -110,8 +94,25 @@ class WebApp extends TdObject
         return $this->photo;
     }
 
-    public function getAnimation(): ?Animation
+    public function getShortName(): string
     {
-        return $this->animation;
+        return $this->shortName;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'short_name' => $this->shortName,
+            'title' => $this->title,
+            'description' => $this->description,
+            'photo' => $this->photo->typeSerialize(),
+            'animation' => (isset($this->animation) ? $this->animation : null),
+        ];
     }
 }

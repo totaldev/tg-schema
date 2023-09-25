@@ -44,15 +44,6 @@ class SendCustomRequest extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'method' => $this->method,
-            'parameters' => $this->parameters,
-        ];
-    }
-
     public function getMethod(): string
     {
         return $this->method;
@@ -61,5 +52,14 @@ class SendCustomRequest extends TdFunction
     public function getParameters(): string
     {
         return $this->parameters;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'method' => $this->method,
+            'parameters' => $this->parameters,
+        ];
     }
 }

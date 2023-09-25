@@ -10,7 +10,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+ * Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message
+ * "INVITE_REQUEST_SENT" if only a join request was created
  */
 class JoinChat extends TdFunction
 {
@@ -35,16 +36,16 @@ class JoinChat extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
     }
 }

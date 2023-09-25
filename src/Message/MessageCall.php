@@ -17,13 +17,6 @@ class MessageCall extends MessageContent
     public const TYPE_NAME = 'messageCall';
 
     /**
-     * True, if the call was a video call
-     *
-     * @var bool
-     */
-    protected bool $isVideo;
-
-    /**
      * Reason why the call was discarded
      *
      * @var CallDiscardReason
@@ -36,6 +29,13 @@ class MessageCall extends MessageContent
      * @var int
      */
     protected int $duration;
+
+    /**
+     * True, if the call was a video call
+     *
+     * @var bool
+     */
+    protected bool $isVideo;
 
     public function __construct(bool $isVideo, CallDiscardReason $discardReason, int $duration)
     {
@@ -55,21 +55,6 @@ class MessageCall extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_video' => $this->isVideo,
-            'discard_reason' => $this->discardReason->typeSerialize(),
-            'duration' => $this->duration,
-        ];
-    }
-
-    public function getIsVideo(): bool
-    {
-        return $this->isVideo;
-    }
-
     public function getDiscardReason(): CallDiscardReason
     {
         return $this->discardReason;
@@ -78,5 +63,20 @@ class MessageCall extends MessageContent
     public function getDuration(): int
     {
         return $this->duration;
+    }
+
+    public function getIsVideo(): bool
+    {
+        return $this->isVideo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_video' => $this->isVideo,
+            'discard_reason' => $this->discardReason->typeSerialize(),
+            'duration' => $this->duration,
+        ];
     }
 }

@@ -21,35 +21,15 @@ class BasicGroupFullInfo extends TdObject
     public const TYPE_NAME = 'basicGroupFullInfo';
 
     /**
-     * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
+     * List of commands of bots in the group
      *
-     * @var ChatPhoto|null
+     * @var BotCommands[]
      */
-    protected ?ChatPhoto $photo;
+    protected array $botCommands;
 
     /**
-     * Group description. Updated only after the basic group is opened
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * User identifier of the creator of the group; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $creatorUserId;
-
-    /**
-     * Group members
-     *
-     * @var ChatMember[]
-     */
-    protected array $members;
-
-    /**
-     * True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup
+     * True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading
+     * the basic group to a supergroup
      *
      * @var bool
      */
@@ -63,6 +43,20 @@ class BasicGroupFullInfo extends TdObject
     protected bool $canToggleAggressiveAntiSpam;
 
     /**
+     * User identifier of the creator of the group; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $creatorUserId;
+
+    /**
+     * Group description. Updated only after the basic group is opened
+     *
+     * @var string
+     */
+    protected string $description;
+
+    /**
      * Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
      *
      * @var ChatInviteLink|null
@@ -70,22 +64,30 @@ class BasicGroupFullInfo extends TdObject
     protected ?ChatInviteLink $inviteLink;
 
     /**
-     * List of commands of bots in the group
+     * Group members
      *
-     * @var BotCommands[]
+     * @var ChatMember[]
      */
-    protected array $botCommands;
+    protected array $members;
+
+    /**
+     * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
+     *
+     * @var ChatPhoto|null
+     */
+    protected ?ChatPhoto $photo;
 
     public function __construct(
-        ?ChatPhoto $photo,
-        string $description,
-        int $creatorUserId,
-        array $members,
-        bool $canHideMembers,
-        bool $canToggleAggressiveAntiSpam,
+        ?ChatPhoto      $photo,
+        string          $description,
+        int             $creatorUserId,
+        array           $members,
+        bool            $canHideMembers,
+        bool            $canToggleAggressiveAntiSpam,
         ?ChatInviteLink $inviteLink,
-        array $botCommands,
-    ) {
+        array           $botCommands,
+    )
+    {
         $this->photo = $photo;
         $this->description = $description;
         $this->creatorUserId = $creatorUserId;
@@ -106,8 +108,48 @@ class BasicGroupFullInfo extends TdObject
             $array['can_hide_members'],
             $array['can_toggle_aggressive_anti_spam'],
             (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['botCommands']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
         );
+    }
+
+    public function getBotCommands(): array
+    {
+        return $this->botCommands;
+    }
+
+    public function getCanHideMembers(): bool
+    {
+        return $this->canHideMembers;
+    }
+
+    public function getCanToggleAggressiveAntiSpam(): bool
+    {
+        return $this->canToggleAggressiveAntiSpam;
+    }
+
+    public function getCreatorUserId(): int
+    {
+        return $this->creatorUserId;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getInviteLink(): ?ChatInviteLink
+    {
+        return $this->inviteLink;
+    }
+
+    public function getMembers(): array
+    {
+        return $this->members;
+    }
+
+    public function getPhoto(): ?ChatPhoto
+    {
+        return $this->photo;
     }
 
     public function typeSerialize(): array
@@ -123,45 +165,5 @@ class BasicGroupFullInfo extends TdObject
             'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
             array_map(fn($x) => $x->typeSerialize(), $this->botCommands),
         ];
-    }
-
-    public function getPhoto(): ?ChatPhoto
-    {
-        return $this->photo;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getCreatorUserId(): int
-    {
-        return $this->creatorUserId;
-    }
-
-    public function getMembers(): array
-    {
-        return $this->members;
-    }
-
-    public function getCanHideMembers(): bool
-    {
-        return $this->canHideMembers;
-    }
-
-    public function getCanToggleAggressiveAntiSpam(): bool
-    {
-        return $this->canToggleAggressiveAntiSpam;
-    }
-
-    public function getInviteLink(): ?ChatInviteLink
-    {
-        return $this->inviteLink;
-    }
-
-    public function getBotCommands(): array
-    {
-        return $this->botCommands;
     }
 }

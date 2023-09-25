@@ -45,15 +45,6 @@ class BackgroundTypeWallpaper extends BackgroundType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_blurred' => $this->isBlurred,
-            'is_moving' => $this->isMoving,
-        ];
-    }
-
     public function getIsBlurred(): bool
     {
         return $this->isBlurred;
@@ -62,5 +53,14 @@ class BackgroundTypeWallpaper extends BackgroundType
     public function getIsMoving(): bool
     {
         return $this->isMoving;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_blurred' => $this->isBlurred,
+            'is_moving' => $this->isMoving,
+        ];
     }
 }

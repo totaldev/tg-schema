@@ -17,18 +17,18 @@ class InlineQueryResultAnimation extends InlineQueryResult
     public const TYPE_NAME = 'inlineQueryResultAnimation';
 
     /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
      * Animation file
      *
      * @var Animation
      */
     protected Animation $animation;
+
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
 
     /**
      * Animation title
@@ -55,6 +55,21 @@ class InlineQueryResultAnimation extends InlineQueryResult
         );
     }
 
+    public function getAnimation(): Animation
+    {
+        return $this->animation;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class InlineQueryResultAnimation extends InlineQueryResult
             'animation' => $this->animation->typeSerialize(),
             'title' => $this->title,
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getAnimation(): Animation
-    {
-        return $this->animation;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

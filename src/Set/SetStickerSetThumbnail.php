@@ -18,13 +18,6 @@ class SetStickerSetThumbnail extends TdFunction
     public const TYPE_NAME = 'setStickerSetThumbnail';
 
     /**
-     * Sticker set owner
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
      * Sticker set name
      *
      * @var string
@@ -32,11 +25,19 @@ class SetStickerSetThumbnail extends TdFunction
     protected string $name;
 
     /**
-     * Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
+     * Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the
+     * set
      *
      * @var InputFile
      */
     protected InputFile $thumbnail;
+
+    /**
+     * Sticker set owner
+     *
+     * @var int
+     */
+    protected int $userId;
 
     public function __construct(int $userId, string $name, InputFile $thumbnail)
     {
@@ -54,21 +55,6 @@ class SetStickerSetThumbnail extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'name' => $this->name,
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-        ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -77,5 +63,20 @@ class SetStickerSetThumbnail extends TdFunction
     public function getThumbnail(): InputFile
     {
         return $this->thumbnail;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'name' => $this->name,
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+        ];
     }
 }

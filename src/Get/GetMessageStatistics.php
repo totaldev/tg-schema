@@ -24,18 +24,18 @@ class GetMessageStatistics extends TdFunction
     protected int $chatId;
 
     /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * Pass true if a dark theme is used by the application
      *
      * @var bool
      */
     protected bool $isDark;
+
+    /**
+     * Message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     public function __construct(int $chatId, int $messageId, bool $isDark)
     {
@@ -53,6 +53,21 @@ class GetMessageStatistics extends TdFunction
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getIsDark(): bool
+    {
+        return $this->isDark;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class GetMessageStatistics extends TdFunction
             'message_id' => $this->messageId,
             'is_dark' => $this->isDark,
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getIsDark(): bool
-    {
-        return $this->isDark;
     }
 }

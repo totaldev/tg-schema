@@ -36,16 +36,16 @@ class ChatEventHasProtectedContentToggled extends ChatEventAction
         );
     }
 
+    public function getHasProtectedContent(): bool
+    {
+        return $this->hasProtectedContent;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'has_protected_content' => $this->hasProtectedContent,
         ];
-    }
-
-    public function getHasProtectedContent(): bool
-    {
-        return $this->hasProtectedContent;
     }
 }

@@ -45,15 +45,6 @@ class SendCallLog extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'log_file' => $this->logFile->typeSerialize(),
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
@@ -62,5 +53,14 @@ class SendCallLog extends TdFunction
     public function getLogFile(): InputFile
     {
         return $this->logFile;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'call_id' => $this->callId,
+            'log_file' => $this->logFile->typeSerialize(),
+        ];
     }
 }

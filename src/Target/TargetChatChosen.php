@@ -16,18 +16,18 @@ class TargetChatChosen extends TargetChat
     public const TYPE_NAME = 'targetChatChosen';
 
     /**
-     * True, if private chats with ordinary users are allowed
-     *
-     * @var bool
-     */
-    protected bool $allowUserChats;
-
-    /**
      * True, if private chats with other bots are allowed
      *
      * @var bool
      */
     protected bool $allowBotChats;
+
+    /**
+     * True, if channel chats are allowed
+     *
+     * @var bool
+     */
+    protected bool $allowChannelChats;
 
     /**
      * True, if basic group and supergroup chats are allowed
@@ -37,18 +37,19 @@ class TargetChatChosen extends TargetChat
     protected bool $allowGroupChats;
 
     /**
-     * True, if channel chats are allowed
+     * True, if private chats with ordinary users are allowed
      *
      * @var bool
      */
-    protected bool $allowChannelChats;
+    protected bool $allowUserChats;
 
     public function __construct(
         bool $allowUserChats,
         bool $allowBotChats,
         bool $allowGroupChats,
         bool $allowChannelChats,
-    ) {
+    )
+    {
         parent::__construct();
 
         $this->allowUserChats = $allowUserChats;
@@ -67,6 +68,26 @@ class TargetChatChosen extends TargetChat
         );
     }
 
+    public function getAllowBotChats(): bool
+    {
+        return $this->allowBotChats;
+    }
+
+    public function getAllowChannelChats(): bool
+    {
+        return $this->allowChannelChats;
+    }
+
+    public function getAllowGroupChats(): bool
+    {
+        return $this->allowGroupChats;
+    }
+
+    public function getAllowUserChats(): bool
+    {
+        return $this->allowUserChats;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -76,25 +97,5 @@ class TargetChatChosen extends TargetChat
             'allow_group_chats' => $this->allowGroupChats,
             'allow_channel_chats' => $this->allowChannelChats,
         ];
-    }
-
-    public function getAllowUserChats(): bool
-    {
-        return $this->allowUserChats;
-    }
-
-    public function getAllowBotChats(): bool
-    {
-        return $this->allowBotChats;
-    }
-
-    public function getAllowGroupChats(): bool
-    {
-        return $this->allowGroupChats;
-    }
-
-    public function getAllowChannelChats(): bool
-    {
-        return $this->allowChannelChats;
     }
 }

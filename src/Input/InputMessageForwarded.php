@@ -17,18 +17,18 @@ class InputMessageForwarded extends InputMessageContent
     public const TYPE_NAME = 'inputMessageForwarded';
 
     /**
+     * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
+     *
+     * @var MessageCopyOptions
+     */
+    protected MessageCopyOptions $copyOptions;
+
+    /**
      * Identifier for the chat this forwarded message came from
      *
      * @var int
      */
     protected int $fromChatId;
-
-    /**
-     * Identifier of the message to forward
-     *
-     * @var int
-     */
-    protected int $messageId;
 
     /**
      * True, if a game message is being shared from a launched game; applies only to game messages
@@ -38,11 +38,11 @@ class InputMessageForwarded extends InputMessageContent
     protected bool $inGameShare;
 
     /**
-     * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
+     * Identifier of the message to forward
      *
-     * @var MessageCopyOptions
+     * @var int
      */
-    protected MessageCopyOptions $copyOptions;
+    protected int $messageId;
 
     public function __construct(int $fromChatId, int $messageId, bool $inGameShare, MessageCopyOptions $copyOptions)
     {
@@ -64,6 +64,26 @@ class InputMessageForwarded extends InputMessageContent
         );
     }
 
+    public function getCopyOptions(): MessageCopyOptions
+    {
+        return $this->copyOptions;
+    }
+
+    public function getFromChatId(): int
+    {
+        return $this->fromChatId;
+    }
+
+    public function getInGameShare(): bool
+    {
+        return $this->inGameShare;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -73,25 +93,5 @@ class InputMessageForwarded extends InputMessageContent
             'in_game_share' => $this->inGameShare,
             'copy_options' => $this->copyOptions->typeSerialize(),
         ];
-    }
-
-    public function getFromChatId(): int
-    {
-        return $this->fromChatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getInGameShare(): bool
-    {
-        return $this->inGameShare;
-    }
-
-    public function getCopyOptions(): MessageCopyOptions
-    {
-        return $this->copyOptions;
     }
 }

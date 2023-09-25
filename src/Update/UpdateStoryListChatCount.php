@@ -17,18 +17,18 @@ class UpdateStoryListChatCount extends Update
     public const TYPE_NAME = 'updateStoryListChatCount';
 
     /**
-     * The story list
-     *
-     * @var StoryList
-     */
-    protected StoryList $storyList;
-
-    /**
      * Approximate total number of chats with active stories in the list
      *
      * @var int
      */
     protected int $chatCount;
+
+    /**
+     * The story list
+     *
+     * @var StoryList
+     */
+    protected StoryList $storyList;
 
     public function __construct(StoryList $storyList, int $chatCount)
     {
@@ -46,13 +46,9 @@ class UpdateStoryListChatCount extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getChatCount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'story_list' => $this->storyList->typeSerialize(),
-            'chat_count' => $this->chatCount,
-        ];
+        return $this->chatCount;
     }
 
     public function getStoryList(): StoryList
@@ -60,8 +56,12 @@ class UpdateStoryListChatCount extends Update
         return $this->storyList;
     }
 
-    public function getChatCount(): int
+    public function typeSerialize(): array
     {
-        return $this->chatCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'story_list' => $this->storyList->typeSerialize(),
+            'chat_count' => $this->chatCount,
+        ];
     }
 }

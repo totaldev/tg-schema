@@ -36,16 +36,16 @@ class ReadChatList extends TdFunction
         );
     }
 
+    public function getChatList(): ChatList
+    {
+        return $this->chatList;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'chat_list' => $this->chatList->typeSerialize(),
         ];
-    }
-
-    public function getChatList(): ChatList
-    {
-        return $this->chatList;
     }
 }

@@ -17,18 +17,18 @@ class TextEntity extends TdObject
     public const TYPE_NAME = 'textEntity';
 
     /**
-     * Offset of the entity, in UTF-16 code units
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
      * Length of the entity, in UTF-16 code units
      *
      * @var int
      */
     protected int $length;
+
+    /**
+     * Offset of the entity, in UTF-16 code units
+     *
+     * @var int
+     */
+    protected int $offset;
 
     /**
      * Type of the entity
@@ -53,6 +53,21 @@ class TextEntity extends TdObject
         );
     }
 
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getType(): TextEntityType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -61,20 +76,5 @@ class TextEntity extends TdObject
             'length' => $this->length,
             'type' => $this->type->typeSerialize(),
         ];
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
-
-    public function getLength(): int
-    {
-        return $this->length;
-    }
-
-    public function getType(): TextEntityType
-    {
-        return $this->type;
     }
 }

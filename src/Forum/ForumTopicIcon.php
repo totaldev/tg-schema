@@ -44,15 +44,6 @@ class ForumTopicIcon extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'color' => $this->color,
-            'custom_emoji_id' => $this->customEmojiId,
-        ];
-    }
-
     public function getColor(): int
     {
         return $this->color;
@@ -61,5 +52,14 @@ class ForumTopicIcon extends TdObject
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'color' => $this->color,
+            'custom_emoji_id' => $this->customEmojiId,
+        ];
     }
 }

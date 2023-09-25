@@ -16,18 +16,18 @@ class UpdateAnimationSearchParameters extends Update
     public const TYPE_NAME = 'updateAnimationSearchParameters';
 
     /**
-     * Name of the animation search provider
-     *
-     * @var string
-     */
-    protected string $provider;
-
-    /**
      * The new list of emojis suggested for searching
      *
      * @var string[]
      */
     protected array $emojis;
+
+    /**
+     * Name of the animation search provider
+     *
+     * @var string
+     */
+    protected string $provider;
 
     public function __construct(string $provider, array $emojis)
     {
@@ -45,13 +45,9 @@ class UpdateAnimationSearchParameters extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getEmojis(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'provider' => $this->provider,
-            'emojis' => $this->emojis,
-        ];
+        return $this->emojis;
     }
 
     public function getProvider(): string
@@ -59,8 +55,12 @@ class UpdateAnimationSearchParameters extends Update
         return $this->provider;
     }
 
-    public function getEmojis(): array
+    public function typeSerialize(): array
     {
-        return $this->emojis;
+        return [
+            '@type' => static::TYPE_NAME,
+            'provider' => $this->provider,
+            'emojis' => $this->emojis,
+        ];
     }
 }

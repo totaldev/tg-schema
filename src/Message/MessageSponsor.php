@@ -18,11 +18,11 @@ class MessageSponsor extends TdObject
     public const TYPE_NAME = 'messageSponsor';
 
     /**
-     * Type of the sponsor
+     * Additional optional information about the sponsor to be shown along with the message
      *
-     * @var MessageSponsorType
+     * @var string
      */
-    protected MessageSponsorType $type;
+    protected string $info;
 
     /**
      * Photo of the sponsor; may be null if must not be shown
@@ -32,11 +32,11 @@ class MessageSponsor extends TdObject
     protected ?ChatPhotoInfo $photo;
 
     /**
-     * Additional optional information about the sponsor to be shown along with the message
+     * Type of the sponsor
      *
-     * @var string
+     * @var MessageSponsorType
      */
-    protected string $info;
+    protected MessageSponsorType $type;
 
     public function __construct(MessageSponsorType $type, ?ChatPhotoInfo $photo, string $info)
     {
@@ -54,6 +54,21 @@ class MessageSponsor extends TdObject
         );
     }
 
+    public function getInfo(): string
+    {
+        return $this->info;
+    }
+
+    public function getPhoto(): ?ChatPhotoInfo
+    {
+        return $this->photo;
+    }
+
+    public function getType(): MessageSponsorType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -62,20 +77,5 @@ class MessageSponsor extends TdObject
             'photo' => (isset($this->photo) ? $this->photo : null),
             'info' => $this->info,
         ];
-    }
-
-    public function getType(): MessageSponsorType
-    {
-        return $this->type;
-    }
-
-    public function getPhoto(): ?ChatPhotoInfo
-    {
-        return $this->photo;
-    }
-
-    public function getInfo(): string
-    {
-        return $this->info;
     }
 }

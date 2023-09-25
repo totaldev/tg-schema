@@ -40,17 +40,8 @@ class PageBlockListItem extends TdObject
     {
         return new static(
             $array['label'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['pageBlocks']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'label' => $this->label,
-            array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
-        ];
     }
 
     public function getLabel(): string
@@ -61,5 +52,14 @@ class PageBlockListItem extends TdObject
     public function getPageBlocks(): array
     {
         return $this->pageBlocks;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'label' => $this->label,
+            array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
+        ];
     }
 }

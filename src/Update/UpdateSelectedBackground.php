@@ -17,18 +17,18 @@ class UpdateSelectedBackground extends Update
     public const TYPE_NAME = 'updateSelectedBackground';
 
     /**
-     * True, if background for dark theme has changed
-     *
-     * @var bool
-     */
-    protected bool $forDarkTheme;
-
-    /**
      * The new selected background; may be null
      *
      * @var Background|null
      */
     protected ?Background $background;
+
+    /**
+     * True, if background for dark theme has changed
+     *
+     * @var bool
+     */
+    protected bool $forDarkTheme;
 
     public function __construct(bool $forDarkTheme, ?Background $background)
     {
@@ -46,13 +46,9 @@ class UpdateSelectedBackground extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getBackground(): ?Background
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'for_dark_theme' => $this->forDarkTheme,
-            'background' => (isset($this->background) ? $this->background : null),
-        ];
+        return $this->background;
     }
 
     public function getForDarkTheme(): bool
@@ -60,8 +56,12 @@ class UpdateSelectedBackground extends Update
         return $this->forDarkTheme;
     }
 
-    public function getBackground(): ?Background
+    public function typeSerialize(): array
     {
-        return $this->background;
+        return [
+            '@type' => static::TYPE_NAME,
+            'for_dark_theme' => $this->forDarkTheme,
+            'background' => (isset($this->background) ? $this->background : null),
+        ];
     }
 }

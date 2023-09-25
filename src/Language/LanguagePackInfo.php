@@ -17,53 +17,19 @@ class LanguagePackInfo extends TdObject
     public const TYPE_NAME = 'languagePackInfo';
 
     /**
-     * Unique language pack identifier
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs
+     * Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack.
+     * Unsupported in custom language packs
      *
      * @var string
      */
     protected string $baseLanguagePackId;
 
     /**
-     * Language name
+     * Unique language pack identifier
      *
      * @var string
      */
-    protected string $name;
-
-    /**
-     * Name of the language in that language
-     *
-     * @var string
-     */
-    protected string $nativeName;
-
-    /**
-     * A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
-     *
-     * @var string
-     */
-    protected string $pluralCode;
-
-    /**
-     * True, if the language pack is official
-     *
-     * @var bool
-     */
-    protected bool $isOfficial;
-
-    /**
-     * True, if the language pack strings are RTL
-     *
-     * @var bool
-     */
-    protected bool $isRtl;
+    protected string $id;
 
     /**
      * True, if the language pack is a beta language pack
@@ -80,6 +46,49 @@ class LanguagePackInfo extends TdObject
     protected bool $isInstalled;
 
     /**
+     * True, if the language pack is official
+     *
+     * @var bool
+     */
+    protected bool $isOfficial;
+
+    /**
+     * True, if the language pack strings are RTL
+     *
+     * @var bool
+     */
+    protected bool $isRtl;
+
+    /**
+     * Total number of non-deleted strings from the language pack available locally
+     *
+     * @var int
+     */
+    protected int $localStringCount;
+
+    /**
+     * Language name
+     *
+     * @var string
+     */
+    protected string $name;
+
+    /**
+     * Name of the language in that language
+     *
+     * @var string
+     */
+    protected string $nativeName;
+
+    /**
+     * A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more
+     * information
+     *
+     * @var string
+     */
+    protected string $pluralCode;
+
+    /**
      * Total number of non-deleted strings from the language pack
      *
      * @var int
@@ -94,13 +103,6 @@ class LanguagePackInfo extends TdObject
     protected int $translatedStringCount;
 
     /**
-     * Total number of non-deleted strings from the language pack available locally
-     *
-     * @var int
-     */
-    protected int $localStringCount;
-
-    /**
      * Link to language translation interface; empty for custom local language packs
      *
      * @var string
@@ -113,15 +115,16 @@ class LanguagePackInfo extends TdObject
         string $name,
         string $nativeName,
         string $pluralCode,
-        bool $isOfficial,
-        bool $isRtl,
-        bool $isBeta,
-        bool $isInstalled,
-        int $totalStringCount,
-        int $translatedStringCount,
-        int $localStringCount,
+        bool   $isOfficial,
+        bool   $isRtl,
+        bool   $isBeta,
+        bool   $isInstalled,
+        int    $totalStringCount,
+        int    $translatedStringCount,
+        int    $localStringCount,
         string $translationUrl,
-    ) {
+    )
+    {
         $this->id = $id;
         $this->baseLanguagePackId = $baseLanguagePackId;
         $this->name = $name;
@@ -156,6 +159,71 @@ class LanguagePackInfo extends TdObject
         );
     }
 
+    public function getBaseLanguagePackId(): string
+    {
+        return $this->baseLanguagePackId;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getIsBeta(): bool
+    {
+        return $this->isBeta;
+    }
+
+    public function getIsInstalled(): bool
+    {
+        return $this->isInstalled;
+    }
+
+    public function getIsOfficial(): bool
+    {
+        return $this->isOfficial;
+    }
+
+    public function getIsRtl(): bool
+    {
+        return $this->isRtl;
+    }
+
+    public function getLocalStringCount(): int
+    {
+        return $this->localStringCount;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getNativeName(): string
+    {
+        return $this->nativeName;
+    }
+
+    public function getPluralCode(): string
+    {
+        return $this->pluralCode;
+    }
+
+    public function getTotalStringCount(): int
+    {
+        return $this->totalStringCount;
+    }
+
+    public function getTranslatedStringCount(): int
+    {
+        return $this->translatedStringCount;
+    }
+
+    public function getTranslationUrl(): string
+    {
+        return $this->translationUrl;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -174,70 +242,5 @@ class LanguagePackInfo extends TdObject
             'local_string_count' => $this->localStringCount,
             'translation_url' => $this->translationUrl,
         ];
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getBaseLanguagePackId(): string
-    {
-        return $this->baseLanguagePackId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getNativeName(): string
-    {
-        return $this->nativeName;
-    }
-
-    public function getPluralCode(): string
-    {
-        return $this->pluralCode;
-    }
-
-    public function getIsOfficial(): bool
-    {
-        return $this->isOfficial;
-    }
-
-    public function getIsRtl(): bool
-    {
-        return $this->isRtl;
-    }
-
-    public function getIsBeta(): bool
-    {
-        return $this->isBeta;
-    }
-
-    public function getIsInstalled(): bool
-    {
-        return $this->isInstalled;
-    }
-
-    public function getTotalStringCount(): int
-    {
-        return $this->totalStringCount;
-    }
-
-    public function getTranslatedStringCount(): int
-    {
-        return $this->translatedStringCount;
-    }
-
-    public function getLocalStringCount(): int
-    {
-        return $this->localStringCount;
-    }
-
-    public function getTranslationUrl(): string
-    {
-        return $this->translationUrl;
     }
 }

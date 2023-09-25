@@ -16,6 +16,13 @@ class RichTextUrl extends RichText
     public const TYPE_NAME = 'richTextUrl';
 
     /**
+     * True, if the URL has cached instant view server-side
+     *
+     * @var bool
+     */
+    protected bool $isCached;
+
+    /**
      * Text
      *
      * @var RichText
@@ -28,13 +35,6 @@ class RichTextUrl extends RichText
      * @var string
      */
     protected string $url;
-
-    /**
-     * True, if the URL has cached instant view server-side
-     *
-     * @var bool
-     */
-    protected bool $isCached;
 
     public function __construct(RichText $text, string $url, bool $isCached)
     {
@@ -54,14 +54,9 @@ class RichTextUrl extends RichText
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsCached(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'url' => $this->url,
-            'is_cached' => $this->isCached,
-        ];
+        return $this->isCached;
     }
 
     public function getText(): RichText
@@ -74,8 +69,13 @@ class RichTextUrl extends RichText
         return $this->url;
     }
 
-    public function getIsCached(): bool
+    public function typeSerialize(): array
     {
-        return $this->isCached;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'url' => $this->url,
+            'is_cached' => $this->isCached,
+        ];
     }
 }

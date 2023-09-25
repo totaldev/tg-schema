@@ -24,18 +24,18 @@ class UpdateMessageInteractionInfo extends Update
     protected int $chatId;
 
     /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
      * New information about interactions with the message; may be null
      *
      * @var MessageInteractionInfo|null
      */
     protected ?MessageInteractionInfo $interactionInfo;
+
+    /**
+     * Message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
 
     public function __construct(int $chatId, int $messageId, ?MessageInteractionInfo $interactionInfo)
     {
@@ -55,6 +55,21 @@ class UpdateMessageInteractionInfo extends Update
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getInteractionInfo(): ?MessageInteractionInfo
+    {
+        return $this->interactionInfo;
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -63,20 +78,5 @@ class UpdateMessageInteractionInfo extends Update
             'message_id' => $this->messageId,
             'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
         ];
-    }
-
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
-    public function getInteractionInfo(): ?MessageInteractionInfo
-    {
-        return $this->interactionInfo;
     }
 }

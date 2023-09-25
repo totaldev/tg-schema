@@ -22,25 +22,11 @@ class PaymentReceipt extends TdObject
     public const TYPE_NAME = 'paymentReceipt';
 
     /**
-     * Product title
+     * Title of the saved credentials chosen by the buyer
      *
      * @var string
      */
-    protected string $title;
-
-    /**
-     * Product description
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $description;
-
-    /**
-     * Product photo; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $photo;
+    protected string $credentialsTitle;
 
     /**
      * Point in time (Unix timestamp) when the payment was made
@@ -50,18 +36,11 @@ class PaymentReceipt extends TdObject
     protected int $date;
 
     /**
-     * User identifier of the seller bot
+     * Product description
      *
-     * @var int
+     * @var FormattedText
      */
-    protected int $sellerBotUserId;
-
-    /**
-     * User identifier of the payment provider bot
-     *
-     * @var int
-     */
-    protected int $paymentProviderUserId;
+    protected FormattedText $description;
 
     /**
      * Information about the invoice
@@ -78,18 +57,32 @@ class PaymentReceipt extends TdObject
     protected ?OrderInfo $orderInfo;
 
     /**
+     * User identifier of the payment provider bot
+     *
+     * @var int
+     */
+    protected int $paymentProviderUserId;
+
+    /**
+     * Product photo; may be null
+     *
+     * @var Photo|null
+     */
+    protected ?Photo $photo;
+
+    /**
+     * User identifier of the seller bot
+     *
+     * @var int
+     */
+    protected int $sellerBotUserId;
+
+    /**
      * Chosen shipping option; may be null
      *
      * @var ShippingOption|null
      */
     protected ?ShippingOption $shippingOption;
-
-    /**
-     * Title of the saved credentials chosen by the buyer
-     *
-     * @var string
-     */
-    protected string $credentialsTitle;
 
     /**
      * The amount of tip chosen by the buyer in the smallest units of the currency
@@ -98,19 +91,27 @@ class PaymentReceipt extends TdObject
      */
     protected int $tipAmount;
 
+    /**
+     * Product title
+     *
+     * @var string
+     */
+    protected string $title;
+
     public function __construct(
-        string $title,
-        FormattedText $description,
-        ?Photo $photo,
-        int $date,
-        int $sellerBotUserId,
-        int $paymentProviderUserId,
-        Invoice $invoice,
-        ?OrderInfo $orderInfo,
+        string          $title,
+        FormattedText   $description,
+        ?Photo          $photo,
+        int             $date,
+        int             $sellerBotUserId,
+        int             $paymentProviderUserId,
+        Invoice         $invoice,
+        ?OrderInfo      $orderInfo,
         ?ShippingOption $shippingOption,
-        string $credentialsTitle,
-        int $tipAmount,
-    ) {
+        string          $credentialsTitle,
+        int             $tipAmount,
+    )
+    {
         $this->title = $title;
         $this->description = $description;
         $this->photo = $photo;
@@ -141,6 +142,61 @@ class PaymentReceipt extends TdObject
         );
     }
 
+    public function getCredentialsTitle(): string
+    {
+        return $this->credentialsTitle;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
+    }
+
+    public function getDescription(): FormattedText
+    {
+        return $this->description;
+    }
+
+    public function getInvoice(): Invoice
+    {
+        return $this->invoice;
+    }
+
+    public function getOrderInfo(): ?OrderInfo
+    {
+        return $this->orderInfo;
+    }
+
+    public function getPaymentProviderUserId(): int
+    {
+        return $this->paymentProviderUserId;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function getSellerBotUserId(): int
+    {
+        return $this->sellerBotUserId;
+    }
+
+    public function getShippingOption(): ?ShippingOption
+    {
+        return $this->shippingOption;
+    }
+
+    public function getTipAmount(): int
+    {
+        return $this->tipAmount;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -157,60 +213,5 @@ class PaymentReceipt extends TdObject
             'credentials_title' => $this->credentialsTitle,
             'tip_amount' => $this->tipAmount,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getDescription(): FormattedText
-    {
-        return $this->description;
-    }
-
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getSellerBotUserId(): int
-    {
-        return $this->sellerBotUserId;
-    }
-
-    public function getPaymentProviderUserId(): int
-    {
-        return $this->paymentProviderUserId;
-    }
-
-    public function getInvoice(): Invoice
-    {
-        return $this->invoice;
-    }
-
-    public function getOrderInfo(): ?OrderInfo
-    {
-        return $this->orderInfo;
-    }
-
-    public function getShippingOption(): ?ShippingOption
-    {
-        return $this->shippingOption;
-    }
-
-    public function getCredentialsTitle(): string
-    {
-        return $this->credentialsTitle;
-    }
-
-    public function getTipAmount(): int
-    {
-        return $this->tipAmount;
     }
 }

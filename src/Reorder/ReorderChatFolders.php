@@ -44,15 +44,6 @@ class ReorderChatFolders extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_ids' => $this->chatFolderIds,
-            'main_chat_list_position' => $this->mainChatListPosition,
-        ];
-    }
-
     public function getChatFolderIds(): array
     {
         return $this->chatFolderIds;
@@ -61,5 +52,14 @@ class ReorderChatFolders extends TdFunction
     public function getMainChatListPosition(): int
     {
         return $this->mainChatListPosition;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_folder_ids' => $this->chatFolderIds,
+            'main_chat_list_position' => $this->mainChatListPosition,
+        ];
     }
 }

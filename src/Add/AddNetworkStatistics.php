@@ -36,16 +36,16 @@ class AddNetworkStatistics extends TdFunction
         );
     }
 
+    public function getEntry(): NetworkStatisticsEntry
+    {
+        return $this->entry;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'entry' => $this->entry->typeSerialize(),
         ];
-    }
-
-    public function getEntry(): NetworkStatisticsEntry
-    {
-        return $this->entry;
     }
 }

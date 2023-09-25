@@ -11,7 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
+ * Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after
+ * getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
  */
 class SendPassportAuthorizationForm extends TdFunction
 {
@@ -45,15 +46,6 @@ class SendPassportAuthorizationForm extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'authorization_form_id' => $this->authorizationFormId,
-            array_map(fn($x) => $x->typeSerialize(), $this->types),
-        ];
-    }
-
     public function getAuthorizationFormId(): int
     {
         return $this->authorizationFormId;
@@ -62,5 +54,14 @@ class SendPassportAuthorizationForm extends TdFunction
     public function getTypes(): array
     {
         return $this->types;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'authorization_form_id' => $this->authorizationFormId,
+            array_map(fn($x) => $x->typeSerialize(), $this->types),
+        ];
     }
 }
