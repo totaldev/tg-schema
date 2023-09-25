@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
@@ -77,6 +75,20 @@ class Story extends TdObject
     protected bool $isVisibleOnlyForSelf;
 
     /**
+     * True, if the story can be deleted
+     *
+     * @var bool
+     */
+    protected bool $canBeDeleted;
+
+    /**
+     * True, if the story can be edited
+     *
+     * @var bool
+     */
+    protected bool $canBeEdited;
+
+    /**
      * True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
      *
      * @var bool
@@ -89,6 +101,13 @@ class Story extends TdObject
      * @var bool
      */
     protected bool $canBeReplied;
+
+    /**
+     * True, if the story's is_pinned value can be changed
+     *
+     * @var bool
+     */
+    protected bool $canToggleIsPinned;
 
     /**
      * True, if users viewed the story can be received through getStoryViewers
@@ -155,8 +174,11 @@ class Story extends TdObject
         bool $isEdited,
         bool $isPinned,
         bool $isVisibleOnlyForSelf,
+        bool $canBeDeleted,
+        bool $canBeEdited,
         bool $canBeForwarded,
         bool $canBeReplied,
+        bool $canToggleIsPinned,
         bool $canGetViewers,
         bool $hasExpiredViewers,
         ?StoryInteractionInfo $interactionInfo,
@@ -174,8 +196,11 @@ class Story extends TdObject
         $this->isEdited = $isEdited;
         $this->isPinned = $isPinned;
         $this->isVisibleOnlyForSelf = $isVisibleOnlyForSelf;
+        $this->canBeDeleted = $canBeDeleted;
+        $this->canBeEdited = $canBeEdited;
         $this->canBeForwarded = $canBeForwarded;
         $this->canBeReplied = $canBeReplied;
+        $this->canToggleIsPinned = $canToggleIsPinned;
         $this->canGetViewers = $canGetViewers;
         $this->hasExpiredViewers = $hasExpiredViewers;
         $this->interactionInfo = $interactionInfo;
@@ -197,8 +222,11 @@ class Story extends TdObject
             $array['is_edited'],
             $array['is_pinned'],
             $array['is_visible_only_for_self'],
+            $array['can_be_deleted'],
+            $array['can_be_edited'],
             $array['can_be_forwarded'],
             $array['can_be_replied'],
+            $array['can_toggle_is_pinned'],
             $array['can_get_viewers'],
             $array['has_expired_viewers'],
             (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
@@ -222,8 +250,11 @@ class Story extends TdObject
             'is_edited' => $this->isEdited,
             'is_pinned' => $this->isPinned,
             'is_visible_only_for_self' => $this->isVisibleOnlyForSelf,
+            'can_be_deleted' => $this->canBeDeleted,
+            'can_be_edited' => $this->canBeEdited,
             'can_be_forwarded' => $this->canBeForwarded,
             'can_be_replied' => $this->canBeReplied,
+            'can_toggle_is_pinned' => $this->canToggleIsPinned,
             'can_get_viewers' => $this->canGetViewers,
             'has_expired_viewers' => $this->hasExpiredViewers,
             'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
@@ -275,6 +306,16 @@ class Story extends TdObject
         return $this->isVisibleOnlyForSelf;
     }
 
+    public function getCanBeDeleted(): bool
+    {
+        return $this->canBeDeleted;
+    }
+
+    public function getCanBeEdited(): bool
+    {
+        return $this->canBeEdited;
+    }
+
     public function getCanBeForwarded(): bool
     {
         return $this->canBeForwarded;
@@ -283,6 +324,11 @@ class Story extends TdObject
     public function getCanBeReplied(): bool
     {
         return $this->canBeReplied;
+    }
+
+    public function getCanToggleIsPinned(): bool
+    {
+        return $this->canToggleIsPinned;
     }
 
     public function getCanGetViewers(): bool

@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Clean;
 
 use Totaldev\TgSchema\TdFunction;

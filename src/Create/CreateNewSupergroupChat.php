@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\Chat\ChatLocation;
@@ -62,7 +60,7 @@ class CreateNewSupergroupChat extends TdFunction
     protected int $messageAutoDeleteTime;
 
     /**
-     * Pass true to create a supergroup for importing messages using importMessage
+     * Pass true to create a supergroup for importing messages using importMessages
      *
      * @var bool
      */

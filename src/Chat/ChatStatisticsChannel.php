@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\Date\DateRange;
@@ -178,7 +176,7 @@ class ChatStatisticsChannel extends ChatStatistics
             TdSchemaRegistry::fromArray($array['language_graph']),
             TdSchemaRegistry::fromArray($array['message_interaction_graph']),
             TdSchemaRegistry::fromArray($array['instant_view_interaction_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_message_interactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentMessageInteractions']),
         );
     }
 

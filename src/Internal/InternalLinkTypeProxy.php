@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Internal;
 
 use Totaldev\TgSchema\Proxy\ProxyType;
@@ -19,7 +17,7 @@ class InternalLinkTypeProxy extends InternalLinkType
     public const TYPE_NAME = 'internalLinkTypeProxy';
 
     /**
-     * Proxy server IP address
+     * Proxy server domain or IP address
      *
      * @var string
      */

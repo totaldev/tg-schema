@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\Reaction\ReactionType;
@@ -61,7 +59,7 @@ class MessageReaction extends TdObject
             TdSchemaRegistry::fromArray($array['type']),
             $array['total_count'],
             $array['is_chosen'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentSenderIds']),
         );
     }
 

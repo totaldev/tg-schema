@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\Input\InputInvoice;
@@ -14,7 +12,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
- * Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+ * Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
  */
 class GetPaymentForm extends TdFunction
 {

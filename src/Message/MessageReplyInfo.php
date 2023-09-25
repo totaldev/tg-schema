@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
@@ -71,7 +69,7 @@ class MessageReplyInfo extends TdObject
     {
         return new static(
             $array['reply_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_replier_ids']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recentReplierIds']),
             $array['last_read_inbox_message_id'],
             $array['last_read_outbox_message_id'],
             $array['last_message_id'],

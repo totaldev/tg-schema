@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
@@ -26,7 +24,14 @@ class StoryInteractionInfo extends TdObject
     protected int $viewCount;
 
     /**
-     * Number of reactions added to the story
+     * Number of times the story was forwarded; 0 if none or unknown
+     *
+     * @var int
+     */
+    protected int $forwardCount;
+
+    /**
+     * Number of reactions added to the story; 0 if none or unknown
      *
      * @var int
      */
@@ -39,9 +44,10 @@ class StoryInteractionInfo extends TdObject
      */
     protected array $recentViewerUserIds;
 
-    public function __construct(int $viewCount, int $reactionCount, array $recentViewerUserIds)
+    public function __construct(int $viewCount, int $forwardCount, int $reactionCount, array $recentViewerUserIds)
     {
         $this->viewCount = $viewCount;
+        $this->forwardCount = $forwardCount;
         $this->reactionCount = $reactionCount;
         $this->recentViewerUserIds = $recentViewerUserIds;
     }
@@ -50,6 +56,7 @@ class StoryInteractionInfo extends TdObject
     {
         return new static(
             $array['view_count'],
+            $array['forward_count'],
             $array['reaction_count'],
             $array['recent_viewer_user_ids'],
         );
@@ -60,6 +67,7 @@ class StoryInteractionInfo extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'view_count' => $this->viewCount,
+            'forward_count' => $this->forwardCount,
             'reaction_count' => $this->reactionCount,
             'recent_viewer_user_ids' => $this->recentViewerUserIds,
         ];
@@ -68,6 +76,11 @@ class StoryInteractionInfo extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function getForwardCount(): int
+    {
+        return $this->forwardCount;
     }
 
     public function getReactionCount(): int

@@ -39,7 +39,7 @@ class InputMessageText extends InputMessageContent
      */
     protected bool $clearDraft;
 
-    public function __construct(FormattedText $text, bool $disableWebPagePreview, bool $clearDraft)
+    public function __construct(FormattedText $text, bool $disableWebPagePreview = false, bool $clearDraft = false)
     {
         parent::__construct();
 

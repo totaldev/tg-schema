@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
@@ -16,11 +14,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a new story. Returns a temporary story
+ * Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
  */
 class SendStory extends TdFunction
 {
     public const TYPE_NAME = 'sendStory';
+
+    /**
+     * Identifier of the chat that will post the story
+     *
+     * @var int
+     */
+    protected int $chatId;
 
     /**
      * Content of the story
@@ -72,6 +77,7 @@ class SendStory extends TdFunction
     protected bool $protectContent;
 
     public function __construct(
+        int $chatId,
         InputStoryContent $content,
         InputStoryAreas $areas,
         FormattedText $caption,
@@ -80,6 +86,7 @@ class SendStory extends TdFunction
         bool $isPinned,
         bool $protectContent,
     ) {
+        $this->chatId = $chatId;
         $this->content = $content;
         $this->areas = $areas;
         $this->caption = $caption;
@@ -92,6 +99,7 @@ class SendStory extends TdFunction
     public static function fromArray(array $array): SendStory
     {
         return new static(
+            $array['chat_id'],
             TdSchemaRegistry::fromArray($array['content']),
             TdSchemaRegistry::fromArray($array['areas']),
             TdSchemaRegistry::fromArray($array['caption']),
@@ -106,6 +114,7 @@ class SendStory extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
             'content' => $this->content->typeSerialize(),
             'areas' => $this->areas->typeSerialize(),
             'caption' => $this->caption->typeSerialize(),
@@ -114,6 +123,11 @@ class SendStory extends TdFunction
             'is_pinned' => $this->isPinned,
             'protect_content' => $this->protectContent,
         ];
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 
     public function getContent(): InputStoryContent

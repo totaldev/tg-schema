@@ -4,11 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\Can\CanSendStoryResult;
+use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\Story\Story;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -27,43 +26,34 @@ class UpdateStorySendFailed extends Update
     protected Story $story;
 
     /**
-     * The cause of the failure; may be null if unknown
+     * The cause of the story sending failure
+     *
+     * @var Error
+     */
+    protected Error $error;
+
+    /**
+     * Type of the error; may be null if unknown
      *
      * @var CanSendStoryResult|null
      */
-    protected ?CanSendStoryResult $error;
+    protected ?CanSendStoryResult $errorType;
 
-    /**
-     * An error code
-     *
-     * @var int
-     */
-    protected int $errorCode;
-
-    /**
-     * Error message
-     *
-     * @var string
-     */
-    protected string $errorMessage;
-
-    public function __construct(Story $story, ?CanSendStoryResult $error, int $errorCode, string $errorMessage)
+    public function __construct(Story $story, Error $error, ?CanSendStoryResult $errorType)
     {
         parent::__construct();
 
         $this->story = $story;
         $this->error = $error;
-        $this->errorCode = $errorCode;
-        $this->errorMessage = $errorMessage;
+        $this->errorType = $errorType;
     }
 
     public static function fromArray(array $array): UpdateStorySendFailed
     {
         return new static(
             TdSchemaRegistry::fromArray($array['story']),
-            (isset($array['error']) ? TdSchemaRegistry::fromArray($array['error']) : null),
-            $array['error_code'],
-            $array['error_message'],
+            TdSchemaRegistry::fromArray($array['error']),
+            (isset($array['error_type']) ? TdSchemaRegistry::fromArray($array['error_type']) : null),
         );
     }
 
@@ -72,9 +62,8 @@ class UpdateStorySendFailed extends Update
         return [
             '@type' => static::TYPE_NAME,
             'story' => $this->story->typeSerialize(),
-            'error' => (isset($this->error) ? $this->error : null),
-            'error_code' => $this->errorCode,
-            'error_message' => $this->errorMessage,
+            'error' => $this->error->typeSerialize(),
+            'error_type' => (isset($this->errorType) ? $this->errorType : null),
         ];
     }
 
@@ -83,18 +72,13 @@ class UpdateStorySendFailed extends Update
         return $this->story;
     }
 
-    public function getError(): ?CanSendStoryResult
+    public function getError(): Error
     {
         return $this->error;
     }
 
-    public function getErrorCode(): int
+    public function getErrorType(): ?CanSendStoryResult
     {
-        return $this->errorCode;
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
+        return $this->errorType;
     }
 }

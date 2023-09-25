@@ -4,15 +4,13 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Can;
 
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents result of checking whether the current user can send a story
+ * Represents result of checking whether the current user can send a story in the specific chat
  */
 class CanSendStoryResult extends TdObject
 {

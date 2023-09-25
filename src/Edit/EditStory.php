@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Edit;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
@@ -15,11 +13,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes content and caption of a previously sent story
+ * Changes content and caption of a story. Can be called only if story.can_be_edited == true
  */
 class EditStory extends TdFunction
 {
     public const TYPE_NAME = 'editStory';
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     /**
      * Identifier of the story to edit
@@ -50,11 +55,13 @@ class EditStory extends TdFunction
     protected FormattedText $caption;
 
     public function __construct(
+        int $storySenderChatId,
         int $storyId,
         InputStoryContent $content,
         InputStoryAreas $areas,
         FormattedText $caption,
     ) {
+        $this->storySenderChatId = $storySenderChatId;
         $this->storyId = $storyId;
         $this->content = $content;
         $this->areas = $areas;
@@ -64,6 +71,7 @@ class EditStory extends TdFunction
     public static function fromArray(array $array): EditStory
     {
         return new static(
+            $array['story_sender_chat_id'],
             $array['story_id'],
             TdSchemaRegistry::fromArray($array['content']),
             TdSchemaRegistry::fromArray($array['areas']),
@@ -75,11 +83,17 @@ class EditStory extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
+            'story_sender_chat_id' => $this->storySenderChatId,
             'story_id' => $this->storyId,
             'content' => $this->content->typeSerialize(),
             'areas' => $this->areas->typeSerialize(),
             'caption' => $this->caption->typeSerialize(),
         ];
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
     }
 
     public function getStoryId(): int

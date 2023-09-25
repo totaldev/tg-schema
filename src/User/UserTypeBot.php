@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -60,7 +58,7 @@ class UserTypeBot extends UserType
     protected bool $needLocation;
 
     /**
-     * True, if the bot can be added to attachment menu
+     * True, if the bot can be added to attachment or side menu
      *
      * @var bool
      */

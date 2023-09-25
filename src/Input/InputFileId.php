@@ -4,14 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A file defined by its unique ID
+ * A file defined by its unique identifier
  */
 class InputFileId extends InputFile
 {

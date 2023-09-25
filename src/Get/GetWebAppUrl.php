@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
@@ -13,7 +11,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
- * Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+ * Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
  */
 class GetWebAppUrl extends TdFunction
 {
@@ -27,7 +25,7 @@ class GetWebAppUrl extends TdFunction
     protected int $botUserId;
 
     /**
-     * The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+     * The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
      *
      * @var string
      */

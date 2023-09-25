@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Session;
 
 use Totaldev\TgSchema\TdObject;
@@ -38,6 +36,13 @@ class Session extends TdObject
      * @var bool
      */
     protected bool $isPasswordPending;
+
+    /**
+     * True, if the session wasn't confirmed from another session
+     *
+     * @var bool
+     */
+    protected bool $isUnconfirmed;
 
     /**
      * True, if incoming secret chats can be accepted by the session
@@ -128,26 +133,20 @@ class Session extends TdObject
      *
      * @var string
      */
-    protected string $ip;
+    protected string $ipAddress;
 
     /**
-     * A two-letter country code for the country from which the session was created, based on the IP address
+     * A human-readable description of the location from which the session was created, based on the IP address
      *
      * @var string
      */
-    protected string $country;
-
-    /**
-     * Region code from which the session was created, based on the IP address
-     *
-     * @var string
-     */
-    protected string $region;
+    protected string $location;
 
     public function __construct(
         int $id,
         bool $isCurrent,
         bool $isPasswordPending,
+        bool $isUnconfirmed,
         bool $canAcceptSecretChats,
         bool $canAcceptCalls,
         SessionType $type,
@@ -160,13 +159,13 @@ class Session extends TdObject
         string $systemVersion,
         int $logInDate,
         int $lastActiveDate,
-        string $ip,
-        string $country,
-        string $region,
+        string $ipAddress,
+        string $location,
     ) {
         $this->id = $id;
         $this->isCurrent = $isCurrent;
         $this->isPasswordPending = $isPasswordPending;
+        $this->isUnconfirmed = $isUnconfirmed;
         $this->canAcceptSecretChats = $canAcceptSecretChats;
         $this->canAcceptCalls = $canAcceptCalls;
         $this->type = $type;
@@ -179,9 +178,8 @@ class Session extends TdObject
         $this->systemVersion = $systemVersion;
         $this->logInDate = $logInDate;
         $this->lastActiveDate = $lastActiveDate;
-        $this->ip = $ip;
-        $this->country = $country;
-        $this->region = $region;
+        $this->ipAddress = $ipAddress;
+        $this->location = $location;
     }
 
     public static function fromArray(array $array): Session
@@ -190,6 +188,7 @@ class Session extends TdObject
             $array['id'],
             $array['is_current'],
             $array['is_password_pending'],
+            $array['is_unconfirmed'],
             $array['can_accept_secret_chats'],
             $array['can_accept_calls'],
             TdSchemaRegistry::fromArray($array['type']),
@@ -202,9 +201,8 @@ class Session extends TdObject
             $array['system_version'],
             $array['log_in_date'],
             $array['last_active_date'],
-            $array['ip'],
-            $array['country'],
-            $array['region'],
+            $array['ip_address'],
+            $array['location'],
         );
     }
 
@@ -215,6 +213,7 @@ class Session extends TdObject
             'id' => $this->id,
             'is_current' => $this->isCurrent,
             'is_password_pending' => $this->isPasswordPending,
+            'is_unconfirmed' => $this->isUnconfirmed,
             'can_accept_secret_chats' => $this->canAcceptSecretChats,
             'can_accept_calls' => $this->canAcceptCalls,
             'type' => $this->type->typeSerialize(),
@@ -227,9 +226,8 @@ class Session extends TdObject
             'system_version' => $this->systemVersion,
             'log_in_date' => $this->logInDate,
             'last_active_date' => $this->lastActiveDate,
-            'ip' => $this->ip,
-            'country' => $this->country,
-            'region' => $this->region,
+            'ip_address' => $this->ipAddress,
+            'location' => $this->location,
         ];
     }
 
@@ -246,6 +244,11 @@ class Session extends TdObject
     public function getIsPasswordPending(): bool
     {
         return $this->isPasswordPending;
+    }
+
+    public function getIsUnconfirmed(): bool
+    {
+        return $this->isUnconfirmed;
     }
 
     public function getCanAcceptSecretChats(): bool
@@ -308,18 +311,13 @@ class Session extends TdObject
         return $this->lastActiveDate;
     }
 
-    public function getIp(): string
+    public function getIpAddress(): string
     {
-        return $this->ip;
+        return $this->ipAddress;
     }
 
-    public function getCountry(): string
+    public function getLocation(): string
     {
-        return $this->country;
-    }
-
-    public function getRegion(): string
-    {
-        return $this->region;
+        return $this->location;
     }
 }

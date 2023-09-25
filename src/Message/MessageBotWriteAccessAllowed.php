@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -25,17 +23,26 @@ class MessageBotWriteAccessAllowed extends MessageContent
      */
     protected ?WebApp $webApp;
 
-    public function __construct(?WebApp $webApp)
+    /**
+     * True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
+     *
+     * @var bool
+     */
+    protected bool $byRequest;
+
+    public function __construct(?WebApp $webApp, bool $byRequest)
     {
         parent::__construct();
 
         $this->webApp = $webApp;
+        $this->byRequest = $byRequest;
     }
 
     public static function fromArray(array $array): MessageBotWriteAccessAllowed
     {
         return new static(
             (isset($array['web_app']) ? TdSchemaRegistry::fromArray($array['web_app']) : null),
+            $array['by_request'],
         );
     }
 
@@ -44,11 +51,17 @@ class MessageBotWriteAccessAllowed extends MessageContent
         return [
             '@type' => static::TYPE_NAME,
             'web_app' => (isset($this->webApp) ? $this->webApp : null),
+            'by_request' => $this->byRequest,
         ];
     }
 
     public function getWebApp(): ?WebApp
     {
         return $this->webApp;
+    }
+
+    public function getByRequest(): bool
+    {
+        return $this->byRequest;
     }
 }

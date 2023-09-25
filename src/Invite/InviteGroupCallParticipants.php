@@ -4,15 +4,13 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Invite;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+ * Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
  */
 class InviteGroupCallParticipants extends TdFunction
 {

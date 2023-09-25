@@ -4,14 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Premium;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * User stories are displayed before stories of non-premium contacts
+ * User stories are displayed before stories of non-premium contacts and channels
  */
 class PremiumStoryFeaturePriorityOrder extends PremiumStoryFeature
 {

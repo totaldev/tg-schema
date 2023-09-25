@@ -4,15 +4,13 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns viewers of a story. The method can be called if story.can_get_viewers == true
+ * Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
  */
 class GetStoryViewers extends TdFunction
 {

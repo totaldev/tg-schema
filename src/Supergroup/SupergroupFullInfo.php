@@ -266,7 +266,7 @@ class SupergroupFullInfo extends TdObject
             $array['sticker_set_id'],
             (isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null),
             (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['botCommands']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
             $array['upgraded_from_basic_group_id'],
             $array['upgraded_from_max_message_id'],
         );

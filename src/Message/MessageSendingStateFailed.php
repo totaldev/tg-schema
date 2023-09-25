@@ -4,10 +4,9 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
@@ -18,18 +17,11 @@ class MessageSendingStateFailed extends MessageSendingState
     public const TYPE_NAME = 'messageSendingStateFailed';
 
     /**
-     * An error code; 0 if unknown
+     * The cause of the message sending failure
      *
-     * @var int
+     * @var Error
      */
-    protected int $errorCode;
-
-    /**
-     * Error message
-     *
-     * @var string
-     */
-    protected string $errorMessage;
+    protected Error $error;
 
     /**
      * True, if the message can be re-sent
@@ -52,17 +44,11 @@ class MessageSendingStateFailed extends MessageSendingState
      */
     protected float $retryAfter;
 
-    public function __construct(
-        int $errorCode,
-        string $errorMessage,
-        bool $canRetry,
-        bool $needAnotherSender,
-        float $retryAfter,
-    ) {
+    public function __construct(Error $error, bool $canRetry, bool $needAnotherSender, float $retryAfter)
+    {
         parent::__construct();
 
-        $this->errorCode = $errorCode;
-        $this->errorMessage = $errorMessage;
+        $this->error = $error;
         $this->canRetry = $canRetry;
         $this->needAnotherSender = $needAnotherSender;
         $this->retryAfter = $retryAfter;
@@ -71,8 +57,7 @@ class MessageSendingStateFailed extends MessageSendingState
     public static function fromArray(array $array): MessageSendingStateFailed
     {
         return new static(
-            $array['error_code'],
-            $array['error_message'],
+            TdSchemaRegistry::fromArray($array['error']),
             $array['can_retry'],
             $array['need_another_sender'],
             $array['retry_after'],
@@ -83,22 +68,16 @@ class MessageSendingStateFailed extends MessageSendingState
     {
         return [
             '@type' => static::TYPE_NAME,
-            'error_code' => $this->errorCode,
-            'error_message' => $this->errorMessage,
+            'error' => $this->error->typeSerialize(),
             'can_retry' => $this->canRetry,
             'need_another_sender' => $this->needAnotherSender,
             'retry_after' => $this->retryAfter,
         ];
     }
 
-    public function getErrorCode(): int
+    public function getError(): Error
     {
-        return $this->errorCode;
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
+        return $this->error;
     }
 
     public function getCanRetry(): bool

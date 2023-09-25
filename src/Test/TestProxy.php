@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\Proxy\ProxyType;
@@ -20,7 +18,7 @@ class TestProxy extends TdFunction
     public const TYPE_NAME = 'testProxy';
 
     /**
-     * Proxy server IP address
+     * Proxy server domain or IP address
      *
      * @var string
      */

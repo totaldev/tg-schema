@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Supergroup;
 
 use Totaldev\TgSchema\Chat\ChatMemberStatus;
@@ -146,6 +144,20 @@ class Supergroup extends TdObject
      */
     protected bool $isFake;
 
+    /**
+     * True, if the channel has non-expired stories available to the current user
+     *
+     * @var bool
+     */
+    protected bool $hasActiveStories;
+
+    /**
+     * True, if the channel has unread non-expired stories available to the current user
+     *
+     * @var bool
+     */
+    protected bool $hasUnreadActiveStories;
+
     public function __construct(
         int $id,
         ?Usernames $usernames,
@@ -165,6 +177,8 @@ class Supergroup extends TdObject
         string $restrictionReason,
         bool $isScam,
         bool $isFake,
+        bool $hasActiveStories,
+        bool $hasUnreadActiveStories,
     ) {
         $this->id = $id;
         $this->usernames = $usernames;
@@ -184,6 +198,8 @@ class Supergroup extends TdObject
         $this->restrictionReason = $restrictionReason;
         $this->isScam = $isScam;
         $this->isFake = $isFake;
+        $this->hasActiveStories = $hasActiveStories;
+        $this->hasUnreadActiveStories = $hasUnreadActiveStories;
     }
 
     public static function fromArray(array $array): Supergroup
@@ -207,6 +223,8 @@ class Supergroup extends TdObject
             $array['restriction_reason'],
             $array['is_scam'],
             $array['is_fake'],
+            $array['has_active_stories'],
+            $array['has_unread_active_stories'],
         );
     }
 
@@ -232,6 +250,8 @@ class Supergroup extends TdObject
             'restriction_reason' => $this->restrictionReason,
             'is_scam' => $this->isScam,
             'is_fake' => $this->isFake,
+            'has_active_stories' => $this->hasActiveStories,
+            'has_unread_active_stories' => $this->hasUnreadActiveStories,
         ];
     }
 
@@ -323,5 +343,15 @@ class Supergroup extends TdObject
     public function getIsFake(): bool
     {
         return $this->isFake;
+    }
+
+    public function getHasActiveStories(): bool
+    {
+        return $this->hasActiveStories;
+    }
+
+    public function getHasUnreadActiveStories(): bool
+    {
+        return $this->hasUnreadActiveStories;
     }
 }

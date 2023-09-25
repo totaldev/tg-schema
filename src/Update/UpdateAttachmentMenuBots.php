@@ -4,22 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\Attachment\AttachmentMenuBot;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of bots added to attachment menu has changed
+ * The list of bots added to attachment or side menu has changed
  */
 class UpdateAttachmentMenuBots extends Update
 {
     public const TYPE_NAME = 'updateAttachmentMenuBots';
 
     /**
-     * The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
+     * The new list of bots. The bots must not be shown on scheduled messages screen
      *
      * @var AttachmentMenuBot[]
      */

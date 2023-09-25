@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Edit;
 
 use Totaldev\TgSchema\Proxy\ProxyType;
@@ -27,7 +25,7 @@ class EditProxy extends TdFunction
     protected int $proxyId;
 
     /**
-     * Proxy server IP address
+     * Proxy server domain or IP address
      *
      * @var string
      */

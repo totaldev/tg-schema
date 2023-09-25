@@ -4,10 +4,9 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Invite\InviteLinkChatType;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -35,9 +34,9 @@ class ChatInviteLinkInfo extends TdObject
     /**
      * Type of the chat
      *
-     * @var ChatType
+     * @var InviteLinkChatType
      */
-    protected ChatType $type;
+    protected InviteLinkChatType $type;
 
     /**
      * Title of the chat
@@ -88,10 +87,31 @@ class ChatInviteLinkInfo extends TdObject
      */
     protected bool $isPublic;
 
+    /**
+     * True, if the chat is verified
+     *
+     * @var bool
+     */
+    protected bool $isVerified;
+
+    /**
+     * True, if many users reported this chat as a scam
+     *
+     * @var bool
+     */
+    protected bool $isScam;
+
+    /**
+     * True, if many users reported this chat as a fake account
+     *
+     * @var bool
+     */
+    protected bool $isFake;
+
     public function __construct(
         int $chatId,
         int $accessibleFor,
-        ChatType $type,
+        InviteLinkChatType $type,
         string $title,
         ?ChatPhotoInfo $photo,
         string $description,
@@ -99,6 +119,9 @@ class ChatInviteLinkInfo extends TdObject
         array $memberUserIds,
         bool $createsJoinRequest,
         bool $isPublic,
+        bool $isVerified,
+        bool $isScam,
+        bool $isFake,
     ) {
         $this->chatId = $chatId;
         $this->accessibleFor = $accessibleFor;
@@ -110,6 +133,9 @@ class ChatInviteLinkInfo extends TdObject
         $this->memberUserIds = $memberUserIds;
         $this->createsJoinRequest = $createsJoinRequest;
         $this->isPublic = $isPublic;
+        $this->isVerified = $isVerified;
+        $this->isScam = $isScam;
+        $this->isFake = $isFake;
     }
 
     public static function fromArray(array $array): ChatInviteLinkInfo
@@ -125,6 +151,9 @@ class ChatInviteLinkInfo extends TdObject
             $array['member_user_ids'],
             $array['creates_join_request'],
             $array['is_public'],
+            $array['is_verified'],
+            $array['is_scam'],
+            $array['is_fake'],
         );
     }
 
@@ -142,6 +171,9 @@ class ChatInviteLinkInfo extends TdObject
             'member_user_ids' => $this->memberUserIds,
             'creates_join_request' => $this->createsJoinRequest,
             'is_public' => $this->isPublic,
+            'is_verified' => $this->isVerified,
+            'is_scam' => $this->isScam,
+            'is_fake' => $this->isFake,
         ];
     }
 
@@ -155,7 +187,7 @@ class ChatInviteLinkInfo extends TdObject
         return $this->accessibleFor;
     }
 
-    public function getType(): ChatType
+    public function getType(): InviteLinkChatType
     {
         return $this->type;
     }
@@ -193,5 +225,20 @@ class ChatInviteLinkInfo extends TdObject
     public function getIsPublic(): bool
     {
         return $this->isPublic;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getIsScam(): bool
+    {
+        return $this->isScam;
+    }
+
+    public function getIsFake(): bool
+    {
+        return $this->isFake;
     }
 }

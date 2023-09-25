@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
@@ -33,7 +31,7 @@ class ChatLists extends TdObject
     public static function fromArray(array $array): ChatLists
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_lists']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chatLists']),
         );
     }
 

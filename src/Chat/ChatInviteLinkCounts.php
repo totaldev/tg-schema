@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
@@ -33,7 +31,7 @@ class ChatInviteLinkCounts extends TdObject
     public static function fromArray(array $array): ChatInviteLinkCounts
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_link_counts']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['inviteLinkCounts']),
         );
     }
 

@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -61,7 +59,7 @@ class UpdateMessageUnreadReactions extends Update
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unreadReactions']),
             $array['unread_reaction_count'],
         );
     }

@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
@@ -26,6 +24,13 @@ class StoryViewers extends TdObject
     protected int $totalCount;
 
     /**
+     * Approximate total number of reactions set by found story viewers
+     *
+     * @var int
+     */
+    protected int $totalReactionCount;
+
+    /**
      * List of story viewers
      *
      * @var StoryViewer[]
@@ -39,9 +44,10 @@ class StoryViewers extends TdObject
      */
     protected string $nextOffset;
 
-    public function __construct(int $totalCount, array $viewers, string $nextOffset)
+    public function __construct(int $totalCount, int $totalReactionCount, array $viewers, string $nextOffset)
     {
         $this->totalCount = $totalCount;
+        $this->totalReactionCount = $totalReactionCount;
         $this->viewers = $viewers;
         $this->nextOffset = $nextOffset;
     }
@@ -50,6 +56,7 @@ class StoryViewers extends TdObject
     {
         return new static(
             $array['total_count'],
+            $array['total_reaction_count'],
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['viewers']),
             $array['next_offset'],
         );
@@ -60,6 +67,7 @@ class StoryViewers extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'total_count' => $this->totalCount,
+            'total_reaction_count' => $this->totalReactionCount,
             array_map(fn($x) => $x->typeSerialize(), $this->viewers),
             'next_offset' => $this->nextOffset,
         ];
@@ -68,6 +76,11 @@ class StoryViewers extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function getTotalReactionCount(): int
+    {
+        return $this->totalReactionCount;
     }
 
     public function getViewers(): array

@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Invoice;
 
 use Totaldev\TgSchema\Labeled\LabeledPricePart;
@@ -53,6 +51,13 @@ class Invoice extends TdObject
      * @var string
      */
     protected string $recurringPaymentTermsOfServiceUrl;
+
+    /**
+     * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
+     *
+     * @var string
+     */
+    protected string $termsOfServiceUrl;
 
     /**
      * True, if the payment is a test payment
@@ -116,6 +121,7 @@ class Invoice extends TdObject
         int $maxTipAmount,
         array $suggestedTipAmounts,
         string $recurringPaymentTermsOfServiceUrl,
+        string $termsOfServiceUrl,
         bool $isTest,
         bool $needName,
         bool $needPhoneNumber,
@@ -130,6 +136,7 @@ class Invoice extends TdObject
         $this->maxTipAmount = $maxTipAmount;
         $this->suggestedTipAmounts = $suggestedTipAmounts;
         $this->recurringPaymentTermsOfServiceUrl = $recurringPaymentTermsOfServiceUrl;
+        $this->termsOfServiceUrl = $termsOfServiceUrl;
         $this->isTest = $isTest;
         $this->needName = $needName;
         $this->needPhoneNumber = $needPhoneNumber;
@@ -148,6 +155,7 @@ class Invoice extends TdObject
             $array['max_tip_amount'],
             $array['suggested_tip_amounts'],
             $array['recurring_payment_terms_of_service_url'],
+            $array['terms_of_service_url'],
             $array['is_test'],
             $array['need_name'],
             $array['need_phone_number'],
@@ -168,6 +176,7 @@ class Invoice extends TdObject
             'max_tip_amount' => $this->maxTipAmount,
             'suggested_tip_amounts' => $this->suggestedTipAmounts,
             'recurring_payment_terms_of_service_url' => $this->recurringPaymentTermsOfServiceUrl,
+            'terms_of_service_url' => $this->termsOfServiceUrl,
             'is_test' => $this->isTest,
             'need_name' => $this->needName,
             'need_phone_number' => $this->needPhoneNumber,
@@ -202,6 +211,11 @@ class Invoice extends TdObject
     public function getRecurringPaymentTermsOfServiceUrl(): string
     {
         return $this->recurringPaymentTermsOfServiceUrl;
+    }
+
+    public function getTermsOfServiceUrl(): string
+    {
+        return $this->termsOfServiceUrl;
     }
 
     public function getIsTest(): bool

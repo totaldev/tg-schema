@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Found;
 
 use Totaldev\TgSchema\TdObject;
@@ -27,6 +25,13 @@ class FoundWebApp extends TdObject
     protected WebApp $webApp;
 
     /**
+     * True, if the app supports "settings_button_pressed" event
+     *
+     * @var bool
+     */
+    protected bool $supportsSettings;
+
+    /**
      * True, if the user must be asked for the permission to the bot to send them messages
      *
      * @var bool
@@ -40,9 +45,14 @@ class FoundWebApp extends TdObject
      */
     protected bool $skipConfirmation;
 
-    public function __construct(WebApp $webApp, bool $requestWriteAccess, bool $skipConfirmation)
-    {
+    public function __construct(
+        WebApp $webApp,
+        bool $supportsSettings,
+        bool $requestWriteAccess,
+        bool $skipConfirmation,
+    ) {
         $this->webApp = $webApp;
+        $this->supportsSettings = $supportsSettings;
         $this->requestWriteAccess = $requestWriteAccess;
         $this->skipConfirmation = $skipConfirmation;
     }
@@ -51,6 +61,7 @@ class FoundWebApp extends TdObject
     {
         return new static(
             TdSchemaRegistry::fromArray($array['web_app']),
+            $array['supports_settings'],
             $array['request_write_access'],
             $array['skip_confirmation'],
         );
@@ -61,6 +72,7 @@ class FoundWebApp extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'web_app' => $this->webApp->typeSerialize(),
+            'supports_settings' => $this->supportsSettings,
             'request_write_access' => $this->requestWriteAccess,
             'skip_confirmation' => $this->skipConfirmation,
         ];
@@ -69,6 +81,11 @@ class FoundWebApp extends TdObject
     public function getWebApp(): WebApp
     {
         return $this->webApp;
+    }
+
+    public function getSupportsSettings(): bool
+    {
+        return $this->supportsSettings;
     }
 
     public function getRequestWriteAccess(): bool

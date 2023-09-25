@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Audio;
 
 use Totaldev\TgSchema\File\File;
@@ -116,7 +114,7 @@ class Audio extends TdObject
             $array['mime_type'],
             (isset($array['album_cover_minithumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_minithumbnail']) : null),
             (isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['external_album_covers']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['externalAlbumCovers']),
             TdSchemaRegistry::fromArray($array['audio']),
         );
     }

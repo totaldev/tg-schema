@@ -4,19 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a story is accessible after expiration
+ * Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
  */
 class ToggleStoryIsPinned extends TdFunction
 {
     public const TYPE_NAME = 'toggleStoryIsPinned';
+
+    /**
+     * Identifier of the chat that posted the story
+     *
+     * @var int
+     */
+    protected int $storySenderChatId;
 
     /**
      * Identifier of the story
@@ -32,8 +37,9 @@ class ToggleStoryIsPinned extends TdFunction
      */
     protected bool $isPinned;
 
-    public function __construct(int $storyId, bool $isPinned)
+    public function __construct(int $storySenderChatId, int $storyId, bool $isPinned)
     {
+        $this->storySenderChatId = $storySenderChatId;
         $this->storyId = $storyId;
         $this->isPinned = $isPinned;
     }
@@ -41,6 +47,7 @@ class ToggleStoryIsPinned extends TdFunction
     public static function fromArray(array $array): ToggleStoryIsPinned
     {
         return new static(
+            $array['story_sender_chat_id'],
             $array['story_id'],
             $array['is_pinned'],
         );
@@ -50,9 +57,15 @@ class ToggleStoryIsPinned extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
+            'story_sender_chat_id' => $this->storySenderChatId,
             'story_id' => $this->storyId,
             'is_pinned' => $this->isPinned,
         ];
+    }
+
+    public function getStorySenderChatId(): int
+    {
+        return $this->storySenderChatId;
     }
 
     public function getStoryId(): int

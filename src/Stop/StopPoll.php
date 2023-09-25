@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Stop;
 
 use Totaldev\TgSchema\Reply\ReplyMarkup;
@@ -13,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+ * Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
  */
 class StopPoll extends TdFunction
 {

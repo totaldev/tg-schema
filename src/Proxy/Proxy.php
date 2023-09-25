@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Proxy;
 
 use Totaldev\TgSchema\TdObject;
@@ -26,7 +24,7 @@ class Proxy extends TdObject
     protected int $id;
 
     /**
-     * Proxy server IP address
+     * Proxy server domain or IP address
      *
      * @var string
      */

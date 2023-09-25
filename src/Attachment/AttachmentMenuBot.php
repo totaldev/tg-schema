@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Attachment;
 
 use Totaldev\TgSchema\File\File;
@@ -13,14 +11,14 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a bot, which can be added to attachment menu
+ * Represents a bot, which can be added to attachment or side menu
  */
 class AttachmentMenuBot extends TdObject
 {
     public const TYPE_NAME = 'attachmentMenuBot';
 
     /**
-     * User identifier of the bot added to attachment menu
+     * User identifier of the bot
      *
      * @var int
      */
@@ -69,11 +67,39 @@ class AttachmentMenuBot extends TdObject
     protected bool $supportsSettings;
 
     /**
-     * True, if the user must be asked for the permission to the bot to send them messages
+     * True, if the user must be asked for the permission to send messages to the bot
      *
      * @var bool
      */
     protected bool $requestWriteAccess;
+
+    /**
+     * True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
+     *
+     * @var bool
+     */
+    protected bool $isAdded;
+
+    /**
+     * True, if the bot must be shown in the attachment menu
+     *
+     * @var bool
+     */
+    protected bool $showInAttachmentMenu;
+
+    /**
+     * True, if the bot must be shown in the side menu
+     *
+     * @var bool
+     */
+    protected bool $showInSideMenu;
+
+    /**
+     * True, if a disclaimer, why the bot is shown in the side menu, is needed
+     *
+     * @var bool
+     */
+    protected bool $showDisclaimerInSideMenu;
 
     /**
      * Name for the bot in attachment menu
@@ -90,39 +116,60 @@ class AttachmentMenuBot extends TdObject
     protected ?AttachmentMenuBotColor $nameColor;
 
     /**
-     * Default attachment menu icon for the bot in SVG format; may be null
+     * Default icon for the bot in SVG format; may be null
      *
      * @var File|null
      */
     protected ?File $defaultIcon;
 
     /**
-     * Attachment menu icon for the bot in SVG format for the official iOS app; may be null
+     * Icon for the bot in SVG format for the official iOS app; may be null
      *
      * @var File|null
      */
     protected ?File $iosStaticIcon;
 
     /**
-     * Attachment menu icon for the bot in TGS format for the official iOS app; may be null
+     * Icon for the bot in TGS format for the official iOS app; may be null
      *
      * @var File|null
      */
     protected ?File $iosAnimatedIcon;
 
     /**
-     * Attachment menu icon for the bot in TGS format for the official Android app; may be null
+     * Icon for the bot in PNG format for the official iOS app side menu; may be null
+     *
+     * @var File|null
+     */
+    protected ?File $iosSideMenuIcon;
+
+    /**
+     * Icon for the bot in TGS format for the official Android app; may be null
      *
      * @var File|null
      */
     protected ?File $androidIcon;
 
     /**
-     * Attachment menu icon for the bot in TGS format for the official native macOS app; may be null
+     * Icon for the bot in SVG format for the official Android app side menu; may be null
+     *
+     * @var File|null
+     */
+    protected ?File $androidSideMenuIcon;
+
+    /**
+     * Icon for the bot in TGS format for the official native macOS app; may be null
      *
      * @var File|null
      */
     protected ?File $macosIcon;
+
+    /**
+     * Icon for the bot in PNG format for the official macOS app side menu; may be null
+     *
+     * @var File|null
+     */
+    protected ?File $macosSideMenuIcon;
 
     /**
      * Color to highlight selected icon of the bot if appropriate; may be null
@@ -147,13 +194,20 @@ class AttachmentMenuBot extends TdObject
         bool $supportsChannelChats,
         bool $supportsSettings,
         bool $requestWriteAccess,
+        bool $isAdded,
+        bool $showInAttachmentMenu,
+        bool $showInSideMenu,
+        bool $showDisclaimerInSideMenu,
         string $name,
         ?AttachmentMenuBotColor $nameColor,
         ?File $defaultIcon,
         ?File $iosStaticIcon,
         ?File $iosAnimatedIcon,
+        ?File $iosSideMenuIcon,
         ?File $androidIcon,
+        ?File $androidSideMenuIcon,
         ?File $macosIcon,
+        ?File $macosSideMenuIcon,
         ?AttachmentMenuBotColor $iconColor,
         ?File $webAppPlaceholder,
     ) {
@@ -165,13 +219,20 @@ class AttachmentMenuBot extends TdObject
         $this->supportsChannelChats = $supportsChannelChats;
         $this->supportsSettings = $supportsSettings;
         $this->requestWriteAccess = $requestWriteAccess;
+        $this->isAdded = $isAdded;
+        $this->showInAttachmentMenu = $showInAttachmentMenu;
+        $this->showInSideMenu = $showInSideMenu;
+        $this->showDisclaimerInSideMenu = $showDisclaimerInSideMenu;
         $this->name = $name;
         $this->nameColor = $nameColor;
         $this->defaultIcon = $defaultIcon;
         $this->iosStaticIcon = $iosStaticIcon;
         $this->iosAnimatedIcon = $iosAnimatedIcon;
+        $this->iosSideMenuIcon = $iosSideMenuIcon;
         $this->androidIcon = $androidIcon;
+        $this->androidSideMenuIcon = $androidSideMenuIcon;
         $this->macosIcon = $macosIcon;
+        $this->macosSideMenuIcon = $macosSideMenuIcon;
         $this->iconColor = $iconColor;
         $this->webAppPlaceholder = $webAppPlaceholder;
     }
@@ -187,13 +248,20 @@ class AttachmentMenuBot extends TdObject
             $array['supports_channel_chats'],
             $array['supports_settings'],
             $array['request_write_access'],
+            $array['is_added'],
+            $array['show_in_attachment_menu'],
+            $array['show_in_side_menu'],
+            $array['show_disclaimer_in_side_menu'],
             $array['name'],
             (isset($array['name_color']) ? TdSchemaRegistry::fromArray($array['name_color']) : null),
             (isset($array['default_icon']) ? TdSchemaRegistry::fromArray($array['default_icon']) : null),
             (isset($array['ios_static_icon']) ? TdSchemaRegistry::fromArray($array['ios_static_icon']) : null),
             (isset($array['ios_animated_icon']) ? TdSchemaRegistry::fromArray($array['ios_animated_icon']) : null),
+            (isset($array['ios_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['ios_side_menu_icon']) : null),
             (isset($array['android_icon']) ? TdSchemaRegistry::fromArray($array['android_icon']) : null),
+            (isset($array['android_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['android_side_menu_icon']) : null),
             (isset($array['macos_icon']) ? TdSchemaRegistry::fromArray($array['macos_icon']) : null),
+            (isset($array['macos_side_menu_icon']) ? TdSchemaRegistry::fromArray($array['macos_side_menu_icon']) : null),
             (isset($array['icon_color']) ? TdSchemaRegistry::fromArray($array['icon_color']) : null),
             (isset($array['web_app_placeholder']) ? TdSchemaRegistry::fromArray($array['web_app_placeholder']) : null),
         );
@@ -211,13 +279,20 @@ class AttachmentMenuBot extends TdObject
             'supports_channel_chats' => $this->supportsChannelChats,
             'supports_settings' => $this->supportsSettings,
             'request_write_access' => $this->requestWriteAccess,
+            'is_added' => $this->isAdded,
+            'show_in_attachment_menu' => $this->showInAttachmentMenu,
+            'show_in_side_menu' => $this->showInSideMenu,
+            'show_disclaimer_in_side_menu' => $this->showDisclaimerInSideMenu,
             'name' => $this->name,
             'name_color' => (isset($this->nameColor) ? $this->nameColor : null),
             'default_icon' => (isset($this->defaultIcon) ? $this->defaultIcon : null),
             'ios_static_icon' => (isset($this->iosStaticIcon) ? $this->iosStaticIcon : null),
             'ios_animated_icon' => (isset($this->iosAnimatedIcon) ? $this->iosAnimatedIcon : null),
+            'ios_side_menu_icon' => (isset($this->iosSideMenuIcon) ? $this->iosSideMenuIcon : null),
             'android_icon' => (isset($this->androidIcon) ? $this->androidIcon : null),
+            'android_side_menu_icon' => (isset($this->androidSideMenuIcon) ? $this->androidSideMenuIcon : null),
             'macos_icon' => (isset($this->macosIcon) ? $this->macosIcon : null),
+            'macos_side_menu_icon' => (isset($this->macosSideMenuIcon) ? $this->macosSideMenuIcon : null),
             'icon_color' => (isset($this->iconColor) ? $this->iconColor : null),
             'web_app_placeholder' => (isset($this->webAppPlaceholder) ? $this->webAppPlaceholder : null),
         ];
@@ -263,6 +338,26 @@ class AttachmentMenuBot extends TdObject
         return $this->requestWriteAccess;
     }
 
+    public function getIsAdded(): bool
+    {
+        return $this->isAdded;
+    }
+
+    public function getShowInAttachmentMenu(): bool
+    {
+        return $this->showInAttachmentMenu;
+    }
+
+    public function getShowInSideMenu(): bool
+    {
+        return $this->showInSideMenu;
+    }
+
+    public function getShowDisclaimerInSideMenu(): bool
+    {
+        return $this->showDisclaimerInSideMenu;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -288,14 +383,29 @@ class AttachmentMenuBot extends TdObject
         return $this->iosAnimatedIcon;
     }
 
+    public function getIosSideMenuIcon(): ?File
+    {
+        return $this->iosSideMenuIcon;
+    }
+
     public function getAndroidIcon(): ?File
     {
         return $this->androidIcon;
     }
 
+    public function getAndroidSideMenuIcon(): ?File
+    {
+        return $this->androidSideMenuIcon;
+    }
+
     public function getMacosIcon(): ?File
     {
         return $this->macosIcon;
+    }
+
+    public function getMacosSideMenuIcon(): ?File
+    {
+        return $this->macosSideMenuIcon;
     }
 
     public function getIconColor(): ?AttachmentMenuBotColor

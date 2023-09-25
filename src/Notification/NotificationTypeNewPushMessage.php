@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Notification;
 
 use Totaldev\TgSchema\Message\MessageSender;
@@ -20,7 +18,7 @@ class NotificationTypeNewPushMessage extends NotificationType
     public const TYPE_NAME = 'notificationTypeNewPushMessage';
 
     /**
-     * The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as a message to reply
+     * The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
      *
      * @var int
      */

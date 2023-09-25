@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Option;
 
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -34,7 +32,7 @@ class OptionValueInteger extends OptionValue
     public static function fromArray(array $array): OptionValueInteger
     {
         return new static(
-            is_numeric($array['value']) ? (int)$array['value'] : $array['value'],
+            $array['value'],
         );
     }
 

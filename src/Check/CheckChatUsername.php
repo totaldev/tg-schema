@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdFunction;
@@ -19,7 +17,7 @@ class CheckChatUsername extends TdFunction
     public const TYPE_NAME = 'checkChatUsername';
 
     /**
-     * Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+     * Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
      *
      * @var int
      */

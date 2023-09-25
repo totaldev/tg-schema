@@ -33,7 +33,7 @@ class FormattedText extends TdObject
      */
     protected array $entities;
 
-    public function __construct(string $text, array $entities)
+    public function __construct(string $text, array $entities = [])
     {
         $this->text = $text;
         $this->entities = $entities;

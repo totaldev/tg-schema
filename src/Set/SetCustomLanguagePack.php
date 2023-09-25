@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\Language\LanguagePackInfo;
@@ -21,7 +19,7 @@ class SetCustomLanguagePack extends TdFunction
     public const TYPE_NAME = 'setCustomLanguagePack';
 
     /**
-     * Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+     * Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
      *
      * @var LanguagePackInfo
      */

@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Connected;
 
 use Totaldev\TgSchema\TdObject;
@@ -72,7 +70,7 @@ class ConnectedWebsite extends TdObject
      *
      * @var string
      */
-    protected string $ip;
+    protected string $ipAddress;
 
     /**
      * Human-readable description of a country and a region from which the user was logged in, based on the IP address
@@ -89,7 +87,7 @@ class ConnectedWebsite extends TdObject
         string $platform,
         int $logInDate,
         int $lastActiveDate,
-        string $ip,
+        string $ipAddress,
         string $location,
     ) {
         $this->id = $id;
@@ -99,7 +97,7 @@ class ConnectedWebsite extends TdObject
         $this->platform = $platform;
         $this->logInDate = $logInDate;
         $this->lastActiveDate = $lastActiveDate;
-        $this->ip = $ip;
+        $this->ipAddress = $ipAddress;
         $this->location = $location;
     }
 
@@ -113,7 +111,7 @@ class ConnectedWebsite extends TdObject
             $array['platform'],
             $array['log_in_date'],
             $array['last_active_date'],
-            $array['ip'],
+            $array['ip_address'],
             $array['location'],
         );
     }
@@ -129,7 +127,7 @@ class ConnectedWebsite extends TdObject
             'platform' => $this->platform,
             'log_in_date' => $this->logInDate,
             'last_active_date' => $this->lastActiveDate,
-            'ip' => $this->ip,
+            'ip_address' => $this->ipAddress,
             'location' => $this->location,
         ];
     }
@@ -169,9 +167,9 @@ class ConnectedWebsite extends TdObject
         return $this->lastActiveDate;
     }
 
-    public function getIp(): string
+    public function getIpAddress(): string
     {
-        return $this->ip;
+        return $this->ipAddress;
     }
 
     public function getLocation(): string

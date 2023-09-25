@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\Notification\Notification;
@@ -62,14 +60,14 @@ class UpdateNotificationGroup extends Update
     protected int $totalCount;
 
     /**
-     * List of added group notifications, sorted by notification ID
+     * List of added group notifications, sorted by notification identifier
      *
      * @var Notification[]
      */
     protected array $addedNotifications;
 
     /**
-     * Identifiers of removed group notifications, sorted by notification ID
+     * Identifiers of removed group notifications, sorted by notification identifier
      *
      * @var int[]
      */

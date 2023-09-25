@@ -4,10 +4,9 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -33,27 +32,19 @@ class UpdateMessageSendFailed extends Update
     protected int $oldMessageId;
 
     /**
-     * An error code
+     * The cause of the message sending failure
      *
-     * @var int
+     * @var Error
      */
-    protected int $errorCode;
+    protected Error $error;
 
-    /**
-     * Error message
-     *
-     * @var string
-     */
-    protected string $errorMessage;
-
-    public function __construct(Message $message, int $oldMessageId, int $errorCode, string $errorMessage)
+    public function __construct(Message $message, int $oldMessageId, Error $error)
     {
         parent::__construct();
 
         $this->message = $message;
         $this->oldMessageId = $oldMessageId;
-        $this->errorCode = $errorCode;
-        $this->errorMessage = $errorMessage;
+        $this->error = $error;
     }
 
     public static function fromArray(array $array): UpdateMessageSendFailed
@@ -61,8 +52,7 @@ class UpdateMessageSendFailed extends Update
         return new static(
             TdSchemaRegistry::fromArray($array['message']),
             $array['old_message_id'],
-            $array['error_code'],
-            $array['error_message'],
+            TdSchemaRegistry::fromArray($array['error']),
         );
     }
 
@@ -72,8 +62,7 @@ class UpdateMessageSendFailed extends Update
             '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
             'old_message_id' => $this->oldMessageId,
-            'error_code' => $this->errorCode,
-            'error_message' => $this->errorMessage,
+            'error' => $this->error->typeSerialize(),
         ];
     }
 
@@ -87,13 +76,8 @@ class UpdateMessageSendFailed extends Update
         return $this->oldMessageId;
     }
 
-    public function getErrorCode(): int
+    public function getError(): Error
     {
-        return $this->errorCode;
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
+        return $this->error;
     }
 }

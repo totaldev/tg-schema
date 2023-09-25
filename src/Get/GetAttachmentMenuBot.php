@@ -4,15 +4,13 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a bot that can be added to attachment menu
+ * Returns information about a bot that can be added to attachment or side menu
  */
 class GetAttachmentMenuBot extends TdFunction
 {

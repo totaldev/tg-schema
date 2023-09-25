@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
@@ -19,7 +17,7 @@ class ChatAdministratorRights extends TdObject
     public const TYPE_NAME = 'chatAdministratorRights';
 
     /**
-     * True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+     * True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
      *
      * @var bool
      */
@@ -96,6 +94,27 @@ class ChatAdministratorRights extends TdObject
     protected bool $canManageVideoChats;
 
     /**
+     * True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+     *
+     * @var bool
+     */
+    protected bool $canPostStories;
+
+    /**
+     * True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+     *
+     * @var bool
+     */
+    protected bool $canEditStories;
+
+    /**
+     * True, if the administrator can delete stories posted by other users; applicable to channels only
+     *
+     * @var bool
+     */
+    protected bool $canDeleteStories;
+
+    /**
      * True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
      *
      * @var bool
@@ -114,6 +133,9 @@ class ChatAdministratorRights extends TdObject
         bool $canManageTopics,
         bool $canPromoteMembers,
         bool $canManageVideoChats,
+        bool $canPostStories,
+        bool $canEditStories,
+        bool $canDeleteStories,
         bool $isAnonymous,
     ) {
         $this->canManageChat = $canManageChat;
@@ -127,6 +149,9 @@ class ChatAdministratorRights extends TdObject
         $this->canManageTopics = $canManageTopics;
         $this->canPromoteMembers = $canPromoteMembers;
         $this->canManageVideoChats = $canManageVideoChats;
+        $this->canPostStories = $canPostStories;
+        $this->canEditStories = $canEditStories;
+        $this->canDeleteStories = $canDeleteStories;
         $this->isAnonymous = $isAnonymous;
     }
 
@@ -144,6 +169,9 @@ class ChatAdministratorRights extends TdObject
             $array['can_manage_topics'],
             $array['can_promote_members'],
             $array['can_manage_video_chats'],
+            $array['can_post_stories'],
+            $array['can_edit_stories'],
+            $array['can_delete_stories'],
             $array['is_anonymous'],
         );
     }
@@ -163,6 +191,9 @@ class ChatAdministratorRights extends TdObject
             'can_manage_topics' => $this->canManageTopics,
             'can_promote_members' => $this->canPromoteMembers,
             'can_manage_video_chats' => $this->canManageVideoChats,
+            'can_post_stories' => $this->canPostStories,
+            'can_edit_stories' => $this->canEditStories,
+            'can_delete_stories' => $this->canDeleteStories,
             'is_anonymous' => $this->isAnonymous,
         ];
     }
@@ -220,6 +251,21 @@ class ChatAdministratorRights extends TdObject
     public function getCanManageVideoChats(): bool
     {
         return $this->canManageVideoChats;
+    }
+
+    public function getCanPostStories(): bool
+    {
+        return $this->canPostStories;
+    }
+
+    public function getCanEditStories(): bool
+    {
+        return $this->canEditStories;
+    }
+
+    public function getCanDeleteStories(): bool
+    {
+        return $this->canDeleteStories;
     }
 
     public function getIsAnonymous(): bool
