@@ -119,7 +119,7 @@ class Poll extends TdObject
             $array['question'],
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
             $array['total_voter_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_voterIds']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_voter_ids']),
             $array['is_anonymous'],
             TdSchemaRegistry::fromArray($array['type']),
             $array['open_period'],
