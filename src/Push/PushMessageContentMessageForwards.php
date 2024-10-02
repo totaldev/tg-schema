@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A forwarded messages.
+ * A forwarded messages
  */
 class PushMessageContentMessageForwards extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentMessageForwards';
 
-    public function __construct(
-        /**
-         * Number of forwarded messages.
-         */
-        protected int $totalCount
-    ) {
+    /**
+     * Number of forwarded messages
+     *
+     * @var int
+     */
+    protected int $totalCount;
+
+    public function __construct(int $totalCount)
+    {
         parent::__construct();
+
+        $this->totalCount = $totalCount;
     }
 
     public static function fromArray(array $array): PushMessageContentMessageForwards
@@ -29,16 +36,16 @@ class PushMessageContentMessageForwards extends PushMessageContent
         );
     }
 
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'total_count' => $this->totalCount,
         ];
+    }
+
+    public function getTotalCount(): int
+    {
+        return $this->totalCount;
     }
 }

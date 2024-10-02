@@ -4,41 +4,61 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A map.
+ * A map
  */
 class PageBlockMap extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockMap';
 
-    public function __construct(
-        /**
-         * Location of the map center.
-         */
-        protected Location         $location,
-        /**
-         * Map zoom level.
-         */
-        protected int              $zoom,
-        /**
-         * Map width.
-         */
-        protected int              $width,
-        /**
-         * Map height.
-         */
-        protected int              $height,
-        /**
-         * Block caption.
-         */
-        protected PageBlockCaption $caption,
-    ) {
+    /**
+     * Location of the map center
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
+     * Map zoom level
+     *
+     * @var int
+     */
+    protected int $zoom;
+
+    /**
+     * Map width
+     *
+     * @var int
+     */
+    protected int $width;
+
+    /**
+     * Map height
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * Block caption
+     *
+     * @var PageBlockCaption
+     */
+    protected PageBlockCaption $caption;
+
+    public function __construct(Location $location, int $zoom, int $width, int $height, PageBlockCaption $caption)
+    {
         parent::__construct();
+
+        $this->location = $location;
+        $this->zoom = $zoom;
+        $this->width = $width;
+        $this->height = $height;
+        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): PageBlockMap
@@ -52,14 +72,16 @@ class PageBlockMap extends PageBlock
         );
     }
 
-    public function getCaption(): PageBlockCaption
+    public function typeSerialize(): array
     {
-        return $this->caption;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
+        return [
+            '@type' => static::TYPE_NAME,
+            'location' => $this->location->typeSerialize(),
+            'zoom' => $this->zoom,
+            'width' => $this->width,
+            'height' => $this->height,
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 
     public function getLocation(): Location
@@ -67,25 +89,23 @@ class PageBlockMap extends PageBlock
         return $this->location;
     }
 
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
     public function getZoom(): int
     {
         return $this->zoom;
     }
 
-    public function typeSerialize(): array
+    public function getWidth(): int
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'zoom'     => $this->zoom,
-            'width'    => $this->width,
-            'height'   => $this->height,
-            'caption'  => $this->caption->typeSerialize(),
-        ];
+        return $this->width;
+    }
+
+    public function getHeight(): int
+    {
+        return $this->height;
+    }
+
+    public function getCaption(): PageBlockCaption
+    {
+        return $this->caption;
     }
 }

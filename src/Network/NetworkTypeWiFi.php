@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Network;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A Wi-Fi network.
+ * A Wi-Fi network
  */
 class NetworkTypeWiFi extends NetworkType
 {

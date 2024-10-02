@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Address\Address;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element containing the user's address.
+ * A Telegram Passport element containing the user's address
  */
 class PassportElementAddress extends PassportElement
 {
     public const TYPE_NAME = 'passportElementAddress';
 
-    public function __construct(
-        /**
-         * Address.
-         */
-        protected Address $address
-    ) {
+    /**
+     * Address
+     *
+     * @var Address
+     */
+    protected Address $address;
+
+    public function __construct(Address $address)
+    {
         parent::__construct();
+
+        $this->address = $address;
     }
 
     public static function fromArray(array $array): PassportElementAddress
@@ -32,16 +36,16 @@ class PassportElementAddress extends PassportElement
         );
     }
 
-    public function getAddress(): Address
-    {
-        return $this->address;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'address' => $this->address->typeSerialize(),
         ];
+    }
+
+    public function getAddress(): Address
+    {
+        return $this->address;
     }
 }

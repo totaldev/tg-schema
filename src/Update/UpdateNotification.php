@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Notification\Notification;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A notification was changed.
+ * A notification was changed
  */
 class UpdateNotification extends Update
 {
     public const TYPE_NAME = 'updateNotification';
 
-    public function __construct(
-        /**
-         * Unique notification group identifier.
-         */
-        protected int          $notificationGroupId,
-        /**
-         * Changed notification.
-         */
-        protected Notification $notification,
-    ) {
+    /**
+     * Unique notification group identifier
+     *
+     * @var int
+     */
+    protected int $notificationGroupId;
+
+    /**
+     * Changed notification
+     *
+     * @var Notification
+     */
+    protected Notification $notification;
+
+    public function __construct(int $notificationGroupId, Notification $notification)
+    {
         parent::__construct();
+
+        $this->notificationGroupId = $notificationGroupId;
+        $this->notification = $notification;
     }
 
     public static function fromArray(array $array): UpdateNotification
@@ -37,9 +45,13 @@ class UpdateNotification extends Update
         );
     }
 
-    public function getNotification(): Notification
+    public function typeSerialize(): array
     {
-        return $this->notification;
+        return [
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'notification' => $this->notification->typeSerialize(),
+        ];
     }
 
     public function getNotificationGroupId(): int
@@ -47,12 +59,8 @@ class UpdateNotification extends Update
         return $this->notificationGroupId;
     }
 
-    public function typeSerialize(): array
+    public function getNotification(): Notification
     {
-        return [
-            '@type'                 => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
-            'notification'          => $this->notification->typeSerialize(),
-        ];
+        return $this->notification;
     }
 }

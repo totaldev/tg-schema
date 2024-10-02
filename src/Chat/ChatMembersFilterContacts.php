@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns contacts of the user.
+ * Returns contacts of the user
  */
 class ChatMembersFilterContacts extends ChatMembersFilter
 {

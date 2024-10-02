@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Temporary;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about the availability of a temporary password, which can be used for payments.
+ * Returns information about the availability of a temporary password, which can be used for payments
  */
 class TemporaryPasswordState extends TdObject
 {
     public const TYPE_NAME = 'temporaryPasswordState';
 
-    public function __construct(
-        /**
-         * True, if a temporary password is available.
-         */
-        protected bool $hasPassword,
-        /**
-         * Time left before the temporary password expires, in seconds.
-         */
-        protected int  $validFor,
-    ) {}
+    /**
+     * True, if a temporary password is available
+     *
+     * @var bool
+     */
+    protected bool $hasPassword;
+
+    /**
+     * Time left before the temporary password expires, in seconds
+     *
+     * @var int
+     */
+    protected int $validFor;
+
+    public function __construct(bool $hasPassword, int $validFor)
+    {
+        $this->hasPassword = $hasPassword;
+        $this->validFor = $validFor;
+    }
 
     public static function fromArray(array $array): TemporaryPasswordState
     {
@@ -32,6 +41,15 @@ class TemporaryPasswordState extends TdObject
             $array['has_password'],
             $array['valid_for'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'has_password' => $this->hasPassword,
+            'valid_for' => $this->validFor,
+        ];
     }
 
     public function getHasPassword(): bool
@@ -42,14 +60,5 @@ class TemporaryPasswordState extends TdObject
     public function getValidFor(): int
     {
         return $this->validFor;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'        => static::TYPE_NAME,
-            'has_password' => $this->hasPassword,
-            'valid_for'    => $this->validFor,
-        ];
     }
 }

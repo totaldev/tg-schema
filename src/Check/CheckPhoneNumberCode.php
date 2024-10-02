@@ -4,41 +4,46 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Check the authentication code and completes the request for which the code was sent if appropriate.
+ * Checks phone number confirmation code
  */
-class CheckPhoneNumberCode extends TdFunction
+class CheckPhoneNumberConfirmationCode extends TdFunction
 {
-    public const TYPE_NAME = 'checkPhoneNumberCode';
+    public const TYPE_NAME = 'checkPhoneNumberConfirmationCode';
 
-    public function __construct(
-        /**
-         * Authentication code to check.
-         */
-        protected string $code
-    ) {}
+    /**
+     * Confirmation code to check
+     *
+     * @var string
+     */
+    protected string $code;
 
-    public static function fromArray(array $array): CheckPhoneNumberCode
+    public function __construct(string $code)
+    {
+        $this->code = $code;
+    }
+
+    public static function fromArray(array $array): CheckPhoneNumberConfirmationCode
     {
         return new static(
             $array['code'],
         );
     }
 
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code'  => $this->code,
+            'code' => $this->code,
         ];
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
     }
 }

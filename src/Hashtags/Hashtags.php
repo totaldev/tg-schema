@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Hashtags;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of hashtags.
+ * Contains a list of hashtags
  */
 class Hashtags extends TdObject
 {
     public const TYPE_NAME = 'hashtags';
 
-    public function __construct(
-        /**
-         * A list of hashtags.
-         *
-         * @var string[]
-         */
-        protected array $hashtags
-    ) {}
+    /**
+     * A list of hashtags
+     *
+     * @var string[]
+     */
+    protected array $hashtags;
+
+    public function __construct(array $hashtags)
+    {
+        $this->hashtags = $hashtags;
+    }
 
     public static function fromArray(array $array): Hashtags
     {
@@ -31,16 +34,16 @@ class Hashtags extends TdObject
         );
     }
 
-    public function getHashtags(): array
-    {
-        return $this->hashtags;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'hashtags' => $this->hashtags,
         ];
+    }
+
+    public function getHashtags(): array
+    {
+        return $this->hashtags;
     }
 }

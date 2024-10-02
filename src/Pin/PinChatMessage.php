@@ -4,35 +4,52 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Pin;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned.
+ * Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
  */
 class PinChatMessage extends TdFunction
 {
     public const TYPE_NAME = 'pinChatMessage';
 
-    public function __construct(
-        /**
-         * Identifier of the chat.
-         */
-        protected int  $chatId,
-        /**
-         * Identifier of the new pinned message.
-         */
-        protected int  $messageId,
-        /**
-         * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats.
-         */
-        protected bool $disableNotification,
-        /**
-         * Pass true to pin the message only for self; private chats only.
-         */
-        protected bool $onlyForSelf,
-    ) {}
+    /**
+     * Identifier of the chat
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the new pinned message
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
+     *
+     * @var bool
+     */
+    protected bool $disableNotification;
+
+    /**
+     * Pass true to pin the message only for self; private chats only
+     *
+     * @var bool
+     */
+    protected bool $onlyForSelf;
+
+    public function __construct(int $chatId, int $messageId, bool $disableNotification, bool $onlyForSelf)
+    {
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->disableNotification = $disableNotification;
+        $this->onlyForSelf = $onlyForSelf;
+    }
 
     public static function fromArray(array $array): PinChatMessage
     {
@@ -44,14 +61,20 @@ class PinChatMessage extends TdFunction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'disable_notification' => $this->disableNotification,
+            'only_for_self' => $this->onlyForSelf,
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function getDisableNotification(): bool
-    {
-        return $this->disableNotification;
     }
 
     public function getMessageId(): int
@@ -59,19 +82,13 @@ class PinChatMessage extends TdFunction
         return $this->messageId;
     }
 
+    public function getDisableNotification(): bool
+    {
+        return $this->disableNotification;
+    }
+
     public function getOnlyForSelf(): bool
     {
         return $this->onlyForSelf;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'                => static::TYPE_NAME,
-            'chat_id'              => $this->chatId,
-            'message_id'           => $this->messageId,
-            'disable_notification' => $this->disableNotification,
-            'only_for_self'        => $this->onlyForSelf,
-        ];
     }
 }

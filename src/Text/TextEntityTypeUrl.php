@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An HTTP URL.
+ * An HTTP URL
  */
 class TextEntityTypeUrl extends TextEntityType
 {

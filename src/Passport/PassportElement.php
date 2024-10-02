@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about a Telegram Passport element.
+ * Contains information about a Telegram Passport element
  */
 class PassportElement extends TdObject
 {
     public const TYPE_NAME = 'PassportElement';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): PassportElement
     {

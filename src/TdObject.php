@@ -4,11 +4,13 @@
  * This phpFile is auto-generated.
  */
 
+declare(strict_types=1);
+
 namespace Totaldev\TgSchema;
 
 use JsonSerializable;
 
-abstract class TdObject implements JsonSerializable, TdTypeSerializableInterface
+abstract class TdObject implements TdTypeSerializableInterface, JsonSerializable
 {
     public const TYPE_NAME = '_tdObject';
 
@@ -19,16 +21,16 @@ abstract class TdObject implements JsonSerializable, TdTypeSerializableInterface
         return $this->tdExtra;
     }
 
+    public function getTdTypeName(): string
+    {
+        return static::TYPE_NAME;
+    }
+
     public function setTdExtra(?string $tdExtra): self
     {
         $this->tdExtra = $tdExtra;
 
         return $this;
-    }
-
-    public function getTdTypeName(): string
-    {
-        return static::TYPE_NAME;
     }
 
     public function jsonSerialize(): array

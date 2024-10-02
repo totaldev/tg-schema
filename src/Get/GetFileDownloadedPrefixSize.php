@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns file downloaded prefix size from a given offset, in bytes.
+ * Returns file downloaded prefix size from a given offset, in bytes
  */
 class GetFileDownloadedPrefixSize extends TdFunction
 {
     public const TYPE_NAME = 'getFileDownloadedPrefixSize';
 
-    public function __construct(
-        /**
-         * Identifier of the file.
-         */
-        protected int $fileId,
-        /**
-         * Offset from which downloaded prefix size needs to be calculated.
-         */
-        protected int $offset,
-    ) {}
+    /**
+     * Identifier of the file
+     *
+     * @var int
+     */
+    protected int $fileId;
+
+    /**
+     * Offset from which downloaded prefix size needs to be calculated
+     *
+     * @var int
+     */
+    protected int $offset;
+
+    public function __construct(int $fileId, int $offset)
+    {
+        $this->fileId = $fileId;
+        $this->offset = $offset;
+    }
 
     public static function fromArray(array $array): GetFileDownloadedPrefixSize
     {
@@ -32,6 +41,15 @@ class GetFileDownloadedPrefixSize extends TdFunction
             $array['file_id'],
             $array['offset'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+            'offset' => $this->offset,
+        ];
     }
 
     public function getFileId(): int
@@ -42,14 +60,5 @@ class GetFileDownloadedPrefixSize extends TdFunction
     public function getOffset(): int
     {
         return $this->offset;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-            'offset'  => $this->offset,
-        ];
     }
 }

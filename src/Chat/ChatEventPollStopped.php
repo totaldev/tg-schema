@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\Message;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A poll in a message was stopped.
+ * A poll in a message was stopped
  */
 class ChatEventPollStopped extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventPollStopped';
 
-    public function __construct(
-        /**
-         * The message with the poll.
-         */
-        protected Message $message
-    ) {
+    /**
+     * The message with the poll
+     *
+     * @var Message
+     */
+    protected Message $message;
+
+    public function __construct(Message $message)
+    {
         parent::__construct();
+
+        $this->message = $message;
     }
 
     public static function fromArray(array $array): ChatEventPollStopped
@@ -32,16 +36,16 @@ class ChatEventPollStopped extends ChatEventAction
         );
     }
 
-    public function getMessage(): Message
-    {
-        return $this->message;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
         ];
+    }
+
+    public function getMessage(): Message
+    {
+        return $this->message;
     }
 }

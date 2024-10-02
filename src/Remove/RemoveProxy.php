@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Remove;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes a proxy server. Can be called before authorization.
+ * Removes a proxy server. Can be called before authorization
  */
 class RemoveProxy extends TdFunction
 {
     public const TYPE_NAME = 'removeProxy';
 
-    public function __construct(
-        /**
-         * Proxy identifier.
-         */
-        protected int $proxyId
-    ) {}
+    /**
+     * Proxy identifier
+     *
+     * @var int
+     */
+    protected int $proxyId;
+
+    public function __construct(int $proxyId)
+    {
+        $this->proxyId = $proxyId;
+    }
 
     public static function fromArray(array $array): RemoveProxy
     {
@@ -29,16 +34,16 @@ class RemoveProxy extends TdFunction
         );
     }
 
-    public function getProxyId(): int
-    {
-        return $this->proxyId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
         ];
+    }
+
+    public function getProxyId(): int
+    {
+        return $this->proxyId;
     }
 }

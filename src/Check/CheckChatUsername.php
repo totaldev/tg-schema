@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Checks whether a username can be set for a chat.
+ * Checks whether a username can be set for a chat
  */
 class CheckChatUsername extends TdFunction
 {
     public const TYPE_NAME = 'checkChatUsername';
 
-    public function __construct(
-        /**
-         * Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created.
-         */
-        protected int    $chatId,
-        /**
-         * Username to be checked.
-         */
-        protected string $username,
-    ) {}
+    /**
+     * Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Username to be checked
+     *
+     * @var string
+     */
+    protected string $username;
+
+    public function __construct(int $chatId, string $username)
+    {
+        $this->chatId = $chatId;
+        $this->username = $username;
+    }
 
     public static function fromArray(array $array): CheckChatUsername
     {
@@ -32,6 +41,15 @@ class CheckChatUsername extends TdFunction
             $array['chat_id'],
             $array['username'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'username' => $this->username,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class CheckChatUsername extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'chat_id'  => $this->chatId,
-            'username' => $this->username,
-        ];
     }
 }

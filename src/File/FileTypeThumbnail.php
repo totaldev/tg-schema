@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\File;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a thumbnail of another file.
+ * The file is a thumbnail of another file
  */
 class FileTypeThumbnail extends FileType
 {

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for a background by its name.
+ * Searches for a background by its name
  */
 class SearchBackground extends TdFunction
 {
     public const TYPE_NAME = 'searchBackground';
 
-    public function __construct(
-        /**
-         * The name of the background.
-         */
-        protected string $name
-    ) {}
+    /**
+     * The name of the background
+     *
+     * @var string
+     */
+    protected string $name;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 
     public static function fromArray(array $array): SearchBackground
     {
@@ -29,16 +34,16 @@ class SearchBackground extends TdFunction
         );
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

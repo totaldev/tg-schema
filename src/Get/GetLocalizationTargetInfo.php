@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization.
+ * Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
  */
 class GetLocalizationTargetInfo extends TdFunction
 {
     public const TYPE_NAME = 'getLocalizationTargetInfo';
 
-    public function __construct(
-        /**
-         * Pass true to get only locally available information without sending network requests.
-         */
-        protected bool $onlyLocal
-    ) {}
+    /**
+     * Pass true to get only locally available information without sending network requests
+     *
+     * @var bool
+     */
+    protected bool $onlyLocal;
+
+    public function __construct(bool $onlyLocal)
+    {
+        $this->onlyLocal = $onlyLocal;
+    }
 
     public static function fromArray(array $array): GetLocalizationTargetInfo
     {
@@ -29,16 +34,16 @@ class GetLocalizationTargetInfo extends TdFunction
         );
     }
 
-    public function getOnlyLocal(): bool
-    {
-        return $this->onlyLocal;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'only_local' => $this->onlyLocal,
         ];
+    }
+
+    public function getOnlyLocal(): bool
+    {
+        return $this->onlyLocal;
     }
 }

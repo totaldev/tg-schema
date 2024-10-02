@@ -4,30 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A chat member was deleted.
+ * A chat member was deleted
  */
 class PushMessageContentChatDeleteMember extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatDeleteMember';
 
-    public function __construct(
-        /**
-         * Name of the deleted member.
-         */
-        protected string $memberName,
-        /**
-         * True, if the current user was deleted from the group.
-         */
-        protected bool   $isCurrentUser,
-        /**
-         * True, if the user has left the group themselves.
-         */
-        protected bool   $isLeft,
-    ) {
+    /**
+     * Name of the deleted member
+     *
+     * @var string
+     */
+    protected string $memberName;
+
+    /**
+     * True, if the current user was deleted from the group
+     *
+     * @var bool
+     */
+    protected bool $isCurrentUser;
+
+    /**
+     * True, if the user has left the group themselves
+     *
+     * @var bool
+     */
+    protected bool $isLeft;
+
+    public function __construct(string $memberName, bool $isCurrentUser, bool $isLeft)
+    {
         parent::__construct();
+
+        $this->memberName = $memberName;
+        $this->isCurrentUser = $isCurrentUser;
+        $this->isLeft = $isLeft;
     }
 
     public static function fromArray(array $array): PushMessageContentChatDeleteMember
@@ -39,6 +54,21 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'member_name' => $this->memberName,
+            'is_current_user' => $this->isCurrentUser,
+            'is_left' => $this->isLeft,
+        ];
+    }
+
+    public function getMemberName(): string
+    {
+        return $this->memberName;
+    }
+
     public function getIsCurrentUser(): bool
     {
         return $this->isCurrentUser;
@@ -47,20 +77,5 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     public function getIsLeft(): bool
     {
         return $this->isLeft;
-    }
-
-    public function getMemberName(): string
-    {
-        return $this->memberName;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'           => static::TYPE_NAME,
-            'member_name'     => $this->memberName,
-            'is_current_user' => $this->isCurrentUser,
-            'is_left'         => $this->isLeft,
-        ];
     }
 }

@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Game\Game;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A message with a game.
+ * A message with a game
  */
 class MessageGame extends MessageContent
 {
     public const TYPE_NAME = 'messageGame';
 
-    public function __construct(
-        /**
-         * The game description.
-         */
-        protected Game $game
-    ) {
+    /**
+     * The game description
+     *
+     * @var Game
+     */
+    protected Game $game;
+
+    public function __construct(Game $game)
+    {
         parent::__construct();
+
+        $this->game = $game;
     }
 
     public static function fromArray(array $array): MessageGame
@@ -32,16 +36,16 @@ class MessageGame extends MessageContent
         );
     }
 
-    public function getGame(): Game
-    {
-        return $this->game;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'game'  => $this->game->typeSerialize(),
+            'game' => $this->game->typeSerialize(),
         ];
+    }
+
+    public function getGame(): Game
+    {
+        return $this->game;
     }
 }

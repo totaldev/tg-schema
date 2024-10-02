@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Remove;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Input\InputFile;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes an animation from the list of saved animations.
+ * Removes an animation from the list of saved animations
  */
 class RemoveSavedAnimation extends TdFunction
 {
     public const TYPE_NAME = 'removeSavedAnimation';
 
-    public function __construct(
-        /**
-         * Animation file to be removed.
-         */
-        protected InputFile $animation
-    ) {}
+    /**
+     * Animation file to be removed
+     *
+     * @var InputFile
+     */
+    protected InputFile $animation;
+
+    public function __construct(InputFile $animation)
+    {
+        $this->animation = $animation;
+    }
 
     public static function fromArray(array $array): RemoveSavedAnimation
     {
@@ -31,16 +34,16 @@ class RemoveSavedAnimation extends TdFunction
         );
     }
 
-    public function getAnimation(): InputFile
-    {
-        return $this->animation;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'animation' => $this->animation->typeSerialize(),
         ];
+    }
+
+    public function getAnimation(): InputFile
+    {
+        return $this->animation;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\File;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a part of a file.
+ * Contains a part of a file
  */
 class FilePart extends TdObject
 {
     public const TYPE_NAME = 'filePart';
 
-    public function __construct(
-        /**
-         * File bytes.
-         */
-        protected string $data
-    ) {}
+    /**
+     * File bytes
+     *
+     * @var string
+     */
+    protected string $data;
+
+    public function __construct(string $data)
+    {
+        $this->data = $data;
+    }
 
     public static function fromArray(array $array): FilePart
     {
@@ -29,16 +34,16 @@ class FilePart extends TdObject
         );
     }
 
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data'  => $this->data,
+            'data' => $this->data,
         ];
+    }
+
+    public function getData(): string
+    {
+        return $this->data;
     }
 }

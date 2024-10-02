@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Log;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a TDLib internal log verbosity level.
+ * Contains a TDLib internal log verbosity level
  */
 class LogVerbosityLevel extends TdObject
 {
     public const TYPE_NAME = 'logVerbosityLevel';
 
-    public function __construct(
-        /**
-         * Log verbosity level.
-         */
-        protected int $verbosityLevel
-    ) {}
+    /**
+     * Log verbosity level
+     *
+     * @var int
+     */
+    protected int $verbosityLevel;
+
+    public function __construct(int $verbosityLevel)
+    {
+        $this->verbosityLevel = $verbosityLevel;
+    }
 
     public static function fromArray(array $array): LogVerbosityLevel
     {
@@ -29,16 +34,16 @@ class LogVerbosityLevel extends TdObject
         );
     }
 
-    public function getVerbosityLevel(): int
-    {
-        return $this->verbosityLevel;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'verbosity_level' => $this->verbosityLevel,
         ];
+    }
+
+    public function getVerbosityLevel(): int
+    {
+        return $this->verbosityLevel;
     }
 }

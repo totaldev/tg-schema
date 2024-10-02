@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\File;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The file is a profile photo.
+ * The file is a profile photo
  */
 class FileTypeProfilePhoto extends FileType
 {

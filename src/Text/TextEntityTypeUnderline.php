@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An underlined text.
+ * An underlined text
  */
 class TextEntityTypeUnderline extends TextEntityType
 {

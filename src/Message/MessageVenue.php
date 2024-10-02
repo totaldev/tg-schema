@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Venue\Venue;
+namespace Totaldev\TgSchema;
 
 /**
- * A message with information about a venue.
+ * A message with information about a venue
  */
 class MessageVenue extends MessageContent
 {
     public const TYPE_NAME = 'messageVenue';
 
-    public function __construct(
-        /**
-         * The venue description.
-         */
-        protected Venue $venue
-    ) {
+    /**
+     * The venue description
+     *
+     * @var Venue
+     */
+    protected Venue $venue;
+
+    public function __construct(Venue $venue)
+    {
         parent::__construct();
+
+        $this->venue = $venue;
     }
 
     public static function fromArray(array $array): MessageVenue
@@ -32,16 +36,16 @@ class MessageVenue extends MessageContent
         );
     }
 
-    public function getVenue(): Venue
-    {
-        return $this->venue;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'venue' => $this->venue->typeSerialize(),
         ];
+    }
+
+    public function getVenue(): Venue
+    {
+        return $this->venue;
     }
 }

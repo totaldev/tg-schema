@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\User\UserPrivacySetting;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the current privacy settings.
+ * Returns the current privacy settings
  */
 class GetUserPrivacySettingRules extends TdFunction
 {
     public const TYPE_NAME = 'getUserPrivacySettingRules';
 
-    public function __construct(
-        /**
-         * The privacy setting.
-         */
-        protected UserPrivacySetting $setting
-    ) {}
+    /**
+     * The privacy setting
+     *
+     * @var UserPrivacySetting
+     */
+    protected UserPrivacySetting $setting;
+
+    public function __construct(UserPrivacySetting $setting)
+    {
+        $this->setting = $setting;
+    }
 
     public static function fromArray(array $array): GetUserPrivacySettingRules
     {
@@ -31,16 +34,16 @@ class GetUserPrivacySettingRules extends TdFunction
         );
     }
 
-    public function getSetting(): UserPrivacySetting
-    {
-        return $this->setting;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'setting' => $this->setting->typeSerialize(),
         ];
+    }
+
+    public function getSetting(): UserPrivacySetting
+    {
+        return $this->setting;
     }
 }

@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns current verbosity level of the internal logging of TDLib. Can be called synchronously.
+ * Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
  */
 class GetLogVerbosityLevel extends TdFunction
 {
     public const TYPE_NAME = 'getLogVerbosityLevel';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetLogVerbosityLevel
     {

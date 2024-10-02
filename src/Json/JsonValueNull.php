@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Json;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a null JSON value.
+ * Represents a null JSON value
  */
 class JsonValueNull extends JsonValue
 {

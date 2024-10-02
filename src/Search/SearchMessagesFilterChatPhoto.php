@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns only messages containing chat photos.
+ * Returns only messages containing chat photos
  */
 class SearchMessagesFilterChatPhoto extends SearchMessagesFilter
 {

@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Rich\RichText;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A block quote.
+ * A block quote
  */
 class PageBlockBlockQuote extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockBlockQuote';
 
-    public function __construct(
-        /**
-         * Quote text.
-         */
-        protected RichText $text,
-        /**
-         * Quote credit.
-         */
-        protected RichText $credit,
-    ) {
+    /**
+     * Quote text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
+
+    /**
+     * Quote credit
+     *
+     * @var RichText
+     */
+    protected RichText $credit;
+
+    public function __construct(RichText $text, RichText $credit)
+    {
         parent::__construct();
+
+        $this->text = $text;
+        $this->credit = $credit;
     }
 
     public static function fromArray(array $array): PageBlockBlockQuote
@@ -37,9 +45,13 @@ class PageBlockBlockQuote extends PageBlock
         );
     }
 
-    public function getCredit(): RichText
+    public function typeSerialize(): array
     {
-        return $this->credit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'credit' => $this->credit->typeSerialize(),
+        ];
     }
 
     public function getText(): RichText
@@ -47,12 +59,8 @@ class PageBlockBlockQuote extends PageBlock
         return $this->text;
     }
 
-    public function typeSerialize(): array
+    public function getCredit(): RichText
     {
-        return [
-            '@type'  => static::TYPE_NAME,
-            'text'   => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
-        ];
+        return $this->credit;
     }
 }

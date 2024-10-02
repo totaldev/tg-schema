@@ -4,34 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Formatted\FormattedText;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Voice\VoiceNote;
+namespace Totaldev\TgSchema;
 
 /**
- * A voice note message.
+ * A voice note message
  */
 class MessageVoiceNote extends MessageContent
 {
     public const TYPE_NAME = 'messageVoiceNote';
 
-    public function __construct(
-        /**
-         * The voice note description.
-         */
-        protected VoiceNote     $voiceNote,
-        /**
-         * Voice note caption.
-         */
-        protected FormattedText $caption,
-        /**
-         * True, if at least one of the recipients has listened to the voice note.
-         */
-        protected bool          $isListened,
-    ) {
+    /**
+     * The voice note description
+     *
+     * @var VoiceNote
+     */
+    protected VoiceNote $voiceNote;
+
+    /**
+     * Voice note caption
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $caption;
+
+    /**
+     * True, if at least one of the recipients has listened to the voice note
+     *
+     * @var bool
+     */
+    protected bool $isListened;
+
+    public function __construct(VoiceNote $voiceNote, FormattedText $caption, bool $isListened)
+    {
         parent::__construct();
+
+        $this->voiceNote = $voiceNote;
+        $this->caption = $caption;
+        $this->isListened = $isListened;
     }
 
     public static function fromArray(array $array): MessageVoiceNote
@@ -43,6 +54,21 @@ class MessageVoiceNote extends MessageContent
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'voice_note' => $this->voiceNote->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+            'is_listened' => $this->isListened,
+        ];
+    }
+
+    public function getVoiceNote(): VoiceNote
+    {
+        return $this->voiceNote;
+    }
+
     public function getCaption(): FormattedText
     {
         return $this->caption;
@@ -51,20 +77,5 @@ class MessageVoiceNote extends MessageContent
     public function getIsListened(): bool
     {
         return $this->isListened;
-    }
-
-    public function getVoiceNote(): VoiceNote
-    {
-        return $this->voiceNote;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'voice_note'  => $this->voiceNote->typeSerialize(),
-            'caption'     => $this->caption->typeSerialize(),
-            'is_listened' => $this->isListened,
-        ];
     }
 }

@@ -4,33 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Delete;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Deletes messages.
+ * Deletes messages
  */
 class DeleteMessages extends TdFunction
 {
     public const TYPE_NAME = 'deleteMessages';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int   $chatId,
-        /**
-         * Identifiers of the messages to be deleted. Use messageProperties.can_be_deleted_only_for_self and messageProperties.can_be_deleted_for_all_users to get suitable messages.
-         *
-         * @var int[]
-         */
-        protected array $messageIds,
-        /**
-         * Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats.
-         */
-        protected bool  $revoke,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifiers of the messages to be deleted
+     *
+     * @var int[]
+     */
+    protected array $messageIds;
+
+    /**
+     * Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
+     *
+     * @var bool
+     */
+    protected bool $revoke;
+
+    public function __construct(int $chatId, array $messageIds, bool $revoke)
+    {
+        $this->chatId = $chatId;
+        $this->messageIds = $messageIds;
+        $this->revoke = $revoke;
+    }
 
     public static function fromArray(array $array): DeleteMessages
     {
@@ -39,6 +50,16 @@ class DeleteMessages extends TdFunction
             $array['message_ids'],
             $array['revoke'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_ids' => $this->messageIds,
+            'revoke' => $this->revoke,
+        ];
     }
 
     public function getChatId(): int
@@ -54,15 +75,5 @@ class DeleteMessages extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'message_ids' => $this->messageIds,
-            'revoke'      => $this->revoke,
-        ];
     }
 }

@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
+
+/**
+ * A document message (general file)
+ */
+class InputMessageDocument extends InputMessageContent
+{
+    public const TYPE_NAME = 'inputMessageDocument';
+
+    /**
+     * Document to be sent
+     *
+     * @var InputFile
+     */
+    protected InputFile $document;
+
+    /**
+     * Document thumbnail; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
+     */
+    protected InputThumbnail $thumbnail;
+
+    /**
+     * If true, automatic file type detection will be disabled and the document will always be sent as file. Always true for files sent to secret chats
+     *
+     * @var bool
+     */
+    protected bool $disableContentTypeDetection;
+
+    /**
+     * Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+     *
+     * @var FormattedText
+     */
+    protected FormattedText $caption;
+
+    public function __construct(
+        InputFile $document,
+        InputThumbnail $thumbnail,
+        bool $disableContentTypeDetection,
+        FormattedText $caption
+    ) {
+        parent::__construct();
+
+        $this->document = $document;
+        $this->thumbnail = $thumbnail;
+        $this->disableContentTypeDetection = $disableContentTypeDetection;
+        $this->caption = $caption;
+    }
+
+    public static function fromArray(array $array): InputMessageDocument
+    {
+        return new static(
+            TdSchemaRegistry::fromArray($array['document']),
+            TdSchemaRegistry::fromArray($array['thumbnail']),
+            $array['disable_content_type_detection'],
+            TdSchemaRegistry::fromArray($array['caption']),
+        );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'document' => $this->document->typeSerialize(),
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'disable_content_type_detection' => $this->disableContentTypeDetection,
+            'caption' => $this->caption->typeSerialize(),
+        ];
+    }
+
+    public function getDocument(): InputFile
+    {
+        return $this->document;
+    }
+
+    public function getThumbnail(): InputThumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function getDisableContentTypeDetection(): bool
+    {
+        return $this->disableContentTypeDetection;
+    }
+
+    public function getCaption(): FormattedText
+    {
+        return $this->caption;
+    }
+}

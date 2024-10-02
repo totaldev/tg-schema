@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Confirm;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Confirms QR code authentication on another device. Returns created session on success.
+ * Confirms QR code authentication on another device. Returns created session on success
  */
 class ConfirmQrCodeAuthentication extends TdFunction
 {
     public const TYPE_NAME = 'confirmQrCodeAuthentication';
 
-    public function __construct(
-        /**
-         * A link from a QR code. The link must be scanned by the in-app camera.
-         */
-        protected string $link
-    ) {}
+    /**
+     * A link from a QR code. The link must be scanned by the in-app camera
+     *
+     * @var string
+     */
+    protected string $link;
+
+    public function __construct(string $link)
+    {
+        $this->link = $link;
+    }
 
     public static function fromArray(array $array): ConfirmQrCodeAuthentication
     {
@@ -29,16 +34,16 @@ class ConfirmQrCodeAuthentication extends TdFunction
         );
     }
 
-    public function getLink(): string
-    {
-        return $this->link;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link'  => $this->link,
+            'link' => $this->link,
         ];
+    }
+
+    public function getLink(): string
+    {
+        return $this->link;
     }
 }

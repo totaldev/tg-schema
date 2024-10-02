@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The speech was distorted.
+ * The speech was distorted
  */
 class CallProblemDistortedSpeech extends CallProblem
 {

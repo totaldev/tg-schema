@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a chat event.
+ * Represents a chat event
  */
 class ChatEventAction extends TdObject
 {
     public const TYPE_NAME = 'ChatEventAction';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): ChatEventAction
     {

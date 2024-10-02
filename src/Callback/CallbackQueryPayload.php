@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Callback;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a payload of a callback query.
+ * Represents a payload of a callback query
  */
 class CallbackQueryPayload extends TdObject
 {
     public const TYPE_NAME = 'CallbackQueryPayload';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): CallbackQueryPayload
     {

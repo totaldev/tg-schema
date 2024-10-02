@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization.
+ * Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
  */
 class TestCallVectorInt extends TdFunction
 {
     public const TYPE_NAME = 'testCallVectorInt';
 
-    public function __construct(
-        /**
-         * Vector of numbers to return.
-         *
-         * @var int[]
-         */
-        protected array $x
-    ) {}
+    /**
+     * Vector of numbers to return
+     *
+     * @var int[]
+     */
+    protected array $x;
+
+    public function __construct(array $x)
+    {
+        $this->x = $x;
+    }
 
     public static function fromArray(array $array): TestCallVectorInt
     {
@@ -31,16 +34,16 @@ class TestCallVectorInt extends TdFunction
         );
     }
 
-    public function getX(): array
-    {
-        return $this->x;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'x'     => $this->x,
+            'x' => $this->x,
         ];
+    }
+
+    public function getX(): array
+    {
+        return $this->x;
     }
 }

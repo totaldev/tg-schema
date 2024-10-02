@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right.
+ * Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
  */
 class SetChatTitle extends TdFunction
 {
     public const TYPE_NAME = 'setChatTitle';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int    $chatId,
-        /**
-         * New title of the chat; 1-128 characters.
-         */
-        protected string $title,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * New title of the chat; 1-128 characters
+     *
+     * @var string
+     */
+    protected string $title;
+
+    public function __construct(int $chatId, string $title)
+    {
+        $this->chatId = $chatId;
+        $this->title = $title;
+    }
 
     public static function fromArray(array $array): SetChatTitle
     {
@@ -32,6 +41,15 @@ class SetChatTitle extends TdFunction
             $array['chat_id'],
             $array['title'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'title' => $this->title,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class SetChatTitle extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'title'   => $this->title,
-        ];
     }
 }

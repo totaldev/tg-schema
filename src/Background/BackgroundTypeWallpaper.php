@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Background;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A wallpaper in JPEG format.
+ * A wallpaper in JPEG format
  */
 class BackgroundTypeWallpaper extends BackgroundType
 {
     public const TYPE_NAME = 'backgroundTypeWallpaper';
 
-    public function __construct(
-        /**
-         * True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12.
-         */
-        protected bool $isBlurred,
-        /**
-         * True, if the background needs to be slightly moved when device is tilted.
-         */
-        protected bool $isMoving,
-    ) {
+    /**
+     * True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
+     *
+     * @var bool
+     */
+    protected bool $isBlurred;
+
+    /**
+     * True, if the background needs to be slightly moved when device is tilted
+     *
+     * @var bool
+     */
+    protected bool $isMoving;
+
+    public function __construct(bool $isBlurred, bool $isMoving)
+    {
         parent::__construct();
+
+        $this->isBlurred = $isBlurred;
+        $this->isMoving = $isMoving;
     }
 
     public static function fromArray(array $array): BackgroundTypeWallpaper
@@ -34,6 +45,15 @@ class BackgroundTypeWallpaper extends BackgroundType
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'is_blurred' => $this->isBlurred,
+            'is_moving' => $this->isMoving,
+        ];
+    }
+
     public function getIsBlurred(): bool
     {
         return $this->isBlurred;
@@ -42,14 +62,5 @@ class BackgroundTypeWallpaper extends BackgroundType
     public function getIsMoving(): bool
     {
         return $this->isMoving;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'is_blurred' => $this->isBlurred,
-            'is_moving'  => $this->isMoving,
-        ];
     }
 }

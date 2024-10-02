@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A file defined by its unique identifier.
+ * A file defined by its unique ID
  */
 class InputFileId extends InputFile
 {
     public const TYPE_NAME = 'inputFileId';
 
-    public function __construct(
-        /**
-         * Unique file identifier.
-         */
-        protected int $id
-    ) {
+    /**
+     * Unique file identifier
+     *
+     * @var int
+     */
+    protected int $id;
+
+    public function __construct(int $id)
+    {
         parent::__construct();
+
+        $this->id = $id;
     }
 
     public static function fromArray(array $array): InputFileId
@@ -29,16 +36,16 @@ class InputFileId extends InputFile
         );
     }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id'    => $this->id,
+            'id' => $this->id,
         ];
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

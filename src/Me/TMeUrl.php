@@ -4,28 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Me;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a URL linking to an internal Telegram entity.
+ * Represents a URL linking to an internal Telegram entity
  */
 class TMeUrl extends TdObject
 {
     public const TYPE_NAME = 'tMeUrl';
 
-    public function __construct(
-        /**
-         * URL.
-         */
-        protected string     $url,
-        /**
-         * Type of the URL.
-         */
-        protected TMeUrlType $type,
-    ) {}
+    /**
+     * URL
+     *
+     * @var string
+     */
+    protected string $url;
+
+    /**
+     * Type of the URL
+     *
+     * @var TMeUrlType
+     */
+    protected TMeUrlType $type;
+
+    public function __construct(string $url, TMeUrlType $type)
+    {
+        $this->url = $url;
+        $this->type = $type;
+    }
 
     public static function fromArray(array $array): TMeUrl
     {
@@ -35,9 +43,13 @@ class TMeUrl extends TdObject
         );
     }
 
-    public function getType(): TMeUrlType
+    public function typeSerialize(): array
     {
-        return $this->type;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 
     public function getUrl(): string
@@ -45,12 +57,8 @@ class TMeUrl extends TdObject
         return $this->url;
     }
 
-    public function typeSerialize(): array
+    public function getType(): TMeUrlType
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
-            'type'  => $this->type->typeSerialize(),
-        ];
+        return $this->type;
     }
 }

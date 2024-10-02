@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A rule to allow all members of certain specified basic groups and supergroups to doing something.
+ * A rule to allow all members of certain specified basic groups and supergroups to doing something
  */
 class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule
 {
     public const TYPE_NAME = 'userPrivacySettingRuleAllowChatMembers';
 
-    public function __construct(
-        /**
-         * The chat identifiers, total number of chats in all rules must not exceed 20.
-         *
-         * @var int[]
-         */
-        protected array $chatIds
-    ) {
+    /**
+     * The chat identifiers, total number of chats in all rules must not exceed 20
+     *
+     * @var int[]
+     */
+    protected array $chatIds;
+
+    public function __construct(array $chatIds)
+    {
         parent::__construct();
+
+        $this->chatIds = $chatIds;
     }
 
     public static function fromArray(array $array): UserPrivacySettingRuleAllowChatMembers
@@ -31,16 +36,16 @@ class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule
         );
     }
 
-    public function getChatIds(): array
-    {
-        return $this->chatIds;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_ids' => $this->chatIds,
         ];
+    }
+
+    public function getChatIds(): array
+    {
+        return $this->chatIds;
     }
 }

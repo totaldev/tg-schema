@@ -4,27 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Add;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Input\InputFile;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed
- * from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to favorite
- * stickers.
+ * Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
  */
 class AddFavoriteSticker extends TdFunction
 {
     public const TYPE_NAME = 'addFavoriteSticker';
 
-    public function __construct(
-        /**
-         * Sticker file to add.
-         */
-        protected InputFile $sticker
-    ) {}
+    /**
+     * Sticker file to add
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
+
+    public function __construct(InputFile $sticker)
+    {
+        $this->sticker = $sticker;
+    }
 
     public static function fromArray(array $array): AddFavoriteSticker
     {
@@ -33,16 +34,16 @@ class AddFavoriteSticker extends TdFunction
         );
     }
 
-    public function getSticker(): InputFile
-    {
-        return $this->sticker;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
+    }
+
+    public function getSticker(): InputFile
+    {
+        return $this->sticker;
     }
 }

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The username is occupied.
+ * The username is occupied
  */
 class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult
 {

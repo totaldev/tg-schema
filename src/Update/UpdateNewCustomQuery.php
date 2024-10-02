@@ -4,30 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A new incoming query; for bots only.
+ * A new incoming query; for bots only
  */
 class UpdateNewCustomQuery extends Update
 {
     public const TYPE_NAME = 'updateNewCustomQuery';
 
-    public function __construct(
-        /**
-         * The query identifier.
-         */
-        protected int    $id,
-        /**
-         * JSON-serialized query data.
-         */
-        protected string $data,
-        /**
-         * Query timeout.
-         */
-        protected int    $timeout,
-    ) {
+    /**
+     * The query identifier
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
+     * JSON-serialized query data
+     *
+     * @var string
+     */
+    protected string $data;
+
+    /**
+     * Query timeout
+     *
+     * @var int
+     */
+    protected int $timeout;
+
+    public function __construct(int $id, string $data, int $timeout)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->data = $data;
+        $this->timeout = $timeout;
     }
 
     public static function fromArray(array $array): UpdateNewCustomQuery
@@ -39,9 +54,14 @@ class UpdateNewCustomQuery extends Update
         );
     }
 
-    public function getData(): string
+    public function typeSerialize(): array
     {
-        return $this->data;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'data' => $this->data,
+            'timeout' => $this->timeout,
+        ];
     }
 
     public function getId(): int
@@ -49,18 +69,13 @@ class UpdateNewCustomQuery extends Update
         return $this->id;
     }
 
+    public function getData(): string
+    {
+        return $this->data;
+    }
+
     public function getTimeout(): int
     {
         return $this->timeout;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'id'      => $this->id,
-            'data'    => $this->data,
-            'timeout' => $this->timeout,
-        ];
     }
 }

@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Text that must be formatted as if inside pre, and code HTML tags.
+ * Text that must be formatted as if inside pre, and code HTML tags
  */
 class TextEntityTypePreCode extends TextEntityType
 {
     public const TYPE_NAME = 'textEntityTypePreCode';
 
-    public function __construct(
-        /**
-         * Programming language of the code; as defined by the sender.
-         */
-        protected string $language
-    ) {
+    /**
+     * Programming language of the code; as defined by the sender
+     *
+     * @var string
+     */
+    protected string $language;
+
+    public function __construct(string $language)
+    {
         parent::__construct();
+
+        $this->language = $language;
     }
 
     public static function fromArray(array $array): TextEntityTypePreCode
@@ -29,16 +36,16 @@ class TextEntityTypePreCode extends TextEntityType
         );
     }
 
-    public function getLanguage(): string
-    {
-        return $this->language;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'language' => $this->language,
         ];
+    }
+
+    public function getLanguage(): string
+    {
+        return $this->language;
     }
 }

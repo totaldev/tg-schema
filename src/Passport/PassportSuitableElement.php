@@ -4,36 +4,56 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about a Telegram Passport element that was requested by a service.
+ * Contains information about a Telegram Passport element that was requested by a service
  */
 class PassportSuitableElement extends TdObject
 {
     public const TYPE_NAME = 'passportSuitableElement';
 
+    /**
+     * Type of the element
+     *
+     * @var PassportElementType
+     */
+    protected PassportElementType $type;
+
+    /**
+     * True, if a selfie is required with the identity document
+     *
+     * @var bool
+     */
+    protected bool $isSelfieRequired;
+
+    /**
+     * True, if a certified English translation is required with the document
+     *
+     * @var bool
+     */
+    protected bool $isTranslationRequired;
+
+    /**
+     * True, if personal details must include the user's name in the language of their country of residence
+     *
+     * @var bool
+     */
+    protected bool $isNativeNameRequired;
+
     public function __construct(
-        /**
-         * Type of the element.
-         */
-        protected PassportElementType $type,
-        /**
-         * True, if a selfie is required with the identity document.
-         */
-        protected bool                $isSelfieRequired,
-        /**
-         * True, if a certified English translation is required with the document.
-         */
-        protected bool                $isTranslationRequired,
-        /**
-         * True, if personal details must include the user's name in the language of their country of residence.
-         */
-        protected bool                $isNativeNameRequired,
-    ) {}
+        PassportElementType $type,
+        bool $isSelfieRequired,
+        bool $isTranslationRequired,
+        bool $isNativeNameRequired
+    ) {
+        $this->type = $type;
+        $this->isSelfieRequired = $isSelfieRequired;
+        $this->isTranslationRequired = $isTranslationRequired;
+        $this->isNativeNameRequired = $isNativeNameRequired;
+    }
 
     public static function fromArray(array $array): PassportSuitableElement
     {
@@ -45,9 +65,20 @@ class PassportSuitableElement extends TdObject
         );
     }
 
-    public function getIsNativeNameRequired(): bool
+    public function typeSerialize(): array
     {
-        return $this->isNativeNameRequired;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'is_selfie_required' => $this->isSelfieRequired,
+            'is_translation_required' => $this->isTranslationRequired,
+            'is_native_name_required' => $this->isNativeNameRequired,
+        ];
+    }
+
+    public function getType(): PassportElementType
+    {
+        return $this->type;
     }
 
     public function getIsSelfieRequired(): bool
@@ -60,19 +91,8 @@ class PassportSuitableElement extends TdObject
         return $this->isTranslationRequired;
     }
 
-    public function getType(): PassportElementType
+    public function getIsNativeNameRequired(): bool
     {
-        return $this->type;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'                   => static::TYPE_NAME,
-            'type'                    => $this->type->typeSerialize(),
-            'is_selfie_required'      => $this->isSelfieRequired,
-            'is_translation_required' => $this->isTranslationRequired,
-            'is_native_name_required' => $this->isNativeNameRequired,
-        ];
+        return $this->isNativeNameRequired;
     }
 }

@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns up to 20 recently used inline bots in the order of their last usage.
+ * Returns up to 20 recently used inline bots in the order of their last usage
  */
 class GetRecentInlineBots extends TdFunction
 {
     public const TYPE_NAME = 'getRecentInlineBots';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetRecentInlineBots
     {

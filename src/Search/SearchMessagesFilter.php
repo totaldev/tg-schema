@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a filter for message search results.
+ * Represents a filter for message search results
  */
 class SearchMessagesFilter extends TdObject
 {
     public const TYPE_NAME = 'SearchMessagesFilter';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): SearchMessagesFilter
     {

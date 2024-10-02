@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only.
+ * Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
  */
 class SetBotUpdatesStatus extends TdFunction
 {
     public const TYPE_NAME = 'setBotUpdatesStatus';
 
-    public function __construct(
-        /**
-         * The number of pending updates.
-         */
-        protected int    $pendingUpdateCount,
-        /**
-         * The last error message.
-         */
-        protected string $errorMessage,
-    ) {}
+    /**
+     * The number of pending updates
+     *
+     * @var int
+     */
+    protected int $pendingUpdateCount;
+
+    /**
+     * The last error message
+     *
+     * @var string
+     */
+    protected string $errorMessage;
+
+    public function __construct(int $pendingUpdateCount, string $errorMessage)
+    {
+        $this->pendingUpdateCount = $pendingUpdateCount;
+        $this->errorMessage = $errorMessage;
+    }
 
     public static function fromArray(array $array): SetBotUpdatesStatus
     {
@@ -34,9 +43,13 @@ class SetBotUpdatesStatus extends TdFunction
         );
     }
 
-    public function getErrorMessage(): string
+    public function typeSerialize(): array
     {
-        return $this->errorMessage;
+        return [
+            '@type' => static::TYPE_NAME,
+            'pending_update_count' => $this->pendingUpdateCount,
+            'error_message' => $this->errorMessage,
+        ];
     }
 
     public function getPendingUpdateCount(): int
@@ -44,12 +57,8 @@ class SetBotUpdatesStatus extends TdFunction
         return $this->pendingUpdateCount;
     }
 
-    public function typeSerialize(): array
+    public function getErrorMessage(): string
     {
-        return [
-            '@type'                => static::TYPE_NAME,
-            'pending_update_count' => $this->pendingUpdateCount,
-            'error_message'        => $this->errorMessage,
-        ];
+        return $this->errorMessage;
     }
 }

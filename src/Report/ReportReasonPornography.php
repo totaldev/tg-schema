@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Report;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
  * The chat contains pornographic messages.
  */
-class ReportReasonPornography extends ReportReason
+class ChatReportReasonPornography extends ChatReportReason
 {
-    public const TYPE_NAME = 'reportReasonPornography';
+    public const TYPE_NAME = 'chatReportReasonPornography';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): ReportReasonPornography
+    public static function fromArray(array $array): ChatReportReasonPornography
     {
         return new static();
     }

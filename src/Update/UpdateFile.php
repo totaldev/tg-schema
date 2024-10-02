@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\File\File;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Information about a file was updated.
+ * Information about a file was updated
  */
 class UpdateFile extends Update
 {
     public const TYPE_NAME = 'updateFile';
 
-    public function __construct(
-        /**
-         * New data about the file.
-         */
-        protected File $file
-    ) {
+    /**
+     * New data about the file
+     *
+     * @var File
+     */
+    protected File $file;
+
+    public function __construct(File $file)
+    {
         parent::__construct();
+
+        $this->file = $file;
     }
 
     public static function fromArray(array $array): UpdateFile
@@ -32,16 +36,16 @@ class UpdateFile extends Update
         );
     }
 
-    public function getFile(): File
-    {
-        return $this->file;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'file'  => $this->file->typeSerialize(),
+            'file' => $this->file->typeSerialize(),
         ];
+    }
+
+    public function getFile(): File
+    {
+        return $this->file;
     }
 }

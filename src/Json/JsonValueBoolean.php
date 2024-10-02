@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Json;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a boolean JSON value.
+ * Represents a boolean JSON value
  */
 class JsonValueBoolean extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueBoolean';
 
-    public function __construct(
-        /**
-         * The value.
-         */
-        protected bool $value
-    ) {
+    /**
+     * The value
+     *
+     * @var bool
+     */
+    protected bool $value;
+
+    public function __construct(bool $value)
+    {
         parent::__construct();
+
+        $this->value = $value;
     }
 
     public static function fromArray(array $array): JsonValueBoolean
@@ -29,16 +36,16 @@ class JsonValueBoolean extends JsonValue
         );
     }
 
-    public function getValue(): bool
-    {
-        return $this->value;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
+    }
+
+    public function getValue(): bool
+    {
+        return $this->value;
     }
 }

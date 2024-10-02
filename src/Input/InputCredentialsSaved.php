@@ -4,23 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary
- * password.
+ * Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
  */
 class InputCredentialsSaved extends InputCredentials
 {
     public const TYPE_NAME = 'inputCredentialsSaved';
 
-    public function __construct(
-        /**
-         * Identifier of the saved credentials.
-         */
-        protected string $savedCredentialsId
-    ) {
+    /**
+     * Identifier of the saved credentials
+     *
+     * @var string
+     */
+    protected string $savedCredentialsId;
+
+    public function __construct(string $savedCredentialsId)
+    {
         parent::__construct();
+
+        $this->savedCredentialsId = $savedCredentialsId;
     }
 
     public static function fromArray(array $array): InputCredentialsSaved
@@ -30,16 +36,16 @@ class InputCredentialsSaved extends InputCredentials
         );
     }
 
-    public function getSavedCredentialsId(): string
-    {
-        return $this->savedCredentialsId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'                => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'saved_credentials_id' => $this->savedCredentialsId,
         ];
+    }
+
+    public function getSavedCredentialsId(): string
+    {
+        return $this->savedCredentialsId;
     }
 }

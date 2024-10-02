@@ -4,33 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Create;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Call\CallProtocol;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Creates a new call.
+ * Creates a new call
  */
 class CreateCall extends TdFunction
 {
     public const TYPE_NAME = 'createCall';
 
-    public function __construct(
-        /**
-         * Identifier of the user to be called.
-         */
-        protected int          $userId,
-        /**
-         * The call protocols supported by the application.
-         */
-        protected CallProtocol $protocol,
-        /**
-         * Pass true to create a video call.
-         */
-        protected bool         $isVideo,
-    ) {}
+    /**
+     * Identifier of the user to be called
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * The call protocols supported by the application
+     *
+     * @var CallProtocol
+     */
+    protected CallProtocol $protocol;
+
+    /**
+     * Pass true to create a video call
+     *
+     * @var bool
+     */
+    protected bool $isVideo;
+
+    public function __construct(int $userId, CallProtocol $protocol, bool $isVideo)
+    {
+        $this->userId = $userId;
+        $this->protocol = $protocol;
+        $this->isVideo = $isVideo;
+    }
 
     public static function fromArray(array $array): CreateCall
     {
@@ -41,14 +52,14 @@ class CreateCall extends TdFunction
         );
     }
 
-    public function getIsVideo(): bool
+    public function typeSerialize(): array
     {
-        return $this->isVideo;
-    }
-
-    public function getProtocol(): CallProtocol
-    {
-        return $this->protocol;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'protocol' => $this->protocol->typeSerialize(),
+            'is_video' => $this->isVideo,
+        ];
     }
 
     public function getUserId(): int
@@ -56,13 +67,13 @@ class CreateCall extends TdFunction
         return $this->userId;
     }
 
-    public function typeSerialize(): array
+    public function getProtocol(): CallProtocol
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'user_id'  => $this->userId,
-            'protocol' => $this->protocol->typeSerialize(),
-            'is_video' => $this->isVideo,
-        ];
+        return $this->protocol;
+    }
+
+    public function getIsVideo(): bool
+    {
+        return $this->isVideo;
     }
 }

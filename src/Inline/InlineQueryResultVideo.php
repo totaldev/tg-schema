@@ -4,37 +4,53 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Video\Video;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a video.
+ * Represents a video
  */
 class InlineQueryResultVideo extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultVideo';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string $id,
-        /**
-         * Video.
-         */
-        protected Video  $video,
-        /**
-         * Title of the video.
-         */
-        protected string $title,
-        /**
-         * Description of the video.
-         */
-        protected string $description,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Video
+     *
+     * @var Video
+     */
+    protected Video $video;
+
+    /**
+     * Title of the video
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Description of the video
+     *
+     * @var string
+     */
+    protected string $description;
+
+    public function __construct(string $id, Video $video, string $title, string $description)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->video = $video;
+        $this->title = $title;
+        $this->description = $description;
     }
 
     public static function fromArray(array $array): InlineQueryResultVideo
@@ -47,9 +63,15 @@ class InlineQueryResultVideo extends InlineQueryResult
         );
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'video' => $this->video->typeSerialize(),
+            'title' => $this->title,
+            'description' => $this->description,
+        ];
     }
 
     public function getId(): string
@@ -57,24 +79,18 @@ class InlineQueryResultVideo extends InlineQueryResult
         return $this->id;
     }
 
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
     public function getVideo(): Video
     {
         return $this->video;
     }
 
-    public function typeSerialize(): array
+    public function getTitle(): string
     {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'video'       => $this->video->typeSerialize(),
-            'title'       => $this->title,
-            'description' => $this->description,
-        ];
+        return $this->title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
     }
 }

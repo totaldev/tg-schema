@@ -4,28 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Open;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio
- * file or voice note message). An updateMessageContentOpened update will be generated if something has changed.
+ * Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
  */
 class OpenMessageContent extends TdFunction
 {
     public const TYPE_NAME = 'openMessageContent';
 
-    public function __construct(
-        /**
-         * Chat identifier of the message.
-         */
-        protected int $chatId,
-        /**
-         * Identifier of the message with the opened content.
-         */
-        protected int $messageId,
-    ) {}
+    /**
+     * Chat identifier of the message
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the message with the opened content
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    public function __construct(int $chatId, int $messageId)
+    {
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+    }
 
     public static function fromArray(array $array): OpenMessageContent
     {
@@ -33,6 +41,15 @@ class OpenMessageContent extends TdFunction
             $array['chat_id'],
             $array['message_id'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 
     public function getChatId(): int
@@ -43,14 +60,5 @@ class OpenMessageContent extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 }

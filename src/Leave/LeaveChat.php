@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Leave;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes the current user from chat members. Private and secret chats can't be left using this method.
+ * Removes the current user from chat members. Private and secret chats can't be left using this method
  */
 class LeaveChat extends TdFunction
 {
     public const TYPE_NAME = 'leaveChat';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int $chatId
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(int $chatId)
+    {
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): LeaveChat
     {
@@ -29,16 +34,16 @@ class LeaveChat extends TdFunction
         );
     }
 
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Count;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a counter.
+ * Contains a counter
  */
 class Count extends TdObject
 {
     public const TYPE_NAME = 'count';
 
-    public function __construct(
-        /**
-         * Count.
-         */
-        protected int $count
-    ) {}
+    /**
+     * Count
+     *
+     * @var int
+     */
+    protected int $count;
+
+    public function __construct(int $count)
+    {
+        $this->count = $count;
+    }
 
     public static function fromArray(array $array): Count
     {
@@ -29,16 +34,16 @@ class Count extends TdObject
         );
     }
 
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'count' => $this->count,
         ];
+    }
+
+    public function getCount(): int
+    {
+        return $this->count;
     }
 }

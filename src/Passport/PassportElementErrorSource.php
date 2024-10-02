@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the description of an error in a Telegram Passport element.
+ * Contains the description of an error in a Telegram Passport element
  */
 class PassportElementErrorSource extends TdObject
 {
     public const TYPE_NAME = 'PassportElementErrorSource';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): PassportElementErrorSource
     {

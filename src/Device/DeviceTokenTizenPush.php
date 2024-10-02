@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Device;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A token for Tizen Push Service.
+ * A token for Tizen Push Service
  */
 class DeviceTokenTizenPush extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenTizenPush';
 
-    public function __construct(
-        /**
-         * Push service registration identifier; may be empty to deregister a device.
-         */
-        protected string $regId
-    ) {
+    /**
+     * Push service registration identifier; may be empty to deregister a device
+     *
+     * @var string
+     */
+    protected string $regId;
+
+    public function __construct(string $regId)
+    {
         parent::__construct();
+
+        $this->regId = $regId;
     }
 
     public static function fromArray(array $array): DeviceTokenTizenPush
@@ -29,16 +36,16 @@ class DeviceTokenTizenPush extends DeviceToken
         );
     }
 
-    public function getRegId(): string
-    {
-        return $this->regId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'reg_id' => $this->regId,
         ];
+    }
+
+    public function getRegId(): string
+    {
+        return $this->regId;
     }
 }

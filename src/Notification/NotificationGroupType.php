@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Notification;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the type of notifications in a notification group.
+ * Describes the type of notifications in a notification group
  */
 class NotificationGroupType extends TdObject
 {
     public const TYPE_NAME = 'NotificationGroupType';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): NotificationGroupType
     {

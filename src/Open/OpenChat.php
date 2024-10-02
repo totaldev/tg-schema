@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Open;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all
- * updates are received only for opened chats).
+ * Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
  */
 class OpenChat extends TdFunction
 {
     public const TYPE_NAME = 'openChat';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int $chatId
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(int $chatId)
+    {
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): OpenChat
     {
@@ -30,16 +34,16 @@ class OpenChat extends TdFunction
         );
     }
 
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 }

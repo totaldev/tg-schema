@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user can't be a member of a public supergroup.
+ * The user can't be a member of a public supergroup
  */
 class CheckChatUsernameResultPublicGroupsUnavailable extends CheckChatUsernameResult
 {

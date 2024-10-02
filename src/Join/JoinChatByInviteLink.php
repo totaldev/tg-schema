@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Join;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was
- * created.
+ * Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
  */
 class JoinChatByInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'joinChatByInviteLink';
 
-    public function __construct(
-        /**
-         * Invite link to use.
-         */
-        protected string $inviteLink
-    ) {}
+    /**
+     * Invite link to use
+     *
+     * @var string
+     */
+    protected string $inviteLink;
+
+    public function __construct(string $inviteLink)
+    {
+        $this->inviteLink = $inviteLink;
+    }
 
     public static function fromArray(array $array): JoinChatByInviteLink
     {
@@ -30,16 +34,16 @@ class JoinChatByInviteLink extends TdFunction
         );
     }
 
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
         ];
+    }
+
+    public function getInviteLink(): string
+    {
+        return $this->inviteLink;
     }
 }

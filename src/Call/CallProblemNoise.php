@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user heard background noise.
+ * The user heard background noise
  */
 class CallProblemNoise extends CallProblem
 {

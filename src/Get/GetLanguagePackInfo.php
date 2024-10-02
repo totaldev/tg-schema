@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
+ * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
  */
 class GetLanguagePackInfo extends TdFunction
 {
     public const TYPE_NAME = 'getLanguagePackInfo';
 
-    public function __construct(
-        /**
-         * Language pack identifier.
-         */
-        protected string $languagePackId
-    ) {}
+    /**
+     * Language pack identifier
+     *
+     * @var string
+     */
+    protected string $languagePackId;
+
+    public function __construct(string $languagePackId)
+    {
+        $this->languagePackId = $languagePackId;
+    }
 
     public static function fromArray(array $array): GetLanguagePackInfo
     {
@@ -29,16 +34,16 @@ class GetLanguagePackInfo extends TdFunction
         );
     }
 
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
+    }
+
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
     }
 }

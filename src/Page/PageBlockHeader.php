@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Rich\RichText;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A header.
+ * A header
  */
 class PageBlockHeader extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockHeader';
 
-    public function __construct(
-        /**
-         * Header.
-         */
-        protected RichText $header
-    ) {
+    /**
+     * Header
+     *
+     * @var RichText
+     */
+    protected RichText $header;
+
+    public function __construct(RichText $header)
+    {
         parent::__construct();
+
+        $this->header = $header;
     }
 
     public static function fromArray(array $array): PageBlockHeader
@@ -32,16 +36,16 @@ class PageBlockHeader extends PageBlock
         );
     }
 
-    public function getHeader(): RichText
-    {
-        return $this->header;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'header' => $this->header->typeSerialize(),
         ];
+    }
+
+    public function getHeader(): RichText
+    {
+        return $this->header;
     }
 }

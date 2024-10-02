@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Account\AccountTtl;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the period of inactivity after which the account of the current user will automatically be deleted.
+ * Changes the period of inactivity after which the account of the current user will automatically be deleted
  */
 class SetAccountTtl extends TdFunction
 {
     public const TYPE_NAME = 'setAccountTtl';
 
-    public function __construct(
-        /**
-         * New account TTL.
-         */
-        protected AccountTtl $ttl
-    ) {}
+    /**
+     * New account TTL
+     *
+     * @var AccountTtl
+     */
+    protected AccountTtl $ttl;
+
+    public function __construct(AccountTtl $ttl)
+    {
+        $this->ttl = $ttl;
+    }
 
     public static function fromArray(array $array): SetAccountTtl
     {
@@ -31,16 +34,16 @@ class SetAccountTtl extends TdFunction
         );
     }
 
-    public function getTtl(): AccountTtl
-    {
-        return $this->ttl;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'ttl'   => $this->ttl->typeSerialize(),
+            'ttl' => $this->ttl->typeSerialize(),
         ];
+    }
+
+    public function getTtl(): AccountTtl
+    {
+        return $this->ttl;
     }
 }

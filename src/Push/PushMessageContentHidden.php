@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A general message with hidden content.
+ * A general message with hidden content
  */
 class PushMessageContentHidden extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentHidden';
 
-    public function __construct(
-        /**
-         * True, if the message is a pinned message with the specified content.
-         */
-        protected bool $isPinned
-    ) {
+    /**
+     * True, if the message is a pinned message with the specified content
+     *
+     * @var bool
+     */
+    protected bool $isPinned;
+
+    public function __construct(bool $isPinned)
+    {
         parent::__construct();
+
+        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentHidden
@@ -29,16 +36,16 @@ class PushMessageContentHidden extends PushMessageContent
         );
     }
 
-    public function getIsPinned(): bool
-    {
-        return $this->isPinned;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'is_pinned' => $this->isPinned,
         ];
+    }
+
+    public function getIsPinned(): bool
+    {
+        return $this->isPinned;
     }
 }

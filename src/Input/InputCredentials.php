@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about the payment method chosen by the user.
+ * Contains information about the payment method chosen by the user
  */
 class InputCredentials extends TdObject
 {
     public const TYPE_NAME = 'InputCredentials';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): InputCredentials
     {

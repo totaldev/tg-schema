@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Passport\PassportElementType;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns one of the available Telegram Passport elements.
+ * Returns one of the available Telegram Passport elements
  */
 class GetPassportElement extends TdFunction
 {
     public const TYPE_NAME = 'getPassportElement';
 
-    public function __construct(
-        /**
-         * Telegram Passport element type.
-         */
-        protected PassportElementType $type,
-        /**
-         * The 2-step verification password of the current user.
-         */
-        protected string              $password,
-    ) {}
+    /**
+     * Telegram Passport element type
+     *
+     * @var PassportElementType
+     */
+    protected PassportElementType $type;
+
+    /**
+     * The 2-step verification password of the current user
+     *
+     * @var string
+     */
+    protected string $password;
+
+    public function __construct(PassportElementType $type, string $password)
+    {
+        $this->type = $type;
+        $this->password = $password;
+    }
 
     public static function fromArray(array $array): GetPassportElement
     {
@@ -36,9 +43,13 @@ class GetPassportElement extends TdFunction
         );
     }
 
-    public function getPassword(): string
+    public function typeSerialize(): array
     {
-        return $this->password;
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type->typeSerialize(),
+            'password' => $this->password,
+        ];
     }
 
     public function getType(): PassportElementType
@@ -46,12 +57,8 @@ class GetPassportElement extends TdFunction
         return $this->type;
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'type'     => $this->type->typeSerialize(),
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 }

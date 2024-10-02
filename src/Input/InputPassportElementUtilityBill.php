@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's utility bill.
+ * A Telegram Passport element to be saved containing the user's utility bill
  */
 class InputPassportElementUtilityBill extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementUtilityBill';
 
-    public function __construct(
-        /**
-         * The utility bill to be saved.
-         */
-        protected InputPersonalDocument $utilityBill
-    ) {
+    /**
+     * The utility bill to be saved
+     *
+     * @var InputPersonalDocument
+     */
+    protected InputPersonalDocument $utilityBill;
+
+    public function __construct(InputPersonalDocument $utilityBill)
+    {
         parent::__construct();
+
+        $this->utilityBill = $utilityBill;
     }
 
     public static function fromArray(array $array): InputPassportElementUtilityBill
@@ -31,16 +36,16 @@ class InputPassportElementUtilityBill extends InputPassportElement
         );
     }
 
-    public function getUtilityBill(): InputPersonalDocument
-    {
-        return $this->utilityBill;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'utility_bill' => $this->utilityBill->typeSerialize(),
         ];
+    }
+
+    public function getUtilityBill(): InputPersonalDocument
+    {
+        return $this->utilityBill;
     }
 }

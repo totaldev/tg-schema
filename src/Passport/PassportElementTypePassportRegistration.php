@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element containing the registration page of the user's passport.
+ * A Telegram Passport element containing the registration page of the user's passport
  */
 class PassportElementTypePassportRegistration extends PassportElementType
 {

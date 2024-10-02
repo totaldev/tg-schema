@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An empty block separating a page.
+ * An empty block separating a page
  */
 class PageBlockDivider extends PageBlock
 {

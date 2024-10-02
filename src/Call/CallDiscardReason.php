@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the reason why a call was discarded.
+ * Describes the reason why a call was discarded
  */
 class CallDiscardReason extends TdObject
 {
     public const TYPE_NAME = 'CallDiscardReason';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): CallDiscardReason
     {

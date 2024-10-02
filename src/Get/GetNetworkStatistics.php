@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns network data usage statistics. Can be called before authorization.
+ * Returns network data usage statistics. Can be called before authorization
  */
 class GetNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'getNetworkStatistics';
 
-    public function __construct(
-        /**
-         * Pass true to get statistics only for the current library launch.
-         */
-        protected bool $onlyCurrent
-    ) {}
+    /**
+     * Pass true to get statistics only for the current library launch
+     *
+     * @var bool
+     */
+    protected bool $onlyCurrent;
+
+    public function __construct(bool $onlyCurrent)
+    {
+        $this->onlyCurrent = $onlyCurrent;
+    }
 
     public static function fromArray(array $array): GetNetworkStatistics
     {
@@ -29,16 +34,16 @@ class GetNetworkStatistics extends TdFunction
         );
     }
 
-    public function getOnlyCurrent(): bool
-    {
-        return $this->onlyCurrent;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'only_current' => $this->onlyCurrent,
         ];
+    }
+
+    public function getOnlyCurrent(): bool
+    {
+        return $this->onlyCurrent;
     }
 }

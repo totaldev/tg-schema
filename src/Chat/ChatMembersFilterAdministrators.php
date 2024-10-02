@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the owner and administrators.
+ * Returns the owner and administrators
  */
 class ChatMembersFilterAdministrators extends ChatMembersFilter
 {

@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A data field contains an error. The error is considered resolved when the field's value changes.
+ * A data field contains an error. The error is considered resolved when the field's value changes
  */
 class InputPassportElementErrorSourceDataField extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceDataField';
 
-    public function __construct(
-        /**
-         * Field name.
-         */
-        protected string $fieldName,
-        /**
-         * Current data hash.
-         */
-        protected string $dataHash,
-    ) {
+    /**
+     * Field name
+     *
+     * @var string
+     */
+    protected string $fieldName;
+
+    /**
+     * Current data hash
+     *
+     * @var string
+     */
+    protected string $dataHash;
+
+    public function __construct(string $fieldName, string $dataHash)
+    {
         parent::__construct();
+
+        $this->fieldName = $fieldName;
+        $this->dataHash = $dataHash;
     }
 
     public static function fromArray(array $array): InputPassportElementErrorSourceDataField
@@ -34,9 +45,13 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
         );
     }
 
-    public function getDataHash(): string
+    public function typeSerialize(): array
     {
-        return $this->dataHash;
+        return [
+            '@type' => static::TYPE_NAME,
+            'field_name' => $this->fieldName,
+            'data_hash' => $this->dataHash,
+        ];
     }
 
     public function getFieldName(): string
@@ -44,12 +59,8 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
         return $this->fieldName;
     }
 
-    public function typeSerialize(): array
+    public function getDataHash(): string
     {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'field_name' => $this->fieldName,
-            'data_hash'  => $this->dataHash,
-        ];
+        return $this->dataHash;
     }
 }

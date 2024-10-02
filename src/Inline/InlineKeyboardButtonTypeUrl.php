@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A button that opens a specified URL.
+ * A button that opens a specified URL
  */
 class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeUrl';
 
-    public function __construct(
-        /**
-         * HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button.
-         */
-        protected string $url
-    ) {
+    /**
+     * HTTP or tg:// URL to open
+     *
+     * @var string
+     */
+    protected string $url;
+
+    public function __construct(string $url)
+    {
         parent::__construct();
+
+        $this->url = $url;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeUrl
@@ -29,16 +36,16 @@ class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType
         );
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
+            'url' => $this->url,
         ];
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 }

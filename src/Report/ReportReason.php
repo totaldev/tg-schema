@@ -4,20 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Report;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TdSchema;
 
 /**
  * Describes the reason why a chat is reported.
  */
-class ReportReason extends TdObject
+class ChatReportReason extends TdObject
 {
-    public const TYPE_NAME = 'ReportReason';
+    public const TYPE_NAME = 'ChatReportReason';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
-    public static function fromArray(array $array): ReportReason
+    public static function fromArray(array $array): ChatReportReason
     {
         return new static();
     }

@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public.
- * Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results.
+ * Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
  */
 class SearchPublicChats extends TdFunction
 {
     public const TYPE_NAME = 'searchPublicChats';
 
-    public function __construct(
-        /**
-         * Query to search for.
-         */
-        protected string $query
-    ) {}
+    /**
+     * Query to search for
+     *
+     * @var string
+     */
+    protected string $query;
+
+    public function __construct(string $query)
+    {
+        $this->query = $query;
+    }
 
     public static function fromArray(array $array): SearchPublicChats
     {
@@ -30,16 +34,16 @@ class SearchPublicChats extends TdFunction
         );
     }
 
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'query' => $this->query,
         ];
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
     }
 }

@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called
- * synchronously.
+ * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
  */
 class GetPushReceiverId extends TdFunction
 {
     public const TYPE_NAME = 'getPushReceiverId';
 
-    public function __construct(
-        /**
-         * JSON-encoded push notification payload.
-         */
-        protected string $payload
-    ) {}
+    /**
+     * JSON-encoded push notification payload
+     *
+     * @var string
+     */
+    protected string $payload;
+
+    public function __construct(string $payload)
+    {
+        $this->payload = $payload;
+    }
 
     public static function fromArray(array $array): GetPushReceiverId
     {
@@ -30,16 +34,16 @@ class GetPushReceiverId extends TdFunction
         );
     }
 
-    public function getPayload(): string
-    {
-        return $this->payload;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'payload' => $this->payload,
         ];
+    }
+
+    public function getPayload(): string
+    {
+        return $this->payload;
     }
 }

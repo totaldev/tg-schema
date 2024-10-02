@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the list of proxies that are currently set up. Can be called before authorization.
+ * Returns list of proxies that are currently set up. Can be called before authorization
  */
 class GetProxies extends TdFunction
 {
     public const TYPE_NAME = 'getProxies';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetProxies
     {

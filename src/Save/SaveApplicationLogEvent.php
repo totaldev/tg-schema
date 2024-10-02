@@ -4,33 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Save;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Json\JsonValue;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Saves application log event on the server. Can be called before authorization.
+ * Saves application log event on the server. Can be called before authorization
  */
 class SaveApplicationLogEvent extends TdFunction
 {
     public const TYPE_NAME = 'saveApplicationLogEvent';
 
-    public function __construct(
-        /**
-         * Event type.
-         */
-        protected string    $type,
-        /**
-         * Optional chat identifier, associated with the event.
-         */
-        protected int       $chatId,
-        /**
-         * The log event data.
-         */
-        protected JsonValue $data,
-    ) {}
+    /**
+     * Event type
+     *
+     * @var string
+     */
+    protected string $type;
+
+    /**
+     * Optional chat identifier, associated with the event
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * The log event data
+     *
+     * @var JsonValue
+     */
+    protected JsonValue $data;
+
+    public function __construct(string $type, int $chatId, JsonValue $data)
+    {
+        $this->type = $type;
+        $this->chatId = $chatId;
+        $this->data = $data;
+    }
 
     public static function fromArray(array $array): SaveApplicationLogEvent
     {
@@ -41,6 +52,21 @@ class SaveApplicationLogEvent extends TdFunction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'type' => $this->type,
+            'chat_id' => $this->chatId,
+            'data' => $this->data->typeSerialize(),
+        ];
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
@@ -49,20 +75,5 @@ class SaveApplicationLogEvent extends TdFunction
     public function getData(): JsonValue
     {
         return $this->data;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'type'    => $this->type,
-            'chat_id' => $this->chatId,
-            'data'    => $this->data->typeSerialize(),
-        ];
     }
 }

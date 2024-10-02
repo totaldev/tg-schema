@@ -4,34 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Thumbnail\Thumbnail;
-use Totaldev\TgSchema\Venue\Venue;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents information about a venue.
+ * Represents information about a venue
  */
 class InlineQueryResultVenue extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultVenue';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string     $id,
-        /**
-         * Venue result.
-         */
-        protected Venue      $venue,
-        /**
-         * Result thumbnail in JPEG format; may be null.
-         */
-        protected ?Thumbnail $thumbnail,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Venue result
+     *
+     * @var Venue
+     */
+    protected Venue $venue;
+
+    /**
+     * Result thumbnail in JPEG format; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
+
+    public function __construct(string $id, Venue $venue, ?Thumbnail $thumbnail)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->venue = $venue;
+        $this->thumbnail = $thumbnail;
     }
 
     public static function fromArray(array $array): InlineQueryResultVenue
@@ -39,8 +50,18 @@ class InlineQueryResultVenue extends InlineQueryResult
         return new static(
             $array['id'],
             TdSchemaRegistry::fromArray($array['venue']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'venue' => $this->venue->typeSerialize(),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+        ];
     }
 
     public function getId(): string
@@ -48,23 +69,13 @@ class InlineQueryResultVenue extends InlineQueryResult
         return $this->id;
     }
 
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
     public function getVenue(): Venue
     {
         return $this->venue;
     }
 
-    public function typeSerialize(): array
+    public function getThumbnail(): ?Thumbnail
     {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
-            'venue'     => $this->venue->typeSerialize(),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-        ];
+        return $this->thumbnail;
     }
 }

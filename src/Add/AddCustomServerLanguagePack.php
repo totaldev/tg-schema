@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Add;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
+ * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
  */
 class AddCustomServerLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'addCustomServerLanguagePack';
 
-    public function __construct(
-        /**
-         * Identifier of a language pack to be added.
-         */
-        protected string $languagePackId
-    ) {}
+    /**
+     * Identifier of a language pack to be added
+     *
+     * @var string
+     */
+    protected string $languagePackId;
+
+    public function __construct(string $languagePackId)
+    {
+        $this->languagePackId = $languagePackId;
+    }
 
     public static function fromArray(array $array): AddCustomServerLanguagePack
     {
@@ -29,16 +34,16 @@ class AddCustomServerLanguagePack extends TdFunction
         );
     }
 
-    public function getLanguagePackId(): string
-    {
-        return $this->languagePackId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
+    }
+
+    public function getLanguagePackId(): string
+    {
+        return $this->languagePackId;
     }
 }

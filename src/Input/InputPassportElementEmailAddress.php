@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's email address.
+ * A Telegram Passport element to be saved containing the user's email address
  */
 class InputPassportElementEmailAddress extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementEmailAddress';
 
-    public function __construct(
-        /**
-         * The email address to be saved.
-         */
-        protected string $emailAddress
-    ) {
+    /**
+     * The email address to be saved
+     *
+     * @var string
+     */
+    protected string $emailAddress;
+
+    public function __construct(string $emailAddress)
+    {
         parent::__construct();
+
+        $this->emailAddress = $emailAddress;
     }
 
     public static function fromArray(array $array): InputPassportElementEmailAddress
@@ -29,16 +36,16 @@ class InputPassportElementEmailAddress extends InputPassportElement
         );
     }
 
-    public function getEmailAddress(): string
-    {
-        return $this->emailAddress;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
+    }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
     }
 }

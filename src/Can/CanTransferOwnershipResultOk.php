@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Can;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The session can be used.
+ * The session can be used
  */
 class CanTransferOwnershipResultOk extends CanTransferOwnershipResult
 {

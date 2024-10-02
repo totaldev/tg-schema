@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Notification;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A group containing a notification of type notificationTypeNewSecretChat.
+ * A group containing a notification of type notificationTypeNewSecretChat
  */
 class NotificationGroupTypeSecretChat extends NotificationGroupType
 {

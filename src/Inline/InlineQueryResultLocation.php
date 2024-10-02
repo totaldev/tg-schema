@@ -4,38 +4,53 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Thumbnail\Thumbnail;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a point on the map.
+ * Represents a point on the map
  */
 class InlineQueryResultLocation extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultLocation';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string     $id,
-        /**
-         * Location result.
-         */
-        protected Location   $location,
-        /**
-         * Title of the result.
-         */
-        protected string     $title,
-        /**
-         * Result thumbnail in JPEG format; may be null.
-         */
-        protected ?Thumbnail $thumbnail,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Location result
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
+     * Title of the result
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Result thumbnail in JPEG format; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
+
+    public function __construct(string $id, Location $location, string $title, ?Thumbnail $thumbnail)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->location = $location;
+        $this->title = $title;
+        $this->thumbnail = $thumbnail;
     }
 
     public static function fromArray(array $array): InlineQueryResultLocation
@@ -44,8 +59,19 @@ class InlineQueryResultLocation extends InlineQueryResult
             $array['id'],
             TdSchemaRegistry::fromArray($array['location']),
             $array['title'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'location' => $this->location->typeSerialize(),
+            'title' => $this->title,
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+        ];
     }
 
     public function getId(): string
@@ -58,24 +84,13 @@ class InlineQueryResultLocation extends InlineQueryResult
         return $this->location;
     }
 
-    public function getThumbnail(): ?Thumbnail
-    {
-        return $this->thumbnail;
-    }
-
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function typeSerialize(): array
+    public function getThumbnail(): ?Thumbnail
     {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
-            'location'  => $this->location->typeSerialize(),
-            'title'     => $this->title,
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-        ];
+        return $this->thumbnail;
     }
 }

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns only photo and video messages.
+ * Returns only photo and video messages
  */
 class SearchMessagesFilterPhotoAndVideo extends SearchMessagesFilter
 {

@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Callback;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The payload for a general callback button.
+ * The payload for a general callback button
  */
 class CallbackQueryPayloadData extends CallbackQueryPayload
 {
     public const TYPE_NAME = 'callbackQueryPayloadData';
 
-    public function __construct(
-        /**
-         * Data that was attached to the callback button.
-         */
-        protected string $data
-    ) {
+    /**
+     * Data that was attached to the callback button
+     *
+     * @var string
+     */
+    protected string $data;
+
+    public function __construct(string $data)
+    {
         parent::__construct();
+
+        $this->data = $data;
     }
 
     public static function fromArray(array $array): CallbackQueryPayloadData
@@ -29,16 +36,16 @@ class CallbackQueryPayloadData extends CallbackQueryPayload
         );
     }
 
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data'  => $this->data,
+            'data' => $this->data,
         ];
+    }
+
+    public function getData(): string
+    {
+        return $this->data;
     }
 }

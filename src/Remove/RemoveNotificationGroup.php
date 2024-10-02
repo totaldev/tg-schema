@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Remove;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
+ * Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
  */
 class RemoveNotificationGroup extends TdFunction
 {
     public const TYPE_NAME = 'removeNotificationGroup';
 
-    public function __construct(
-        /**
-         * Notification group identifier.
-         */
-        protected int $notificationGroupId,
-        /**
-         * The maximum identifier of removed notifications.
-         */
-        protected int $maxNotificationId,
-    ) {}
+    /**
+     * Notification group identifier
+     *
+     * @var int
+     */
+    protected int $notificationGroupId;
+
+    /**
+     * The maximum identifier of removed notifications
+     *
+     * @var int
+     */
+    protected int $maxNotificationId;
+
+    public function __construct(int $notificationGroupId, int $maxNotificationId)
+    {
+        $this->notificationGroupId = $notificationGroupId;
+        $this->maxNotificationId = $maxNotificationId;
+    }
 
     public static function fromArray(array $array): RemoveNotificationGroup
     {
@@ -34,9 +43,13 @@ class RemoveNotificationGroup extends TdFunction
         );
     }
 
-    public function getMaxNotificationId(): int
+    public function typeSerialize(): array
     {
-        return $this->maxNotificationId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'notification_group_id' => $this->notificationGroupId,
+            'max_notification_id' => $this->maxNotificationId,
+        ];
     }
 
     public function getNotificationGroupId(): int
@@ -44,12 +57,8 @@ class RemoveNotificationGroup extends TdFunction
         return $this->notificationGroupId;
     }
 
-    public function typeSerialize(): array
+    public function getMaxNotificationId(): int
     {
-        return [
-            '@type'                 => static::TYPE_NAME,
-            'notification_group_id' => $this->notificationGroupId,
-            'max_notification_id'   => $this->maxNotificationId,
-        ];
+        return $this->maxNotificationId;
     }
 }

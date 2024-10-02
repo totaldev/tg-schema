@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A contact has registered with Telegram.
+ * A contact has registered with Telegram
  */
 class PushMessageContentContactRegistered extends PushMessageContent
 {

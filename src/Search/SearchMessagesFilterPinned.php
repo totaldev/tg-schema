@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
- * Returns only pinned messages.
+ * Returns only call messages.
  */
-class SearchMessagesFilterPinned extends SearchMessagesFilter
+class SearchMessagesFilterCall extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterPinned';
+    public const TYPE_NAME = 'searchMessagesFilterCall';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): SearchMessagesFilterPinned
+    public static function fromArray(array $array): SearchMessagesFilterCall
     {
         return new static();
     }

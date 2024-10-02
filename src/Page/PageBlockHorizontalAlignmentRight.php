@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The content must be right-aligned.
+ * The content must be right-aligned
  */
 class PageBlockHorizontalAlignmentRight extends PageBlockHorizontalAlignment
 {

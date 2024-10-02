@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Saved;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about saved payment credentials.
+ * Contains information about saved payment credentials
  */
 class SavedCredentials extends TdObject
 {
     public const TYPE_NAME = 'savedCredentials';
 
-    public function __construct(
-        /**
-         * Unique identifier of the saved credentials.
-         */
-        protected string $id,
-        /**
-         * Title of the saved credentials.
-         */
-        protected string $title,
-    ) {}
+    /**
+     * Unique identifier of the saved credentials
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Title of the saved credentials
+     *
+     * @var string
+     */
+    protected string $title;
+
+    public function __construct(string $id, string $title)
+    {
+        $this->id = $id;
+        $this->title = $title;
+    }
 
     public static function fromArray(array $array): SavedCredentials
     {
@@ -32,6 +41,15 @@ class SavedCredentials extends TdObject
             $array['id'],
             $array['title'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'title' => $this->title,
+        ];
     }
 
     public function getId(): string
@@ -42,14 +60,5 @@ class SavedCredentials extends TdObject
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id'    => $this->id,
-            'title' => $this->title,
-        ];
     }
 }

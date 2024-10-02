@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Checks the validity of an invite link for a chat and returns information about the corresponding chat.
+ * Checks the validity of an invite link for a chat and returns information about the corresponding chat
  */
 class CheckChatInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'checkChatInviteLink';
 
-    public function __construct(
-        /**
-         * Invite link to be checked.
-         */
-        protected string $inviteLink
-    ) {}
+    /**
+     * Invite link to be checked
+     *
+     * @var string
+     */
+    protected string $inviteLink;
+
+    public function __construct(string $inviteLink)
+    {
+        $this->inviteLink = $inviteLink;
+    }
 
     public static function fromArray(array $array): CheckChatInviteLink
     {
@@ -29,16 +34,16 @@ class CheckChatInviteLink extends TdFunction
         );
     }
 
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
         ];
+    }
+
+    public function getInviteLink(): string
+    {
+        return $this->inviteLink;
     }
 }

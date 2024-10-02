@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
- * Returns only failed to send messages. This filter can be used only if the message database is used.
+ * Returns only incoming call messages with missed/declined discard reasons.
  */
-class SearchMessagesFilterFailedToSend extends SearchMessagesFilter
+class SearchMessagesFilterMissedCall extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterFailedToSend';
+    public const TYPE_NAME = 'searchMessagesFilterMissedCall';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): SearchMessagesFilterFailedToSend
+    public static function fromArray(array $array): SearchMessagesFilterMissedCall
     {
         return new static();
     }

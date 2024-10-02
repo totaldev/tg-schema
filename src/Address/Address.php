@@ -4,43 +4,74 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Address;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes an address.
+ * Describes an address
  */
 class Address extends TdObject
 {
     public const TYPE_NAME = 'address';
 
+    /**
+     * A two-letter ISO 3166-1 alpha-2 country code
+     *
+     * @var string
+     */
+    protected string $countryCode;
+
+    /**
+     * State, if applicable
+     *
+     * @var string
+     */
+    protected string $state;
+
+    /**
+     * City
+     *
+     * @var string
+     */
+    protected string $city;
+
+    /**
+     * First line of the address
+     *
+     * @var string
+     */
+    protected string $streetLine1;
+
+    /**
+     * Second line of the address
+     *
+     * @var string
+     */
+    protected string $streetLine2;
+
+    /**
+     * Address postal code
+     *
+     * @var string
+     */
+    protected string $postalCode;
+
     public function __construct(
-        /**
-         * A two-letter ISO 3166-1 alpha-2 country code.
-         */
-        protected string $countryCode,
-        /**
-         * State, if applicable.
-         */
-        protected string $state,
-        /**
-         * City.
-         */
-        protected string $city,
-        /**
-         * First line of the address.
-         */
-        protected string $streetLine1,
-        /**
-         * Second line of the address.
-         */
-        protected string $streetLine2,
-        /**
-         * Address postal code.
-         */
-        protected string $postalCode,
-    ) {}
+        string $countryCode,
+        string $state,
+        string $city,
+        string $streetLine1,
+        string $streetLine2,
+        string $postalCode
+    ) {
+        $this->countryCode = $countryCode;
+        $this->state = $state;
+        $this->city = $city;
+        $this->streetLine1 = $streetLine1;
+        $this->streetLine2 = $streetLine2;
+        $this->postalCode = $postalCode;
+    }
 
     public static function fromArray(array $array): Address
     {
@@ -54,9 +85,17 @@ class Address extends TdObject
         );
     }
 
-    public function getCity(): string
+    public function typeSerialize(): array
     {
-        return $this->city;
+        return [
+            '@type' => static::TYPE_NAME,
+            'country_code' => $this->countryCode,
+            'state' => $this->state,
+            'city' => $this->city,
+            'street_line1' => $this->streetLine1,
+            'street_line2' => $this->streetLine2,
+            'postal_code' => $this->postalCode,
+        ];
     }
 
     public function getCountryCode(): string
@@ -64,14 +103,14 @@ class Address extends TdObject
         return $this->countryCode;
     }
 
-    public function getPostalCode(): string
-    {
-        return $this->postalCode;
-    }
-
     public function getState(): string
     {
         return $this->state;
+    }
+
+    public function getCity(): string
+    {
+        return $this->city;
     }
 
     public function getStreetLine1(): string
@@ -84,16 +123,8 @@ class Address extends TdObject
         return $this->streetLine2;
     }
 
-    public function typeSerialize(): array
+    public function getPostalCode(): string
     {
-        return [
-            '@type'        => static::TYPE_NAME,
-            'country_code' => $this->countryCode,
-            'state'        => $this->state,
-            'city'         => $this->city,
-            'street_line1' => $this->streetLine1,
-            'street_line2' => $this->streetLine2,
-            'postal_code'  => $this->postalCode,
-        ];
+        return $this->postalCode;
     }
 }

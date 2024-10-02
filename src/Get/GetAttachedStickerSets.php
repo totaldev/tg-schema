@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have
- * attached sticker sets.
+ * Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
  */
 class GetAttachedStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'getAttachedStickerSets';
 
-    public function __construct(
-        /**
-         * File identifier.
-         */
-        protected int $fileId
-    ) {}
+    /**
+     * File identifier
+     *
+     * @var int
+     */
+    protected int $fileId;
+
+    public function __construct(int $fileId)
+    {
+        $this->fileId = $fileId;
+    }
 
     public static function fromArray(array $array): GetAttachedStickerSets
     {
@@ -30,16 +34,16 @@ class GetAttachedStickerSets extends TdFunction
         );
     }
 
-    public function getFileId(): int
-    {
-        return $this->fileId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_id' => $this->fileId,
         ];
+    }
+
+    public function getFileId(): int
+    {
+        return $this->fileId;
     }
 }

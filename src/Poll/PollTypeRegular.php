@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Poll;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A regular poll.
+ * A regular poll
  */
 class PollTypeRegular extends PollType
 {
     public const TYPE_NAME = 'pollTypeRegular';
 
-    public function __construct(
-        /**
-         * True, if multiple answer options can be chosen simultaneously.
-         */
-        protected bool $allowMultipleAnswers
-    ) {
+    /**
+     * True, if multiple answer options can be chosen simultaneously
+     *
+     * @var bool
+     */
+    protected bool $allowMultipleAnswers;
+
+    public function __construct(bool $allowMultipleAnswers)
+    {
         parent::__construct();
+
+        $this->allowMultipleAnswers = $allowMultipleAnswers;
     }
 
     public static function fromArray(array $array): PollTypeRegular
@@ -29,16 +36,16 @@ class PollTypeRegular extends PollType
         );
     }
 
-    public function getAllowMultipleAnswers(): bool
-    {
-        return $this->allowMultipleAnswers;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'allow_multiple_answers' => $this->allowMultipleAnswers,
         ];
+    }
+
+    public function getAllowMultipleAnswers(): bool
+    {
+        return $this->allowMultipleAnswers;
     }
 }

@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Edit;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Reply\ReplyMarkup;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Edits the reply markup of an inline message sent via a bot; for bots only.
+ * Edits the reply markup of an inline message sent via a bot; for bots only
  */
 class EditInlineMessageReplyMarkup extends TdFunction
 {
     public const TYPE_NAME = 'editInlineMessageReplyMarkup';
 
-    public function __construct(
-        /**
-         * Inline message identifier.
-         */
-        protected string      $inlineMessageId,
-        /**
-         * The new message reply markup; pass null if none.
-         */
-        protected ReplyMarkup $replyMarkup,
-    ) {}
+    /**
+     * Inline message identifier
+     *
+     * @var string
+     */
+    protected string $inlineMessageId;
+
+    /**
+     * The new message reply markup; pass null if none
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    public function __construct(string $inlineMessageId, ReplyMarkup $replyMarkup)
+    {
+        $this->inlineMessageId = $inlineMessageId;
+        $this->replyMarkup = $replyMarkup;
+    }
 
     public static function fromArray(array $array): EditInlineMessageReplyMarkup
     {
@@ -34,6 +41,15 @@ class EditInlineMessageReplyMarkup extends TdFunction
             $array['inline_message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_message_id' => $this->inlineMessageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+        ];
     }
 
     public function getInlineMessageId(): string
@@ -44,14 +60,5 @@ class EditInlineMessageReplyMarkup extends TdFunction
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'             => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup'      => $this->replyMarkup->typeSerialize(),
-        ];
     }
 }

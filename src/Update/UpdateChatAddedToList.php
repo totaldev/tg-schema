@@ -4,37 +4,48 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatList;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TdSchema;
 
 /**
- * A chat was added to a chat list.
+ * Moves a chat to a different chat list. Current chat list of the chat must ne non-null.
  */
-class UpdateChatAddedToList extends Update
+class SetChatChatList extends TdFunction
 {
-    public const TYPE_NAME = 'updateChatAddedToList';
+    public const TYPE_NAME = 'setChatChatList';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int      $chatId,
-        /**
-         * The chat list to which the chat was added.
-         */
-        protected ChatList $chatList,
-    ) {
-        parent::__construct();
+    /**
+     * Chat identifier.
+     */
+    protected int $chatId;
+
+    /**
+     * New chat list of the chat.
+     */
+    protected ChatList $chatList;
+
+    public function __construct(int $chatId, ChatList $chatList)
+    {
+        $this->chatId   = $chatId;
+        $this->chatList = $chatList;
     }
 
-    public static function fromArray(array $array): UpdateChatAddedToList
+    public static function fromArray(array $array): SetChatChatList
     {
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['chat_list']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'     => static::TYPE_NAME,
+            'chat_id'   => $this->chatId,
+            'chat_list' => $this->chatList->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -45,14 +56,5 @@ class UpdateChatAddedToList extends Update
     public function getChatList(): ChatList
     {
         return $this->chatList;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'chat_id'   => $this->chatId,
-            'chat_list' => $this->chatList->typeSerialize(),
-        ];
     }
 }

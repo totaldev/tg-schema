@@ -4,36 +4,52 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Notification;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about a notification.
+ * Contains information about a notification
  */
 class Notification extends TdObject
 {
     public const TYPE_NAME = 'notification';
 
-    public function __construct(
-        /**
-         * Unique persistent identifier of this notification.
-         */
-        protected int              $id,
-        /**
-         * Notification date.
-         */
-        protected int              $date,
-        /**
-         * True, if the notification was explicitly sent without sound.
-         */
-        protected bool             $isSilent,
-        /**
-         * Notification type.
-         */
-        protected NotificationType $type,
-    ) {}
+    /**
+     * Unique persistent identifier of this notification
+     *
+     * @var int
+     */
+    protected int $id;
+
+    /**
+     * Notification date
+     *
+     * @var int
+     */
+    protected int $date;
+
+    /**
+     * True, if the notification was explicitly sent without sound
+     *
+     * @var bool
+     */
+    protected bool $isSilent;
+
+    /**
+     * Notification type
+     *
+     * @var NotificationType
+     */
+    protected NotificationType $type;
+
+    public function __construct(int $id, int $date, bool $isSilent, NotificationType $type)
+    {
+        $this->id = $id;
+        $this->date = $date;
+        $this->isSilent = $isSilent;
+        $this->type = $type;
+    }
 
     public static function fromArray(array $array): Notification
     {
@@ -45,14 +61,25 @@ class Notification extends TdObject
         );
     }
 
-    public function getDate(): int
+    public function typeSerialize(): array
     {
-        return $this->date;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'date' => $this->date,
+            'is_silent' => $this->isSilent,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
     }
 
     public function getIsSilent(): bool
@@ -63,16 +90,5 @@ class Notification extends TdObject
     public function getType(): NotificationType
     {
         return $this->type;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
-            'date'      => $this->date,
-            'is_silent' => $this->isSilent,
-            'type'      => $this->type->typeSerialize(),
-        ];
     }
 }

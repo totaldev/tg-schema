@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A background from the server.
+ * A background from the server
  */
 class InputBackgroundRemote extends InputBackground
 {
     public const TYPE_NAME = 'inputBackgroundRemote';
 
-    public function __construct(
-        /**
-         * The background identifier.
-         */
-        protected int $backgroundId
-    ) {
+    /**
+     * The background identifier
+     *
+     * @var int
+     */
+    protected int $backgroundId;
+
+    public function __construct(int $backgroundId)
+    {
         parent::__construct();
+
+        $this->backgroundId = $backgroundId;
     }
 
     public static function fromArray(array $array): InputBackgroundRemote
@@ -29,16 +36,16 @@ class InputBackgroundRemote extends InputBackground
         );
     }
 
-    public function getBackgroundId(): int
-    {
-        return $this->backgroundId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'background_id' => $this->backgroundId,
         ];
+    }
+
+    public function getBackgroundId(): int
+    {
+        return $this->backgroundId;
     }
 }

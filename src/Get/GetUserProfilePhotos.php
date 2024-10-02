@@ -4,31 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the profile photos of a user. Personal and public photo aren't returned.
+ * Returns the profile photos of a user. Personal and public photo aren't returned
  */
 class GetUserProfilePhotos extends TdFunction
 {
     public const TYPE_NAME = 'getUserProfilePhotos';
 
-    public function __construct(
-        /**
-         * User identifier.
-         */
-        protected int $userId,
-        /**
-         * The number of photos to skip; must be non-negative.
-         */
-        protected int $offset,
-        /**
-         * The maximum number of photos to be returned; up to 100.
-         */
-        protected int $limit,
-    ) {}
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * The number of photos to skip; must be non-negative
+     *
+     * @var int
+     */
+    protected int $offset;
+
+    /**
+     * The maximum number of photos to be returned; up to 100
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    public function __construct(int $userId, int $offset, int $limit)
+    {
+        $this->userId = $userId;
+        $this->offset = $offset;
+        $this->limit = $limit;
+    }
 
     public static function fromArray(array $array): GetUserProfilePhotos
     {
@@ -39,14 +52,14 @@ class GetUserProfilePhotos extends TdFunction
         );
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'offset' => $this->offset,
+            'limit' => $this->limit,
+        ];
     }
 
     public function getUserId(): int
@@ -54,13 +67,13 @@ class GetUserProfilePhotos extends TdFunction
         return $this->userId;
     }
 
-    public function typeSerialize(): array
+    public function getOffset(): int
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'offset'  => $this->offset,
-            'limit'   => $this->limit,
-        ];
+        return $this->offset;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
     }
 }

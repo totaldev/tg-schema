@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user is uploading a document.
+ * The user is uploading a document
  */
 class ChatActionUploadingDocument extends ChatAction
 {
     public const TYPE_NAME = 'chatActionUploadingDocument';
 
-    public function __construct(
-        /**
-         * Upload progress, as a percentage.
-         */
-        protected int $progress
-    ) {
+    /**
+     * Upload progress, as a percentage
+     *
+     * @var int
+     */
+    protected int $progress;
+
+    public function __construct(int $progress)
+    {
         parent::__construct();
+
+        $this->progress = $progress;
     }
 
     public static function fromArray(array $array): ChatActionUploadingDocument
@@ -29,16 +36,16 @@ class ChatActionUploadingDocument extends ChatAction
         );
     }
 
-    public function getProgress(): int
-    {
-        return $this->progress;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'progress' => $this->progress,
         ];
+    }
+
+    public function getProgress(): int
+    {
+        return $this->progress;
     }
 }

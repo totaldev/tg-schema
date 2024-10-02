@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The video was distorted.
+ * The user was online recently
  */
-class CallProblemDistortedVideo extends CallProblem
+class UserStatusRecently extends UserStatus
 {
-    public const TYPE_NAME = 'callProblemDistortedVideo';
+    public const TYPE_NAME = 'userStatusRecently';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): CallProblemDistortedVideo
+    public static function fromArray(array $array): UserStatusRecently
     {
         return new static();
     }

@@ -4,30 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Device;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A token for web Push API.
+ * A token for web Push API
  */
 class DeviceTokenWebPush extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenWebPush';
 
-    public function __construct(
-        /**
-         * Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device.
-         */
-        protected string $endpoint,
-        /**
-         * Base64url-encoded P-256 elliptic curve Diffie-Hellman public key.
-         */
-        protected string $p256dhBase64url,
-        /**
-         * Base64url-encoded authentication secret.
-         */
-        protected string $authBase64url,
-    ) {
+    /**
+     * Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
+     *
+     * @var string
+     */
+    protected string $endpoint;
+
+    /**
+     * Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
+     *
+     * @var string
+     */
+    protected string $p256dhBase64url;
+
+    /**
+     * Base64url-encoded authentication secret
+     *
+     * @var string
+     */
+    protected string $authBase64url;
+
+    public function __construct(string $endpoint, string $p256dhBase64url, string $authBase64url)
+    {
         parent::__construct();
+
+        $this->endpoint = $endpoint;
+        $this->p256dhBase64url = $p256dhBase64url;
+        $this->authBase64url = $authBase64url;
     }
 
     public static function fromArray(array $array): DeviceTokenWebPush
@@ -39,9 +54,14 @@ class DeviceTokenWebPush extends DeviceToken
         );
     }
 
-    public function getAuthBase64url(): string
+    public function typeSerialize(): array
     {
-        return $this->authBase64url;
+        return [
+            '@type' => static::TYPE_NAME,
+            'endpoint' => $this->endpoint,
+            'p256dh_base64url' => $this->p256dhBase64url,
+            'auth_base64url' => $this->authBase64url,
+        ];
     }
 
     public function getEndpoint(): string
@@ -54,13 +74,8 @@ class DeviceTokenWebPush extends DeviceToken
         return $this->p256dhBase64url;
     }
 
-    public function typeSerialize(): array
+    public function getAuthBase64url(): string
     {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'endpoint'         => $this->endpoint,
-            'p256dh_base64url' => $this->p256dhBase64url,
-            'auth_base64url'   => $this->authBase64url,
-        ];
+        return $this->authBase64url;
     }
 }

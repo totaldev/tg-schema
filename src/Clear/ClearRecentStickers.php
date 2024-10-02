@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Clear;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Clears the list of recently used stickers.
+ * Clears the list of recently used stickers
  */
 class ClearRecentStickers extends TdFunction
 {
     public const TYPE_NAME = 'clearRecentStickers';
 
-    public function __construct(
-        /**
-         * Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers.
-         */
-        protected bool $isAttached
-    ) {}
+    /**
+     * Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
+     *
+     * @var bool
+     */
+    protected bool $isAttached;
+
+    public function __construct(bool $isAttached)
+    {
+        $this->isAttached = $isAttached;
+    }
 
     public static function fromArray(array $array): ClearRecentStickers
     {
@@ -29,16 +34,16 @@ class ClearRecentStickers extends TdFunction
         );
     }
 
-    public function getIsAttached(): bool
-    {
-        return $this->isAttached;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'is_attached' => $this->isAttached,
         ];
+    }
+
+    public function getIsAttached(): bool
+    {
+        return $this->isAttached;
     }
 }

@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes application-specific data associated with a chat.
+ * Changes application-specific data associated with a chat
  */
 class SetChatClientData extends TdFunction
 {
     public const TYPE_NAME = 'setChatClientData';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int    $chatId,
-        /**
-         * New value of client_data.
-         */
-        protected string $clientData,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * New value of client_data
+     *
+     * @var string
+     */
+    protected string $clientData;
+
+    public function __construct(int $chatId, string $clientData)
+    {
+        $this->chatId = $chatId;
+        $this->clientData = $clientData;
+    }
 
     public static function fromArray(array $array): SetChatClientData
     {
@@ -32,6 +41,15 @@ class SetChatClientData extends TdFunction
             $array['chat_id'],
             $array['client_data'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'client_data' => $this->clientData,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class SetChatClientData extends TdFunction
     public function getClientData(): string
     {
         return $this->clientData;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'client_data' => $this->clientData,
-        ];
     }
 }

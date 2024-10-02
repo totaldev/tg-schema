@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Supergroup;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Specifies the kind of chat members to return in getSupergroupMembers.
+ * Specifies the kind of chat members to return in getSupergroupMembers
  */
 class SupergroupMembersFilter extends TdObject
 {
     public const TYPE_NAME = 'SupergroupMembersFilter';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): SupergroupMembersFilter
     {

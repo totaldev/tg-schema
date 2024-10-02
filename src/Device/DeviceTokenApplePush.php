@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Device;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A token for Apple Push Notification service.
+ * A token for Apple Push Notification service
  */
 class DeviceTokenApplePush extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenApplePush';
 
-    public function __construct(
-        /**
-         * Device token; may be empty to deregister a device.
-         */
-        protected string $deviceToken,
-        /**
-         * True, if App Sandbox is enabled.
-         */
-        protected bool   $isAppSandbox,
-    ) {
+    /**
+     * Device token; may be empty to deregister a device
+     *
+     * @var string
+     */
+    protected string $deviceToken;
+
+    /**
+     * True, if App Sandbox is enabled
+     *
+     * @var bool
+     */
+    protected bool $isAppSandbox;
+
+    public function __construct(string $deviceToken, bool $isAppSandbox)
+    {
         parent::__construct();
+
+        $this->deviceToken = $deviceToken;
+        $this->isAppSandbox = $isAppSandbox;
     }
 
     public static function fromArray(array $array): DeviceTokenApplePush
@@ -34,6 +45,15 @@ class DeviceTokenApplePush extends DeviceToken
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'device_token' => $this->deviceToken,
+            'is_app_sandbox' => $this->isAppSandbox,
+        ];
+    }
+
     public function getDeviceToken(): string
     {
         return $this->deviceToken;
@@ -42,14 +62,5 @@ class DeviceTokenApplePush extends DeviceToken
     public function getIsAppSandbox(): bool
     {
         return $this->isAppSandbox;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'          => static::TYPE_NAME,
-            'device_token'   => $this->deviceToken,
-            'is_app_sandbox' => $this->isAppSandbox,
-        ];
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Send;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Sends a code to verify an email address to be added to a user's Telegram Passport.
+ * Sends a code to verify an email address to be added to a user's Telegram Passport
  */
 class SendEmailAddressVerificationCode extends TdFunction
 {
     public const TYPE_NAME = 'sendEmailAddressVerificationCode';
 
-    public function __construct(
-        /**
-         * Email address.
-         */
-        protected string $emailAddress
-    ) {}
+    /**
+     * Email address
+     *
+     * @var string
+     */
+    protected string $emailAddress;
+
+    public function __construct(string $emailAddress)
+    {
+        $this->emailAddress = $emailAddress;
+    }
 
     public static function fromArray(array $array): SendEmailAddressVerificationCode
     {
@@ -29,16 +34,16 @@ class SendEmailAddressVerificationCode extends TdFunction
         );
     }
 
-    public function getEmailAddress(): string
-    {
-        return $this->emailAddress;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
+    }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
     }
 }

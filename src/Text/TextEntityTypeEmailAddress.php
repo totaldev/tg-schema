@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An email address.
+ * An email address
  */
 class TextEntityTypeEmailAddress extends TextEntityType
 {

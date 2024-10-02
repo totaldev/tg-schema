@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Payment;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the result of a payment request.
+ * Contains the result of a payment request
  */
 class PaymentResult extends TdObject
 {
     public const TYPE_NAME = 'paymentResult';
 
-    public function __construct(
-        /**
-         * True, if the payment request was successful; otherwise, the verification_url will be non-empty.
-         */
-        protected bool   $success,
-        /**
-         * URL for additional payment credentials verification.
-         */
-        protected string $verificationUrl,
-    ) {}
+    /**
+     * True, if the payment request was successful; otherwise, the verification_url will be non-empty
+     *
+     * @var bool
+     */
+    protected bool $success;
+
+    /**
+     * URL for additional payment credentials verification
+     *
+     * @var string
+     */
+    protected string $verificationUrl;
+
+    public function __construct(bool $success, string $verificationUrl)
+    {
+        $this->success = $success;
+        $this->verificationUrl = $verificationUrl;
+    }
 
     public static function fromArray(array $array): PaymentResult
     {
@@ -32,6 +41,15 @@ class PaymentResult extends TdObject
             $array['success'],
             $array['verification_url'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'success' => $this->success,
+            'verification_url' => $this->verificationUrl,
+        ];
     }
 
     public function getSuccess(): bool
@@ -42,14 +60,5 @@ class PaymentResult extends TdObject
     public function getVerificationUrl(): string
     {
         return $this->verificationUrl;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'success'          => $this->success,
-            'verification_url' => $this->verificationUrl,
-        ];
     }
 }

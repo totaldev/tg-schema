@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Authorization;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the current authorization state of the TDLib client.
+ * Represents the current authorization state of the TDLib client
  */
 class AuthorizationState extends TdObject
 {
     public const TYPE_NAME = 'AuthorizationState';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): AuthorizationState
     {

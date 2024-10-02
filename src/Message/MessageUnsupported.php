@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A message content that is not supported in the current TDLib version.
+ * A message content that is not supported in the current TDLib version
  */
 class MessageUnsupported extends MessageContent
 {

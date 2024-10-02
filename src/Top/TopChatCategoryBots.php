@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Top;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A category containing frequently used private chats with bot users.
+ * A category containing frequently used private chats with bot users
  */
 class TopChatCategoryBots extends TopChatCategory
 {

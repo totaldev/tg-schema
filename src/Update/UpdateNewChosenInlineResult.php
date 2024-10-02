@@ -4,67 +4,89 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * The user has chosen a result of an inline query; for bots only.
+ * The user has chosen a result of an inline query; for bots only
  */
 class UpdateNewChosenInlineResult extends Update
 {
     public const TYPE_NAME = 'updateNewChosenInlineResult';
 
+    /**
+     * Identifier of the user who sent the query
+     *
+     * @var int
+     */
+    protected int $senderUserId;
+
+    /**
+     * User location; may be null
+     *
+     * @var Location|null
+     */
+    protected ?Location $userLocation;
+
+    /**
+     * Text of the query
+     *
+     * @var string
+     */
+    protected string $query;
+
+    /**
+     * Identifier of the chosen result
+     *
+     * @var string
+     */
+    protected string $resultId;
+
+    /**
+     * Identifier of the sent inline message, if known
+     *
+     * @var string
+     */
+    protected string $inlineMessageId;
+
     public function __construct(
-        /**
-         * Identifier of the user who sent the query.
-         */
-        protected int       $senderUserId,
-        /**
-         * User location; may be null.
-         */
-        protected ?Location $userLocation,
-        /**
-         * Text of the query.
-         */
-        protected string    $query,
-        /**
-         * Identifier of the chosen result.
-         */
-        protected string    $resultId,
-        /**
-         * Identifier of the sent inline message, if known.
-         */
-        protected string    $inlineMessageId,
+        int $senderUserId,
+        ?Location $userLocation,
+        string $query,
+        string $resultId,
+        string $inlineMessageId
     ) {
         parent::__construct();
+
+        $this->senderUserId = $senderUserId;
+        $this->userLocation = $userLocation;
+        $this->query = $query;
+        $this->resultId = $resultId;
+        $this->inlineMessageId = $inlineMessageId;
     }
 
     public static function fromArray(array $array): UpdateNewChosenInlineResult
     {
         return new static(
             $array['sender_user_id'],
-            isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null,
+            (isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null),
             $array['query'],
             $array['result_id'],
             $array['inline_message_id'],
         );
     }
 
-    public function getInlineMessageId(): string
+    public function typeSerialize(): array
     {
-        return $this->inlineMessageId;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
-    public function getResultId(): string
-    {
-        return $this->resultId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sender_user_id' => $this->senderUserId,
+            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
+            'query' => $this->query,
+            'result_id' => $this->resultId,
+            'inline_message_id' => $this->inlineMessageId,
+        ];
     }
 
     public function getSenderUserId(): int
@@ -77,15 +99,18 @@ class UpdateNewChosenInlineResult extends Update
         return $this->userLocation;
     }
 
-    public function typeSerialize(): array
+    public function getQuery(): string
     {
-        return [
-            '@type'             => static::TYPE_NAME,
-            'sender_user_id'    => $this->senderUserId,
-            'user_location'     => (isset($this->userLocation) ? $this->userLocation : null),
-            'query'             => $this->query,
-            'result_id'         => $this->resultId,
-            'inline_message_id' => $this->inlineMessageId,
-        ];
+        return $this->query;
+    }
+
+    public function getResultId(): string
+    {
+        return $this->resultId;
+    }
+
+    public function getInlineMessageId(): string
+    {
+        return $this->inlineMessageId;
     }
 }

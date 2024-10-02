@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Personal\PersonalDocument;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element containing the user's temporary registration.
+ * A Telegram Passport element containing the user's temporary registration
  */
 class PassportElementTemporaryRegistration extends PassportElement
 {
     public const TYPE_NAME = 'passportElementTemporaryRegistration';
 
-    public function __construct(
-        /**
-         * Temporary registration.
-         */
-        protected PersonalDocument $temporaryRegistration
-    ) {
+    /**
+     * Temporary registration
+     *
+     * @var PersonalDocument
+     */
+    protected PersonalDocument $temporaryRegistration;
+
+    public function __construct(PersonalDocument $temporaryRegistration)
+    {
         parent::__construct();
+
+        $this->temporaryRegistration = $temporaryRegistration;
     }
 
     public static function fromArray(array $array): PassportElementTemporaryRegistration
@@ -32,16 +36,16 @@ class PassportElementTemporaryRegistration extends PassportElement
         );
     }
 
-    public function getTemporaryRegistration(): PersonalDocument
-    {
-        return $this->temporaryRegistration;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'temporary_registration' => $this->temporaryRegistration->typeSerialize(),
         ];
+    }
+
+    public function getTemporaryRegistration(): PersonalDocument
+    {
+        return $this->temporaryRegistration;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Http;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains an HTTP URL.
+ * Contains an HTTP URL
  */
 class HttpUrl extends TdObject
 {
     public const TYPE_NAME = 'httpUrl';
 
-    public function __construct(
-        /**
-         * The URL.
-         */
-        protected string $url
-    ) {}
+    /**
+     * The URL
+     *
+     * @var string
+     */
+    protected string $url;
+
+    public function __construct(string $url)
+    {
+        $this->url = $url;
+    }
 
     public static function fromArray(array $array): HttpUrl
     {
@@ -29,16 +34,16 @@ class HttpUrl extends TdObject
         );
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
+            'url' => $this->url,
         ];
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 }

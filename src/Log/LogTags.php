@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Log;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a list of available TDLib internal log tags.
+ * Contains a list of available TDLib internal log tags
  */
 class LogTags extends TdObject
 {
     public const TYPE_NAME = 'logTags';
 
-    public function __construct(
-        /**
-         * List of log tags.
-         *
-         * @var string[]
-         */
-        protected array $tags
-    ) {}
+    /**
+     * List of log tags
+     *
+     * @var string[]
+     */
+    protected array $tags;
+
+    public function __construct(array $tags)
+    {
+        $this->tags = $tags;
+    }
 
     public static function fromArray(array $array): LogTags
     {
@@ -31,16 +34,16 @@ class LogTags extends TdObject
         );
     }
 
-    public function getTags(): array
-    {
-        return $this->tags;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tags'  => $this->tags,
+            'tags' => $this->tags,
         ];
+    }
+
+    public function getTags(): array
+    {
+        return $this->tags;
     }
 }

@@ -4,26 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about saved Telegram Passport elements.
+ * Contains information about saved Telegram Passport elements
  */
 class PassportElements extends TdObject
 {
     public const TYPE_NAME = 'passportElements';
 
-    public function __construct(
-        /**
-         * Telegram Passport elements.
-         *
-         * @var PassportElement[]
-         */
-        protected array $elements
-    ) {}
+    /**
+     * Telegram Passport elements
+     *
+     * @var PassportElement[]
+     */
+    protected array $elements;
+
+    public function __construct(array $elements)
+    {
+        $this->elements = $elements;
+    }
 
     public static function fromArray(array $array): PassportElements
     {
@@ -32,16 +34,16 @@ class PassportElements extends TdObject
         );
     }
 
-    public function getElements(): array
-    {
-        return $this->elements;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->elements),
         ];
+    }
+
+    public function getElements(): array
+    {
+        return $this->elements;
     }
 }

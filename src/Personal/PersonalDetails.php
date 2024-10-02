@@ -4,61 +4,110 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Personal;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Date\Date;
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the user's personal details.
+ * Contains the user's personal details
  */
 class PersonalDetails extends TdObject
 {
     public const TYPE_NAME = 'personalDetails';
 
+    /**
+     * First name of the user written in English; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $firstName;
+
+    /**
+     * Middle name of the user written in English; 0-255 characters
+     *
+     * @var string
+     */
+    protected string $middleName;
+
+    /**
+     * Last name of the user written in English; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $lastName;
+
+    /**
+     * Native first name of the user; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeFirstName;
+
+    /**
+     * Native middle name of the user; 0-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeMiddleName;
+
+    /**
+     * Native last name of the user; 1-255 characters
+     *
+     * @var string
+     */
+    protected string $nativeLastName;
+
+    /**
+     * Birthdate of the user
+     *
+     * @var Date
+     */
+    protected Date $birthdate;
+
+    /**
+     * Gender of the user, "male" or "female"
+     *
+     * @var string
+     */
+    protected string $gender;
+
+    /**
+     * A two-letter ISO 3166-1 alpha-2 country code of the user's country
+     *
+     * @var string
+     */
+    protected string $countryCode;
+
+    /**
+     * A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
+     *
+     * @var string
+     */
+    protected string $residenceCountryCode;
+
     public function __construct(
-        /**
-         * First name of the user written in English; 1-255 characters.
-         */
-        protected string $firstName,
-        /**
-         * Middle name of the user written in English; 0-255 characters.
-         */
-        protected string $middleName,
-        /**
-         * Last name of the user written in English; 1-255 characters.
-         */
-        protected string $lastName,
-        /**
-         * Native first name of the user; 1-255 characters.
-         */
-        protected string $nativeFirstName,
-        /**
-         * Native middle name of the user; 0-255 characters.
-         */
-        protected string $nativeMiddleName,
-        /**
-         * Native last name of the user; 1-255 characters.
-         */
-        protected string $nativeLastName,
-        /**
-         * Birthdate of the user.
-         */
-        protected Date   $birthdate,
-        /**
-         * Gender of the user, "male" or "female".
-         */
-        protected string $gender,
-        /**
-         * A two-letter ISO 3166-1 alpha-2 country code of the user's country.
-         */
-        protected string $countryCode,
-        /**
-         * A two-letter ISO 3166-1 alpha-2 country code of the user's residence country.
-         */
-        protected string $residenceCountryCode,
-    ) {}
+        string $firstName,
+        string $middleName,
+        string $lastName,
+        string $nativeFirstName,
+        string $nativeMiddleName,
+        string $nativeLastName,
+        Date $birthdate,
+        string $gender,
+        string $countryCode,
+        string $residenceCountryCode
+    ) {
+        $this->firstName = $firstName;
+        $this->middleName = $middleName;
+        $this->lastName = $lastName;
+        $this->nativeFirstName = $nativeFirstName;
+        $this->nativeMiddleName = $nativeMiddleName;
+        $this->nativeLastName = $nativeLastName;
+        $this->birthdate = $birthdate;
+        $this->gender = $gender;
+        $this->countryCode = $countryCode;
+        $this->residenceCountryCode = $residenceCountryCode;
+    }
 
     public static function fromArray(array $array): PersonalDetails
     {
@@ -76,14 +125,21 @@ class PersonalDetails extends TdObject
         );
     }
 
-    public function getBirthdate(): Date
+    public function typeSerialize(): array
     {
-        return $this->birthdate;
-    }
-
-    public function getCountryCode(): string
-    {
-        return $this->countryCode;
+        return [
+            '@type' => static::TYPE_NAME,
+            'first_name' => $this->firstName,
+            'middle_name' => $this->middleName,
+            'last_name' => $this->lastName,
+            'native_first_name' => $this->nativeFirstName,
+            'native_middle_name' => $this->nativeMiddleName,
+            'native_last_name' => $this->nativeLastName,
+            'birthdate' => $this->birthdate->typeSerialize(),
+            'gender' => $this->gender,
+            'country_code' => $this->countryCode,
+            'residence_country_code' => $this->residenceCountryCode,
+        ];
     }
 
     public function getFirstName(): string
@@ -91,9 +147,9 @@ class PersonalDetails extends TdObject
         return $this->firstName;
     }
 
-    public function getGender(): string
+    public function getMiddleName(): string
     {
-        return $this->gender;
+        return $this->middleName;
     }
 
     public function getLastName(): string
@@ -101,19 +157,9 @@ class PersonalDetails extends TdObject
         return $this->lastName;
     }
 
-    public function getMiddleName(): string
-    {
-        return $this->middleName;
-    }
-
     public function getNativeFirstName(): string
     {
         return $this->nativeFirstName;
-    }
-
-    public function getNativeLastName(): string
-    {
-        return $this->nativeLastName;
     }
 
     public function getNativeMiddleName(): string
@@ -121,25 +167,28 @@ class PersonalDetails extends TdObject
         return $this->nativeMiddleName;
     }
 
+    public function getNativeLastName(): string
+    {
+        return $this->nativeLastName;
+    }
+
+    public function getBirthdate(): Date
+    {
+        return $this->birthdate;
+    }
+
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    public function getCountryCode(): string
+    {
+        return $this->countryCode;
+    }
+
     public function getResidenceCountryCode(): string
     {
         return $this->residenceCountryCode;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'                  => static::TYPE_NAME,
-            'first_name'             => $this->firstName,
-            'middle_name'            => $this->middleName,
-            'last_name'              => $this->lastName,
-            'native_first_name'      => $this->nativeFirstName,
-            'native_middle_name'     => $this->nativeMiddleName,
-            'native_last_name'       => $this->nativeLastName,
-            'birthdate'              => $this->birthdate->typeSerialize(),
-            'gender'                 => $this->gender,
-            'country_code'           => $this->countryCode,
-            'residence_country_code' => $this->residenceCountryCode,
-        ];
     }
 }

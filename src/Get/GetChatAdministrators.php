@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a list of administrators of the chat with their custom titles.
+ * Returns a list of administrators of the chat with their custom titles
  */
 class GetChatAdministrators extends TdFunction
 {
     public const TYPE_NAME = 'getChatAdministrators';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int $chatId
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(int $chatId)
+    {
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): GetChatAdministrators
     {
@@ -29,16 +34,16 @@ class GetChatAdministrators extends TdFunction
         );
     }
 
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 }

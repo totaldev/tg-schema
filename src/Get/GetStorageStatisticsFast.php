@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Quickly returns approximate storage usage statistics. Can be called before authorization.
+ * Quickly returns approximate storage usage statistics. Can be called before authorization
  */
 class GetStorageStatisticsFast extends TdFunction
 {
     public const TYPE_NAME = 'getStorageStatisticsFast';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetStorageStatisticsFast
     {

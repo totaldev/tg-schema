@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A text message.
+ * A text message
  */
 class PushMessageContentText extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentText';
 
-    public function __construct(
-        /**
-         * Message text.
-         */
-        protected string $text,
-        /**
-         * True, if the message is a pinned message with the specified content.
-         */
-        protected bool   $isPinned,
-    ) {
+    /**
+     * Message text
+     *
+     * @var string
+     */
+    protected string $text;
+
+    /**
+     * True, if the message is a pinned message with the specified content
+     *
+     * @var bool
+     */
+    protected bool $isPinned;
+
+    public function __construct(string $text, bool $isPinned)
+    {
         parent::__construct();
+
+        $this->text = $text;
+        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentText
@@ -34,9 +45,13 @@ class PushMessageContentText extends PushMessageContent
         );
     }
 
-    public function getIsPinned(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPinned;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'is_pinned' => $this->isPinned,
+        ];
     }
 
     public function getText(): string
@@ -44,12 +59,8 @@ class PushMessageContentText extends PushMessageContent
         return $this->text;
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'text'      => $this->text,
-            'is_pinned' => $this->isPinned,
-        ];
+        return $this->isPinned;
     }
 }

@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The list of attached files contains an error. The error is considered resolved when the file list changes.
+ * The list of attached files contains an error. The error is considered resolved when the file list changes
  */
 class InputPassportElementErrorSourceFiles extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceFiles';
 
-    public function __construct(
-        /**
-         * Current hashes of all attached files.
-         *
-         * @var string[]
-         */
-        protected array $fileHashes
-    ) {
+    /**
+     * Current hashes of all attached files
+     *
+     * @var string[]
+     */
+    protected array $fileHashes;
+
+    public function __construct(array $fileHashes)
+    {
         parent::__construct();
+
+        $this->fileHashes = $fileHashes;
     }
 
     public static function fromArray(array $array): InputPassportElementErrorSourceFiles
@@ -31,16 +36,16 @@ class InputPassportElementErrorSourceFiles extends InputPassportElementErrorSour
         );
     }
 
-    public function getFileHashes(): array
-    {
-        return $this->fileHashes;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_hashes' => $this->fileHashes,
         ];
+    }
+
+    public function getFileHashes(): array
+    {
+        return $this->fileHashes;
     }
 }

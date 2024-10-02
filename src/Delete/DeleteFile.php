@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Delete;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Deletes a file from the TDLib file cache.
+ * Deletes a file from the TDLib file cache
  */
 class DeleteFile extends TdFunction
 {
     public const TYPE_NAME = 'deleteFile';
 
-    public function __construct(
-        /**
-         * Identifier of the file to delete.
-         */
-        protected int $fileId
-    ) {}
+    /**
+     * Identifier of the file to delete
+     *
+     * @var int
+     */
+    protected int $fileId;
+
+    public function __construct(int $fileId)
+    {
+        $this->fileId = $fileId;
+    }
 
     public static function fromArray(array $array): DeleteFile
     {
@@ -29,16 +34,16 @@ class DeleteFile extends TdFunction
         );
     }
 
-    public function getFileId(): int
-    {
-        return $this->fileId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_id' => $this->fileId,
         ];
+    }
+
+    public function getFileId(): int
+    {
+        return $this->fileId;
     }
 }

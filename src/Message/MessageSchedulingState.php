@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about the time when a scheduled message will be sent.
+ * Contains information about the time when a scheduled message will be sent
  */
 class MessageSchedulingState extends TdObject
 {
     public const TYPE_NAME = 'MessageSchedulingState';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): MessageSchedulingState
     {

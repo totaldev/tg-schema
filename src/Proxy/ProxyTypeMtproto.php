@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Proxy;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An MTProto proxy server.
+ * An MTProto proxy server
  */
 class ProxyTypeMtproto extends ProxyType
 {
     public const TYPE_NAME = 'proxyTypeMtproto';
 
-    public function __construct(
-        /**
-         * The proxy's secret in hexadecimal encoding.
-         */
-        protected string $secret
-    ) {
+    /**
+     * The proxy's secret in hexadecimal encoding
+     *
+     * @var string
+     */
+    protected string $secret;
+
+    public function __construct(string $secret)
+    {
         parent::__construct();
+
+        $this->secret = $secret;
     }
 
     public static function fromArray(array $array): ProxyTypeMtproto
@@ -29,16 +36,16 @@ class ProxyTypeMtproto extends ProxyType
         );
     }
 
-    public function getSecret(): string
-    {
-        return $this->secret;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'secret' => $this->secret,
         ];
+    }
+
+    public function getSecret(): string
+    {
+        return $this->secret;
     }
 }

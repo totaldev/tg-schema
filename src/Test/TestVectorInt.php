@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a vector of numbers; for testing only.
+ * A simple object containing a vector of numbers; for testing only
  */
 class TestVectorInt extends TdObject
 {
     public const TYPE_NAME = 'testVectorInt';
 
-    public function __construct(
-        /**
-         * Vector of numbers.
-         *
-         * @var int[]
-         */
-        protected array $value
-    ) {}
+    /**
+     * Vector of numbers
+     *
+     * @var int[]
+     */
+    protected array $value;
+
+    public function __construct(array $value)
+    {
+        $this->value = $value;
+    }
 
     public static function fromArray(array $array): TestVectorInt
     {
@@ -31,16 +34,16 @@ class TestVectorInt extends TdObject
         );
     }
 
-    public function getValue(): array
-    {
-        return $this->value;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
+    }
+
+    public function getValue(): array
+    {
+        return $this->value;
     }
 }

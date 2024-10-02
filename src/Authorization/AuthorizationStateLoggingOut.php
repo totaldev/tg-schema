@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Authorization;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user is currently logging out.
+ * The user is currently logging out
  */
 class AuthorizationStateLoggingOut extends AuthorizationState
 {

@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A supergroup has been created from a basic group.
+ * A supergroup has been created from a basic group
  */
 class MessageChatUpgradeFrom extends MessageContent
 {
     public const TYPE_NAME = 'messageChatUpgradeFrom';
 
-    public function __construct(
-        /**
-         * Title of the newly created supergroup.
-         */
-        protected string $title,
-        /**
-         * The identifier of the original basic group.
-         */
-        protected int    $basicGroupId,
-    ) {
+    /**
+     * Title of the newly created supergroup
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * The identifier of the original basic group
+     *
+     * @var int
+     */
+    protected int $basicGroupId;
+
+    public function __construct(string $title, int $basicGroupId)
+    {
         parent::__construct();
+
+        $this->title = $title;
+        $this->basicGroupId = $basicGroupId;
     }
 
     public static function fromArray(array $array): MessageChatUpgradeFrom
@@ -34,9 +45,13 @@ class MessageChatUpgradeFrom extends MessageContent
         );
     }
 
-    public function getBasicGroupId(): int
+    public function typeSerialize(): array
     {
-        return $this->basicGroupId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'title' => $this->title,
+            'basic_group_id' => $this->basicGroupId,
+        ];
     }
 
     public function getTitle(): string
@@ -44,12 +59,8 @@ class MessageChatUpgradeFrom extends MessageContent
         return $this->title;
     }
 
-    public function typeSerialize(): array
+    public function getBasicGroupId(): int
     {
-        return [
-            '@type'          => static::TYPE_NAME,
-            'title'          => $this->title,
-            'basic_group_id' => $this->basicGroupId,
-        ];
+        return $this->basicGroupId;
     }
 }

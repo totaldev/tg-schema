@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns application config, provided by the server. Can be called before authorization.
+ * Returns application config, provided by the server. Can be called before authorization
  */
 class GetApplicationConfig extends TdFunction
 {
     public const TYPE_NAME = 'getApplicationConfig';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetApplicationConfig
     {

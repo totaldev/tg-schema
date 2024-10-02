@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A button that sends a callback query to a bot.
+ * A button that sends a callback query to a bot
  */
 class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeCallback';
 
-    public function __construct(
-        /**
-         * Data to be sent to the bot via a callback query.
-         */
-        protected string $data
-    ) {
+    /**
+     * Data to be sent to the bot via a callback query
+     *
+     * @var string
+     */
+    protected string $data;
+
+    public function __construct(string $data)
+    {
         parent::__construct();
+
+        $this->data = $data;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeCallback
@@ -29,16 +36,16 @@ class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
         );
     }
 
-    public function getData(): string
-    {
-        return $this->data;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data'  => $this->data,
+            'data' => $this->data,
         ];
+    }
+
+    public function getData(): string
+    {
+        return $this->data;
     }
 }

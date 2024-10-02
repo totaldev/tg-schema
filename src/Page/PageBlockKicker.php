@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Rich\RichText;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A kicker.
+ * A kicker
  */
 class PageBlockKicker extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockKicker';
 
-    public function __construct(
-        /**
-         * Kicker.
-         */
-        protected RichText $kicker
-    ) {
+    /**
+     * Kicker
+     *
+     * @var RichText
+     */
+    protected RichText $kicker;
+
+    public function __construct(RichText $kicker)
+    {
         parent::__construct();
+
+        $this->kicker = $kicker;
     }
 
     public static function fromArray(array $array): PageBlockKicker
@@ -32,16 +36,16 @@ class PageBlockKicker extends PageBlock
         );
     }
 
-    public function getKicker(): RichText
-    {
-        return $this->kicker;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'kicker' => $this->kicker->typeSerialize(),
         ];
+    }
+
+    public function getKicker(): RichText
+    {
+        return $this->kicker;
     }
 }

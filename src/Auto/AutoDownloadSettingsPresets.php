@@ -4,32 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Auto;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains auto-download settings presets for the current user.
+ * Contains auto-download settings presets for the current user
  */
 class AutoDownloadSettingsPresets extends TdObject
 {
     public const TYPE_NAME = 'autoDownloadSettingsPresets';
 
-    public function __construct(
-        /**
-         * Preset with lowest settings; supposed to be used by default when roaming.
-         */
-        protected AutoDownloadSettings $low,
-        /**
-         * Preset with medium settings; supposed to be used by default when using mobile data.
-         */
-        protected AutoDownloadSettings $medium,
-        /**
-         * Preset with highest settings; supposed to be used by default when connected on Wi-Fi.
-         */
-        protected AutoDownloadSettings $high,
-    ) {}
+    /**
+     * Preset with lowest settings; supposed to be used by default when roaming
+     *
+     * @var AutoDownloadSettings
+     */
+    protected AutoDownloadSettings $low;
+
+    /**
+     * Preset with medium settings; supposed to be used by default when using mobile data
+     *
+     * @var AutoDownloadSettings
+     */
+    protected AutoDownloadSettings $medium;
+
+    /**
+     * Preset with highest settings; supposed to be used by default when connected on Wi-Fi
+     *
+     * @var AutoDownloadSettings
+     */
+    protected AutoDownloadSettings $high;
+
+    public function __construct(AutoDownloadSettings $low, AutoDownloadSettings $medium, AutoDownloadSettings $high)
+    {
+        $this->low = $low;
+        $this->medium = $medium;
+        $this->high = $high;
+    }
 
     public static function fromArray(array $array): AutoDownloadSettingsPresets
     {
@@ -40,9 +52,14 @@ class AutoDownloadSettingsPresets extends TdObject
         );
     }
 
-    public function getHigh(): AutoDownloadSettings
+    public function typeSerialize(): array
     {
-        return $this->high;
+        return [
+            '@type' => static::TYPE_NAME,
+            'low' => $this->low->typeSerialize(),
+            'medium' => $this->medium->typeSerialize(),
+            'high' => $this->high->typeSerialize(),
+        ];
     }
 
     public function getLow(): AutoDownloadSettings
@@ -55,13 +72,8 @@ class AutoDownloadSettingsPresets extends TdObject
         return $this->medium;
     }
 
-    public function typeSerialize(): array
+    public function getHigh(): AutoDownloadSettings
     {
-        return [
-            '@type'  => static::TYPE_NAME,
-            'low'    => $this->low->typeSerialize(),
-            'medium' => $this->medium->typeSerialize(),
-            'high'   => $this->high->typeSerialize(),
-        ];
+        return $this->high;
     }
 }

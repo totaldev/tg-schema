@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Answer;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Answers a custom query; for bots only.
+ * Answers a custom query; for bots only
  */
 class AnswerCustomQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerCustomQuery';
 
-    public function __construct(
-        /**
-         * Identifier of a custom query.
-         */
-        protected int    $customQueryId,
-        /**
-         * JSON-serialized answer to the query.
-         */
-        protected string $data,
-    ) {}
+    /**
+     * Identifier of a custom query
+     *
+     * @var int
+     */
+    protected int $customQueryId;
+
+    /**
+     * JSON-serialized answer to the query
+     *
+     * @var string
+     */
+    protected string $data;
+
+    public function __construct(int $customQueryId, string $data)
+    {
+        $this->customQueryId = $customQueryId;
+        $this->data = $data;
+    }
 
     public static function fromArray(array $array): AnswerCustomQuery
     {
@@ -32,6 +41,15 @@ class AnswerCustomQuery extends TdFunction
             $array['custom_query_id'],
             $array['data'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'custom_query_id' => $this->customQueryId,
+            'data' => $this->data,
+        ];
     }
 
     public function getCustomQueryId(): int
@@ -42,14 +60,5 @@ class AnswerCustomQuery extends TdFunction
     public function getData(): string
     {
         return $this->data;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'           => static::TYPE_NAME,
-            'custom_query_id' => $this->customQueryId,
-            'data'            => $this->data,
-        ];
     }
 }

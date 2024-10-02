@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A hashtag text, beginning with "#".
+ * A hashtag text, beginning with "#"
  */
 class TextEntityTypeHashtag extends TextEntityType
 {

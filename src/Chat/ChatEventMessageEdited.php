@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\Message;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A message was edited.
+ * A message was edited
  */
 class ChatEventMessageEdited extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMessageEdited';
 
-    public function __construct(
-        /**
-         * The original message before the edit.
-         */
-        protected Message $oldMessage,
-        /**
-         * The message after it was edited.
-         */
-        protected Message $newMessage,
-    ) {
+    /**
+     * The original message before the edit
+     *
+     * @var Message
+     */
+    protected Message $oldMessage;
+
+    /**
+     * The message after it was edited
+     *
+     * @var Message
+     */
+    protected Message $newMessage;
+
+    public function __construct(Message $oldMessage, Message $newMessage)
+    {
         parent::__construct();
+
+        $this->oldMessage = $oldMessage;
+        $this->newMessage = $newMessage;
     }
 
     public static function fromArray(array $array): ChatEventMessageEdited
@@ -37,9 +45,13 @@ class ChatEventMessageEdited extends ChatEventAction
         );
     }
 
-    public function getNewMessage(): Message
+    public function typeSerialize(): array
     {
-        return $this->newMessage;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_message' => $this->oldMessage->typeSerialize(),
+            'new_message' => $this->newMessage->typeSerialize(),
+        ];
     }
 
     public function getOldMessage(): Message
@@ -47,12 +59,8 @@ class ChatEventMessageEdited extends ChatEventAction
         return $this->oldMessage;
     }
 
-    public function typeSerialize(): array
+    public function getNewMessage(): Message
     {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'old_message' => $this->oldMessage->typeSerialize(),
-            'new_message' => $this->newMessage->typeSerialize(),
-        ];
+        return $this->newMessage;
     }
 }

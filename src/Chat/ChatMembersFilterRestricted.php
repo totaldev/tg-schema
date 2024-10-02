@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup.
+ * Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
  */
 class ChatMembersFilterRestricted extends ChatMembersFilter
 {

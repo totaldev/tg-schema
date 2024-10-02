@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the bio of the current user.
+ * Changes the bio of the current user
  */
 class SetBio extends TdFunction
 {
     public const TYPE_NAME = 'setBio';
 
-    public function __construct(
-        /**
-         * The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds.
-         */
-        protected string $bio
-    ) {}
+    /**
+     * The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
+     *
+     * @var string
+     */
+    protected string $bio;
+
+    public function __construct(string $bio)
+    {
+        $this->bio = $bio;
+    }
 
     public static function fromArray(array $array): SetBio
     {
@@ -29,16 +34,16 @@ class SetBio extends TdFunction
         );
     }
 
-    public function getBio(): string
-    {
-        return $this->bio;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'bio'   => $this->bio,
+            'bio' => $this->bio,
         ];
+    }
+
+    public function getBio(): string
+    {
+        return $this->bio;
     }
 }

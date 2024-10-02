@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization.
+ * Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
  */
 class GetProxyLink extends TdFunction
 {
     public const TYPE_NAME = 'getProxyLink';
 
-    public function __construct(
-        /**
-         * Proxy identifier.
-         */
-        protected int $proxyId
-    ) {}
+    /**
+     * Proxy identifier
+     *
+     * @var int
+     */
+    protected int $proxyId;
+
+    public function __construct(int $proxyId)
+    {
+        $this->proxyId = $proxyId;
+    }
 
     public static function fromArray(array $array): GetProxyLink
     {
@@ -29,16 +34,16 @@ class GetProxyLink extends TdFunction
         );
     }
 
-    public function getProxyId(): int
-    {
-        return $this->proxyId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
         ];
+    }
+
+    public function getProxyId(): int
+    {
+        return $this->proxyId;
     }
 }

@@ -4,42 +4,54 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Video\VideoNote;
+namespace Totaldev\TgSchema;
 
 /**
- * A video note message.
+ * A video note message
  */
 class PushMessageContentVideoNote extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentVideoNote';
 
-    public function __construct(
-        /**
-         * Message content; may be null.
-         */
-        protected ?VideoNote $videoNote,
-        /**
-         * True, if the message is a pinned message with the specified content.
-         */
-        protected bool       $isPinned,
-    ) {
+    /**
+     * Message content; may be null
+     *
+     * @var VideoNote|null
+     */
+    protected ?VideoNote $videoNote;
+
+    /**
+     * True, if the message is a pinned message with the specified content
+     *
+     * @var bool
+     */
+    protected bool $isPinned;
+
+    public function __construct(?VideoNote $videoNote, bool $isPinned)
+    {
         parent::__construct();
+
+        $this->videoNote = $videoNote;
+        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentVideoNote
     {
         return new static(
-            isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null,
+            (isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null),
             $array['is_pinned'],
         );
     }
 
-    public function getIsPinned(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPinned;
+        return [
+            '@type' => static::TYPE_NAME,
+            'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
+            'is_pinned' => $this->isPinned,
+        ];
     }
 
     public function getVideoNote(): ?VideoNote
@@ -47,12 +59,8 @@ class PushMessageContentVideoNote extends PushMessageContent
         return $this->videoNote;
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
-            'is_pinned'  => $this->isPinned,
-        ];
+        return $this->isPinned;
     }
 }

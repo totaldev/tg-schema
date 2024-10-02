@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A text description shown instead of a raw URL.
+ * A text description shown instead of a raw URL
  */
 class TextEntityTypeTextUrl extends TextEntityType
 {
     public const TYPE_NAME = 'textEntityTypeTextUrl';
 
-    public function __construct(
-        /**
-         * HTTP or tg:// URL to be opened when the link is clicked.
-         */
-        protected string $url
-    ) {
+    /**
+     * HTTP or tg:// URL to be opened when the link is clicked
+     *
+     * @var string
+     */
+    protected string $url;
+
+    public function __construct(string $url)
+    {
         parent::__construct();
+
+        $this->url = $url;
     }
 
     public static function fromArray(array $array): TextEntityTypeTextUrl
@@ -29,16 +36,16 @@ class TextEntityTypeTextUrl extends TextEntityType
         );
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url'   => $this->url,
+            'url' => $this->url,
         ];
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
     }
 }

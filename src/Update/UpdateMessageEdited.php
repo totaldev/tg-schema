@@ -4,37 +4,53 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Reply\ReplyMarkup;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A message was edited. Changes in the message content will come in a separate updateMessageContent.
+ * A message was edited. Changes in the message content will come in a separate updateMessageContent
  */
 class UpdateMessageEdited extends Update
 {
     public const TYPE_NAME = 'updateMessageEdited';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int          $chatId,
-        /**
-         * Message identifier.
-         */
-        protected int          $messageId,
-        /**
-         * Point in time (Unix timestamp) when the message was edited.
-         */
-        protected int          $editDate,
-        /**
-         * New message reply markup; may be null.
-         */
-        protected ?ReplyMarkup $replyMarkup,
-    ) {
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * Point in time (Unix timestamp) when the message was edited
+     *
+     * @var int
+     */
+    protected int $editDate;
+
+    /**
+     * New message reply markup; may be null
+     *
+     * @var ReplyMarkup|null
+     */
+    protected ?ReplyMarkup $replyMarkup;
+
+    public function __construct(int $chatId, int $messageId, int $editDate, ?ReplyMarkup $replyMarkup)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->editDate = $editDate;
+        $this->replyMarkup = $replyMarkup;
     }
 
     public static function fromArray(array $array): UpdateMessageEdited
@@ -43,8 +59,19 @@ class UpdateMessageEdited extends Update
             $array['chat_id'],
             $array['message_id'],
             $array['edit_date'],
-            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'edit_date' => $this->editDate,
+            'reply_markup' => (isset($this->replyMarkup) ? $this->replyMarkup : null),
+        ];
     }
 
     public function getChatId(): int
@@ -52,29 +79,18 @@ class UpdateMessageEdited extends Update
         return $this->chatId;
     }
 
-    public function getEditDate(): int
-    {
-        return $this->editDate;
-    }
-
     public function getMessageId(): int
     {
         return $this->messageId;
     }
 
+    public function getEditDate(): int
+    {
+        return $this->editDate;
+    }
+
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'        => static::TYPE_NAME,
-            'chat_id'      => $this->chatId,
-            'message_id'   => $this->messageId,
-            'edit_date'    => $this->editDate,
-            'reply_markup' => (isset($this->replyMarkup) ? $this->replyMarkup : null),
-        ];
     }
 }

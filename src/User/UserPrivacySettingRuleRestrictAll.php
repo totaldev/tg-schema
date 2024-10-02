@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A rule to restrict all users from doing something.
+ * A rule to restrict all users from doing something
  */
 class UserPrivacySettingRuleRestrictAll extends UserPrivacySettingRule
 {

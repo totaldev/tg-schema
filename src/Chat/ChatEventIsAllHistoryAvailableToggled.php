@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The is_all_history_available setting of a supergroup was toggled.
+ * The is_all_history_available setting of a supergroup was toggled
  */
 class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventIsAllHistoryAvailableToggled';
 
-    public function __construct(
-        /**
-         * New value of is_all_history_available.
-         */
-        protected bool $isAllHistoryAvailable
-    ) {
+    /**
+     * New value of is_all_history_available
+     *
+     * @var bool
+     */
+    protected bool $isAllHistoryAvailable;
+
+    public function __construct(bool $isAllHistoryAvailable)
+    {
         parent::__construct();
+
+        $this->isAllHistoryAvailable = $isAllHistoryAvailable;
     }
 
     public static function fromArray(array $array): ChatEventIsAllHistoryAvailableToggled
@@ -29,16 +36,16 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
         );
     }
 
-    public function getIsAllHistoryAvailable(): bool
-    {
-        return $this->isAllHistoryAvailable;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'                    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'is_all_history_available' => $this->isAllHistoryAvailable,
         ];
+    }
+
+    public function getIsAllHistoryAvailable(): bool
+    {
+        return $this->isAllHistoryAvailable;
     }
 }

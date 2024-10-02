@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Ok;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * An object of this type is returned on a successful function call for certain functions.
+ * An object of this type is returned on a successful function call for certain functions
  */
 class Ok extends TdObject
 {
     public const TYPE_NAME = 'ok';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): Ok
     {

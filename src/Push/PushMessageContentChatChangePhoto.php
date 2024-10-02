@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A chat photo was edited.
+ * A chat photo was edited
  */
 class PushMessageContentChatChangePhoto extends PushMessageContent
 {

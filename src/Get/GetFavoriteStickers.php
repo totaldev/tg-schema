@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns favorite stickers.
+ * Returns favorite stickers
  */
 class GetFavoriteStickers extends TdFunction
 {
     public const TYPE_NAME = 'getFavoriteStickers';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetFavoriteStickers
     {

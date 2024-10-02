@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the last time the user was online.
+ * Describes the last time the user was online
  */
 class UserStatus extends TdObject
 {
     public const TYPE_NAME = 'UserStatus';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): UserStatus
     {

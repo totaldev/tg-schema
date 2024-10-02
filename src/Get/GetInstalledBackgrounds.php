@@ -4,41 +4,46 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns backgrounds installed by the user.
+ * Returns backgrounds installed by the user
  */
-class GetInstalledBackgrounds extends TdFunction
+class GetBackgrounds extends TdFunction
 {
-    public const TYPE_NAME = 'getInstalledBackgrounds';
+    public const TYPE_NAME = 'getBackgrounds';
 
-    public function __construct(
-        /**
-         * Pass true to order returned backgrounds for a dark theme.
-         */
-        protected bool $forDarkTheme
-    ) {}
+    /**
+     * Pass true to order returned backgrounds for a dark theme
+     *
+     * @var bool
+     */
+    protected bool $forDarkTheme;
 
-    public static function fromArray(array $array): GetInstalledBackgrounds
+    public function __construct(bool $forDarkTheme)
+    {
+        $this->forDarkTheme = $forDarkTheme;
+    }
+
+    public static function fromArray(array $array): GetBackgrounds
     {
         return new static(
             $array['for_dark_theme'],
         );
     }
 
-    public function getForDarkTheme(): bool
-    {
-        return $this->forDarkTheme;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'for_dark_theme' => $this->forDarkTheme,
         ];
+    }
+
+    public function getForDarkTheme(): bool
+    {
+        return $this->forDarkTheme;
     }
 }

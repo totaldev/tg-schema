@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
- * The user has too many chats with username, one of them must be made private first.
+ * The user has too much chats with username, one of them should be made private first.
  */
-class CheckChatUsernameResultPublicChatsTooMany extends CheckChatUsernameResult
+class CheckChatUsernameResultPublicChatsTooMuch extends CheckChatUsernameResult
 {
-    public const TYPE_NAME = 'checkChatUsernameResultPublicChatsTooMany';
+    public const TYPE_NAME = 'checkChatUsernameResultPublicChatsTooMuch';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): CheckChatUsernameResultPublicChatsTooMany
+    public static function fromArray(array $array): CheckChatUsernameResultPublicChatsTooMuch
     {
         return new static();
     }

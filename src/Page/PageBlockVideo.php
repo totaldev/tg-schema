@@ -4,62 +4,74 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Video\Video;
+namespace Totaldev\TgSchema;
 
 /**
- * A video.
+ * A video
  */
 class PageBlockVideo extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockVideo';
 
-    public function __construct(
-        /**
-         * Video file; may be null.
-         */
-        protected ?Video           $video,
-        /**
-         * Video caption.
-         */
-        protected PageBlockCaption $caption,
-        /**
-         * True, if the video must be played automatically.
-         */
-        protected bool             $needAutoplay,
-        /**
-         * True, if the video must be looped.
-         */
-        protected bool             $isLooped,
-    ) {
+    /**
+     * Video file; may be null
+     *
+     * @var Video|null
+     */
+    protected ?Video $video;
+
+    /**
+     * Video caption
+     *
+     * @var PageBlockCaption
+     */
+    protected PageBlockCaption $caption;
+
+    /**
+     * True, if the video must be played automatically
+     *
+     * @var bool
+     */
+    protected bool $needAutoplay;
+
+    /**
+     * True, if the video must be looped
+     *
+     * @var bool
+     */
+    protected bool $isLooped;
+
+    public function __construct(?Video $video, PageBlockCaption $caption, bool $needAutoplay, bool $isLooped)
+    {
         parent::__construct();
+
+        $this->video = $video;
+        $this->caption = $caption;
+        $this->needAutoplay = $needAutoplay;
+        $this->isLooped = $isLooped;
     }
 
     public static function fromArray(array $array): PageBlockVideo
     {
         return new static(
-            isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null,
+            (isset($array['video']) ? TdSchemaRegistry::fromArray($array['video']) : null),
             TdSchemaRegistry::fromArray($array['caption']),
             $array['need_autoplay'],
             $array['is_looped'],
         );
     }
 
-    public function getCaption(): PageBlockCaption
+    public function typeSerialize(): array
     {
-        return $this->caption;
-    }
-
-    public function getIsLooped(): bool
-    {
-        return $this->isLooped;
-    }
-
-    public function getNeedAutoplay(): bool
-    {
-        return $this->needAutoplay;
+        return [
+            '@type' => static::TYPE_NAME,
+            'video' => (isset($this->video) ? $this->video : null),
+            'caption' => $this->caption->typeSerialize(),
+            'need_autoplay' => $this->needAutoplay,
+            'is_looped' => $this->isLooped,
+        ];
     }
 
     public function getVideo(): ?Video
@@ -67,14 +79,18 @@ class PageBlockVideo extends PageBlock
         return $this->video;
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): PageBlockCaption
     {
-        return [
-            '@type'         => static::TYPE_NAME,
-            'video'         => (isset($this->video) ? $this->video : null),
-            'caption'       => $this->caption->typeSerialize(),
-            'need_autoplay' => $this->needAutoplay,
-            'is_looped'     => $this->isLooped,
-        ];
+        return $this->caption;
+    }
+
+    public function getNeedAutoplay(): bool
+    {
+        return $this->needAutoplay;
+    }
+
+    public function getIsLooped(): bool
+    {
+        return $this->isLooped;
     }
 }

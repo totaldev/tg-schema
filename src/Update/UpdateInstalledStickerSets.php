@@ -4,31 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Sticker\StickerType;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * The list of installed sticker sets was updated.
+ * The list of installed sticker sets was updated
  */
 class UpdateInstalledStickerSets extends Update
 {
     public const TYPE_NAME = 'updateInstalledStickerSets';
 
-    public function __construct(
-        /**
-         * Type of the affected stickers.
-         */
-        protected StickerType $stickerType,
-        /**
-         * The new list of installed ordinary sticker sets.
-         *
-         * @var int[]
-         */
-        protected array       $stickerSetIds,
-    ) {
+    /**
+     * Type of the affected stickers
+     *
+     * @var StickerType
+     */
+    protected StickerType $stickerType;
+
+    /**
+     * The new list of installed ordinary sticker sets
+     *
+     * @var int[]
+     */
+    protected array $stickerSetIds;
+
+    public function __construct(StickerType $stickerType, array $stickerSetIds)
+    {
         parent::__construct();
+
+        $this->stickerType = $stickerType;
+        $this->stickerSetIds = $stickerSetIds;
     }
 
     public static function fromArray(array $array): UpdateInstalledStickerSets
@@ -39,9 +45,13 @@ class UpdateInstalledStickerSets extends Update
         );
     }
 
-    public function getStickerSetIds(): array
+    public function typeSerialize(): array
     {
-        return $this->stickerSetIds;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'sticker_set_ids' => $this->stickerSetIds,
+        ];
     }
 
     public function getStickerType(): StickerType
@@ -49,12 +59,8 @@ class UpdateInstalledStickerSets extends Update
         return $this->stickerType;
     }
 
-    public function typeSerialize(): array
+    public function getStickerSetIds(): array
     {
-        return [
-            '@type'           => static::TYPE_NAME,
-            'sticker_type'    => $this->stickerType->typeSerialize(),
-            'sticker_set_ids' => $this->stickerSetIds,
-        ];
+        return $this->stickerSetIds;
     }
 }

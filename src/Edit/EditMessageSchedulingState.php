@@ -4,34 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Edit;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\MessageSchedulingState;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also
- * changed.
+ * Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
  */
 class EditMessageSchedulingState extends TdFunction
 {
     public const TYPE_NAME = 'editMessageSchedulingState';
 
-    public function __construct(
-        /**
-         * The chat the message belongs to.
-         */
-        protected int                    $chatId,
-        /**
-         * Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable.
-         */
-        protected int                    $messageId,
-        /**
-         * The new message scheduling state; pass null to send the message immediately.
-         */
-        protected MessageSchedulingState $schedulingState,
-    ) {}
+    /**
+     * The chat the message belongs to
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the message
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * The new message scheduling state; pass null to send the message immediately
+     *
+     * @var MessageSchedulingState
+     */
+    protected MessageSchedulingState $schedulingState;
+
+    public function __construct(int $chatId, int $messageId, MessageSchedulingState $schedulingState)
+    {
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->schedulingState = $schedulingState;
+    }
 
     public static function fromArray(array $array): EditMessageSchedulingState
     {
@@ -40,6 +50,16 @@ class EditMessageSchedulingState extends TdFunction
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['scheduling_state']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'scheduling_state' => $this->schedulingState->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -55,15 +75,5 @@ class EditMessageSchedulingState extends TdFunction
     public function getSchedulingState(): MessageSchedulingState
     {
         return $this->schedulingState;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'chat_id'          => $this->chatId,
-            'message_id'       => $this->messageId,
-            'scheduling_state' => $this->schedulingState->typeSerialize(),
-        ];
     }
 }

@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The linked chat of a supergroup was changed.
+ * The linked chat of a supergroup was changed
  */
 class ChatEventLinkedChatChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventLinkedChatChanged';
 
-    public function __construct(
-        /**
-         * Previous supergroup linked chat identifier.
-         */
-        protected int $oldLinkedChatId,
-        /**
-         * New supergroup linked chat identifier.
-         */
-        protected int $newLinkedChatId,
-    ) {
+    /**
+     * Previous supergroup linked chat identifier
+     *
+     * @var int
+     */
+    protected int $oldLinkedChatId;
+
+    /**
+     * New supergroup linked chat identifier
+     *
+     * @var int
+     */
+    protected int $newLinkedChatId;
+
+    public function __construct(int $oldLinkedChatId, int $newLinkedChatId)
+    {
         parent::__construct();
+
+        $this->oldLinkedChatId = $oldLinkedChatId;
+        $this->newLinkedChatId = $newLinkedChatId;
     }
 
     public static function fromArray(array $array): ChatEventLinkedChatChanged
@@ -34,9 +45,13 @@ class ChatEventLinkedChatChanged extends ChatEventAction
         );
     }
 
-    public function getNewLinkedChatId(): int
+    public function typeSerialize(): array
     {
-        return $this->newLinkedChatId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_linked_chat_id' => $this->oldLinkedChatId,
+            'new_linked_chat_id' => $this->newLinkedChatId,
+        ];
     }
 
     public function getOldLinkedChatId(): int
@@ -44,12 +59,8 @@ class ChatEventLinkedChatChanged extends ChatEventAction
         return $this->oldLinkedChatId;
     }
 
-    public function typeSerialize(): array
+    public function getNewLinkedChatId(): int
     {
-        return [
-            '@type'              => static::TYPE_NAME,
-            'old_linked_chat_id' => $this->oldLinkedChatId,
-            'new_linked_chat_id' => $this->newLinkedChatId,
-        ];
+        return $this->newLinkedChatId;
     }
 }

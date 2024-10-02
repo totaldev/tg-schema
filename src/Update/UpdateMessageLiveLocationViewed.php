@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A message with a live location was viewed. When the update is received, the application is supposed to update the live location.
+ * A message with a live location was viewed. When the update is received, the application is supposed to update the live location
  */
 class UpdateMessageLiveLocationViewed extends Update
 {
     public const TYPE_NAME = 'updateMessageLiveLocationViewed';
 
-    public function __construct(
-        /**
-         * Identifier of the chat with the live location message.
-         */
-        protected int $chatId,
-        /**
-         * Identifier of the message with live location.
-         */
-        protected int $messageId,
-    ) {
+    /**
+     * Identifier of the chat with the live location message
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the message with live location
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    public function __construct(int $chatId, int $messageId)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
     }
 
     public static function fromArray(array $array): UpdateMessageLiveLocationViewed
@@ -34,6 +45,15 @@ class UpdateMessageLiveLocationViewed extends Update
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
@@ -42,14 +62,5 @@ class UpdateMessageLiveLocationViewed extends Update
     public function getMessageId(): int
     {
         return $this->messageId;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 }

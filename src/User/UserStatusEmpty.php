@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user's status has never been changed.
+ * The user status was never changed
  */
 class UserStatusEmpty extends UserStatus
 {

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Accept;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Accepts Telegram terms of services.
+ * Accepts Telegram terms of services
  */
 class AcceptTermsOfService extends TdFunction
 {
     public const TYPE_NAME = 'acceptTermsOfService';
 
-    public function __construct(
-        /**
-         * Terms of service identifier.
-         */
-        protected string $termsOfServiceId
-    ) {}
+    /**
+     * Terms of service identifier
+     *
+     * @var string
+     */
+    protected string $termsOfServiceId;
+
+    public function __construct(string $termsOfServiceId)
+    {
+        $this->termsOfServiceId = $termsOfServiceId;
+    }
 
     public static function fromArray(array $array): AcceptTermsOfService
     {
@@ -29,16 +34,16 @@ class AcceptTermsOfService extends TdFunction
         );
     }
 
-    public function getTermsOfServiceId(): string
-    {
-        return $this->termsOfServiceId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'               => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'terms_of_service_id' => $this->termsOfServiceId,
         ];
+    }
+
+    public function getTermsOfServiceId(): string
+    {
+        return $this->termsOfServiceId;
     }
 }

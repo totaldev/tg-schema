@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's passport registration.
+ * A Telegram Passport element to be saved containing the user's passport registration
  */
 class InputPassportElementPassportRegistration extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementPassportRegistration';
 
-    public function __construct(
-        /**
-         * The passport registration page to be saved.
-         */
-        protected InputPersonalDocument $passportRegistration
-    ) {
+    /**
+     * The passport registration page to be saved
+     *
+     * @var InputPersonalDocument
+     */
+    protected InputPersonalDocument $passportRegistration;
+
+    public function __construct(InputPersonalDocument $passportRegistration)
+    {
         parent::__construct();
+
+        $this->passportRegistration = $passportRegistration;
     }
 
     public static function fromArray(array $array): InputPassportElementPassportRegistration
@@ -31,16 +36,16 @@ class InputPassportElementPassportRegistration extends InputPassportElement
         );
     }
 
-    public function getPassportRegistration(): InputPersonalDocument
-    {
-        return $this->passportRegistration;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'                 => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'passport_registration' => $this->passportRegistration->typeSerialize(),
         ];
+    }
+
+    public function getPassportRegistration(): InputPersonalDocument
+    {
+        return $this->passportRegistration;
     }
 }

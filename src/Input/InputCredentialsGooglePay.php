@@ -4,34 +4,34 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
- * Applies if a user enters new credentials using Google Pay.
+ * Applies if a user enters new credentials using Android Pay.
  */
-class InputCredentialsGooglePay extends InputCredentials
+class InputCredentialsAndroidPay extends InputCredentials
 {
-    public const TYPE_NAME = 'inputCredentialsGooglePay';
+    public const TYPE_NAME = 'inputCredentialsAndroidPay';
 
-    public function __construct(
-        /**
-         * JSON-encoded data with the credential identifier.
-         */
-        protected string $data
-    ) {
+    /**
+     * JSON-encoded data with the credential identifier.
+     */
+    protected string $data;
+
+    public function __construct(string $data)
+    {
         parent::__construct();
+
+        $this->data = $data;
     }
 
-    public static function fromArray(array $array): InputCredentialsGooglePay
+    public static function fromArray(array $array): InputCredentialsAndroidPay
     {
         return new static(
             $array['data'],
         );
-    }
-
-    public function getData(): string
-    {
-        return $this->data;
     }
 
     public function typeSerialize(): array
@@ -40,5 +40,10 @@ class InputCredentialsGooglePay extends InputCredentials
             '@type' => static::TYPE_NAME,
             'data'  => $this->data,
         ];
+    }
+
+    public function getData(): string
+    {
+        return $this->data;
     }
 }

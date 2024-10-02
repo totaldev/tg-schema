@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Me;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A URL linking to a sticker set.
+ * A URL linking to a sticker set
  */
 class TMeUrlTypeStickerSet extends TMeUrlType
 {
     public const TYPE_NAME = 'tMeUrlTypeStickerSet';
 
-    public function __construct(
-        /**
-         * Identifier of the sticker set.
-         */
-        protected int $stickerSetId
-    ) {
+    /**
+     * Identifier of the sticker set
+     *
+     * @var int
+     */
+    protected int $stickerSetId;
+
+    public function __construct(int $stickerSetId)
+    {
         parent::__construct();
+
+        $this->stickerSetId = $stickerSetId;
     }
 
     public static function fromArray(array $array): TMeUrlTypeStickerSet
@@ -29,16 +36,16 @@ class TMeUrlTypeStickerSet extends TMeUrlType
         );
     }
 
-    public function getStickerSetId(): int
-    {
-        return $this->stickerSetId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker_set_id' => $this->stickerSetId,
         ];
+    }
+
+    public function getStickerSetId(): int
+    {
+        return $this->stickerSetId;
     }
 }

@@ -4,45 +4,75 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatList;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used.
+ * Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
  */
 class UpdateUnreadChatCount extends Update
 {
     public const TYPE_NAME = 'updateUnreadChatCount';
 
+    /**
+     * The chat list with changed number of unread messages
+     *
+     * @var ChatList
+     */
+    protected ChatList $chatList;
+
+    /**
+     * Approximate total number of chats in the chat list
+     *
+     * @var int
+     */
+    protected int $totalCount;
+
+    /**
+     * Total number of unread chats
+     *
+     * @var int
+     */
+    protected int $unreadCount;
+
+    /**
+     * Total number of unread unmuted chats
+     *
+     * @var int
+     */
+    protected int $unreadUnmutedCount;
+
+    /**
+     * Total number of chats marked as unread
+     *
+     * @var int
+     */
+    protected int $markedAsUnreadCount;
+
+    /**
+     * Total number of unmuted chats marked as unread
+     *
+     * @var int
+     */
+    protected int $markedAsUnreadUnmutedCount;
+
     public function __construct(
-        /**
-         * The chat list with changed number of unread messages.
-         */
-        protected ChatList $chatList,
-        /**
-         * Approximate total number of chats in the chat list.
-         */
-        protected int      $totalCount,
-        /**
-         * Total number of unread chats.
-         */
-        protected int      $unreadCount,
-        /**
-         * Total number of unread unmuted chats.
-         */
-        protected int      $unreadUnmutedCount,
-        /**
-         * Total number of chats marked as unread.
-         */
-        protected int      $markedAsUnreadCount,
-        /**
-         * Total number of unmuted chats marked as unread.
-         */
-        protected int      $markedAsUnreadUnmutedCount,
+        ChatList $chatList,
+        int $totalCount,
+        int $unreadCount,
+        int $unreadUnmutedCount,
+        int $markedAsUnreadCount,
+        int $markedAsUnreadUnmutedCount
     ) {
         parent::__construct();
+
+        $this->chatList = $chatList;
+        $this->totalCount = $totalCount;
+        $this->unreadCount = $unreadCount;
+        $this->unreadUnmutedCount = $unreadUnmutedCount;
+        $this->markedAsUnreadCount = $markedAsUnreadCount;
+        $this->markedAsUnreadUnmutedCount = $markedAsUnreadUnmutedCount;
     }
 
     public static function fromArray(array $array): UpdateUnreadChatCount
@@ -57,19 +87,22 @@ class UpdateUnreadChatCount extends Update
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_list' => $this->chatList->typeSerialize(),
+            'total_count' => $this->totalCount,
+            'unread_count' => $this->unreadCount,
+            'unread_unmuted_count' => $this->unreadUnmutedCount,
+            'marked_as_unread_count' => $this->markedAsUnreadCount,
+            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
+        ];
+    }
+
     public function getChatList(): ChatList
     {
         return $this->chatList;
-    }
-
-    public function getMarkedAsUnreadCount(): int
-    {
-        return $this->markedAsUnreadCount;
-    }
-
-    public function getMarkedAsUnreadUnmutedCount(): int
-    {
-        return $this->markedAsUnreadUnmutedCount;
     }
 
     public function getTotalCount(): int
@@ -87,16 +120,13 @@ class UpdateUnreadChatCount extends Update
         return $this->unreadUnmutedCount;
     }
 
-    public function typeSerialize(): array
+    public function getMarkedAsUnreadCount(): int
     {
-        return [
-            '@type'                          => static::TYPE_NAME,
-            'chat_list'                      => $this->chatList->typeSerialize(),
-            'total_count'                    => $this->totalCount,
-            'unread_count'                   => $this->unreadCount,
-            'unread_unmuted_count'           => $this->unreadUnmutedCount,
-            'marked_as_unread_count'         => $this->markedAsUnreadCount,
-            'marked_as_unread_unmuted_count' => $this->markedAsUnreadUnmutedCount,
-        ];
+        return $this->markedAsUnreadCount;
+    }
+
+    public function getMarkedAsUnreadUnmutedCount(): int
+    {
+        return $this->markedAsUnreadUnmutedCount;
     }
 }

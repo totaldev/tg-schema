@@ -4,32 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Transfer;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred
- * from the current session. Available only for supergroups and channel chats.
+ * Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
  */
 class TransferChatOwnership extends TdFunction
 {
     public const TYPE_NAME = 'transferChatOwnership';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int    $chatId,
-        /**
-         * Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user.
-         */
-        protected int    $userId,
-        /**
-         * The 2-step verification password of the current user.
-         */
-        protected string $password,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * The 2-step verification password of the current user
+     *
+     * @var string
+     */
+    protected string $password;
+
+    public function __construct(int $chatId, int $userId, string $password)
+    {
+        $this->chatId = $chatId;
+        $this->userId = $userId;
+        $this->password = $password;
+    }
 
     public static function fromArray(array $array): TransferChatOwnership
     {
@@ -40,14 +52,19 @@ class TransferChatOwnership extends TdFunction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_id' => $this->userId,
+            'password' => $this->password,
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
     }
 
     public function getUserId(): int
@@ -55,13 +72,8 @@ class TransferChatOwnership extends TdFunction
         return $this->userId;
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'chat_id'  => $this->chatId,
-            'user_id'  => $this->userId,
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 }

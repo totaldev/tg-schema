@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Report;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
  * The chat contains spam messages.
  */
-class ReportReasonSpam extends ReportReason
+class ChatReportReasonSpam extends ChatReportReason
 {
-    public const TYPE_NAME = 'reportReasonSpam';
+    public const TYPE_NAME = 'chatReportReasonSpam';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): ReportReasonSpam
+    public static function fromArray(array $array): ChatReportReasonSpam
     {
         return new static();
     }

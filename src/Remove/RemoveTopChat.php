@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Remove;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Top\TopChatCategory;
+namespace Totaldev\TgSchema;
 
 /**
- * Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled.
+ * Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
  */
 class RemoveTopChat extends TdFunction
 {
     public const TYPE_NAME = 'removeTopChat';
 
-    public function __construct(
-        /**
-         * Category of frequently used chats.
-         */
-        protected TopChatCategory $category,
-        /**
-         * Chat identifier.
-         */
-        protected int             $chatId,
-    ) {}
+    /**
+     * Category of frequently used chats
+     *
+     * @var TopChatCategory
+     */
+    protected TopChatCategory $category;
+
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(TopChatCategory $category, int $chatId)
+    {
+        $this->category = $category;
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): RemoveTopChat
     {
@@ -34,6 +41,15 @@ class RemoveTopChat extends TdFunction
             TdSchemaRegistry::fromArray($array['category']),
             $array['chat_id'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'category' => $this->category->typeSerialize(),
+            'chat_id' => $this->chatId,
+        ];
     }
 
     public function getCategory(): TopChatCategory
@@ -44,14 +60,5 @@ class RemoveTopChat extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
-            'chat_id'  => $this->chatId,
-        ];
     }
 }

@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns game high scores and some part of the high score table in the range of the specified user; for bots only.
+ * Returns game high scores and some part of the high score table in the range of the specified user; for bots only
  */
 class GetInlineGameHighScores extends TdFunction
 {
     public const TYPE_NAME = 'getInlineGameHighScores';
 
-    public function __construct(
-        /**
-         * Inline message identifier.
-         */
-        protected string $inlineMessageId,
-        /**
-         * User identifier.
-         */
-        protected int    $userId,
-    ) {}
+    /**
+     * Inline message identifier
+     *
+     * @var string
+     */
+    protected string $inlineMessageId;
+
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    public function __construct(string $inlineMessageId, int $userId)
+    {
+        $this->inlineMessageId = $inlineMessageId;
+        $this->userId = $userId;
+    }
 
     public static function fromArray(array $array): GetInlineGameHighScores
     {
@@ -32,6 +41,15 @@ class GetInlineGameHighScores extends TdFunction
             $array['inline_message_id'],
             $array['user_id'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'inline_message_id' => $this->inlineMessageId,
+            'user_id' => $this->userId,
+        ];
     }
 
     public function getInlineMessageId(): string
@@ -42,14 +60,5 @@ class GetInlineGameHighScores extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'             => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'user_id'           => $this->userId,
-        ];
     }
 }

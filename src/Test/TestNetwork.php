@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization.
+ * Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
  */
 class TestNetwork extends TdFunction
 {
     public const TYPE_NAME = 'testNetwork';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): TestNetwork
     {

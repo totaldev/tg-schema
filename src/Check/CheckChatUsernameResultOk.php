@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The username can be set.
+ * The username can be set
  */
 class CheckChatUsernameResultOk extends CheckChatUsernameResult
 {

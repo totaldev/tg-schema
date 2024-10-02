@@ -4,33 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\MessageSender;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed.
+ * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
  */
 class ChatEventMemberRestricted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberRestricted';
 
-    public function __construct(
-        /**
-         * Affected chat member identifier.
-         */
-        protected MessageSender    $memberId,
-        /**
-         * Previous status of the chat member.
-         */
-        protected ChatMemberStatus $oldStatus,
-        /**
-         * New status of the chat member.
-         */
-        protected ChatMemberStatus $newStatus,
-    ) {
+    /**
+     * Affected chat member identifier
+     *
+     * @var MessageSender
+     */
+    protected MessageSender $memberId;
+
+    /**
+     * Previous status of the chat member
+     *
+     * @var ChatMemberStatus
+     */
+    protected ChatMemberStatus $oldStatus;
+
+    /**
+     * New status of the chat member
+     *
+     * @var ChatMemberStatus
+     */
+    protected ChatMemberStatus $newStatus;
+
+    public function __construct(MessageSender $memberId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
+    {
         parent::__construct();
+
+        $this->memberId = $memberId;
+        $this->oldStatus = $oldStatus;
+        $this->newStatus = $newStatus;
     }
 
     public static function fromArray(array $array): ChatEventMemberRestricted
@@ -42,14 +54,19 @@ class ChatEventMemberRestricted extends ChatEventAction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'member_id' => $this->memberId->typeSerialize(),
+            'old_status' => $this->oldStatus->typeSerialize(),
+            'new_status' => $this->newStatus->typeSerialize(),
+        ];
+    }
+
     public function getMemberId(): MessageSender
     {
         return $this->memberId;
-    }
-
-    public function getNewStatus(): ChatMemberStatus
-    {
-        return $this->newStatus;
     }
 
     public function getOldStatus(): ChatMemberStatus
@@ -57,13 +74,8 @@ class ChatEventMemberRestricted extends ChatEventAction
         return $this->oldStatus;
     }
 
-    public function typeSerialize(): array
+    public function getNewStatus(): ChatMemberStatus
     {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'member_id'  => $this->memberId->typeSerialize(),
-            'old_status' => $this->oldStatus->typeSerialize(),
-            'new_status' => $this->newStatus->typeSerialize(),
-        ];
+        return $this->newStatus;
     }
 }

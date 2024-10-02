@@ -4,32 +4,54 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\Message;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A message was unpinned.
+ * A message was deleted
  */
-class ChatEventMessageUnpinned extends ChatEventAction
+class ChatEventMessageDeleted extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMessageUnpinned';
+    public const TYPE_NAME = 'chatEventMessageDeleted';
 
-    public function __construct(
-        /**
-         * Unpinned message.
-         */
-        protected Message $message
-    ) {
+    /**
+     * Deleted message
+     *
+     * @var Message
+     */
+    protected Message $message;
+
+    /**
+     * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive
+     *
+     * @var bool
+     */
+    protected bool $canReportAntiSpamFalsePositive;
+
+    public function __construct(Message $message, bool $canReportAntiSpamFalsePositive)
+    {
         parent::__construct();
+
+        $this->message = $message;
+        $this->canReportAntiSpamFalsePositive = $canReportAntiSpamFalsePositive;
     }
 
-    public static function fromArray(array $array): ChatEventMessageUnpinned
+    public static function fromArray(array $array): ChatEventMessageDeleted
     {
         return new static(
             TdSchemaRegistry::fromArray($array['message']),
+            $array['can_report_anti_spam_false_positive'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'can_report_anti_spam_false_positive' => $this->canReportAntiSpamFalsePositive,
+        ];
     }
 
     public function getMessage(): Message
@@ -37,11 +59,8 @@ class ChatEventMessageUnpinned extends ChatEventAction
         return $this->message;
     }
 
-    public function typeSerialize(): array
+    public function getCanReportAntiSpamFalsePositive(): bool
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-        ];
+        return $this->canReportAntiSpamFalsePositive;
     }
 }

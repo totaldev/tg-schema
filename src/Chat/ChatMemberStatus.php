@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Provides information about the status of a member in a chat.
+ * Provides information about the status of a member in a chat
  */
 class ChatMemberStatus extends TdObject
 {
     public const TYPE_NAME = 'ChatMemberStatus';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): ChatMemberStatus
     {

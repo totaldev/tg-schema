@@ -4,33 +4,48 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The message was originally a post in a channel.
+ * The message was originally a post in a channel
  */
-class MessageOriginChannel extends MessageOrigin
+class MessageForwardOriginChannel extends MessageForwardOrigin
 {
-    public const TYPE_NAME = 'messageOriginChannel';
+    public const TYPE_NAME = 'messageForwardOriginChannel';
 
-    public function __construct(
-        /**
-         * Identifier of the channel chat to which the message was originally sent.
-         */
-        protected int    $chatId,
-        /**
-         * Message identifier of the original message.
-         */
-        protected int    $messageId,
-        /**
-         * Original post author signature.
-         */
-        protected string $authorSignature,
-    ) {
+    /**
+     * Identifier of the chat from which the message was originally forwarded
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Message identifier of the original message
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * Original post author signature
+     *
+     * @var string
+     */
+    protected string $authorSignature;
+
+    public function __construct(int $chatId, int $messageId, string $authorSignature)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->authorSignature = $authorSignature;
     }
 
-    public static function fromArray(array $array): MessageOriginChannel
+    public static function fromArray(array $array): MessageForwardOriginChannel
     {
         return new static(
             $array['chat_id'],
@@ -39,9 +54,14 @@ class MessageOriginChannel extends MessageOrigin
         );
     }
 
-    public function getAuthorSignature(): string
+    public function typeSerialize(): array
     {
-        return $this->authorSignature;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'author_signature' => $this->authorSignature,
+        ];
     }
 
     public function getChatId(): int
@@ -54,13 +74,8 @@ class MessageOriginChannel extends MessageOrigin
         return $this->messageId;
     }
 
-    public function typeSerialize(): array
+    public function getAuthorSignature(): string
     {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'chat_id'          => $this->chatId,
-            'message_id'       => $this->messageId,
-            'author_signature' => $this->authorSignature,
-        ];
+        return $this->authorSignature;
     }
 }

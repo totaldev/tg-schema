@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword.
+ * Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
  */
 class CheckAuthenticationPassword extends TdFunction
 {
     public const TYPE_NAME = 'checkAuthenticationPassword';
 
-    public function __construct(
-        /**
-         * The 2-step verification password to check.
-         */
-        protected string $password
-    ) {}
+    /**
+     * The 2-step verification password to check
+     *
+     * @var string
+     */
+    protected string $password;
+
+    public function __construct(string $password)
+    {
+        $this->password = $password;
+    }
 
     public static function fromArray(array $array): CheckAuthenticationPassword
     {
@@ -29,16 +34,16 @@ class CheckAuthenticationPassword extends TdFunction
         );
     }
 
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'password' => $this->password,
         ];
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }

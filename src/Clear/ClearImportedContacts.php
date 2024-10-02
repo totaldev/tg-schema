@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Clear;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Clears all imported contacts, contact list remains unchanged.
+ * Clears all imported contacts, contact list remains unchanged
  */
 class ClearImportedContacts extends TdFunction
 {
     public const TYPE_NAME = 'clearImportedContacts';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): ClearImportedContacts
     {

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The other side couldn't hear the user.
+ * The other side couldn't hear the user
  */
 class CallProblemSilentRemote extends CallProblem
 {

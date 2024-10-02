@@ -4,28 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main
- * chat list.
+ * Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
  */
 class SearchChatsOnServer extends TdFunction
 {
     public const TYPE_NAME = 'searchChatsOnServer';
 
-    public function __construct(
-        /**
-         * Query to search for.
-         */
-        protected string $query,
-        /**
-         * The maximum number of chats to be returned.
-         */
-        protected int    $limit,
-    ) {}
+    /**
+     * Query to search for
+     *
+     * @var string
+     */
+    protected string $query;
+
+    /**
+     * The maximum number of chats to be returned
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    public function __construct(string $query, int $limit)
+    {
+        $this->query = $query;
+        $this->limit = $limit;
+    }
 
     public static function fromArray(array $array): SearchChatsOnServer
     {
@@ -35,16 +43,6 @@ class SearchChatsOnServer extends TdFunction
         );
     }
 
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
     public function typeSerialize(): array
     {
         return [
@@ -52,5 +50,15 @@ class SearchChatsOnServer extends TdFunction
             'query' => $this->query,
             'limit' => $this->limit,
         ];
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
     }
 }

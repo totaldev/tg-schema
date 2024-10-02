@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's bank statement.
+ * A Telegram Passport element to be saved containing the user's bank statement
  */
 class InputPassportElementBankStatement extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementBankStatement';
 
-    public function __construct(
-        /**
-         * The bank statement to be saved.
-         */
-        protected InputPersonalDocument $bankStatement
-    ) {
+    /**
+     * The bank statement to be saved
+     *
+     * @var InputPersonalDocument
+     */
+    protected InputPersonalDocument $bankStatement;
+
+    public function __construct(InputPersonalDocument $bankStatement)
+    {
         parent::__construct();
+
+        $this->bankStatement = $bankStatement;
     }
 
     public static function fromArray(array $array): InputPassportElementBankStatement
@@ -31,16 +36,16 @@ class InputPassportElementBankStatement extends InputPassportElement
         );
     }
 
-    public function getBankStatement(): InputPersonalDocument
-    {
-        return $this->bankStatement;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'bank_statement' => $this->bankStatement->typeSerialize(),
         ];
+    }
+
+    public function getBankStatement(): InputPersonalDocument
+    {
+        return $this->bankStatement;
     }
 }

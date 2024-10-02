@@ -4,28 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * The chat permissions were changed.
+ * The chat permissions was changed
  */
 class ChatEventPermissionsChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventPermissionsChanged';
 
-    public function __construct(
-        /**
-         * Previous chat permissions.
-         */
-        protected ChatPermissions $oldPermissions,
-        /**
-         * New chat permissions.
-         */
-        protected ChatPermissions $newPermissions,
-    ) {
+    /**
+     * Previous chat permissions
+     *
+     * @var ChatPermissions
+     */
+    protected ChatPermissions $oldPermissions;
+
+    /**
+     * New chat permissions
+     *
+     * @var ChatPermissions
+     */
+    protected ChatPermissions $newPermissions;
+
+    public function __construct(ChatPermissions $oldPermissions, ChatPermissions $newPermissions)
+    {
         parent::__construct();
+
+        $this->oldPermissions = $oldPermissions;
+        $this->newPermissions = $newPermissions;
     }
 
     public static function fromArray(array $array): ChatEventPermissionsChanged
@@ -36,9 +45,13 @@ class ChatEventPermissionsChanged extends ChatEventAction
         );
     }
 
-    public function getNewPermissions(): ChatPermissions
+    public function typeSerialize(): array
     {
-        return $this->newPermissions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_permissions' => $this->oldPermissions->typeSerialize(),
+            'new_permissions' => $this->newPermissions->typeSerialize(),
+        ];
     }
 
     public function getOldPermissions(): ChatPermissions
@@ -46,12 +59,8 @@ class ChatEventPermissionsChanged extends ChatEventAction
         return $this->oldPermissions;
     }
 
-    public function typeSerialize(): array
+    public function getNewPermissions(): ChatPermissions
     {
-        return [
-            '@type'           => static::TYPE_NAME,
-            'old_permissions' => $this->oldPermissions->typeSerialize(),
-            'new_permissions' => $this->newPermissions->typeSerialize(),
-        ];
+        return $this->newPermissions;
     }
 }

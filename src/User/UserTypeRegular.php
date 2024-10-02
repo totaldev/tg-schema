@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A regular user.
+ * A regular user
  */
 class UserTypeRegular extends UserType
 {

@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The chat description was changed.
+ * The chat description was changed
  */
 class ChatEventDescriptionChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventDescriptionChanged';
 
-    public function __construct(
-        /**
-         * Previous chat description.
-         */
-        protected string $oldDescription,
-        /**
-         * New chat description.
-         */
-        protected string $newDescription,
-    ) {
+    /**
+     * Previous chat description
+     *
+     * @var string
+     */
+    protected string $oldDescription;
+
+    /**
+     * New chat description
+     *
+     * @var string
+     */
+    protected string $newDescription;
+
+    public function __construct(string $oldDescription, string $newDescription)
+    {
         parent::__construct();
+
+        $this->oldDescription = $oldDescription;
+        $this->newDescription = $newDescription;
     }
 
     public static function fromArray(array $array): ChatEventDescriptionChanged
@@ -34,9 +45,13 @@ class ChatEventDescriptionChanged extends ChatEventAction
         );
     }
 
-    public function getNewDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->newDescription;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_description' => $this->oldDescription,
+            'new_description' => $this->newDescription,
+        ];
     }
 
     public function getOldDescription(): string
@@ -44,12 +59,8 @@ class ChatEventDescriptionChanged extends ChatEventAction
         return $this->oldDescription;
     }
 
-    public function typeSerialize(): array
+    public function getNewDescription(): string
     {
-        return [
-            '@type'           => static::TYPE_NAME,
-            'old_description' => $this->oldDescription,
-            'new_description' => $this->newDescription,
-        ];
+        return $this->newDescription;
     }
 }

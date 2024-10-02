@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Reset;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Resets all network data usage statistics to zero. Can be called before authorization.
+ * Resets all network data usage statistics to zero. Can be called before authorization
  */
 class ResetNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'resetNetworkStatistics';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): ResetNetworkStatistics
     {

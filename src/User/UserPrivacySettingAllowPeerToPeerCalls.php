@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether peer-to-peer connections can be used for calls.
+ * A privacy setting for managing whether peer-to-peer connections can be used for calls
  */
 class UserPrivacySettingAllowPeerToPeerCalls extends UserPrivacySetting
 {

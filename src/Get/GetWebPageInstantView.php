@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
+ * Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
  */
 class GetWebPageInstantView extends TdFunction
 {
     public const TYPE_NAME = 'getWebPageInstantView';
 
-    public function __construct(
-        /**
-         * The web page URL.
-         */
-        protected string $url,
-        /**
-         * Pass true to get full instant view for the web page.
-         */
-        protected bool   $forceFull,
-    ) {}
+    /**
+     * The web page URL
+     *
+     * @var string
+     */
+    protected string $url;
+
+    /**
+     * Pass true to get full instant view for the web page
+     *
+     * @var bool
+     */
+    protected bool $forceFull;
+
+    public function __construct(string $url, bool $forceFull)
+    {
+        $this->url = $url;
+        $this->forceFull = $forceFull;
+    }
 
     public static function fromArray(array $array): GetWebPageInstantView
     {
@@ -34,9 +43,13 @@ class GetWebPageInstantView extends TdFunction
         );
     }
 
-    public function getForceFull(): bool
+    public function typeSerialize(): array
     {
-        return $this->forceFull;
+        return [
+            '@type' => static::TYPE_NAME,
+            'url' => $this->url,
+            'force_full' => $this->forceFull,
+        ];
     }
 
     public function getUrl(): string
@@ -44,12 +57,8 @@ class GetWebPageInstantView extends TdFunction
         return $this->url;
     }
 
-    public function typeSerialize(): array
+    public function getForceFull(): bool
     {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'url'        => $this->url,
-            'force_full' => $this->forceFull,
-        ];
+        return $this->forceFull;
     }
 }

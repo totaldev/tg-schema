@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The supergroup sticker set was changed.
+ * The supergroup sticker set was changed
  */
 class ChatEventStickerSetChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventStickerSetChanged';
 
-    public function __construct(
-        /**
-         * Previous identifier of the chat sticker set; 0 if none.
-         */
-        protected int $oldStickerSetId,
-        /**
-         * New identifier of the chat sticker set; 0 if none.
-         */
-        protected int $newStickerSetId,
-    ) {
+    /**
+     * Previous identifier of the chat sticker set; 0 if none
+     *
+     * @var int
+     */
+    protected int $oldStickerSetId;
+
+    /**
+     * New identifier of the chat sticker set; 0 if none
+     *
+     * @var int
+     */
+    protected int $newStickerSetId;
+
+    public function __construct(int $oldStickerSetId, int $newStickerSetId)
+    {
         parent::__construct();
+
+        $this->oldStickerSetId = $oldStickerSetId;
+        $this->newStickerSetId = $newStickerSetId;
     }
 
     public static function fromArray(array $array): ChatEventStickerSetChanged
@@ -34,9 +45,13 @@ class ChatEventStickerSetChanged extends ChatEventAction
         );
     }
 
-    public function getNewStickerSetId(): int
+    public function typeSerialize(): array
     {
-        return $this->newStickerSetId;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_sticker_set_id' => $this->oldStickerSetId,
+            'new_sticker_set_id' => $this->newStickerSetId,
+        ];
     }
 
     public function getOldStickerSetId(): int
@@ -44,12 +59,8 @@ class ChatEventStickerSetChanged extends ChatEventAction
         return $this->oldStickerSetId;
     }
 
-    public function typeSerialize(): array
+    public function getNewStickerSetId(): int
     {
-        return [
-            '@type'              => static::TYPE_NAME,
-            'old_sticker_set_id' => $this->oldStickerSetId,
-            'new_sticker_set_id' => $this->newStickerSetId,
-        ];
+        return $this->newStickerSetId;
     }
 }

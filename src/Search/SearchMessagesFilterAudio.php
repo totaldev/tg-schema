@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns only audio messages.
+ * Returns only audio messages
  */
 class SearchMessagesFilterAudio extends SearchMessagesFilter
 {

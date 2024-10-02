@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user is online.
+ * The user is online
  */
 class UserStatusOnline extends UserStatus
 {
     public const TYPE_NAME = 'userStatusOnline';
 
-    public function __construct(
-        /**
-         * Point in time (Unix timestamp) when the user's online status will expire.
-         */
-        protected int $expires
-    ) {
+    /**
+     * Point in time (Unix timestamp) when the user's online status will expire
+     *
+     * @var int
+     */
+    protected int $expires;
+
+    public function __construct(int $expires)
+    {
         parent::__construct();
+
+        $this->expires = $expires;
     }
 
     public static function fromArray(array $array): UserStatusOnline
@@ -29,16 +36,16 @@ class UserStatusOnline extends UserStatus
         );
     }
 
-    public function getExpires(): int
-    {
-        return $this->expires;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'expires' => $this->expires,
         ];
+    }
+
+    public function getExpires(): int
+    {
+        return $this->expires;
     }
 }

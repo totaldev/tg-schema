@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Rich\RichText;
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a caption of another block.
+ * Contains a caption of an instant view web page block, consisting of a text and a trailing credit
  */
 class PageBlockCaption extends TdObject
 {
     public const TYPE_NAME = 'pageBlockCaption';
 
-    public function __construct(
-        /**
-         * Content of the caption.
-         */
-        protected RichText $text,
-        /**
-         * Block credit (like HTML tag <cite>).
-         */
-        protected RichText $credit,
-    ) {}
+    /**
+     * Content of the caption
+     *
+     * @var RichText
+     */
+    protected RichText $text;
+
+    /**
+     * Block credit (like HTML tag <cite>)
+     *
+     * @var RichText
+     */
+    protected RichText $credit;
+
+    public function __construct(RichText $text, RichText $credit)
+    {
+        $this->text = $text;
+        $this->credit = $credit;
+    }
 
     public static function fromArray(array $array): PageBlockCaption
     {
@@ -36,9 +43,13 @@ class PageBlockCaption extends TdObject
         );
     }
 
-    public function getCredit(): RichText
+    public function typeSerialize(): array
     {
-        return $this->credit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'credit' => $this->credit->typeSerialize(),
+        ];
     }
 
     public function getText(): RichText
@@ -46,12 +57,8 @@ class PageBlockCaption extends TdObject
         return $this->text;
     }
 
-    public function typeSerialize(): array
+    public function getCredit(): RichText
     {
-        return [
-            '@type'  => static::TYPE_NAME,
-            'text'   => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
-        ];
+        return $this->credit;
     }
 }

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Network;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A different network type (e.g., Ethernet network).
+ * A different network type (e.g., Ethernet network)
  */
 class NetworkTypeOther extends NetworkType
 {

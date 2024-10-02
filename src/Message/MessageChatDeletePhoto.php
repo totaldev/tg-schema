@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A deleted chat photo.
+ * A deleted chat photo
  */
 class MessageChatDeletePhoto extends MessageContent
 {

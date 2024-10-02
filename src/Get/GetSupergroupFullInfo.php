@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute.
+ * Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
  */
 class GetSupergroupFullInfo extends TdFunction
 {
     public const TYPE_NAME = 'getSupergroupFullInfo';
 
-    public function __construct(
-        /**
-         * Supergroup or channel identifier.
-         */
-        protected int $supergroupId
-    ) {}
+    /**
+     * Supergroup or channel identifier
+     *
+     * @var int
+     */
+    protected int $supergroupId;
+
+    public function __construct(int $supergroupId)
+    {
+        $this->supergroupId = $supergroupId;
+    }
 
     public static function fromArray(array $array): GetSupergroupFullInfo
     {
@@ -29,16 +34,16 @@ class GetSupergroupFullInfo extends TdFunction
         );
     }
 
-    public function getSupergroupId(): int
-    {
-        return $this->supergroupId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
+    }
+
+    public function getSupergroupId(): int
+    {
+        return $this->supergroupId;
     }
 }

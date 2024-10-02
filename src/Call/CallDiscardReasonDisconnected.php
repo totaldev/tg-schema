@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The call was ended during the conversation because the users were disconnected.
+ * The call was ended during the conversation because the users were disconnected
  */
 class CallDiscardReasonDisconnected extends CallDiscardReason
 {

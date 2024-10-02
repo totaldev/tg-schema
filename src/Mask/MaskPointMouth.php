@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Mask;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The mask is placed relatively to the mouth.
+ * The mask is placed relatively to the mouth
  */
 class MaskPointMouth extends MaskPoint
 {

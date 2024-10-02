@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Seconds;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a value representing a number of seconds.
+ * Contains a value representing a number of seconds
  */
 class Seconds extends TdObject
 {
     public const TYPE_NAME = 'seconds';
 
-    public function __construct(
-        /**
-         * Number of seconds.
-         */
-        protected float $seconds
-    ) {}
+    /**
+     * Number of seconds
+     *
+     * @var float
+     */
+    protected float $seconds;
+
+    public function __construct(float $seconds)
+    {
+        $this->seconds = $seconds;
+    }
 
     public static function fromArray(array $array): Seconds
     {
@@ -29,16 +34,16 @@ class Seconds extends TdObject
         );
     }
 
-    public function getSeconds(): float
-    {
-        return $this->seconds;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'seconds' => $this->seconds,
         ];
+    }
+
+    public function getSeconds(): float
+    {
+        return $this->seconds;
     }
 }

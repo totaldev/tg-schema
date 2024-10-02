@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Rich;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An anchor.
+ * An anchor
  */
 class RichTextAnchor extends RichText
 {
     public const TYPE_NAME = 'richTextAnchor';
 
-    public function __construct(
-        /**
-         * Anchor name.
-         */
-        protected string $name
-    ) {
+    /**
+     * Anchor name
+     *
+     * @var string
+     */
+    protected string $name;
+
+    public function __construct(string $name)
+    {
         parent::__construct();
+
+        $this->name = $name;
     }
 
     public static function fromArray(array $array): RichTextAnchor
@@ -29,16 +36,16 @@ class RichTextAnchor extends RichText
         );
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

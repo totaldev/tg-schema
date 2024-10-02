@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains information about the sending state of the message.
+ * Contains information about the sending state of the message
  */
 class MessageSendingState extends TdObject
 {
     public const TYPE_NAME = 'MessageSendingState';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): MessageSendingState
     {

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A mention of a user, a supergroup, or a channel by their username.
+ * A mention of a user, a supergroup, or a channel by their username
  */
 class TextEntityTypeMention extends TextEntityType
 {

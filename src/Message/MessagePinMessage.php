@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Message;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A message has been pinned.
+ * A message has been pinned
  */
 class MessagePinMessage extends MessageContent
 {
     public const TYPE_NAME = 'messagePinMessage';
 
-    public function __construct(
-        /**
-         * Identifier of the pinned message, can be an identifier of a deleted message or 0.
-         */
-        protected int $messageId
-    ) {
+    /**
+     * Identifier of the pinned message, can be an identifier of a deleted message or 0
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    public function __construct(int $messageId)
+    {
         parent::__construct();
+
+        $this->messageId = $messageId;
     }
 
     public static function fromArray(array $array): MessagePinMessage
@@ -29,16 +36,16 @@ class MessagePinMessage extends MessageContent
         );
     }
 
-    public function getMessageId(): int
-    {
-        return $this->messageId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'message_id' => $this->messageId,
         ];
+    }
+
+    public function getMessageId(): int
+    {
+        return $this->messageId;
     }
 }

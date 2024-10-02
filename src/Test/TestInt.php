@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a number; for testing only.
+ * A simple object containing a number; for testing only
  */
 class TestInt extends TdObject
 {
     public const TYPE_NAME = 'testInt';
 
-    public function __construct(
-        /**
-         * Number.
-         */
-        protected int $value
-    ) {}
+    /**
+     * Number
+     *
+     * @var int
+     */
+    protected int $value;
+
+    public function __construct(int $value)
+    {
+        $this->value = $value;
+    }
 
     public static function fromArray(array $array): TestInt
     {
@@ -29,16 +34,16 @@ class TestInt extends TdObject
         );
     }
 
-    public function getValue(): int
-    {
-        return $this->value;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
+    }
+
+    public function getValue(): int
+    {
+        return $this->value;
     }
 }

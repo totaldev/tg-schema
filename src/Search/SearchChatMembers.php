@@ -4,38 +4,52 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatMembersFilter;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a
- * channel.
+ * Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
  */
 class SearchChatMembers extends TdFunction
 {
     public const TYPE_NAME = 'searchChatMembers';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int               $chatId,
-        /**
-         * Query to search for.
-         */
-        protected string            $query,
-        /**
-         * The maximum number of users to be returned; up to 200.
-         */
-        protected int               $limit,
-        /**
-         * The type of users to search for; pass null to search among all chat members.
-         */
-        protected ChatMembersFilter $filter,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Query to search for
+     *
+     * @var string
+     */
+    protected string $query;
+
+    /**
+     * The maximum number of users to be returned; up to 200
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    /**
+     * The type of users to search for; pass null to search among all chat members
+     *
+     * @var ChatMembersFilter
+     */
+    protected ChatMembersFilter $filter;
+
+    public function __construct(int $chatId, string $query, int $limit, ChatMembersFilter $filter)
+    {
+        $this->chatId = $chatId;
+        $this->query = $query;
+        $this->limit = $limit;
+        $this->filter = $filter;
+    }
 
     public static function fromArray(array $array): SearchChatMembers
     {
@@ -47,19 +61,20 @@ class SearchChatMembers extends TdFunction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'query' => $this->query,
+            'limit' => $this->limit,
+            'filter' => $this->filter->typeSerialize(),
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
-    }
-
-    public function getFilter(): ChatMembersFilter
-    {
-        return $this->filter;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
     }
 
     public function getQuery(): string
@@ -67,14 +82,13 @@ class SearchChatMembers extends TdFunction
         return $this->query;
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'query'   => $this->query,
-            'limit'   => $this->limit,
-            'filter'  => $this->filter->typeSerialize(),
-        ];
+        return $this->limit;
+    }
+
+    public function getFilter(): ChatMembersFilter
+    {
+        return $this->filter;
     }
 }

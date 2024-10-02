@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about a message.
+ * Returns information about a message
  */
 class GetMessage extends TdFunction
 {
     public const TYPE_NAME = 'getMessage';
 
-    public function __construct(
-        /**
-         * Identifier of the chat the message belongs to.
-         */
-        protected int $chatId,
-        /**
-         * Identifier of the message to get.
-         */
-        protected int $messageId,
-    ) {}
+    /**
+     * Identifier of the chat the message belongs to
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the message to get
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    public function __construct(int $chatId, int $messageId)
+    {
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+    }
 
     public static function fromArray(array $array): GetMessage
     {
@@ -32,6 +41,15 @@ class GetMessage extends TdFunction
             $array['chat_id'],
             $array['message_id'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class GetMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 }

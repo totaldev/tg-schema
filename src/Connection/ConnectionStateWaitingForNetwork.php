@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Connection;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Waiting for the network to become available. Use setNetworkType to change the available network type.
+ * Currently waiting for the network to become available. Use setNetworkType to change the available network type
  */
 class ConnectionStateWaitingForNetwork extends ConnectionState
 {

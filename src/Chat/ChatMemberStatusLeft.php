@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user or the chat is not a chat member.
+ * The user or the chat is not a chat member
  */
 class ChatMemberStatusLeft extends ChatMemberStatus
 {

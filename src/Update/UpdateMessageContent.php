@@ -4,33 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\MessageContent;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * The message content has changed.
+ * The message content has changed
  */
 class UpdateMessageContent extends Update
 {
     public const TYPE_NAME = 'updateMessageContent';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int            $chatId,
-        /**
-         * Message identifier.
-         */
-        protected int            $messageId,
-        /**
-         * New message content.
-         */
-        protected MessageContent $newContent,
-    ) {
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Message identifier
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * New message content
+     *
+     * @var MessageContent
+     */
+    protected MessageContent $newContent;
+
+    public function __construct(int $chatId, int $messageId, MessageContent $newContent)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->newContent = $newContent;
     }
 
     public static function fromArray(array $array): UpdateMessageContent
@@ -40,6 +52,16 @@ class UpdateMessageContent extends Update
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['new_content']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'new_content' => $this->newContent->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -55,15 +77,5 @@ class UpdateMessageContent extends Update
     public function getNewContent(): MessageContent
     {
         return $this->newContent;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'message_id'  => $this->messageId,
-            'new_content' => $this->newContent->typeSerialize(),
-        ];
     }
 }

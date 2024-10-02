@@ -4,31 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Informs TDLib on a file generation progress.
+ * Informs TDLib on a file generation progress
  */
 class SetFileGenerationProgress extends TdFunction
 {
     public const TYPE_NAME = 'setFileGenerationProgress';
 
-    public function __construct(
-        /**
-         * The identifier of the generation process.
-         */
-        protected int $generationId,
-        /**
-         * Expected size of the generated file, in bytes; 0 if unknown.
-         */
-        protected int $expectedSize,
-        /**
-         * The number of bytes already generated.
-         */
-        protected int $localPrefixSize,
-    ) {}
+    /**
+     * The identifier of the generation process
+     *
+     * @var int
+     */
+    protected int $generationId;
+
+    /**
+     * Expected size of the generated file, in bytes; 0 if unknown
+     *
+     * @var int
+     */
+    protected int $expectedSize;
+
+    /**
+     * The number of bytes already generated
+     *
+     * @var int
+     */
+    protected int $localPrefixSize;
+
+    public function __construct(int $generationId, int $expectedSize, int $localPrefixSize)
+    {
+        $this->generationId = $generationId;
+        $this->expectedSize = $expectedSize;
+        $this->localPrefixSize = $localPrefixSize;
+    }
 
     public static function fromArray(array $array): SetFileGenerationProgress
     {
@@ -39,9 +52,14 @@ class SetFileGenerationProgress extends TdFunction
         );
     }
 
-    public function getExpectedSize(): int
+    public function typeSerialize(): array
     {
-        return $this->expectedSize;
+        return [
+            '@type' => static::TYPE_NAME,
+            'generation_id' => $this->generationId,
+            'expected_size' => $this->expectedSize,
+            'local_prefix_size' => $this->localPrefixSize,
+        ];
     }
 
     public function getGenerationId(): int
@@ -49,18 +67,13 @@ class SetFileGenerationProgress extends TdFunction
         return $this->generationId;
     }
 
+    public function getExpectedSize(): int
+    {
+        return $this->expectedSize;
+    }
+
     public function getLocalPrefixSize(): int
     {
         return $this->localPrefixSize;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'             => static::TYPE_NAME,
-            'generation_id'     => $this->generationId,
-            'expected_size'     => $this->expectedSize,
-            'local_prefix_size' => $this->localPrefixSize,
-        ];
     }
 }

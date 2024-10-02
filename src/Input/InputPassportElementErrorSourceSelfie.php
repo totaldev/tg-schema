@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The selfie contains an error. The error is considered resolved when the file with the selfie changes.
+ * The selfie contains an error. The error is considered resolved when the file with the selfie changes
  */
 class InputPassportElementErrorSourceSelfie extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceSelfie';
 
-    public function __construct(
-        /**
-         * Current hash of the file containing the selfie.
-         */
-        protected string $fileHash
-    ) {
+    /**
+     * Current hash of the file containing the selfie
+     *
+     * @var string
+     */
+    protected string $fileHash;
+
+    public function __construct(string $fileHash)
+    {
         parent::__construct();
+
+        $this->fileHash = $fileHash;
     }
 
     public static function fromArray(array $array): InputPassportElementErrorSourceSelfie
@@ -29,16 +36,16 @@ class InputPassportElementErrorSourceSelfie extends InputPassportElementErrorSou
         );
     }
 
-    public function getFileHash(): string
-    {
-        return $this->fileHash;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'file_hash' => $this->fileHash,
         ];
+    }
+
+    public function getFileHash(): string
+    {
+        return $this->fileHash;
     }
 }

@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Delete;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Deletes saved order information.
+ * Deletes saved order information
  */
 class DeleteSavedOrderInfo extends TdFunction
 {
     public const TYPE_NAME = 'deleteSavedOrderInfo';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): DeleteSavedOrderInfo
     {

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Passport;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The front side of the document contains an error. The error will be considered resolved when the file with the front side changes.
+ * The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
  */
 class PassportElementErrorSourceFrontSide extends PassportElementErrorSource
 {

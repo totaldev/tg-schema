@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Text;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A phone number.
+ * A phone number
  */
 class TextEntityTypePhoneNumber extends TextEntityType
 {

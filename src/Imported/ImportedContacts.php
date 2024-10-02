@@ -4,31 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Imported;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the result of an importContacts request.
+ * Represents the result of an importContacts request
  */
 class ImportedContacts extends TdObject
 {
     public const TYPE_NAME = 'importedContacts';
 
-    public function __construct(
-        /**
-         * User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user.
-         *
-         * @var int[]
-         */
-        protected array $userIds,
-        /**
-         * The number of users that imported the corresponding contact; 0 for already registered users or if unavailable.
-         *
-         * @var int[]
-         */
-        protected array $importerCount,
-    ) {}
+    /**
+     * User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
+     *
+     * @var int[]
+     */
+    protected array $userIds;
+
+    /**
+     * The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
+     *
+     * @var int[]
+     */
+    protected array $importerCount;
+
+    public function __construct(array $userIds, array $importerCount)
+    {
+        $this->userIds = $userIds;
+        $this->importerCount = $importerCount;
+    }
 
     public static function fromArray(array $array): ImportedContacts
     {
@@ -38,9 +43,13 @@ class ImportedContacts extends TdObject
         );
     }
 
-    public function getImporterCount(): array
+    public function typeSerialize(): array
     {
-        return $this->importerCount;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_ids' => $this->userIds,
+            'importer_count' => $this->importerCount,
+        ];
     }
 
     public function getUserIds(): array
@@ -48,12 +57,8 @@ class ImportedContacts extends TdObject
         return $this->userIds;
     }
 
-    public function typeSerialize(): array
+    public function getImporterCount(): array
     {
-        return [
-            '@type'          => static::TYPE_NAME,
-            'user_ids'       => $this->userIds,
-            'importer_count' => $this->importerCount,
-        ];
+        return $this->importerCount;
     }
 }

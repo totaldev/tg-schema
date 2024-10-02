@@ -4,31 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Date;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a date according to the Gregorian calendar.
+ * Represents a date according to the Gregorian calendar
  */
 class Date extends TdObject
 {
     public const TYPE_NAME = 'date';
 
-    public function __construct(
-        /**
-         * Day of the month; 1-31.
-         */
-        protected int $day,
-        /**
-         * Month; 1-12.
-         */
-        protected int $month,
-        /**
-         * Year; 1-9999.
-         */
-        protected int $year,
-    ) {}
+    /**
+     * Day of the month; 1-31
+     *
+     * @var int
+     */
+    protected int $day;
+
+    /**
+     * Month; 1-12
+     *
+     * @var int
+     */
+    protected int $month;
+
+    /**
+     * Year; 1-9999
+     *
+     * @var int
+     */
+    protected int $year;
+
+    public function __construct(int $day, int $month, int $year)
+    {
+        $this->day = $day;
+        $this->month = $month;
+        $this->year = $year;
+    }
 
     public static function fromArray(array $array): Date
     {
@@ -37,6 +50,16 @@ class Date extends TdObject
             $array['month'],
             $array['year'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'day' => $this->day,
+            'month' => $this->month,
+            'year' => $this->year,
+        ];
     }
 
     public function getDay(): int
@@ -52,15 +75,5 @@ class Date extends TdObject
     public function getYear(): int
     {
         return $this->year;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'day'   => $this->day,
-            'month' => $this->month,
-            'year'  => $this->year,
-        ];
     }
 }

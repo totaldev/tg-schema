@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Notification;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages.
+ * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
  */
 class NotificationGroupTypeMessages extends NotificationGroupType
 {

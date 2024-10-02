@@ -4,26 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The slow_mode_delay setting of a supergroup was changed.
+ * The slow_mode_delay setting of a supergroup was changed
  */
 class ChatEventSlowModeDelayChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventSlowModeDelayChanged';
 
-    public function __construct(
-        /**
-         * Previous value of slow_mode_delay, in seconds.
-         */
-        protected int $oldSlowModeDelay,
-        /**
-         * New value of slow_mode_delay, in seconds.
-         */
-        protected int $newSlowModeDelay,
-    ) {
+    /**
+     * Previous value of slow_mode_delay, in seconds
+     *
+     * @var int
+     */
+    protected int $oldSlowModeDelay;
+
+    /**
+     * New value of slow_mode_delay, in seconds
+     *
+     * @var int
+     */
+    protected int $newSlowModeDelay;
+
+    public function __construct(int $oldSlowModeDelay, int $newSlowModeDelay)
+    {
         parent::__construct();
+
+        $this->oldSlowModeDelay = $oldSlowModeDelay;
+        $this->newSlowModeDelay = $newSlowModeDelay;
     }
 
     public static function fromArray(array $array): ChatEventSlowModeDelayChanged
@@ -34,9 +45,13 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
         );
     }
 
-    public function getNewSlowModeDelay(): int
+    public function typeSerialize(): array
     {
-        return $this->newSlowModeDelay;
+        return [
+            '@type' => static::TYPE_NAME,
+            'old_slow_mode_delay' => $this->oldSlowModeDelay,
+            'new_slow_mode_delay' => $this->newSlowModeDelay,
+        ];
     }
 
     public function getOldSlowModeDelay(): int
@@ -44,12 +59,8 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
         return $this->oldSlowModeDelay;
     }
 
-    public function typeSerialize(): array
+    public function getNewSlowModeDelay(): int
     {
-        return [
-            '@type'               => static::TYPE_NAME,
-            'old_slow_mode_delay' => $this->oldSlowModeDelay,
-            'new_slow_mode_delay' => $this->newSlowModeDelay,
-        ];
+        return $this->newSlowModeDelay;
     }
 }

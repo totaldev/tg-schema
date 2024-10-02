@@ -4,30 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\User\UserPrivacySetting;
-use Totaldev\TgSchema\User\UserPrivacySettingRules;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes user privacy settings.
+ * Changes user privacy settings
  */
 class SetUserPrivacySettingRules extends TdFunction
 {
     public const TYPE_NAME = 'setUserPrivacySettingRules';
 
-    public function __construct(
-        /**
-         * The privacy setting.
-         */
-        protected UserPrivacySetting      $setting,
-        /**
-         * The new privacy rules.
-         */
-        protected UserPrivacySettingRules $rules,
-    ) {}
+    /**
+     * The privacy setting
+     *
+     * @var UserPrivacySetting
+     */
+    protected UserPrivacySetting $setting;
+
+    /**
+     * The new privacy rules
+     *
+     * @var UserPrivacySettingRules
+     */
+    protected UserPrivacySettingRules $rules;
+
+    public function __construct(UserPrivacySetting $setting, UserPrivacySettingRules $rules)
+    {
+        $this->setting = $setting;
+        $this->rules = $rules;
+    }
 
     public static function fromArray(array $array): SetUserPrivacySettingRules
     {
@@ -37,9 +43,13 @@ class SetUserPrivacySettingRules extends TdFunction
         );
     }
 
-    public function getRules(): UserPrivacySettingRules
+    public function typeSerialize(): array
     {
-        return $this->rules;
+        return [
+            '@type' => static::TYPE_NAME,
+            'setting' => $this->setting->typeSerialize(),
+            'rules' => $this->rules->typeSerialize(),
+        ];
     }
 
     public function getSetting(): UserPrivacySetting
@@ -47,12 +57,8 @@ class SetUserPrivacySettingRules extends TdFunction
         return $this->setting;
     }
 
-    public function typeSerialize(): array
+    public function getRules(): UserPrivacySettingRules
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'setting' => $this->setting->typeSerialize(),
-            'rules'   => $this->rules->typeSerialize(),
-        ];
+        return $this->rules;
     }
 }

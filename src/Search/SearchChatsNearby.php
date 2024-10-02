@@ -4,26 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates
- * updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats.
+ * Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
  */
 class SearchChatsNearby extends TdFunction
 {
     public const TYPE_NAME = 'searchChatsNearby';
 
-    public function __construct(
-        /**
-         * Current user location.
-         */
-        protected Location $location
-    ) {}
+    /**
+     * Current user location
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    public function __construct(Location $location)
+    {
+        $this->location = $location;
+    }
 
     public static function fromArray(array $array): SearchChatsNearby
     {
@@ -32,16 +34,16 @@ class SearchChatsNearby extends TdFunction
         );
     }
 
-    public function getLocation(): Location
-    {
-        return $this->location;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
         ];
+    }
+
+    public function getLocation(): Location
+    {
+        return $this->location;
     }
 }

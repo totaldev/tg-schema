@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user heard their own voice.
+ * The user heard their own voice
  */
 class CallProblemEcho extends CallProblem
 {

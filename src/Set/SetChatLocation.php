@@ -4,30 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatLocation;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is
- * allowed to use.
+ * Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
  */
 class SetChatLocation extends TdFunction
 {
     public const TYPE_NAME = 'setChatLocation';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int          $chatId,
-        /**
-         * New location for the chat; must be valid and not null.
-         */
-        protected ChatLocation $location,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * New location for the chat; must be valid and not null
+     *
+     * @var ChatLocation
+     */
+    protected ChatLocation $location;
+
+    public function __construct(int $chatId, ChatLocation $location)
+    {
+        $this->chatId = $chatId;
+        $this->location = $location;
+    }
 
     public static function fromArray(array $array): SetChatLocation
     {
@@ -35,6 +41,15 @@ class SetChatLocation extends TdFunction
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['location']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'location' => $this->location->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -45,14 +60,5 @@ class SetChatLocation extends TdFunction
     public function getLocation(): ChatLocation
     {
         return $this->location;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'chat_id'  => $this->chatId,
-            'location' => $this->location->typeSerialize(),
-        ];
     }
 }

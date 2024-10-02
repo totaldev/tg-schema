@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Database;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains database statistics.
+ * Contains database statistics
  */
 class DatabaseStatistics extends TdObject
 {
     public const TYPE_NAME = 'databaseStatistics';
 
-    public function __construct(
-        /**
-         * Database statistics in an unspecified human-readable format.
-         */
-        protected string $statistics
-    ) {}
+    /**
+     * Database statistics in an unspecified human-readable format
+     *
+     * @var string
+     */
+    protected string $statistics;
+
+    public function __construct(string $statistics)
+    {
+        $this->statistics = $statistics;
+    }
 
     public static function fromArray(array $array): DatabaseStatistics
     {
@@ -29,16 +34,16 @@ class DatabaseStatistics extends TdObject
         );
     }
 
-    public function getStatistics(): string
-    {
-        return $this->statistics;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'statistics' => $this->statistics,
         ];
+    }
+
+    public function getStatistics(): string
+    {
+        return $this->statistics;
     }
 }

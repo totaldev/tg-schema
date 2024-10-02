@@ -4,32 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Write;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is
- * usually slower than a direct write to the destination file.
+ * Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
  */
 class WriteGeneratedFilePart extends TdFunction
 {
     public const TYPE_NAME = 'writeGeneratedFilePart';
 
-    public function __construct(
-        /**
-         * The identifier of the generation process.
-         */
-        protected int    $generationId,
-        /**
-         * The offset from which to write the data to the file.
-         */
-        protected int    $offset,
-        /**
-         * The data to write.
-         */
-        protected string $data,
-    ) {}
+    /**
+     * The identifier of the generation process
+     *
+     * @var int
+     */
+    protected int $generationId;
+
+    /**
+     * The offset from which to write the data to the file
+     *
+     * @var int
+     */
+    protected int $offset;
+
+    /**
+     * The data to write
+     *
+     * @var string
+     */
+    protected string $data;
+
+    public function __construct(int $generationId, int $offset, string $data)
+    {
+        $this->generationId = $generationId;
+        $this->offset = $offset;
+        $this->data = $data;
+    }
 
     public static function fromArray(array $array): WriteGeneratedFilePart
     {
@@ -40,9 +52,14 @@ class WriteGeneratedFilePart extends TdFunction
         );
     }
 
-    public function getData(): string
+    public function typeSerialize(): array
     {
-        return $this->data;
+        return [
+            '@type' => static::TYPE_NAME,
+            'generation_id' => $this->generationId,
+            'offset' => $this->offset,
+            'data' => $this->data,
+        ];
     }
 
     public function getGenerationId(): int
@@ -55,13 +72,8 @@ class WriteGeneratedFilePart extends TdFunction
         return $this->offset;
     }
 
-    public function typeSerialize(): array
+    public function getData(): string
     {
-        return [
-            '@type'         => static::TYPE_NAME,
-            'generation_id' => $this->generationId,
-            'offset'        => $this->offset,
-            'data'          => $this->data,
-        ];
+        return $this->data;
     }
 }

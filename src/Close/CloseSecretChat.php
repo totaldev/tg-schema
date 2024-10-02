@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Close;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Closes a secret chat, effectively transferring its state to secretChatStateClosed.
+ * Closes a secret chat, effectively transferring its state to secretChatStateClosed
  */
 class CloseSecretChat extends TdFunction
 {
     public const TYPE_NAME = 'closeSecretChat';
 
-    public function __construct(
-        /**
-         * Secret chat identifier.
-         */
-        protected int $secretChatId
-    ) {}
+    /**
+     * Secret chat identifier
+     *
+     * @var int
+     */
+    protected int $secretChatId;
+
+    public function __construct(int $secretChatId)
+    {
+        $this->secretChatId = $secretChatId;
+    }
 
     public static function fromArray(array $array): CloseSecretChat
     {
@@ -29,16 +34,16 @@ class CloseSecretChat extends TdFunction
         );
     }
 
-    public function getSecretChatId(): int
-    {
-        return $this->secretChatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'secret_chat_id' => $this->secretChatId,
         ];
+    }
+
+    public function getSecretChatId(): int
+    {
+        return $this->secretChatId;
     }
 }

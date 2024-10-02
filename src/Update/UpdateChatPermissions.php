@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatPermissions;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Chat permissions were changed.
+ * Chat permissions was changed
  */
 class UpdateChatPermissions extends Update
 {
     public const TYPE_NAME = 'updateChatPermissions';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int             $chatId,
-        /**
-         * The new chat permissions.
-         */
-        protected ChatPermissions $permissions,
-    ) {
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * The new chat permissions
+     *
+     * @var ChatPermissions
+     */
+    protected ChatPermissions $permissions;
+
+    public function __construct(int $chatId, ChatPermissions $permissions)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->permissions = $permissions;
     }
 
     public static function fromArray(array $array): UpdateChatPermissions
@@ -37,6 +45,15 @@ class UpdateChatPermissions extends Update
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'permissions' => $this->permissions->typeSerialize(),
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
@@ -45,14 +62,5 @@ class UpdateChatPermissions extends Update
     public function getPermissions(): ChatPermissions
     {
         return $this->permissions;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'permissions' => $this->permissions->typeSerialize(),
-        ];
     }
 }

@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether the user's online status is visible.
+ * A privacy setting for managing whether the user's online status is visible
  */
 class UserPrivacySettingShowStatus extends UserPrivacySetting
 {

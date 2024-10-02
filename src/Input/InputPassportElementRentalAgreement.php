@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A Telegram Passport element to be saved containing the user's rental agreement.
+ * A Telegram Passport element to be saved containing the user's rental agreement
  */
 class InputPassportElementRentalAgreement extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementRentalAgreement';
 
-    public function __construct(
-        /**
-         * The rental agreement to be saved.
-         */
-        protected InputPersonalDocument $rentalAgreement
-    ) {
+    /**
+     * The rental agreement to be saved
+     *
+     * @var InputPersonalDocument
+     */
+    protected InputPersonalDocument $rentalAgreement;
+
+    public function __construct(InputPersonalDocument $rentalAgreement)
+    {
         parent::__construct();
+
+        $this->rentalAgreement = $rentalAgreement;
     }
 
     public static function fromArray(array $array): InputPassportElementRentalAgreement
@@ -31,16 +36,16 @@ class InputPassportElementRentalAgreement extends InputPassportElement
         );
     }
 
-    public function getRentalAgreement(): InputPersonalDocument
-    {
-        return $this->rentalAgreement;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'rental_agreement' => $this->rentalAgreement->typeSerialize(),
         ];
+    }
+
+    public function getRentalAgreement(): InputPersonalDocument
+    {
+        return $this->rentalAgreement;
     }
 }

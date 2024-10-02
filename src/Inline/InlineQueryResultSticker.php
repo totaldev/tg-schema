@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Sticker\Sticker;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a sticker.
+ * Represents a sticker
  */
 class InlineQueryResultSticker extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultSticker';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string  $id,
-        /**
-         * Sticker.
-         */
-        protected Sticker $sticker,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Sticker
+     *
+     * @var Sticker
+     */
+    protected Sticker $sticker;
+
+    public function __construct(string $id, Sticker $sticker)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): InlineQueryResultSticker
@@ -37,6 +45,15 @@ class InlineQueryResultSticker extends InlineQueryResult
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
+    }
+
     public function getId(): string
     {
         return $this->id;
@@ -45,14 +62,5 @@ class InlineQueryResultSticker extends InlineQueryResult
     public function getSticker(): Sticker
     {
         return $this->sticker;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'id'      => $this->id,
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
     }
 }

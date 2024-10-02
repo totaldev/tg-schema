@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously.
+ * Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
  */
 class GetLogTagVerbosityLevel extends TdFunction
 {
     public const TYPE_NAME = 'getLogTagVerbosityLevel';
 
-    public function __construct(
-        /**
-         * Logging tag to change verbosity level.
-         */
-        protected string $tag
-    ) {}
+    /**
+     * Logging tag to change verbosity level
+     *
+     * @var string
+     */
+    protected string $tag;
+
+    public function __construct(string $tag)
+    {
+        $this->tag = $tag;
+    }
 
     public static function fromArray(array $array): GetLogTagVerbosityLevel
     {
@@ -29,16 +34,16 @@ class GetLogTagVerbosityLevel extends TdFunction
         );
     }
 
-    public function getTag(): string
-    {
-        return $this->tag;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'tag'   => $this->tag,
+            'tag' => $this->tag,
         ];
+    }
+
+    public function getTag(): string
+    {
+        return $this->tag;
     }
 }

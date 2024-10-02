@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Authorization;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Initialization parameters are needed. Call setTdlibParameters to provide them.
+ * Initialization parameters are needed. Call setTdlibParameters to provide them
  */
 class AuthorizationStateWaitTdlibParameters extends AuthorizationState
 {

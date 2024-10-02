@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Call\Call;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * New call was created or information about a call was updated.
+ * New call was created or information about a call was updated
  */
 class UpdateCall extends Update
 {
     public const TYPE_NAME = 'updateCall';
 
-    public function __construct(
-        /**
-         * New data about a call.
-         */
-        protected Call $call
-    ) {
+    /**
+     * New data about a call
+     *
+     * @var Call
+     */
+    protected Call $call;
+
+    public function __construct(Call $call)
+    {
         parent::__construct();
+
+        $this->call = $call;
     }
 
     public static function fromArray(array $array): UpdateCall
@@ -32,16 +36,16 @@ class UpdateCall extends Update
         );
     }
 
-    public function getCall(): Call
-    {
-        return $this->call;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'call'  => $this->call->typeSerialize(),
+            'call' => $this->call->typeSerialize(),
         ];
+    }
+
+    public function getCall(): Call
+    {
+        return $this->call;
     }
 }

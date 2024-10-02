@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Contact\Contact;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A message containing a user contact.
+ * A message containing a user contact
  */
 class InputMessageContact extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageContact';
 
-    public function __construct(
-        /**
-         * Contact to send.
-         */
-        protected Contact $contact
-    ) {
+    /**
+     * Contact to send
+     *
+     * @var Contact
+     */
+    protected Contact $contact;
+
+    public function __construct(Contact $contact)
+    {
         parent::__construct();
+
+        $this->contact = $contact;
     }
 
     public static function fromArray(array $array): InputMessageContact
@@ -32,16 +36,16 @@ class InputMessageContact extends InputMessageContent
         );
     }
 
-    public function getContact(): Contact
-    {
-        return $this->contact;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'contact' => $this->contact->typeSerialize(),
         ];
+    }
+
+    public function getContact(): Contact
+    {
+        return $this->contact;
     }
 }

@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\User\UserFullInfo;
+namespace Totaldev\TgSchema;
 
 /**
- * Some data in userFullInfo has been changed.
+ * Some data in userFullInfo has been changed
  */
 class UpdateUserFullInfo extends Update
 {
     public const TYPE_NAME = 'updateUserFullInfo';
 
-    public function __construct(
-        /**
-         * User identifier.
-         */
-        protected int          $userId,
-        /**
-         * New full information about the user.
-         */
-        protected UserFullInfo $userFullInfo,
-    ) {
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * New full information about the user
+     *
+     * @var UserFullInfo
+     */
+    protected UserFullInfo $userFullInfo;
+
+    public function __construct(int $userId, UserFullInfo $userFullInfo)
+    {
         parent::__construct();
+
+        $this->userId = $userId;
+        $this->userFullInfo = $userFullInfo;
     }
 
     public static function fromArray(array $array): UpdateUserFullInfo
@@ -37,9 +45,13 @@ class UpdateUserFullInfo extends Update
         );
     }
 
-    public function getUserFullInfo(): UserFullInfo
+    public function typeSerialize(): array
     {
-        return $this->userFullInfo;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'user_full_info' => $this->userFullInfo->typeSerialize(),
+        ];
     }
 
     public function getUserId(): int
@@ -47,12 +59,8 @@ class UpdateUserFullInfo extends Update
         return $this->userId;
     }
 
-    public function typeSerialize(): array
+    public function getUserFullInfo(): UserFullInfo
     {
-        return [
-            '@type'          => static::TYPE_NAME,
-            'user_id'        => $this->userId,
-            'user_full_info' => $this->userFullInfo->typeSerialize(),
-        ];
+        return $this->userFullInfo;
     }
 }

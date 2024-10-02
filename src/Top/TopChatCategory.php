@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Top;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the categories of chats for which a list of frequently used chats can be retrieved.
+ * Represents the categories of chats for which a list of frequently used chats can be retrieved
  */
 class TopChatCategory extends TdObject
 {
     public const TYPE_NAME = 'TopChatCategory';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): TopChatCategory
     {

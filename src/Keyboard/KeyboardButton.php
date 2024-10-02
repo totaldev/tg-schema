@@ -4,28 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Keyboard;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a single button in a bot keyboard.
+ * Represents a single button in a bot keyboard
  */
 class KeyboardButton extends TdObject
 {
     public const TYPE_NAME = 'keyboardButton';
 
-    public function __construct(
-        /**
-         * Text of the button.
-         */
-        protected string             $text,
-        /**
-         * Type of the button.
-         */
-        protected KeyboardButtonType $type,
-    ) {}
+    /**
+     * Text of the button
+     *
+     * @var string
+     */
+    protected string $text;
+
+    /**
+     * Type of the button
+     *
+     * @var KeyboardButtonType
+     */
+    protected KeyboardButtonType $type;
+
+    public function __construct(string $text, KeyboardButtonType $type)
+    {
+        $this->text = $text;
+        $this->type = $type;
+    }
 
     public static function fromArray(array $array): KeyboardButton
     {
@@ -33,6 +41,15 @@ class KeyboardButton extends TdObject
             $array['text'],
             TdSchemaRegistry::fromArray($array['type']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text,
+            'type' => $this->type->typeSerialize(),
+        ];
     }
 
     public function getText(): string
@@ -43,14 +60,5 @@ class KeyboardButton extends TdObject
     public function getType(): KeyboardButtonType
     {
         return $this->type;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text'  => $this->text,
-            'type'  => $this->type->typeSerialize(),
-        ];
     }
 }

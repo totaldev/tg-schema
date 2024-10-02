@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The content must be middle-aligned.
+ * The content must be middle-aligned
  */
 class PageBlockVerticalAlignmentMiddle extends PageBlockVerticalAlignment
 {

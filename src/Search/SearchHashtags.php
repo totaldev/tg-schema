@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for recently used hashtags by their prefix.
+ * Searches for recently used hashtags by their prefix
  */
 class SearchHashtags extends TdFunction
 {
     public const TYPE_NAME = 'searchHashtags';
 
-    public function __construct(
-        /**
-         * Hashtag prefix to search for.
-         */
-        protected string $prefix,
-        /**
-         * The maximum number of hashtags to be returned.
-         */
-        protected int    $limit,
-    ) {}
+    /**
+     * Hashtag prefix to search for
+     *
+     * @var string
+     */
+    protected string $prefix;
+
+    /**
+     * The maximum number of hashtags to be returned
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    public function __construct(string $prefix, int $limit)
+    {
+        $this->prefix = $prefix;
+        $this->limit = $limit;
+    }
 
     public static function fromArray(array $array): SearchHashtags
     {
@@ -34,9 +43,13 @@ class SearchHashtags extends TdFunction
         );
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'prefix' => $this->prefix,
+            'limit' => $this->limit,
+        ];
     }
 
     public function getPrefix(): string
@@ -44,12 +57,8 @@ class SearchHashtags extends TdFunction
         return $this->prefix;
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type'  => static::TYPE_NAME,
-            'prefix' => $this->prefix,
-            'limit'  => $this->limit,
-        ];
+        return $this->limit;
     }
 }

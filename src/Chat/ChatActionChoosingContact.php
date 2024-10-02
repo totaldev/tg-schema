@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user is picking a contact to send.
+ * The user is picking a contact to send
  */
 class ChatActionChoosingContact extends ChatAction
 {

@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a location to which a chat is connected.
+ * Represents a location to which a chat is connected
  */
 class ChatLocation extends TdObject
 {
     public const TYPE_NAME = 'chatLocation';
 
-    public function __construct(
-        /**
-         * The location.
-         */
-        protected Location $location,
-        /**
-         * Location address; 1-64 characters, as defined by the chat owner.
-         */
-        protected string   $address,
-    ) {}
+    /**
+     * The location
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
+     * Location address; 1-64 characters, as defined by the chat owner
+     *
+     * @var string
+     */
+    protected string $address;
+
+    public function __construct(Location $location, string $address)
+    {
+        $this->location = $location;
+        $this->address = $address;
+    }
 
     public static function fromArray(array $array): ChatLocation
     {
@@ -36,9 +43,13 @@ class ChatLocation extends TdObject
         );
     }
 
-    public function getAddress(): string
+    public function typeSerialize(): array
     {
-        return $this->address;
+        return [
+            '@type' => static::TYPE_NAME,
+            'location' => $this->location->typeSerialize(),
+            'address' => $this->address,
+        ];
     }
 
     public function getLocation(): Location
@@ -46,12 +57,8 @@ class ChatLocation extends TdObject
         return $this->location;
     }
 
-    public function typeSerialize(): array
+    public function getAddress(): string
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'address'  => $this->address,
-        ];
+        return $this->address;
     }
 }

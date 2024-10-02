@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the last message sent in a chat no later than the specified date.
+ * Returns the last message sent in a chat no later than the specified date
  */
 class GetChatMessageByDate extends TdFunction
 {
     public const TYPE_NAME = 'getChatMessageByDate';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int $chatId,
-        /**
-         * Point in time (Unix timestamp) relative to which to search for messages.
-         */
-        protected int $date,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Point in time (Unix timestamp) relative to which to search for messages
+     *
+     * @var int
+     */
+    protected int $date;
+
+    public function __construct(int $chatId, int $date)
+    {
+        $this->chatId = $chatId;
+        $this->date = $date;
+    }
 
     public static function fromArray(array $array): GetChatMessageByDate
     {
@@ -32,6 +41,15 @@ class GetChatMessageByDate extends TdFunction
             $array['chat_id'],
             $array['date'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'date' => $this->date,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class GetChatMessageByDate extends TdFunction
     public function getDate(): int
     {
         return $this->date;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'date'    => $this->date,
-        ];
     }
 }

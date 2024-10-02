@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Background;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a solid fill of a background.
+ * Describes a solid fill of a background
  */
 class BackgroundFillSolid extends BackgroundFill
 {
     public const TYPE_NAME = 'backgroundFillSolid';
 
-    public function __construct(
-        /**
-         * A color of the background in the RGB24 format.
-         */
-        protected int $color
-    ) {
+    /**
+     * A color of the background in the RGB24 format
+     *
+     * @var int
+     */
+    protected int $color;
+
+    public function __construct(int $color)
+    {
         parent::__construct();
+
+        $this->color = $color;
     }
 
     public static function fromArray(array $array): BackgroundFillSolid
@@ -29,16 +36,16 @@ class BackgroundFillSolid extends BackgroundFill
         );
     }
 
-    public function getColor(): int
-    {
-        return $this->color;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'color' => $this->color,
         ];
+    }
+
+    public function getColor(): int
+    {
+        return $this->color;
     }
 }

@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\View;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Informs the server that some trending sticker sets have been viewed by the user.
+ * Informs the server that some trending sticker sets have been viewed by the user
  */
 class ViewTrendingStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'viewTrendingStickerSets';
 
-    public function __construct(
-        /**
-         * Identifiers of viewed trending sticker sets.
-         *
-         * @var int[]
-         */
-        protected array $stickerSetIds
-    ) {}
+    /**
+     * Identifiers of viewed trending sticker sets
+     *
+     * @var int[]
+     */
+    protected array $stickerSetIds;
+
+    public function __construct(array $stickerSetIds)
+    {
+        $this->stickerSetIds = $stickerSetIds;
+    }
 
     public static function fromArray(array $array): ViewTrendingStickerSets
     {
@@ -31,16 +34,16 @@ class ViewTrendingStickerSets extends TdFunction
         );
     }
 
-    public function getStickerSetIds(): array
-    {
-        return $this->stickerSetIds;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'           => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker_set_ids' => $this->stickerSetIds,
         ];
+    }
+
+    public function getStickerSetIds(): array
+    {
+        return $this->stickerSetIds;
     }
 }

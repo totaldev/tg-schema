@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The other side kept disappearing.
+ * The other side kept disappearing
  */
 class CallProblemInterruptions extends CallProblem
 {

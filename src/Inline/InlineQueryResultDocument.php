@@ -4,37 +4,53 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Document\Document;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a document.
+ * Represents a document
  */
 class InlineQueryResultDocument extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultDocument';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string   $id,
-        /**
-         * Document.
-         */
-        protected Document $document,
-        /**
-         * Document title.
-         */
-        protected string   $title,
-        /**
-         * Document description.
-         */
-        protected string   $description,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Document
+     *
+     * @var Document
+     */
+    protected Document $document;
+
+    /**
+     * Document title
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Document description
+     *
+     * @var string
+     */
+    protected string $description;
+
+    public function __construct(string $id, Document $document, string $title, string $description)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->document = $document;
+        $this->title = $title;
+        $this->description = $description;
     }
 
     public static function fromArray(array $array): InlineQueryResultDocument
@@ -47,14 +63,15 @@ class InlineQueryResultDocument extends InlineQueryResult
         );
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
-    }
-
-    public function getDocument(): Document
-    {
-        return $this->document;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'document' => $this->document->typeSerialize(),
+            'title' => $this->title,
+            'description' => $this->description,
+        ];
     }
 
     public function getId(): string
@@ -62,19 +79,18 @@ class InlineQueryResultDocument extends InlineQueryResult
         return $this->id;
     }
 
+    public function getDocument(): Document
+    {
+        return $this->document;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function typeSerialize(): array
+    public function getDescription(): string
     {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'document'    => $this->document->typeSerialize(),
-            'title'       => $this->title,
-            'description' => $this->description,
-        ];
+        return $this->description;
     }
 }

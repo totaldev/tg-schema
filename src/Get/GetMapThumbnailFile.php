@@ -4,45 +4,68 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded.
+ * Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
  */
 class GetMapThumbnailFile extends TdFunction
 {
     public const TYPE_NAME = 'getMapThumbnailFile';
 
-    public function __construct(
-        /**
-         * Location of the map center.
-         */
-        protected Location $location,
-        /**
-         * Map zoom level; 13-20.
-         */
-        protected int      $zoom,
-        /**
-         * Map width in pixels before applying scale; 16-1024.
-         */
-        protected int      $width,
-        /**
-         * Map height in pixels before applying scale; 16-1024.
-         */
-        protected int      $height,
-        /**
-         * Map scale; 1-3.
-         */
-        protected int      $scale,
-        /**
-         * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown.
-         */
-        protected int      $chatId,
-    ) {}
+    /**
+     * Location of the map center
+     *
+     * @var Location
+     */
+    protected Location $location;
+
+    /**
+     * Map zoom level; 13-20
+     *
+     * @var int
+     */
+    protected int $zoom;
+
+    /**
+     * Map width in pixels before applying scale; 16-1024
+     *
+     * @var int
+     */
+    protected int $width;
+
+    /**
+     * Map height in pixels before applying scale; 16-1024
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * Map scale; 1-3
+     *
+     * @var int
+     */
+    protected int $scale;
+
+    /**
+     * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(Location $location, int $zoom, int $width, int $height, int $scale, int $chatId)
+    {
+        $this->location = $location;
+        $this->zoom = $zoom;
+        $this->width = $width;
+        $this->height = $height;
+        $this->scale = $scale;
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): GetMapThumbnailFile
     {
@@ -56,14 +79,17 @@ class GetMapThumbnailFile extends TdFunction
         );
     }
 
-    public function getChatId(): int
+    public function typeSerialize(): array
     {
-        return $this->chatId;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
+        return [
+            '@type' => static::TYPE_NAME,
+            'location' => $this->location->typeSerialize(),
+            'zoom' => $this->zoom,
+            'width' => $this->width,
+            'height' => $this->height,
+            'scale' => $this->scale,
+            'chat_id' => $this->chatId,
+        ];
     }
 
     public function getLocation(): Location
@@ -71,9 +97,9 @@ class GetMapThumbnailFile extends TdFunction
         return $this->location;
     }
 
-    public function getScale(): int
+    public function getZoom(): int
     {
-        return $this->scale;
+        return $this->zoom;
     }
 
     public function getWidth(): int
@@ -81,21 +107,18 @@ class GetMapThumbnailFile extends TdFunction
         return $this->width;
     }
 
-    public function getZoom(): int
+    public function getHeight(): int
     {
-        return $this->zoom;
+        return $this->height;
     }
 
-    public function typeSerialize(): array
+    public function getScale(): int
     {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'zoom'     => $this->zoom,
-            'width'    => $this->width,
-            'height'   => $this->height,
-            'scale'    => $this->scale,
-            'chat_id'  => $this->chatId,
-        ];
+        return $this->scale;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 }

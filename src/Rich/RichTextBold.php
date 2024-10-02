@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Rich;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A bold rich text.
+ * A bold rich text
  */
 class RichTextBold extends RichText
 {
     public const TYPE_NAME = 'richTextBold';
 
-    public function __construct(
-        /**
-         * Text.
-         */
-        protected RichText $text
-    ) {
+    /**
+     * Text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
+
+    public function __construct(RichText $text)
+    {
         parent::__construct();
+
+        $this->text = $text;
     }
 
     public static function fromArray(array $array): RichTextBold
@@ -31,16 +36,16 @@ class RichTextBold extends RichText
         );
     }
 
-    public function getText(): RichText
-    {
-        return $this->text;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text'  => $this->text->typeSerialize(),
+            'text' => $this->text->typeSerialize(),
         ];
+    }
+
+    public function getText(): RichText
+    {
+        return $this->text;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain.
+ * Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
  */
 class SetDatabaseEncryptionKey extends TdFunction
 {
     public const TYPE_NAME = 'setDatabaseEncryptionKey';
 
-    public function __construct(
-        /**
-         * New encryption key.
-         */
-        protected string $newEncryptionKey
-    ) {}
+    /**
+     * New encryption key
+     *
+     * @var string
+     */
+    protected string $newEncryptionKey;
+
+    public function __construct(string $newEncryptionKey)
+    {
+        $this->newEncryptionKey = $newEncryptionKey;
+    }
 
     public static function fromArray(array $array): SetDatabaseEncryptionKey
     {
@@ -29,16 +34,16 @@ class SetDatabaseEncryptionKey extends TdFunction
         );
     }
 
-    public function getNewEncryptionKey(): string
-    {
-        return $this->newEncryptionKey;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'new_encryption_key' => $this->newEncryptionKey,
         ];
+    }
+
+    public function getNewEncryptionKey(): string
+    {
+        return $this->newEncryptionKey;
     }
 }

@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The can_invite_users permission of a supergroup chat was toggled.
+ * The can_invite_users permission of a supergroup chat was toggled
  */
 class ChatEventInvitesToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventInvitesToggled';
 
-    public function __construct(
-        /**
-         * New value of can_invite_users permission.
-         */
-        protected bool $canInviteUsers
-    ) {
+    /**
+     * New value of can_invite_users permission
+     *
+     * @var bool
+     */
+    protected bool $canInviteUsers;
+
+    public function __construct(bool $canInviteUsers)
+    {
         parent::__construct();
+
+        $this->canInviteUsers = $canInviteUsers;
     }
 
     public static function fromArray(array $array): ChatEventInvitesToggled
@@ -29,16 +36,16 @@ class ChatEventInvitesToggled extends ChatEventAction
         );
     }
 
-    public function getCanInviteUsers(): bool
-    {
-        return $this->canInviteUsers;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'can_invite_users' => $this->canInviteUsers,
         ];
+    }
+
+    public function getCanInviteUsers(): bool
+    {
+        return $this->canInviteUsers;
     }
 }

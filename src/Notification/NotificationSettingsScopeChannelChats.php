@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Notification;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Notification settings applied to all channel chats when the corresponding chat setting has a default value.
+ * Notification settings applied to all channel chats when the corresponding chat setting has a default value
  */
 class NotificationSettingsScopeChannelChats extends NotificationSettingsScope
 {

@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns auto-download settings presets for the current user.
+ * Returns auto-download settings presets for the current user
  */
 class GetAutoDownloadSettingsPresets extends TdFunction
 {
     public const TYPE_NAME = 'getAutoDownloadSettingsPresets';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetAutoDownloadSettingsPresets
     {

@@ -4,32 +4,54 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Public;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\Message;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains a public forward as a message.
+ * New message was received
  */
-class PublicForwardMessage extends PublicForward
+class NotificationTypeNewMessage extends NotificationType
 {
-    public const TYPE_NAME = 'publicForwardMessage';
+    public const TYPE_NAME = 'notificationTypeNewMessage';
 
-    public function __construct(
-        /**
-         * Information about the message.
-         */
-        protected Message $message
-    ) {
+    /**
+     * The message
+     *
+     * @var Message
+     */
+    protected Message $message;
+
+    /**
+     * True, if message content must be displayed in notifications
+     *
+     * @var bool
+     */
+    protected bool $showPreview;
+
+    public function __construct(Message $message, bool $showPreview)
+    {
         parent::__construct();
+
+        $this->message = $message;
+        $this->showPreview = $showPreview;
     }
 
-    public static function fromArray(array $array): PublicForwardMessage
+    public static function fromArray(array $array): NotificationTypeNewMessage
     {
         return new static(
             TdSchemaRegistry::fromArray($array['message']),
+            $array['show_preview'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'message' => $this->message->typeSerialize(),
+            'show_preview' => $this->showPreview,
+        ];
     }
 
     public function getMessage(): Message
@@ -37,11 +59,8 @@ class PublicForwardMessage extends PublicForward
         return $this->message;
     }
 
-    public function typeSerialize(): array
+    public function getShowPreview(): bool
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-        ];
+        return $this->showPreview;
     }
 }

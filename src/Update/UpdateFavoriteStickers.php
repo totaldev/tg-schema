@@ -4,24 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The list of favorite stickers was updated.
+ * The list of favorite stickers was updated
  */
 class UpdateFavoriteStickers extends Update
 {
     public const TYPE_NAME = 'updateFavoriteStickers';
 
-    public function __construct(
-        /**
-         * The new list of file identifiers of favorite stickers.
-         *
-         * @var int[]
-         */
-        protected array $stickerIds
-    ) {
+    /**
+     * The new list of file identifiers of favorite stickers
+     *
+     * @var int[]
+     */
+    protected array $stickerIds;
+
+    public function __construct(array $stickerIds)
+    {
         parent::__construct();
+
+        $this->stickerIds = $stickerIds;
     }
 
     public static function fromArray(array $array): UpdateFavoriteStickers
@@ -31,16 +36,16 @@ class UpdateFavoriteStickers extends Update
         );
     }
 
-    public function getStickerIds(): array
-    {
-        return $this->stickerIds;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'sticker_ids' => $this->stickerIds,
         ];
+    }
+
+    public function getStickerIds(): array
+    {
+        return $this->stickerIds;
     }
 }

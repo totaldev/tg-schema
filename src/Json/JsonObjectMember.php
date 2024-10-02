@@ -4,28 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Json;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents one member of a JSON object.
+ * Represents one member of a JSON object
  */
 class JsonObjectMember extends TdObject
 {
     public const TYPE_NAME = 'jsonObjectMember';
 
-    public function __construct(
-        /**
-         * Member's key.
-         */
-        protected string    $key,
-        /**
-         * Member's value.
-         */
-        protected JsonValue $value,
-    ) {}
+    /**
+     * Member's key
+     *
+     * @var string
+     */
+    protected string $key;
+
+    /**
+     * Member's value
+     *
+     * @var JsonValue
+     */
+    protected JsonValue $value;
+
+    public function __construct(string $key, JsonValue $value)
+    {
+        $this->key = $key;
+        $this->value = $value;
+    }
 
     public static function fromArray(array $array): JsonObjectMember
     {
@@ -33,6 +41,15 @@ class JsonObjectMember extends TdObject
             $array['key'],
             TdSchemaRegistry::fromArray($array['value']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'key' => $this->key,
+            'value' => $this->value->typeSerialize(),
+        ];
     }
 
     public function getKey(): string
@@ -43,14 +60,5 @@ class JsonObjectMember extends TdObject
     public function getValue(): JsonValue
     {
         return $this->value;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'key'   => $this->key,
-            'value' => $this->value->typeSerialize(),
-        ];
     }
 }

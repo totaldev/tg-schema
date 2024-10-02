@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Delete;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Deletes a profile photo.
+ * Deletes a profile photo
  */
 class DeleteProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'deleteProfilePhoto';
 
-    public function __construct(
-        /**
-         * Identifier of the profile photo to delete.
-         */
-        protected int $profilePhotoId
-    ) {}
+    /**
+     * Identifier of the profile photo to delete
+     *
+     * @var int
+     */
+    protected int $profilePhotoId;
+
+    public function __construct(int $profilePhotoId)
+    {
+        $this->profilePhotoId = $profilePhotoId;
+    }
 
     public static function fromArray(array $array): DeleteProfilePhoto
     {
@@ -29,16 +34,16 @@ class DeleteProfilePhoto extends TdFunction
         );
     }
 
-    public function getProfilePhotoId(): int
-    {
-        return $this->profilePhotoId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'profile_photo_id' => $this->profilePhotoId,
         ];
+    }
+
+    public function getProfilePhotoId(): int
+    {
+        return $this->profilePhotoId;
     }
 }

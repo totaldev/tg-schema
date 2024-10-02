@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A privacy setting for managing whether a link to the user's account is included in forwarded messages.
+ * A privacy setting for managing whether a link to the user's account is included in forwarded messages
  */
 class UserPrivacySettingShowLinkInForwardedMessages extends UserPrivacySetting
 {

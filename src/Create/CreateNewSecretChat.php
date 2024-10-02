@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Create;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Creates a new secret chat. Returns the newly created chat.
+ * Creates a new secret chat. Returns the newly created chat
  */
 class CreateNewSecretChat extends TdFunction
 {
     public const TYPE_NAME = 'createNewSecretChat';
 
-    public function __construct(
-        /**
-         * Identifier of the target user.
-         */
-        protected int $userId
-    ) {}
+    /**
+     * Identifier of the target user
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    public function __construct(int $userId)
+    {
+        $this->userId = $userId;
+    }
 
     public static function fromArray(array $array): CreateNewSecretChat
     {
@@ -29,16 +34,16 @@ class CreateNewSecretChat extends TdFunction
         );
     }
 
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 }

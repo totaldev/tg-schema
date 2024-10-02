@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns information about a newest pinned message in the chat.
+ * Returns information about a newest pinned message in the chat
  */
 class GetChatPinnedMessage extends TdFunction
 {
     public const TYPE_NAME = 'getChatPinnedMessage';
 
-    public function __construct(
-        /**
-         * Identifier of the chat the message belongs to.
-         */
-        protected int $chatId
-    ) {}
+    /**
+     * Identifier of the chat the message belongs to
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    public function __construct(int $chatId)
+    {
+        $this->chatId = $chatId;
+    }
 
     public static function fromArray(array $array): GetChatPinnedMessage
     {
@@ -29,16 +34,16 @@ class GetChatPinnedMessage extends TdFunction
         );
     }
 
-    public function getChatId(): int
-    {
-        return $this->chatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 }

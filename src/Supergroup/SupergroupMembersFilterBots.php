@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Supergroup;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns bot members of the supergroup or channel.
+ * Returns bot members of the supergroup or channel
  */
 class SupergroupMembersFilterBots extends SupergroupMembersFilter
 {

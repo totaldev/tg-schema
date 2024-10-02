@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Message\Message;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A new message was received; can also be an outgoing message.
+ * A new message was received; can also be an outgoing message
  */
 class UpdateNewMessage extends Update
 {
     public const TYPE_NAME = 'updateNewMessage';
 
-    public function __construct(
-        /**
-         * The new message.
-         */
-        protected Message $message
-    ) {
+    /**
+     * The new message
+     *
+     * @var Message
+     */
+    protected Message $message;
+
+    public function __construct(Message $message)
+    {
         parent::__construct();
+
+        $this->message = $message;
     }
 
     public static function fromArray(array $array): UpdateNewMessage
@@ -32,16 +36,16 @@ class UpdateNewMessage extends Update
         );
     }
 
-    public function getMessage(): Message
-    {
-        return $this->message;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
         ];
+    }
+
+    public function getMessage(): Message
+    {
+        return $this->message;
     }
 }

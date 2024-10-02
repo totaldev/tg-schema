@@ -4,41 +4,60 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Location\Location;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+ * Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
  */
 class GetInlineQueryResults extends TdFunction
 {
     public const TYPE_NAME = 'getInlineQueryResults';
 
-    public function __construct(
-        /**
-         * Identifier of the target bot.
-         */
-        protected int      $botUserId,
-        /**
-         * Identifier of the chat where the query was sent.
-         */
-        protected int      $chatId,
-        /**
-         * Location of the user; pass null if unknown or the bot doesn't need user's location.
-         */
-        protected Location $userLocation,
-        /**
-         * Text of the query.
-         */
-        protected string   $query,
-        /**
-         * Offset of the first entry to return; use empty string to get the first chunk of results.
-         */
-        protected string   $offset,
-    ) {}
+    /**
+     * Identifier of the target bot
+     *
+     * @var int
+     */
+    protected int $botUserId;
+
+    /**
+     * Identifier of the chat where the query was sent
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Location of the user; pass null if unknown or the bot doesn't need user's location
+     *
+     * @var Location
+     */
+    protected Location $userLocation;
+
+    /**
+     * Text of the query
+     *
+     * @var string
+     */
+    protected string $query;
+
+    /**
+     * Offset of the first entry to return
+     *
+     * @var string
+     */
+    protected string $offset;
+
+    public function __construct(int $botUserId, int $chatId, Location $userLocation, string $query, string $offset)
+    {
+        $this->botUserId = $botUserId;
+        $this->chatId = $chatId;
+        $this->userLocation = $userLocation;
+        $this->query = $query;
+        $this->offset = $offset;
+    }
 
     public static function fromArray(array $array): GetInlineQueryResults
     {
@@ -51,6 +70,18 @@ class GetInlineQueryResults extends TdFunction
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'chat_id' => $this->chatId,
+            'user_location' => $this->userLocation->typeSerialize(),
+            'query' => $this->query,
+            'offset' => $this->offset,
+        ];
+    }
+
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -61,9 +92,9 @@ class GetInlineQueryResults extends TdFunction
         return $this->chatId;
     }
 
-    public function getOffset(): string
+    public function getUserLocation(): Location
     {
-        return $this->offset;
+        return $this->userLocation;
     }
 
     public function getQuery(): string
@@ -71,20 +102,8 @@ class GetInlineQueryResults extends TdFunction
         return $this->query;
     }
 
-    public function getUserLocation(): Location
+    public function getOffset(): string
     {
-        return $this->userLocation;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'         => static::TYPE_NAME,
-            'bot_user_id'   => $this->botUserId,
-            'chat_id'       => $this->chatId,
-            'user_location' => $this->userLocation->typeSerialize(),
-            'query'         => $this->query,
-            'offset'        => $this->offset,
-        ];
+        return $this->offset;
     }
 }

@@ -4,33 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Callback\CallbackQueryPayload;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
+ * Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
  */
 class GetCallbackQueryAnswer extends TdFunction
 {
     public const TYPE_NAME = 'getCallbackQueryAnswer';
 
-    public function __construct(
-        /**
-         * Identifier of the chat with the message.
-         */
-        protected int                  $chatId,
-        /**
-         * Identifier of the message from which the query originated. The message must not be scheduled.
-         */
-        protected int                  $messageId,
-        /**
-         * Query payload.
-         */
-        protected CallbackQueryPayload $payload,
-    ) {}
+    /**
+     * Identifier of the chat with the message
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * Identifier of the message from which the query originated
+     *
+     * @var int
+     */
+    protected int $messageId;
+
+    /**
+     * Query payload
+     *
+     * @var CallbackQueryPayload
+     */
+    protected CallbackQueryPayload $payload;
+
+    public function __construct(int $chatId, int $messageId, CallbackQueryPayload $payload)
+    {
+        $this->chatId = $chatId;
+        $this->messageId = $messageId;
+        $this->payload = $payload;
+    }
 
     public static function fromArray(array $array): GetCallbackQueryAnswer
     {
@@ -39,6 +50,16 @@ class GetCallbackQueryAnswer extends TdFunction
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['payload']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'message_id' => $this->messageId,
+            'payload' => $this->payload->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -54,15 +75,5 @@ class GetCallbackQueryAnswer extends TdFunction
     public function getPayload(): CallbackQueryPayload
     {
         return $this->payload;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-            'payload'    => $this->payload->typeSerialize(),
-        ];
     }
 }

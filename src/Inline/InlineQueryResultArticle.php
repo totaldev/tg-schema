@@ -4,45 +4,75 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Thumbnail\Thumbnail;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a link to an article or web page.
+ * Represents a link to an article or web page
  */
 class InlineQueryResultArticle extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultArticle';
 
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * URL of the result, if it exists
+     *
+     * @var string
+     */
+    protected string $url;
+
+    /**
+     * True, if the URL must be not shown
+     *
+     * @var bool
+     */
+    protected bool $hideUrl;
+
+    /**
+     * Title of the result
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * A short description of the result
+     *
+     * @var string
+     */
+    protected string $description;
+
+    /**
+     * Result thumbnail in JPEG format; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
+
     public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string     $id,
-        /**
-         * URL of the result, if it exists.
-         */
-        protected string     $url,
-        /**
-         * True, if the URL must be not shown.
-         */
-        protected bool       $hideUrl,
-        /**
-         * Title of the result.
-         */
-        protected string     $title,
-        /**
-         * A short description of the result.
-         */
-        protected string     $description,
-        /**
-         * Result thumbnail in JPEG format; may be null.
-         */
-        protected ?Thumbnail $thumbnail,
+        string $id,
+        string $url,
+        bool $hideUrl,
+        string $title,
+        string $description,
+        ?Thumbnail $thumbnail
     ) {
         parent::__construct();
+
+        $this->id = $id;
+        $this->url = $url;
+        $this->hideUrl = $hideUrl;
+        $this->title = $title;
+        $this->description = $description;
+        $this->thumbnail = $thumbnail;
     }
 
     public static function fromArray(array $array): InlineQueryResultArticle
@@ -53,18 +83,21 @@ class InlineQueryResultArticle extends InlineQueryResult
             $array['hide_url'],
             $array['title'],
             $array['description'],
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
-    }
-
-    public function getHideUrl(): bool
-    {
-        return $this->hideUrl;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'url' => $this->url,
+            'hide_url' => $this->hideUrl,
+            'title' => $this->title,
+            'description' => $this->description,
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+        ];
     }
 
     public function getId(): string
@@ -72,9 +105,14 @@ class InlineQueryResultArticle extends InlineQueryResult
         return $this->id;
     }
 
-    public function getThumbnail(): ?Thumbnail
+    public function getUrl(): string
     {
-        return $this->thumbnail;
+        return $this->url;
+    }
+
+    public function getHideUrl(): bool
+    {
+        return $this->hideUrl;
     }
 
     public function getTitle(): string
@@ -82,21 +120,13 @@ class InlineQueryResultArticle extends InlineQueryResult
         return $this->title;
     }
 
-    public function getUrl(): string
+    public function getDescription(): string
     {
-        return $this->url;
+        return $this->description;
     }
 
-    public function typeSerialize(): array
+    public function getThumbnail(): ?Thumbnail
     {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'url'         => $this->url,
-            'hide_url'    => $this->hideUrl,
-            'title'       => $this->title,
-            'description' => $this->description,
-            'thumbnail'   => (isset($this->thumbnail) ? $this->thumbnail : null),
-        ];
+        return $this->thumbnail;
     }
 }

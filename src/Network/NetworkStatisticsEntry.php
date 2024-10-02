@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Network;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains statistics about network usage.
+ * Contains statistics about network usage
  */
 class NetworkStatisticsEntry extends TdObject
 {
     public const TYPE_NAME = 'NetworkStatisticsEntry';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): NetworkStatisticsEntry
     {

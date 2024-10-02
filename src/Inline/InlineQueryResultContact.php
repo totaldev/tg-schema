@@ -4,34 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Contact\Contact;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Thumbnail\Thumbnail;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a user contact.
+ * Represents a user contact
  */
 class InlineQueryResultContact extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultContact';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string     $id,
-        /**
-         * A user contact.
-         */
-        protected Contact    $contact,
-        /**
-         * Result thumbnail in JPEG format; may be null.
-         */
-        protected ?Thumbnail $thumbnail,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * A user contact
+     *
+     * @var Contact
+     */
+    protected Contact $contact;
+
+    /**
+     * Result thumbnail in JPEG format; may be null
+     *
+     * @var Thumbnail|null
+     */
+    protected ?Thumbnail $thumbnail;
+
+    public function __construct(string $id, Contact $contact, ?Thumbnail $thumbnail)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->contact = $contact;
+        $this->thumbnail = $thumbnail;
     }
 
     public static function fromArray(array $array): InlineQueryResultContact
@@ -39,13 +50,18 @@ class InlineQueryResultContact extends InlineQueryResult
         return new static(
             $array['id'],
             TdSchemaRegistry::fromArray($array['contact']),
-            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
         );
     }
 
-    public function getContact(): Contact
+    public function typeSerialize(): array
     {
-        return $this->contact;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'contact' => $this->contact->typeSerialize(),
+            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+        ];
     }
 
     public function getId(): string
@@ -53,18 +69,13 @@ class InlineQueryResultContact extends InlineQueryResult
         return $this->id;
     }
 
+    public function getContact(): Contact
+    {
+        return $this->contact;
+    }
+
     public function getThumbnail(): ?Thumbnail
     {
         return $this->thumbnail;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
-            'contact'   => $this->contact->typeSerialize(),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
-        ];
     }
 }

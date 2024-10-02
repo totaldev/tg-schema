@@ -4,27 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches,
- * the action is not allowed.
+ * A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
  */
 class UserPrivacySettingRules extends TdObject
 {
     public const TYPE_NAME = 'userPrivacySettingRules';
 
-    public function __construct(
-        /**
-         * A list of rules.
-         *
-         * @var UserPrivacySettingRule[]
-         */
-        protected array $rules
-    ) {}
+    /**
+     * A list of rules
+     *
+     * @var UserPrivacySettingRule[]
+     */
+    protected array $rules;
+
+    public function __construct(array $rules)
+    {
+        $this->rules = $rules;
+    }
 
     public static function fromArray(array $array): UserPrivacySettingRules
     {
@@ -33,16 +34,16 @@ class UserPrivacySettingRules extends TdObject
         );
     }
 
-    public function getRules(): array
-    {
-        return $this->rules;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->rules),
         ];
+    }
+
+    public function getRules(): array
+    {
+        return $this->rules;
     }
 }

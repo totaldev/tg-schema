@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Input\InputChatPhoto;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right.
+ * Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
  */
 class SetChatPhoto extends TdFunction
 {
     public const TYPE_NAME = 'setChatPhoto';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int            $chatId,
-        /**
-         * New chat photo; pass null to delete the chat photo.
-         */
-        protected InputChatPhoto $photo,
-    ) {}
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * New chat photo; pass null to delete the chat photo
+     *
+     * @var InputChatPhoto
+     */
+    protected InputChatPhoto $photo;
+
+    public function __construct(int $chatId, InputChatPhoto $photo)
+    {
+        $this->chatId = $chatId;
+        $this->photo = $photo;
+    }
 
     public static function fromArray(array $array): SetChatPhoto
     {
@@ -34,6 +41,15 @@ class SetChatPhoto extends TdFunction
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['photo']),
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'photo' => $this->photo->typeSerialize(),
+        ];
     }
 
     public function getChatId(): int
@@ -44,14 +60,5 @@ class SetChatPhoto extends TdFunction
     public function getPhoto(): InputChatPhoto
     {
         return $this->photo;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'photo'   => $this->photo->typeSerialize(),
-        ];
     }
 }

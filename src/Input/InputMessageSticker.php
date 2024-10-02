@@ -4,40 +4,61 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A sticker message.
+ * A sticker message
  */
 class InputMessageSticker extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageSticker';
 
-    public function __construct(
-        /**
-         * Sticker to be sent.
-         */
-        protected InputFile      $sticker,
-        /**
-         * Sticker thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail $thumbnail,
-        /**
-         * Sticker width.
-         */
-        protected int            $width,
-        /**
-         * Sticker height.
-         */
-        protected int            $height,
-        /**
-         * Emoji used to choose the sticker.
-         */
-        protected string         $emoji,
-    ) {
+    /**
+     * Sticker to be sent
+     *
+     * @var InputFile
+     */
+    protected InputFile $sticker;
+
+    /**
+     * Sticker thumbnail; pass null to skip thumbnail uploading
+     *
+     * @var InputThumbnail
+     */
+    protected InputThumbnail $thumbnail;
+
+    /**
+     * Sticker width
+     *
+     * @var int
+     */
+    protected int $width;
+
+    /**
+     * Sticker height
+     *
+     * @var int
+     */
+    protected int $height;
+
+    /**
+     * Emoji used to choose the sticker
+     *
+     * @var string
+     */
+    protected string $emoji;
+
+    public function __construct(InputFile $sticker, InputThumbnail $thumbnail, int $width, int $height, string $emoji)
+    {
         parent::__construct();
+
+        $this->sticker = $sticker;
+        $this->thumbnail = $thumbnail;
+        $this->width = $width;
+        $this->height = $height;
+        $this->emoji = $emoji;
     }
 
     public static function fromArray(array $array): InputMessageSticker
@@ -51,14 +72,16 @@ class InputMessageSticker extends InputMessageContent
         );
     }
 
-    public function getEmoji(): string
+    public function typeSerialize(): array
     {
-        return $this->emoji;
-    }
-
-    public function getHeight(): int
-    {
-        return $this->height;
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'width' => $this->width,
+            'height' => $this->height,
+            'emoji' => $this->emoji,
+        ];
     }
 
     public function getSticker(): InputFile
@@ -76,15 +99,13 @@ class InputMessageSticker extends InputMessageContent
         return $this->width;
     }
 
-    public function typeSerialize(): array
+    public function getHeight(): int
     {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'sticker'   => $this->sticker->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'width'     => $this->width,
-            'height'    => $this->height,
-            'emoji'     => $this->emoji,
-        ];
+        return $this->height;
+    }
+
+    public function getEmoji(): string
+    {
+        return $this->emoji;
     }
 }

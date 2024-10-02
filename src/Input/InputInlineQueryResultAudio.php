@@ -4,49 +4,84 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Reply\ReplyMarkup;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents a link to an MP3 audio file.
+ * Represents a link to an MP3 audio file
  */
 class InputInlineQueryResultAudio extends InputInlineQueryResult
 {
     public const TYPE_NAME = 'inputInlineQueryResultAudio';
 
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Title of the audio file
+     *
+     * @var string
+     */
+    protected string $title;
+
+    /**
+     * Performer of the audio file
+     *
+     * @var string
+     */
+    protected string $performer;
+
+    /**
+     * The URL of the audio file
+     *
+     * @var string
+     */
+    protected string $audioUrl;
+
+    /**
+     * Audio file duration, in seconds
+     *
+     * @var int
+     */
+    protected int $audioDuration;
+
+    /**
+     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
+     *
+     * @var ReplyMarkup
+     */
+    protected ReplyMarkup $replyMarkup;
+
+    /**
+     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
+     *
+     * @var InputMessageContent
+     */
+    protected InputMessageContent $inputMessageContent;
+
     public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string              $id,
-        /**
-         * Title of the audio file.
-         */
-        protected string              $title,
-        /**
-         * Performer of the audio file.
-         */
-        protected string              $performer,
-        /**
-         * The URL of the audio file.
-         */
-        protected string              $audioUrl,
-        /**
-         * Audio file duration, in seconds.
-         */
-        protected int                 $audioDuration,
-        /**
-         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
-         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
-         */
-        protected InputMessageContent $inputMessageContent,
+        string $id,
+        string $title,
+        string $performer,
+        string $audioUrl,
+        int $audioDuration,
+        ReplyMarkup $replyMarkup,
+        InputMessageContent $inputMessageContent
     ) {
         parent::__construct();
+
+        $this->id = $id;
+        $this->title = $title;
+        $this->performer = $performer;
+        $this->audioUrl = $audioUrl;
+        $this->audioDuration = $audioDuration;
+        $this->replyMarkup = $replyMarkup;
+        $this->inputMessageContent = $inputMessageContent;
     }
 
     public static function fromArray(array $array): InputInlineQueryResultAudio
@@ -62,14 +97,18 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
         );
     }
 
-    public function getAudioDuration(): int
+    public function typeSerialize(): array
     {
-        return $this->audioDuration;
-    }
-
-    public function getAudioUrl(): string
-    {
-        return $this->audioUrl;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'title' => $this->title,
+            'performer' => $this->performer,
+            'audio_url' => $this->audioUrl,
+            'audio_duration' => $this->audioDuration,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 
     public function getId(): string
@@ -77,9 +116,9 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
         return $this->id;
     }
 
-    public function getInputMessageContent(): InputMessageContent
+    public function getTitle(): string
     {
-        return $this->inputMessageContent;
+        return $this->title;
     }
 
     public function getPerformer(): string
@@ -87,27 +126,23 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
         return $this->performer;
     }
 
+    public function getAudioUrl(): string
+    {
+        return $this->audioUrl;
+    }
+
+    public function getAudioDuration(): int
+    {
+        return $this->audioDuration;
+    }
+
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
     }
 
-    public function getTitle(): string
+    public function getInputMessageContent(): InputMessageContent
     {
-        return $this->title;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'                 => static::TYPE_NAME,
-            'id'                    => $this->id,
-            'title'                 => $this->title,
-            'performer'             => $this->performer,
-            'audio_url'             => $this->audioUrl,
-            'audio_duration'        => $this->audioDuration,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
+        return $this->inputMessageContent;
     }
 }

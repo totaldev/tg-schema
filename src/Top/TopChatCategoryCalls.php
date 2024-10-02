@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Top;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A category containing frequently used chats used for calls.
+ * A category containing frequently used chats used for calls
  */
 class TopChatCategoryCalls extends TopChatCategory
 {

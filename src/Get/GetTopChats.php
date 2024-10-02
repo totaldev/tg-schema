@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Top\TopChatCategory;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a list of frequently used chats.
+ * Returns a list of frequently used chats. Supported only if the chat info database is enabled
  */
 class GetTopChats extends TdFunction
 {
     public const TYPE_NAME = 'getTopChats';
 
-    public function __construct(
-        /**
-         * Category of chats to be returned.
-         */
-        protected TopChatCategory $category,
-        /**
-         * The maximum number of chats to be returned; up to 30.
-         */
-        protected int             $limit,
-    ) {}
+    /**
+     * Category of chats to be returned
+     *
+     * @var TopChatCategory
+     */
+    protected TopChatCategory $category;
+
+    /**
+     * The maximum number of chats to be returned; up to 30
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    public function __construct(TopChatCategory $category, int $limit)
+    {
+        $this->category = $category;
+        $this->limit = $limit;
+    }
 
     public static function fromArray(array $array): GetTopChats
     {
@@ -34,6 +41,15 @@ class GetTopChats extends TdFunction
             TdSchemaRegistry::fromArray($array['category']),
             $array['limit'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'category' => $this->category->typeSerialize(),
+            'limit' => $this->limit,
+        ];
     }
 
     public function getCategory(): TopChatCategory
@@ -44,14 +60,5 @@ class GetTopChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'    => static::TYPE_NAME,
-            'category' => $this->category->typeSerialize(),
-            'limit'    => $this->limit,
-        ];
     }
 }

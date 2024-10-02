@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\User;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user is offline.
+ * The user is offline
  */
 class UserStatusOffline extends UserStatus
 {
     public const TYPE_NAME = 'userStatusOffline';
 
-    public function __construct(
-        /**
-         * Point in time (Unix timestamp) when the user was last online.
-         */
-        protected int $wasOnline
-    ) {
+    /**
+     * Point in time (Unix timestamp) when the user was last online
+     *
+     * @var int
+     */
+    protected int $wasOnline;
+
+    public function __construct(int $wasOnline)
+    {
         parent::__construct();
+
+        $this->wasOnline = $wasOnline;
     }
 
     public static function fromArray(array $array): UserStatusOffline
@@ -29,16 +36,16 @@ class UserStatusOffline extends UserStatus
         );
     }
 
-    public function getWasOnline(): int
-    {
-        return $this->wasOnline;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'was_online' => $this->wasOnline,
         ];
+    }
+
+    public function getWasOnline(): int
+    {
+        return $this->wasOnline;
     }
 }

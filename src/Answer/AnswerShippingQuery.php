@@ -4,53 +4,62 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Answer;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Shipping\ShippingOption;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Sets the result of a shipping query; for bots only.
+ * Sets the result of a shipping query; for bots only
  */
 class AnswerShippingQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerShippingQuery';
 
-    public function __construct(
-        /**
-         * Identifier of the shipping query.
-         */
-        protected int    $shippingQueryId,
-        /**
-         * Available shipping options.
-         *
-         * @var ShippingOption[]
-         */
-        protected array  $shippingOptions,
-        /**
-         * An error message, empty on success.
-         */
-        protected string $errorMessage,
-    ) {}
+    /**
+     * Identifier of the shipping query
+     *
+     * @var int
+     */
+    protected int $shippingQueryId;
+
+    /**
+     * Available shipping options
+     *
+     * @var ShippingOption[]
+     */
+    protected array $shippingOptions;
+
+    /**
+     * An error message, empty on success
+     *
+     * @var string
+     */
+    protected string $errorMessage;
+
+    public function __construct(int $shippingQueryId, array $shippingOptions, string $errorMessage)
+    {
+        $this->shippingQueryId = $shippingQueryId;
+        $this->shippingOptions = $shippingOptions;
+        $this->errorMessage = $errorMessage;
+    }
 
     public static function fromArray(array $array): AnswerShippingQuery
     {
         return new static(
             $array['shipping_query_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shippingOptions']),
             $array['error_message'],
         );
     }
 
-    public function getErrorMessage(): string
+    public function typeSerialize(): array
     {
-        return $this->errorMessage;
-    }
-
-    public function getShippingOptions(): array
-    {
-        return $this->shippingOptions;
+        return [
+            '@type' => static::TYPE_NAME,
+            'shipping_query_id' => $this->shippingQueryId,
+            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            'error_message' => $this->errorMessage,
+        ];
     }
 
     public function getShippingQueryId(): int
@@ -58,13 +67,13 @@ class AnswerShippingQuery extends TdFunction
         return $this->shippingQueryId;
     }
 
-    public function typeSerialize(): array
+    public function getShippingOptions(): array
     {
-        return [
-            '@type'             => static::TYPE_NAME,
-            'shipping_query_id' => $this->shippingQueryId,
-            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
-            'error_message'     => $this->errorMessage,
-        ];
+        return $this->shippingOptions;
+    }
+
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
     }
 }

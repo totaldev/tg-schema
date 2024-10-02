@@ -4,33 +4,45 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Inline;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Animation\Animation;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents an animation file.
+ * Represents an animation file
  */
 class InlineQueryResultAnimation extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultAnimation';
 
-    public function __construct(
-        /**
-         * Unique identifier of the query result.
-         */
-        protected string    $id,
-        /**
-         * Animation file.
-         */
-        protected Animation $animation,
-        /**
-         * Animation title.
-         */
-        protected string    $title,
-    ) {
+    /**
+     * Unique identifier of the query result
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Animation file
+     *
+     * @var Animation
+     */
+    protected Animation $animation;
+
+    /**
+     * Animation title
+     *
+     * @var string
+     */
+    protected string $title;
+
+    public function __construct(string $id, Animation $animation, string $title)
+    {
         parent::__construct();
+
+        $this->id = $id;
+        $this->animation = $animation;
+        $this->title = $title;
     }
 
     public static function fromArray(array $array): InlineQueryResultAnimation
@@ -42,9 +54,14 @@ class InlineQueryResultAnimation extends InlineQueryResult
         );
     }
 
-    public function getAnimation(): Animation
+    public function typeSerialize(): array
     {
-        return $this->animation;
+        return [
+            '@type' => static::TYPE_NAME,
+            'id' => $this->id,
+            'animation' => $this->animation->typeSerialize(),
+            'title' => $this->title,
+        ];
     }
 
     public function getId(): string
@@ -52,18 +69,13 @@ class InlineQueryResultAnimation extends InlineQueryResult
         return $this->id;
     }
 
+    public function getAnimation(): Animation
+    {
+        return $this->animation;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'     => static::TYPE_NAME,
-            'id'        => $this->id,
-            'animation' => $this->animation->typeSerialize(),
-            'title'     => $this->title,
-        ];
     }
 }

@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Set;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right.
+ * Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
  */
 class SetChatDescription extends TdFunction
 {
     public const TYPE_NAME = 'setChatDescription';
 
-    public function __construct(
-        /**
-         * Identifier of the chat.
-         */
-        protected int    $chatId,
-        /**
-         * New chat description; 0-255 characters.
-         */
-        protected string $description,
-    ) {}
+    /**
+     * Identifier of the chat
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * New chat description; 0-255 characters
+     *
+     * @var string
+     */
+    protected string $description;
+
+    public function __construct(int $chatId, string $description)
+    {
+        $this->chatId = $chatId;
+        $this->description = $description;
+    }
 
     public static function fromArray(array $array): SetChatDescription
     {
@@ -32,6 +41,15 @@ class SetChatDescription extends TdFunction
             $array['chat_id'],
             $array['description'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'description' => $this->description,
+        ];
     }
 
     public function getChatId(): int
@@ -42,14 +60,5 @@ class SetChatDescription extends TdFunction
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'description' => $this->description,
-        ];
     }
 }

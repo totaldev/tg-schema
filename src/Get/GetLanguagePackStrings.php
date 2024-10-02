@@ -4,29 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
+ * Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
  */
 class GetLanguagePackStrings extends TdFunction
 {
     public const TYPE_NAME = 'getLanguagePackStrings';
 
-    public function __construct(
-        /**
-         * Language pack identifier of the strings to be returned.
-         */
-        protected string $languagePackId,
-        /**
-         * Language pack keys of the strings to be returned; leave empty to request all available strings.
-         *
-         * @var string[]
-         */
-        protected array  $keys,
-    ) {}
+    /**
+     * Language pack identifier of the strings to be returned
+     *
+     * @var string
+     */
+    protected string $languagePackId;
+
+    /**
+     * Language pack keys of the strings to be returned; leave empty to request all available strings
+     *
+     * @var string[]
+     */
+    protected array $keys;
+
+    public function __construct(string $languagePackId, array $keys)
+    {
+        $this->languagePackId = $languagePackId;
+        $this->keys = $keys;
+    }
 
     public static function fromArray(array $array): GetLanguagePackStrings
     {
@@ -36,9 +43,13 @@ class GetLanguagePackStrings extends TdFunction
         );
     }
 
-    public function getKeys(): array
+    public function typeSerialize(): array
     {
-        return $this->keys;
+        return [
+            '@type' => static::TYPE_NAME,
+            'language_pack_id' => $this->languagePackId,
+            'keys' => $this->keys,
+        ];
     }
 
     public function getLanguagePackId(): string
@@ -46,12 +57,8 @@ class GetLanguagePackStrings extends TdFunction
         return $this->languagePackId;
     }
 
-    public function typeSerialize(): array
+    public function getKeys(): array
     {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'language_pack_id' => $this->languagePackId,
-            'keys'             => $this->keys,
-        ];
+        return $this->keys;
     }
 }

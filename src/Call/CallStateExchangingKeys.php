@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The call has been answered and encryption keys are being exchanged.
+ * The call has been answered and encryption keys are being exchanged
  */
 class CallStateExchangingKeys extends CallState
 {

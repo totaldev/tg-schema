@@ -4,26 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a vector of objects that hold a string; for testing only.
+ * A simple object containing a vector of objects that hold a string; for testing only
  */
 class TestVectorStringObject extends TdObject
 {
     public const TYPE_NAME = 'testVectorStringObject';
 
-    public function __construct(
-        /**
-         * Vector of objects.
-         *
-         * @var TestString[]
-         */
-        protected array $value
-    ) {}
+    /**
+     * Vector of objects
+     *
+     * @var TestString[]
+     */
+    protected array $value;
+
+    public function __construct(array $value)
+    {
+        $this->value = $value;
+    }
 
     public static function fromArray(array $array): TestVectorStringObject
     {
@@ -32,16 +34,16 @@ class TestVectorStringObject extends TdObject
         );
     }
 
-    public function getValue(): array
-    {
-        return $this->value;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->value),
         ];
+    }
+
+    public function getValue(): array
+    {
+        return $this->value;
     }
 }

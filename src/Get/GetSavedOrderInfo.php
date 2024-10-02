@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns saved order information. Returns a 404 error if there is no saved order information.
+ * Returns saved order information. Returns a 404 error if there is no saved order information
  */
 class GetSavedOrderInfo extends TdFunction
 {
     public const TYPE_NAME = 'getSavedOrderInfo';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetSavedOrderInfo
     {

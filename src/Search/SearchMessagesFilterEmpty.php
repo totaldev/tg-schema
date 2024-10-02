@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * Returns all found messages, no filter is applied.
+ * Returns all found messages, no filter is applied
  */
 class SearchMessagesFilterEmpty extends SearchMessagesFilter
 {

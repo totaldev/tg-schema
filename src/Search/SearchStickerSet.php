@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for a sticker set by its name.
+ * Searches for a sticker set by its name
  */
 class SearchStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'searchStickerSet';
 
-    public function __construct(
-        /**
-         * Name of the sticker set.
-         */
-        protected string $name
-    ) {}
+    /**
+     * Name of the sticker set
+     *
+     * @var string
+     */
+    protected string $name;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 
     public static function fromArray(array $array): SearchStickerSet
     {
@@ -29,16 +34,16 @@ class SearchStickerSet extends TdFunction
         );
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * A simple object containing a sequence of bytes; for testing only.
+ * A simple object containing a sequence of bytes; for testing only
  */
 class TestBytes extends TdObject
 {
     public const TYPE_NAME = 'testBytes';
 
-    public function __construct(
-        /**
-         * Bytes.
-         */
-        protected string $value
-    ) {}
+    /**
+     * Bytes
+     *
+     * @var string
+     */
+    protected string $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
 
     public static function fromArray(array $array): TestBytes
     {
@@ -29,16 +34,16 @@ class TestBytes extends TdObject
         );
     }
 
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }

@@ -4,29 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatNotificationSettings;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Notification settings for a chat were changed.
+ * Notification settings for a chat were changed
  */
 class UpdateChatNotificationSettings extends Update
 {
     public const TYPE_NAME = 'updateChatNotificationSettings';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int                      $chatId,
-        /**
-         * The new notification settings.
-         */
-        protected ChatNotificationSettings $notificationSettings,
-    ) {
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * The new notification settings
+     *
+     * @var ChatNotificationSettings
+     */
+    protected ChatNotificationSettings $notificationSettings;
+
+    public function __construct(int $chatId, ChatNotificationSettings $notificationSettings)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->notificationSettings = $notificationSettings;
     }
 
     public static function fromArray(array $array): UpdateChatNotificationSettings
@@ -37,6 +45,15 @@ class UpdateChatNotificationSettings extends Update
         );
     }
 
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'notification_settings' => $this->notificationSettings->typeSerialize(),
+        ];
+    }
+
     public function getChatId(): int
     {
         return $this->chatId;
@@ -45,14 +62,5 @@ class UpdateChatNotificationSettings extends Update
     public function getNotificationSettings(): ChatNotificationSettings
     {
         return $this->notificationSettings;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'                 => static::TYPE_NAME,
-            'chat_id'               => $this->chatId,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-        ];
     }
 }

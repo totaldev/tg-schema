@@ -4,22 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * An ordinary chat with a user.
+ * An ordinary chat with a user
  */
 class ChatTypePrivate extends ChatType
 {
     public const TYPE_NAME = 'chatTypePrivate';
 
-    public function __construct(
-        /**
-         * User identifier.
-         */
-        protected int $userId
-    ) {
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    public function __construct(int $userId)
+    {
         parent::__construct();
+
+        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): ChatTypePrivate
@@ -29,16 +36,16 @@ class ChatTypePrivate extends ChatType
         );
     }
 
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 }

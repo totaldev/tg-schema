@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Test;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the received bytes; for testing only. This is an offline method. Can be called before authorization.
+ * Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
  */
 class TestCallBytes extends TdFunction
 {
     public const TYPE_NAME = 'testCallBytes';
 
-    public function __construct(
-        /**
-         * Bytes to return.
-         */
-        protected string $x
-    ) {}
+    /**
+     * Bytes to return
+     *
+     * @var string
+     */
+    protected string $x;
+
+    public function __construct(string $x)
+    {
+        $this->x = $x;
+    }
 
     public static function fromArray(array $array): TestCallBytes
     {
@@ -29,16 +34,16 @@ class TestCallBytes extends TdFunction
         );
     }
 
-    public function getX(): string
-    {
-        return $this->x;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'x'     => $this->x,
+            'x' => $this->x,
         ];
+    }
+
+    public function getX(): string
+    {
+        return $this->x;
     }
 }

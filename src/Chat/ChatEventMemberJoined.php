@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Chat;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A new member joined the chat.
+ * A new member joined the chat
  */
 class ChatEventMemberJoined extends ChatEventAction
 {

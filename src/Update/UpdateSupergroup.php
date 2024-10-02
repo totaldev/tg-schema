@@ -4,25 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Supergroup\Supergroup;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application.
+ * Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
  */
 class UpdateSupergroup extends Update
 {
     public const TYPE_NAME = 'updateSupergroup';
 
-    public function __construct(
-        /**
-         * New data about the supergroup.
-         */
-        protected Supergroup $supergroup
-    ) {
+    /**
+     * New data about the supergroup
+     *
+     * @var Supergroup
+     */
+    protected Supergroup $supergroup;
+
+    public function __construct(Supergroup $supergroup)
+    {
         parent::__construct();
+
+        $this->supergroup = $supergroup;
     }
 
     public static function fromArray(array $array): UpdateSupergroup
@@ -32,16 +36,16 @@ class UpdateSupergroup extends Update
         );
     }
 
-    public function getSupergroup(): Supergroup
-    {
-        return $this->supergroup;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'supergroup' => $this->supergroup->typeSerialize(),
         ];
+    }
+
+    public function getSupergroup(): Supergroup
+    {
+        return $this->supergroup;
     }
 }

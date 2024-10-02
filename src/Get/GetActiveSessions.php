@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns all active sessions of the current user.
+ * Returns all active sessions of the current user
  */
 class GetActiveSessions extends TdFunction
 {
     public const TYPE_NAME = 'getActiveSessions';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): GetActiveSessions
     {

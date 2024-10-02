@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Authentication;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Provides information about the method by which an authentication code is delivered to the user.
+ * Provides information about the method by which an authentication code is delivered to the user
  */
 class AuthenticationCodeType extends TdObject
 {
     public const TYPE_NAME = 'AuthenticationCodeType';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): AuthenticationCodeType
     {

@@ -4,28 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Rich;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A rich text email link.
+ * A rich text email link
  */
 class RichTextEmailAddress extends RichText
 {
     public const TYPE_NAME = 'richTextEmailAddress';
 
-    public function __construct(
-        /**
-         * Text.
-         */
-        protected RichText $text,
-        /**
-         * Email address.
-         */
-        protected string   $emailAddress,
-    ) {
+    /**
+     * Text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
+
+    /**
+     * Email address
+     *
+     * @var string
+     */
+    protected string $emailAddress;
+
+    public function __construct(RichText $text, string $emailAddress)
+    {
         parent::__construct();
+
+        $this->text = $text;
+        $this->emailAddress = $emailAddress;
     }
 
     public static function fromArray(array $array): RichTextEmailAddress
@@ -36,9 +45,13 @@ class RichTextEmailAddress extends RichText
         );
     }
 
-    public function getEmailAddress(): string
+    public function typeSerialize(): array
     {
-        return $this->emailAddress;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'email_address' => $this->emailAddress,
+        ];
     }
 
     public function getText(): RichText
@@ -46,12 +59,8 @@ class RichTextEmailAddress extends RichText
         return $this->text;
     }
 
-    public function typeSerialize(): array
+    public function getEmailAddress(): string
     {
-        return [
-            '@type'         => static::TYPE_NAME,
-            'text'          => $this->text->typeSerialize(),
-            'email_address' => $this->emailAddress,
-        ];
+        return $this->emailAddress;
     }
 }

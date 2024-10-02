@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Input;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * The content of a message to send.
+ * The content of a message to send
  */
 class InputMessageContent extends TdObject
 {
     public const TYPE_NAME = 'InputMessageContent';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): InputMessageContent
     {

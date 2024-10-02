@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Check;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The username is invalid.
+ * The username is invalid
  */
 class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult
 {

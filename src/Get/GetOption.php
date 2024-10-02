@@ -4,24 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before
- * authorization. Can be called synchronously for options "version" and "commit_hash".
+ * Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
  */
 class GetOption extends TdFunction
 {
     public const TYPE_NAME = 'getOption';
 
-    public function __construct(
-        /**
-         * The name of the option.
-         */
-        protected string $name
-    ) {}
+    /**
+     * The name of the option
+     *
+     * @var string
+     */
+    protected string $name;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 
     public static function fromArray(array $array): GetOption
     {
@@ -30,16 +34,16 @@ class GetOption extends TdFunction
         );
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            'name' => $this->name,
         ];
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

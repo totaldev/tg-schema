@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Rich;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a formatted text object.
+ * Describes a text object inside an instant-view web page
  */
 class RichText extends TdObject
 {
     public const TYPE_NAME = 'RichText';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): RichText
     {

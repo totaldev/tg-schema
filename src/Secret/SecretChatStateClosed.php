@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Secret;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The secret chat is closed.
+ * The secret chat is closed
  */
 class SecretChatStateClosed extends SecretChatState
 {

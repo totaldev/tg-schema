@@ -4,28 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Rich;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A rich text phone number.
+ * A rich text phone number
  */
 class RichTextPhoneNumber extends RichText
 {
     public const TYPE_NAME = 'richTextPhoneNumber';
 
-    public function __construct(
-        /**
-         * Text.
-         */
-        protected RichText $text,
-        /**
-         * Phone number.
-         */
-        protected string   $phoneNumber,
-    ) {
+    /**
+     * Text
+     *
+     * @var RichText
+     */
+    protected RichText $text;
+
+    /**
+     * Phone number
+     *
+     * @var string
+     */
+    protected string $phoneNumber;
+
+    public function __construct(RichText $text, string $phoneNumber)
+    {
         parent::__construct();
+
+        $this->text = $text;
+        $this->phoneNumber = $phoneNumber;
     }
 
     public static function fromArray(array $array): RichTextPhoneNumber
@@ -36,9 +45,13 @@ class RichTextPhoneNumber extends RichText
         );
     }
 
-    public function getPhoneNumber(): string
+    public function typeSerialize(): array
     {
-        return $this->phoneNumber;
+        return [
+            '@type' => static::TYPE_NAME,
+            'text' => $this->text->typeSerialize(),
+            'phone_number' => $this->phoneNumber,
+        ];
     }
 
     public function getText(): RichText
@@ -46,12 +59,8 @@ class RichTextPhoneNumber extends RichText
         return $this->text;
     }
 
-    public function typeSerialize(): array
+    public function getPhoneNumber(): string
     {
-        return [
-            '@type'        => static::TYPE_NAME,
-            'text'         => $this->text->typeSerialize(),
-            'phone_number' => $this->phoneNumber,
-        ];
+        return $this->phoneNumber;
     }
 }

@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Custom;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Contains the result of a custom request.
+ * Contains the result of a custom request
  */
 class CustomRequestResult extends TdObject
 {
     public const TYPE_NAME = 'customRequestResult';
 
-    public function __construct(
-        /**
-         * A JSON-serialized result.
-         */
-        protected string $result
-    ) {}
+    /**
+     * A JSON-serialized result
+     *
+     * @var string
+     */
+    protected string $result;
+
+    public function __construct(string $result)
+    {
+        $this->result = $result;
+    }
 
     public static function fromArray(array $array): CustomRequestResult
     {
@@ -29,16 +34,16 @@ class CustomRequestResult extends TdObject
         );
     }
 
-    public function getResult(): string
-    {
-        return $this->result;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'result' => $this->result,
         ];
+    }
+
+    public function getResult(): string
+    {
+        return $this->result;
     }
 }

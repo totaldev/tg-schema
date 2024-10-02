@@ -4,25 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Public\PublicChatType;
-use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns a list of public chats of the specified type, owned by the user.
+ * Returns a list of public chats of the specified type, owned by the user
  */
 class GetCreatedPublicChats extends TdFunction
 {
     public const TYPE_NAME = 'getCreatedPublicChats';
 
-    public function __construct(
-        /**
-         * Type of the public chats to return.
-         */
-        protected PublicChatType $type
-    ) {}
+    /**
+     * Type of the public chats to return
+     *
+     * @var PublicChatType
+     */
+    protected PublicChatType $type;
+
+    public function __construct(PublicChatType $type)
+    {
+        $this->type = $type;
+    }
 
     public static function fromArray(array $array): GetCreatedPublicChats
     {
@@ -31,16 +34,16 @@ class GetCreatedPublicChats extends TdFunction
         );
     }
 
-    public function getType(): PublicChatType
-    {
-        return $this->type;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type' => $this->type->typeSerialize(),
         ];
+    }
+
+    public function getType(): PublicChatType
+    {
+        return $this->type;
     }
 }

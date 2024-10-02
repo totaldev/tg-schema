@@ -4,37 +4,52 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Order;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Address\Address;
-use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * Order information.
+ * Order information
  */
 class OrderInfo extends TdObject
 {
     public const TYPE_NAME = 'orderInfo';
 
-    public function __construct(
-        /**
-         * Name of the user.
-         */
-        protected string   $name,
-        /**
-         * Phone number of the user.
-         */
-        protected string   $phoneNumber,
-        /**
-         * Email address of the user.
-         */
-        protected string   $emailAddress,
-        /**
-         * Shipping address for this order; may be null.
-         */
-        protected ?Address $shippingAddress,
-    ) {}
+    /**
+     * Name of the user
+     *
+     * @var string
+     */
+    protected string $name;
+
+    /**
+     * Phone number of the user
+     *
+     * @var string
+     */
+    protected string $phoneNumber;
+
+    /**
+     * Email address of the user
+     *
+     * @var string
+     */
+    protected string $emailAddress;
+
+    /**
+     * Shipping address for this order; may be null
+     *
+     * @var Address|null
+     */
+    protected ?Address $shippingAddress;
+
+    public function __construct(string $name, string $phoneNumber, string $emailAddress, ?Address $shippingAddress)
+    {
+        $this->name = $name;
+        $this->phoneNumber = $phoneNumber;
+        $this->emailAddress = $emailAddress;
+        $this->shippingAddress = $shippingAddress;
+    }
 
     public static function fromArray(array $array): OrderInfo
     {
@@ -42,13 +57,19 @@ class OrderInfo extends TdObject
             $array['name'],
             $array['phone_number'],
             $array['email_address'],
-            isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null,
+            (isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null),
         );
     }
 
-    public function getEmailAddress(): string
+    public function typeSerialize(): array
     {
-        return $this->emailAddress;
+        return [
+            '@type' => static::TYPE_NAME,
+            'name' => $this->name,
+            'phone_number' => $this->phoneNumber,
+            'email_address' => $this->emailAddress,
+            'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
+        ];
     }
 
     public function getName(): string
@@ -61,19 +82,13 @@ class OrderInfo extends TdObject
         return $this->phoneNumber;
     }
 
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
     public function getShippingAddress(): ?Address
     {
         return $this->shippingAddress;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'            => static::TYPE_NAME,
-            'name'             => $this->name,
-            'phone_number'     => $this->phoneNumber,
-            'email_address'    => $this->emailAddress,
-            'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
-        ];
     }
 }

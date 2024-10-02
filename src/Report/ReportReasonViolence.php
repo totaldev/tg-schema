@@ -4,21 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Report;
+declare(strict_types=1);
+
+namespace Totaldev\TdSchema;
 
 /**
  * The chat promotes violence.
  */
-class ReportReasonViolence extends ReportReason
+class ChatReportReasonViolence extends ChatReportReason
 {
-    public const TYPE_NAME = 'reportReasonViolence';
+    public const TYPE_NAME = 'chatReportReasonViolence';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): ReportReasonViolence
+    public static function fromArray(array $array): ChatReportReasonViolence
     {
         return new static();
     }

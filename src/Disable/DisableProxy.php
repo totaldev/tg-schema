@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Disable;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Disables the currently enabled proxy. Can be called before authorization.
+ * Disables the currently enabled proxy. Can be called before authorization
  */
 class DisableProxy extends TdFunction
 {
     public const TYPE_NAME = 'disableProxy';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): DisableProxy
     {

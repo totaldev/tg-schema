@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Page;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes a horizontal alignment of a table cell content.
+ * Describes a horizontal alignment of a table cell content
  */
 class PageBlockHorizontalAlignment extends TdObject
 {
     public const TYPE_NAME = 'PageBlockHorizontalAlignment';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): PageBlockHorizontalAlignment
     {

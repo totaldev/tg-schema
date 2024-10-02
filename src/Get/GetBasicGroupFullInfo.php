@@ -4,23 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Get;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns full information about a basic group by its identifier.
+ * Returns full information about a basic group by its identifier
  */
 class GetBasicGroupFullInfo extends TdFunction
 {
     public const TYPE_NAME = 'getBasicGroupFullInfo';
 
-    public function __construct(
-        /**
-         * Basic group identifier.
-         */
-        protected int $basicGroupId
-    ) {}
+    /**
+     * Basic group identifier
+     *
+     * @var int
+     */
+    protected int $basicGroupId;
+
+    public function __construct(int $basicGroupId)
+    {
+        $this->basicGroupId = $basicGroupId;
+    }
 
     public static function fromArray(array $array): GetBasicGroupFullInfo
     {
@@ -29,16 +34,16 @@ class GetBasicGroupFullInfo extends TdFunction
         );
     }
 
-    public function getBasicGroupId(): int
-    {
-        return $this->basicGroupId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
+            '@type' => static::TYPE_NAME,
             'basic_group_id' => $this->basicGroupId,
         ];
+    }
+
+    public function getBasicGroupId(): int
+    {
+        return $this->basicGroupId;
     }
 }

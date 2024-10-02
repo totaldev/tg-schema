@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The user couldn't hear the other side.
+ * The user couldn't hear the other side
  */
 class CallProblemSilentLocal extends CallProblem
 {

@@ -4,33 +4,44 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Send;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a
- * private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent
- * message.
+ * Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
  */
 class SendBotStartMessage extends TdFunction
 {
     public const TYPE_NAME = 'sendBotStartMessage';
 
-    public function __construct(
-        /**
-         * Identifier of the bot.
-         */
-        protected int    $botUserId,
-        /**
-         * Identifier of the target chat.
-         */
-        protected int    $chatId,
-        /**
-         * A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking).
-         */
-        protected string $parameter,
-    ) {}
+    /**
+     * Identifier of the bot
+     *
+     * @var int
+     */
+    protected int $botUserId;
+
+    /**
+     * Identifier of the target chat
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+     *
+     * @var string
+     */
+    protected string $parameter;
+
+    public function __construct(int $botUserId, int $chatId, string $parameter)
+    {
+        $this->botUserId = $botUserId;
+        $this->chatId = $chatId;
+        $this->parameter = $parameter;
+    }
 
     public static function fromArray(array $array): SendBotStartMessage
     {
@@ -39,6 +50,16 @@ class SendBotStartMessage extends TdFunction
             $array['chat_id'],
             $array['parameter'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'chat_id' => $this->chatId,
+            'parameter' => $this->parameter,
+        ];
     }
 
     public function getBotUserId(): int
@@ -54,15 +75,5 @@ class SendBotStartMessage extends TdFunction
     public function getParameter(): string
     {
         return $this->parameter;
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type'       => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'chat_id'     => $this->chatId,
-            'parameter'   => $this->parameter,
-        ];
     }
 }

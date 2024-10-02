@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Toggle;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right.
+ * Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
  */
 class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupIsAllHistoryAvailable';
 
-    public function __construct(
-        /**
-         * The identifier of the supergroup.
-         */
-        protected int  $supergroupId,
-        /**
-         * The new value of is_all_history_available.
-         */
-        protected bool $isAllHistoryAvailable,
-    ) {}
+    /**
+     * The identifier of the supergroup
+     *
+     * @var int
+     */
+    protected int $supergroupId;
+
+    /**
+     * The new value of is_all_history_available
+     *
+     * @var bool
+     */
+    protected bool $isAllHistoryAvailable;
+
+    public function __construct(int $supergroupId, bool $isAllHistoryAvailable)
+    {
+        $this->supergroupId = $supergroupId;
+        $this->isAllHistoryAvailable = $isAllHistoryAvailable;
+    }
 
     public static function fromArray(array $array): ToggleSupergroupIsAllHistoryAvailable
     {
@@ -34,9 +43,13 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
         );
     }
 
-    public function getIsAllHistoryAvailable(): bool
+    public function typeSerialize(): array
     {
-        return $this->isAllHistoryAvailable;
+        return [
+            '@type' => static::TYPE_NAME,
+            'supergroup_id' => $this->supergroupId,
+            'is_all_history_available' => $this->isAllHistoryAvailable,
+        ];
     }
 
     public function getSupergroupId(): int
@@ -44,12 +57,8 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
         return $this->supergroupId;
     }
 
-    public function typeSerialize(): array
+    public function getIsAllHistoryAvailable(): bool
     {
-        return [
-            '@type'                    => static::TYPE_NAME,
-            'supergroup_id'            => $this->supergroupId,
-            'is_all_history_available' => $this->isAllHistoryAvailable,
-        ];
+        return $this->isAllHistoryAvailable;
     }
 }

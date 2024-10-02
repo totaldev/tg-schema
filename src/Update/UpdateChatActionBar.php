@@ -4,42 +4,54 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Update;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Chat\ChatActionBar;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * The chat action bar was changed.
+ * The chat action bar was changed
  */
 class UpdateChatActionBar extends Update
 {
     public const TYPE_NAME = 'updateChatActionBar';
 
-    public function __construct(
-        /**
-         * Chat identifier.
-         */
-        protected int            $chatId,
-        /**
-         * The new value of the action bar; may be null.
-         */
-        protected ?ChatActionBar $actionBar,
-    ) {
+    /**
+     * Chat identifier
+     *
+     * @var int
+     */
+    protected int $chatId;
+
+    /**
+     * The new value of the action bar; may be null
+     *
+     * @var ChatActionBar|null
+     */
+    protected ?ChatActionBar $actionBar;
+
+    public function __construct(int $chatId, ?ChatActionBar $actionBar)
+    {
         parent::__construct();
+
+        $this->chatId = $chatId;
+        $this->actionBar = $actionBar;
     }
 
     public static function fromArray(array $array): UpdateChatActionBar
     {
         return new static(
             $array['chat_id'],
-            isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null,
+            (isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null),
         );
     }
 
-    public function getActionBar(): ?ChatActionBar
+    public function typeSerialize(): array
     {
-        return $this->actionBar;
+        return [
+            '@type' => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
+        ];
     }
 
     public function getChatId(): int
@@ -47,12 +59,8 @@ class UpdateChatActionBar extends Update
         return $this->chatId;
     }
 
-    public function typeSerialize(): array
+    public function getActionBar(): ?ChatActionBar
     {
-        return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
-        ];
+        return $this->actionBar;
     }
 }

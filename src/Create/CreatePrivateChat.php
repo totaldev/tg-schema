@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Create;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Returns an existing chat corresponding to a given user.
+ * Returns an existing chat corresponding to a given user
  */
 class CreatePrivateChat extends TdFunction
 {
     public const TYPE_NAME = 'createPrivateChat';
 
-    public function __construct(
-        /**
-         * User identifier.
-         */
-        protected int  $userId,
-        /**
-         * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
-         */
-        protected bool $force,
-    ) {}
+    /**
+     * User identifier
+     *
+     * @var int
+     */
+    protected int $userId;
+
+    /**
+     * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+     *
+     * @var bool
+     */
+    protected bool $force;
+
+    public function __construct(int $userId, bool $force)
+    {
+        $this->userId = $userId;
+        $this->force = $force;
+    }
 
     public static function fromArray(array $array): CreatePrivateChat
     {
@@ -34,9 +43,13 @@ class CreatePrivateChat extends TdFunction
         );
     }
 
-    public function getForce(): bool
+    public function typeSerialize(): array
     {
-        return $this->force;
+        return [
+            '@type' => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'force' => $this->force,
+        ];
     }
 
     public function getUserId(): int
@@ -44,12 +57,8 @@ class CreatePrivateChat extends TdFunction
         return $this->userId;
     }
 
-    public function typeSerialize(): array
+    public function getForce(): bool
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'force'   => $this->force,
-        ];
+        return $this->force;
     }
 }

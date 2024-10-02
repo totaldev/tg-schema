@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Language;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Represents the value of a string in a language pack.
+ * Represents the value of a string in a language pack
  */
 class LanguagePackStringValue extends TdObject
 {
     public const TYPE_NAME = 'LanguagePackStringValue';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): LanguagePackStringValue
     {

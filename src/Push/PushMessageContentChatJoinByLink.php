@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Push;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * A new member joined the chat via an invite link.
+ * A new member joined the chat via an invite link
  */
 class PushMessageContentChatJoinByLink extends PushMessageContent
 {

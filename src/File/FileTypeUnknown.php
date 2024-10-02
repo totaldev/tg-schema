@@ -4,10 +4,12 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\File;
+declare(strict_types=1);
+
+namespace Totaldev\TgSchema;
 
 /**
- * The file type is not yet known.
+ * The file type is not yet known
  */
 class FileTypeUnknown extends FileType
 {

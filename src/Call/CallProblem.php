@@ -4,18 +4,20 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Call;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdObject;
+namespace Totaldev\TgSchema;
 
 /**
- * Describes the exact type of problem with a call.
+ * Describes the exact type of a problem with a call
  */
 class CallProblem extends TdObject
 {
     public const TYPE_NAME = 'CallProblem';
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public static function fromArray(array $array): CallProblem
     {

@@ -4,32 +4,54 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Dice;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\Sticker\Sticker;
-use Totaldev\TgSchema\TdSchemaRegistry;
+namespace Totaldev\TgSchema;
 
 /**
- * A regular animated sticker.
+ * A sticker message
  */
-class DiceStickersRegular extends DiceStickers
+class MessageSticker extends MessageContent
 {
-    public const TYPE_NAME = 'diceStickersRegular';
+    public const TYPE_NAME = 'messageSticker';
 
-    public function __construct(
-        /**
-         * The animated sticker with the dice animation.
-         */
-        protected Sticker $sticker
-    ) {
+    /**
+     * The sticker description
+     *
+     * @var Sticker
+     */
+    protected Sticker $sticker;
+
+    /**
+     * True, if premium animation of the sticker must be played
+     *
+     * @var bool
+     */
+    protected bool $isPremium;
+
+    public function __construct(Sticker $sticker, bool $isPremium)
+    {
         parent::__construct();
+
+        $this->sticker = $sticker;
+        $this->isPremium = $isPremium;
     }
 
-    public static function fromArray(array $array): DiceStickersRegular
+    public static function fromArray(array $array): MessageSticker
     {
         return new static(
             TdSchemaRegistry::fromArray($array['sticker']),
+            $array['is_premium'],
         );
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type' => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+            'is_premium' => $this->isPremium,
+        ];
     }
 
     public function getSticker(): Sticker
@@ -37,11 +59,8 @@ class DiceStickersRegular extends DiceStickers
         return $this->sticker;
     }
 
-    public function typeSerialize(): array
+    public function getIsPremium(): bool
     {
-        return [
-            '@type'   => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-        ];
+        return $this->isPremium;
     }
 }

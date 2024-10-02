@@ -4,27 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-namespace Totaldev\TgSchema\Search;
+declare(strict_types=1);
 
-use Totaldev\TgSchema\TdFunction;
+namespace Totaldev\TgSchema;
 
 /**
- * Searches for the specified query in the first names, last names and usernames of the known user contacts.
+ * Searches for the specified query in the first names, last names and usernames of the known user contacts
  */
 class SearchContacts extends TdFunction
 {
     public const TYPE_NAME = 'searchContacts';
 
-    public function __construct(
-        /**
-         * Query to search for; may be empty to return all contacts.
-         */
-        protected string $query,
-        /**
-         * The maximum number of users to be returned.
-         */
-        protected int    $limit,
-    ) {}
+    /**
+     * Query to search for; may be empty to return all contacts
+     *
+     * @var string
+     */
+    protected string $query;
+
+    /**
+     * The maximum number of users to be returned
+     *
+     * @var int
+     */
+    protected int $limit;
+
+    public function __construct(string $query, int $limit)
+    {
+        $this->query = $query;
+        $this->limit = $limit;
+    }
 
     public static function fromArray(array $array): SearchContacts
     {
@@ -34,16 +43,6 @@ class SearchContacts extends TdFunction
         );
     }
 
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getQuery(): string
-    {
-        return $this->query;
-    }
-
     public function typeSerialize(): array
     {
         return [
@@ -51,5 +50,15 @@ class SearchContacts extends TdFunction
             'query' => $this->query,
             'limit' => $this->limit,
         ];
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
     }
 }
