@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a file; this is an offline request
+ * Returns information about a file; this is an offline request.
  */
 class GetFile extends TdFunction
 {
     public const TYPE_NAME = 'getFile';
 
-    /**
-     * Identifier of the file to get
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    public function __construct(int $fileId)
-    {
-        $this->fileId = $fileId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the file to get.
+         */
+        protected int $fileId
+    ) {}
 
     public static function fromArray(array $array): GetFile
     {
@@ -43,7 +37,7 @@ class GetFile extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'file_id' => $this->fileId,
         ];
     }

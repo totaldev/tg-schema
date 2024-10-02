@@ -11,40 +11,27 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with
- * the text of the message needs to be sent if the sticker is played
+ * the text of the message needs to be sent if the sticker is played.
  */
 class UpdateAnimatedEmojiMessageClicked extends Update
 {
     public const TYPE_NAME = 'updateAnimatedEmojiMessageClicked';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The animated sticker to be played
-     *
-     * @var Sticker
-     */
-    protected Sticker $sticker;
-
-    public function __construct(int $chatId, int $messageId, Sticker $sticker)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int     $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int     $messageId,
+        /**
+         * The animated sticker to be played.
+         */
+        protected Sticker $sticker,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): UpdateAnimatedEmojiMessageClicked
@@ -74,10 +61,10 @@ class UpdateAnimatedEmojiMessageClicked extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker'    => $this->sticker->typeSerialize(),
         ];
     }
 }

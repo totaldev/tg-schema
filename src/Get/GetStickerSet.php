@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a sticker set by its identifier
+ * Returns information about a sticker set by its identifier.
  */
 class GetStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'getStickerSet';
 
-    /**
-     * Identifier of the sticker set
-     *
-     * @var int
-     */
-    protected int $setId;
-
-    public function __construct(int $setId)
-    {
-        $this->setId = $setId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the sticker set.
+         */
+        protected int $setId
+    ) {}
 
     public static function fromArray(array $array): GetStickerSet
     {
@@ -43,7 +37,7 @@ class GetStickerSet extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'set_id' => $this->setId,
         ];
     }

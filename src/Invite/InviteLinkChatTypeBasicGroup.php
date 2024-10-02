@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Invite;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is an invite link for a basic group
+ * The link is an invite link for a basic group.
  */
 class InviteLinkChatTypeBasicGroup extends InviteLinkChatType
 {

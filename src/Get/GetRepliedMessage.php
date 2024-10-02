@@ -7,36 +7,27 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the
- * topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages
- * without replied message respectively
+ * Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message,
+ * the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage,
+ * messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message
+ * respectively.
  */
 class GetRepliedMessage extends TdFunction
 {
     public const TYPE_NAME = 'getRepliedMessage';
 
-    /**
-     * Identifier of the chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the reply message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat the message belongs to.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the reply message.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): GetRepliedMessage
     {
@@ -59,8 +50,8 @@ class GetRepliedMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

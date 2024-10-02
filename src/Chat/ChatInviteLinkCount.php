@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a chat administrator with a number of active and revoked chat invite links
+ * Describes a chat administrator with a number of active and revoked chat invite links.
  */
 class ChatInviteLinkCount extends TdObject
 {
     public const TYPE_NAME = 'chatInviteLinkCount';
 
-    /**
-     * Number of active invite links
-     *
-     * @var int
-     */
-    protected int $inviteLinkCount;
-
-    /**
-     * Number of revoked invite links
-     *
-     * @var int
-     */
-    protected int $revokedInviteLinkCount;
-
-    /**
-     * Administrator's user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $inviteLinkCount, int $revokedInviteLinkCount)
-    {
-        $this->userId = $userId;
-        $this->inviteLinkCount = $inviteLinkCount;
-        $this->revokedInviteLinkCount = $revokedInviteLinkCount;
-    }
+    public function __construct(
+        /**
+         * Administrator's user identifier.
+         */
+        protected int $userId,
+        /**
+         * Number of active invite links.
+         */
+        protected int $inviteLinkCount,
+        /**
+         * Number of revoked invite links.
+         */
+        protected int $revokedInviteLinkCount,
+    ) {}
 
     public static function fromArray(array $array): ChatInviteLinkCount
     {
@@ -71,9 +57,9 @@ class ChatInviteLinkCount extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'invite_link_count' => $this->inviteLinkCount,
+            '@type'                     => static::TYPE_NAME,
+            'user_id'                   => $this->userId,
+            'invite_link_count'         => $this->inviteLinkCount,
             'revoked_invite_link_count' => $this->revokedInviteLinkCount,
         ];
     }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns t.me URLs recently visited by a newly registered user
+ * Returns t.me URLs recently visited by a newly registered user.
  */
 class GetRecentlyVisitedTMeUrls extends TdFunction
 {
     public const TYPE_NAME = 'getRecentlyVisitedTMeUrls';
 
-    /**
-     * Google Play referrer to identify the user
-     *
-     * @var string
-     */
-    protected string $referrer;
-
-    public function __construct(string $referrer)
-    {
-        $this->referrer = $referrer;
-    }
+    public function __construct(
+        /**
+         * Google Play referrer to identify the user.
+         */
+        protected string $referrer
+    ) {}
 
     public static function fromArray(array $array): GetRecentlyVisitedTMeUrls
     {
@@ -43,7 +37,7 @@ class GetRecentlyVisitedTMeUrls extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'referrer' => $this->referrer,
         ];
     }

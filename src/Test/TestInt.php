@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A simple object containing a number; for testing only
+ * A simple object containing a number; for testing only.
  */
 class TestInt extends TdObject
 {
     public const TYPE_NAME = 'testInt';
 
-    /**
-     * Number
-     *
-     * @var int
-     */
-    protected int $value;
-
-    public function __construct(int $value)
-    {
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * Number.
+         */
+        protected int $value
+    ) {}
 
     public static function fromArray(array $array): TestInt
     {

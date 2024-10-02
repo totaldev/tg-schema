@@ -11,47 +11,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a thumbnail
+ * Represents a thumbnail.
  */
 class Thumbnail extends TdObject
 {
     public const TYPE_NAME = 'thumbnail';
 
-    /**
-     * The thumbnail
-     *
-     * @var File
-     */
-    protected File $file;
-
-    /**
-     * Thumbnail format
-     *
-     * @var ThumbnailFormat
-     */
-    protected ThumbnailFormat $format;
-
-    /**
-     * Thumbnail height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Thumbnail width
-     *
-     * @var int
-     */
-    protected int $width;
-
-    public function __construct(ThumbnailFormat $format, int $width, int $height, File $file)
-    {
-        $this->format = $format;
-        $this->width = $width;
-        $this->height = $height;
-        $this->file = $file;
-    }
+    public function __construct(
+        /**
+         * Thumbnail format.
+         */
+        protected ThumbnailFormat $format,
+        /**
+         * Thumbnail width.
+         */
+        protected int             $width,
+        /**
+         * Thumbnail height.
+         */
+        protected int             $height,
+        /**
+         * The thumbnail.
+         */
+        protected File            $file,
+    ) {}
 
     public static function fromArray(array $array): Thumbnail
     {
@@ -86,11 +69,11 @@ class Thumbnail extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'format' => $this->format->typeSerialize(),
-            'width' => $this->width,
+            'width'  => $this->width,
             'height' => $this->height,
-            'file' => $this->file->typeSerialize(),
+            'file'   => $this->file->typeSerialize(),
         ];
     }
 }

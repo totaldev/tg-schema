@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Reset;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+ * Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown.
  */
 class ResetAllNotificationSettings extends TdFunction
 {
     public const TYPE_NAME = 'resetAllNotificationSettings';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResetAllNotificationSettings
     {

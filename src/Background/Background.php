@@ -11,70 +11,38 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a chat background
+ * Describes a chat background.
  */
 class Background extends TdObject
 {
     public const TYPE_NAME = 'background';
 
-    /**
-     * Document with the background; may be null. Null only for filled backgrounds
-     *
-     * @var Document|null
-     */
-    protected ?Document $document;
-
-    /**
-     * Unique background identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if the background is dark and is recommended to be used with dark theme
-     *
-     * @var bool
-     */
-    protected bool $isDark;
-
-    /**
-     * True, if this is one of default backgrounds
-     *
-     * @var bool
-     */
-    protected bool $isDefault;
-
-    /**
-     * Unique background name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Type of the background
-     *
-     * @var BackgroundType
-     */
-    protected BackgroundType $type;
-
     public function __construct(
-        int            $id,
-        bool           $isDefault,
-        bool           $isDark,
-        string         $name,
-        ?Document      $document,
-        BackgroundType $type,
-    )
-    {
-        $this->id = $id;
-        $this->isDefault = $isDefault;
-        $this->isDark = $isDark;
-        $this->name = $name;
-        $this->document = $document;
-        $this->type = $type;
-    }
+        /**
+         * Unique background identifier.
+         */
+        protected int            $id,
+        /**
+         * True, if this is one of default backgrounds.
+         */
+        protected bool           $isDefault,
+        /**
+         * True, if the background is dark and is recommended to be used with dark theme.
+         */
+        protected bool           $isDark,
+        /**
+         * Unique background name.
+         */
+        protected string         $name,
+        /**
+         * Document with the background; may be null. Null only for filled and chat theme backgrounds.
+         */
+        protected ?Document      $document,
+        /**
+         * Type of the background.
+         */
+        protected BackgroundType $type,
+    ) {}
 
     public static function fromArray(array $array): Background
     {
@@ -83,7 +51,7 @@ class Background extends TdObject
             $array['is_default'],
             $array['is_dark'],
             $array['name'],
-            (isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null),
+            isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null,
             TdSchemaRegistry::fromArray($array['type']),
         );
     }
@@ -121,13 +89,13 @@ class Background extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            '@type'      => static::TYPE_NAME,
+            'id'         => $this->id,
             'is_default' => $this->isDefault,
-            'is_dark' => $this->isDark,
-            'name' => $this->name,
-            'document' => (isset($this->document) ? $this->document : null),
-            'type' => $this->type->typeSerialize(),
+            'is_dark'    => $this->isDark,
+            'name'       => $this->name,
+            'document'   => (isset($this->document) ? $this->document : null),
+            'type'       => $this->type->typeSerialize(),
         ];
     }
 }

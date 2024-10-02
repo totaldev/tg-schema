@@ -12,89 +12,44 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be
- * forwarded, null will be returned instead of the message
+ * forwarded, null will be returned instead of the message.
  */
 class ForwardMessages extends TdFunction
 {
     public const TYPE_NAME = 'forwardMessages';
 
-    /**
-     * Identifier of the chat to which to forward messages
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the chat from which to forward messages
-     *
-     * @var int
-     */
-    protected int $fromChatId;
-
-    /**
-     * Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-     *
-     * @var int[]
-     */
-    protected array $messageIds;
-
-    /**
-     * If not 0, a message thread identifier in which the message will be sent; for forum threads only
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
-     * Pass true to get fake messages instead of actually forwarding them
-     *
-     * @var bool
-     */
-    protected bool $onlyPreview;
-
-    /**
-     * Options to be used to send the messages; pass null to use default options
-     *
-     * @var MessageSendOptions
-     */
-    protected MessageSendOptions $options;
-
-    /**
-     * Pass true to remove media captions of message copies. Ignored if send_copy is false
-     *
-     * @var bool
-     */
-    protected bool $removeCaption;
-
-    /**
-     * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are
-     * local
-     *
-     * @var bool
-     */
-    protected bool $sendCopy;
-
     public function __construct(
-        int                $chatId,
-        int                $messageThreadId,
-        int                $fromChatId,
-        array              $messageIds,
-        MessageSendOptions $options,
-        bool               $sendCopy,
-        bool               $removeCaption,
-        bool               $onlyPreview,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-        $this->fromChatId = $fromChatId;
-        $this->messageIds = $messageIds;
-        $this->options = $options;
-        $this->sendCopy = $sendCopy;
-        $this->removeCaption = $removeCaption;
-        $this->onlyPreview = $onlyPreview;
-    }
+        /**
+         * Identifier of the chat to which to forward messages.
+         */
+        protected int                $chatId,
+        /**
+         * If not 0, the message thread identifier in which the message will be sent; for forum threads only.
+         */
+        protected int                $messageThreadId,
+        /**
+         * Identifier of the chat from which to forward messages.
+         */
+        protected int                $fromChatId,
+        /**
+         * Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded.
+         *
+         * @var int[]
+         */
+        protected array              $messageIds,
+        /**
+         * Options to be used to send the messages; pass null to use default options.
+         */
+        protected MessageSendOptions $options,
+        /**
+         * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
+         */
+        protected bool               $sendCopy,
+        /**
+         * Pass true to remove media captions of message copies. Ignored if send_copy is false.
+         */
+        protected bool               $removeCaption,
+    ) {}
 
     public static function fromArray(array $array): ForwardMessages
     {
@@ -106,7 +61,6 @@ class ForwardMessages extends TdFunction
             TdSchemaRegistry::fromArray($array['options']),
             $array['send_copy'],
             $array['remove_caption'],
-            $array['only_preview'],
         );
     }
 
@@ -130,11 +84,6 @@ class ForwardMessages extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getOnlyPreview(): bool
-    {
-        return $this->onlyPreview;
-    }
-
     public function getOptions(): MessageSendOptions
     {
         return $this->options;
@@ -153,15 +102,14 @@ class ForwardMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'from_chat_id' => $this->fromChatId,
-            'message_ids' => $this->messageIds,
-            'options' => $this->options->typeSerialize(),
-            'send_copy' => $this->sendCopy,
-            'remove_caption' => $this->removeCaption,
-            'only_preview' => $this->onlyPreview,
+            'from_chat_id'      => $this->fromChatId,
+            'message_ids'       => $this->messageIds,
+            'options'           => $this->options->typeSerialize(),
+            'send_copy'         => $this->sendCopy,
+            'remove_caption'    => $this->removeCaption,
         ];
     }
 }

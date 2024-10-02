@@ -14,32 +14,23 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  * and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive
  * the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine
  * received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and
- * confirmed rights
+ * confirmed rights.
  */
 class InternalLinkTypeBotAddToChannel extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeBotAddToChannel';
 
-    /**
-     * Expected administrator rights for the bot
-     *
-     * @var ChatAdministratorRights
-     */
-    protected ChatAdministratorRights $administratorRights;
-
-    /**
-     * Username of the bot
-     *
-     * @var string
-     */
-    protected string $botUsername;
-
-    public function __construct(string $botUsername, ChatAdministratorRights $administratorRights)
-    {
+    public function __construct(
+        /**
+         * Username of the bot.
+         */
+        protected string                  $botUsername,
+        /**
+         * Expected administrator rights for the bot.
+         */
+        protected ChatAdministratorRights $administratorRights,
+    ) {
         parent::__construct();
-
-        $this->botUsername = $botUsername;
-        $this->administratorRights = $administratorRights;
     }
 
     public static function fromArray(array $array): InternalLinkTypeBotAddToChannel
@@ -63,8 +54,8 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_username' => $this->botUsername,
+            '@type'                => static::TYPE_NAME,
+            'bot_username'         => $this->botUsername,
             'administrator_rights' => $this->administratorRights->typeSerialize(),
         ];
     }

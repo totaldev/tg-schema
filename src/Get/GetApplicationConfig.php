@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns application config, provided by the server. Can be called before authorization
+ * Returns application config, provided by the server. Can be called before authorization.
  */
 class GetApplicationConfig extends TdFunction
 {
     public const TYPE_NAME = 'getApplicationConfig';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetApplicationConfig
     {

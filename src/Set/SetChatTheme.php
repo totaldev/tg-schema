@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the chat theme. Supported only in private and secret chats
+ * Changes the chat theme. Supported only in private and secret chats.
  */
 class SetChatTheme extends TdFunction
 {
     public const TYPE_NAME = 'setChatTheme';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Name of the new chat theme; pass an empty string to return the default theme
-     *
-     * @var string
-     */
-    protected string $themeName;
-
-    public function __construct(int $chatId, string $themeName)
-    {
-        $this->chatId = $chatId;
-        $this->themeName = $themeName;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int    $chatId,
+        /**
+         * Name of the new chat theme; pass an empty string to return the default theme.
+         */
+        protected string $themeName,
+    ) {}
 
     public static function fromArray(array $array): SetChatTheme
     {
@@ -57,8 +47,8 @@ class SetChatTheme extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'theme_name' => $this->themeName,
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Passport;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the type of a Telegram Passport element
+ * Contains the type of Telegram Passport element.
  */
 class PassportElementType extends TdObject
 {
     public const TYPE_NAME = 'PassportElementType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PassportElementType
     {

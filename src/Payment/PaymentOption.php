@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Payment;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an additional payment option
+ * Describes an additional payment option.
  */
 class PaymentOption extends TdObject
 {
     public const TYPE_NAME = 'paymentOption';
 
-    /**
-     * Title for the payment option
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Payment form URL to be opened in a web view
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $title, string $url)
-    {
-        $this->title = $title;
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * Title for the payment option.
+         */
+        protected string $title,
+        /**
+         * Payment form URL to be opened in a web view.
+         */
+        protected string $url,
+    ) {}
 
     public static function fromArray(array $array): PaymentOption
     {
@@ -59,7 +49,7 @@ class PaymentOption extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

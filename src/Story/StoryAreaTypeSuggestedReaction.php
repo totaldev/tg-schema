@@ -10,48 +10,31 @@ use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+ * An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked.
  */
 class StoryAreaTypeSuggestedReaction extends StoryAreaType
 {
     public const TYPE_NAME = 'storyAreaTypeSuggestedReaction';
 
-    /**
-     * True, if reaction has a dark background
-     *
-     * @var bool
-     */
-    protected bool $isDark;
-
-    /**
-     * True, if reaction corner is flipped
-     *
-     * @var bool
-     */
-    protected bool $isFlipped;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    /**
-     * Number of times the reaction was added
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(ReactionType $reactionType, int $totalCount, bool $isDark, bool $isFlipped)
-    {
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType $reactionType,
+        /**
+         * Number of times the reaction was added.
+         */
+        protected int          $totalCount,
+        /**
+         * True, if reaction has a dark background.
+         */
+        protected bool         $isDark,
+        /**
+         * True, if reaction corner is flipped.
+         */
+        protected bool         $isFlipped,
+    ) {
         parent::__construct();
-
-        $this->reactionType = $reactionType;
-        $this->totalCount = $totalCount;
-        $this->isDark = $isDark;
-        $this->isFlipped = $isFlipped;
     }
 
     public static function fromArray(array $array): StoryAreaTypeSuggestedReaction
@@ -87,11 +70,11 @@ class StoryAreaTypeSuggestedReaction extends StoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'reaction_type' => $this->reactionType->typeSerialize(),
-            'total_count' => $this->totalCount,
-            'is_dark' => $this->isDark,
-            'is_flipped' => $this->isFlipped,
+            'total_count'   => $this->totalCount,
+            'is_dark'       => $this->isDark,
+            'is_flipped'    => $this->isFlipped,
         ];
     }
 }

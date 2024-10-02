@@ -12,133 +12,78 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
- * Represents short information about a sticker set
+ * Represents short information about a sticker set.
  */
 class StickerSetInfo extends TdObject
 {
     public const TYPE_NAME = 'stickerSetInfo';
 
-    /**
-     * Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
-     *
-     * @var Sticker[]
-     */
-    protected array $covers;
-
-    /**
-     * Identifier of the sticker set
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
-     *
-     * @var bool
-     */
-    protected bool $isArchived;
-
-    /**
-     * True, if the sticker set has been installed by the current user
-     *
-     * @var bool
-     */
-    protected bool $isInstalled;
-
-    /**
-     * True, if the sticker set is official
-     *
-     * @var bool
-     */
-    protected bool $isOfficial;
-
-    /**
-     * True for already viewed trending sticker sets
-     *
-     * @var bool
-     */
-    protected bool $isViewed;
-
-    /**
-     * Name of the sticker set
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Total number of stickers in the set
-     *
-     * @var int
-     */
-    protected int $size;
-
-    /**
-     * Format of the stickers in the set
-     *
-     * @var StickerFormat
-     */
-    protected StickerFormat $stickerFormat;
-
-    /**
-     * Type of the stickers in the set
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    /**
-     * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null
-     *
-     * @var Thumbnail|null
-     */
-    protected ?Thumbnail $thumbnail;
-
-    /**
-     * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-     *
-     * @var ClosedVectorPath[]
-     */
-    protected array $thumbnailOutline;
-
-    /**
-     * Title of the sticker set
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        int           $id,
-        string        $title,
-        string        $name,
-        ?Thumbnail    $thumbnail,
-        array         $thumbnailOutline,
-        bool          $isInstalled,
-        bool          $isArchived,
-        bool          $isOfficial,
-        StickerFormat $stickerFormat,
-        StickerType   $stickerType,
-        bool          $isViewed,
-        int           $size,
-        array         $covers,
-    )
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->name = $name;
-        $this->thumbnail = $thumbnail;
-        $this->thumbnailOutline = $thumbnailOutline;
-        $this->isInstalled = $isInstalled;
-        $this->isArchived = $isArchived;
-        $this->isOfficial = $isOfficial;
-        $this->stickerFormat = $stickerFormat;
-        $this->stickerType = $stickerType;
-        $this->isViewed = $isViewed;
-        $this->size = $size;
-        $this->covers = $covers;
-    }
+        /**
+         * Identifier of the sticker set.
+         */
+        protected int         $id,
+        /**
+         * Title of the sticker set.
+         */
+        protected string      $title,
+        /**
+         * Name of the sticker set.
+         */
+        protected string      $name,
+        /**
+         * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed.
+         */
+        protected ?Thumbnail  $thumbnail,
+        /**
+         * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner.
+         *
+         * @var ClosedVectorPath[]
+         */
+        protected array       $thumbnailOutline,
+        /**
+         * True, if the sticker set is owned by the current user.
+         */
+        protected bool        $isOwned,
+        /**
+         * True, if the sticker set has been installed by the current user.
+         */
+        protected bool        $isInstalled,
+        /**
+         * True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously.
+         */
+        protected bool        $isArchived,
+        /**
+         * True, if the sticker set is official.
+         */
+        protected bool        $isOfficial,
+        /**
+         * Type of the stickers in the set.
+         */
+        protected StickerType $stickerType,
+        /**
+         * True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only.
+         */
+        protected bool        $needsRepainting,
+        /**
+         * True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only.
+         */
+        protected bool        $isAllowedAsChatEmojiStatus,
+        /**
+         * True for already viewed trending sticker sets.
+         */
+        protected bool        $isViewed,
+        /**
+         * Total number of stickers in the set.
+         */
+        protected int         $size,
+        /**
+         * Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested.
+         *
+         * @var Sticker[]
+         */
+        protected array       $covers,
+    ) {}
 
     public static function fromArray(array $array): StickerSetInfo
     {
@@ -146,13 +91,15 @@ class StickerSetInfo extends TdObject
             $array['id'],
             $array['title'],
             $array['name'],
-            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['thumbnail_outline']),
+            $array['is_owned'],
             $array['is_installed'],
             $array['is_archived'],
             $array['is_official'],
-            TdSchemaRegistry::fromArray($array['sticker_format']),
             TdSchemaRegistry::fromArray($array['sticker_type']),
+            $array['needs_repainting'],
+            $array['is_allowed_as_chat_emoji_status'],
             $array['is_viewed'],
             $array['size'],
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
@@ -167,6 +114,11 @@ class StickerSetInfo extends TdObject
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getIsAllowedAsChatEmojiStatus(): bool
+    {
+        return $this->isAllowedAsChatEmojiStatus;
     }
 
     public function getIsArchived(): bool
@@ -184,6 +136,11 @@ class StickerSetInfo extends TdObject
         return $this->isOfficial;
     }
 
+    public function getIsOwned(): bool
+    {
+        return $this->isOwned;
+    }
+
     public function getIsViewed(): bool
     {
         return $this->isViewed;
@@ -194,14 +151,14 @@ class StickerSetInfo extends TdObject
         return $this->name;
     }
 
+    public function getNeedsRepainting(): bool
+    {
+        return $this->needsRepainting;
+    }
+
     public function getSize(): int
     {
         return $this->size;
-    }
-
-    public function getStickerFormat(): StickerFormat
-    {
-        return $this->stickerFormat;
     }
 
     public function getStickerType(): StickerType
@@ -227,19 +184,21 @@ class StickerSetInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'title' => $this->title,
-            'name' => $this->name,
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            '@type'                           => static::TYPE_NAME,
+            'id'                              => $this->id,
+            'title'                           => $this->title,
+            'name'                            => $this->name,
+            'thumbnail'                       => (isset($this->thumbnail) ? $this->thumbnail : null),
             array_map(fn($x) => $x->typeSerialize(), $this->thumbnailOutline),
-            'is_installed' => $this->isInstalled,
-            'is_archived' => $this->isArchived,
-            'is_official' => $this->isOfficial,
-            'sticker_format' => $this->stickerFormat->typeSerialize(),
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'is_viewed' => $this->isViewed,
-            'size' => $this->size,
+            'is_owned'                        => $this->isOwned,
+            'is_installed'                    => $this->isInstalled,
+            'is_archived'                     => $this->isArchived,
+            'is_official'                     => $this->isOfficial,
+            'sticker_type'                    => $this->stickerType->typeSerialize(),
+            'needs_repainting'                => $this->needsRepainting,
+            'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
+            'is_viewed'                       => $this->isViewed,
+            'size'                            => $this->size,
             array_map(fn($x) => $x->typeSerialize(), $this->covers),
         ];
     }

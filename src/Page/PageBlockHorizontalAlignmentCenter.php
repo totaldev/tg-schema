@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Page;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The content must be center-aligned
+ * The content must be center-aligned.
  */
 class PageBlockHorizontalAlignmentCenter extends PageBlockHorizontalAlignment
 {

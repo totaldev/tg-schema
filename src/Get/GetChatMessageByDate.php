@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the last message sent in a chat no later than the specified date
+ * Returns the last message sent in a chat no later than the specified date.
  */
 class GetChatMessageByDate extends TdFunction
 {
     public const TYPE_NAME = 'getChatMessageByDate';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Point in time (Unix timestamp) relative to which to search for messages
-     *
-     * @var int
-     */
-    protected int $date;
-
-    public function __construct(int $chatId, int $date)
-    {
-        $this->chatId = $chatId;
-        $this->date = $date;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Point in time (Unix timestamp) relative to which to search for messages.
+         */
+        protected int $date,
+    ) {}
 
     public static function fromArray(array $array): GetChatMessageByDate
     {
@@ -57,9 +47,9 @@ class GetChatMessageByDate extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'date' => $this->date,
+            'date'    => $this->date,
         ];
     }
 }

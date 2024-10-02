@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Login;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+ * Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl.
  */
 class LoginUrlInfo extends TdObject
 {
     public const TYPE_NAME = 'LoginUrlInfo';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): LoginUrlInfo
     {

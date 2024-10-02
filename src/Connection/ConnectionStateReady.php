@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Connection;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * There is a working connection to the Telegram servers
+ * There is a working connection to the Telegram servers.
  */
 class ConnectionStateReady extends ConnectionState
 {

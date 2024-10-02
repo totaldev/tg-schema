@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A video chat was ended
+ * A video chat was ended.
  */
 class ChatEventVideoChatEnded extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventVideoChatEnded';
 
-    /**
-     * Identifier of the video chat. The video chat can be received through the method getGroupCall
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the video chat. The video chat can be received through the method getGroupCall.
+         */
+        protected int $groupCallId
+    ) {
         parent::__construct();
-
-        $this->groupCallId = $groupCallId;
     }
 
     public static function fromArray(array $array): ChatEventVideoChatEnded
@@ -44,7 +37,7 @@ class ChatEventVideoChatEnded extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

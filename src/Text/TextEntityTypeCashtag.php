@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
+ * A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD").
  */
 class TextEntityTypeCashtag extends TextEntityType
 {

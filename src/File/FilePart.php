@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\File;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a part of a file
+ * Contains a part of a file.
  */
 class FilePart extends TdObject
 {
     public const TYPE_NAME = 'filePart';
 
-    /**
-     * File bytes
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(string $data)
-    {
-        $this->data = $data;
-    }
+    public function __construct(
+        /**
+         * File bytes.
+         */
+        protected string $data
+    ) {}
 
     public static function fromArray(array $array): FilePart
     {
@@ -44,7 +38,7 @@ class FilePart extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data' => $this->data,
+            'data'  => $this->data,
         ];
     }
 }

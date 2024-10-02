@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Page;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The content must be middle-aligned
+ * The content must be middle-aligned.
  */
 class PageBlockVerticalAlignmentMiddle extends PageBlockVerticalAlignment
 {

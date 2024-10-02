@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Message\MessageInteractionInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The information about interactions with a message has changed
+ * The information about interactions with a message has changed.
  */
 class UpdateMessageInteractionInfo extends Update
 {
     public const TYPE_NAME = 'updateMessageInteractionInfo';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New information about interactions with the message; may be null
-     *
-     * @var MessageInteractionInfo|null
-     */
-    protected ?MessageInteractionInfo $interactionInfo;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId, ?MessageInteractionInfo $interactionInfo)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int                     $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int                     $messageId,
+        /**
+         * New information about interactions with the message; may be null.
+         */
+        protected ?MessageInteractionInfo $interactionInfo,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->interactionInfo = $interactionInfo;
     }
 
     public static function fromArray(array $array): UpdateMessageInteractionInfo
@@ -51,7 +38,7 @@ class UpdateMessageInteractionInfo extends Update
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
+            isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null,
         );
     }
 
@@ -73,9 +60,9 @@ class UpdateMessageInteractionInfo extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'            => static::TYPE_NAME,
+            'chat_id'          => $this->chatId,
+            'message_id'       => $this->messageId,
             'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
         ];
     }

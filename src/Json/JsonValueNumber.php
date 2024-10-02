@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Json;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a numeric JSON value
+ * Represents a numeric JSON value.
  */
 class JsonValueNumber extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueNumber';
 
-    /**
-     * The value
-     *
-     * @var float
-     */
-    protected float $value;
-
-    public function __construct(float $value)
-    {
+    public function __construct(
+        /**
+         * The value.
+         */
+        protected float $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): JsonValueNumber

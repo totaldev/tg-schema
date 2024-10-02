@@ -10,61 +10,36 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a group of notifications
+ * Describes a group of notifications.
  */
 class NotificationGroup extends TdObject
 {
     public const TYPE_NAME = 'notificationGroup';
 
-    /**
-     * Identifier of a chat to which all notifications in the group belong
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Unique persistent auto-incremented from 1 identifier of the notification group
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * The list of active notifications
-     *
-     * @var Notification[]
-     */
-    protected array $notifications;
-
-    /**
-     * Total number of active notifications in the group
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * Type of the group
-     *
-     * @var NotificationGroupType
-     */
-    protected NotificationGroupType $type;
-
     public function __construct(
-        int                   $id,
-        NotificationGroupType $type,
-        int                   $chatId,
-        int                   $totalCount,
-        array                 $notifications,
-    )
-    {
-        $this->id = $id;
-        $this->type = $type;
-        $this->chatId = $chatId;
-        $this->totalCount = $totalCount;
-        $this->notifications = $notifications;
-    }
+        /**
+         * Unique persistent auto-incremented from 1 identifier of the notification group.
+         */
+        protected int                   $id,
+        /**
+         * Type of the group.
+         */
+        protected NotificationGroupType $type,
+        /**
+         * Identifier of a chat to which all notifications in the group belong.
+         */
+        protected int                   $chatId,
+        /**
+         * Total number of active notifications in the group.
+         */
+        protected int                   $totalCount,
+        /**
+         * The list of active notifications.
+         *
+         * @var Notification[]
+         */
+        protected array                 $notifications,
+    ) {}
 
     public static function fromArray(array $array): NotificationGroup
     {
@@ -105,10 +80,10 @@ class NotificationGroup extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'type' => $this->type->typeSerialize(),
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'type'        => $this->type->typeSerialize(),
+            'chat_id'     => $this->chatId,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->notifications),
         ];

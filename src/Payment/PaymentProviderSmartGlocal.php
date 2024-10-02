@@ -6,33 +6,31 @@
 
 namespace Totaldev\TgSchema\Payment;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Smart Glocal payment provider
+ * Smart Glocal payment provider.
  */
 class PaymentProviderSmartGlocal extends PaymentProvider
 {
     public const TYPE_NAME = 'paymentProviderSmartGlocal';
 
-    /**
-     * Public payment token
-     *
-     * @var string
-     */
-    protected string $publicToken;
-
-    public function __construct(string $publicToken)
-    {
+    public function __construct(
+        /**
+         * Public payment token.
+         */
+        protected string $publicToken,
+        /**
+         * URL for sending card tokenization requests.
+         */
+        protected string $tokenizeUrl,
+    ) {
         parent::__construct();
-
-        $this->publicToken = $publicToken;
     }
 
     public static function fromArray(array $array): PaymentProviderSmartGlocal
     {
         return new static(
             $array['public_token'],
+            $array['tokenize_url'],
         );
     }
 
@@ -41,11 +39,17 @@ class PaymentProviderSmartGlocal extends PaymentProvider
         return $this->publicToken;
     }
 
+    public function getTokenizeUrl(): string
+    {
+        return $this->tokenizeUrl;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'public_token' => $this->publicToken,
+            'tokenize_url' => $this->tokenizeUrl,
         ];
     }
 }

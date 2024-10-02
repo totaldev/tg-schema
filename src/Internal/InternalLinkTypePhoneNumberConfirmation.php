@@ -6,36 +6,26 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone
- * number to process the link
+ * The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with
+ * phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or
+ * resendPhoneNumberCode to resend it.
  */
 class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypePhoneNumberConfirmation';
 
-    /**
-     * Hash value from the link
-     *
-     * @var string
-     */
-    protected string $hash;
-
-    /**
-     * Phone number value from the link
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    public function __construct(string $hash, string $phoneNumber)
-    {
+    public function __construct(
+        /**
+         * Hash value from the link.
+         */
+        protected string $hash,
+        /**
+         * Phone number value from the link.
+         */
+        protected string $phoneNumber,
+    ) {
         parent::__construct();
-
-        $this->hash = $hash;
-        $this->phoneNumber = $phoneNumber;
     }
 
     public static function fromArray(array $array): InternalLinkTypePhoneNumberConfirmation
@@ -59,8 +49,8 @@ class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'hash' => $this->hash,
+            '@type'        => static::TYPE_NAME,
+            'hash'         => $this->hash,
             'phone_number' => $this->phoneNumber,
         ];
     }

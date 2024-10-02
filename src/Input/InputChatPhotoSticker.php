@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Chat\ChatPhotoSticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A sticker on a custom background
+ * A sticker on a custom background.
  */
 class InputChatPhotoSticker extends InputChatPhoto
 {
     public const TYPE_NAME = 'inputChatPhotoSticker';
 
-    /**
-     * Information about the sticker
-     *
-     * @var ChatPhotoSticker
-     */
-    protected ChatPhotoSticker $sticker;
-
-    public function __construct(ChatPhotoSticker $sticker)
-    {
+    public function __construct(
+        /**
+         * Information about the sticker.
+         */
+        protected ChatPhotoSticker $sticker
+    ) {
         parent::__construct();
-
-        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): InputChatPhotoSticker
@@ -45,7 +40,7 @@ class InputChatPhotoSticker extends InputChatPhoto
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
     }

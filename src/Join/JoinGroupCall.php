@@ -11,79 +11,42 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Joins an active group call. Returns join response payload for tgcalls
+ * Joins an active group call. Returns join response payload for tgcalls.
  */
 class JoinGroupCall extends TdFunction
 {
     public const TYPE_NAME = 'joinGroupCall';
 
-    /**
-     * Caller audio channel synchronization source identifier; received from tgcalls
-     *
-     * @var int
-     */
-    protected int $audioSourceId;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * If non-empty, invite hash to be used to join the group call without being muted by administrators
-     *
-     * @var string
-     */
-    protected string $inviteHash;
-
-    /**
-     * Pass true to join the call with muted microphone
-     *
-     * @var bool
-     */
-    protected bool $isMuted;
-
-    /**
-     * Pass true if the user's video is enabled
-     *
-     * @var bool
-     */
-    protected bool $isMyVideoEnabled;
-
-    /**
-     * Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
-     * Group call join payload; received from tgcalls
-     *
-     * @var string
-     */
-    protected string $payload;
-
     public function __construct(
-        int           $groupCallId,
-        MessageSender $participantId,
-        int           $audioSourceId,
-        string        $payload,
-        bool          $isMuted,
-        bool          $isMyVideoEnabled,
-        string        $inviteHash,
-    )
-    {
-        $this->groupCallId = $groupCallId;
-        $this->participantId = $participantId;
-        $this->audioSourceId = $audioSourceId;
-        $this->payload = $payload;
-        $this->isMuted = $isMuted;
-        $this->isMyVideoEnabled = $isMyVideoEnabled;
-        $this->inviteHash = $inviteHash;
-    }
+        /**
+         * Group call identifier.
+         */
+        protected int           $groupCallId,
+        /**
+         * Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only.
+         */
+        protected MessageSender $participantId,
+        /**
+         * Caller audio channel synchronization source identifier; received from tgcalls.
+         */
+        protected int           $audioSourceId,
+        /**
+         * Group call join payload; received from tgcalls.
+         */
+        protected string        $payload,
+        /**
+         * Pass true to join the call with muted microphone.
+         */
+        protected bool          $isMuted,
+        /**
+         * Pass true if the user's video is enabled.
+         */
+        protected bool          $isMyVideoEnabled,
+        /**
+         * If non-empty, invite hash to be used to join the group call without being muted by administrators.
+         */
+        protected string        $inviteHash,
+    ) {}
 
     public static function fromArray(array $array): JoinGroupCall
     {
@@ -136,14 +99,14 @@ class JoinGroupCall extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'participant_id' => $this->participantId->typeSerialize(),
-            'audio_source_id' => $this->audioSourceId,
-            'payload' => $this->payload,
-            'is_muted' => $this->isMuted,
+            '@type'               => static::TYPE_NAME,
+            'group_call_id'       => $this->groupCallId,
+            'participant_id'      => $this->participantId->typeSerialize(),
+            'audio_source_id'     => $this->audioSourceId,
+            'payload'             => $this->payload,
+            'is_muted'            => $this->isMuted,
             'is_my_video_enabled' => $this->isMyVideoEnabled,
-            'invite_hash' => $this->inviteHash,
+            'invite_hash'         => $this->inviteHash,
         ];
     }
 }

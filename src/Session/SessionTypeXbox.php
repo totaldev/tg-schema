@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on an Xbox console
+ * The session is running on an Xbox console.
  */
 class SessionTypeXbox extends SessionType
 {

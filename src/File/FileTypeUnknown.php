@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file type is not yet known
+ * The file type is not yet known.
  */
 class FileTypeUnknown extends FileType
 {

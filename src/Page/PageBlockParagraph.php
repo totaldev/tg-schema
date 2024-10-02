@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A text paragraph
+ * A text paragraph.
  */
 class PageBlockParagraph extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockParagraph';
 
-    /**
-     * Paragraph text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text)
-    {
+    public function __construct(
+        /**
+         * Paragraph text.
+         */
+        protected RichText $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): PageBlockParagraph
@@ -46,7 +41,7 @@ class PageBlockParagraph extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            'text'  => $this->text->typeSerialize(),
         ];
     }
 }

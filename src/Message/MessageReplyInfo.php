@@ -10,62 +10,36 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about replies to a message
+ * Contains information about replies to a message.
  */
 class MessageReplyInfo extends TdObject
 {
     public const TYPE_NAME = 'messageReplyInfo';
 
-    /**
-     * Identifier of the last reply to the message
-     *
-     * @var int
-     */
-    protected int $lastMessageId;
-
-    /**
-     * Identifier of the last read incoming reply to the message
-     *
-     * @var int
-     */
-    protected int $lastReadInboxMessageId;
-
-    /**
-     * Identifier of the last read outgoing reply to the message
-     *
-     * @var int
-     */
-    protected int $lastReadOutboxMessageId;
-
-    /**
-     * Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be
-     * inaccessible: only their photo and name will be available
-     *
-     * @var MessageSender[]
-     */
-    protected array $recentReplierIds;
-
-    /**
-     * Number of times the message was directly or indirectly replied
-     *
-     * @var int
-     */
-    protected int $replyCount;
-
     public function __construct(
-        int   $replyCount,
-        array $recentReplierIds,
-        int   $lastReadInboxMessageId,
-        int   $lastReadOutboxMessageId,
-        int   $lastMessageId,
-    )
-    {
-        $this->replyCount = $replyCount;
-        $this->recentReplierIds = $recentReplierIds;
-        $this->lastReadInboxMessageId = $lastReadInboxMessageId;
-        $this->lastReadOutboxMessageId = $lastReadOutboxMessageId;
-        $this->lastMessageId = $lastMessageId;
-    }
+        /**
+         * Number of times the message was directly or indirectly replied.
+         */
+        protected int   $replyCount,
+        /**
+         * Identifiers of at most 3 recent repliers to the message; available in channels with a discussion supergroup. The users and chats are expected to be inaccessible: only their photo and name will be available.
+         *
+         * @var MessageSender[]
+         */
+        protected array $recentReplierIds,
+        /**
+         * Identifier of the last read incoming reply to the message.
+         */
+        protected int   $lastReadInboxMessageId,
+        /**
+         * Identifier of the last read outgoing reply to the message.
+         */
+        protected int   $lastReadOutboxMessageId,
+        /**
+         * Identifier of the last reply to the message.
+         */
+        protected int   $lastMessageId,
+    ) {}
 
     public static function fromArray(array $array): MessageReplyInfo
     {
@@ -106,12 +80,12 @@ class MessageReplyInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'reply_count' => $this->replyCount,
+            '@type'                       => static::TYPE_NAME,
+            'reply_count'                 => $this->replyCount,
             array_map(fn($x) => $x->typeSerialize(), $this->recentReplierIds),
-            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
+            'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
-            'last_message_id' => $this->lastMessageId,
+            'last_message_id'             => $this->lastMessageId,
         ];
     }
 }

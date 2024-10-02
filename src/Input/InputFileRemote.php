@@ -6,29 +6,22 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and
  * known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is
- * disabled, then the corresponding object with the file must be preloaded by the application
+ * disabled, then the corresponding object with the file must be preloaded by the application.
  */
 class InputFileRemote extends InputFile
 {
     public const TYPE_NAME = 'inputFileRemote';
 
-    /**
-     * Remote file identifier
-     *
-     * @var string
-     */
-    protected string $id;
-
-    public function __construct(string $id)
-    {
+    public function __construct(
+        /**
+         * Remote file identifier.
+         */
+        protected string $id
+    ) {
         parent::__construct();
-
-        $this->id = $id;
     }
 
     public static function fromArray(array $array): InputFileRemote
@@ -47,7 +40,7 @@ class InputFileRemote extends InputFile
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            'id'    => $this->id,
         ];
     }
 }

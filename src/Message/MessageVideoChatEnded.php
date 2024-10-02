@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with information about an ended video chat
+ * A message with information about an ended video chat.
  */
 class MessageVideoChatEnded extends MessageContent
 {
     public const TYPE_NAME = 'messageVideoChatEnded';
 
-    /**
-     * Call duration, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    public function __construct(int $duration)
-    {
+    public function __construct(
+        /**
+         * Call duration, in seconds.
+         */
+        protected int $duration
+    ) {
         parent::__construct();
-
-        $this->duration = $duration;
     }
 
     public static function fromArray(array $array): MessageVideoChatEnded
@@ -44,7 +37,7 @@ class MessageVideoChatEnded extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'duration' => $this->duration,
         ];
     }

@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the current localization target
+ * Contains information about the current localization target.
  */
 class LocalizationTargetInfo extends TdObject
 {
     public const TYPE_NAME = 'localizationTargetInfo';
 
-    /**
-     * List of available language packs for this application
-     *
-     * @var LanguagePackInfo[]
-     */
-    protected array $languagePacks;
-
-    public function __construct(array $languagePacks)
-    {
-        $this->languagePacks = $languagePacks;
-    }
+    public function __construct(
+        /**
+         * List of available language packs for this application.
+         *
+         * @var LanguagePackInfo[]
+         */
+        protected array $languagePacks
+    ) {}
 
     public static function fromArray(array $array): LocalizationTargetInfo
     {

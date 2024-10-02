@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all call messages
+ * Deletes all call messages.
  */
 class DeleteAllCallMessages extends TdFunction
 {
     public const TYPE_NAME = 'deleteAllCallMessages';
 
-    /**
-     * Pass true to delete the messages for all users
-     *
-     * @var bool
-     */
-    protected bool $revoke;
-
-    public function __construct(bool $revoke)
-    {
-        $this->revoke = $revoke;
-    }
+    public function __construct(
+        /**
+         * Pass true to delete the messages for all users.
+         */
+        protected bool $revoke
+    ) {}
 
     public static function fromArray(array $array): DeleteAllCallMessages
     {
@@ -43,7 +37,7 @@ class DeleteAllCallMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'revoke' => $this->revoke,
         ];
     }

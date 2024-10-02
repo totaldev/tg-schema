@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Allowed to use custom emoji stickers in message texts and captions
+ * Allowed to use custom emoji stickers in message texts and captions.
  */
 class PremiumFeatureCustomEmoji extends PremiumFeature
 {

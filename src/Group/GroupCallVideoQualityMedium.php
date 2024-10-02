@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Group;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The medium video quality
+ * The medium video quality.
  */
 class GroupCallVideoQualityMedium extends GroupCallVideoQuality
 {

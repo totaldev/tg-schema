@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be
- * used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
+ * used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in.
  */
 class CheckAuthenticationBotToken extends TdFunction
 {
     public const TYPE_NAME = 'checkAuthenticationBotToken';
 
-    /**
-     * The bot token
-     *
-     * @var string
-     */
-    protected string $token;
-
-    public function __construct(string $token)
-    {
-        $this->token = $token;
-    }
+    public function __construct(
+        /**
+         * The bot token.
+         */
+        protected string $token
+    ) {}
 
     public static function fromArray(array $array): CheckAuthenticationBotToken
     {

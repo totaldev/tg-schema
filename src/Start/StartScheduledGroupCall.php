@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Start;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Starts a scheduled group call
+ * Starts a scheduled group call.
  */
 class StartScheduledGroupCall extends TdFunction
 {
     public const TYPE_NAME = 'startScheduledGroupCall';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
-        $this->groupCallId = $groupCallId;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int $groupCallId
+    ) {}
 
     public static function fromArray(array $array): StartScheduledGroupCall
     {
@@ -43,7 +37,7 @@ class StartScheduledGroupCall extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

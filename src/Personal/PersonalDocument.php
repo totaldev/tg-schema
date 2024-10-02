@@ -11,31 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A personal document, containing some information about a user
+ * A personal document, containing some information about a user.
  */
 class PersonalDocument extends TdObject
 {
     public const TYPE_NAME = 'personalDocument';
 
-    /**
-     * List of files containing the pages of the document
-     *
-     * @var DatedFile[]
-     */
-    protected array $files;
-
-    /**
-     * List of files containing a certified English translation of the document
-     *
-     * @var DatedFile[]
-     */
-    protected array $translation;
-
-    public function __construct(array $files, array $translation)
-    {
-        $this->files = $files;
-        $this->translation = $translation;
-    }
+    public function __construct(
+        /**
+         * List of files containing the pages of the document.
+         *
+         * @var DatedFile[]
+         */
+        protected array $files,
+        /**
+         * List of files containing a certified English translation of the document.
+         *
+         * @var DatedFile[]
+         */
+        protected array $translation,
+    ) {}
 
     public static function fromArray(array $array): PersonalDocument
     {

@@ -11,79 +11,42 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
+ * Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat.
  */
 class CreateNewSupergroupChat extends TdFunction
 {
     public const TYPE_NAME = 'createNewSupergroupChat';
 
-    /**
-     * Chat description; 0-255 characters
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Pass true to create a supergroup for importing messages using importMessages
-     *
-     * @var bool
-     */
-    protected bool $forImport;
-
-    /**
-     * Pass true to create a channel chat; ignored if a forum is created
-     *
-     * @var bool
-     */
-    protected bool $isChannel;
-
-    /**
-     * Pass true to create a forum supergroup chat
-     *
-     * @var bool
-     */
-    protected bool $isForum;
-
-    /**
-     * Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
-     *
-     * @var ChatLocation
-     */
-    protected ChatLocation $location;
-
-    /**
-     * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-     *
-     * @var int
-     */
-    protected int $messageAutoDeleteTime;
-
-    /**
-     * Title of the new chat; 1-128 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        string       $title,
-        bool         $isForum,
-        bool         $isChannel,
-        string       $description,
-        ChatLocation $location,
-        int          $messageAutoDeleteTime,
-        bool         $forImport,
-    )
-    {
-        $this->title = $title;
-        $this->isForum = $isForum;
-        $this->isChannel = $isChannel;
-        $this->description = $description;
-        $this->location = $location;
-        $this->messageAutoDeleteTime = $messageAutoDeleteTime;
-        $this->forImport = $forImport;
-    }
+        /**
+         * Title of the new chat; 1-128 characters.
+         */
+        protected string       $title,
+        /**
+         * Pass true to create a forum supergroup chat.
+         */
+        protected bool         $isForum,
+        /**
+         * Pass true to create a channel chat; ignored if a forum is created.
+         */
+        protected bool         $isChannel,
+        /**
+         * Chat description; 0-255 characters.
+         */
+        protected string       $description,
+        /**
+         * Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat.
+         */
+        protected ChatLocation $location,
+        /**
+         * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
+         */
+        protected int          $messageAutoDeleteTime,
+        /**
+         * Pass true to create a supergroup for importing messages using importMessages.
+         */
+        protected bool         $forImport,
+    ) {}
 
     public static function fromArray(array $array): CreateNewSupergroupChat
     {
@@ -136,14 +99,14 @@ class CreateNewSupergroupChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'is_forum' => $this->isForum,
-            'is_channel' => $this->isChannel,
-            'description' => $this->description,
-            'location' => $this->location->typeSerialize(),
+            '@type'                    => static::TYPE_NAME,
+            'title'                    => $this->title,
+            'is_forum'                 => $this->isForum,
+            'is_channel'               => $this->isChannel,
+            'description'              => $this->description,
+            'location'                 => $this->location->typeSerialize(),
             'message_auto_delete_time' => $this->messageAutoDeleteTime,
-            'for_import' => $this->forImport,
+            'for_import'               => $this->forImport,
         ];
     }
 }

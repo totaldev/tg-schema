@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+ * Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization.
  */
 class GetInternalLinkType extends TdFunction
 {
     public const TYPE_NAME = 'getInternalLinkType';
 
-    /**
-     * The link
-     *
-     * @var string
-     */
-    protected string $link;
-
-    public function __construct(string $link)
-    {
-        $this->link = $link;
-    }
+    public function __construct(
+        /**
+         * The link.
+         */
+        protected string $link
+    ) {}
 
     public static function fromArray(array $array): GetInternalLinkType
     {
@@ -44,7 +38,7 @@ class GetInternalLinkType extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link' => $this->link,
+            'link'  => $this->link,
         ];
     }
 }

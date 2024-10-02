@@ -11,81 +11,43 @@ use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a user contact
+ * Represents a user contact.
  */
 class InputInlineQueryResultContact extends InputInlineQueryResult
 {
     public const TYPE_NAME = 'inputInlineQueryResultContact';
 
-    /**
-     * User contact
-     *
-     * @var Contact
-     */
-    protected Contact $contact;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation,
-     * inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * Thumbnail height, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailHeight;
-
-    /**
-     * URL of the result thumbnail, if it exists
-     *
-     * @var string
-     */
-    protected string $thumbnailUrl;
-
-    /**
-     * Thumbnail width, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailWidth;
-
     public function __construct(
-        string              $id,
-        Contact             $contact,
-        string              $thumbnailUrl,
-        int                 $thumbnailWidth,
-        int                 $thumbnailHeight,
-        ReplyMarkup         $replyMarkup,
-        InputMessageContent $inputMessageContent,
-    )
-    {
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string              $id,
+        /**
+         * User contact.
+         */
+        protected Contact             $contact,
+        /**
+         * URL of the result thumbnail, if it exists.
+         */
+        protected string              $thumbnailUrl,
+        /**
+         * Thumbnail width, if known.
+         */
+        protected int                 $thumbnailWidth,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->contact = $contact;
-        $this->thumbnailUrl = $thumbnailUrl;
-        $this->thumbnailWidth = $thumbnailWidth;
-        $this->thumbnailHeight = $thumbnailHeight;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
     }
 
     public static function fromArray(array $array): InputInlineQueryResultContact
@@ -139,13 +101,13 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'contact' => $this->contact->typeSerialize(),
-            'thumbnail_url' => $this->thumbnailUrl,
-            'thumbnail_width' => $this->thumbnailWidth,
-            'thumbnail_height' => $this->thumbnailHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'id'                    => $this->id,
+            'contact'               => $this->contact->typeSerialize(),
+            'thumbnail_url'         => $this->thumbnailUrl,
+            'thumbnail_width'       => $this->thumbnailWidth,
+            'thumbnail_height'      => $this->thumbnailHeight,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

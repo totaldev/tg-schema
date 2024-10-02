@@ -6,83 +6,44 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A payment has been completed
+ * A payment has been completed.
  */
 class MessagePaymentSuccessful extends MessageContent
 {
     public const TYPE_NAME = 'messagePaymentSuccessful';
 
-    /**
-     * Currency for the price of the product
-     *
-     * @var string
-     */
-    protected string $currency;
-
-    /**
-     * Identifier of the chat, containing the corresponding invoice message
-     *
-     * @var int
-     */
-    protected int $invoiceChatId;
-
-    /**
-     * Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
-     *
-     * @var int
-     */
-    protected int $invoiceMessageId;
-
-    /**
-     * Name of the invoice; may be empty if unknown
-     *
-     * @var string
-     */
-    protected string $invoiceName;
-
-    /**
-     * True, if this is the first recurring payment
-     *
-     * @var bool
-     */
-    protected bool $isFirstRecurring;
-
-    /**
-     * True, if this is a recurring payment
-     *
-     * @var bool
-     */
-    protected bool $isRecurring;
-
-    /**
-     * Total price for the product, in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $totalAmount;
-
     public function __construct(
-        int    $invoiceChatId,
-        int    $invoiceMessageId,
-        string $currency,
-        int    $totalAmount,
-        bool   $isRecurring,
-        bool   $isFirstRecurring,
-        string $invoiceName,
-    )
-    {
+        /**
+         * Identifier of the chat, containing the corresponding invoice message.
+         */
+        protected int    $invoiceChatId,
+        /**
+         * Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message.
+         */
+        protected int    $invoiceMessageId,
+        /**
+         * Currency for the price of the product.
+         */
+        protected string $currency,
+        /**
+         * Total price for the product, in the smallest units of the currency.
+         */
+        protected int    $totalAmount,
+        /**
+         * True, if this is a recurring payment.
+         */
+        protected bool   $isRecurring,
+        /**
+         * True, if this is the first recurring payment.
+         */
+        protected bool   $isFirstRecurring,
+        /**
+         * Name of the invoice; may be empty if unknown.
+         */
+        protected string $invoiceName,
+    ) {
         parent::__construct();
-
-        $this->invoiceChatId = $invoiceChatId;
-        $this->invoiceMessageId = $invoiceMessageId;
-        $this->currency = $currency;
-        $this->totalAmount = $totalAmount;
-        $this->isRecurring = $isRecurring;
-        $this->isFirstRecurring = $isFirstRecurring;
-        $this->invoiceName = $invoiceName;
     }
 
     public static function fromArray(array $array): MessagePaymentSuccessful
@@ -136,14 +97,14 @@ class MessagePaymentSuccessful extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'invoice_chat_id' => $this->invoiceChatId,
+            '@type'              => static::TYPE_NAME,
+            'invoice_chat_id'    => $this->invoiceChatId,
             'invoice_message_id' => $this->invoiceMessageId,
-            'currency' => $this->currency,
-            'total_amount' => $this->totalAmount,
-            'is_recurring' => $this->isRecurring,
+            'currency'           => $this->currency,
+            'total_amount'       => $this->totalAmount,
+            'is_recurring'       => $this->isRecurring,
             'is_first_recurring' => $this->isFirstRecurring,
-            'invoice_name' => $this->invoiceName,
+            'invoice_name'       => $this->invoiceName,
         ];
     }
 }

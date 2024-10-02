@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of text entities
+ * Contains a list of text entities.
  */
 class TextEntities extends TdObject
 {
     public const TYPE_NAME = 'textEntities';
 
-    /**
-     * List of text entities
-     *
-     * @var TextEntity[]
-     */
-    protected array $entities;
-
-    public function __construct(array $entities)
-    {
-        $this->entities = $entities;
-    }
+    public function __construct(
+        /**
+         * List of text entities.
+         *
+         * @var TextEntity[]
+         */
+        protected array $entities
+    ) {}
 
     public static function fromArray(array $array): TextEntities
     {

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a group call participant hand is rased
+ * Toggles whether a group call participant hand is rased.
  */
 class ToggleGroupCallParticipantIsHandRaised extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallParticipantIsHandRaised';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
-     *
-     * @var bool
-     */
-    protected bool $isHandRaised;
-
-    /**
-     * Participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    public function __construct(int $groupCallId, MessageSender $participantId, bool $isHandRaised)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->participantId = $participantId;
-        $this->isHandRaised = $isHandRaised;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int           $groupCallId,
+        /**
+         * Participant identifier.
+         */
+        protected MessageSender $participantId,
+        /**
+         * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand.
+         */
+        protected bool          $isHandRaised,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsHandRaised
     {
@@ -72,8 +59,8 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'          => static::TYPE_NAME,
+            'group_call_id'  => $this->groupCallId,
             'participant_id' => $this->participantId->typeSerialize(),
             'is_hand_raised' => $this->isHandRaised,
         ];

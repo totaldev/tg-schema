@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user heard background noise
+ * The user heard background noise.
  */
 class CallProblemNoise extends CallProblem
 {

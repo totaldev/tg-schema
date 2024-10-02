@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Proxy;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A HTTP transparent proxy server
+ * A HTTP transparent proxy server.
  */
 class ProxyTypeHttp extends ProxyType
 {
     public const TYPE_NAME = 'proxyTypeHttp';
 
-    /**
-     * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
-     *
-     * @var bool
-     */
-    protected bool $httpOnly;
-
-    /**
-     * Password for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
-     * Username for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $username;
-
-    public function __construct(string $username, string $password, bool $httpOnly)
-    {
+    public function __construct(
+        /**
+         * Username for logging in; may be empty.
+         */
+        protected string $username,
+        /**
+         * Password for logging in; may be empty.
+         */
+        protected string $password,
+        /**
+         * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method.
+         */
+        protected bool   $httpOnly,
+    ) {
         parent::__construct();
-
-        $this->username = $username;
-        $this->password = $password;
-        $this->httpOnly = $httpOnly;
     }
 
     public static function fromArray(array $array): ProxyTypeHttp
@@ -72,9 +57,9 @@ class ProxyTypeHttp extends ProxyType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'username' => $this->username,
-            'password' => $this->password,
+            '@type'     => static::TYPE_NAME,
+            'username'  => $this->username,
+            'password'  => $this->password,
             'http_only' => $this->httpOnly,
         ];
     }

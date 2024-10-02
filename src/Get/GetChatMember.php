@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a single member of a chat
+ * Returns information about a single member of a chat.
  */
 class GetChatMember extends TdFunction
 {
     public const TYPE_NAME = 'getChatMember';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Member identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    public function __construct(int $chatId, MessageSender $memberId)
-    {
-        $this->chatId = $chatId;
-        $this->memberId = $memberId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * Member identifier.
+         */
+        protected MessageSender $memberId,
+    ) {}
 
     public static function fromArray(array $array): GetChatMember
     {
@@ -58,8 +49,8 @@ class GetChatMember extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'     => static::TYPE_NAME,
+            'chat_id'   => $this->chatId,
             'member_id' => $this->memberId->typeSerialize(),
         ];
     }

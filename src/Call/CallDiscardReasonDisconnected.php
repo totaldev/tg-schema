@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call was ended during the conversation because the users were disconnected
+ * The call was ended during the conversation because the users were disconnected.
  */
 class CallDiscardReasonDisconnected extends CallDiscardReason
 {

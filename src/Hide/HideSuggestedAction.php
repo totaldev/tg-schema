@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Hides a suggested action
+ * Hides a suggested action.
  */
 class HideSuggestedAction extends TdFunction
 {
     public const TYPE_NAME = 'hideSuggestedAction';
 
-    /**
-     * Suggested action to hide
-     *
-     * @var SuggestedAction
-     */
-    protected SuggestedAction $action;
-
-    public function __construct(SuggestedAction $action)
-    {
-        $this->action = $action;
-    }
+    public function __construct(
+        /**
+         * Suggested action to hide.
+         */
+        protected SuggestedAction $action
+    ) {}
 
     public static function fromArray(array $array): HideSuggestedAction
     {
@@ -44,7 +39,7 @@ class HideSuggestedAction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'action' => $this->action->typeSerialize(),
         ];
     }

@@ -7,59 +7,36 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+ * Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib.
  */
 class GetPollVoters extends TdFunction
 {
     public const TYPE_NAME = 'getPollVoters';
 
-    /**
-     * Identifier of the chat to which the poll belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is
-     * chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Identifier of the message containing the poll
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Number of voters to skip in the result; must be non-negative
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
-     * 0-based identifier of the answer option
-     *
-     * @var int
-     */
-    protected int $optionId;
-
-    public function __construct(int $chatId, int $messageId, int $optionId, int $offset, int $limit)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->optionId = $optionId;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the poll belongs.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message containing the poll.
+         */
+        protected int $messageId,
+        /**
+         * 0-based identifier of the answer option.
+         */
+        protected int $optionId,
+        /**
+         * Number of voters to skip in the result; must be non-negative.
+         */
+        protected int $offset,
+        /**
+         * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached.
+         */
+        protected int $limit,
+    ) {}
 
     public static function fromArray(array $array): GetPollVoters
     {
@@ -100,12 +77,12 @@ class GetPollVoters extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'option_id' => $this->optionId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            'option_id'  => $this->optionId,
+            'offset'     => $this->offset,
+            'limit'      => $this->limit,
         ];
     }
 }

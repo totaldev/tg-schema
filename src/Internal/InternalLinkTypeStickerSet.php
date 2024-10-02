@@ -6,35 +6,25 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
+ * The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set
+ * is found and the user wants to add it, then call changeStickerSet.
  */
 class InternalLinkTypeStickerSet extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeStickerSet';
 
-    /**
-     * True, if the sticker set is expected to contain custom emoji
-     *
-     * @var bool
-     */
-    protected bool $expectCustomEmoji;
-
-    /**
-     * Name of the sticker set
-     *
-     * @var string
-     */
-    protected string $stickerSetName;
-
-    public function __construct(string $stickerSetName, bool $expectCustomEmoji)
-    {
+    public function __construct(
+        /**
+         * Name of the sticker set.
+         */
+        protected string $stickerSetName,
+        /**
+         * True, if the sticker set is expected to contain custom emoji.
+         */
+        protected bool   $expectCustomEmoji,
+    ) {
         parent::__construct();
-
-        $this->stickerSetName = $stickerSetName;
-        $this->expectCustomEmoji = $expectCustomEmoji;
     }
 
     public static function fromArray(array $array): InternalLinkTypeStickerSet
@@ -58,8 +48,8 @@ class InternalLinkTypeStickerSet extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker_set_name' => $this->stickerSetName,
+            '@type'               => static::TYPE_NAME,
+            'sticker_set_name'    => $this->stickerSetName,
             'expect_custom_emoji' => $this->expectCustomEmoji,
         ];
     }

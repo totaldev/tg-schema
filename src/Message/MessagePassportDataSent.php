@@ -10,24 +10,21 @@ use Totaldev\TgSchema\Passport\PassportElementType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Telegram Passport data has been sent to a bot
+ * Telegram Passport data has been sent to a bot.
  */
 class MessagePassportDataSent extends MessageContent
 {
     public const TYPE_NAME = 'messagePassportDataSent';
 
-    /**
-     * List of Telegram Passport element types sent
-     *
-     * @var PassportElementType[]
-     */
-    protected array $types;
-
-    public function __construct(array $types)
-    {
+    public function __construct(
+        /**
+         * List of Telegram Passport element types sent.
+         *
+         * @var PassportElementType[]
+         */
+        protected array $types
+    ) {
         parent::__construct();
-
-        $this->types = $types;
     }
 
     public static function fromArray(array $array): MessagePassportDataSent

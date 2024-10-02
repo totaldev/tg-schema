@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The location-based chat is unrelated to its stated location
+ * The location-based chat is unrelated to its stated location.
  */
 class ReportReasonUnrelatedLocation extends ReportReason
 {

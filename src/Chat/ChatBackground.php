@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a background set for a specific chat
+ * Describes a background set for a specific chat.
  */
 class ChatBackground extends TdObject
 {
     public const TYPE_NAME = 'chatBackground';
 
-    /**
-     * The background
-     *
-     * @var Background
-     */
-    protected Background $background;
-
-    /**
-     * Dimming of the background in dark themes, as a percentage; 0-100
-     *
-     * @var int
-     */
-    protected int $darkThemeDimming;
-
-    public function __construct(Background $background, int $darkThemeDimming)
-    {
-        $this->background = $background;
-        $this->darkThemeDimming = $darkThemeDimming;
-    }
+    public function __construct(
+        /**
+         * The background.
+         */
+        protected Background $background,
+        /**
+         * Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background.
+         */
+        protected int        $darkThemeDimming,
+    ) {}
 
     public static function fromArray(array $array): ChatBackground
     {
@@ -58,8 +49,8 @@ class ChatBackground extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'background' => $this->background->typeSerialize(),
+            '@type'              => static::TYPE_NAME,
+            'background'         => $this->background->typeSerialize(),
             'dark_theme_dimming' => $this->darkThemeDimming,
         ];
     }

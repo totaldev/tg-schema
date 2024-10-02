@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat is a recently created group chat to which new members can be invited
+ * The chat is a recently created group chat to which new members can be invited.
  */
 class ChatActionBarInviteMembers extends ChatActionBar
 {

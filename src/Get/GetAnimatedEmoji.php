@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
+ * Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji.
  */
 class GetAnimatedEmoji extends TdFunction
 {
     public const TYPE_NAME = 'getAnimatedEmoji';
 
-    /**
-     * The emoji
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    public function __construct(string $emoji)
-    {
-        $this->emoji = $emoji;
-    }
+    public function __construct(
+        /**
+         * The emoji.
+         */
+        protected string $emoji
+    ) {}
 
     public static function fromArray(array $array): GetAnimatedEmoji
     {

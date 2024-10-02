@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+ * Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only.
  */
 class ToggleGroupCallEnabledStartNotification extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallEnabledStartNotification';
 
-    /**
-     * New value of the enabled_start_notification setting
-     *
-     * @var bool
-     */
-    protected bool $enabledStartNotification;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId, bool $enabledStartNotification)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->enabledStartNotification = $enabledStartNotification;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * New value of the enabled_start_notification setting.
+         */
+        protected bool $enabledStartNotification,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallEnabledStartNotification
     {
@@ -57,8 +47,8 @@ class ToggleGroupCallEnabledStartNotification extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'                      => static::TYPE_NAME,
+            'group_call_id'              => $this->groupCallId,
             'enabled_start_notification' => $this->enabledStartNotification,
         ];
     }

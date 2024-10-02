@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Thumbnail;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The thumbnail is in WEBP format. It will be used only for some stickers
+ * The thumbnail is in WEBP format. It will be used only for some stickers and sticker sets.
  */
 class ThumbnailFormatWebp extends ThumbnailFormat
 {

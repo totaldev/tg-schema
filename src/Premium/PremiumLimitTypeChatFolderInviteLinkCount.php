@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of invite links for a chat folder
+ * The maximum number of invite links for a chat folder.
  */
 class PremiumLimitTypeChatFolderInviteLinkCount extends PremiumLimitType
 {

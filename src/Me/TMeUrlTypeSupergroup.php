@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Me;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A URL linking to a public supergroup or channel
+ * A URL linking to a public supergroup or channel.
  */
 class TMeUrlTypeSupergroup extends TMeUrlType
 {
     public const TYPE_NAME = 'tMeUrlTypeSupergroup';
 
-    /**
-     * Identifier of the supergroup or channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the supergroup or channel.
+         */
+        protected int $supergroupId
+    ) {
         parent::__construct();
-
-        $this->supergroupId = $supergroupId;
     }
 
     public static function fromArray(array $array): TMeUrlTypeSupergroup
@@ -44,7 +37,7 @@ class TMeUrlTypeSupergroup extends TMeUrlType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
     }

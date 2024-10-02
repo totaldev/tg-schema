@@ -7,58 +7,36 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Updates the game score of the specified user in a game; for bots only
+ * Updates the game score of the specified user in a game; for bots only.
  */
 class SetInlineGameScore extends TdFunction
 {
     public const TYPE_NAME = 'setInlineGameScore';
 
-    /**
-     * Pass true to edit the game message to include the current scoreboard
-     *
-     * @var bool
-     */
-    protected bool $editMessage;
-
-    /**
-     * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-     *
-     * @var bool
-     */
-    protected bool $force;
-
-    /**
-     * Inline message identifier
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
-     * The new score
-     *
-     * @var int
-     */
-    protected int $score;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(string $inlineMessageId, bool $editMessage, int $userId, int $score, bool $force)
-    {
-        $this->inlineMessageId = $inlineMessageId;
-        $this->editMessage = $editMessage;
-        $this->userId = $userId;
-        $this->score = $score;
-        $this->force = $force;
-    }
+    public function __construct(
+        /**
+         * Inline message identifier.
+         */
+        protected string $inlineMessageId,
+        /**
+         * Pass true to edit the game message to include the current scoreboard.
+         */
+        protected bool   $editMessage,
+        /**
+         * User identifier.
+         */
+        protected int    $userId,
+        /**
+         * The new score.
+         */
+        protected int    $score,
+        /**
+         * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
+         */
+        protected bool   $force,
+    ) {}
 
     public static function fromArray(array $array): SetInlineGameScore
     {
@@ -99,12 +77,12 @@ class SetInlineGameScore extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'inline_message_id' => $this->inlineMessageId,
-            'edit_message' => $this->editMessage,
-            'user_id' => $this->userId,
-            'score' => $this->score,
-            'force' => $this->force,
+            'edit_message'      => $this->editMessage,
+            'user_id'           => $this->userId,
+            'score'             => $this->score,
+            'force'             => $this->force,
         ];
     }
 }

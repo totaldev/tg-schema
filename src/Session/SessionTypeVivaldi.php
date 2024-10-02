@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on the Vivaldi browser
+ * The session is running on the Vivaldi browser.
  */
 class SessionTypeVivaldi extends SessionType
 {

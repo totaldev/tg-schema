@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A Telegram Passport element to be saved containing the user's email address
+ * A Telegram Passport element to be saved containing the user's email address.
  */
 class InputPassportElementEmailAddress extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementEmailAddress';
 
-    /**
-     * The email address to be saved
-     *
-     * @var string
-     */
-    protected string $emailAddress;
-
-    public function __construct(string $emailAddress)
-    {
+    public function __construct(
+        /**
+         * The email address to be saved.
+         */
+        protected string $emailAddress
+    ) {
         parent::__construct();
-
-        $this->emailAddress = $emailAddress;
     }
 
     public static function fromArray(array $array): InputPassportElementEmailAddress
@@ -44,7 +37,7 @@ class InputPassportElementEmailAddress extends InputPassportElement
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
     }

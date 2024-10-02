@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user has started to play a game
+ * The user has started to play a game.
  */
 class ChatActionStartPlayingGame extends ChatAction
 {

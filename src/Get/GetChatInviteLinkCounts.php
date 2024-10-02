@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+ * Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat.
  */
 class GetChatInviteLinkCounts extends TdFunction
 {
     public const TYPE_NAME = 'getChatInviteLinkCounts';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetChatInviteLinkCounts
     {
@@ -43,7 +37,7 @@ class GetChatInviteLinkCounts extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
+ * Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
  */
 class GetWebPageInstantView extends TdFunction
 {
     public const TYPE_NAME = 'getWebPageInstantView';
 
-    /**
-     * Pass true to get full instant view for the web page
-     *
-     * @var bool
-     */
-    protected bool $forceFull;
-
-    /**
-     * The web page URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url, bool $forceFull)
-    {
-        $this->url = $url;
-        $this->forceFull = $forceFull;
-    }
+    public function __construct(
+        /**
+         * The web page URL.
+         */
+        protected string $url,
+        /**
+         * Pass true to get full instant view for the web page.
+         */
+        protected bool   $forceFull,
+    ) {}
 
     public static function fromArray(array $array): GetWebPageInstantView
     {
@@ -57,8 +47,8 @@ class GetWebPageInstantView extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            '@type'      => static::TYPE_NAME,
+            'url'        => $this->url,
             'force_full' => $this->forceFull,
         ];
     }

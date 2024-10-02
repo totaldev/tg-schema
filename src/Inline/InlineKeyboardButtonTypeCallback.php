@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that sends a callback query to a bot
+ * A button that sends a callback query to a bot.
  */
 class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeCallback';
 
-    /**
-     * Data to be sent to the bot via a callback query
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(string $data)
-    {
+    public function __construct(
+        /**
+         * Data to be sent to the bot via a callback query.
+         */
+        protected string $data
+    ) {
         parent::__construct();
-
-        $this->data = $data;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeCallback
@@ -45,7 +38,7 @@ class InlineKeyboardButtonTypeCallback extends InlineKeyboardButtonType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data' => $this->data,
+            'data'  => $this->data,
         ];
     }
 }

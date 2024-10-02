@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on the Opera browser
+ * The session is running on the Opera browser.
  */
 class SessionTypeOpera extends SessionType
 {

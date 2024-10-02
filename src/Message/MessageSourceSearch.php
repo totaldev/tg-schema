@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from search results, including file downloads, local file list, outgoing document messages, calendar
+ * The message is from search results, including file downloads, local file list, outgoing document messages, calendar.
  */
 class MessageSourceSearch extends MessageSource
 {

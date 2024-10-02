@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Location;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a location on planet Earth
+ * Describes a location on planet Earth.
  */
 class Location extends TdObject
 {
     public const TYPE_NAME = 'location';
 
-    /**
-     * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
-     *
-     * @var float
-     */
-    protected float $horizontalAccuracy;
-
-    /**
-     * Latitude of the location in degrees; as defined by the sender
-     *
-     * @var float
-     */
-    protected float $latitude;
-
-    /**
-     * Longitude of the location, in degrees; as defined by the sender
-     *
-     * @var float
-     */
-    protected float $longitude;
-
-    public function __construct(float $latitude, float $longitude, float $horizontalAccuracy)
-    {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->horizontalAccuracy = $horizontalAccuracy;
-    }
+    public function __construct(
+        /**
+         * Latitude of the location in degrees; as defined by the sender.
+         */
+        protected float $latitude,
+        /**
+         * Longitude of the location, in degrees; as defined by the sender.
+         */
+        protected float $longitude,
+        /**
+         * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown.
+         */
+        protected float $horizontalAccuracy,
+    ) {}
 
     public static function fromArray(array $array): Location
     {
@@ -71,9 +57,9 @@ class Location extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
+            '@type'               => static::TYPE_NAME,
+            'latitude'            => $this->latitude,
+            'longitude'           => $this->longitude,
             'horizontal_accuracy' => $this->horizontalAccuracy,
         ];
     }

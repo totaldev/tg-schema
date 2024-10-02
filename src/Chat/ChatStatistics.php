@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a detailed statistics about a chat
+ * Contains a detailed statistics about a chat.
  */
 class ChatStatistics extends TdObject
 {
     public const TYPE_NAME = 'ChatStatistics';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatStatistics
     {

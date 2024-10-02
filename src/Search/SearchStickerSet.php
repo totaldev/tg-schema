@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for a sticker set by its name
+ * Searches for a sticker set by its name.
  */
 class SearchStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'searchStickerSet';
 
-    /**
-     * Name of the sticker set
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
+    public function __construct(
+        /**
+         * Name of the sticker set.
+         */
+        protected string $name
+    ) {}
 
     public static function fromArray(array $array): SearchStickerSet
     {
@@ -44,7 +38,7 @@ class SearchStickerSet extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
         ];
     }
 }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Email;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication code delivered to a user's email address
+ * An authentication code delivered to a user's email address.
  */
 class EmailAddressAuthenticationCode extends EmailAddressAuthentication
 {
     public const TYPE_NAME = 'emailAddressAuthenticationCode';
 
-    /**
-     * The code
-     *
-     * @var string
-     */
-    protected string $code;
-
-    public function __construct(string $code)
-    {
+    public function __construct(
+        /**
+         * The code.
+         */
+        protected string $code
+    ) {
         parent::__construct();
-
-        $this->code = $code;
     }
 
     public static function fromArray(array $array): EmailAddressAuthenticationCode
@@ -45,7 +38,7 @@ class EmailAddressAuthenticationCode extends EmailAddressAuthentication
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code,
+            'code'  => $this->code,
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An italic text
+ * An italic text.
  */
 class TextEntityTypeItalic extends TextEntityType
 {

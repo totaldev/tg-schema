@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the period of inactivity after which the account of the current user will automatically be deleted
+ * Returns the period of inactivity after which the account of the current user will automatically be deleted.
  */
 class GetAccountTtl extends TdFunction
 {
     public const TYPE_NAME = 'getAccountTtl';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetAccountTtl
     {

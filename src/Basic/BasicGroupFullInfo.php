@@ -14,100 +14,61 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains full information about a basic group
+ * Contains full information about a basic group.
  */
 class BasicGroupFullInfo extends TdObject
 {
     public const TYPE_NAME = 'basicGroupFullInfo';
 
-    /**
-     * List of commands of bots in the group
-     *
-     * @var BotCommands[]
-     */
-    protected array $botCommands;
-
-    /**
-     * True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading
-     * the basic group to a supergroup
-     *
-     * @var bool
-     */
-    protected bool $canHideMembers;
-
-    /**
-     * True, if aggressive anti-spam checks can be enabled or disabled in the supergroup after upgrading the basic group to a supergroup
-     *
-     * @var bool
-     */
-    protected bool $canToggleAggressiveAntiSpam;
-
-    /**
-     * User identifier of the creator of the group; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $creatorUserId;
-
-    /**
-     * Group description. Updated only after the basic group is opened
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
-     *
-     * @var ChatInviteLink|null
-     */
-    protected ?ChatInviteLink $inviteLink;
-
-    /**
-     * Group members
-     *
-     * @var ChatMember[]
-     */
-    protected array $members;
-
-    /**
-     * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $photo;
-
     public function __construct(
-        ?ChatPhoto      $photo,
-        string          $description,
-        int             $creatorUserId,
-        array           $members,
-        bool            $canHideMembers,
-        bool            $canToggleAggressiveAntiSpam,
-        ?ChatInviteLink $inviteLink,
-        array           $botCommands,
-    )
-    {
-        $this->photo = $photo;
-        $this->description = $description;
-        $this->creatorUserId = $creatorUserId;
-        $this->members = $members;
-        $this->canHideMembers = $canHideMembers;
-        $this->canToggleAggressiveAntiSpam = $canToggleAggressiveAntiSpam;
-        $this->inviteLink = $inviteLink;
-        $this->botCommands = $botCommands;
-    }
+        /**
+         * Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo.
+         */
+        protected ?ChatPhoto      $photo,
+        /**
+         * Group description. Updated only after the basic group is opened.
+         */
+        protected string          $description,
+        /**
+         * User identifier of the creator of the group; 0 if unknown.
+         */
+        protected int             $creatorUserId,
+        /**
+         * Group members.
+         *
+         * @var ChatMember[]
+         */
+        protected array           $members,
+        /**
+         * True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators after upgrading the basic group to a supergroup.
+         */
+        protected bool            $canHideMembers,
+        /**
+         * True, if aggressive anti-spam checks can be enabled or disabled in the supergroup after upgrading the basic group to a supergroup.
+         */
+        protected bool            $canToggleAggressiveAntiSpam,
+        /**
+         * Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened.
+         */
+        protected ?ChatInviteLink $inviteLink,
+        /**
+         * List of commands of bots in the group.
+         *
+         * @var BotCommands[]
+         */
+        protected array           $botCommands,
+    ) {}
 
     public static function fromArray(array $array): BasicGroupFullInfo
     {
         return new static(
-            (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['description'],
             $array['creator_user_id'],
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
             $array['can_hide_members'],
             $array['can_toggle_aggressive_anti_spam'],
-            (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
         );
     }
@@ -155,14 +116,14 @@ class BasicGroupFullInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'photo' => (isset($this->photo) ? $this->photo : null),
-            'description' => $this->description,
-            'creator_user_id' => $this->creatorUserId,
+            '@type'                           => static::TYPE_NAME,
+            'photo'                           => (isset($this->photo) ? $this->photo : null),
+            'description'                     => $this->description,
+            'creator_user_id'                 => $this->creatorUserId,
             array_map(fn($x) => $x->typeSerialize(), $this->members),
-            'can_hide_members' => $this->canHideMembers,
+            'can_hide_members'                => $this->canHideMembers,
             'can_toggle_aggressive_anti_spam' => $this->canToggleAggressiveAntiSpam,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'invite_link'                     => (isset($this->inviteLink) ? $this->inviteLink : null),
             array_map(fn($x) => $x->typeSerialize(), $this->botCommands),
         ];
     }

@@ -11,44 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+ * Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true.
  */
 class SetStoryPrivacySettings extends TdFunction
 {
     public const TYPE_NAME = 'setStoryPrivacySettings';
 
-    /**
-     * The new privacy settigs for the story
-     *
-     * @var StoryPrivacySettings
-     */
-    protected StoryPrivacySettings $privacySettings;
-
-    /**
-     * Identifier of the story
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId, StoryPrivacySettings $privacySettings)
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-        $this->privacySettings = $privacySettings;
-    }
+    public function __construct(
+        /**
+         * Identifier of the story.
+         */
+        protected int                  $storyId,
+        /**
+         * The new privacy settigs for the story.
+         */
+        protected StoryPrivacySettings $privacySettings,
+    ) {}
 
     public static function fromArray(array $array): SetStoryPrivacySettings
     {
         return new static(
-            $array['story_sender_chat_id'],
             $array['story_id'],
             TdSchemaRegistry::fromArray($array['privacy_settings']),
         );
@@ -64,17 +46,11 @@ class SetStoryPrivacySettings extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
-    {
-        return $this->storySenderChatId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            '@type'            => static::TYPE_NAME,
+            'story_id'         => $this->storyId,
             'privacy_settings' => $this->privacySettings->typeSerialize(),
         ];
     }

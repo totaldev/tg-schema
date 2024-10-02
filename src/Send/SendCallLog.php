@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends log file for a call to Telegram servers
+ * Sends log file for a call to Telegram servers.
  */
 class SendCallLog extends TdFunction
 {
     public const TYPE_NAME = 'sendCallLog';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * Call log file. Only inputFileLocal and inputFileGenerated are supported
-     *
-     * @var InputFile
-     */
-    protected InputFile $logFile;
-
-    public function __construct(int $callId, InputFile $logFile)
-    {
-        $this->callId = $callId;
-        $this->logFile = $logFile;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int       $callId,
+        /**
+         * Call log file. Only inputFileLocal and inputFileGenerated are supported.
+         */
+        protected InputFile $logFile,
+    ) {}
 
     public static function fromArray(array $array): SendCallLog
     {
@@ -58,8 +49,8 @@ class SendCallLog extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
+            '@type'    => static::TYPE_NAME,
+            'call_id'  => $this->callId,
             'log_file' => $this->logFile->typeSerialize(),
         ];
     }

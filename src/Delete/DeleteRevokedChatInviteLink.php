@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other
- * links
+ * links.
  */
 class DeleteRevokedChatInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'deleteRevokedChatInviteLink';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Invite link to revoke
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    public function __construct(int $chatId, string $inviteLink)
-    {
-        $this->chatId = $chatId;
-        $this->inviteLink = $inviteLink;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int    $chatId,
+        /**
+         * Invite link to revoke.
+         */
+        protected string $inviteLink,
+    ) {}
 
     public static function fromArray(array $array): DeleteRevokedChatInviteLink
     {
@@ -58,8 +48,8 @@ class DeleteRevokedChatInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'invite_link' => $this->inviteLink,
         ];
     }

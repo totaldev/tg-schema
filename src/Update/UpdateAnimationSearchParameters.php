@@ -6,35 +6,26 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+ * The parameters of animation search through getOption("animation_search_bot_username") bot has changed.
  */
 class UpdateAnimationSearchParameters extends Update
 {
     public const TYPE_NAME = 'updateAnimationSearchParameters';
 
-    /**
-     * The new list of emojis suggested for searching
-     *
-     * @var string[]
-     */
-    protected array $emojis;
-
-    /**
-     * Name of the animation search provider
-     *
-     * @var string
-     */
-    protected string $provider;
-
-    public function __construct(string $provider, array $emojis)
-    {
+    public function __construct(
+        /**
+         * Name of the animation search provider.
+         */
+        protected string $provider,
+        /**
+         * The new list of emojis suggested for searching.
+         *
+         * @var string[]
+         */
+        protected array  $emojis,
+    ) {
         parent::__construct();
-
-        $this->provider = $provider;
-        $this->emojis = $emojis;
     }
 
     public static function fromArray(array $array): UpdateAnimationSearchParameters
@@ -58,9 +49,9 @@ class UpdateAnimationSearchParameters extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'provider' => $this->provider,
-            'emojis' => $this->emojis,
+            'emojis'   => $this->emojis,
         ];
     }
 }

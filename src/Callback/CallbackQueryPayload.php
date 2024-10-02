@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Callback;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a payload of a callback query
+ * Represents a payload of a callback query.
  */
 class CallbackQueryPayload extends TdObject
 {
     public const TYPE_NAME = 'CallbackQueryPayload';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CallbackQueryPayload
     {

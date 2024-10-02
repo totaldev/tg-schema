@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets new log stream for internal logging of TDLib. Can be called synchronously
+ * Sets new log stream for internal logging of TDLib. Can be called synchronously.
  */
 class SetLogStream extends TdFunction
 {
     public const TYPE_NAME = 'setLogStream';
 
-    /**
-     * New log stream
-     *
-     * @var LogStream
-     */
-    protected LogStream $logStream;
-
-    public function __construct(LogStream $logStream)
-    {
-        $this->logStream = $logStream;
-    }
+    public function __construct(
+        /**
+         * New log stream.
+         */
+        protected LogStream $logStream
+    ) {}
 
     public static function fromArray(array $array): SetLogStream
     {
@@ -44,7 +39,7 @@ class SetLogStream extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'log_stream' => $this->logStream->typeSerialize(),
         ];
     }

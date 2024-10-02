@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Language;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An ordinary language pack string
+ * An ordinary language pack string.
  */
 class LanguagePackStringValueOrdinary extends LanguagePackStringValue
 {
     public const TYPE_NAME = 'languagePackStringValueOrdinary';
 
-    /**
-     * String value
-     *
-     * @var string
-     */
-    protected string $value;
-
-    public function __construct(string $value)
-    {
+    public function __construct(
+        /**
+         * String value.
+         */
+        protected string $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): LanguagePackStringValueOrdinary

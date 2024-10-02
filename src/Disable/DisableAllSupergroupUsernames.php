@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Disable;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+ * Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel.
  */
 class DisableAllSupergroupUsernames extends TdFunction
 {
     public const TYPE_NAME = 'disableAllSupergroupUsernames';
 
-    /**
-     * Identifier of the supergroup or channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId)
-    {
-        $this->supergroupId = $supergroupId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup or channel.
+         */
+        protected int $supergroupId
+    ) {}
 
     public static function fromArray(array $array): DisableAllSupergroupUsernames
     {
@@ -43,7 +37,7 @@ class DisableAllSupergroupUsernames extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
     }

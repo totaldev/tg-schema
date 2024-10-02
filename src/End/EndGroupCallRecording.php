@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\End;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+ * Ends recording of an active group call. Requires groupCall.can_be_managed group call flag.
  */
 class EndGroupCallRecording extends TdFunction
 {
     public const TYPE_NAME = 'endGroupCallRecording';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
-        $this->groupCallId = $groupCallId;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int $groupCallId
+    ) {}
 
     public static function fromArray(array $array): EndGroupCallRecording
     {
@@ -43,7 +37,7 @@ class EndGroupCallRecording extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

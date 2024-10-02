@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of a sticker, which was used to create a chat photo
+ * Describes type of sticker, which was used to create a chat photo.
  */
 class ChatPhotoStickerType extends TdObject
 {
     public const TYPE_NAME = 'ChatPhotoStickerType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatPhotoStickerType
     {

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for a background by its name
+ * Searches for a background by its name.
  */
 class SearchBackground extends TdFunction
 {
     public const TYPE_NAME = 'searchBackground';
 
-    /**
-     * The name of the background
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
+    public function __construct(
+        /**
+         * The name of the background.
+         */
+        protected string $name
+    ) {}
 
     public static function fromArray(array $array): SearchBackground
     {
@@ -44,7 +38,7 @@ class SearchBackground extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
         ];
     }
 }

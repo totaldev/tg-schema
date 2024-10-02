@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum length of sent media caption
+ * The maximum length of sent media caption.
  */
 class PremiumLimitTypeCaptionLength extends PremiumLimitType
 {

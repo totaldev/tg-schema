@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat theme was changed
+ * The chat theme was changed.
  */
 class UpdateChatTheme extends Update
 {
     public const TYPE_NAME = 'updateChatTheme';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new name of the chat theme; may be empty if theme was reset to default
-     *
-     * @var string
-     */
-    protected string $themeName;
-
-    public function __construct(int $chatId, string $themeName)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int    $chatId,
+        /**
+         * The new name of the chat theme; may be empty if theme was reset to default.
+         */
+        protected string $themeName,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->themeName = $themeName;
     }
 
     public static function fromArray(array $array): UpdateChatTheme
@@ -58,8 +47,8 @@ class UpdateChatTheme extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'theme_name' => $this->themeName,
         ];
     }

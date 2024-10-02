@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Chat\ChatPosition;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
+ * The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update.
  */
 class UpdateChatPosition extends Update
 {
     public const TYPE_NAME = 'updateChatPosition';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New chat position. If new order is 0, then the chat needs to be removed from the list
-     *
-     * @var ChatPosition
-     */
-    protected ChatPosition $position;
-
-    public function __construct(int $chatId, ChatPosition $position)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int          $chatId,
+        /**
+         * New chat position. If new order is 0, then the chat needs to be removed from the list.
+         */
+        protected ChatPosition $position,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->position = $position;
     }
 
     public static function fromArray(array $array): UpdateChatPosition
@@ -59,8 +50,8 @@ class UpdateChatPosition extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'    => static::TYPE_NAME,
+            'chat_id'  => $this->chatId,
             'position' => $this->position->typeSerialize(),
         ];
     }

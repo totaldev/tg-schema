@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains statistics about messages sent by a user
+ * Contains statistics about messages sent by a user.
  */
 class ChatStatisticsMessageSenderInfo extends TdObject
 {
     public const TYPE_NAME = 'chatStatisticsMessageSenderInfo';
 
-    /**
-     * Average number of characters in sent messages; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $averageCharacterCount;
-
-    /**
-     * Number of sent messages
-     *
-     * @var int
-     */
-    protected int $sentMessageCount;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $sentMessageCount, int $averageCharacterCount)
-    {
-        $this->userId = $userId;
-        $this->sentMessageCount = $sentMessageCount;
-        $this->averageCharacterCount = $averageCharacterCount;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+        /**
+         * Number of sent messages.
+         */
+        protected int $sentMessageCount,
+        /**
+         * Average number of characters in sent messages; 0 if unknown.
+         */
+        protected int $averageCharacterCount,
+    ) {}
 
     public static function fromArray(array $array): ChatStatisticsMessageSenderInfo
     {
@@ -71,9 +57,9 @@ class ChatStatisticsMessageSenderInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'sent_message_count' => $this->sentMessageCount,
+            '@type'                   => static::TYPE_NAME,
+            'user_id'                 => $this->userId,
+            'sent_message_count'      => $this->sentMessageCount,
             'average_character_count' => $this->averageCharacterCount,
         ];
     }

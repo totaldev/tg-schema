@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A phone number
+ * A phone number.
  */
 class TextEntityTypePhoneNumber extends TextEntityType
 {

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Add;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a message to TDLib internal log. Can be called synchronously
+ * Adds a message to TDLib internal log. Can be called synchronously.
  */
 class AddLogMessage extends TdFunction
 {
     public const TYPE_NAME = 'addLogMessage';
 
-    /**
-     * Text of a message to log
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * The minimum verbosity level needed for the message to be logged; 0-1023
-     *
-     * @var int
-     */
-    protected int $verbosityLevel;
-
-    public function __construct(int $verbosityLevel, string $text)
-    {
-        $this->verbosityLevel = $verbosityLevel;
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The minimum verbosity level needed for the message to be logged; 0-1023.
+         */
+        protected int    $verbosityLevel,
+        /**
+         * Text of a message to log.
+         */
+        protected string $text,
+    ) {}
 
     public static function fromArray(array $array): AddLogMessage
     {
@@ -57,9 +47,9 @@ class AddLogMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'verbosity_level' => $this->verbosityLevel,
-            'text' => $this->text,
+            'text'            => $this->text,
         ];
     }
 }

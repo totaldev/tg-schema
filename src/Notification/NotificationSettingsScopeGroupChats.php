@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
+ * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value.
  */
 class NotificationSettingsScopeGroupChats extends NotificationSettingsScope
 {

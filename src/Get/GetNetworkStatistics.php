@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns network data usage statistics. Can be called before authorization
+ * Returns network data usage statistics. Can be called before authorization.
  */
 class GetNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'getNetworkStatistics';
 
-    /**
-     * Pass true to get statistics only for the current library launch
-     *
-     * @var bool
-     */
-    protected bool $onlyCurrent;
-
-    public function __construct(bool $onlyCurrent)
-    {
-        $this->onlyCurrent = $onlyCurrent;
-    }
+    public function __construct(
+        /**
+         * Pass true to get statistics only for the current library launch.
+         */
+        protected bool $onlyCurrent
+    ) {}
 
     public static function fromArray(array $array): GetNetworkStatistics
     {
@@ -43,7 +37,7 @@ class GetNetworkStatistics extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'only_current' => $this->onlyCurrent,
         ];
     }

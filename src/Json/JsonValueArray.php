@@ -9,24 +9,21 @@ namespace Totaldev\TgSchema\Json;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a JSON array
+ * Represents a JSON array.
  */
 class JsonValueArray extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueArray';
 
-    /**
-     * The list of array elements
-     *
-     * @var JsonValue[]
-     */
-    protected array $values;
-
-    public function __construct(array $values)
-    {
+    public function __construct(
+        /**
+         * The list of array elements.
+         *
+         * @var JsonValue[]
+         */
+        protected array $values
+    ) {
         parent::__construct();
-
-        $this->values = $values;
     }
 
     public static function fromArray(array $array): JsonValueArray

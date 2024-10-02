@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The data is not a file
+ * The data is not a file.
  */
 class FileTypeNone extends FileType
 {

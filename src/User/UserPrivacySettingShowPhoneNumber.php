@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A privacy setting for managing whether the user's phone number is visible
+ * A privacy setting for managing whether the user's phone number is visible.
  */
 class UserPrivacySettingShowPhoneNumber extends UserPrivacySetting
 {

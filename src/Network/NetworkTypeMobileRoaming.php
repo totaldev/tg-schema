@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Network;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A mobile roaming network
+ * A mobile roaming network.
  */
 class NetworkTypeMobileRoaming extends NetworkType
 {

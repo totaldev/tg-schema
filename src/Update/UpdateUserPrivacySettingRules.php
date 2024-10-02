@@ -11,32 +11,23 @@ use Totaldev\TgSchema\User\UserPrivacySetting;
 use Totaldev\TgSchema\User\UserPrivacySettingRules;
 
 /**
- * Some privacy setting rules have been changed
+ * Some privacy setting rules have been changed.
  */
 class UpdateUserPrivacySettingRules extends Update
 {
     public const TYPE_NAME = 'updateUserPrivacySettingRules';
 
-    /**
-     * New privacy rules
-     *
-     * @var UserPrivacySettingRules
-     */
-    protected UserPrivacySettingRules $rules;
-
-    /**
-     * The privacy setting
-     *
-     * @var UserPrivacySetting
-     */
-    protected UserPrivacySetting $setting;
-
-    public function __construct(UserPrivacySetting $setting, UserPrivacySettingRules $rules)
-    {
+    public function __construct(
+        /**
+         * The privacy setting.
+         */
+        protected UserPrivacySetting      $setting,
+        /**
+         * New privacy rules.
+         */
+        protected UserPrivacySettingRules $rules,
+    ) {
         parent::__construct();
-
-        $this->setting = $setting;
-        $this->rules = $rules;
     }
 
     public static function fromArray(array $array): UpdateUserPrivacySettingRules
@@ -60,9 +51,9 @@ class UpdateUserPrivacySettingRules extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'setting' => $this->setting->typeSerialize(),
-            'rules' => $this->rules->typeSerialize(),
+            'rules'   => $this->rules->typeSerialize(),
         ];
     }
 }

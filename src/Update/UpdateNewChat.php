@@ -11,24 +11,19 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will
- * be reported through separate updates
+ * be reported through separate updates.
  */
 class UpdateNewChat extends Update
 {
     public const TYPE_NAME = 'updateNewChat';
 
-    /**
-     * The chat
-     *
-     * @var Chat
-     */
-    protected Chat $chat;
-
-    public function __construct(Chat $chat)
-    {
+    public function __construct(
+        /**
+         * The chat.
+         */
+        protected Chat $chat
+    ) {
         parent::__construct();
-
-        $this->chat = $chat;
     }
 
     public static function fromArray(array $array): UpdateNewChat
@@ -47,7 +42,7 @@ class UpdateNewChat extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            'chat' => $this->chat->typeSerialize(),
+            'chat'  => $this->chat->typeSerialize(),
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is typing a message
+ * The user is typing a message.
  */
 class ChatActionTyping extends ChatAction
 {

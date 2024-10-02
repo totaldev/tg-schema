@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A newly created video chat
+ * A newly created video chat.
  */
 class MessageVideoChatStarted extends MessageContent
 {
     public const TYPE_NAME = 'messageVideoChatStarted';
 
-    /**
-     * Identifier of the video chat. The video chat can be received through the method getGroupCall
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the video chat. The video chat can be received through the method getGroupCall.
+         */
+        protected int $groupCallId
+    ) {
         parent::__construct();
-
-        $this->groupCallId = $groupCallId;
     }
 
     public static function fromArray(array $array): MessageVideoChatStarted
@@ -44,7 +37,7 @@ class MessageVideoChatStarted extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

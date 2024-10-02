@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * User stories are displayed before stories of non-premium contacts and channels
+ * Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels.
  */
 class PremiumStoryFeaturePriorityOrder extends PremiumStoryFeature
 {

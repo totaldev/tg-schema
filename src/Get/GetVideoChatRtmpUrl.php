@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns RTMP URL for streaming to the chat; requires creator privileges
+ * Returns RTMP URL for streaming to the chat; requires owner privileges.
  */
 class GetVideoChatRtmpUrl extends TdFunction
 {
     public const TYPE_NAME = 'getVideoChatRtmpUrl';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetVideoChatRtmpUrl
     {
@@ -43,7 +37,7 @@ class GetVideoChatRtmpUrl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Allowed to use many additional features for stories
+ * Allowed to use many additional features for stories.
  */
 class PremiumFeatureUpgradedStories extends PremiumFeature
 {

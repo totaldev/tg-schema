@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a video published as a story
+ * The file is a video published as a story.
  */
 class FileTypeVideoStory extends FileType
 {

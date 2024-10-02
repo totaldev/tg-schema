@@ -7,43 +7,28 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of
- * the topic
+ * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic.
  */
 class ToggleForumTopicIsClosed extends TdFunction
 {
     public const TYPE_NAME = 'toggleForumTopicIsClosed';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true to close the topic; pass false to reopen it
-     *
-     * @var bool
-     */
-    protected bool $isClosed;
-
-    /**
-     * Message thread identifier of the forum topic
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $chatId, int $messageThreadId, bool $isClosed)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-        $this->isClosed = $isClosed;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int  $chatId,
+        /**
+         * Message thread identifier of the forum topic.
+         */
+        protected int  $messageThreadId,
+        /**
+         * Pass true to close the topic; pass false to reopen it.
+         */
+        protected bool $isClosed,
+    ) {}
 
     public static function fromArray(array $array): ToggleForumTopicIsClosed
     {
@@ -72,10 +57,10 @@ class ToggleForumTopicIsClosed extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'is_closed' => $this->isClosed,
+            'is_closed'         => $this->isClosed,
         ];
     }
 }

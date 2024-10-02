@@ -10,108 +10,55 @@ use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a link to an article or web page
+ * Represents a link to an article or web page.
  */
 class InputInlineQueryResultArticle extends InputInlineQueryResult
 {
     public const TYPE_NAME = 'inputInlineQueryResultArticle';
 
-    /**
-     * A short description of the result
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * True, if the URL must be not shown
-     *
-     * @var bool
-     */
-    protected bool $hideUrl;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation,
-     * inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * Thumbnail height, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailHeight;
-
-    /**
-     * URL of the result thumbnail, if it exists
-     *
-     * @var string
-     */
-    protected string $thumbnailUrl;
-
-    /**
-     * Thumbnail width, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailWidth;
-
-    /**
-     * Title of the result
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * URL of the result, if it exists
-     *
-     * @var string
-     */
-    protected string $url;
-
     public function __construct(
-        string              $id,
-        string              $url,
-        bool                $hideUrl,
-        string              $title,
-        string              $description,
-        string              $thumbnailUrl,
-        int                 $thumbnailWidth,
-        int                 $thumbnailHeight,
-        ReplyMarkup         $replyMarkup,
-        InputMessageContent $inputMessageContent,
-    )
-    {
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string              $id,
+        /**
+         * URL of the result, if it exists.
+         */
+        protected string              $url,
+        /**
+         * True, if the URL must be not shown.
+         */
+        protected bool                $hideUrl,
+        /**
+         * Title of the result.
+         */
+        protected string              $title,
+        /**
+         * A short description of the result.
+         */
+        protected string              $description,
+        /**
+         * URL of the result thumbnail, if it exists.
+         */
+        protected string              $thumbnailUrl,
+        /**
+         * Thumbnail width, if known.
+         */
+        protected int                 $thumbnailWidth,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->url = $url;
-        $this->hideUrl = $hideUrl;
-        $this->title = $title;
-        $this->description = $description;
-        $this->thumbnailUrl = $thumbnailUrl;
-        $this->thumbnailWidth = $thumbnailWidth;
-        $this->thumbnailHeight = $thumbnailHeight;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
     }
 
     public static function fromArray(array $array): InputInlineQueryResultArticle
@@ -183,16 +130,16 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'url' => $this->url,
-            'hide_url' => $this->hideUrl,
-            'title' => $this->title,
-            'description' => $this->description,
-            'thumbnail_url' => $this->thumbnailUrl,
-            'thumbnail_width' => $this->thumbnailWidth,
-            'thumbnail_height' => $this->thumbnailHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'id'                    => $this->id,
+            'url'                   => $this->url,
+            'hide_url'              => $this->hideUrl,
+            'title'                 => $this->title,
+            'description'           => $this->description,
+            'thumbnail_url'         => $this->thumbnailUrl,
+            'thumbnail_width'       => $this->thumbnailWidth,
+            'thumbnail_height'      => $this->thumbnailHeight,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

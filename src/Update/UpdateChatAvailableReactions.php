@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Chat\ChatAvailableReactions;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat available reactions were changed
+ * The chat available reactions were changed.
  */
 class UpdateChatAvailableReactions extends Update
 {
     public const TYPE_NAME = 'updateChatAvailableReactions';
 
-    /**
-     * The new reactions, available in the chat
-     *
-     * @var ChatAvailableReactions
-     */
-    protected ChatAvailableReactions $availableReactions;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId, ChatAvailableReactions $availableReactions)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int                    $chatId,
+        /**
+         * The new reactions, available in the chat.
+         */
+        protected ChatAvailableReactions $availableReactions,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->availableReactions = $availableReactions;
     }
 
     public static function fromArray(array $array): UpdateChatAvailableReactions
@@ -59,8 +50,8 @@ class UpdateChatAvailableReactions extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'               => static::TYPE_NAME,
+            'chat_id'             => $this->chatId,
             'available_reactions' => $this->availableReactions->typeSerialize(),
         ];
     }

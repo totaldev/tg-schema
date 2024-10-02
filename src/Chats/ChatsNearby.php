@@ -11,31 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of chats located nearby
+ * Represents a list of chats located nearby.
  */
 class ChatsNearby extends TdObject
 {
     public const TYPE_NAME = 'chatsNearby';
 
-    /**
-     * List of location-based supergroups nearby
-     *
-     * @var ChatNearby[]
-     */
-    protected array $supergroupsNearby;
-
-    /**
-     * List of users nearby
-     *
-     * @var ChatNearby[]
-     */
-    protected array $usersNearby;
-
-    public function __construct(array $usersNearby, array $supergroupsNearby)
-    {
-        $this->usersNearby = $usersNearby;
-        $this->supergroupsNearby = $supergroupsNearby;
-    }
+    public function __construct(
+        /**
+         * List of users nearby.
+         *
+         * @var ChatNearby[]
+         */
+        protected array $usersNearby,
+        /**
+         * List of location-based supergroups nearby.
+         *
+         * @var ChatNearby[]
+         */
+        protected array $supergroupsNearby,
+    ) {}
 
     public static function fromArray(array $array): ChatsNearby
     {

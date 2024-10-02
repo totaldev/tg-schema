@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call was ended because one of the parties hung up
+ * The call was ended because one of the parties hung up.
  */
 class CallDiscardReasonHungUp extends CallDiscardReason
 {

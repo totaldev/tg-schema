@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is an audio file
+ * The file is an audio file.
  */
 class FileTypeAudio extends FileType
 {

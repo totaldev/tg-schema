@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about pending join requests for a chat
+ * Contains information about pending join requests for a chat.
  */
 class ChatJoinRequestsInfo extends TdObject
 {
     public const TYPE_NAME = 'chatJoinRequestsInfo';
 
-    /**
-     * Total number of pending join requests
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * Identifiers of at most 3 users sent the newest pending join requests
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(int $totalCount, array $userIds)
-    {
-        $this->totalCount = $totalCount;
-        $this->userIds = $userIds;
-    }
+    public function __construct(
+        /**
+         * Total number of pending join requests.
+         */
+        protected int   $totalCount,
+        /**
+         * Identifiers of at most 3 users sent the newest pending join requests.
+         *
+         * @var int[]
+         */
+        protected array $userIds,
+    ) {}
 
     public static function fromArray(array $array): ChatJoinRequestsInfo
     {
@@ -57,9 +49,9 @@ class ChatJoinRequestsInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            'user_ids' => $this->userIds,
+            'user_ids'    => $this->userIds,
         ];
     }
 }

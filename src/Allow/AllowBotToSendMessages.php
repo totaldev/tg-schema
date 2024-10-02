@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Allow;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Allows the specified bot to send messages to the user
+ * Allows the specified bot to send messages to the user.
  */
 class AllowBotToSendMessages extends TdFunction
 {
     public const TYPE_NAME = 'allowBotToSendMessages';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    public function __construct(int $botUserId)
-    {
-        $this->botUserId = $botUserId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int $botUserId
+    ) {}
 
     public static function fromArray(array $array): AllowBotToSendMessages
     {
@@ -43,7 +37,7 @@ class AllowBotToSendMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
         ];
     }

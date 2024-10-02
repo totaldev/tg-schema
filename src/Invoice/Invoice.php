@@ -11,143 +11,74 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Product invoice
+ * Product invoice.
  */
 class Invoice extends TdObject
 {
     public const TYPE_NAME = 'invoice';
 
-    /**
-     * ISO 4217 currency code
-     *
-     * @var string
-     */
-    protected string $currency;
-
-    /**
-     * True, if the total price depends on the shipping method
-     *
-     * @var bool
-     */
-    protected bool $isFlexible;
-
-    /**
-     * True, if the payment is a test payment
-     *
-     * @var bool
-     */
-    protected bool $isTest;
-
-    /**
-     * The maximum allowed amount of tip in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $maxTipAmount;
-
-    /**
-     * True, if the user's email address is needed for payment
-     *
-     * @var bool
-     */
-    protected bool $needEmailAddress;
-
-    /**
-     * True, if the user's name is needed for payment
-     *
-     * @var bool
-     */
-    protected bool $needName;
-
-    /**
-     * True, if the user's phone number is needed for payment
-     *
-     * @var bool
-     */
-    protected bool $needPhoneNumber;
-
-    /**
-     * True, if the user's shipping address is needed for payment
-     *
-     * @var bool
-     */
-    protected bool $needShippingAddress;
-
-    /**
-     * A list of objects used to calculate the total price of the product
-     *
-     * @var LabeledPricePart[]
-     */
-    protected array $priceParts;
-
-    /**
-     * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept
-     * the terms of service before allowed to pay
-     *
-     * @var string
-     */
-    protected string $recurringPaymentTermsOfServiceUrl;
-
-    /**
-     * True, if the user's email address will be sent to the provider
-     *
-     * @var bool
-     */
-    protected bool $sendEmailAddressToProvider;
-
-    /**
-     * True, if the user's phone number will be sent to the provider
-     *
-     * @var bool
-     */
-    protected bool $sendPhoneNumberToProvider;
-
-    /**
-     * Suggested amounts of tip in the smallest units of the currency
-     *
-     * @var int[]
-     */
-    protected array $suggestedTipAmounts;
-
-    /**
-     * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
-     *
-     * @var string
-     */
-    protected string $termsOfServiceUrl;
-
     public function __construct(
-        string $currency,
-        array  $priceParts,
-        int    $maxTipAmount,
-        array  $suggestedTipAmounts,
-        string $recurringPaymentTermsOfServiceUrl,
-        string $termsOfServiceUrl,
-        bool   $isTest,
-        bool   $needName,
-        bool   $needPhoneNumber,
-        bool   $needEmailAddress,
-        bool   $needShippingAddress,
-        bool   $sendPhoneNumberToProvider,
-        bool   $sendEmailAddressToProvider,
-        bool   $isFlexible,
-    )
-    {
-        $this->currency = $currency;
-        $this->priceParts = $priceParts;
-        $this->maxTipAmount = $maxTipAmount;
-        $this->suggestedTipAmounts = $suggestedTipAmounts;
-        $this->recurringPaymentTermsOfServiceUrl = $recurringPaymentTermsOfServiceUrl;
-        $this->termsOfServiceUrl = $termsOfServiceUrl;
-        $this->isTest = $isTest;
-        $this->needName = $needName;
-        $this->needPhoneNumber = $needPhoneNumber;
-        $this->needEmailAddress = $needEmailAddress;
-        $this->needShippingAddress = $needShippingAddress;
-        $this->sendPhoneNumberToProvider = $sendPhoneNumberToProvider;
-        $this->sendEmailAddressToProvider = $sendEmailAddressToProvider;
-        $this->isFlexible = $isFlexible;
-    }
+        /**
+         * ISO 4217 currency code.
+         */
+        protected string $currency,
+        /**
+         * A list of objects used to calculate the total price of the product.
+         *
+         * @var LabeledPricePart[]
+         */
+        protected array  $priceParts,
+        /**
+         * The maximum allowed amount of tip in the smallest units of the currency.
+         */
+        protected int    $maxTipAmount,
+        /**
+         * Suggested amounts of tip in the smallest units of the currency.
+         *
+         * @var int[]
+         */
+        protected array  $suggestedTipAmounts,
+        /**
+         * An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay.
+         */
+        protected string $recurringPaymentTermsOfServiceUrl,
+        /**
+         * An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay.
+         */
+        protected string $termsOfServiceUrl,
+        /**
+         * True, if the payment is a test payment.
+         */
+        protected bool   $isTest,
+        /**
+         * True, if the user's name is needed for payment.
+         */
+        protected bool   $needName,
+        /**
+         * True, if the user's phone number is needed for payment.
+         */
+        protected bool   $needPhoneNumber,
+        /**
+         * True, if the user's email address is needed for payment.
+         */
+        protected bool   $needEmailAddress,
+        /**
+         * True, if the user's shipping address is needed for payment.
+         */
+        protected bool   $needShippingAddress,
+        /**
+         * True, if the user's phone number will be sent to the provider.
+         */
+        protected bool   $sendPhoneNumberToProvider,
+        /**
+         * True, if the user's email address will be sent to the provider.
+         */
+        protected bool   $sendEmailAddressToProvider,
+        /**
+         * True, if the total price depends on the shipping method.
+         */
+        protected bool   $isFlexible,
+    ) {}
 
     public static function fromArray(array $array): Invoice
     {
@@ -242,21 +173,21 @@ class Invoice extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'currency' => $this->currency,
+            '@type'                                  => static::TYPE_NAME,
+            'currency'                               => $this->currency,
             array_map(fn($x) => $x->typeSerialize(), $this->priceParts),
-            'max_tip_amount' => $this->maxTipAmount,
-            'suggested_tip_amounts' => $this->suggestedTipAmounts,
+            'max_tip_amount'                         => $this->maxTipAmount,
+            'suggested_tip_amounts'                  => $this->suggestedTipAmounts,
             'recurring_payment_terms_of_service_url' => $this->recurringPaymentTermsOfServiceUrl,
-            'terms_of_service_url' => $this->termsOfServiceUrl,
-            'is_test' => $this->isTest,
-            'need_name' => $this->needName,
-            'need_phone_number' => $this->needPhoneNumber,
-            'need_email_address' => $this->needEmailAddress,
-            'need_shipping_address' => $this->needShippingAddress,
-            'send_phone_number_to_provider' => $this->sendPhoneNumberToProvider,
-            'send_email_address_to_provider' => $this->sendEmailAddressToProvider,
-            'is_flexible' => $this->isFlexible,
+            'terms_of_service_url'                   => $this->termsOfServiceUrl,
+            'is_test'                                => $this->isTest,
+            'need_name'                              => $this->needName,
+            'need_phone_number'                      => $this->needPhoneNumber,
+            'need_email_address'                     => $this->needEmailAddress,
+            'need_shipping_address'                  => $this->needShippingAddress,
+            'send_phone_number_to_provider'          => $this->sendPhoneNumberToProvider,
+            'send_email_address_to_provider'         => $this->sendEmailAddressToProvider,
+            'is_flexible'                            => $this->isFlexible,
         ];
     }
 }

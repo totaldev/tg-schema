@@ -11,39 +11,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of trending sticker sets
+ * Represents a list of trending sticker sets.
  */
 class TrendingStickerSets extends TdObject
 {
     public const TYPE_NAME = 'trendingStickerSets';
 
-    /**
-     * True, if the list contains sticker sets with premium stickers
-     *
-     * @var bool
-     */
-    protected bool $isPremium;
-
-    /**
-     * List of trending sticker sets
-     *
-     * @var StickerSetInfo[]
-     */
-    protected array $sets;
-
-    /**
-     * Approximate total number of trending sticker sets
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $sets, bool $isPremium)
-    {
-        $this->totalCount = $totalCount;
-        $this->sets = $sets;
-        $this->isPremium = $isPremium;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of trending sticker sets.
+         */
+        protected int   $totalCount,
+        /**
+         * List of trending sticker sets.
+         *
+         * @var StickerSetInfo[]
+         */
+        protected array $sets,
+        /**
+         * True, if the list contains sticker sets with premium stickers.
+         */
+        protected bool  $isPremium,
+    ) {}
 
     public static function fromArray(array $array): TrendingStickerSets
     {
@@ -72,10 +61,10 @@ class TrendingStickerSets extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->sets),
-            'is_premium' => $this->isPremium,
+            'is_premium'  => $this->isPremium,
         ];
     }
 }

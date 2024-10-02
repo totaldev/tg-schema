@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Attachment;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a color to highlight a bot added to attachment menu
+ * Describes a color to highlight a bot added to attachment menu.
  */
 class AttachmentMenuBotColor extends TdObject
 {
     public const TYPE_NAME = 'attachmentMenuBotColor';
 
-    /**
-     * Color in the RGB24 format for dark themes
-     *
-     * @var int
-     */
-    protected int $darkColor;
-
-    /**
-     * Color in the RGB24 format for light themes
-     *
-     * @var int
-     */
-    protected int $lightColor;
-
-    public function __construct(int $lightColor, int $darkColor)
-    {
-        $this->lightColor = $lightColor;
-        $this->darkColor = $darkColor;
-    }
+    public function __construct(
+        /**
+         * Color in the RGB24 format for light themes.
+         */
+        protected int $lightColor,
+        /**
+         * Color in the RGB24 format for dark themes.
+         */
+        protected int $darkColor,
+    ) {}
 
     public static function fromArray(array $array): AttachmentMenuBotColor
     {
@@ -57,9 +47,9 @@ class AttachmentMenuBotColor extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'light_color' => $this->lightColor,
-            'dark_color' => $this->darkColor,
+            'dark_color'  => $this->darkColor,
         ];
     }
 }

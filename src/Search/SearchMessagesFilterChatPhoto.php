@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only messages containing chat photos
+ * Returns only messages containing chat photos.
  */
 class SearchMessagesFilterChatPhoto extends SearchMessagesFilter
 {

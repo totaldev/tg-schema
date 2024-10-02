@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Point;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A point on a Cartesian plane
+ * A point on a Cartesian plane.
  */
 class Point extends TdObject
 {
     public const TYPE_NAME = 'point';
 
-    /**
-     * The point's first coordinate
-     *
-     * @var float
-     */
-    protected float $x;
-
-    /**
-     * The point's second coordinate
-     *
-     * @var float
-     */
-    protected float $y;
-
-    public function __construct(float $x, float $y)
-    {
-        $this->x = $x;
-        $this->y = $y;
-    }
+    public function __construct(
+        /**
+         * The point's first coordinate.
+         */
+        protected float $x,
+        /**
+         * The point's second coordinate.
+         */
+        protected float $y,
+    ) {}
 
     public static function fromArray(array $array): Point
     {
@@ -58,8 +48,8 @@ class Point extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'x' => $this->x,
-            'y' => $this->y,
+            'x'     => $this->x,
+            'y'     => $this->y,
         ];
     }
 }

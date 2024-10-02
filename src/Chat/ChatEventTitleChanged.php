@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat title was changed
+ * The chat title was changed.
  */
 class ChatEventTitleChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventTitleChanged';
 
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $newTitle;
-
-    /**
-     * Previous chat title
-     *
-     * @var string
-     */
-    protected string $oldTitle;
-
-    public function __construct(string $oldTitle, string $newTitle)
-    {
+    public function __construct(
+        /**
+         * Previous chat title.
+         */
+        protected string $oldTitle,
+        /**
+         * New chat title.
+         */
+        protected string $newTitle,
+    ) {
         parent::__construct();
-
-        $this->oldTitle = $oldTitle;
-        $this->newTitle = $newTitle;
     }
 
     public static function fromArray(array $array): ChatEventTitleChanged
@@ -58,7 +47,7 @@ class ChatEventTitleChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'old_title' => $this->oldTitle,
             'new_title' => $this->newTitle,
         ];

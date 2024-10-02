@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a recommended chat folder
+ * Describes a recommended chat folder.
  */
 class RecommendedChatFolder extends TdObject
 {
     public const TYPE_NAME = 'recommendedChatFolder';
 
-    /**
-     * Chat folder description
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * The chat folder
-     *
-     * @var ChatFolder
-     */
-    protected ChatFolder $folder;
-
-    public function __construct(ChatFolder $folder, string $description)
-    {
-        $this->folder = $folder;
-        $this->description = $description;
-    }
+    public function __construct(
+        /**
+         * The chat folder.
+         */
+        protected ChatFolder $folder,
+        /**
+         * Chat folder description.
+         */
+        protected string     $description,
+    ) {}
 
     public static function fromArray(array $array): RecommendedChatFolder
     {
@@ -58,8 +49,8 @@ class RecommendedChatFolder extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'folder' => $this->folder->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'folder'      => $this->folder->typeSerialize(),
             'description' => $this->description,
         ];
     }

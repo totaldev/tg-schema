@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a chat event
+ * Represents a chat event.
  */
 class ChatEventAction extends TdObject
 {
     public const TYPE_NAME = 'ChatEventAction';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatEventAction
     {

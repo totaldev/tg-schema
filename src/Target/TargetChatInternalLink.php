@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Internal\InternalLinkType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat needs to be open with the provided internal link
+ * The chat needs to be open with the provided internal link.
  */
 class TargetChatInternalLink extends TargetChat
 {
     public const TYPE_NAME = 'targetChatInternalLink';
 
-    /**
-     * An internal link pointing to the chat
-     *
-     * @var InternalLinkType
-     */
-    protected InternalLinkType $link;
-
-    public function __construct(InternalLinkType $link)
-    {
+    public function __construct(
+        /**
+         * An internal link pointing to the chat.
+         */
+        protected InternalLinkType $link
+    ) {
         parent::__construct();
-
-        $this->link = $link;
     }
 
     public static function fromArray(array $array): TargetChatInternalLink
@@ -46,7 +41,7 @@ class TargetChatInternalLink extends TargetChat
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link' => $this->link->typeSerialize(),
+            'link'  => $this->link->typeSerialize(),
         ];
     }
 }

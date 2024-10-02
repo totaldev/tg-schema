@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A rule to allow all users to do something
+ * A rule to allow all users to do something.
  */
 class UserPrivacySettingRuleAllowAll extends UserPrivacySettingRule
 {

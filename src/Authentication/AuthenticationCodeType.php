@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Authentication;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Provides information about the method by which an authentication code is delivered to the user
+ * Provides information about the method by which an authentication code is delivered to the user.
  */
 class AuthenticationCodeType extends TdObject
 {
     public const TYPE_NAME = 'AuthenticationCodeType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): AuthenticationCodeType
     {

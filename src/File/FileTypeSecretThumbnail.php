@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a thumbnail of a file from a secret chat
+ * The file is a thumbnail of a file from a secret chat.
  */
 class FileTypeSecretThumbnail extends FileType
 {

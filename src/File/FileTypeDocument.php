@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a document
+ * The file is a document.
  */
 class FileTypeDocument extends FileType
 {

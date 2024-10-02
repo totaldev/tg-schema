@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Thumbnail;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The thumbnail is in TGS format. It will be used only for TGS sticker sets
+ * The thumbnail is in TGS format. It will be used only for sticker sets.
  */
 class ThumbnailFormatTgs extends ThumbnailFormat
 {

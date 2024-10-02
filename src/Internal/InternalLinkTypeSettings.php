@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to application settings
+ * The link is a link to application settings.
  */
 class InternalLinkTypeSettings extends InternalLinkType
 {

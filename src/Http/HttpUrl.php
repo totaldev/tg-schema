@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Http;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains an HTTP URL
+ * Contains an HTTP URL.
  */
 class HttpUrl extends TdObject
 {
     public const TYPE_NAME = 'httpUrl';
 
-    /**
-     * The URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * The URL.
+         */
+        protected string $url
+    ) {}
 
     public static function fromArray(array $array): HttpUrl
     {
@@ -44,7 +38,7 @@ class HttpUrl extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

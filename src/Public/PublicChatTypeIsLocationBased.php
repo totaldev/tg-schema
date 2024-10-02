@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Public;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat is public, because it is a location-based supergroup
+ * The chat is public, because it is a location-based supergroup.
  */
 class PublicChatTypeIsLocationBased extends PublicChatType
 {

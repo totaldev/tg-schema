@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Start;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+ * Starts screen sharing in a joined group call. Returns join response payload for tgcalls.
  */
 class StartGroupCallScreenSharing extends TdFunction
 {
     public const TYPE_NAME = 'startGroupCallScreenSharing';
 
-    /**
-     * Screen sharing audio channel synchronization source identifier; received from tgcalls
-     *
-     * @var int
-     */
-    protected int $audioSourceId;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Group call join payload; received from tgcalls
-     *
-     * @var string
-     */
-    protected string $payload;
-
-    public function __construct(int $groupCallId, int $audioSourceId, string $payload)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->audioSourceId = $audioSourceId;
-        $this->payload = $payload;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int    $groupCallId,
+        /**
+         * Screen sharing audio channel synchronization source identifier; received from tgcalls.
+         */
+        protected int    $audioSourceId,
+        /**
+         * Group call join payload; received from tgcalls.
+         */
+        protected string $payload,
+    ) {}
 
     public static function fromArray(array $array): StartGroupCallScreenSharing
     {
@@ -71,10 +57,10 @@ class StartGroupCallScreenSharing extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'           => static::TYPE_NAME,
+            'group_call_id'   => $this->groupCallId,
             'audio_source_id' => $this->audioSourceId,
-            'payload' => $this->payload,
+            'payload'         => $this->payload,
         ];
     }
 }

@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Revoke;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the
- * chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
+ * chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link.
  */
 class RevokeChatInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'revokeChatInviteLink';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Invite link to be revoked
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    public function __construct(int $chatId, string $inviteLink)
-    {
-        $this->chatId = $chatId;
-        $this->inviteLink = $inviteLink;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int    $chatId,
+        /**
+         * Invite link to be revoked.
+         */
+        protected string $inviteLink,
+    ) {}
 
     public static function fromArray(array $array): RevokeChatInviteLink
     {
@@ -58,8 +48,8 @@ class RevokeChatInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'invite_link' => $this->inviteLink,
         ];
     }

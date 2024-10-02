@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns users which can be mentioned in the chat
+ * Returns users which can be mentioned in the chat.
  */
 class ChatMembersFilterMention extends ChatMembersFilter
 {
     public const TYPE_NAME = 'chatMembersFilterMention';
 
-    /**
-     * If non-zero, the identifier of the current message thread
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $messageThreadId)
-    {
+    public function __construct(
+        /**
+         * If non-zero, the identifier of the current message thread.
+         */
+        protected int $messageThreadId
+    ) {
         parent::__construct();
-
-        $this->messageThreadId = $messageThreadId;
     }
 
     public static function fromArray(array $array): ChatMembersFilterMention
@@ -44,7 +37,7 @@ class ChatMembersFilterMention extends ChatMembersFilter
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'message_thread_id' => $this->messageThreadId,
         ];
     }

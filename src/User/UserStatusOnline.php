@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is online
+ * The user is online.
  */
 class UserStatusOnline extends UserStatus
 {
     public const TYPE_NAME = 'userStatusOnline';
 
-    /**
-     * Point in time (Unix timestamp) when the user's online status will expire
-     *
-     * @var int
-     */
-    protected int $expires;
-
-    public function __construct(int $expires)
-    {
+    public function __construct(
+        /**
+         * Point in time (Unix timestamp) when the user's online status will expire.
+         */
+        protected int $expires
+    ) {
         parent::__construct();
-
-        $this->expires = $expires;
     }
 
     public static function fromArray(array $array): UserStatusOnline
@@ -44,7 +37,7 @@ class UserStatusOnline extends UserStatus
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'expires' => $this->expires,
         ];
     }

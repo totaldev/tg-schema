@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTPS link to boost the specified channel chat
+ * Returns an HTTPS link to boost the specified supergroup or channel chat.
  */
 class GetChatBoostLink extends TdFunction
 {
     public const TYPE_NAME = 'getChatBoostLink';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetChatBoostLink
     {
@@ -43,7 +37,7 @@ class GetChatBoostLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

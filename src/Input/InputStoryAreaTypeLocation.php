@@ -7,34 +7,40 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\Location\LocationAddress;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An area pointing to a location
+ * An area pointing to a location.
  */
 class InputStoryAreaTypeLocation extends InputStoryAreaType
 {
     public const TYPE_NAME = 'inputStoryAreaTypeLocation';
 
-    /**
-     * The location
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    public function __construct(Location $location)
-    {
+    public function __construct(
+        /**
+         * The location.
+         */
+        protected Location        $location,
+        /**
+         * Address of the location; pass null if unknown.
+         */
+        protected LocationAddress $address,
+    ) {
         parent::__construct();
-
-        $this->location = $location;
     }
 
     public static function fromArray(array $array): InputStoryAreaTypeLocation
     {
         return new static(
             TdSchemaRegistry::fromArray($array['location']),
+            TdSchemaRegistry::fromArray($array['address']),
         );
+    }
+
+    public function getAddress(): LocationAddress
+    {
+        return $this->address;
     }
 
     public function getLocation(): Location
@@ -45,8 +51,9 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
+            'address'  => $this->address->typeSerialize(),
         ];
     }
 }

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the storage usage statistics for a specific file type
+ * Contains the storage usage statistics for a specific file type.
  */
 class StorageStatisticsByFileType extends TdObject
 {
     public const TYPE_NAME = 'storageStatisticsByFileType';
 
-    /**
-     * Total number of files
-     *
-     * @var int
-     */
-    protected int $count;
-
-    /**
-     * File type
-     *
-     * @var FileType
-     */
-    protected FileType $fileType;
-
-    /**
-     * Total size of the files, in bytes
-     *
-     * @var int
-     */
-    protected int $size;
-
-    public function __construct(FileType $fileType, int $size, int $count)
-    {
-        $this->fileType = $fileType;
-        $this->size = $size;
-        $this->count = $count;
-    }
+    public function __construct(
+        /**
+         * File type.
+         */
+        protected FileType $fileType,
+        /**
+         * Total size of the files, in bytes.
+         */
+        protected int      $size,
+        /**
+         * Total number of files.
+         */
+        protected int      $count,
+    ) {}
 
     public static function fromArray(array $array): StorageStatisticsByFileType
     {
@@ -72,10 +59,10 @@ class StorageStatisticsByFileType extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'file_type' => $this->fileType->typeSerialize(),
-            'size' => $this->size,
-            'count' => $this->count,
+            'size'      => $this->size,
+            'count'     => $this->count,
         ];
     }
 }

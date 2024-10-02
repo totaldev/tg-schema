@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
+ * Notification settings applied to all private and secret chats when the corresponding chat setting has a default value.
  */
 class NotificationSettingsScopePrivateChats extends NotificationSettingsScope
 {

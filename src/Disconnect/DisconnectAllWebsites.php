@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Disconnect;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Disconnects all websites from the current user's Telegram account
+ * Disconnects all websites from the current user's Telegram account.
  */
 class DisconnectAllWebsites extends TdFunction
 {
     public const TYPE_NAME = 'disconnectAllWebsites';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DisconnectAllWebsites
     {

@@ -7,44 +7,35 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\Input\InputFile;
+use Totaldev\TgSchema\Sticker\StickerFormat;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets a sticker set thumbnail; for bots only
+ * Sets a sticker set thumbnail.
  */
 class SetStickerSetThumbnail extends TdFunction
 {
     public const TYPE_NAME = 'setStickerSetThumbnail';
 
-    /**
-     * Sticker set name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the
-     * set
-     *
-     * @var InputFile
-     */
-    protected InputFile $thumbnail;
-
-    /**
-     * Sticker set owner
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, string $name, InputFile $thumbnail)
-    {
-        $this->userId = $userId;
-        $this->name = $name;
-        $this->thumbnail = $thumbnail;
-    }
+    public function __construct(
+        /**
+         * Sticker set owner; ignored for regular users.
+         */
+        protected int           $userId,
+        /**
+         * Sticker set name. The sticker set must be owned by the current user.
+         */
+        protected string        $name,
+        /**
+         * Thumbnail to set; pass null to remove the sticker set thumbnail.
+         */
+        protected InputFile     $thumbnail,
+        /**
+         * Format of the thumbnail; pass null if thumbnail is removed.
+         */
+        protected StickerFormat $format,
+    ) {}
 
     public static function fromArray(array $array): SetStickerSetThumbnail
     {
@@ -52,7 +43,13 @@ class SetStickerSetThumbnail extends TdFunction
             $array['user_id'],
             $array['name'],
             TdSchemaRegistry::fromArray($array['thumbnail']),
+            TdSchemaRegistry::fromArray($array['format']),
         );
+    }
+
+    public function getFormat(): StickerFormat
+    {
+        return $this->format;
     }
 
     public function getName(): string
@@ -73,10 +70,11 @@ class SetStickerSetThumbnail extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'name' => $this->name,
+            '@type'     => static::TYPE_NAME,
+            'user_id'   => $this->userId,
+            'name'      => $this->name,
             'thumbnail' => $this->thumbnail->typeSerialize(),
+            'format'    => $this->format->typeSerialize(),
         ];
     }
 }

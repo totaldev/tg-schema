@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of backgrounds
+ * Contains a list of backgrounds.
  */
 class Backgrounds extends TdObject
 {
     public const TYPE_NAME = 'backgrounds';
 
-    /**
-     * A list of backgrounds
-     *
-     * @var Background[]
-     */
-    protected array $backgrounds;
-
-    public function __construct(array $backgrounds)
-    {
-        $this->backgrounds = $backgrounds;
-    }
+    public function __construct(
+        /**
+         * A list of backgrounds.
+         *
+         * @var Background[]
+         */
+        protected array $backgrounds
+    ) {}
 
     public static function fromArray(array $array): Backgrounds
     {

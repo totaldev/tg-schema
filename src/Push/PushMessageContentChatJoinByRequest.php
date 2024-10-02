@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A new member was accepted to the chat by an administrator
+ * A new member was accepted to the chat by an administrator.
  */
 class PushMessageContentChatJoinByRequest extends PushMessageContent
 {

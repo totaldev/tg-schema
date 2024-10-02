@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns suggested name for saving a file in a given directory
+ * Returns suggested name for saving a file in a given directory.
  */
 class GetSuggestedFileName extends TdFunction
 {
     public const TYPE_NAME = 'getSuggestedFileName';
 
-    /**
-     * Directory in which the file is supposed to be saved
-     *
-     * @var string
-     */
-    protected string $directory;
-
-    /**
-     * Identifier of the file
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    public function __construct(int $fileId, string $directory)
-    {
-        $this->fileId = $fileId;
-        $this->directory = $directory;
-    }
+    public function __construct(
+        /**
+         * Identifier of the file.
+         */
+        protected int    $fileId,
+        /**
+         * Directory in which the file is supposed to be saved.
+         */
+        protected string $directory,
+    ) {}
 
     public static function fromArray(array $array): GetSuggestedFileName
     {
@@ -57,8 +47,8 @@ class GetSuggestedFileName extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
+            '@type'     => static::TYPE_NAME,
+            'file_id'   => $this->fileId,
             'directory' => $this->directory,
         ];
     }

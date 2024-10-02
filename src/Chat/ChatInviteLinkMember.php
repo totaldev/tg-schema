@@ -7,50 +7,32 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a chat member joined a chat via an invite link
+ * Describes a chat member joined a chat via an invite link.
  */
 class ChatInviteLinkMember extends TdObject
 {
     public const TYPE_NAME = 'chatInviteLinkMember';
 
-    /**
-     * User identifier of the chat administrator, approved user join request
-     *
-     * @var int
-     */
-    protected int $approverUserId;
-
-    /**
-     * Point in time (Unix timestamp) when the user joined the chat
-     *
-     * @var int
-     */
-    protected int $joinedChatDate;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * True, if the user has joined the chat using an invite link for a chat folder
-     *
-     * @var bool
-     */
-    protected bool $viaChatFolderInviteLink;
-
-    public function __construct(int $userId, int $joinedChatDate, bool $viaChatFolderInviteLink, int $approverUserId)
-    {
-        $this->userId = $userId;
-        $this->joinedChatDate = $joinedChatDate;
-        $this->viaChatFolderInviteLink = $viaChatFolderInviteLink;
-        $this->approverUserId = $approverUserId;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int  $userId,
+        /**
+         * Point in time (Unix timestamp) when the user joined the chat.
+         */
+        protected int  $joinedChatDate,
+        /**
+         * True, if the user has joined the chat using an invite link for a chat folder.
+         */
+        protected bool $viaChatFolderInviteLink,
+        /**
+         * User identifier of the chat administrator, approved user join request.
+         */
+        protected int  $approverUserId,
+    ) {}
 
     public static function fromArray(array $array): ChatInviteLinkMember
     {
@@ -85,11 +67,11 @@ class ChatInviteLinkMember extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'joined_chat_date' => $this->joinedChatDate,
+            '@type'                       => static::TYPE_NAME,
+            'user_id'                     => $this->userId,
+            'joined_chat_date'            => $this->joinedChatDate,
             'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
-            'approver_user_id' => $this->approverUserId,
+            'approver_user_id'            => $this->approverUserId,
         ];
     }
 }

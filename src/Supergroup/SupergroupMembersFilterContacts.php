@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns contacts of the user, which are members of the supergroup or channel
+ * Returns contacts of the user, which are members of the supergroup or channel.
  */
 class SupergroupMembersFilterContacts extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterContacts';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query
+    ) {
         parent::__construct();
-
-        $this->query = $query;
     }
 
     public static function fromArray(array $array): SupergroupMembersFilterContacts

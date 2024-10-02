@@ -10,24 +10,21 @@ use Totaldev\TgSchema\Chat\ChatNearby;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
+ * The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request.
  */
 class UpdateUsersNearby extends Update
 {
     public const TYPE_NAME = 'updateUsersNearby';
 
-    /**
-     * The new list of users nearby
-     *
-     * @var ChatNearby[]
-     */
-    protected array $usersNearby;
-
-    public function __construct(array $usersNearby)
-    {
+    public function __construct(
+        /**
+         * The new list of users nearby.
+         *
+         * @var ChatNearby[]
+         */
+        protected array $usersNearby
+    ) {
         parent::__construct();
-
-        $this->usersNearby = $usersNearby;
     }
 
     public static function fromArray(array $array): UpdateUsersNearby

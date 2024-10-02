@@ -10,48 +10,31 @@ use Totaldev\TgSchema\Message\MessageCopyOptions;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A forwarded message
+ * A forwarded message.
  */
 class InputMessageForwarded extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageForwarded';
 
-    /**
-     * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
-     *
-     * @var MessageCopyOptions
-     */
-    protected MessageCopyOptions $copyOptions;
-
-    /**
-     * Identifier for the chat this forwarded message came from
-     *
-     * @var int
-     */
-    protected int $fromChatId;
-
-    /**
-     * True, if a game message is being shared from a launched game; applies only to game messages
-     *
-     * @var bool
-     */
-    protected bool $inGameShare;
-
-    /**
-     * Identifier of the message to forward
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $fromChatId, int $messageId, bool $inGameShare, MessageCopyOptions $copyOptions)
-    {
+    public function __construct(
+        /**
+         * Identifier for the chat this forwarded message came from.
+         */
+        protected int                $fromChatId,
+        /**
+         * Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded.
+         */
+        protected int                $messageId,
+        /**
+         * True, if a game message is being shared from a launched game; applies only to game messages.
+         */
+        protected bool               $inGameShare,
+        /**
+         * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual.
+         */
+        protected MessageCopyOptions $copyOptions,
+    ) {
         parent::__construct();
-
-        $this->fromChatId = $fromChatId;
-        $this->messageId = $messageId;
-        $this->inGameShare = $inGameShare;
-        $this->copyOptions = $copyOptions;
     }
 
     public static function fromArray(array $array): InputMessageForwarded
@@ -87,11 +70,11 @@ class InputMessageForwarded extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'from_chat_id' => $this->fromChatId,
-            'message_id' => $this->messageId,
+            '@type'         => static::TYPE_NAME,
+            'from_chat_id'  => $this->fromChatId,
+            'message_id'    => $this->messageId,
             'in_game_share' => $this->inGameShare,
-            'copy_options' => $this->copyOptions->typeSerialize(),
+            'copy_options'  => $this->copyOptions->typeSerialize(),
         ];
     }
 }

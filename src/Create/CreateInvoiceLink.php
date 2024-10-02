@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a link for the given invoice; for bots only
+ * Creates a link for the given invoice; for bots only.
  */
 class CreateInvoiceLink extends TdFunction
 {
     public const TYPE_NAME = 'createInvoiceLink';
 
-    /**
-     * Information about the invoice of the type inputMessageInvoice
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $invoice;
-
-    public function __construct(InputMessageContent $invoice)
-    {
-        $this->invoice = $invoice;
-    }
+    public function __construct(
+        /**
+         * Information about the invoice of the type inputMessageInvoice.
+         */
+        protected InputMessageContent $invoice
+    ) {}
 
     public static function fromArray(array $array): CreateInvoiceLink
     {
@@ -44,7 +39,7 @@ class CreateInvoiceLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'invoice' => $this->invoice->typeSerialize(),
         ];
     }

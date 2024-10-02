@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Account;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the period of inactivity after which the current user's account will automatically be deleted
+ * Contains information about the period of inactivity after which the current user's account will automatically be deleted.
  */
 class AccountTtl extends TdObject
 {
     public const TYPE_NAME = 'accountTtl';
 
-    /**
-     * Number of days of inactivity before the account will be flagged for deletion; 30-366 days
-     *
-     * @var int
-     */
-    protected int $days;
-
-    public function __construct(int $days)
-    {
-        $this->days = $days;
-    }
+    public function __construct(
+        /**
+         * Number of days of inactivity before the account will be flagged for deletion; 30-730 days.
+         */
+        protected int $days
+    ) {}
 
     public static function fromArray(array $array): AccountTtl
     {
@@ -44,7 +38,7 @@ class AccountTtl extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'days' => $this->days,
+            'days'  => $this->days,
         ];
     }
 }

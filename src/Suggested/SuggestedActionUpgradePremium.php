@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Suggested;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
+ * Suggests the user to upgrade the Premium subscription from monthly payments to annual payments.
  */
 class SuggestedActionUpgradePremium extends SuggestedAction
 {

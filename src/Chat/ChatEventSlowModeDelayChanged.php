@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The slow_mode_delay setting of a supergroup was changed
+ * The slow_mode_delay setting of a supergroup was changed.
  */
 class ChatEventSlowModeDelayChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventSlowModeDelayChanged';
 
-    /**
-     * New value of slow_mode_delay, in seconds
-     *
-     * @var int
-     */
-    protected int $newSlowModeDelay;
-
-    /**
-     * Previous value of slow_mode_delay, in seconds
-     *
-     * @var int
-     */
-    protected int $oldSlowModeDelay;
-
-    public function __construct(int $oldSlowModeDelay, int $newSlowModeDelay)
-    {
+    public function __construct(
+        /**
+         * Previous value of slow_mode_delay, in seconds.
+         */
+        protected int $oldSlowModeDelay,
+        /**
+         * New value of slow_mode_delay, in seconds.
+         */
+        protected int $newSlowModeDelay,
+    ) {
         parent::__construct();
-
-        $this->oldSlowModeDelay = $oldSlowModeDelay;
-        $this->newSlowModeDelay = $newSlowModeDelay;
     }
 
     public static function fromArray(array $array): ChatEventSlowModeDelayChanged
@@ -58,7 +47,7 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'               => static::TYPE_NAME,
             'old_slow_mode_delay' => $this->oldSlowModeDelay,
             'new_slow_mode_delay' => $this->newSlowModeDelay,
         ];

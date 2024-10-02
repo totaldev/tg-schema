@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Authorization;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is currently logging out
+ * The user is currently logging out.
  */
 class AuthorizationStateLoggingOut extends AuthorizationState
 {

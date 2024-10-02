@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The sticker is a regular sticker
+ * The sticker is a regular sticker.
  */
 class StickerTypeRegular extends StickerType
 {

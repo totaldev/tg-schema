@@ -12,47 +12,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the message content caption. Returns the edited message after the edit is completed on the server side
+ * Edits the message content caption. Returns the edited message after the edit is completed on the server side.
  */
 class EditMessageCaption extends TdFunction
 {
     public const TYPE_NAME = 'editMessageCaption';
 
-    /**
-     * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * The chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none; for bots only
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    public function __construct(int $chatId, int $messageId, ReplyMarkup $replyMarkup, FormattedText $caption)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->replyMarkup = $replyMarkup;
-        $this->caption = $caption;
-    }
+    public function __construct(
+        /**
+         * The chat the message belongs to.
+         */
+        protected int           $chatId,
+        /**
+         * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
+         */
+        protected int           $messageId,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ReplyMarkup   $replyMarkup,
+        /**
+         * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption.
+         */
+        protected FormattedText $caption,
+        /**
+         * Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages.
+         */
+        protected bool          $showCaptionAboveMedia,
+    ) {}
 
     public static function fromArray(array $array): EditMessageCaption
     {
@@ -61,6 +48,7 @@ class EditMessageCaption extends TdFunction
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['show_caption_above_media'],
         );
     }
 
@@ -84,14 +72,20 @@ class EditMessageCaption extends TdFunction
         return $this->replyMarkup;
     }
 
+    public function getShowCaptionAboveMedia(): bool
+    {
+        return $this->showCaptionAboveMedia;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
+            '@type'                    => static::TYPE_NAME,
+            'chat_id'                  => $this->chatId,
+            'message_id'               => $this->messageId,
+            'reply_markup'             => $this->replyMarkup->typeSerialize(),
+            'caption'                  => $this->caption->typeSerialize(),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }
 }

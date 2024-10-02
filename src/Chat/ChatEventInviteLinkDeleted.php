@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A revoked chat invite link was deleted
+ * A revoked chat invite link was deleted.
  */
 class ChatEventInviteLinkDeleted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventInviteLinkDeleted';
 
-    /**
-     * The invite link
-     *
-     * @var ChatInviteLink
-     */
-    protected ChatInviteLink $inviteLink;
-
-    public function __construct(ChatInviteLink $inviteLink)
-    {
+    public function __construct(
+        /**
+         * The invite link.
+         */
+        protected ChatInviteLink $inviteLink
+    ) {
         parent::__construct();
-
-        $this->inviteLink = $inviteLink;
     }
 
     public static function fromArray(array $array): ChatEventInviteLinkDeleted
@@ -44,7 +39,7 @@ class ChatEventInviteLinkDeleted extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'invite_link' => $this->inviteLink->typeSerialize(),
         ];
     }

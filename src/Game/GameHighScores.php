@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of game high scores
+ * Contains a list of game high scores.
  */
 class GameHighScores extends TdObject
 {
     public const TYPE_NAME = 'gameHighScores';
 
-    /**
-     * A list of game high scores
-     *
-     * @var GameHighScore[]
-     */
-    protected array $scores;
-
-    public function __construct(array $scores)
-    {
-        $this->scores = $scores;
-    }
+    public function __construct(
+        /**
+         * A list of game high scores.
+         *
+         * @var GameHighScore[]
+         */
+        protected array $scores
+    ) {}
 
     public static function fromArray(array $array): GameHighScores
     {

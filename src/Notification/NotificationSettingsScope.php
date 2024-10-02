@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Notification;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the types of chats to which notification settings are relevant
+ * Describes the types of chats to which notification settings are relevant.
  */
 class NotificationSettingsScope extends TdObject
 {
     public const TYPE_NAME = 'NotificationSettingsScope';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): NotificationSettingsScope
     {

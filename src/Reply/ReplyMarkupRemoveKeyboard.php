@@ -6,28 +6,21 @@
 
 namespace Totaldev\TgSchema\Reply;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead,
- * updateChatReplyMarkup with message_id == 0 will be sent
+ * updateChatReplyMarkup with message_id == 0 will be sent.
  */
 class ReplyMarkupRemoveKeyboard extends ReplyMarkup
 {
     public const TYPE_NAME = 'replyMarkupRemoveKeyboard';
 
-    /**
-     * True, if the keyboard is removed only for the mentioned users or the target user of a reply
-     *
-     * @var bool
-     */
-    protected bool $isPersonal;
-
-    public function __construct(bool $isPersonal)
-    {
+    public function __construct(
+        /**
+         * True, if the keyboard is removed only for the mentioned users or the target user of a reply.
+         */
+        protected bool $isPersonal
+    ) {
         parent::__construct();
-
-        $this->isPersonal = $isPersonal;
     }
 
     public static function fromArray(array $array): ReplyMarkupRemoveKeyboard
@@ -45,7 +38,7 @@ class ReplyMarkupRemoveKeyboard extends ReplyMarkup
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'is_personal' => $this->isPersonal,
         ];
     }

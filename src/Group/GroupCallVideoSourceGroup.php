@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Group;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a group of video synchronization source identifiers
+ * Describes a group of video synchronization source identifiers.
  */
 class GroupCallVideoSourceGroup extends TdObject
 {
     public const TYPE_NAME = 'groupCallVideoSourceGroup';
 
-    /**
-     * The semantics of sources, one of "SIM" or "FID"
-     *
-     * @var string
-     */
-    protected string $semantics;
-
-    /**
-     * The list of synchronization source identifiers
-     *
-     * @var int[]
-     */
-    protected array $sourceIds;
-
-    public function __construct(string $semantics, array $sourceIds)
-    {
-        $this->semantics = $semantics;
-        $this->sourceIds = $sourceIds;
-    }
+    public function __construct(
+        /**
+         * The semantics of sources, one of "SIM" or "FID".
+         */
+        protected string $semantics,
+        /**
+         * The list of synchronization source identifiers.
+         *
+         * @var int[]
+         */
+        protected array  $sourceIds,
+    ) {}
 
     public static function fromArray(array $array): GroupCallVideoSourceGroup
     {
@@ -57,8 +49,8 @@ class GroupCallVideoSourceGroup extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'semantics' => $this->semantics,
+            '@type'      => static::TYPE_NAME,
+            'semantics'  => $this->semantics,
             'source_ids' => $this->sourceIds,
         ];
     }

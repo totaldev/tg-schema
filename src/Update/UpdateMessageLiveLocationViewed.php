@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with a live location was viewed. When the update is received, the application is supposed to update the live location
+ * A message with a live location was viewed. When the update is received, the application is supposed to update the live location.
  */
 class UpdateMessageLiveLocationViewed extends Update
 {
     public const TYPE_NAME = 'updateMessageLiveLocationViewed';
 
-    /**
-     * Identifier of the chat with the live location message
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message with live location
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the chat with the live location message.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message with live location.
+         */
+        protected int $messageId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
     }
 
     public static function fromArray(array $array): UpdateMessageLiveLocationViewed
@@ -58,8 +47,8 @@ class UpdateMessageLiveLocationViewed extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

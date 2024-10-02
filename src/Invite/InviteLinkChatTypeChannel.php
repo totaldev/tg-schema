@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Invite;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is an invite link for a channel
+ * The link is an invite link for a channel.
  */
 class InviteLinkChatTypeChannel extends InviteLinkChatType
 {

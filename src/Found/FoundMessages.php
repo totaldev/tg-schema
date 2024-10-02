@@ -11,39 +11,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of messages found by a search
+ * Contains a list of messages found by a search.
  */
 class FoundMessages extends TdObject
 {
     public const TYPE_NAME = 'foundMessages';
 
-    /**
-     * List of messages
-     *
-     * @var Message[]
-     */
-    protected array $messages;
-
-    /**
-     * The offset for the next request. If empty, there are no more results
-     *
-     * @var string
-     */
-    protected string $nextOffset;
-
-    /**
-     * Approximate total number of messages found; -1 if unknown
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $messages, string $nextOffset)
-    {
-        $this->totalCount = $totalCount;
-        $this->messages = $messages;
-        $this->nextOffset = $nextOffset;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of messages found; -1 if unknown.
+         */
+        protected int    $totalCount,
+        /**
+         * List of messages.
+         *
+         * @var Message[]
+         */
+        protected array  $messages,
+        /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
+    ) {}
 
     public static function fromArray(array $array): FoundMessages
     {
@@ -72,7 +61,7 @@ class FoundMessages extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->messages),
             'next_offset' => $this->nextOffset,

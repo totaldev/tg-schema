@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a link to boost a a chat
+ * Contains information about a link to boost a chat.
  */
 class ChatBoostLinkInfo extends TdObject
 {
     public const TYPE_NAME = 'chatBoostLinkInfo';
 
-    /**
-     * Identifier of the chat to which the link points; 0 if the chat isn't found
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * True, if the link will work for non-members of the chat
-     *
-     * @var bool
-     */
-    protected bool $isPublic;
-
-    public function __construct(bool $isPublic, int $chatId)
-    {
-        $this->isPublic = $isPublic;
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * True, if the link will work for non-members of the chat.
+         */
+        protected bool $isPublic,
+        /**
+         * Identifier of the chat to which the link points; 0 if the chat isn't found.
+         */
+        protected int  $chatId,
+    ) {}
 
     public static function fromArray(array $array): ChatBoostLinkInfo
     {
@@ -57,9 +47,9 @@ class ChatBoostLinkInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'is_public' => $this->isPublic,
-            'chat_id' => $this->chatId,
+            'chat_id'   => $this->chatId,
         ];
     }
 }

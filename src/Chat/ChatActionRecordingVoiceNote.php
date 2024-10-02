@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is recording a voice note
+ * The user is recording a voice note.
  */
 class ChatActionRecordingVoiceNote extends ChatAction
 {

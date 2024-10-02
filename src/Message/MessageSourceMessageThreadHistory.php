@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a message thread history
+ * The message is from a message thread history.
  */
 class MessageSourceMessageThreadHistory extends MessageSource
 {

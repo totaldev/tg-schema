@@ -12,40 +12,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Uploads a file with a sticker; returns the uploaded file
+ * Uploads a file with a sticker; returns the uploaded file.
  */
 class UploadStickerFile extends TdFunction
 {
     public const TYPE_NAME = 'uploadStickerFile';
 
-    /**
-     * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP
-     * server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
-     * Sticker format
-     *
-     * @var StickerFormat
-     */
-    protected StickerFormat $stickerFormat;
-
-    /**
-     * Sticker file owner; ignored for regular users
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, StickerFormat $stickerFormat, InputFile $sticker)
-    {
-        $this->userId = $userId;
-        $this->stickerFormat = $stickerFormat;
-        $this->sticker = $sticker;
-    }
+    public function __construct(
+        /**
+         * Sticker file owner; ignored for regular users.
+         */
+        protected int           $userId,
+        /**
+         * Sticker format.
+         */
+        protected StickerFormat $stickerFormat,
+        /**
+         * File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements.
+         */
+        protected InputFile     $sticker,
+    ) {}
 
     public static function fromArray(array $array): UploadStickerFile
     {
@@ -74,10 +60,10 @@ class UploadStickerFile extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
+            '@type'          => static::TYPE_NAME,
+            'user_id'        => $this->userId,
             'sticker_format' => $this->stickerFormat->typeSerialize(),
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker'        => $this->sticker->typeSerialize(),
         ];
     }
 }

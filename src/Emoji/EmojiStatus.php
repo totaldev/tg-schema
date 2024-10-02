@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Emoji;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a custom emoji to be shown instead of the Telegram Premium badge
+ * Describes a custom emoji to be shown instead of the Telegram Premium badge.
  */
 class EmojiStatus extends TdObject
 {
     public const TYPE_NAME = 'emojiStatus';
 
-    /**
-     * Identifier of the custom emoji in stickerFormatTgs format
-     *
-     * @var int
-     */
-    protected int $customEmojiId;
-
-    /**
-     * Point in time (Unix timestamp) when the status will expire; 0 if never
-     *
-     * @var int
-     */
-    protected int $expirationDate;
-
-    public function __construct(int $customEmojiId, int $expirationDate)
-    {
-        $this->customEmojiId = $customEmojiId;
-        $this->expirationDate = $expirationDate;
-    }
+    public function __construct(
+        /**
+         * Identifier of the custom emoji in stickerFormatTgs format.
+         */
+        protected int $customEmojiId,
+        /**
+         * Point in time (Unix timestamp) when the status will expire; 0 if never.
+         */
+        protected int $expirationDate,
+    ) {}
 
     public static function fromArray(array $array): EmojiStatus
     {
@@ -57,7 +47,7 @@ class EmojiStatus extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'custom_emoji_id' => $this->customEmojiId,
             'expiration_date' => $this->expirationDate,
         ];

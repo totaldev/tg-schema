@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes reactions available in the chat
+ * Describes reactions available in the chat.
  */
 class ChatAvailableReactions extends TdObject
 {
     public const TYPE_NAME = 'ChatAvailableReactions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatAvailableReactions
     {

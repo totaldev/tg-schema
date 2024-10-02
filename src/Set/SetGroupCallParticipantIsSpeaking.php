@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib that speaking state of a participant of an active group has changed
+ * Informs TDLib that speaking state of a participant of an active group has changed.
  */
 class SetGroupCallParticipantIsSpeaking extends TdFunction
 {
     public const TYPE_NAME = 'setGroupCallParticipantIsSpeaking';
 
-    /**
-     * Group call participant's synchronization audio source identifier, or 0 for the current user
-     *
-     * @var int
-     */
-    protected int $audioSource;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true if the user is speaking
-     *
-     * @var bool
-     */
-    protected bool $isSpeaking;
-
-    public function __construct(int $groupCallId, int $audioSource, bool $isSpeaking)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->audioSource = $audioSource;
-        $this->isSpeaking = $isSpeaking;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * Group call participant's synchronization audio source identifier, or 0 for the current user.
+         */
+        protected int  $audioSource,
+        /**
+         * Pass true if the user is speaking.
+         */
+        protected bool $isSpeaking,
+    ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantIsSpeaking
     {
@@ -71,10 +57,10 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'audio_source' => $this->audioSource,
-            'is_speaking' => $this->isSpeaking,
+            'audio_source'  => $this->audioSource,
+            'is_speaking'   => $this->isSpeaking,
         ];
     }
 }

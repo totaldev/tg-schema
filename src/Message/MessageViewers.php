@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of message viewers
+ * Represents a list of message viewers.
  */
 class MessageViewers extends TdObject
 {
     public const TYPE_NAME = 'messageViewers';
 
-    /**
-     * List of message viewers
-     *
-     * @var MessageViewer[]
-     */
-    protected array $viewers;
-
-    public function __construct(array $viewers)
-    {
-        $this->viewers = $viewers;
-    }
+    public function __construct(
+        /**
+         * List of message viewers.
+         *
+         * @var MessageViewer[]
+         */
+        protected array $viewers
+    ) {}
 
     public static function fromArray(array $array): MessageViewers
     {

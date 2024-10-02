@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A sticker message
+ * A sticker message.
  */
 class MessageSticker extends MessageContent
 {
     public const TYPE_NAME = 'messageSticker';
 
-    /**
-     * True, if premium animation of the sticker must be played
-     *
-     * @var bool
-     */
-    protected bool $isPremium;
-
-    /**
-     * The sticker description
-     *
-     * @var Sticker
-     */
-    protected Sticker $sticker;
-
-    public function __construct(Sticker $sticker, bool $isPremium)
-    {
+    public function __construct(
+        /**
+         * The sticker description.
+         */
+        protected Sticker $sticker,
+        /**
+         * True, if premium animation of the sticker must be played.
+         */
+        protected bool    $isPremium,
+    ) {
         parent::__construct();
-
-        $this->sticker = $sticker;
-        $this->isPremium = $isPremium;
     }
 
     public static function fromArray(array $array): MessageSticker
@@ -59,8 +50,8 @@ class MessageSticker extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            '@type'      => static::TYPE_NAME,
+            'sticker'    => $this->sticker->typeSerialize(),
             'is_premium' => $this->isPremium,
         ];
     }

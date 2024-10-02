@@ -10,48 +10,31 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Video\Video;
 
 /**
- * Represents a video
+ * Represents a video.
  */
 class InlineQueryResultVideo extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultVideo';
 
-    /**
-     * Description of the video
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Title of the video
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Video
-     *
-     * @var Video
-     */
-    protected Video $video;
-
-    public function __construct(string $id, Video $video, string $title, string $description)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string $id,
+        /**
+         * Video.
+         */
+        protected Video  $video,
+        /**
+         * Title of the video.
+         */
+        protected string $title,
+        /**
+         * Description of the video.
+         */
+        protected string $description,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->video = $video;
-        $this->title = $title;
-        $this->description = $description;
     }
 
     public static function fromArray(array $array): InlineQueryResultVideo
@@ -87,10 +70,10 @@ class InlineQueryResultVideo extends InlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'video' => $this->video->typeSerialize(),
-            'title' => $this->title,
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'video'       => $this->video->typeSerialize(),
+            'title'       => $this->title,
             'description' => $this->description,
         ];
     }

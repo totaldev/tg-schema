@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Chat\ChatActiveStories;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of active stories posted by a specific chat has changed
+ * The list of active stories posted by a specific chat has changed.
  */
 class UpdateChatActiveStories extends Update
 {
     public const TYPE_NAME = 'updateChatActiveStories';
 
-    /**
-     * The new list of active stories
-     *
-     * @var ChatActiveStories
-     */
-    protected ChatActiveStories $activeStories;
-
-    public function __construct(ChatActiveStories $activeStories)
-    {
+    public function __construct(
+        /**
+         * The new list of active stories.
+         */
+        protected ChatActiveStories $activeStories
+    ) {
         parent::__construct();
-
-        $this->activeStories = $activeStories;
     }
 
     public static function fromArray(array $array): UpdateChatActiveStories
@@ -45,7 +40,7 @@ class UpdateChatActiveStories extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'active_stories' => $this->activeStories->typeSerialize(),
         ];
     }

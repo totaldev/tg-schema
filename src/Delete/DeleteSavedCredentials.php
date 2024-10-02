@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes saved credentials for all payment provider bots
+ * Deletes saved credentials for all payment provider bots.
  */
 class DeleteSavedCredentials extends TdFunction
 {
     public const TYPE_NAME = 'deleteSavedCredentials';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DeleteSavedCredentials
     {

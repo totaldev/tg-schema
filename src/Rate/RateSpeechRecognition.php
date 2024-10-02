@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Rate;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Rates recognized speech in a video note or a voice note message
+ * Rates recognized speech in a video note or a voice note message.
  */
 class RateSpeechRecognition extends TdFunction
 {
     public const TYPE_NAME = 'rateSpeechRecognition';
 
-    /**
-     * Identifier of the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true if the speech recognition is good
-     *
-     * @var bool
-     */
-    protected bool $isGood;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId, bool $isGood)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->isGood = $isGood;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        protected int  $chatId,
+        /**
+         * Identifier of the message.
+         */
+        protected int  $messageId,
+        /**
+         * Pass true if the speech recognition is good.
+         */
+        protected bool $isGood,
+    ) {}
 
     public static function fromArray(array $array): RateSpeechRecognition
     {
@@ -71,10 +57,10 @@ class RateSpeechRecognition extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'is_good' => $this->isGood,
+            'is_good'    => $this->isGood,
         ];
     }
 }

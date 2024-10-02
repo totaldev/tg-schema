@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Device;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A token for Apple Push Notification service VoIP notifications
+ * A token for Apple Push Notification service VoIP notifications.
  */
 class DeviceTokenApplePushVoIP extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenApplePushVoIP';
 
-    /**
-     * Device token; may be empty to deregister a device
-     *
-     * @var string
-     */
-    protected string $deviceToken;
-
-    /**
-     * True, if push notifications must be additionally encrypted
-     *
-     * @var bool
-     */
-    protected bool $encrypt;
-
-    /**
-     * True, if App Sandbox is enabled
-     *
-     * @var bool
-     */
-    protected bool $isAppSandbox;
-
-    public function __construct(string $deviceToken, bool $isAppSandbox, bool $encrypt)
-    {
+    public function __construct(
+        /**
+         * Device token; may be empty to deregister a device.
+         */
+        protected string $deviceToken,
+        /**
+         * True, if App Sandbox is enabled.
+         */
+        protected bool   $isAppSandbox,
+        /**
+         * True, if push notifications must be additionally encrypted.
+         */
+        protected bool   $encrypt,
+    ) {
         parent::__construct();
-
-        $this->deviceToken = $deviceToken;
-        $this->isAppSandbox = $isAppSandbox;
-        $this->encrypt = $encrypt;
     }
 
     public static function fromArray(array $array): DeviceTokenApplePushVoIP
@@ -72,10 +57,10 @@ class DeviceTokenApplePushVoIP extends DeviceToken
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'device_token' => $this->deviceToken,
+            '@type'          => static::TYPE_NAME,
+            'device_token'   => $this->deviceToken,
             'is_app_sandbox' => $this->isAppSandbox,
-            'encrypt' => $this->encrypt,
+            'encrypt'        => $this->encrypt,
         ];
     }
 }

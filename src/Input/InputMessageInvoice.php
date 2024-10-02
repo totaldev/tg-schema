@@ -6,131 +6,72 @@
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Invoice\Invoice;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message with an invoice; can be used only by bots
+ * A message with an invoice; can be used only by bots.
  */
 class InputMessageInvoice extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageInvoice';
 
-    /**
-     * Product description; 0-255 characters
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto,
-     * inputMessageVideo
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $extendedMediaContent;
-
-    /**
-     * Invoice
-     *
-     * @var Invoice
-     */
-    protected Invoice $invoice;
-
-    /**
-     * The invoice payload
-     *
-     * @var string
-     */
-    protected string $payload;
-
-    /**
-     * Product photo height
-     *
-     * @var int
-     */
-    protected int $photoHeight;
-
-    /**
-     * Product photo size
-     *
-     * @var int
-     */
-    protected int $photoSize;
-
-    /**
-     * Product photo URL; optional
-     *
-     * @var string
-     */
-    protected string $photoUrl;
-
-    /**
-     * Product photo width
-     *
-     * @var int
-     */
-    protected int $photoWidth;
-
-    /**
-     * JSON-encoded data about the invoice, which will be shared with the payment provider
-     *
-     * @var string
-     */
-    protected string $providerData;
-
-    /**
-     * Payment provider token
-     *
-     * @var string
-     */
-    protected string $providerToken;
-
-    /**
-     * Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice
-     * message
-     *
-     * @var string
-     */
-    protected string $startParameter;
-
-    /**
-     * Product title; 1-32 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        Invoice             $invoice,
-        string              $title,
-        string              $description,
-        string              $photoUrl,
-        int                 $photoSize,
-        int                 $photoWidth,
-        int                 $photoHeight,
-        string              $payload,
-        string              $providerToken,
-        string              $providerData,
-        string              $startParameter,
-        InputMessageContent $extendedMediaContent,
-    )
-    {
+        /**
+         * Invoice.
+         */
+        protected Invoice        $invoice,
+        /**
+         * Product title; 1-32 characters.
+         */
+        protected string         $title,
+        /**
+         * Product description; 0-255 characters.
+         */
+        protected string         $description,
+        /**
+         * Product photo URL; optional.
+         */
+        protected string         $photoUrl,
+        /**
+         * Product photo size.
+         */
+        protected int            $photoSize,
+        /**
+         * Product photo width.
+         */
+        protected int            $photoWidth,
+        /**
+         * Product photo height.
+         */
+        protected int            $photoHeight,
+        /**
+         * The invoice payload.
+         */
+        protected string         $payload,
+        /**
+         * Payment provider token; may be empty for payments in Telegram Stars.
+         */
+        protected string         $providerToken,
+        /**
+         * JSON-encoded data about the invoice, which will be shared with the payment provider.
+         */
+        protected string         $providerData,
+        /**
+         * Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message.
+         */
+        protected string         $startParameter,
+        /**
+         * The content of paid media attached to the invoice; pass null if none.
+         */
+        protected InputPaidMedia $paidMedia,
+        /**
+         * Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
+         */
+        protected FormattedText  $paidMediaCaption,
+    ) {
         parent::__construct();
-
-        $this->invoice = $invoice;
-        $this->title = $title;
-        $this->description = $description;
-        $this->photoUrl = $photoUrl;
-        $this->photoSize = $photoSize;
-        $this->photoWidth = $photoWidth;
-        $this->photoHeight = $photoHeight;
-        $this->payload = $payload;
-        $this->providerToken = $providerToken;
-        $this->providerData = $providerData;
-        $this->startParameter = $startParameter;
-        $this->extendedMediaContent = $extendedMediaContent;
     }
 
     public static function fromArray(array $array): InputMessageInvoice
@@ -147,7 +88,8 @@ class InputMessageInvoice extends InputMessageContent
             $array['provider_token'],
             $array['provider_data'],
             $array['start_parameter'],
-            TdSchemaRegistry::fromArray($array['extended_media_content']),
+            TdSchemaRegistry::fromArray($array['paid_media']),
+            TdSchemaRegistry::fromArray($array['paid_media_caption']),
         );
     }
 
@@ -156,14 +98,19 @@ class InputMessageInvoice extends InputMessageContent
         return $this->description;
     }
 
-    public function getExtendedMediaContent(): InputMessageContent
-    {
-        return $this->extendedMediaContent;
-    }
-
     public function getInvoice(): Invoice
     {
         return $this->invoice;
+    }
+
+    public function getPaidMedia(): InputPaidMedia
+    {
+        return $this->paidMedia;
+    }
+
+    public function getPaidMediaCaption(): FormattedText
+    {
+        return $this->paidMediaCaption;
     }
 
     public function getPayload(): string
@@ -214,19 +161,20 @@ class InputMessageInvoice extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'invoice' => $this->invoice->typeSerialize(),
-            'title' => $this->title,
-            'description' => $this->description,
-            'photo_url' => $this->photoUrl,
-            'photo_size' => $this->photoSize,
-            'photo_width' => $this->photoWidth,
-            'photo_height' => $this->photoHeight,
-            'payload' => $this->payload,
-            'provider_token' => $this->providerToken,
-            'provider_data' => $this->providerData,
-            'start_parameter' => $this->startParameter,
-            'extended_media_content' => $this->extendedMediaContent->typeSerialize(),
+            '@type'              => static::TYPE_NAME,
+            'invoice'            => $this->invoice->typeSerialize(),
+            'title'              => $this->title,
+            'description'        => $this->description,
+            'photo_url'          => $this->photoUrl,
+            'photo_size'         => $this->photoSize,
+            'photo_width'        => $this->photoWidth,
+            'photo_height'       => $this->photoHeight,
+            'payload'            => $this->payload,
+            'provider_token'     => $this->providerToken,
+            'provider_data'      => $this->providerData,
+            'start_parameter'    => $this->startParameter,
+            'paid_media'         => $this->paidMedia->typeSerialize(),
+            'paid_media_caption' => $this->paidMediaCaption->typeSerialize(),
         ];
     }
 }

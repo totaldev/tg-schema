@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user couldn't hear the other side
+ * The user couldn't hear the other side.
  */
 class CallProblemSilentLocal extends CallProblem
 {

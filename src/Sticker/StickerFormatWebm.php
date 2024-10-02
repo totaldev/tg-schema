@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The sticker is a video in WEBM format
+ * The sticker is a video in WEBM format.
  */
 class StickerFormatWebm extends StickerFormat
 {

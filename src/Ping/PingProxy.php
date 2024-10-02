@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Ping;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
+ * Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization.
  */
 class PingProxy extends TdFunction
 {
     public const TYPE_NAME = 'pingProxy';
 
-    /**
-     * Proxy identifier. Use 0 to ping a Telegram server without a proxy
-     *
-     * @var int
-     */
-    protected int $proxyId;
-
-    public function __construct(int $proxyId)
-    {
-        $this->proxyId = $proxyId;
-    }
+    public function __construct(
+        /**
+         * Proxy identifier. Use 0 to ping a Telegram server without a proxy.
+         */
+        protected int $proxyId
+    ) {}
 
     public static function fromArray(array $array): PingProxy
     {
@@ -43,7 +37,7 @@ class PingProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
         ];
     }

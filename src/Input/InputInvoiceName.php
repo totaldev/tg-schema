@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An invoice from a link of the type internalLinkTypeInvoice
+ * An invoice from a link of the type internalLinkTypeInvoice.
  */
 class InputInvoiceName extends InputInvoice
 {
     public const TYPE_NAME = 'inputInvoiceName';
 
-    /**
-     * Name of the invoice
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name)
-    {
+    public function __construct(
+        /**
+         * Name of the invoice.
+         */
+        protected string $name
+    ) {
         parent::__construct();
-
-        $this->name = $name;
     }
 
     public static function fromArray(array $array): InputInvoiceName
@@ -45,7 +38,7 @@ class InputInvoiceName extends InputInvoice
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
         ];
     }
 }

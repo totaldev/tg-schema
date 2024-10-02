@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Synchronize;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called
- * explicitly for the current used/base language packs. Can be called before authorization
+ * explicitly for the current used/base language packs. Can be called before authorization.
  */
 class SynchronizeLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'synchronizeLanguagePack';
 
-    /**
-     * Language pack identifier
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId)
-    {
-        $this->languagePackId = $languagePackId;
-    }
+    public function __construct(
+        /**
+         * Language pack identifier.
+         */
+        protected string $languagePackId
+    ) {}
 
     public static function fromArray(array $array): SynchronizeLanguagePack
     {
@@ -44,7 +38,7 @@ class SynchronizeLanguagePack extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
     }

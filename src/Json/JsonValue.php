@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Json;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a JSON value
+ * Represents a JSON value.
  */
 class JsonValue extends TdObject
 {
     public const TYPE_NAME = 'JsonValue';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): JsonValue
     {

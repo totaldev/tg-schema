@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to hide the fact that the user viewed other's stories
+ * The ability to hide the fact that the user viewed other's stories.
  */
 class PremiumStoryFeatureStealthMode extends PremiumStoryFeature
 {

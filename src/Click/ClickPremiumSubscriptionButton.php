@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Click;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+ * Informs TDLib that the user clicked Premium subscription button on the Premium features screen.
  */
 class ClickPremiumSubscriptionButton extends TdFunction
 {
     public const TYPE_NAME = 'clickPremiumSubscriptionButton';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ClickPremiumSubscriptionButton
     {

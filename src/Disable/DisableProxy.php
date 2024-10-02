@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Disable;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Disables the currently enabled proxy. Can be called before authorization
+ * Disables the currently enabled proxy. Can be called before authorization.
  */
 class DisableProxy extends TdFunction
 {
     public const TYPE_NAME = 'disableProxy';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DisableProxy
     {

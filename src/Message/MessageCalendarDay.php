@@ -10,31 +10,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about found messages sent on a specific day
+ * Contains information about found messages sent on a specific day.
  */
 class MessageCalendarDay extends TdObject
 {
     public const TYPE_NAME = 'messageCalendarDay';
 
-    /**
-     * First message sent on the day
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    /**
-     * Total number of found messages sent on the day
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, Message $message)
-    {
-        $this->totalCount = $totalCount;
-        $this->message = $message;
-    }
+    public function __construct(
+        /**
+         * Total number of found messages sent on the day.
+         */
+        protected int     $totalCount,
+        /**
+         * First message sent on the day.
+         */
+        protected Message $message,
+    ) {}
 
     public static function fromArray(array $array): MessageCalendarDay
     {
@@ -57,9 +48,9 @@ class MessageCalendarDay extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            'message' => $this->message->typeSerialize(),
+            'message'     => $this->message->typeSerialize(),
         ];
     }
 }

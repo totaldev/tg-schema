@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Call;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of a call server
+ * Describes the type of call server.
  */
 class CallServerType extends TdObject
 {
     public const TYPE_NAME = 'CallServerType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CallServerType
     {

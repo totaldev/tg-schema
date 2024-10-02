@@ -11,45 +11,37 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a notification about user activity in a chat
+ * Sends a notification about user activity in a chat.
  */
 class SendChatAction extends TdFunction
 {
     public const TYPE_NAME = 'sendChatAction';
 
-    /**
-     * The action description; pass null to cancel the currently active action
-     *
-     * @var ChatAction
-     */
-    protected ChatAction $action;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * If not 0, a message thread identifier in which the action was performed
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $chatId, int $messageThreadId, ChatAction $action)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-        $this->action = $action;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int        $chatId,
+        /**
+         * If not 0, the message thread identifier in which the action was performed.
+         */
+        protected int        $messageThreadId,
+        /**
+         * Unique identifier of business connection on behalf of which to send the request; for bots only.
+         */
+        protected string     $businessConnectionId,
+        /**
+         * The action description; pass null to cancel the currently active action.
+         */
+        protected ChatAction $action,
+    ) {}
 
     public static function fromArray(array $array): SendChatAction
     {
         return new static(
             $array['chat_id'],
             $array['message_thread_id'],
+            $array['business_connection_id'],
             TdSchemaRegistry::fromArray($array['action']),
         );
     }
@@ -57,6 +49,11 @@ class SendChatAction extends TdFunction
     public function getAction(): ChatAction
     {
         return $this->action;
+    }
+
+    public function getBusinessConnectionId(): string
+    {
+        return $this->businessConnectionId;
     }
 
     public function getChatId(): int
@@ -72,10 +69,11 @@ class SendChatAction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'action' => $this->action->typeSerialize(),
+            '@type'                  => static::TYPE_NAME,
+            'chat_id'                => $this->chatId,
+            'message_thread_id'      => $this->messageThreadId,
+            'business_connection_id' => $this->businessConnectionId,
+            'action'                 => $this->action->typeSerialize(),
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A regular user
+ * A regular user.
  */
 class UserTypeRegular extends UserType
 {

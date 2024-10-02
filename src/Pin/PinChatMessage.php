@@ -7,50 +7,32 @@
 namespace Totaldev\TgSchema\Pin;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+ * Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned.
  */
 class PinChatMessage extends TdFunction
 {
     public const TYPE_NAME = 'pinChatMessage';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
-     *
-     * @var bool
-     */
-    protected bool $disableNotification;
-
-    /**
-     * Identifier of the new pinned message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Pass true to pin the message only for self; private chats only
-     *
-     * @var bool
-     */
-    protected bool $onlyForSelf;
-
-    public function __construct(int $chatId, int $messageId, bool $disableNotification, bool $onlyForSelf)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->disableNotification = $disableNotification;
-        $this->onlyForSelf = $onlyForSelf;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int  $chatId,
+        /**
+         * Identifier of the new pinned message.
+         */
+        protected int  $messageId,
+        /**
+         * Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats.
+         */
+        protected bool $disableNotification,
+        /**
+         * Pass true to pin the message only for self; private chats only.
+         */
+        protected bool $onlyForSelf,
+    ) {}
 
     public static function fromArray(array $array): PinChatMessage
     {
@@ -85,11 +67,11 @@ class PinChatMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'                => static::TYPE_NAME,
+            'chat_id'              => $this->chatId,
+            'message_id'           => $this->messageId,
             'disable_notification' => $this->disableNotification,
-            'only_for_self' => $this->onlyForSelf,
+            'only_for_self'        => $this->onlyForSelf,
         ];
     }
 }

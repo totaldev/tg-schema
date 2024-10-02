@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from some other source
+ * The message is from some other source.
  */
 class MessageSourceOther extends MessageSource
 {

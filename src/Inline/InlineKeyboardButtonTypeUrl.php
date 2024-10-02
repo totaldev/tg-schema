@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that opens a specified URL
+ * A button that opens a specified URL.
  */
 class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeUrl';
 
-    /**
-     * HTTP or tg:// URL to open
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
+    public function __construct(
+        /**
+         * HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button.
+         */
+        protected string $url
+    ) {
         parent::__construct();
-
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeUrl
@@ -45,7 +38,7 @@ class InlineKeyboardButtonTypeUrl extends InlineKeyboardButtonType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

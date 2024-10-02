@@ -9,40 +9,27 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
+ * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed.
  */
 class ChatEventMemberPromoted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberPromoted';
 
-    /**
-     * New status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $newStatus;
-
-    /**
-     * Previous status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $oldStatus;
-
-    /**
-     * Affected chat member user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
-    {
+    public function __construct(
+        /**
+         * Affected chat member user identifier.
+         */
+        protected int              $userId,
+        /**
+         * Previous status of the chat member.
+         */
+        protected ChatMemberStatus $oldStatus,
+        /**
+         * New status of the chat member.
+         */
+        protected ChatMemberStatus $newStatus,
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
-        $this->oldStatus = $oldStatus;
-        $this->newStatus = $newStatus;
     }
 
     public static function fromArray(array $array): ChatEventMemberPromoted
@@ -72,8 +59,8 @@ class ChatEventMemberPromoted extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
+            '@type'      => static::TYPE_NAME,
+            'user_id'    => $this->userId,
             'old_status' => $this->oldStatus->typeSerialize(),
             'new_status' => $this->newStatus->typeSerialize(),
         ];

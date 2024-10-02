@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Authentication;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication code is delivered via Firebase Authentication to the official iOS application
+ * A digit-only authentication code is delivered via Firebase Authentication to the official iOS application.
  */
 class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeFirebaseIos';
 
-    /**
-     * Length of the code
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
-     *
-     * @var int
-     */
-    protected int $pushTimeout;
-
-    /**
-     * Receipt of successful application token validation to compare with receipt from push notification
-     *
-     * @var string
-     */
-    protected string $receipt;
-
-    public function __construct(string $receipt, int $pushTimeout, int $length)
-    {
+    public function __construct(
+        /**
+         * Receipt of successful application token validation to compare with receipt from push notification.
+         */
+        protected string $receipt,
+        /**
+         * Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds.
+         */
+        protected int    $pushTimeout,
+        /**
+         * Length of the code.
+         */
+        protected int    $length,
+    ) {
         parent::__construct();
-
-        $this->receipt = $receipt;
-        $this->pushTimeout = $pushTimeout;
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): AuthenticationCodeTypeFirebaseIos
@@ -72,10 +57,10 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'receipt' => $this->receipt,
+            '@type'        => static::TYPE_NAME,
+            'receipt'      => $this->receipt,
             'push_timeout' => $this->pushTimeout,
-            'length' => $this->length,
+            'length'       => $this->length,
         ];
     }
 }

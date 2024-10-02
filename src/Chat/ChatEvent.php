@@ -11,47 +11,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a chat event
+ * Represents a chat event.
  */
 class ChatEvent extends TdObject
 {
     public const TYPE_NAME = 'chatEvent';
 
-    /**
-     * The action
-     *
-     * @var ChatEventAction
-     */
-    protected ChatEventAction $action;
-
-    /**
-     * Point in time (Unix timestamp) when the event happened
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * Chat event identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Identifier of the user or chat who performed the action
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    public function __construct(int $id, int $date, MessageSender $memberId, ChatEventAction $action)
-    {
-        $this->id = $id;
-        $this->date = $date;
-        $this->memberId = $memberId;
-        $this->action = $action;
-    }
+    public function __construct(
+        /**
+         * Chat event identifier.
+         */
+        protected int             $id,
+        /**
+         * Point in time (Unix timestamp) when the event happened.
+         */
+        protected int             $date,
+        /**
+         * Identifier of the user or chat who performed the action.
+         */
+        protected MessageSender   $memberId,
+        /**
+         * The action.
+         */
+        protected ChatEventAction $action,
+    ) {}
 
     public static function fromArray(array $array): ChatEvent
     {
@@ -86,11 +69,11 @@ class ChatEvent extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'date' => $this->date,
+            '@type'     => static::TYPE_NAME,
+            'id'        => $this->id,
+            'date'      => $this->date,
             'member_id' => $this->memberId->typeSerialize(),
-            'action' => $this->action->typeSerialize(),
+            'action'    => $this->action->typeSerialize(),
         ];
     }
 }

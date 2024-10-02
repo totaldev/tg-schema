@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Keyboard;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that sends the user's phone number when pressed; available only in private chats
+ * A button that sends the user's phone number when pressed; available only in private chats.
  */
 class KeyboardButtonTypeRequestPhoneNumber extends KeyboardButtonType
 {

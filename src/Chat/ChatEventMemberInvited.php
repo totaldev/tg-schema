@@ -9,32 +9,23 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new chat member was invited
+ * A new chat member was invited.
  */
 class ChatEventMemberInvited extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberInvited';
 
-    /**
-     * New member status
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $status;
-
-    /**
-     * New member user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, ChatMemberStatus $status)
-    {
+    public function __construct(
+        /**
+         * New member user identifier.
+         */
+        protected int              $userId,
+        /**
+         * New member status.
+         */
+        protected ChatMemberStatus $status,
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
-        $this->status = $status;
     }
 
     public static function fromArray(array $array): ChatEventMemberInvited
@@ -58,9 +49,9 @@ class ChatEventMemberInvited extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'status' => $this->status->typeSerialize(),
+            'status'  => $this->status->typeSerialize(),
         ];
     }
 }

@@ -12,39 +12,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of downloaded files, found by a search
+ * Contains a list of downloaded files, found by a search.
  */
 class FoundFileDownloads extends TdObject
 {
     public const TYPE_NAME = 'foundFileDownloads';
 
-    /**
-     * The list of files
-     *
-     * @var FileDownload[]
-     */
-    protected array $files;
-
-    /**
-     * The offset for the next request. If empty, there are no more results
-     *
-     * @var string
-     */
-    protected string $nextOffset;
-
-    /**
-     * Total number of suitable files, ignoring offset
-     *
-     * @var DownloadedFileCounts
-     */
-    protected DownloadedFileCounts $totalCounts;
-
-    public function __construct(DownloadedFileCounts $totalCounts, array $files, string $nextOffset)
-    {
-        $this->totalCounts = $totalCounts;
-        $this->files = $files;
-        $this->nextOffset = $nextOffset;
-    }
+    public function __construct(
+        /**
+         * Total number of suitable files, ignoring offset.
+         */
+        protected DownloadedFileCounts $totalCounts,
+        /**
+         * The list of files.
+         *
+         * @var FileDownload[]
+         */
+        protected array                $files,
+        /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string               $nextOffset,
+    ) {}
 
     public static function fromArray(array $array): FoundFileDownloads
     {
@@ -73,10 +62,10 @@ class FoundFileDownloads extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'total_counts' => $this->totalCounts->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->files),
-            'next_offset' => $this->nextOffset,
+            'next_offset'  => $this->nextOffset,
         ];
     }
 }

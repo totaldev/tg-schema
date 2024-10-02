@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Group;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The best available video quality
+ * The best available video quality.
  */
 class GroupCallVideoQualityFull extends GroupCallVideoQuality
 {

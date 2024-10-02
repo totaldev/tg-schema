@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The username is invalid
+ * The username is invalid.
  */
 class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult
 {

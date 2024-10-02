@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Open;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib that a story is opened and is being viewed by the user
+ * Informs TDLib that a story is opened and is being viewed by the user.
  */
 class OpenStory extends TdFunction
 {
     public const TYPE_NAME = 'openStory';
 
-    /**
-     * The identifier of the story
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * The identifier of the sender of the opened story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-    }
+    public function __construct(
+        /**
+         * The identifier of the sender of the opened story.
+         */
+        protected int $storySenderChatId,
+        /**
+         * The identifier of the story.
+         */
+        protected int $storyId,
+    ) {}
 
     public static function fromArray(array $array): OpenStory
     {
@@ -57,9 +47,9 @@ class OpenStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

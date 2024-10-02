@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat unread_reaction_count has changed
+ * The chat unread_reaction_count has changed.
  */
 class UpdateChatUnreadReactionCount extends Update
 {
     public const TYPE_NAME = 'updateChatUnreadReactionCount';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The number of messages with unread reactions left in the chat
-     *
-     * @var int
-     */
-    protected int $unreadReactionCount;
-
-    public function __construct(int $chatId, int $unreadReactionCount)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * The number of messages with unread reactions left in the chat.
+         */
+        protected int $unreadReactionCount,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->unreadReactionCount = $unreadReactionCount;
     }
 
     public static function fromArray(array $array): UpdateChatUnreadReactionCount
@@ -58,8 +47,8 @@ class UpdateChatUnreadReactionCount extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
             'unread_reaction_count' => $this->unreadReactionCount,
         ];
     }

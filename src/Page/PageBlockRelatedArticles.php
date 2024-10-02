@@ -10,32 +10,25 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Related articles
+ * Related articles.
  */
 class PageBlockRelatedArticles extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockRelatedArticles';
 
-    /**
-     * List of related articles
-     *
-     * @var PageBlockRelatedArticle[]
-     */
-    protected array $articles;
-
-    /**
-     * Block header
-     *
-     * @var RichText
-     */
-    protected RichText $header;
-
-    public function __construct(RichText $header, array $articles)
-    {
+    public function __construct(
+        /**
+         * Block header.
+         */
+        protected RichText $header,
+        /**
+         * List of related articles.
+         *
+         * @var PageBlockRelatedArticle[]
+         */
+        protected array    $articles,
+    ) {
         parent::__construct();
-
-        $this->header = $header;
-        $this->articles = $articles;
     }
 
     public static function fromArray(array $array): PageBlockRelatedArticles
@@ -59,7 +52,7 @@ class PageBlockRelatedArticles extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'header' => $this->header->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->articles),
         ];

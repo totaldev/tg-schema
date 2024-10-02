@@ -7,26 +7,22 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A simple object containing a vector of strings; for testing only
+ * A simple object containing a vector of strings; for testing only.
  */
 class TestVectorString extends TdObject
 {
     public const TYPE_NAME = 'testVectorString';
 
-    /**
-     * Vector of strings
-     *
-     * @var string[]
-     */
-    protected array $value;
-
-    public function __construct(array $value)
-    {
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * Vector of strings.
+         *
+         * @var string[]
+         */
+        protected array $value
+    ) {}
 
     public static function fromArray(array $array): TestVectorString
     {

@@ -7,43 +7,29 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be
- * disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+ * disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached.
  */
 class ToggleSupergroupUsernameIsActive extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupUsernameIsActive';
 
-    /**
-     * Pass true to activate the username; pass false to disable it
-     *
-     * @var bool
-     */
-    protected bool $isActive;
-
-    /**
-     * Identifier of the supergroup or channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
-     * The username to change
-     *
-     * @var string
-     */
-    protected string $username;
-
-    public function __construct(int $supergroupId, string $username, bool $isActive)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->username = $username;
-        $this->isActive = $isActive;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup or channel.
+         */
+        protected int    $supergroupId,
+        /**
+         * The username to change.
+         */
+        protected string $username,
+        /**
+         * Pass true to activate the username; pass false to disable it.
+         */
+        protected bool   $isActive,
+    ) {}
 
     public static function fromArray(array $array): ToggleSupergroupUsernameIsActive
     {
@@ -72,10 +58,10 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
-            'username' => $this->username,
-            'is_active' => $this->isActive,
+            'username'      => $this->username,
+            'is_active'     => $this->isActive,
         ];
     }
 }

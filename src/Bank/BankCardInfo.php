@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about a bank card
+ * Information about a bank card.
  */
 class BankCardInfo extends TdObject
 {
     public const TYPE_NAME = 'bankCardInfo';
 
-    /**
-     * Actions that can be done with the bank card number
-     *
-     * @var BankCardActionOpenUrl[]
-     */
-    protected array $actions;
-
-    /**
-     * Title of the bank card description
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title, array $actions)
-    {
-        $this->title = $title;
-        $this->actions = $actions;
-    }
+    public function __construct(
+        /**
+         * Title of the bank card description.
+         */
+        protected string $title,
+        /**
+         * Actions that can be done with the bank card number.
+         *
+         * @var BankCardActionOpenUrl[]
+         */
+        protected array  $actions,
+    ) {}
 
     public static function fromArray(array $array): BankCardInfo
     {

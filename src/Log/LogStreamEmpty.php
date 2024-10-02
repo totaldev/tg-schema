@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Log;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The log is written nowhere
+ * The log is written nowhere.
  */
 class LogStreamEmpty extends LogStream
 {

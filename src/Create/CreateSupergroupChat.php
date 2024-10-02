@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an existing chat corresponding to a known supergroup or channel
+ * Returns an existing chat corresponding to a known supergroup or channel.
  */
 class CreateSupergroupChat extends TdFunction
 {
     public const TYPE_NAME = 'createSupergroupChat';
 
-    /**
-     * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-     *
-     * @var bool
-     */
-    protected bool $force;
-
-    /**
-     * Supergroup or channel identifier
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, bool $force)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->force = $force;
-    }
+    public function __construct(
+        /**
+         * Supergroup or channel identifier.
+         */
+        protected int  $supergroupId,
+        /**
+         * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
+         */
+        protected bool $force,
+    ) {}
 
     public static function fromArray(array $array): CreateSupergroupChat
     {
@@ -57,9 +47,9 @@ class CreateSupergroupChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
-            'force' => $this->force,
+            'force'         => $this->force,
         ];
     }
 }

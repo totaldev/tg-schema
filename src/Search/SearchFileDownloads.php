@@ -7,58 +7,36 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for files in the file download list or recently downloaded files from the list
+ * Searches for files in the file download list or recently downloaded files from the list.
  */
 class SearchFileDownloads extends TdFunction
 {
     public const TYPE_NAME = 'searchFileDownloads';
 
-    /**
-     * The maximum number of files to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-     *
-     * @var string
-     */
-    protected string $offset;
-
-    /**
-     * Pass true to search only for active downloads, including paused
-     *
-     * @var bool
-     */
-    protected bool $onlyActive;
-
-    /**
-     * Pass true to search only for completed downloads
-     *
-     * @var bool
-     */
-    protected bool $onlyCompleted;
-
-    /**
-     * Query to search for; may be empty to return all downloaded files
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query, bool $onlyActive, bool $onlyCompleted, string $offset, int $limit)
-    {
-        $this->query = $query;
-        $this->onlyActive = $onlyActive;
-        $this->onlyCompleted = $onlyCompleted;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Query to search for; may be empty to return all downloaded files.
+         */
+        protected string $query,
+        /**
+         * Pass true to search only for active downloads, including paused.
+         */
+        protected bool   $onlyActive,
+        /**
+         * Pass true to search only for completed downloads.
+         */
+        protected bool   $onlyCompleted,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
+        /**
+         * The maximum number of files to be returned.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchFileDownloads
     {
@@ -99,12 +77,12 @@ class SearchFileDownloads extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'only_active' => $this->onlyActive,
+            '@type'          => static::TYPE_NAME,
+            'query'          => $this->query,
+            'only_active'    => $this->onlyActive,
             'only_completed' => $this->onlyCompleted,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            'offset'         => $this->offset,
+            'limit'          => $this->limit,
         ];
     }
 }

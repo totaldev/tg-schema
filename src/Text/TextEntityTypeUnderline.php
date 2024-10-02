@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An underlined text
+ * An underlined text.
  */
 class TextEntityTypeUnderline extends TextEntityType
 {

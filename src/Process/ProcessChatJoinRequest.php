@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Process;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Handles a pending join request in a chat
+ * Handles a pending join request in a chat.
  */
 class ProcessChatJoinRequest extends TdFunction
 {
     public const TYPE_NAME = 'processChatJoinRequest';
 
-    /**
-     * Pass true to approve the request; pass false to decline it
-     *
-     * @var bool
-     */
-    protected bool $approve;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the user that sent the request
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $chatId, int $userId, bool $approve)
-    {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->approve = $approve;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * Identifier of the user that sent the request.
+         */
+        protected int  $userId,
+        /**
+         * Pass true to approve the request; pass false to decline it.
+         */
+        protected bool $approve,
+    ) {}
 
     public static function fromArray(array $array): ProcessChatJoinRequest
     {
@@ -71,7 +57,7 @@ class ProcessChatJoinRequest extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
             'user_id' => $this->userId,
             'approve' => $this->approve,

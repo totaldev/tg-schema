@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Vector;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a vector path command
+ * Represents a vector path command.
  */
 class VectorPathCommand extends TdObject
 {
     public const TYPE_NAME = 'VectorPathCommand';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): VectorPathCommand
     {

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Clears the list of recently used stickers
+ * Clears the list of recently used stickers.
  */
 class ClearRecentStickers extends TdFunction
 {
     public const TYPE_NAME = 'clearRecentStickers';
 
-    /**
-     * Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
-     *
-     * @var bool
-     */
-    protected bool $isAttached;
-
-    public function __construct(bool $isAttached)
-    {
-        $this->isAttached = $isAttached;
-    }
+    public function __construct(
+        /**
+         * Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers.
+         */
+        protected bool $isAttached
+    ) {}
 
     public static function fromArray(array $array): ClearRecentStickers
     {
@@ -43,7 +37,7 @@ class ClearRecentStickers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'is_attached' => $this->isAttached,
         ];
     }

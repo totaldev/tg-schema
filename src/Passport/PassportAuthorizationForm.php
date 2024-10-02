@@ -10,39 +10,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a Telegram Passport authorization form that was requested
+ * Contains information about a Telegram Passport authorization form that was requested.
  */
 class PassportAuthorizationForm extends TdObject
 {
     public const TYPE_NAME = 'passportAuthorizationForm';
 
-    /**
-     * Unique identifier of the authorization form
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * URL for the privacy policy of the service; may be empty
-     *
-     * @var string
-     */
-    protected string $privacyPolicyUrl;
-
-    /**
-     * Telegram Passport elements that must be provided to complete the form
-     *
-     * @var PassportRequiredElement[]
-     */
-    protected array $requiredElements;
-
-    public function __construct(int $id, array $requiredElements, string $privacyPolicyUrl)
-    {
-        $this->id = $id;
-        $this->requiredElements = $requiredElements;
-        $this->privacyPolicyUrl = $privacyPolicyUrl;
-    }
+    public function __construct(
+        /**
+         * Unique identifier of the authorization form.
+         */
+        protected int    $id,
+        /**
+         * Telegram Passport elements that must be provided to complete the form.
+         *
+         * @var PassportRequiredElement[]
+         */
+        protected array  $requiredElements,
+        /**
+         * URL for the privacy policy of the service; may be empty.
+         */
+        protected string $privacyPolicyUrl,
+    ) {}
 
     public static function fromArray(array $array): PassportAuthorizationForm
     {
@@ -71,8 +60,8 @@ class PassportAuthorizationForm extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            '@type'              => static::TYPE_NAME,
+            'id'                 => $this->id,
             array_map(fn($x) => $x->typeSerialize(), $this->requiredElements),
             'privacy_policy_url' => $this->privacyPolicyUrl,
         ];

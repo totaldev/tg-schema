@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
+ * Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly.
  */
 class GetChatFolderChatCount extends TdFunction
 {
     public const TYPE_NAME = 'getChatFolderChatCount';
 
-    /**
-     * The new chat folder
-     *
-     * @var ChatFolder
-     */
-    protected ChatFolder $folder;
-
-    public function __construct(ChatFolder $folder)
-    {
-        $this->folder = $folder;
-    }
+    public function __construct(
+        /**
+         * The new chat folder.
+         */
+        protected ChatFolder $folder
+    ) {}
 
     public static function fromArray(array $array): GetChatFolderChatCount
     {
@@ -44,7 +39,7 @@ class GetChatFolderChatCount extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'folder' => $this->folder->typeSerialize(),
         ];
     }

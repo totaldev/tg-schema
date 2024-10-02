@@ -6,56 +6,32 @@
 
 namespace Totaldev\TgSchema\Target;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat needs to be chosen by the user among chats of the specified types
+ * The chat needs to be chosen by the user among chats of the specified types.
  */
 class TargetChatChosen extends TargetChat
 {
     public const TYPE_NAME = 'targetChatChosen';
 
-    /**
-     * True, if private chats with other bots are allowed
-     *
-     * @var bool
-     */
-    protected bool $allowBotChats;
-
-    /**
-     * True, if channel chats are allowed
-     *
-     * @var bool
-     */
-    protected bool $allowChannelChats;
-
-    /**
-     * True, if basic group and supergroup chats are allowed
-     *
-     * @var bool
-     */
-    protected bool $allowGroupChats;
-
-    /**
-     * True, if private chats with ordinary users are allowed
-     *
-     * @var bool
-     */
-    protected bool $allowUserChats;
-
     public function __construct(
-        bool $allowUserChats,
-        bool $allowBotChats,
-        bool $allowGroupChats,
-        bool $allowChannelChats,
-    )
-    {
+        /**
+         * True, if private chats with ordinary users are allowed.
+         */
+        protected bool $allowUserChats,
+        /**
+         * True, if private chats with other bots are allowed.
+         */
+        protected bool $allowBotChats,
+        /**
+         * True, if basic group and supergroup chats are allowed.
+         */
+        protected bool $allowGroupChats,
+        /**
+         * True, if channel chats are allowed.
+         */
+        protected bool $allowChannelChats,
+    ) {
         parent::__construct();
-
-        $this->allowUserChats = $allowUserChats;
-        $this->allowBotChats = $allowBotChats;
-        $this->allowGroupChats = $allowGroupChats;
-        $this->allowChannelChats = $allowChannelChats;
     }
 
     public static function fromArray(array $array): TargetChatChosen
@@ -91,10 +67,10 @@ class TargetChatChosen extends TargetChat
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'allow_user_chats' => $this->allowUserChats,
-            'allow_bot_chats' => $this->allowBotChats,
-            'allow_group_chats' => $this->allowGroupChats,
+            '@type'               => static::TYPE_NAME,
+            'allow_user_chats'    => $this->allowUserChats,
+            'allow_bot_chats'     => $this->allowBotChats,
+            'allow_group_chats'   => $this->allowGroupChats,
             'allow_channel_chats' => $this->allowChannelChats,
         ];
     }

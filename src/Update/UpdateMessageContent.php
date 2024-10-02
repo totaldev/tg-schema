@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Message\MessageContent;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The message content has changed
+ * The message content has changed.
  */
 class UpdateMessageContent extends Update
 {
     public const TYPE_NAME = 'updateMessageContent';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * New message content
-     *
-     * @var MessageContent
-     */
-    protected MessageContent $newContent;
-
-    public function __construct(int $chatId, int $messageId, MessageContent $newContent)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int            $messageId,
+        /**
+         * New message content.
+         */
+        protected MessageContent $newContent,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->newContent = $newContent;
     }
 
     public static function fromArray(array $array): UpdateMessageContent
@@ -73,9 +60,9 @@ class UpdateMessageContent extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
+            'message_id'  => $this->messageId,
             'new_content' => $this->newContent->typeSerialize(),
         ];
     }

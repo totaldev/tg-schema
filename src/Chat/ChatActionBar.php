@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes actions which must be possible to do through a chat action bar
+ * Describes actions which must be possible to do through a chat action bar.
  */
 class ChatActionBar extends TdObject
 {
     public const TYPE_NAME = 'ChatActionBar';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatActionBar
     {

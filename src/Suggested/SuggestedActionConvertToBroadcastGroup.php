@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Suggested;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Suggests the user to convert specified supergroup to a broadcast group
+ * Suggests the user to convert specified supergroup to a broadcast group.
  */
 class SuggestedActionConvertToBroadcastGroup extends SuggestedAction
 {
     public const TYPE_NAME = 'suggestedActionConvertToBroadcastGroup';
 
-    /**
-     * Supergroup identifier
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId)
-    {
+    public function __construct(
+        /**
+         * Supergroup identifier.
+         */
+        protected int $supergroupId
+    ) {
         parent::__construct();
-
-        $this->supergroupId = $supergroupId;
     }
 
     public static function fromArray(array $array): SuggestedActionConvertToBroadcastGroup
@@ -44,7 +37,7 @@ class SuggestedActionConvertToBroadcastGroup extends SuggestedAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
     }

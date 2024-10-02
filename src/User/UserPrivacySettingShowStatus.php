@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A privacy setting for managing whether the user's online status is visible
+ * A privacy setting for managing whether the user's online status is visible.
  */
 class UserPrivacySettingShowStatus extends UserPrivacySetting
 {

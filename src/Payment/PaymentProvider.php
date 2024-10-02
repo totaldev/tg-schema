@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Payment;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a payment provider
+ * Contains information about a payment provider.
  */
 class PaymentProvider extends TdObject
 {
     public const TYPE_NAME = 'PaymentProvider';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PaymentProvider
     {

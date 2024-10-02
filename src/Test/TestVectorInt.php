@@ -7,26 +7,22 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A simple object containing a vector of numbers; for testing only
+ * A simple object containing a vector of numbers; for testing only.
  */
 class TestVectorInt extends TdObject
 {
     public const TYPE_NAME = 'testVectorInt';
 
-    /**
-     * Vector of numbers
-     *
-     * @var int[]
-     */
-    protected array $value;
-
-    public function __construct(array $value)
-    {
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * Vector of numbers.
+         *
+         * @var int[]
+         */
+        protected array $value
+    ) {}
 
     public static function fromArray(array $array): TestVectorInt
     {

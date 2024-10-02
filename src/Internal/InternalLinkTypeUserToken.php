@@ -6,27 +6,21 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+ * The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call
+ * createPrivateChat and open the chat.
  */
 class InternalLinkTypeUserToken extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeUserToken';
 
-    /**
-     * The token
-     *
-     * @var string
-     */
-    protected string $token;
-
-    public function __construct(string $token)
-    {
+    public function __construct(
+        /**
+         * The token.
+         */
+        protected string $token
+    ) {
         parent::__construct();
-
-        $this->token = $token;
     }
 
     public static function fromArray(array $array): InternalLinkTypeUserToken

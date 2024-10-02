@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Device;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A token for Microsoft Push Notification Service
+ * A token for Microsoft Push Notification Service.
  */
 class DeviceTokenMicrosoftPush extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenMicrosoftPush';
 
-    /**
-     * Push notification channel URI; may be empty to deregister a device
-     *
-     * @var string
-     */
-    protected string $channelUri;
-
-    public function __construct(string $channelUri)
-    {
+    public function __construct(
+        /**
+         * Push notification channel URI; may be empty to deregister a device.
+         */
+        protected string $channelUri
+    ) {
         parent::__construct();
-
-        $this->channelUri = $channelUri;
     }
 
     public static function fromArray(array $array): DeviceTokenMicrosoftPush
@@ -44,7 +37,7 @@ class DeviceTokenMicrosoftPush extends DeviceToken
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'channel_uri' => $this->channelUri,
         ];
     }

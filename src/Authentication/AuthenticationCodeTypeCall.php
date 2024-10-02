@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Authentication;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication code is delivered via a phone call to the specified phone number
+ * A digit-only authentication code is delivered via a phone call to the specified phone number.
  */
 class AuthenticationCodeTypeCall extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeCall';
 
-    /**
-     * Length of the code
-     *
-     * @var int
-     */
-    protected int $length;
-
-    public function __construct(int $length)
-    {
+    public function __construct(
+        /**
+         * Length of the code.
+         */
+        protected int $length
+    ) {
         parent::__construct();
-
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): AuthenticationCodeTypeCall
@@ -44,7 +37,7 @@ class AuthenticationCodeTypeCall extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'length' => $this->length,
         ];
     }

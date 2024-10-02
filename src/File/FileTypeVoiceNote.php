@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a voice note
+ * The file is a voice note.
  */
 class FileTypeVoiceNote extends FileType
 {

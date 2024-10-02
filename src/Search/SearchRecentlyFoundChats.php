@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+ * Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request.
  */
 class SearchRecentlyFoundChats extends TdFunction
 {
     public const TYPE_NAME = 'searchRecentlyFoundChats';
 
-    /**
-     * The maximum number of chats to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query, int $limit)
-    {
-        $this->query = $query;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query,
+        /**
+         * The maximum number of chats to be returned.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchRecentlyFoundChats
     {

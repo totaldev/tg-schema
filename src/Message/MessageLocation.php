@@ -10,63 +10,35 @@ use Totaldev\TgSchema\Location\Location;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message with a location
+ * A message with a location.
  */
 class MessageLocation extends MessageContent
 {
     public const TYPE_NAME = 'messageLocation';
 
-    /**
-     * Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
-     *
-     * @var int
-     */
-    protected int $expiresIn;
-
-    /**
-     * For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-     *
-     * @var int
-     */
-    protected int $heading;
-
-    /**
-     * Time relative to the message send date, for which the location can be updated, in seconds
-     *
-     * @var int
-     */
-    protected int $livePeriod;
-
-    /**
-     * The location description
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available
-     * only to the message sender
-     *
-     * @var int
-     */
-    protected int $proximityAlertRadius;
-
     public function __construct(
-        Location $location,
-        int      $livePeriod,
-        int      $expiresIn,
-        int      $heading,
-        int      $proximityAlertRadius,
-    )
-    {
+        /**
+         * The location description.
+         */
+        protected Location $location,
+        /**
+         * Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever.
+         */
+        protected int      $livePeriod,
+        /**
+         * Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes.
+         */
+        protected int      $expiresIn,
+        /**
+         * For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown.
+         */
+        protected int      $heading,
+        /**
+         * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender.
+         */
+        protected int      $proximityAlertRadius,
+    ) {
         parent::__construct();
-
-        $this->location = $location;
-        $this->livePeriod = $livePeriod;
-        $this->expiresIn = $expiresIn;
-        $this->heading = $heading;
-        $this->proximityAlertRadius = $proximityAlertRadius;
     }
 
     public static function fromArray(array $array): MessageLocation
@@ -108,11 +80,11 @@ class MessageLocation extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
-            'live_period' => $this->livePeriod,
-            'expires_in' => $this->expiresIn,
-            'heading' => $this->heading,
+            '@type'                  => static::TYPE_NAME,
+            'location'               => $this->location->typeSerialize(),
+            'live_period'            => $this->livePeriod,
+            'expires_in'             => $this->expiresIn,
+            'heading'                => $this->heading,
             'proximity_alert_radius' => $this->proximityAlertRadius,
         ];
     }

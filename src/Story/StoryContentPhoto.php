@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A photo story
+ * A photo story.
  */
 class StoryContentPhoto extends StoryContent
 {
     public const TYPE_NAME = 'storyContentPhoto';
 
-    /**
-     * The photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    public function __construct(Photo $photo)
-    {
+    public function __construct(
+        /**
+         * The photo.
+         */
+        protected Photo $photo
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): StoryContentPhoto

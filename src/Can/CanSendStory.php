@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Can;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+ * Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats.
  */
 class CanSendStory extends TdFunction
 {
     public const TYPE_NAME = 'canSendStory';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): CanSendStory
     {
@@ -43,7 +37,7 @@ class CanSendStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

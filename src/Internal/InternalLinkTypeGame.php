@@ -6,36 +6,25 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send
- * the game, and then call sendMessage with inputMessageGame
+ * the game, and then call sendMessage with inputMessageGame.
  */
 class InternalLinkTypeGame extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeGame';
 
-    /**
-     * Username of the bot that owns the game
-     *
-     * @var string
-     */
-    protected string $botUsername;
-
-    /**
-     * Short name of the game
-     *
-     * @var string
-     */
-    protected string $gameShortName;
-
-    public function __construct(string $botUsername, string $gameShortName)
-    {
+    public function __construct(
+        /**
+         * Username of the bot that owns the game.
+         */
+        protected string $botUsername,
+        /**
+         * Short name of the game.
+         */
+        protected string $gameShortName,
+    ) {
         parent::__construct();
-
-        $this->botUsername = $botUsername;
-        $this->gameShortName = $gameShortName;
     }
 
     public static function fromArray(array $array): InternalLinkTypeGame
@@ -59,8 +48,8 @@ class InternalLinkTypeGame extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_username' => $this->botUsername,
+            '@type'           => static::TYPE_NAME,
+            'bot_username'    => $this->botUsername,
             'game_short_name' => $this->gameShortName,
         ];
     }

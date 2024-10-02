@@ -12,39 +12,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the caption of an inline message sent via a bot; for bots only
+ * Edits the caption of an inline message sent via a bot; for bots only.
  */
 class EditInlineMessageCaption extends TdFunction
 {
     public const TYPE_NAME = 'editInlineMessageCaption';
 
-    /**
-     * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * Inline message identifier
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
-     * The new message reply markup; pass null if none
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    public function __construct(string $inlineMessageId, ReplyMarkup $replyMarkup, FormattedText $caption)
-    {
-        $this->inlineMessageId = $inlineMessageId;
-        $this->replyMarkup = $replyMarkup;
-        $this->caption = $caption;
-    }
+    public function __construct(
+        /**
+         * Inline message identifier.
+         */
+        protected string        $inlineMessageId,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ReplyMarkup   $replyMarkup,
+        /**
+         * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters.
+         */
+        protected FormattedText $caption,
+        /**
+         * Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages.
+         */
+        protected bool          $showCaptionAboveMedia,
+    ) {}
 
     public static function fromArray(array $array): EditInlineMessageCaption
     {
@@ -52,6 +43,7 @@ class EditInlineMessageCaption extends TdFunction
             $array['inline_message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['show_caption_above_media'],
         );
     }
 
@@ -70,13 +62,19 @@ class EditInlineMessageCaption extends TdFunction
         return $this->replyMarkup;
     }
 
+    public function getShowCaptionAboveMedia(): bool
+    {
+        return $this->showCaptionAboveMedia;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
+            '@type'                    => static::TYPE_NAME,
+            'inline_message_id'        => $this->inlineMessageId,
+            'reply_markup'             => $this->replyMarkup->typeSerialize(),
+            'caption'                  => $this->caption->typeSerialize(),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }
 }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The messages was exported from a group chat
+ * The messages were exported from a group chat.
  */
 class MessageFileTypeGroup extends MessageFileType
 {
     public const TYPE_NAME = 'messageFileTypeGroup';
 
-    /**
-     * Title of the group chat; may be empty if unrecognized
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * Title of the group chat; may be empty if unrecognized.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): MessageFileTypeGroup

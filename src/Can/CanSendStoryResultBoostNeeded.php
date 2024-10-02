@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+ * The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat.
  */
 class CanSendStoryResultBoostNeeded extends CanSendStoryResult
 {

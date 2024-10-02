@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+ * Checks the authentication of an email address. Works only when the current authorization state is authorizationStateWaitEmailCode.
  */
 class CheckAuthenticationEmailCode extends TdFunction
 {
     public const TYPE_NAME = 'checkAuthenticationEmailCode';
 
-    /**
-     * Email address authentication to check
-     *
-     * @var EmailAddressAuthentication
-     */
-    protected EmailAddressAuthentication $code;
-
-    public function __construct(EmailAddressAuthentication $code)
-    {
-        $this->code = $code;
-    }
+    public function __construct(
+        /**
+         * Email address authentication to check.
+         */
+        protected EmailAddressAuthentication $code
+    ) {}
 
     public static function fromArray(array $array): CheckAuthenticationEmailCode
     {
@@ -45,7 +40,7 @@ class CheckAuthenticationEmailCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code->typeSerialize(),
+            'code'  => $this->code->typeSerialize(),
         ];
     }
 }

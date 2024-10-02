@@ -10,39 +10,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a part of the text that needs to be formatted in some unusual way
+ * Represents a part of the text that needs to be formatted in some unusual way.
  */
 class TextEntity extends TdObject
 {
     public const TYPE_NAME = 'textEntity';
 
-    /**
-     * Length of the entity, in UTF-16 code units
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Offset of the entity, in UTF-16 code units
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
-     * Type of the entity
-     *
-     * @var TextEntityType
-     */
-    protected TextEntityType $type;
-
-    public function __construct(int $offset, int $length, TextEntityType $type)
-    {
-        $this->offset = $offset;
-        $this->length = $length;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Offset of the entity, in UTF-16 code units.
+         */
+        protected int            $offset,
+        /**
+         * Length of the entity, in UTF-16 code units.
+         */
+        protected int            $length,
+        /**
+         * Type of the entity.
+         */
+        protected TextEntityType $type,
+    ) {}
 
     public static function fromArray(array $array): TextEntity
     {
@@ -71,10 +58,10 @@ class TextEntity extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'offset' => $this->offset,
             'length' => $this->length,
-            'type' => $this->type->typeSerialize(),
+            'type'   => $this->type->typeSerialize(),
         ];
     }
 }

@@ -9,32 +9,23 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat permissions was changed
+ * The chat permissions were changed.
  */
 class ChatEventPermissionsChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventPermissionsChanged';
 
-    /**
-     * New chat permissions
-     *
-     * @var ChatPermissions
-     */
-    protected ChatPermissions $newPermissions;
-
-    /**
-     * Previous chat permissions
-     *
-     * @var ChatPermissions
-     */
-    protected ChatPermissions $oldPermissions;
-
-    public function __construct(ChatPermissions $oldPermissions, ChatPermissions $newPermissions)
-    {
+    public function __construct(
+        /**
+         * Previous chat permissions.
+         */
+        protected ChatPermissions $oldPermissions,
+        /**
+         * New chat permissions.
+         */
+        protected ChatPermissions $newPermissions,
+    ) {
         parent::__construct();
-
-        $this->oldPermissions = $oldPermissions;
-        $this->newPermissions = $newPermissions;
     }
 
     public static function fromArray(array $array): ChatEventPermissionsChanged
@@ -58,7 +49,7 @@ class ChatEventPermissionsChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'old_permissions' => $this->oldPermissions->typeSerialize(),
             'new_permissions' => $this->newPermissions->typeSerialize(),
         ];

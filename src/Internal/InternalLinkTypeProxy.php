@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Proxy\ProxyType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
+ * The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy.
  */
 class InternalLinkTypeProxy extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeProxy';
 
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Type of the proxy
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    public function __construct(string $server, int $port, ProxyType $type)
-    {
+    public function __construct(
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Type of the proxy.
+         */
+        protected ProxyType $type,
+    ) {
         parent::__construct();
-
-        $this->server = $server;
-        $this->port = $port;
-        $this->type = $type;
     }
 
     public static function fromArray(array $array): InternalLinkTypeProxy
@@ -73,10 +60,10 @@ class InternalLinkTypeProxy extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'server' => $this->server,
-            'port' => $this->port,
-            'type' => $this->type->typeSerialize(),
+            'port'   => $this->port,
+            'type'   => $this->type->typeSerialize(),
         ];
     }
 }

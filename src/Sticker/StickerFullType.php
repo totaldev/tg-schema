@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Sticker;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains full information about sticker type
+ * Contains full information about sticker type.
  */
 class StickerFullType extends TdObject
 {
     public const TYPE_NAME = 'StickerFullType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StickerFullType
     {

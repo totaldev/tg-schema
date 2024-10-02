@@ -11,48 +11,31 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message sender activity in the chat has changed
+ * A message sender activity in the chat has changed.
  */
 class UpdateChatAction extends Update
 {
     public const TYPE_NAME = 'updateChatAction';
 
-    /**
-     * The action
-     *
-     * @var ChatAction
-     */
-    protected ChatAction $action;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * If not 0, a message thread identifier in which the action was performed
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
-     * Identifier of a message sender performing the action
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    public function __construct(int $chatId, int $messageThreadId, MessageSender $senderId, ChatAction $action)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * If not 0, the message thread identifier in which the action was performed.
+         */
+        protected int           $messageThreadId,
+        /**
+         * Identifier of a message sender performing the action.
+         */
+        protected MessageSender $senderId,
+        /**
+         * The action.
+         */
+        protected ChatAction    $action,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-        $this->senderId = $senderId;
-        $this->action = $action;
     }
 
     public static function fromArray(array $array): UpdateChatAction
@@ -88,11 +71,11 @@ class UpdateChatAction extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'action' => $this->action->typeSerialize(),
+            'sender_id'         => $this->senderId->typeSerialize(),
+            'action'            => $this->action->typeSerialize(),
         ];
     }
 }

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
+ * Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
  */
 class RemoveNotificationGroup extends TdFunction
 {
     public const TYPE_NAME = 'removeNotificationGroup';
 
-    /**
-     * The maximum identifier of removed notifications
-     *
-     * @var int
-     */
-    protected int $maxNotificationId;
-
-    /**
-     * Notification group identifier
-     *
-     * @var int
-     */
-    protected int $notificationGroupId;
-
-    public function __construct(int $notificationGroupId, int $maxNotificationId)
-    {
-        $this->notificationGroupId = $notificationGroupId;
-        $this->maxNotificationId = $maxNotificationId;
-    }
+    public function __construct(
+        /**
+         * Notification group identifier.
+         */
+        protected int $notificationGroupId,
+        /**
+         * The maximum identifier of removed notifications.
+         */
+        protected int $maxNotificationId,
+    ) {}
 
     public static function fromArray(array $array): RemoveNotificationGroup
     {
@@ -57,9 +47,9 @@ class RemoveNotificationGroup extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'notification_group_id' => $this->notificationGroupId,
-            'max_notification_id' => $this->maxNotificationId,
+            'max_notification_id'   => $this->maxNotificationId,
         ];
     }
 }

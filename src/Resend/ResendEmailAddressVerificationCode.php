@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Resend;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Resends the code to verify an email address to be added to a user's Telegram Passport
+ * Resends the code to verify an email address to be added to a user's Telegram Passport.
  */
 class ResendEmailAddressVerificationCode extends TdFunction
 {
     public const TYPE_NAME = 'resendEmailAddressVerificationCode';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResendEmailAddressVerificationCode
     {

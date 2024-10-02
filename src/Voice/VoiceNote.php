@@ -12,62 +12,34 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio
- * channel
+ * Describes a voice note.
  */
 class VoiceNote extends TdObject
 {
     public const TYPE_NAME = 'voiceNote';
 
-    /**
-     * Duration of the voice note, in seconds; as defined by the sender
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * MIME type of the file; as defined by the sender
-     *
-     * @var string
-     */
-    protected string $mimeType;
-
-    /**
-     * Result of speech recognition in the voice note; may be null
-     *
-     * @var SpeechRecognitionResult|null
-     */
-    protected ?SpeechRecognitionResult $speechRecognitionResult;
-
-    /**
-     * File containing the voice note
-     *
-     * @var File
-     */
-    protected File $voice;
-
-    /**
-     * A waveform representation of the voice note in 5-bit format
-     *
-     * @var string
-     */
-    protected string $waveform;
-
     public function __construct(
-        int                      $duration,
-        string                   $waveform,
-        string                   $mimeType,
-        ?SpeechRecognitionResult $speechRecognitionResult,
-        File                     $voice,
-    )
-    {
-        $this->duration = $duration;
-        $this->waveform = $waveform;
-        $this->mimeType = $mimeType;
-        $this->speechRecognitionResult = $speechRecognitionResult;
-        $this->voice = $voice;
-    }
+        /**
+         * Duration of the voice note, in seconds; as defined by the sender.
+         */
+        protected int                      $duration,
+        /**
+         * A waveform representation of the voice note in 5-bit format.
+         */
+        protected string                   $waveform,
+        /**
+         * MIME type of the file; as defined by the sender. Usually, one of "audio/ogg" for Opus in an OGG container, "audio/mpeg" for an MP3 audio, or "audio/mp4" for an M4A audio.
+         */
+        protected string                   $mimeType,
+        /**
+         * Result of speech recognition in the voice note; may be null.
+         */
+        protected ?SpeechRecognitionResult $speechRecognitionResult,
+        /**
+         * File containing the voice note.
+         */
+        protected File                     $voice,
+    ) {}
 
     public static function fromArray(array $array): VoiceNote
     {
@@ -75,7 +47,7 @@ class VoiceNote extends TdObject
             $array['duration'],
             $array['waveform'],
             $array['mime_type'],
-            (isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null),
+            isset($array['speech_recognition_result']) ? TdSchemaRegistry::fromArray($array['speech_recognition_result']) : null,
             TdSchemaRegistry::fromArray($array['voice']),
         );
     }
@@ -108,12 +80,12 @@ class VoiceNote extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'duration' => $this->duration,
-            'waveform' => $this->waveform,
-            'mime_type' => $this->mimeType,
+            '@type'                     => static::TYPE_NAME,
+            'duration'                  => $this->duration,
+            'waveform'                  => $this->waveform,
+            'mime_type'                 => $this->mimeType,
             'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
-            'voice' => $this->voice->typeSerialize(),
+            'voice'                     => $this->voice->typeSerialize(),
         ];
     }
 }

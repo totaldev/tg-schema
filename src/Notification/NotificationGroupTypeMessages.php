@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
+ * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages.
  */
 class NotificationGroupTypeMessages extends NotificationGroupType
 {

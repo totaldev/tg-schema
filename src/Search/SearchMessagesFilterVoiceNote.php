@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only voice note messages
+ * Returns only voice note messages.
  */
 class SearchMessagesFilterVoiceNote extends SearchMessagesFilter
 {

@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with a poll
+ * A message with a poll.
  */
 class PushMessageContentPoll extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentPoll';
 
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * True, if the poll is regular and not in quiz mode
-     *
-     * @var bool
-     */
-    protected bool $isRegular;
-
-    /**
-     * Poll question
-     *
-     * @var string
-     */
-    protected string $question;
-
-    public function __construct(string $question, bool $isRegular, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Poll question.
+         */
+        protected string $question,
+        /**
+         * True, if the poll is regular and not in quiz mode.
+         */
+        protected bool   $isRegular,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
+    ) {
         parent::__construct();
-
-        $this->question = $question;
-        $this->isRegular = $isRegular;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentPoll
@@ -72,10 +57,10 @@ class PushMessageContentPoll extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'question' => $this->question,
+            '@type'      => static::TYPE_NAME,
+            'question'   => $this->question,
             'is_regular' => $this->isRegular,
-            'is_pinned' => $this->isPinned,
+            'is_pinned'  => $this->isPinned,
         ];
     }
 }

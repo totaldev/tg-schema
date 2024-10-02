@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call was ended before the conversation started. It was canceled by the caller or missed by the other party
+ * The call was ended before the conversation started. It was canceled by the caller or missed by the other party.
  */
 class CallDiscardReasonMissed extends CallDiscardReason
 {

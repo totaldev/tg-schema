@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Forum\ForumTopicInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A forum topic was deleted
+ * A forum topic was deleted.
  */
 class ChatEventForumTopicDeleted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventForumTopicDeleted';
 
-    /**
-     * Information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $topicInfo;
-
-    public function __construct(ForumTopicInfo $topicInfo)
-    {
+    public function __construct(
+        /**
+         * Information about the topic.
+         */
+        protected ForumTopicInfo $topicInfo
+    ) {
         parent::__construct();
-
-        $this->topicInfo = $topicInfo;
     }
 
     public static function fromArray(array $array): ChatEventForumTopicDeleted
@@ -45,7 +40,7 @@ class ChatEventForumTopicDeleted extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'topic_info' => $this->topicInfo->typeSerialize(),
         ];
     }

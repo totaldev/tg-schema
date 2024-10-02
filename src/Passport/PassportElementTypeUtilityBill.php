@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Passport;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A Telegram Passport element containing the user's utility bill
+ * A Telegram Passport element containing the user's utility bill.
  */
 class PassportElementTypeUtilityBill extends PassportElementType
 {

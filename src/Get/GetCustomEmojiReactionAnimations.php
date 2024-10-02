@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns TGS stickers with generic animations for custom emoji reactions
+ * Returns TGS stickers with generic animations for custom emoji reactions.
  */
 class GetCustomEmojiReactionAnimations extends TdFunction
 {
     public const TYPE_NAME = 'getCustomEmojiReactionAnimations';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetCustomEmojiReactionAnimations
     {

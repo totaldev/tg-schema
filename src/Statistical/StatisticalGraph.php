@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Statistical;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a statistical graph
+ * Describes a statistical graph.
  */
 class StatisticalGraph extends TdObject
 {
     public const TYPE_NAME = 'StatisticalGraph';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StatisticalGraph
     {

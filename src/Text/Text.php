@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Text;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains some text
+ * Contains some text.
  */
 class Text extends TdObject
 {
     public const TYPE_NAME = 'text';
 
-    /**
-     * Text
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text)
-    {
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected string $text
+    ) {}
 
     public static function fromArray(array $array): Text
     {
@@ -44,7 +38,7 @@ class Text extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            'text'  => $this->text,
         ];
     }
 }

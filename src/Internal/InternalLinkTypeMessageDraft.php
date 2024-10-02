@@ -11,32 +11,23 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input
- * field
+ * field.
  */
 class InternalLinkTypeMessageDraft extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeMessageDraft';
 
-    /**
-     * True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
-     *
-     * @var bool
-     */
-    protected bool $containsLink;
-
-    /**
-     * Message draft text
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    public function __construct(FormattedText $text, bool $containsLink)
-    {
+    public function __construct(
+        /**
+         * Message draft text.
+         */
+        protected FormattedText $text,
+        /**
+         * True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected.
+         */
+        protected bool          $containsLink,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->containsLink = $containsLink;
     }
 
     public static function fromArray(array $array): InternalLinkTypeMessageDraft
@@ -60,8 +51,8 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'text'          => $this->text->typeSerialize(),
             'contains_link' => $this->containsLink,
         ];
     }

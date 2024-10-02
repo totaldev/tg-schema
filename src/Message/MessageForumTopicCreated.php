@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Forum\ForumTopicIcon;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A forum topic has been created
+ * A forum topic has been created.
  */
 class MessageForumTopicCreated extends MessageContent
 {
     public const TYPE_NAME = 'messageForumTopicCreated';
 
-    /**
-     * Icon of the topic
-     *
-     * @var ForumTopicIcon
-     */
-    protected ForumTopicIcon $icon;
-
-    /**
-     * Name of the topic
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name, ForumTopicIcon $icon)
-    {
+    public function __construct(
+        /**
+         * Name of the topic.
+         */
+        protected string         $name,
+        /**
+         * Icon of the topic.
+         */
+        protected ForumTopicIcon $icon,
+    ) {
         parent::__construct();
-
-        $this->name = $name;
-        $this->icon = $icon;
     }
 
     public static function fromArray(array $array): MessageForumTopicCreated
@@ -60,8 +51,8 @@ class MessageForumTopicCreated extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'icon' => $this->icon->typeSerialize(),
+            'name'  => $this->name,
+            'icon'  => $this->icon->typeSerialize(),
         ];
     }
 }

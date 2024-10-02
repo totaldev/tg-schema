@@ -10,39 +10,30 @@ use Totaldev\TgSchema\Chat\ChatJoinRequestsInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat pending join requests were changed
+ * The chat pending join requests were changed.
  */
 class UpdateChatPendingJoinRequests extends Update
 {
     public const TYPE_NAME = 'updateChatPendingJoinRequests';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new data about pending join requests; may be null
-     *
-     * @var ChatJoinRequestsInfo|null
-     */
-    protected ?ChatJoinRequestsInfo $pendingJoinRequests;
-
-    public function __construct(int $chatId, ?ChatJoinRequestsInfo $pendingJoinRequests)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int                   $chatId,
+        /**
+         * The new data about pending join requests; may be null.
+         */
+        protected ?ChatJoinRequestsInfo $pendingJoinRequests,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->pendingJoinRequests = $pendingJoinRequests;
     }
 
     public static function fromArray(array $array): UpdateChatPendingJoinRequests
     {
         return new static(
             $array['chat_id'],
-            (isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null),
+            isset($array['pending_join_requests']) ? TdSchemaRegistry::fromArray($array['pending_join_requests']) : null,
         );
     }
 
@@ -59,8 +50,8 @@ class UpdateChatPendingJoinRequests extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
             'pending_join_requests' => (isset($this->pendingJoinRequests) ? $this->pendingJoinRequests : null),
         ];
     }

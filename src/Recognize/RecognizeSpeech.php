@@ -7,35 +7,24 @@
 namespace Totaldev\TgSchema\Recognize;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a
- * message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+ * Recognizes speech in a video note or a voice note message.
  */
 class RecognizeSpeech extends TdFunction
 {
     public const TYPE_NAME = 'recognizeSpeech';
 
-    /**
-     * Identifier of the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): RecognizeSpeech
     {
@@ -58,8 +47,8 @@ class RecognizeSpeech extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

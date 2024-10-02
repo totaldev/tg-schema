@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Leave;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes the current user from chat members. Private and secret chats can't be left using this method
+ * Removes the current user from chat members. Private and secret chats can't be left using this method.
  */
 class LeaveChat extends TdFunction
 {
     public const TYPE_NAME = 'leaveChat';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): LeaveChat
     {
@@ -43,7 +37,7 @@ class LeaveChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

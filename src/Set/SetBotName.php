@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
+ * Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true.
  */
 class SetBotName extends TdFunction
 {
     public const TYPE_NAME = 'setBotName';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    /**
-     * New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(int $botUserId, string $languageCode, string $name)
-    {
-        $this->botUserId = $botUserId;
-        $this->languageCode = $languageCode;
-        $this->name = $name;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int    $botUserId,
+        /**
+         * A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name.
+         */
+        protected string $languageCode,
+        /**
+         * New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty.
+         */
+        protected string $name,
+    ) {}
 
     public static function fromArray(array $array): SetBotName
     {
@@ -71,10 +57,10 @@ class SetBotName extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
+            '@type'         => static::TYPE_NAME,
+            'bot_user_id'   => $this->botUserId,
             'language_code' => $this->languageCode,
-            'name' => $this->name,
+            'name'          => $this->name,
         ];
     }
 }

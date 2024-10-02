@@ -7,58 +7,36 @@
 namespace Totaldev\TgSchema\Discard;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Discards a call
+ * Discards a call.
  */
 class DiscardCall extends TdFunction
 {
     public const TYPE_NAME = 'discardCall';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * Identifier of the connection used during the call
-     *
-     * @var int
-     */
-    protected int $connectionId;
-
-    /**
-     * The call duration, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * Pass true if the user was disconnected
-     *
-     * @var bool
-     */
-    protected bool $isDisconnected;
-
-    /**
-     * Pass true if the call was a video call
-     *
-     * @var bool
-     */
-    protected bool $isVideo;
-
-    public function __construct(int $callId, bool $isDisconnected, int $duration, bool $isVideo, int $connectionId)
-    {
-        $this->callId = $callId;
-        $this->isDisconnected = $isDisconnected;
-        $this->duration = $duration;
-        $this->isVideo = $isVideo;
-        $this->connectionId = $connectionId;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int  $callId,
+        /**
+         * Pass true if the user was disconnected.
+         */
+        protected bool $isDisconnected,
+        /**
+         * The call duration, in seconds.
+         */
+        protected int  $duration,
+        /**
+         * Pass true if the call was a video call.
+         */
+        protected bool $isVideo,
+        /**
+         * Identifier of the connection used during the call.
+         */
+        protected int  $connectionId,
+    ) {}
 
     public static function fromArray(array $array): DiscardCall
     {
@@ -99,12 +77,12 @@ class DiscardCall extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
+            '@type'           => static::TYPE_NAME,
+            'call_id'         => $this->callId,
             'is_disconnected' => $this->isDisconnected,
-            'duration' => $this->duration,
-            'is_video' => $this->isVideo,
-            'connection_id' => $this->connectionId,
+            'duration'        => $this->duration,
+            'is_video'        => $this->isVideo,
+            'connection_id'   => $this->connectionId,
         ];
     }
 }

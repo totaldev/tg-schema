@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns recent emoji statuses
+ * Returns recent emoji statuses for self status.
  */
 class GetRecentEmojiStatuses extends TdFunction
 {
     public const TYPE_NAME = 'getRecentEmojiStatuses';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetRecentEmojiStatuses
     {

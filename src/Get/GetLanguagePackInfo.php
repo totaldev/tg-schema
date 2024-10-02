@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
+ * Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
  */
 class GetLanguagePackInfo extends TdFunction
 {
     public const TYPE_NAME = 'getLanguagePackInfo';
 
-    /**
-     * Language pack identifier
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId)
-    {
-        $this->languagePackId = $languagePackId;
-    }
+    public function __construct(
+        /**
+         * Language pack identifier.
+         */
+        protected string $languagePackId
+    ) {}
 
     public static function fromArray(array $array): GetLanguagePackInfo
     {
@@ -43,7 +37,7 @@ class GetLanguagePackInfo extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
     }

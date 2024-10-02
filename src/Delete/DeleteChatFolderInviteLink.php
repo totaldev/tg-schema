@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes an invite link for a chat folder
+ * Deletes an invite link for a chat folder.
  */
 class DeleteChatFolderInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'deleteChatFolderInviteLink';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    /**
-     * Invite link to be deleted
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    public function __construct(int $chatFolderId, string $inviteLink)
-    {
-        $this->chatFolderId = $chatFolderId;
-        $this->inviteLink = $inviteLink;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int    $chatFolderId,
+        /**
+         * Invite link to be deleted.
+         */
+        protected string $inviteLink,
+    ) {}
 
     public static function fromArray(array $array): DeleteChatFolderInviteLink
     {
@@ -57,9 +47,9 @@ class DeleteChatFolderInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
-            'invite_link' => $this->inviteLink,
+            'invite_link'    => $this->inviteLink,
         ];
     }
 }

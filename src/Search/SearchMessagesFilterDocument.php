@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only document messages
+ * Returns only document messages.
  */
 class SearchMessagesFilterDocument extends SearchMessagesFilter
 {

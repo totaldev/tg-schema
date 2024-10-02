@@ -7,55 +7,33 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for emojis by keywords. Supported only if the file database is enabled
+ * Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified.
  */
 class SearchEmojis extends TdFunction
 {
     public const TYPE_NAME = 'searchEmojis';
 
-    /**
-     * Pass true if only emojis, which exactly match the text, needs to be returned
-     *
-     * @var bool
-     */
-    protected bool $exactMatch;
-
-    /**
-     * List of possible IETF language tags of the user's input language; may be empty if unknown
-     *
-     * @var string[]
-     */
-    protected array $inputLanguageCodes;
-
-    /**
-     * Text to search for
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text, bool $exactMatch, array $inputLanguageCodes)
-    {
-        $this->text = $text;
-        $this->exactMatch = $exactMatch;
-        $this->inputLanguageCodes = $inputLanguageCodes;
-    }
+    public function __construct(
+        /**
+         * Text to search for.
+         */
+        protected string $text,
+        /**
+         * List of possible IETF language tags of the user's input language; may be empty if unknown.
+         *
+         * @var string[]
+         */
+        protected array  $inputLanguageCodes,
+    ) {}
 
     public static function fromArray(array $array): SearchEmojis
     {
         return new static(
             $array['text'],
-            $array['exact_match'],
             $array['input_language_codes'],
         );
-    }
-
-    public function getExactMatch(): bool
-    {
-        return $this->exactMatch;
     }
 
     public function getInputLanguageCodes(): array
@@ -71,9 +49,8 @@ class SearchEmojis extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'exact_match' => $this->exactMatch,
+            '@type'                => static::TYPE_NAME,
+            'text'                 => $this->text,
             'input_language_codes' => $this->inputLanguageCodes,
         ];
     }

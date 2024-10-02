@@ -12,40 +12,27 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead
- * of this update
+ * of this update.
  */
 class UpdateMessageSendFailed extends Update
 {
     public const TYPE_NAME = 'updateMessageSendFailed';
 
-    /**
-     * The cause of the message sending failure
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    /**
-     * The failed to send message
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    /**
-     * The previous temporary message identifier
-     *
-     * @var int
-     */
-    protected int $oldMessageId;
-
-    public function __construct(Message $message, int $oldMessageId, Error $error)
-    {
+    public function __construct(
+        /**
+         * The failed to send message.
+         */
+        protected Message $message,
+        /**
+         * The previous temporary message identifier.
+         */
+        protected int     $oldMessageId,
+        /**
+         * The cause of the message sending failure.
+         */
+        protected Error   $error,
+    ) {
         parent::__construct();
-
-        $this->message = $message;
-        $this->oldMessageId = $oldMessageId;
-        $this->error = $error;
     }
 
     public static function fromArray(array $array): UpdateMessageSendFailed
@@ -75,10 +62,10 @@ class UpdateMessageSendFailed extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            '@type'          => static::TYPE_NAME,
+            'message'        => $this->message->typeSerialize(),
             'old_message_id' => $this->oldMessageId,
-            'error' => $this->error->typeSerialize(),
+            'error'          => $this->error->typeSerialize(),
         ];
     }
 }

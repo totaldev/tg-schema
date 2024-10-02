@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks the login email address authentication
+ * Checks the login email address authentication.
  */
 class CheckLoginEmailAddressCode extends TdFunction
 {
     public const TYPE_NAME = 'checkLoginEmailAddressCode';
 
-    /**
-     * Email address authentication to check
-     *
-     * @var EmailAddressAuthentication
-     */
-    protected EmailAddressAuthentication $code;
-
-    public function __construct(EmailAddressAuthentication $code)
-    {
-        $this->code = $code;
-    }
+    public function __construct(
+        /**
+         * Email address authentication to check.
+         */
+        protected EmailAddressAuthentication $code
+    ) {}
 
     public static function fromArray(array $array): CheckLoginEmailAddressCode
     {
@@ -45,7 +40,7 @@ class CheckLoginEmailAddressCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code->typeSerialize(),
+            'code'  => $this->code->typeSerialize(),
         ];
     }
 }

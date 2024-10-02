@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about available group call streams
+ * Returns information about available group call streams.
  */
 class GetGroupCallStreams extends TdFunction
 {
     public const TYPE_NAME = 'getGroupCallStreams';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
-        $this->groupCallId = $groupCallId;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int $groupCallId
+    ) {}
 
     public static function fromArray(array $array): GetGroupCallStreams
     {
@@ -43,7 +37,7 @@ class GetGroupCallStreams extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

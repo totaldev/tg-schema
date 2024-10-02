@@ -11,70 +11,40 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An identity document to be saved to Telegram Passport
+ * An identity document to be saved to Telegram Passport.
  */
 class InputIdentityDocument extends TdObject
 {
     public const TYPE_NAME = 'inputIdentityDocument';
 
-    /**
-     * Document expiration date; pass null if not applicable
-     *
-     * @var Date
-     */
-    protected Date $expirationDate;
-
-    /**
-     * Front side of the document
-     *
-     * @var InputFile
-     */
-    protected InputFile $frontSide;
-
-    /**
-     * Document number; 1-24 characters
-     *
-     * @var string
-     */
-    protected string $number;
-
-    /**
-     * Reverse side of the document; only for driver license and identity card; pass null otherwise
-     *
-     * @var InputFile
-     */
-    protected InputFile $reverseSide;
-
-    /**
-     * Selfie with the document; pass null if unavailable
-     *
-     * @var InputFile
-     */
-    protected InputFile $selfie;
-
-    /**
-     * List of files containing a certified English translation of the document
-     *
-     * @var InputFile[]
-     */
-    protected array $translation;
-
     public function __construct(
-        string    $number,
-        Date      $expirationDate,
-        InputFile $frontSide,
-        InputFile $reverseSide,
-        InputFile $selfie,
-        array     $translation,
-    )
-    {
-        $this->number = $number;
-        $this->expirationDate = $expirationDate;
-        $this->frontSide = $frontSide;
-        $this->reverseSide = $reverseSide;
-        $this->selfie = $selfie;
-        $this->translation = $translation;
-    }
+        /**
+         * Document number; 1-24 characters.
+         */
+        protected string    $number,
+        /**
+         * Document expiration date; pass null if not applicable.
+         */
+        protected Date      $expirationDate,
+        /**
+         * Front side of the document.
+         */
+        protected InputFile $frontSide,
+        /**
+         * Reverse side of the document; only for driver license and identity card; pass null otherwise.
+         */
+        protected InputFile $reverseSide,
+        /**
+         * Selfie with the document; pass null if unavailable.
+         */
+        protected InputFile $selfie,
+        /**
+         * List of files containing a certified English translation of the document.
+         *
+         * @var InputFile[]
+         */
+        protected array     $translation,
+    ) {}
 
     public static function fromArray(array $array): InputIdentityDocument
     {
@@ -121,12 +91,12 @@ class InputIdentityDocument extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'number' => $this->number,
+            '@type'           => static::TYPE_NAME,
+            'number'          => $this->number,
             'expiration_date' => $this->expirationDate->typeSerialize(),
-            'front_side' => $this->frontSide->typeSerialize(),
-            'reverse_side' => $this->reverseSide->typeSerialize(),
-            'selfie' => $this->selfie->typeSerialize(),
+            'front_side'      => $this->frontSide->typeSerialize(),
+            'reverse_side'    => $this->reverseSide->typeSerialize(),
+            'selfie'          => $this->selfie->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }

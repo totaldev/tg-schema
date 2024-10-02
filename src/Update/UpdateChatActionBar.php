@@ -10,39 +10,30 @@ use Totaldev\TgSchema\Chat\ChatActionBar;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat action bar was changed
+ * The chat action bar was changed.
  */
 class UpdateChatActionBar extends Update
 {
     public const TYPE_NAME = 'updateChatActionBar';
 
-    /**
-     * The new value of the action bar; may be null
-     *
-     * @var ChatActionBar|null
-     */
-    protected ?ChatActionBar $actionBar;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId, ?ChatActionBar $actionBar)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
+        /**
+         * The new value of the action bar; may be null.
+         */
+        protected ?ChatActionBar $actionBar,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->actionBar = $actionBar;
     }
 
     public static function fromArray(array $array): UpdateChatActionBar
     {
         return new static(
             $array['chat_id'],
-            (isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null),
+            isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null,
         );
     }
 
@@ -59,8 +50,8 @@ class UpdateChatActionBar extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
         ];
     }

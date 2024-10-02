@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Accepts an incoming call
+ * Accepts an incoming call.
  */
 class AcceptCall extends TdFunction
 {
     public const TYPE_NAME = 'acceptCall';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * The call protocols supported by the application
-     *
-     * @var CallProtocol
-     */
-    protected CallProtocol $protocol;
-
-    public function __construct(int $callId, CallProtocol $protocol)
-    {
-        $this->callId = $callId;
-        $this->protocol = $protocol;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int          $callId,
+        /**
+         * The call protocols supported by the application.
+         */
+        protected CallProtocol $protocol,
+    ) {}
 
     public static function fromArray(array $array): AcceptCall
     {
@@ -58,8 +49,8 @@ class AcceptCall extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
+            '@type'    => static::TYPE_NAME,
+            'call_id'  => $this->callId,
             'protocol' => $this->protocol->typeSerialize(),
         ];
     }

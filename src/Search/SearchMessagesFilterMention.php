@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only messages with mentions of the current user, or messages that are replies to their messages
+ * Returns only messages with mentions of the current user, or messages that are replies to their messages.
  */
 class SearchMessagesFilterMention extends SearchMessagesFilter
 {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Log;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The log is written to stderr or an OS specific log
+ * The log is written to stderr or an OS specific log.
  */
 class LogStreamDefault extends LogStream
 {

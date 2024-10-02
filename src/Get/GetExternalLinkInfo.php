@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page
- * preview is disabled in secret chats
+ * Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link
+ * preview is disabled in secret chats.
  */
 class GetExternalLinkInfo extends TdFunction
 {
     public const TYPE_NAME = 'getExternalLinkInfo';
 
-    /**
-     * The link
-     *
-     * @var string
-     */
-    protected string $link;
-
-    public function __construct(string $link)
-    {
-        $this->link = $link;
-    }
+    public function __construct(
+        /**
+         * The link.
+         */
+        protected string $link
+    ) {}
 
     public static function fromArray(array $array): GetExternalLinkInfo
     {
@@ -45,7 +39,7 @@ class GetExternalLinkInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link' => $this->link,
+            'link'  => $this->link,
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A strikethrough text
+ * A strikethrough text.
  */
 class TextEntityTypeStrikethrough extends TextEntityType
 {

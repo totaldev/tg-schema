@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a file from Secure storage used for storing Telegram Passport files
+ * The file is a file from Secure storage used for storing Telegram Passport files.
  */
 class FileTypeSecure extends FileType
 {

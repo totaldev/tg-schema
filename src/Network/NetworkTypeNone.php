@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Network;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The network is not available
+ * The network is not available.
  */
 class NetworkTypeNone extends NetworkType
 {

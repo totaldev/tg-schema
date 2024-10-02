@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of active stories
+ * The maximum number of active stories.
  */
 class PremiumLimitTypeActiveStoryCount extends PremiumLimitType
 {

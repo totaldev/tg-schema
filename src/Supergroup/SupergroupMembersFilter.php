@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Supergroup;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Specifies the kind of chat members to return in getSupergroupMembers
+ * Specifies the kind of chat members to return in getSupergroupMembers.
  */
 class SupergroupMembersFilter extends TdObject
 {
     public const TYPE_NAME = 'SupergroupMembersFilter';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): SupergroupMembersFilter
     {

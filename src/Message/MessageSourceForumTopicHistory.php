@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a forum topic history
+ * The message is from a forum topic history.
  */
 class MessageSourceForumTopicHistory extends MessageSource
 {

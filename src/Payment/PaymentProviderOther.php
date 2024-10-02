@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Payment;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Some other payment provider, for which a web payment form must be shown
+ * Some other payment provider, for which a web payment form must be shown.
  */
 class PaymentProviderOther extends PaymentProvider
 {
     public const TYPE_NAME = 'paymentProviderOther';
 
-    /**
-     * Payment form URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
+    public function __construct(
+        /**
+         * Payment form URL.
+         */
+        protected string $url
+    ) {
         parent::__construct();
-
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): PaymentProviderOther
@@ -45,7 +38,7 @@ class PaymentProviderOther extends PaymentProvider
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of animations
+ * Represents a list of animations.
  */
 class Animations extends TdObject
 {
     public const TYPE_NAME = 'animations';
 
-    /**
-     * List of animations
-     *
-     * @var Animation[]
-     */
-    protected array $animations;
-
-    public function __construct(array $animations)
-    {
-        $this->animations = $animations;
-    }
+    public function __construct(
+        /**
+         * List of animations.
+         *
+         * @var Animation[]
+         */
+        protected array $animations
+    ) {}
 
     public static function fromArray(array $array): Animations
     {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Block;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The block list that disallows viewing of stories of the current user
+ * The block list that disallows viewing of stories of the current user.
  */
 class BlockListStories extends BlockList
 {

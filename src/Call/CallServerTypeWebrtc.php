@@ -6,51 +6,32 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A WebRTC server
+ * A WebRTC server.
  */
 class CallServerTypeWebrtc extends CallServerType
 {
     public const TYPE_NAME = 'callServerTypeWebrtc';
 
-    /**
-     * Authentication password
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
-     * True, if the server supports STUN
-     *
-     * @var bool
-     */
-    protected bool $supportsStun;
-
-    /**
-     * True, if the server supports TURN
-     *
-     * @var bool
-     */
-    protected bool $supportsTurn;
-
-    /**
-     * Username to be used for authentication
-     *
-     * @var string
-     */
-    protected string $username;
-
-    public function __construct(string $username, string $password, bool $supportsTurn, bool $supportsStun)
-    {
+    public function __construct(
+        /**
+         * Username to be used for authentication.
+         */
+        protected string $username,
+        /**
+         * Authentication password.
+         */
+        protected string $password,
+        /**
+         * True, if the server supports TURN.
+         */
+        protected bool   $supportsTurn,
+        /**
+         * True, if the server supports STUN.
+         */
+        protected bool   $supportsStun,
+    ) {
         parent::__construct();
-
-        $this->username = $username;
-        $this->password = $password;
-        $this->supportsTurn = $supportsTurn;
-        $this->supportsStun = $supportsStun;
     }
 
     public static function fromArray(array $array): CallServerTypeWebrtc
@@ -86,9 +67,9 @@ class CallServerTypeWebrtc extends CallServerType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'username' => $this->username,
-            'password' => $this->password,
+            '@type'         => static::TYPE_NAME,
+            'username'      => $this->username,
+            'password'      => $this->password,
             'supports_turn' => $this->supportsTurn,
             'supports_stun' => $this->supportsStun,
         ];

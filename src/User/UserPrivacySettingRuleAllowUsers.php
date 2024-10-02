@@ -6,27 +6,22 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A rule to allow certain specified users to do something
+ * A rule to allow certain specified users to do something.
  */
 class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule
 {
     public const TYPE_NAME = 'userPrivacySettingRuleAllowUsers';
 
-    /**
-     * The user identifiers, total number of users in all rules must not exceed 1000
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(array $userIds)
-    {
+    public function __construct(
+        /**
+         * The user identifiers, total number of users in all rules must not exceed 1000.
+         *
+         * @var int[]
+         */
+        protected array $userIds
+    ) {
         parent::__construct();
-
-        $this->userIds = $userIds;
     }
 
     public static function fromArray(array $array): UserPrivacySettingRuleAllowUsers
@@ -44,7 +39,7 @@ class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'user_ids' => $this->userIds,
         ];
     }

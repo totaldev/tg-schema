@@ -4,31 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
+ * Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode.
  */
 class CheckAuthenticationCode extends TdFunction
 {
     public const TYPE_NAME = 'checkAuthenticationCode';
 
-    /**
-     * Authentication code to check
-     *
-     * @var string
-     */
-    protected string $code;
-
-    public function __construct(string $code)
-    {
-        $this->code = $code;
-    }
+    public function __construct(
+        /**
+         * Authentication code to check.
+         */
+        protected string $code
+    ) {}
 
     public static function fromArray(array $array): CheckAuthenticationCode
     {
@@ -46,7 +38,7 @@ class CheckAuthenticationCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code,
+            'code'  => $this->code,
         ];
     }
 }

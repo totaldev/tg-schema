@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the bio of the current user
+ * Changes the bio of the current user.
  */
 class SetBio extends TdFunction
 {
     public const TYPE_NAME = 'setBio';
 
-    /**
-     * The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
-     *
-     * @var string
-     */
-    protected string $bio;
-
-    public function __construct(string $bio)
-    {
-        $this->bio = $bio;
-    }
+    public function __construct(
+        /**
+         * The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds.
+         */
+        protected string $bio
+    ) {}
 
     public static function fromArray(array $array): SetBio
     {
@@ -44,7 +38,7 @@ class SetBio extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'bio' => $this->bio,
+            'bio'   => $this->bio,
         ];
     }
 }

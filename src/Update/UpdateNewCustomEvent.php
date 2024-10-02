@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A new incoming event; for bots only
+ * A new incoming event; for bots only.
  */
 class UpdateNewCustomEvent extends Update
 {
     public const TYPE_NAME = 'updateNewCustomEvent';
 
-    /**
-     * A JSON-serialized event
-     *
-     * @var string
-     */
-    protected string $event;
-
-    public function __construct(string $event)
-    {
+    public function __construct(
+        /**
+         * A JSON-serialized event.
+         */
+        protected string $event
+    ) {
         parent::__construct();
-
-        $this->event = $event;
     }
 
     public static function fromArray(array $array): UpdateNewCustomEvent

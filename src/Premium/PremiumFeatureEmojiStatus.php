@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An emoji status shown along with the user's name
+ * The ability to show an emoji status along with the user's name.
  */
 class PremiumFeatureEmojiStatus extends PremiumFeature
 {

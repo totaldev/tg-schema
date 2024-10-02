@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A bold rich text
+ * A bold rich text.
  */
 class RichTextBold extends RichText
 {
     public const TYPE_NAME = 'richTextBold';
 
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): RichTextBold
@@ -45,7 +40,7 @@ class RichTextBold extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            'text'  => $this->text->typeSerialize(),
         ];
     }
 }

@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a message sender, which can be used to send messages in a chat
+ * Represents a message sender, which can be used to send messages in a chat.
  */
 class ChatMessageSender extends TdObject
 {
     public const TYPE_NAME = 'chatMessageSender';
 
-    /**
-     * True, if Telegram Premium is needed to use the message sender
-     *
-     * @var bool
-     */
-    protected bool $needsPremium;
-
-    /**
-     * Available message senders
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $sender;
-
-    public function __construct(MessageSender $sender, bool $needsPremium)
-    {
-        $this->sender = $sender;
-        $this->needsPremium = $needsPremium;
-    }
+    public function __construct(
+        /**
+         * The message sender.
+         */
+        protected MessageSender $sender,
+        /**
+         * True, if Telegram Premium is needed to use the message sender.
+         */
+        protected bool          $needsPremium,
+    ) {}
 
     public static function fromArray(array $array): ChatMessageSender
     {
@@ -58,8 +49,8 @@ class ChatMessageSender extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sender' => $this->sender->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'sender'        => $this->sender->typeSerialize(),
             'needs_premium' => $this->needsPremium,
         ];
     }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Mask;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The mask is placed relatively to the chin
+ * The mask is placed relatively to the chin.
  */
 class MaskPointChin extends MaskPoint
 {

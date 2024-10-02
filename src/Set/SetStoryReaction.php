@@ -11,52 +11,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes chosen reaction on a story
+ * Changes chosen reaction on a story that has already been sent.
  */
 class SetStoryReaction extends TdFunction
 {
     public const TYPE_NAME = 'setStoryReaction';
 
-    /**
-     * Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    /**
-     * The identifier of the story
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * The identifier of the sender of the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
-     * Pass true if the reaction needs to be added to recent reactions
-     *
-     * @var bool
-     */
-    protected bool $updateRecentReactions;
-
     public function __construct(
-        int          $storySenderChatId,
-        int          $storyId,
-        ReactionType $reactionType,
-        bool         $updateRecentReactions,
-    )
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-        $this->reactionType = $reactionType;
-        $this->updateRecentReactions = $updateRecentReactions;
-    }
+        /**
+         * The identifier of the sender of the story.
+         */
+        protected int          $storySenderChatId,
+        /**
+         * The identifier of the story.
+         */
+        protected int          $storyId,
+        /**
+         * Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set.
+         */
+        protected ReactionType $reactionType,
+        /**
+         * Pass true if the reaction needs to be added to recent reactions.
+         */
+        protected bool         $updateRecentReactions,
+    ) {}
 
     public static function fromArray(array $array): SetStoryReaction
     {
@@ -91,10 +69,10 @@ class SetStoryReaction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-            'reaction_type' => $this->reactionType->typeSerialize(),
+            '@type'                   => static::TYPE_NAME,
+            'story_sender_chat_id'    => $this->storySenderChatId,
+            'story_id'                => $this->storyId,
+            'reaction_type'           => $this->reactionType->typeSerialize(),
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
     }

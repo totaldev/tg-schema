@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of sticker sets
+ * Represents a list of sticker sets.
  */
 class StickerSets extends TdObject
 {
     public const TYPE_NAME = 'stickerSets';
 
-    /**
-     * List of sticker sets
-     *
-     * @var StickerSetInfo[]
-     */
-    protected array $sets;
-
-    /**
-     * Approximate total number of sticker sets found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $sets)
-    {
-        $this->totalCount = $totalCount;
-        $this->sets = $sets;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of sticker sets found.
+         */
+        protected int   $totalCount,
+        /**
+         * List of sticker sets.
+         *
+         * @var StickerSetInfo[]
+         */
+        protected array $sets,
+    ) {}
 
     public static function fromArray(array $array): StickerSets
     {
@@ -57,7 +50,7 @@ class StickerSets extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->sets),
         ];

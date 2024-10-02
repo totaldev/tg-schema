@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user heard their own voice
+ * The user heard their own voice.
  */
 class CallProblemEcho extends CallProblem
 {

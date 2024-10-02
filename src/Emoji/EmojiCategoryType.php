@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Emoji;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of an emoji category
+ * Describes type of emoji category.
  */
 class EmojiCategoryType extends TdObject
 {
     public const TYPE_NAME = 'EmojiCategoryType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): EmojiCategoryType
     {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Text that must be formatted as if inside a code HTML tag
+ * Text that must be formatted as if inside a code HTML tag.
  */
 class TextEntityTypeCode extends TextEntityType
 {

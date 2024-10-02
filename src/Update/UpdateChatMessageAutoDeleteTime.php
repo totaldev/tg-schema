@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message auto-delete or self-destruct timer setting for a chat was changed
+ * The message auto-delete or self-destruct timer setting for a chat was changed.
  */
 class UpdateChatMessageAutoDeleteTime extends Update
 {
     public const TYPE_NAME = 'updateChatMessageAutoDeleteTime';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of message_auto_delete_time
-     *
-     * @var int
-     */
-    protected int $messageAutoDeleteTime;
-
-    public function __construct(int $chatId, int $messageAutoDeleteTime)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * New value of message_auto_delete_time.
+         */
+        protected int $messageAutoDeleteTime,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageAutoDeleteTime = $messageAutoDeleteTime;
     }
 
     public static function fromArray(array $array): UpdateChatMessageAutoDeleteTime
@@ -58,8 +47,8 @@ class UpdateChatMessageAutoDeleteTime extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                    => static::TYPE_NAME,
+            'chat_id'                  => $this->chatId,
             'message_auto_delete_time' => $this->messageAutoDeleteTime,
         ];
     }

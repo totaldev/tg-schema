@@ -10,32 +10,23 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Video\VideoChat;
 
 /**
- * A chat video chat state has changed
+ * A chat video chat state has changed.
  */
 class UpdateChatVideoChat extends Update
 {
     public const TYPE_NAME = 'updateChatVideoChat';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of video_chat
-     *
-     * @var VideoChat
-     */
-    protected VideoChat $videoChat;
-
-    public function __construct(int $chatId, VideoChat $videoChat)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int       $chatId,
+        /**
+         * New value of video_chat.
+         */
+        protected VideoChat $videoChat,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->videoChat = $videoChat;
     }
 
     public static function fromArray(array $array): UpdateChatVideoChat
@@ -59,8 +50,8 @@ class UpdateChatVideoChat extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'video_chat' => $this->videoChat->typeSerialize(),
         ];
     }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Keyboard;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that opens a Web App by calling getWebAppUrl
+ * A button that opens a Web App by calling getWebAppUrl.
  */
 class KeyboardButtonTypeWebApp extends KeyboardButtonType
 {
     public const TYPE_NAME = 'keyboardButtonTypeWebApp';
 
-    /**
-     * An HTTP URL to pass to getWebAppUrl
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
+    public function __construct(
+        /**
+         * An HTTP URL to pass to getWebAppUrl.
+         */
+        protected string $url
+    ) {
         parent::__construct();
-
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): KeyboardButtonTypeWebApp
@@ -45,7 +38,7 @@ class KeyboardButtonTypeWebApp extends KeyboardButtonType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

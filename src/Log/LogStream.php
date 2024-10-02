@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Log;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a stream to which TDLib internal log is written
+ * Describes a stream to which TDLib internal log is written.
  */
 class LogStream extends TdObject
 {
     public const TYPE_NAME = 'LogStream';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): LogStream
     {

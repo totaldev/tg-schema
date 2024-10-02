@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Log;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The log is written to a file
+ * The log is written to a file.
  */
 class LogStreamFile extends LogStream
 {
     public const TYPE_NAME = 'logStreamFile';
 
-    /**
-     * The maximum size of the file to where the internal TDLib log is written before the file will automatically be rotated, in bytes
-     *
-     * @var int
-     */
-    protected int $maxFileSize;
-
-    /**
-     * Path to the file to where the internal TDLib log will be written
-     *
-     * @var string
-     */
-    protected string $path;
-
-    /**
-     * Pass true to additionally redirect stderr to the log file. Ignored on Windows
-     *
-     * @var bool
-     */
-    protected bool $redirectStderr;
-
-    public function __construct(string $path, int $maxFileSize, bool $redirectStderr)
-    {
+    public function __construct(
+        /**
+         * Path to the file to where the internal TDLib log will be written.
+         */
+        protected string $path,
+        /**
+         * The maximum size of the file to where the internal TDLib log is written before the file will automatically be rotated, in bytes.
+         */
+        protected int    $maxFileSize,
+        /**
+         * Pass true to additionally redirect stderr to the log file. Ignored on Windows.
+         */
+        protected bool   $redirectStderr,
+    ) {
         parent::__construct();
-
-        $this->path = $path;
-        $this->maxFileSize = $maxFileSize;
-        $this->redirectStderr = $redirectStderr;
     }
 
     public static function fromArray(array $array): LogStreamFile
@@ -72,9 +57,9 @@ class LogStreamFile extends LogStream
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'path' => $this->path,
-            'max_file_size' => $this->maxFileSize,
+            '@type'           => static::TYPE_NAME,
+            'path'            => $this->path,
+            'max_file_size'   => $this->maxFileSize,
             'redirect_stderr' => $this->redirectStderr,
         ];
     }

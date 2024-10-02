@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A badge in the user's profile
+ * A badge in the user's profile.
  */
 class PremiumFeatureProfileBadge extends PremiumFeature
 {

@@ -12,61 +12,34 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
+ * Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App.
  */
 class WebApp extends TdObject
 {
     public const TYPE_NAME = 'webApp';
 
-    /**
-     * Web App animation; may be null
-     *
-     * @var Animation|null
-     */
-    protected ?Animation $animation;
-
-    /**
-     * Web App description
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Web App photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    /**
-     * Web App short name
-     *
-     * @var string
-     */
-    protected string $shortName;
-
-    /**
-     * Web App title
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        string     $shortName,
-        string     $title,
-        string     $description,
-        Photo      $photo,
-        ?Animation $animation,
-    )
-    {
-        $this->shortName = $shortName;
-        $this->title = $title;
-        $this->description = $description;
-        $this->photo = $photo;
-        $this->animation = $animation;
-    }
+        /**
+         * Web App short name.
+         */
+        protected string     $shortName,
+        /**
+         * Web App title.
+         */
+        protected string     $title,
+        /**
+         * Web App description.
+         */
+        protected string     $description,
+        /**
+         * Web App photo.
+         */
+        protected Photo      $photo,
+        /**
+         * Web App animation; may be null.
+         */
+        protected ?Animation $animation,
+    ) {}
 
     public static function fromArray(array $array): WebApp
     {
@@ -75,7 +48,7 @@ class WebApp extends TdObject
             $array['title'],
             $array['description'],
             TdSchemaRegistry::fromArray($array['photo']),
-            (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
         );
     }
 
@@ -107,12 +80,12 @@ class WebApp extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'short_name' => $this->shortName,
-            'title' => $this->title,
+            '@type'       => static::TYPE_NAME,
+            'short_name'  => $this->shortName,
+            'title'       => $this->title,
             'description' => $this->description,
-            'photo' => $this->photo->typeSerialize(),
-            'animation' => (isset($this->animation) ? $this->animation : null),
+            'photo'       => $this->photo->typeSerialize(),
+            'animation'   => (isset($this->animation) ? $this->animation : null),
         ];
     }
 }

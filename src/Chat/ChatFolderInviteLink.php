@@ -7,42 +7,30 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a chat folder invite link
+ * Contains a chat folder invite link.
  */
 class ChatFolderInviteLink extends TdObject
 {
     public const TYPE_NAME = 'chatFolderInviteLink';
 
-    /**
-     * Identifiers of chats, included in the link
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
-
-    /**
-     * The chat folder invite link
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    /**
-     * Name of the link
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $inviteLink, string $name, array $chatIds)
-    {
-        $this->inviteLink = $inviteLink;
-        $this->name = $name;
-        $this->chatIds = $chatIds;
-    }
+    public function __construct(
+        /**
+         * The chat folder invite link.
+         */
+        protected string $inviteLink,
+        /**
+         * Name of the link.
+         */
+        protected string $name,
+        /**
+         * Identifiers of chats, included in the link.
+         *
+         * @var int[]
+         */
+        protected array  $chatIds,
+    ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLink
     {
@@ -71,10 +59,10 @@ class ChatFolderInviteLink extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
-            'name' => $this->name,
-            'chat_ids' => $this->chatIds,
+            'name'        => $this->name,
+            'chat_ids'    => $this->chatIds,
         ];
     }
 }

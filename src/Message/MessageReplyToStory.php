@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Describes a replied story
+ * Describes a story replied by a given message.
  */
 class MessageReplyToStory extends MessageReplyTo
 {
     public const TYPE_NAME = 'messageReplyToStory';
 
-    /**
-     * The identifier of the replied story
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
+    public function __construct(
+        /**
+         * The identifier of the sender of the story.
+         */
+        protected int $storySenderChatId,
+        /**
+         * The identifier of the story.
+         */
+        protected int $storyId,
+    ) {
         parent::__construct();
-
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
     }
 
     public static function fromArray(array $array): MessageReplyToStory
@@ -58,9 +47,9 @@ class MessageReplyToStory extends MessageReplyTo
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

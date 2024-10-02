@@ -6,27 +6,21 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
+ * The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found
+ * and the user wants to apply it, then call setOption for the option "language_pack_id".
  */
 class InternalLinkTypeLanguagePack extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeLanguagePack';
 
-    /**
-     * Language pack identifier
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId)
-    {
+    public function __construct(
+        /**
+         * Language pack identifier.
+         */
+        protected string $languagePackId
+    ) {
         parent::__construct();
-
-        $this->languagePackId = $languagePackId;
     }
 
     public static function fromArray(array $array): InternalLinkTypeLanguagePack
@@ -44,7 +38,7 @@ class InternalLinkTypeLanguagePack extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
     }

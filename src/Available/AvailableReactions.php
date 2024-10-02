@@ -6,56 +6,49 @@
 
 namespace Totaldev\TgSchema\Available;
 
+use Totaldev\TgSchema\Reaction\ReactionUnavailabilityReason;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of reactions that can be added to a message
+ * Represents a list of reactions that can be added to a message.
  */
 class AvailableReactions extends TdObject
 {
     public const TYPE_NAME = 'availableReactions';
 
-    /**
-     * True, if custom emoji reactions could be added by Telegram Premium subscribers
-     *
-     * @var bool
-     */
-    protected bool $allowCustomEmoji;
-
-    /**
-     * List of popular reactions
-     *
-     * @var AvailableReaction[]
-     */
-    protected array $popularReactions;
-
-    /**
-     * List of recently used reactions
-     *
-     * @var AvailableReaction[]
-     */
-    protected array $recentReactions;
-
-    /**
-     * List of reactions to be shown at the top
-     *
-     * @var AvailableReaction[]
-     */
-    protected array $topReactions;
-
     public function __construct(
-        array $topReactions,
-        array $recentReactions,
-        array $popularReactions,
-        bool  $allowCustomEmoji,
-    )
-    {
-        $this->topReactions = $topReactions;
-        $this->recentReactions = $recentReactions;
-        $this->popularReactions = $popularReactions;
-        $this->allowCustomEmoji = $allowCustomEmoji;
-    }
+        /**
+         * List of reactions to be shown at the top.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $topReactions,
+        /**
+         * List of recently used reactions.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $recentReactions,
+        /**
+         * List of popular reactions.
+         *
+         * @var AvailableReaction[]
+         */
+        protected array                         $popularReactions,
+        /**
+         * True, if any custom emoji reaction can be added by Telegram Premium subscribers.
+         */
+        protected bool                          $allowCustomEmoji,
+        /**
+         * True, if the reactions will be tags and the message can be found by them.
+         */
+        protected bool                          $areTags,
+        /**
+         * The reason why the current user can't add reactions to the message, despite some other users can; may be null if none.
+         */
+        protected ?ReactionUnavailabilityReason $unavailabilityReason,
+    ) {}
 
     public static function fromArray(array $array): AvailableReactions
     {
@@ -64,12 +57,19 @@ class AvailableReactions extends TdObject
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
             $array['allow_custom_emoji'],
+            $array['are_tags'],
+            isset($array['unavailability_reason']) ? TdSchemaRegistry::fromArray($array['unavailability_reason']) : null,
         );
     }
 
     public function getAllowCustomEmoji(): bool
     {
         return $this->allowCustomEmoji;
+    }
+
+    public function getAreTags(): bool
+    {
+        return $this->areTags;
     }
 
     public function getPopularReactions(): array
@@ -87,14 +87,21 @@ class AvailableReactions extends TdObject
         return $this->topReactions;
     }
 
+    public function getUnavailabilityReason(): ?ReactionUnavailabilityReason
+    {
+        return $this->unavailabilityReason;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->topReactions),
             array_map(fn($x) => $x->typeSerialize(), $this->recentReactions),
             array_map(fn($x) => $x->typeSerialize(), $this->popularReactions),
-            'allow_custom_emoji' => $this->allowCustomEmoji,
+            'allow_custom_emoji'    => $this->allowCustomEmoji,
+            'are_tags'              => $this->areTags,
+            'unavailability_reason' => (isset($this->unavailabilityReason) ? $this->unavailabilityReason : null),
         ];
     }
 }

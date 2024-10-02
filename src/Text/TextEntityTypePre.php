@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Text that must be formatted as if inside a pre HTML tag
+ * Text that must be formatted as if inside a pre HTML tag.
  */
 class TextEntityTypePre extends TextEntityType
 {

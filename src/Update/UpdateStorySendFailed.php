@@ -12,40 +12,27 @@ use Totaldev\TgSchema\Story\Story;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+ * A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update.
  */
 class UpdateStorySendFailed extends Update
 {
     public const TYPE_NAME = 'updateStorySendFailed';
 
-    /**
-     * The cause of the story sending failure
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    /**
-     * Type of the error; may be null if unknown
-     *
-     * @var CanSendStoryResult|null
-     */
-    protected ?CanSendStoryResult $errorType;
-
-    /**
-     * The failed to send story
-     *
-     * @var Story
-     */
-    protected Story $story;
-
-    public function __construct(Story $story, Error $error, ?CanSendStoryResult $errorType)
-    {
+    public function __construct(
+        /**
+         * The failed to send story.
+         */
+        protected Story               $story,
+        /**
+         * The cause of the story sending failure.
+         */
+        protected Error               $error,
+        /**
+         * Type of the error; may be null if unknown.
+         */
+        protected ?CanSendStoryResult $errorType,
+    ) {
         parent::__construct();
-
-        $this->story = $story;
-        $this->error = $error;
-        $this->errorType = $errorType;
     }
 
     public static function fromArray(array $array): UpdateStorySendFailed
@@ -53,7 +40,7 @@ class UpdateStorySendFailed extends Update
         return new static(
             TdSchemaRegistry::fromArray($array['story']),
             TdSchemaRegistry::fromArray($array['error']),
-            (isset($array['error_type']) ? TdSchemaRegistry::fromArray($array['error_type']) : null),
+            isset($array['error_type']) ? TdSchemaRegistry::fromArray($array['error_type']) : null,
         );
     }
 
@@ -75,9 +62,9 @@ class UpdateStorySendFailed extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'story' => $this->story->typeSerialize(),
-            'error' => $this->error->typeSerialize(),
+            '@type'      => static::TYPE_NAME,
+            'story'      => $this->story->typeSerialize(),
+            'error'      => $this->error->typeSerialize(),
             'error_type' => (isset($this->errorType) ? $this->errorType : null),
         ];
     }

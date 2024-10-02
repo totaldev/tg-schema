@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Allowed to use more reactions
+ * Allowed to use more reactions.
  */
 class PremiumFeatureUniqueReactions extends PremiumFeature
 {

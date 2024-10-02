@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
+ * Returns a list of common group chats with a given user. Chats are sorted by their type and creation date.
  */
 class GetGroupsInCommon extends TdFunction
 {
     public const TYPE_NAME = 'getGroupsInCommon';
 
-    /**
-     * The maximum number of chats to be returned; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Chat identifier starting from which to return chats; use 0 for the first request
-     *
-     * @var int
-     */
-    protected int $offsetChatId;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $offsetChatId, int $limit)
-    {
-        $this->userId = $userId;
-        $this->offsetChatId = $offsetChatId;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+        /**
+         * Chat identifier starting from which to return chats; use 0 for the first request.
+         */
+        protected int $offsetChatId,
+        /**
+         * The maximum number of chats to be returned; up to 100.
+         */
+        protected int $limit,
+    ) {}
 
     public static function fromArray(array $array): GetGroupsInCommon
     {
@@ -71,10 +57,10 @@ class GetGroupsInCommon extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
+            '@type'          => static::TYPE_NAME,
+            'user_id'        => $this->userId,
             'offset_chat_id' => $this->offsetChatId,
-            'limit' => $this->limit,
+            'limit'          => $this->limit,
         ];
     }
 }

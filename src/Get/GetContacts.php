@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns all contacts of the user
+ * Returns all contacts of the user.
  */
 class GetContacts extends TdFunction
 {
     public const TYPE_NAME = 'getContacts';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetContacts
     {

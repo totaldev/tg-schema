@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A newly created supergroup or channel
+ * A newly created supergroup or channel.
  */
 class MessageSupergroupChatCreate extends MessageContent
 {
     public const TYPE_NAME = 'messageSupergroupChatCreate';
 
-    /**
-     * Title of the supergroup or channel
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * Title of the supergroup or channel.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): MessageSupergroupChatCreate

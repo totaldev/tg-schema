@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Can;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+ * Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages.
  */
 class CanBotSendMessages extends TdFunction
 {
     public const TYPE_NAME = 'canBotSendMessages';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    public function __construct(int $botUserId)
-    {
-        $this->botUserId = $botUserId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int $botUserId
+    ) {}
 
     public static function fromArray(array $array): CanBotSendMessages
     {
@@ -43,7 +37,7 @@ class CanBotSendMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
         ];
     }

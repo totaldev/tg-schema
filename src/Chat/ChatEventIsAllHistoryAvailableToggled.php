@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The is_all_history_available setting of a supergroup was toggled
+ * The is_all_history_available setting of a supergroup was toggled.
  */
 class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventIsAllHistoryAvailableToggled';
 
-    /**
-     * New value of is_all_history_available
-     *
-     * @var bool
-     */
-    protected bool $isAllHistoryAvailable;
-
-    public function __construct(bool $isAllHistoryAvailable)
-    {
+    public function __construct(
+        /**
+         * New value of is_all_history_available.
+         */
+        protected bool $isAllHistoryAvailable
+    ) {
         parent::__construct();
-
-        $this->isAllHistoryAvailable = $isAllHistoryAvailable;
     }
 
     public static function fromArray(array $array): ChatEventIsAllHistoryAvailableToggled
@@ -44,7 +37,7 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                    => static::TYPE_NAME,
             'is_all_history_available' => $this->isAllHistoryAvailable,
         ];
     }

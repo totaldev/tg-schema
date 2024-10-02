@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of created public chats
+ * The maximum number of created public chats.
  */
 class PremiumLimitTypeCreatedPublicChatCount extends PremiumLimitType
 {

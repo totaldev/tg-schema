@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Supergroup\SupergroupFullInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Some data in supergroupFullInfo has been changed
+ * Some data in supergroupFullInfo has been changed.
  */
 class UpdateSupergroupFullInfo extends Update
 {
     public const TYPE_NAME = 'updateSupergroupFullInfo';
 
-    /**
-     * New full information about the supergroup
-     *
-     * @var SupergroupFullInfo
-     */
-    protected SupergroupFullInfo $supergroupFullInfo;
-
-    /**
-     * Identifier of the supergroup or channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, SupergroupFullInfo $supergroupFullInfo)
-    {
+    public function __construct(
+        /**
+         * Identifier of the supergroup or channel.
+         */
+        protected int                $supergroupId,
+        /**
+         * New full information about the supergroup.
+         */
+        protected SupergroupFullInfo $supergroupFullInfo,
+    ) {
         parent::__construct();
-
-        $this->supergroupId = $supergroupId;
-        $this->supergroupFullInfo = $supergroupFullInfo;
     }
 
     public static function fromArray(array $array): UpdateSupergroupFullInfo
@@ -59,8 +50,8 @@ class UpdateSupergroupFullInfo extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
+            '@type'                => static::TYPE_NAME,
+            'supergroup_id'        => $this->supergroupId,
             'supergroup_full_info' => $this->supergroupFullInfo->typeSerialize(),
         ];
     }

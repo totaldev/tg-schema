@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns localized name of the Telegram support user; for Telegram support only
+ * Returns localized name of the Telegram support user; for Telegram support only.
  */
 class GetSupportName extends TdFunction
 {
     public const TYPE_NAME = 'getSupportName';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetSupportName
     {

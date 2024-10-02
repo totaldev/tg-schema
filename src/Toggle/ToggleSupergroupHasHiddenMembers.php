@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if
- * supergroupFullInfo.can_hide_members == true
+ * supergroupFullInfo.can_hide_members == true.
  */
 class ToggleSupergroupHasHiddenMembers extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupHasHiddenMembers';
 
-    /**
-     * New value of has_hidden_members
-     *
-     * @var bool
-     */
-    protected bool $hasHiddenMembers;
-
-    /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, bool $hasHiddenMembers)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->hasHiddenMembers = $hasHiddenMembers;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int  $supergroupId,
+        /**
+         * New value of has_hidden_members.
+         */
+        protected bool $hasHiddenMembers,
+    ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasHiddenMembers
     {
@@ -58,8 +48,8 @@ class ToggleSupergroupHasHiddenMembers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
+            '@type'              => static::TYPE_NAME,
+            'supergroup_id'      => $this->supergroupId,
             'has_hidden_members' => $this->hasHiddenMembers,
         ];
     }

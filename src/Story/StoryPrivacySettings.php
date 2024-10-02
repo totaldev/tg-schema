@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes privacy settings of a story
+ * Describes privacy settings of a story.
  */
 class StoryPrivacySettings extends TdObject
 {
     public const TYPE_NAME = 'StoryPrivacySettings';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StoryPrivacySettings
     {

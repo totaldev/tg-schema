@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes source of a message
+ * Describes source of a message.
  */
 class MessageSource extends TdObject
 {
     public const TYPE_NAME = 'MessageSource';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): MessageSource
     {

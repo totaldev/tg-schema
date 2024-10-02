@@ -9,39 +9,30 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new member was accepted to the chat by an administrator
+ * A new member was accepted to the chat by an administrator.
  */
 class ChatEventMemberJoinedByRequest extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberJoinedByRequest';
 
-    /**
-     * User identifier of the chat administrator, approved user join request
-     *
-     * @var int
-     */
-    protected int $approverUserId;
-
-    /**
-     * Invite link used to join the chat; may be null
-     *
-     * @var ChatInviteLink|null
-     */
-    protected ?ChatInviteLink $inviteLink;
-
-    public function __construct(int $approverUserId, ?ChatInviteLink $inviteLink)
-    {
+    public function __construct(
+        /**
+         * User identifier of the chat administrator, approved user join request.
+         */
+        protected int             $approverUserId,
+        /**
+         * Invite link used to join the chat; may be null.
+         */
+        protected ?ChatInviteLink $inviteLink,
+    ) {
         parent::__construct();
-
-        $this->approverUserId = $approverUserId;
-        $this->inviteLink = $inviteLink;
     }
 
     public static function fromArray(array $array): ChatEventMemberJoinedByRequest
     {
         return new static(
             $array['approver_user_id'],
-            (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
         );
     }
 
@@ -58,9 +49,9 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'approver_user_id' => $this->approverUserId,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'invite_link'      => (isset($this->inviteLink) ? $this->inviteLink : null),
         ];
     }
 }

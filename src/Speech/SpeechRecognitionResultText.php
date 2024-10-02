@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Speech;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The speech recognition successfully finished
+ * The speech recognition successfully finished.
  */
 class SpeechRecognitionResultText extends SpeechRecognitionResult
 {
     public const TYPE_NAME = 'speechRecognitionResultText';
 
-    /**
-     * Recognized text
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text)
-    {
+    public function __construct(
+        /**
+         * Recognized text.
+         */
+        protected string $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): SpeechRecognitionResultText
@@ -45,7 +38,7 @@ class SpeechRecognitionResultText extends SpeechRecognitionResult
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            'text'  => $this->text,
         ];
     }
 }

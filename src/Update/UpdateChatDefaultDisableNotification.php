@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
+ * The value of the default disable_notification parameter, used when a message is sent to the chat, was changed.
  */
 class UpdateChatDefaultDisableNotification extends Update
 {
     public const TYPE_NAME = 'updateChatDefaultDisableNotification';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new default_disable_notification value
-     *
-     * @var bool
-     */
-    protected bool $defaultDisableNotification;
-
-    public function __construct(int $chatId, bool $defaultDisableNotification)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * The new default_disable_notification value.
+         */
+        protected bool $defaultDisableNotification,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->defaultDisableNotification = $defaultDisableNotification;
     }
 
     public static function fromArray(array $array): UpdateChatDefaultDisableNotification
@@ -58,8 +47,8 @@ class UpdateChatDefaultDisableNotification extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                        => static::TYPE_NAME,
+            'chat_id'                      => $this->chatId,
             'default_disable_notification' => $this->defaultDisableNotification,
         ];
     }

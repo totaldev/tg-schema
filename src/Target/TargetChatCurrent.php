@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Target;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The currently opened chat needs to be kept
+ * The currently opened chat needs to be kept.
  */
 class TargetChatCurrent extends TargetChat
 {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns all chat members, including restricted chat members
+ * Returns all chat members, including restricted chat members.
  */
 class ChatMembersFilterMembers extends ChatMembersFilter
 {

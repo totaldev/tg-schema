@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a bot that can be added to attachment or side menu
+ * Returns information about a bot that can be added to attachment or side menu.
  */
 class GetAttachmentMenuBot extends TdFunction
 {
     public const TYPE_NAME = 'getAttachmentMenuBot';
 
-    /**
-     * Bot's user identifier
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    public function __construct(int $botUserId)
-    {
-        $this->botUserId = $botUserId;
-    }
+    public function __construct(
+        /**
+         * Bot's user identifier.
+         */
+        protected int $botUserId
+    ) {}
 
     public static function fromArray(array $array): GetAttachmentMenuBot
     {
@@ -43,7 +37,7 @@ class GetAttachmentMenuBot extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
         ];
     }

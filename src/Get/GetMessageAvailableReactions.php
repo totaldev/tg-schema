@@ -7,43 +7,29 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or
- * updateMessageInteractionInfo for the message
+ * updateMessageInteractionInfo for the message.
  */
 class GetMessageAvailableReactions extends TdFunction
 {
     public const TYPE_NAME = 'getMessageAvailableReactions';
 
-    /**
-     * Identifier of the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Number of reaction per row, 5-25
-     *
-     * @var int
-     */
-    protected int $rowSize;
-
-    public function __construct(int $chatId, int $messageId, int $rowSize)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->rowSize = $rowSize;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message.
+         */
+        protected int $messageId,
+        /**
+         * Number of reaction per row, 5-25.
+         */
+        protected int $rowSize,
+    ) {}
 
     public static function fromArray(array $array): GetMessageAvailableReactions
     {
@@ -72,10 +58,10 @@ class GetMessageAvailableReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'row_size' => $this->rowSize,
+            'row_size'   => $this->rowSize,
         ];
     }
 }

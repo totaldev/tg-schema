@@ -10,39 +10,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about an invite link to a chat folder
+ * Contains information about an invite link to a chat folder.
  */
 class ChatFolderInviteLinkInfo extends TdObject
 {
     public const TYPE_NAME = 'chatFolderInviteLinkInfo';
 
-    /**
-     * Identifiers of the chats from the link, which are added to the folder already
-     *
-     * @var int[]
-     */
-    protected array $addedChatIds;
-
-    /**
-     * Basic information about the chat folder; chat folder identifier will be 0 if the user didn't have the chat folder yet
-     *
-     * @var ChatFolderInfo
-     */
-    protected ChatFolderInfo $chatFolderInfo;
-
-    /**
-     * Identifiers of the chats from the link, which aren't added to the folder yet
-     *
-     * @var int[]
-     */
-    protected array $missingChatIds;
-
-    public function __construct(ChatFolderInfo $chatFolderInfo, array $missingChatIds, array $addedChatIds)
-    {
-        $this->chatFolderInfo = $chatFolderInfo;
-        $this->missingChatIds = $missingChatIds;
-        $this->addedChatIds = $addedChatIds;
-    }
+    public function __construct(
+        /**
+         * Basic information about the chat folder; chat folder identifier will be 0 if the user didn't have the chat folder yet.
+         */
+        protected ChatFolderInfo $chatFolderInfo,
+        /**
+         * Identifiers of the chats from the link, which aren't added to the folder yet.
+         *
+         * @var int[]
+         */
+        protected array          $missingChatIds,
+        /**
+         * Identifiers of the chats from the link, which are added to the folder already.
+         *
+         * @var int[]
+         */
+        protected array          $addedChatIds,
+    ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLinkInfo
     {
@@ -71,10 +62,10 @@ class ChatFolderInviteLinkInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'chat_folder_info' => $this->chatFolderInfo->typeSerialize(),
             'missing_chat_ids' => $this->missingChatIds,
-            'added_chat_ids' => $this->addedChatIds,
+            'added_chat_ids'   => $this->addedChatIds,
         ];
     }
 }

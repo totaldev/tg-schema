@@ -12,61 +12,38 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the content of a live location in an inline message sent via a bot; for bots only
+ * Edits the content of a live location in an inline message sent via a bot; for bots only.
  */
 class EditInlineMessageLiveLocation extends TdFunction
 {
     public const TYPE_NAME = 'editInlineMessageLiveLocation';
 
-    /**
-     * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-     *
-     * @var int
-     */
-    protected int $heading;
-
-    /**
-     * Inline message identifier
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
-     * New location content of the message; pass null to stop sharing the live location
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-     *
-     * @var int
-     */
-    protected int $proximityAlertRadius;
-
-    /**
-     * The new message reply markup; pass null if none
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
     public function __construct(
-        string      $inlineMessageId,
-        ReplyMarkup $replyMarkup,
-        Location    $location,
-        int         $heading,
-        int         $proximityAlertRadius,
-    )
-    {
-        $this->inlineMessageId = $inlineMessageId;
-        $this->replyMarkup = $replyMarkup;
-        $this->location = $location;
-        $this->heading = $heading;
-        $this->proximityAlertRadius = $proximityAlertRadius;
-    }
+        /**
+         * Inline message identifier.
+         */
+        protected string      $inlineMessageId,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ReplyMarkup $replyMarkup,
+        /**
+         * New location content of the message; pass null to stop sharing the live location.
+         */
+        protected Location    $location,
+        /**
+         * New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period.
+         */
+        protected int         $livePeriod,
+        /**
+         * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
+         */
+        protected int         $heading,
+        /**
+         * The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled.
+         */
+        protected int         $proximityAlertRadius,
+    ) {}
 
     public static function fromArray(array $array): EditInlineMessageLiveLocation
     {
@@ -74,6 +51,7 @@ class EditInlineMessageLiveLocation extends TdFunction
             $array['inline_message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
             TdSchemaRegistry::fromArray($array['location']),
+            $array['live_period'],
             $array['heading'],
             $array['proximity_alert_radius'],
         );
@@ -87,6 +65,11 @@ class EditInlineMessageLiveLocation extends TdFunction
     public function getInlineMessageId(): string
     {
         return $this->inlineMessageId;
+    }
+
+    public function getLivePeriod(): int
+    {
+        return $this->livePeriod;
     }
 
     public function getLocation(): Location
@@ -107,11 +90,12 @@ class EditInlineMessageLiveLocation extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'location' => $this->location->typeSerialize(),
-            'heading' => $this->heading,
+            '@type'                  => static::TYPE_NAME,
+            'inline_message_id'      => $this->inlineMessageId,
+            'reply_markup'           => $this->replyMarkup->typeSerialize(),
+            'location'               => $this->location->typeSerialize(),
+            'live_period'            => $this->livePeriod,
+            'heading'                => $this->heading,
             'proximity_alert_radius' => $this->proximityAlertRadius,
         ];
     }

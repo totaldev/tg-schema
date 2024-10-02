@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The speech recognition failed
+ * The speech recognition failed.
  */
 class SpeechRecognitionResultError extends SpeechRecognitionResult
 {
     public const TYPE_NAME = 'speechRecognitionResultError';
 
-    /**
-     * Recognition error
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    public function __construct(Error $error)
-    {
+    public function __construct(
+        /**
+         * Recognition error. An error with a message "MSG_VOICE_TOO_LONG" is returned when media duration is too big to be recognized.
+         */
+        protected Error $error
+    ) {
         parent::__construct();
-
-        $this->error = $error;
     }
 
     public static function fromArray(array $array): SpeechRecognitionResultError

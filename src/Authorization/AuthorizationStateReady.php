@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Authorization;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user has been successfully authorized. TDLib is now ready to answer general requests
+ * The user has been successfully authorized. TDLib is now ready to answer general requests.
  */
 class AuthorizationStateReady extends AuthorizationState
 {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to set custom expiration duration for stories
+ * The ability to set custom expiration duration for stories.
  */
 class PremiumStoryFeatureCustomExpirationDuration extends PremiumStoryFeature
 {

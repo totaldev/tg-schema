@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only failed to send messages. This filter can be used only if the message database is used
+ * Returns only failed to send messages. This filter can be used only if the message database is used.
  */
 class SearchMessagesFilterFailedToSend extends SearchMessagesFilter
 {

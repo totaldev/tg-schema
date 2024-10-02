@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Count;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a counter
+ * Contains a counter.
  */
 class Count extends TdObject
 {
     public const TYPE_NAME = 'count';
 
-    /**
-     * Count
-     *
-     * @var int
-     */
-    protected int $count;
-
-    public function __construct(int $count)
-    {
-        $this->count = $count;
-    }
+    public function __construct(
+        /**
+         * Count.
+         */
+        protected int $count
+    ) {}
 
     public static function fromArray(array $array): Count
     {

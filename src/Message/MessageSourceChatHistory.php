@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a chat history
+ * The message is from a chat history.
  */
 class MessageSourceChatHistory extends MessageSource
 {

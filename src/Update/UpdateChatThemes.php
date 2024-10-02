@@ -10,24 +10,21 @@ use Totaldev\TgSchema\Chat\ChatTheme;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of available chat themes has changed
+ * The list of available chat themes has changed.
  */
 class UpdateChatThemes extends Update
 {
     public const TYPE_NAME = 'updateChatThemes';
 
-    /**
-     * The new list of chat themes
-     *
-     * @var ChatTheme[]
-     */
-    protected array $chatThemes;
-
-    public function __construct(array $chatThemes)
-    {
+    public function __construct(
+        /**
+         * The new list of chat themes.
+         *
+         * @var ChatTheme[]
+         */
+        protected array $chatThemes
+    ) {
         parent::__construct();
-
-        $this->chatThemes = $chatThemes;
     }
 
     public static function fromArray(array $array): UpdateChatThemes

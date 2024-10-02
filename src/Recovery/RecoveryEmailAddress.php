@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Recovery;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the current recovery email address
+ * Contains information about the current recovery email address.
  */
 class RecoveryEmailAddress extends TdObject
 {
     public const TYPE_NAME = 'recoveryEmailAddress';
 
-    /**
-     * Recovery email address
-     *
-     * @var string
-     */
-    protected string $recoveryEmailAddress;
-
-    public function __construct(string $recoveryEmailAddress)
-    {
-        $this->recoveryEmailAddress = $recoveryEmailAddress;
-    }
+    public function __construct(
+        /**
+         * Recovery email address.
+         */
+        protected string $recoveryEmailAddress
+    ) {}
 
     public static function fromArray(array $array): RecoveryEmailAddress
     {
@@ -43,7 +37,7 @@ class RecoveryEmailAddress extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                  => static::TYPE_NAME,
             'recovery_email_address' => $this->recoveryEmailAddress,
         ];
     }

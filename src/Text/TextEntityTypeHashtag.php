@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A hashtag text, beginning with "#"
+ * A hashtag text, beginning with "#".
  */
 class TextEntityTypeHashtag extends TextEntityType
 {

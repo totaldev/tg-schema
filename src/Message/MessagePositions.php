@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of message positions
+ * Contains a list of message positions.
  */
 class MessagePositions extends TdObject
 {
     public const TYPE_NAME = 'messagePositions';
 
-    /**
-     * List of message positions
-     *
-     * @var MessagePosition[]
-     */
-    protected array $positions;
-
-    /**
-     * Total number of messages found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $positions)
-    {
-        $this->totalCount = $totalCount;
-        $this->positions = $positions;
-    }
+    public function __construct(
+        /**
+         * Total number of messages found.
+         */
+        protected int   $totalCount,
+        /**
+         * List of message positions.
+         *
+         * @var MessagePosition[]
+         */
+        protected array $positions,
+    ) {}
 
     public static function fromArray(array $array): MessagePositions
     {
@@ -57,7 +50,7 @@ class MessagePositions extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->positions),
         ];

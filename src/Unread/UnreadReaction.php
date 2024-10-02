@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Unread;
 
 use Totaldev\TgSchema\Message\MessageSender;
@@ -14,39 +12,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about an unread reaction to a message
+ * Contains information about an unread reaction to a message.
  */
 class UnreadReaction extends TdObject
 {
     public const TYPE_NAME = 'unreadReaction';
 
-    /**
-     * True, if the reaction was added with a big animation
-     *
-     * @var bool
-     */
-    protected bool $isBig;
-
-    /**
-     * Identifier of the sender, added the reaction
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    public function __construct(ReactionType $type, MessageSender $senderId, bool $isBig)
-    {
-        $this->type = $type;
-        $this->senderId = $senderId;
-        $this->isBig = $isBig;
-    }
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType  $type,
+        /**
+         * Identifier of the sender, added the reaction.
+         */
+        protected MessageSender $senderId,
+        /**
+         * True, if the reaction was added with a big animation.
+         */
+        protected bool          $isBig,
+    ) {}
 
     public static function fromArray(array $array): UnreadReaction
     {
@@ -75,10 +60,10 @@ class UnreadReaction extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            '@type'     => static::TYPE_NAME,
+            'type'      => $this->type->typeSerialize(),
             'sender_id' => $this->senderId->typeSerialize(),
-            'is_big' => $this->isBig,
+            'is_big'    => $this->isBig,
         ];
     }
 }

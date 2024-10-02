@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
+ * Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings.
  */
 class ClearAutosaveSettingsExceptions extends TdFunction
 {
     public const TYPE_NAME = 'clearAutosaveSettingsExceptions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ClearAutosaveSettingsExceptions
     {

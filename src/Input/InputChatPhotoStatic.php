@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Input;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A static photo in JPEG format
+ * A static photo in JPEG format.
  */
 class InputChatPhotoStatic extends InputChatPhoto
 {
     public const TYPE_NAME = 'inputChatPhotoStatic';
 
-    /**
-     * Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
-     *
-     * @var InputFile
-     */
-    protected InputFile $photo;
-
-    public function __construct(InputFile $photo)
-    {
+    public function __construct(
+        /**
+         * Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed.
+         */
+        protected InputFile $photo
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): InputChatPhotoStatic

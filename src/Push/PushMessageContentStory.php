@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with a story
+ * A message with a story.
  */
 class PushMessageContentStory extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentStory';
 
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool $isPinned
+    ) {
         parent::__construct();
-
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentStory
@@ -44,7 +37,7 @@ class PushMessageContentStory extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'is_pinned' => $this->isPinned,
         ];
     }

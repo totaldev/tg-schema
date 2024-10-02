@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Background;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Describes a solid fill of a background
+ * Describes a solid fill of a background.
  */
 class BackgroundFillSolid extends BackgroundFill
 {
     public const TYPE_NAME = 'backgroundFillSolid';
 
-    /**
-     * A color of the background in the RGB24 format
-     *
-     * @var int
-     */
-    protected int $color;
-
-    public function __construct(int $color)
-    {
+    public function __construct(
+        /**
+         * A color of the background in the RGB24 format.
+         */
+        protected int $color
+    ) {
         parent::__construct();
-
-        $this->color = $color;
     }
 
     public static function fromArray(array $array): BackgroundFillSolid

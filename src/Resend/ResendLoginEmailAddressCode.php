@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Resend;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Resends the login email address verification code
+ * Resends the login email address verification code.
  */
 class ResendLoginEmailAddressCode extends TdFunction
 {
     public const TYPE_NAME = 'resendLoginEmailAddressCode';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResendLoginEmailAddressCode
     {

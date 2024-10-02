@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of message sender identifiers, which can be used to send messages in a chat
+ * Returns the list of message sender identifiers, which can be used to send messages in a chat.
  */
 class GetChatAvailableMessageSenders extends TdFunction
 {
     public const TYPE_NAME = 'getChatAvailableMessageSenders';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetChatAvailableMessageSenders
     {
@@ -43,7 +37,7 @@ class GetChatAvailableMessageSenders extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

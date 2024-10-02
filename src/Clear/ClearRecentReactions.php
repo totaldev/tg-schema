@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Clears the list of recently used reactions
+ * Clears the list of recently used reactions.
  */
 class ClearRecentReactions extends TdFunction
 {
     public const TYPE_NAME = 'clearRecentReactions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ClearRecentReactions
     {

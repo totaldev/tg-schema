@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The speech was distorted
+ * The speech was distorted.
  */
 class CallProblemDistortedSpeech extends CallProblem
 {

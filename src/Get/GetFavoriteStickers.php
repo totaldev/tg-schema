@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns favorite stickers
+ * Returns favorite stickers.
  */
 class GetFavoriteStickers extends TdFunction
 {
     public const TYPE_NAME = 'getFavoriteStickers';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetFavoriteStickers
     {

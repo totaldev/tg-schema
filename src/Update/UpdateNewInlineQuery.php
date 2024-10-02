@@ -11,71 +11,39 @@ use Totaldev\TgSchema\Location\Location;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new incoming inline query; for bots only
+ * A new incoming inline query; for bots only.
  */
 class UpdateNewInlineQuery extends Update
 {
     public const TYPE_NAME = 'updateNewInlineQuery';
 
-    /**
-     * The type of the chat from which the query originated; may be null if unknown
-     *
-     * @var ChatType|null
-     */
-    protected ?ChatType $chatType;
-
-    /**
-     * Unique query identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Offset of the first entry to return
-     *
-     * @var string
-     */
-    protected string $offset;
-
-    /**
-     * Text of the query
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * Identifier of the user who sent the query
-     *
-     * @var int
-     */
-    protected int $senderUserId;
-
-    /**
-     * User location; may be null
-     *
-     * @var Location|null
-     */
-    protected ?Location $userLocation;
-
     public function __construct(
-        int       $id,
-        int       $senderUserId,
-        ?Location $userLocation,
-        ?ChatType $chatType,
-        string    $query,
-        string    $offset,
-    )
-    {
+        /**
+         * Unique query identifier.
+         */
+        protected int       $id,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int       $senderUserId,
+        /**
+         * User location; may be null.
+         */
+        protected ?Location $userLocation,
+        /**
+         * The type of the chat from which the query originated; may be null if unknown.
+         */
+        protected ?ChatType $chatType,
+        /**
+         * Text of the query.
+         */
+        protected string    $query,
+        /**
+         * Offset of the first entry to return.
+         */
+        protected string    $offset,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->senderUserId = $senderUserId;
-        $this->userLocation = $userLocation;
-        $this->chatType = $chatType;
-        $this->query = $query;
-        $this->offset = $offset;
     }
 
     public static function fromArray(array $array): UpdateNewInlineQuery
@@ -83,8 +51,8 @@ class UpdateNewInlineQuery extends Update
         return new static(
             $array['id'],
             $array['sender_user_id'],
-            (isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null),
-            (isset($array['chat_type']) ? TdSchemaRegistry::fromArray($array['chat_type']) : null),
+            isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null,
+            isset($array['chat_type']) ? TdSchemaRegistry::fromArray($array['chat_type']) : null,
             $array['query'],
             $array['offset'],
         );
@@ -123,13 +91,13 @@ class UpdateNewInlineQuery extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            '@type'          => static::TYPE_NAME,
+            'id'             => $this->id,
             'sender_user_id' => $this->senderUserId,
-            'user_location' => (isset($this->userLocation) ? $this->userLocation : null),
-            'chat_type' => (isset($this->chatType) ? $this->chatType : null),
-            'query' => $this->query,
-            'offset' => $this->offset,
+            'user_location'  => (isset($this->userLocation) ? $this->userLocation : null),
+            'chat_type'      => (isset($this->chatType) ? $this->chatType : null),
+            'query'          => $this->query,
+            'offset'         => $this->offset,
         ];
     }
 }

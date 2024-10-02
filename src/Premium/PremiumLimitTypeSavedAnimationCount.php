@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of saved animations
+ * The maximum number of saved animations.
  */
 class PremiumLimitTypeSavedAnimationCount extends PremiumLimitType
 {

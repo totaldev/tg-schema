@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the emoji status of the current user; for Telegram Premium users only
+ * Changes the emoji status of the current user; for Telegram Premium users only.
  */
 class SetEmojiStatus extends TdFunction
 {
     public const TYPE_NAME = 'setEmojiStatus';
 
-    /**
-     * New emoji status; pass null to switch to the default badge
-     *
-     * @var EmojiStatus
-     */
-    protected EmojiStatus $emojiStatus;
-
-    public function __construct(EmojiStatus $emojiStatus)
-    {
-        $this->emojiStatus = $emojiStatus;
-    }
+    public function __construct(
+        /**
+         * New emoji status; pass null to switch to the default badge.
+         */
+        protected EmojiStatus $emojiStatus
+    ) {}
 
     public static function fromArray(array $array): SetEmojiStatus
     {
@@ -44,7 +39,7 @@ class SetEmojiStatus extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'emoji_status' => $this->emojiStatus->typeSerialize(),
         ];
     }

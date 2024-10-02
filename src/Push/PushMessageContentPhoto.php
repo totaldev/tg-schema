@@ -10,54 +10,37 @@ use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A photo message
+ * A photo message.
  */
 class PushMessageContentPhoto extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentPhoto';
 
-    /**
-     * Photo caption
-     *
-     * @var string
-     */
-    protected string $caption;
-
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * True, if the photo is secret
-     *
-     * @var bool
-     */
-    protected bool $isSecret;
-
-    /**
-     * Message content; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $photo;
-
-    public function __construct(?Photo $photo, string $caption, bool $isSecret, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Message content; may be null.
+         */
+        protected ?Photo $photo,
+        /**
+         * Photo caption.
+         */
+        protected string $caption,
+        /**
+         * True, if the photo is secret.
+         */
+        protected bool   $isSecret,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
-        $this->caption = $caption;
-        $this->isSecret = $isSecret;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentPhoto
     {
         return new static(
-            (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['caption'],
             $array['is_secret'],
             $array['is_pinned'],
@@ -87,9 +70,9 @@ class PushMessageContentPhoto extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'photo' => (isset($this->photo) ? $this->photo : null),
-            'caption' => $this->caption,
+            '@type'     => static::TYPE_NAME,
+            'photo'     => (isset($this->photo) ? $this->photo : null),
+            'caption'   => $this->caption,
             'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,
         ];

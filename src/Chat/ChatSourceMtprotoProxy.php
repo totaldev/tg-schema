@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat is sponsored by the user's MTProxy server
+ * The chat is sponsored by the user's MTProxy server.
  */
 class ChatSourceMtprotoProxy extends ChatSource
 {

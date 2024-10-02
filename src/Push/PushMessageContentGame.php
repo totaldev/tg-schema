@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with a game
+ * A message with a game.
  */
 class PushMessageContentGame extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentGame';
 
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * Game title, empty for pinned game message
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Game title, empty for pinned game message.
+         */
+        protected string $title,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentGame
@@ -58,8 +47,8 @@ class PushMessageContentGame extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
+            '@type'     => static::TYPE_NAME,
+            'title'     => $this->title,
             'is_pinned' => $this->isPinned,
         ];
     }

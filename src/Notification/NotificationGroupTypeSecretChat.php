@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A group containing a notification of type notificationTypeNewSecretChat
+ * A group containing a notification of type notificationTypeNewSecretChat.
  */
 class NotificationGroupTypeSecretChat extends NotificationGroupType
 {

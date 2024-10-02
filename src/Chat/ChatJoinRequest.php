@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a user that sent a join request and waits for administrator approval
+ * Describes a user that sent a join request and waits for administrator approval.
  */
 class ChatJoinRequest extends TdObject
 {
     public const TYPE_NAME = 'chatJoinRequest';
 
-    /**
-     * A short bio of the user
-     *
-     * @var string
-     */
-    protected string $bio;
-
-    /**
-     * Point in time (Unix timestamp) when the user sent the join request
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $date, string $bio)
-    {
-        $this->userId = $userId;
-        $this->date = $date;
-        $this->bio = $bio;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int    $userId,
+        /**
+         * Point in time (Unix timestamp) when the user sent the join request.
+         */
+        protected int    $date,
+        /**
+         * A short bio of the user.
+         */
+        protected string $bio,
+    ) {}
 
     public static function fromArray(array $array): ChatJoinRequest
     {
@@ -71,10 +57,10 @@ class ChatJoinRequest extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'date' => $this->date,
-            'bio' => $this->bio,
+            'date'    => $this->date,
+            'bio'     => $this->bio,
         ];
     }
 }

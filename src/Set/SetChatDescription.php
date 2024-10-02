@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+ * Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right.
  */
 class SetChatDescription extends TdFunction
 {
     public const TYPE_NAME = 'setChatDescription';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New chat description; 0-255 characters
-     *
-     * @var string
-     */
-    protected string $description;
-
-    public function __construct(int $chatId, string $description)
-    {
-        $this->chatId = $chatId;
-        $this->description = $description;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int    $chatId,
+        /**
+         * New chat description; 0-255 characters.
+         */
+        protected string $description,
+    ) {}
 
     public static function fromArray(array $array): SetChatDescription
     {
@@ -57,8 +47,8 @@ class SetChatDescription extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'description' => $this->description,
         ];
     }

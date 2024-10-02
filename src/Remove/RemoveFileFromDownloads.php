@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes a file from the file download list
+ * Removes a file from the file download list.
  */
 class RemoveFileFromDownloads extends TdFunction
 {
     public const TYPE_NAME = 'removeFileFromDownloads';
 
-    /**
-     * Pass true to delete the file from the TDLib file cache
-     *
-     * @var bool
-     */
-    protected bool $deleteFromCache;
-
-    /**
-     * Identifier of the downloaded file
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    public function __construct(int $fileId, bool $deleteFromCache)
-    {
-        $this->fileId = $fileId;
-        $this->deleteFromCache = $deleteFromCache;
-    }
+    public function __construct(
+        /**
+         * Identifier of the downloaded file.
+         */
+        protected int  $fileId,
+        /**
+         * Pass true to delete the file from the TDLib file cache.
+         */
+        protected bool $deleteFromCache,
+    ) {}
 
     public static function fromArray(array $array): RemoveFileFromDownloads
     {
@@ -57,8 +47,8 @@ class RemoveFileFromDownloads extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
+            '@type'             => static::TYPE_NAME,
+            'file_id'           => $this->fileId,
             'delete_from_cache' => $this->deleteFromCache,
         ];
     }

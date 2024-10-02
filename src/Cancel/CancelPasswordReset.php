@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Cancel;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+ * Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0.
  */
 class CancelPasswordReset extends TdFunction
 {
     public const TYPE_NAME = 'cancelPasswordReset';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CancelPasswordReset
     {

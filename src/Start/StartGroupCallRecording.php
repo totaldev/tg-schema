@@ -7,50 +7,32 @@
 namespace Totaldev\TgSchema\Start;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
+ * Starts recording of an active group call. Requires groupCall.can_be_managed group call flag.
  */
 class StartGroupCallRecording extends TdFunction
 {
     public const TYPE_NAME = 'startGroupCallRecording';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true to record a video file instead of an audio file
-     *
-     * @var bool
-     */
-    protected bool $recordVideo;
-
-    /**
-     * Group call recording title; 0-64 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * Pass true to use portrait orientation for video instead of landscape one
-     *
-     * @var bool
-     */
-    protected bool $usePortraitOrientation;
-
-    public function __construct(int $groupCallId, string $title, bool $recordVideo, bool $usePortraitOrientation)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->title = $title;
-        $this->recordVideo = $recordVideo;
-        $this->usePortraitOrientation = $usePortraitOrientation;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int    $groupCallId,
+        /**
+         * Group call recording title; 0-64 characters.
+         */
+        protected string $title,
+        /**
+         * Pass true to record a video file instead of an audio file.
+         */
+        protected bool   $recordVideo,
+        /**
+         * Pass true to use portrait orientation for video instead of landscape one.
+         */
+        protected bool   $usePortraitOrientation,
+    ) {}
 
     public static function fromArray(array $array): StartGroupCallRecording
     {
@@ -85,10 +67,10 @@ class StartGroupCallRecording extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'title' => $this->title,
-            'record_video' => $this->recordVideo,
+            '@type'                    => static::TYPE_NAME,
+            'group_call_id'            => $this->groupCallId,
+            'title'                    => $this->title,
+            'record_video'             => $this->recordVideo,
             'use_portrait_orientation' => $this->usePortraitOrientation,
         ];
     }

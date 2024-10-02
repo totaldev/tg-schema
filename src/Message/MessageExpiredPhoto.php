@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A self-destructed photo message
+ * A self-destructed photo message.
  */
 class MessageExpiredPhoto extends MessageContent
 {

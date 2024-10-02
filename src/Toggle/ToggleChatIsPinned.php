@@ -12,39 +12,26 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret
- * chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+ * chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium.
  */
 class ToggleChatIsPinned extends TdFunction
 {
     public const TYPE_NAME = 'toggleChatIsPinned';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Chat list in which to change the pinned state of the chat
-     *
-     * @var ChatList
-     */
-    protected ChatList $chatList;
-
-    /**
-     * Pass true to pin the chat; pass false to unpin it
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(ChatList $chatList, int $chatId, bool $isPinned)
-    {
-        $this->chatList = $chatList;
-        $this->chatId = $chatId;
-        $this->isPinned = $isPinned;
-    }
+    public function __construct(
+        /**
+         * Chat list in which to change the pinned state of the chat.
+         */
+        protected ChatList $chatList,
+        /**
+         * Chat identifier.
+         */
+        protected int      $chatId,
+        /**
+         * Pass true to pin the chat; pass false to unpin it.
+         */
+        protected bool     $isPinned,
+    ) {}
 
     public static function fromArray(array $array): ToggleChatIsPinned
     {
@@ -73,9 +60,9 @@ class ToggleChatIsPinned extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'chat_list' => $this->chatList->typeSerialize(),
-            'chat_id' => $this->chatId,
+            'chat_id'   => $this->chatId,
             'is_pinned' => $this->isPinned,
         ];
     }

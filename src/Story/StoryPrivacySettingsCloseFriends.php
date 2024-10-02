@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Story;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The story can be viewed by all close friends
+ * The story can be viewed by all close friends.
  */
 class StoryPrivacySettingsCloseFriends extends StoryPrivacySettings
 {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns all website where the current user used Telegram to log in
+ * Returns all website where the current user used Telegram to log in.
  */
 class GetConnectedWebsites extends TdFunction
 {
     public const TYPE_NAME = 'getConnectedWebsites';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetConnectedWebsites
     {

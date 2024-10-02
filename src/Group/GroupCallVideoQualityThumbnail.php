@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Group;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The worst available video quality
+ * The worst available video quality.
  */
 class GroupCallVideoQualityThumbnail extends GroupCallVideoQuality
 {

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Pauses or unpauses screen sharing in a joined group call
+ * Pauses or unpauses screen sharing in a joined group call.
  */
 class ToggleGroupCallScreenSharingIsPaused extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallScreenSharingIsPaused';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true to pause screen sharing; pass false to unpause it
-     *
-     * @var bool
-     */
-    protected bool $isPaused;
-
-    public function __construct(int $groupCallId, bool $isPaused)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->isPaused = $isPaused;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * Pass true to pause screen sharing; pass false to unpause it.
+         */
+        protected bool $isPaused,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallScreenSharingIsPaused
     {
@@ -57,9 +47,9 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'is_paused' => $this->isPaused,
+            'is_paused'     => $this->isPaused,
         ];
     }
 }

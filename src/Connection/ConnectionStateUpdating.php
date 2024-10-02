@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Connection;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Downloading data received while the application was offline
+ * Downloading data supposed to be received while the application was offline.
  */
 class ConnectionStateUpdating extends ConnectionState
 {

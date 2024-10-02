@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Animated variant of a chat photo in MPEG4 format
+ * Animated variant of a chat photo in MPEG4 format.
  */
 class AnimatedChatPhoto extends TdObject
 {
     public const TYPE_NAME = 'animatedChatPhoto';
 
-    /**
-     * Information about the animation file
-     *
-     * @var File
-     */
-    protected File $file;
-
-    /**
-     * Animation width and height
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Timestamp of the frame, used as a static chat photo
-     *
-     * @var float
-     */
-    protected float $mainFrameTimestamp;
-
-    public function __construct(int $length, File $file, float $mainFrameTimestamp)
-    {
-        $this->length = $length;
-        $this->file = $file;
-        $this->mainFrameTimestamp = $mainFrameTimestamp;
-    }
+    public function __construct(
+        /**
+         * Animation width and height.
+         */
+        protected int   $length,
+        /**
+         * Information about the animation file.
+         */
+        protected File  $file,
+        /**
+         * Timestamp of the frame, used as a static chat photo.
+         */
+        protected float $mainFrameTimestamp,
+    ) {}
 
     public static function fromArray(array $array): AnimatedChatPhoto
     {
@@ -72,9 +59,9 @@ class AnimatedChatPhoto extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'length' => $this->length,
-            'file' => $this->file->typeSerialize(),
+            '@type'                => static::TYPE_NAME,
+            'length'               => $this->length,
+            'file'                 => $this->file->typeSerialize(),
             'main_frame_timestamp' => $this->mainFrameTimestamp,
         ];
     }

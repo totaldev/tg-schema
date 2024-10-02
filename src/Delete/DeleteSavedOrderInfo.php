@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes saved order information
+ * Deletes saved order information.
  */
 class DeleteSavedOrderInfo extends TdFunction
 {
     public const TYPE_NAME = 'deleteSavedOrderInfo';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DeleteSavedOrderInfo
     {

@@ -13,47 +13,32 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 /**
  * Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on
  * the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read,
- * incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
+ * incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels).
  */
 class ViewMessages extends TdFunction
 {
     public const TYPE_NAME = 'viewMessages';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true to mark as read the specified messages even the chat is closed
-     *
-     * @var bool
-     */
-    protected bool $forceRead;
-
-    /**
-     * The identifiers of the messages being viewed
-     *
-     * @var int[]
-     */
-    protected array $messageIds;
-
-    /**
-     * Source of the message view; pass null to guess the source based on chat open state
-     *
-     * @var MessageSource
-     */
-    protected MessageSource $source;
-
-    public function __construct(int $chatId, array $messageIds, MessageSource $source, bool $forceRead)
-    {
-        $this->chatId = $chatId;
-        $this->messageIds = $messageIds;
-        $this->source = $source;
-        $this->forceRead = $forceRead;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * The identifiers of the messages being viewed.
+         *
+         * @var int[]
+         */
+        protected array         $messageIds,
+        /**
+         * Source of the message view; pass null to guess the source based on chat open state.
+         */
+        protected MessageSource $source,
+        /**
+         * Pass true to mark as read the specified messages even the chat is closed.
+         */
+        protected bool          $forceRead,
+    ) {}
 
     public static function fromArray(array $array): ViewMessages
     {
@@ -88,11 +73,11 @@ class ViewMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'message_ids' => $this->messageIds,
-            'source' => $this->source->typeSerialize(),
-            'force_read' => $this->forceRead,
+            'source'      => $this->source->typeSerialize(),
+            'force_read'  => $this->forceRead,
         ];
     }
 }

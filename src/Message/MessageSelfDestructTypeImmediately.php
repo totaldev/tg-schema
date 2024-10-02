@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message can be opened only once and will be self-destructed once closed
+ * The message can be opened only once and will be self-destructed once closed.
  */
 class MessageSelfDestructTypeImmediately extends MessageSelfDestructType
 {

@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
+ * Returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
  */
 class GetLanguagePackStrings extends TdFunction
 {
     public const TYPE_NAME = 'getLanguagePackStrings';
 
-    /**
-     * Language pack keys of the strings to be returned; leave empty to request all available strings
-     *
-     * @var string[]
-     */
-    protected array $keys;
-
-    /**
-     * Language pack identifier of the strings to be returned
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId, array $keys)
-    {
-        $this->languagePackId = $languagePackId;
-        $this->keys = $keys;
-    }
+    public function __construct(
+        /**
+         * Language pack identifier of the strings to be returned.
+         */
+        protected string $languagePackId,
+        /**
+         * Language pack keys of the strings to be returned; leave empty to request all available strings.
+         *
+         * @var string[]
+         */
+        protected array  $keys,
+    ) {}
 
     public static function fromArray(array $array): GetLanguagePackStrings
     {
@@ -57,9 +49,9 @@ class GetLanguagePackStrings extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
-            'keys' => $this->keys,
+            'keys'             => $this->keys,
         ];
     }
 }

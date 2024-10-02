@@ -10,46 +10,33 @@ use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A photo
+ * A photo.
  */
 class PageBlockPhoto extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockPhoto';
 
-    /**
-     * Photo caption
-     *
-     * @var PageBlockCaption
-     */
-    protected PageBlockCaption $caption;
-
-    /**
-     * Photo file; may be null
-     *
-     * @var Photo|null
-     */
-    protected ?Photo $photo;
-
-    /**
-     * URL that needs to be opened when the photo is clicked
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(?Photo $photo, PageBlockCaption $caption, string $url)
-    {
+    public function __construct(
+        /**
+         * Photo file; may be null.
+         */
+        protected ?Photo           $photo,
+        /**
+         * Photo caption.
+         */
+        protected PageBlockCaption $caption,
+        /**
+         * URL that needs to be opened when the photo is clicked.
+         */
+        protected string           $url,
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
-        $this->caption = $caption;
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): PageBlockPhoto
     {
         return new static(
-            (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             TdSchemaRegistry::fromArray($array['caption']),
             $array['url'],
         );
@@ -73,10 +60,10 @@ class PageBlockPhoto extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'photo' => (isset($this->photo) ? $this->photo : null),
+            '@type'   => static::TYPE_NAME,
+            'photo'   => (isset($this->photo) ? $this->photo : null),
             'caption' => $this->caption->typeSerialize(),
-            'url' => $this->url,
+            'url'     => $this->url,
         ];
     }
 }

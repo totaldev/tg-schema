@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Connection\ConnectionState;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The connection state has changed. This update must be used only to show a human-readable description of the connection state
+ * The connection state has changed. This update must be used only to show a human-readable description of the connection state.
  */
 class UpdateConnectionState extends Update
 {
     public const TYPE_NAME = 'updateConnectionState';
 
-    /**
-     * The new connection state
-     *
-     * @var ConnectionState
-     */
-    protected ConnectionState $state;
-
-    public function __construct(ConnectionState $state)
-    {
+    public function __construct(
+        /**
+         * The new connection state.
+         */
+        protected ConnectionState $state
+    ) {
         parent::__construct();
-
-        $this->state = $state;
     }
 
     public static function fromArray(array $array): UpdateConnectionState

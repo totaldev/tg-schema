@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A superscript rich text
+ * A superscript rich text.
  */
 class RichTextSuperscript extends RichText
 {
     public const TYPE_NAME = 'richTextSuperscript';
 
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): RichTextSuperscript
@@ -45,7 +40,7 @@ class RichTextSuperscript extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            'text'  => $this->text->typeSerialize(),
         ];
     }
 }

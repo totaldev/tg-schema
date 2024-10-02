@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes settings for automatic moving of chats to and from the Archive chat lists
+ * Changes settings for automatic moving of chats to and from the Archive chat lists.
  */
 class SetArchiveChatListSettings extends TdFunction
 {
     public const TYPE_NAME = 'setArchiveChatListSettings';
 
-    /**
-     * New settings
-     *
-     * @var ArchiveChatListSettings
-     */
-    protected ArchiveChatListSettings $settings;
-
-    public function __construct(ArchiveChatListSettings $settings)
-    {
-        $this->settings = $settings;
-    }
+    public function __construct(
+        /**
+         * New settings.
+         */
+        protected ArchiveChatListSettings $settings
+    ) {}
 
     public static function fromArray(array $array): SetArchiveChatListSettings
     {
@@ -44,7 +39,7 @@ class SetArchiveChatListSettings extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'settings' => $this->settings->typeSerialize(),
         ];
     }

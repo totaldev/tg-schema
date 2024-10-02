@@ -10,92 +10,60 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Telegram Premium was gifted to the user
+ * Telegram Premium was gifted to a user.
  */
 class MessageGiftedPremium extends MessageContent
 {
     public const TYPE_NAME = 'messageGiftedPremium';
 
-    /**
-     * The paid amount, in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $amount;
-
-    /**
-     * Cryptocurrency used to pay for the gift; may be empty if none
-     *
-     * @var string
-     */
-    protected string $cryptocurrency;
-
-    /**
-     * The paid amount, in the smallest units of the cryptocurrency
-     *
-     * @var int
-     */
-    protected int $cryptocurrencyAmount;
-
-    /**
-     * Currency for the paid amount
-     *
-     * @var string
-     */
-    protected string $currency;
-
-    /**
-     * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
-     *
-     * @var int
-     */
-    protected int $gifterUserId;
-
-    /**
-     * Number of month the Telegram Premium subscription will be active
-     *
-     * @var int
-     */
-    protected int $monthCount;
-
-    /**
-     * A sticker to be shown in the message; may be null if unknown
-     *
-     * @var Sticker|null
-     */
-    protected ?Sticker $sticker;
-
     public function __construct(
-        int      $gifterUserId,
-        string   $currency,
-        int      $amount,
-        string   $cryptocurrency,
-        int      $cryptocurrencyAmount,
-        int      $monthCount,
-        ?Sticker $sticker,
-    )
-    {
+        /**
+         * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
+         */
+        protected int      $gifterUserId,
+        /**
+         * The identifier of a user that received Telegram Premium; 0 if the gift is incoming.
+         */
+        protected int      $receiverUserId,
+        /**
+         * Currency for the paid amount.
+         */
+        protected string   $currency,
+        /**
+         * The paid amount, in the smallest units of the currency.
+         */
+        protected int      $amount,
+        /**
+         * Cryptocurrency used to pay for the gift; may be empty if none.
+         */
+        protected string   $cryptocurrency,
+        /**
+         * The paid amount, in the smallest units of the cryptocurrency; 0 if none.
+         */
+        protected int      $cryptocurrencyAmount,
+        /**
+         * Number of months the Telegram Premium subscription will be active.
+         */
+        protected int      $monthCount,
+        /**
+         * A sticker to be shown in the message; may be null if unknown.
+         */
+        protected ?Sticker $sticker,
+    ) {
         parent::__construct();
-
-        $this->gifterUserId = $gifterUserId;
-        $this->currency = $currency;
-        $this->amount = $amount;
-        $this->cryptocurrency = $cryptocurrency;
-        $this->cryptocurrencyAmount = $cryptocurrencyAmount;
-        $this->monthCount = $monthCount;
-        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): MessageGiftedPremium
     {
         return new static(
             $array['gifter_user_id'],
+            $array['receiver_user_id'],
             $array['currency'],
             $array['amount'],
             $array['cryptocurrency'],
             $array['cryptocurrency_amount'],
             $array['month_count'],
-            (isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null),
+            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
         );
     }
 
@@ -129,6 +97,11 @@ class MessageGiftedPremium extends MessageContent
         return $this->monthCount;
     }
 
+    public function getReceiverUserId(): int
+    {
+        return $this->receiverUserId;
+    }
+
     public function getSticker(): ?Sticker
     {
         return $this->sticker;
@@ -137,14 +110,15 @@ class MessageGiftedPremium extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'gifter_user_id' => $this->gifterUserId,
-            'currency' => $this->currency,
-            'amount' => $this->amount,
-            'cryptocurrency' => $this->cryptocurrency,
+            '@type'                 => static::TYPE_NAME,
+            'gifter_user_id'        => $this->gifterUserId,
+            'receiver_user_id'      => $this->receiverUserId,
+            'currency'              => $this->currency,
+            'amount'                => $this->amount,
+            'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
-            'month_count' => $this->monthCount,
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+            'month_count'           => $this->monthCount,
+            'sticker'               => (isset($this->sticker) ? $this->sticker : null),
         ];
     }
 }

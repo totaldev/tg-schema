@@ -10,70 +10,38 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a proxy server
+ * Contains information about a proxy server.
  */
 class Proxy extends TdObject
 {
     public const TYPE_NAME = 'proxy';
 
-    /**
-     * Unique identifier of the proxy
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if the proxy is enabled now
-     *
-     * @var bool
-     */
-    protected bool $isEnabled;
-
-    /**
-     * Point in time (Unix timestamp) when the proxy was last used; 0 if never
-     *
-     * @var int
-     */
-    protected int $lastUsedDate;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Type of the proxy
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
     public function __construct(
-        int       $id,
-        string    $server,
-        int       $port,
-        int       $lastUsedDate,
-        bool      $isEnabled,
-        ProxyType $type,
-    )
-    {
-        $this->id = $id;
-        $this->server = $server;
-        $this->port = $port;
-        $this->lastUsedDate = $lastUsedDate;
-        $this->isEnabled = $isEnabled;
-        $this->type = $type;
-    }
+        /**
+         * Unique identifier of the proxy.
+         */
+        protected int       $id,
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Point in time (Unix timestamp) when the proxy was last used; 0 if never.
+         */
+        protected int       $lastUsedDate,
+        /**
+         * True, if the proxy is enabled now.
+         */
+        protected bool      $isEnabled,
+        /**
+         * Type of the proxy.
+         */
+        protected ProxyType $type,
+    ) {}
 
     public static function fromArray(array $array): Proxy
     {
@@ -120,13 +88,13 @@ class Proxy extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'server' => $this->server,
-            'port' => $this->port,
+            '@type'          => static::TYPE_NAME,
+            'id'             => $this->id,
+            'server'         => $this->server,
+            'port'           => $this->port,
             'last_used_date' => $this->lastUsedDate,
-            'is_enabled' => $this->isEnabled,
-            'type' => $this->type->typeSerialize(),
+            'is_enabled'     => $this->isEnabled,
+            'type'           => $this->type->typeSerialize(),
         ];
     }
 }

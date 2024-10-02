@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a Telegram Passport element to be saved
+ * Contains information about a Telegram Passport element to be saved.
  */
 class InputPassportElement extends TdObject
 {
     public const TYPE_NAME = 'InputPassportElement';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputPassportElement
     {

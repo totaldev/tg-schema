@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Disconnect;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Disconnects website from the current user's Telegram account
+ * Disconnects website from the current user's Telegram account.
  */
 class DisconnectWebsite extends TdFunction
 {
     public const TYPE_NAME = 'disconnectWebsite';
 
-    /**
-     * Website identifier
-     *
-     * @var int
-     */
-    protected int $websiteId;
-
-    public function __construct(int $websiteId)
-    {
-        $this->websiteId = $websiteId;
-    }
+    public function __construct(
+        /**
+         * Website identifier.
+         */
+        protected int $websiteId
+    ) {}
 
     public static function fromArray(array $array): DisconnectWebsite
     {
@@ -43,7 +37,7 @@ class DisconnectWebsite extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'website_id' => $this->websiteId,
         ];
     }

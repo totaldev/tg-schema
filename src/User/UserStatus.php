@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the last time the user was online
+ * Describes the last time the user was online.
  */
 class UserStatus extends TdObject
 {
     public const TYPE_NAME = 'UserStatus';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): UserStatus
     {

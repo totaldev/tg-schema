@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A General forum topic has been hidden or unhidden
+ * A General forum topic has been hidden or unhidden.
  */
 class MessageForumTopicIsHiddenToggled extends MessageContent
 {
     public const TYPE_NAME = 'messageForumTopicIsHiddenToggled';
 
-    /**
-     * True, if the topic was hidden; otherwise, the topic was unhidden
-     *
-     * @var bool
-     */
-    protected bool $isHidden;
-
-    public function __construct(bool $isHidden)
-    {
+    public function __construct(
+        /**
+         * True, if the topic was hidden; otherwise, the topic was unhidden.
+         */
+        protected bool $isHidden
+    ) {
         parent::__construct();
-
-        $this->isHidden = $isHidden;
     }
 
     public static function fromArray(array $array): MessageForumTopicIsHiddenToggled
@@ -44,7 +37,7 @@ class MessageForumTopicIsHiddenToggled extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'is_hidden' => $this->isHidden,
         ];
     }

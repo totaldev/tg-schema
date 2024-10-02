@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Call;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the call identifier
+ * Contains the call identifier.
  */
 class CallId extends TdObject
 {
     public const TYPE_NAME = 'callId';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    public function __construct(int $id)
-    {
-        $this->id = $id;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int $id
+    ) {}
 
     public static function fromArray(array $array): CallId
     {
@@ -44,7 +38,7 @@ class CallId extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            'id'    => $this->id,
         ];
     }
 }

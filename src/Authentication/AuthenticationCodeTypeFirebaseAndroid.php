@@ -6,43 +6,40 @@
 
 namespace Totaldev\TgSchema\Authentication;
 
+use Totaldev\TgSchema\Firebase\FirebaseDeviceVerificationParameters;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An authentication code is delivered via Firebase Authentication to the official Android application
+ * A digit-only authentication code is delivered via Firebase Authentication to the official Android application.
  */
 class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeFirebaseAndroid';
 
-    /**
-     * Length of the code
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Nonce to pass to the SafetyNet Attestation API
-     *
-     * @var string
-     */
-    protected string $nonce;
-
-    public function __construct(string $nonce, int $length)
-    {
+    public function __construct(
+        /**
+         * Parameters to be used for device verification.
+         */
+        protected FirebaseDeviceVerificationParameters $deviceVerificationParameters,
+        /**
+         * Length of the code.
+         */
+        protected int                                  $length,
+    ) {
         parent::__construct();
-
-        $this->nonce = $nonce;
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): AuthenticationCodeTypeFirebaseAndroid
     {
         return new static(
-            $array['nonce'],
+            TdSchemaRegistry::fromArray($array['device_verification_parameters']),
             $array['length'],
         );
+    }
+
+    public function getDeviceVerificationParameters(): FirebaseDeviceVerificationParameters
+    {
+        return $this->deviceVerificationParameters;
     }
 
     public function getLength(): int
@@ -50,17 +47,12 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
         return $this->length;
     }
 
-    public function getNonce(): string
-    {
-        return $this->nonce;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'nonce' => $this->nonce,
-            'length' => $this->length,
+            '@type'                          => static::TYPE_NAME,
+            'device_verification_parameters' => $this->deviceVerificationParameters->typeSerialize(),
+            'length'                         => $this->length,
         ];
     }
 }

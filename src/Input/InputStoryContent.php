@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The content of a story to send
+ * The content of a story to send.
  */
 class InputStoryContent extends TdObject
 {
     public const TYPE_NAME = 'InputStoryContent';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputStoryContent
     {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Inline;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of an inline keyboard button
+ * Describes the type of inline keyboard button.
  */
 class InlineKeyboardButtonType extends TdObject
 {
     public const TYPE_NAME = 'InlineKeyboardButtonType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InlineKeyboardButtonType
     {

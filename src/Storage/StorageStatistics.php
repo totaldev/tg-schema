@@ -10,39 +10,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the exact storage usage statistics split by chats and file type
+ * Contains the exact storage usage statistics split by chats and file type.
  */
 class StorageStatistics extends TdObject
 {
     public const TYPE_NAME = 'storageStatistics';
 
-    /**
-     * Statistics split by chats
-     *
-     * @var StorageStatisticsByChat[]
-     */
-    protected array $byChat;
-
-    /**
-     * Total number of files
-     *
-     * @var int
-     */
-    protected int $count;
-
-    /**
-     * Total size of files, in bytes
-     *
-     * @var int
-     */
-    protected int $size;
-
-    public function __construct(int $size, int $count, array $byChat)
-    {
-        $this->size = $size;
-        $this->count = $count;
-        $this->byChat = $byChat;
-    }
+    public function __construct(
+        /**
+         * Total size of files, in bytes.
+         */
+        protected int   $size,
+        /**
+         * Total number of files.
+         */
+        protected int   $count,
+        /**
+         * Statistics split by chats.
+         *
+         * @var StorageStatisticsByChat[]
+         */
+        protected array $byChat,
+    ) {}
 
     public static function fromArray(array $array): StorageStatistics
     {
@@ -72,7 +61,7 @@ class StorageStatistics extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'size' => $this->size,
+            'size'  => $this->size,
             'count' => $this->count,
             array_map(fn($x) => $x->typeSerialize(), $this->byChat),
         ];

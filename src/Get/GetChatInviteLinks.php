@@ -7,74 +7,41 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own
- * links and owner privileges to get other links
+ * links and owner privileges to get other links.
  */
 class GetChatInviteLinks extends TdFunction
 {
     public const TYPE_NAME = 'getChatInviteLinks';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * User identifier of a chat administrator. Must be an identifier of the current user for non-owner
-     *
-     * @var int
-     */
-    protected int $creatorUserId;
-
-    /**
-     * Pass true if revoked links needs to be returned instead of active or expired
-     *
-     * @var bool
-     */
-    protected bool $isRevoked;
-
-    /**
-     * The maximum number of invite links to return; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
-     *
-     * @var int
-     */
-    protected int $offsetDate;
-
-    /**
-     * Invite link starting after which to return invite links; use empty string to get results from the beginning
-     *
-     * @var string
-     */
-    protected string $offsetInviteLink;
-
     public function __construct(
-        int    $chatId,
-        int    $creatorUserId,
-        bool   $isRevoked,
-        int    $offsetDate,
-        string $offsetInviteLink,
-        int    $limit,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->creatorUserId = $creatorUserId;
-        $this->isRevoked = $isRevoked;
-        $this->offsetDate = $offsetDate;
-        $this->offsetInviteLink = $offsetInviteLink;
-        $this->limit = $limit;
-    }
+        /**
+         * Chat identifier.
+         */
+        protected int    $chatId,
+        /**
+         * User identifier of a chat administrator. Must be an identifier of the current user for non-owner.
+         */
+        protected int    $creatorUserId,
+        /**
+         * Pass true if revoked links needs to be returned instead of active or expired.
+         */
+        protected bool   $isRevoked,
+        /**
+         * Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning.
+         */
+        protected int    $offsetDate,
+        /**
+         * Invite link starting after which to return invite links; use empty string to get results from the beginning.
+         */
+        protected string $offsetInviteLink,
+        /**
+         * The maximum number of invite links to return; up to 100.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): GetChatInviteLinks
     {
@@ -121,13 +88,13 @@ class GetChatInviteLinks extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'creator_user_id' => $this->creatorUserId,
-            'is_revoked' => $this->isRevoked,
-            'offset_date' => $this->offsetDate,
+            '@type'              => static::TYPE_NAME,
+            'chat_id'            => $this->chatId,
+            'creator_user_id'    => $this->creatorUserId,
+            'is_revoked'         => $this->isRevoked,
+            'offset_date'        => $this->offsetDate,
             'offset_invite_link' => $this->offsetInviteLink,
-            'limit' => $this->limit,
+            'limit'              => $this->limit,
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call ended unexpectedly
+ * The call ended unexpectedly.
  */
 class CallProblemDropped extends CallProblem
 {

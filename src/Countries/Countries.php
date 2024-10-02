@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about countries
+ * Contains information about countries.
  */
 class Countries extends TdObject
 {
     public const TYPE_NAME = 'countries';
 
-    /**
-     * The list of countries
-     *
-     * @var CountryInfo[]
-     */
-    protected array $countries;
-
-    public function __construct(array $countries)
-    {
-        $this->countries = $countries;
-    }
+    public function __construct(
+        /**
+         * The list of countries.
+         *
+         * @var CountryInfo[]
+         */
+        protected array $countries
+    ) {}
 
     public static function fromArray(array $array): Countries
     {

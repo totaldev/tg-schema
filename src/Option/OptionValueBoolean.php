@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Option;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a boolean option
+ * Represents a boolean option.
  */
 class OptionValueBoolean extends OptionValue
 {
     public const TYPE_NAME = 'optionValueBoolean';
 
-    /**
-     * The value of the option
-     *
-     * @var bool
-     */
-    protected bool $value;
-
-    public function __construct(bool $value)
-    {
+    public function __construct(
+        /**
+         * The value of the option.
+         */
+        protected bool $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): OptionValueBoolean

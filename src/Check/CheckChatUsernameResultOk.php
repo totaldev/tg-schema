@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The username can be set
+ * The username can be set.
  */
 class CheckChatUsernameResultOk extends CheckChatUsernameResult
 {

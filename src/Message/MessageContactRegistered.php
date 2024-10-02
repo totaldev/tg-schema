@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A contact has registered with Telegram
+ * A contact has registered with Telegram.
  */
 class MessageContactRegistered extends MessageContent
 {

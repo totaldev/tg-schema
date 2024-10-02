@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A video chat participant was muted or unmuted
+ * A video chat participant was muted or unmuted.
  */
 class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventVideoChatParticipantIsMutedToggled';
 
-    /**
-     * New value of is_muted
-     *
-     * @var bool
-     */
-    protected bool $isMuted;
-
-    /**
-     * Identifier of the affected group call participant
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    public function __construct(MessageSender $participantId, bool $isMuted)
-    {
+    public function __construct(
+        /**
+         * Identifier of the affected group call participant.
+         */
+        protected MessageSender $participantId,
+        /**
+         * New value of is_muted.
+         */
+        protected bool          $isMuted,
+    ) {
         parent::__construct();
-
-        $this->participantId = $participantId;
-        $this->isMuted = $isMuted;
     }
 
     public static function fromArray(array $array): ChatEventVideoChatParticipantIsMutedToggled
@@ -59,9 +50,9 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'participant_id' => $this->participantId->typeSerialize(),
-            'is_muted' => $this->isMuted,
+            'is_muted'       => $this->isMuted,
         ];
     }
 }

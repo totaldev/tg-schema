@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Ok;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An object of this type is returned on a successful function call for certain functions
+ * An object of this type is returned on a successful function call for certain functions.
  */
 class Ok extends TdObject
 {
     public const TYPE_NAME = 'ok';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): Ok
     {

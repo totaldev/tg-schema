@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The selfie contains an error. The error is considered resolved when the file with the selfie changes
+ * The selfie contains an error. The error is considered resolved when the file with the selfie changes.
  */
 class InputPassportElementErrorSourceSelfie extends InputPassportElementErrorSource
 {
     public const TYPE_NAME = 'inputPassportElementErrorSourceSelfie';
 
-    /**
-     * Current hash of the file containing the selfie
-     *
-     * @var string
-     */
-    protected string $fileHash;
-
-    public function __construct(string $fileHash)
-    {
+    public function __construct(
+        /**
+         * Current hash of the file containing the selfie.
+         */
+        protected string $fileHash
+    ) {
         parent::__construct();
-
-        $this->fileHash = $fileHash;
     }
 
     public static function fromArray(array $array): InputPassportElementErrorSourceSelfie
@@ -44,7 +37,7 @@ class InputPassportElementErrorSourceSelfie extends InputPassportElementErrorSou
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'file_hash' => $this->fileHash,
         ];
     }

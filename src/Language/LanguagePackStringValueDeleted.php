@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Language;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A deleted language pack string, the value must be taken from the built-in English language pack
+ * A deleted language pack string, the value must be taken from the built-in English language pack.
  */
 class LanguagePackStringValueDeleted extends LanguagePackStringValue
 {

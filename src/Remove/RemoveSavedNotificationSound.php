@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes a notification sound from the list of saved notification sounds
+ * Removes a notification sound from the list of saved notification sounds.
  */
 class RemoveSavedNotificationSound extends TdFunction
 {
     public const TYPE_NAME = 'removeSavedNotificationSound';
 
-    /**
-     * Identifier of the notification sound
-     *
-     * @var int
-     */
-    protected int $notificationSoundId;
-
-    public function __construct(int $notificationSoundId)
-    {
-        $this->notificationSoundId = $notificationSoundId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the notification sound.
+         */
+        protected int $notificationSoundId
+    ) {}
 
     public static function fromArray(array $array): RemoveSavedNotificationSound
     {
@@ -43,7 +37,7 @@ class RemoveSavedNotificationSound extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'notification_sound_id' => $this->notificationSoundId,
         ];
     }

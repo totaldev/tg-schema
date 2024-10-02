@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Email;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication token received through Apple ID
+ * An authentication token received through Apple ID.
  */
 class EmailAddressAuthenticationAppleId extends EmailAddressAuthentication
 {
     public const TYPE_NAME = 'emailAddressAuthenticationAppleId';
 
-    /**
-     * The token
-     *
-     * @var string
-     */
-    protected string $token;
-
-    public function __construct(string $token)
-    {
+    public function __construct(
+        /**
+         * The token.
+         */
+        protected string $token
+    ) {
         parent::__construct();
-
-        $this->token = $token;
     }
 
     public static function fromArray(array $array): EmailAddressAuthenticationAppleId

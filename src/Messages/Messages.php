@@ -11,37 +11,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of messages
+ * Contains a list of messages.
  */
 class Messages extends TdObject
 {
     public const TYPE_NAME = 'messages';
 
-    /**
-     * List of messages; messages may be null
-     *
-     * @var Message[]|null
-     */
-    protected ?array $messages;
-
-    /**
-     * Approximate total number of messages found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, ?array $messages)
-    {
-        $this->totalCount = $totalCount;
-        $this->messages = $messages;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of messages found.
+         */
+        protected int    $totalCount,
+        /**
+         * List of messages; messages may be null.
+         *
+         * @var Message[]|null
+         */
+        protected ?array $messages,
+    ) {}
 
     public static function fromArray(array $array): Messages
     {
         return new static(
             $array['total_count'],
-            (isset($array['messages']) ? array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null),
+            isset($array['messages']) ? array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']) : null,
         );
     }
 
@@ -58,9 +51,9 @@ class Messages extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            (isset($this->messages) ? array_map(fn($x) => $x->typeSerialize(), $this->messages) : null),
+            isset($this->messages) ? array_map(fn($x) => $x->typeSerialize(), $this->messages) : null,
         ];
     }
 }

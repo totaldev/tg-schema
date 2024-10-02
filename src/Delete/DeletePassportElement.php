@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes a Telegram Passport element
+ * Deletes a Telegram Passport element.
  */
 class DeletePassportElement extends TdFunction
 {
     public const TYPE_NAME = 'deletePassportElement';
 
-    /**
-     * Element type
-     *
-     * @var PassportElementType
-     */
-    protected PassportElementType $type;
-
-    public function __construct(PassportElementType $type)
-    {
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Element type.
+         */
+        protected PassportElementType $type
+    ) {}
 
     public static function fromArray(array $array): DeletePassportElement
     {
@@ -45,7 +40,7 @@ class DeletePassportElement extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            'type'  => $this->type->typeSerialize(),
         ];
     }
 }

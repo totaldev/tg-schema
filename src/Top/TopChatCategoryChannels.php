@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used channels
+ * A category containing frequently used channels.
  */
 class TopChatCategoryChannels extends TopChatCategory
 {

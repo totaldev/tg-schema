@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all
- * members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
+ * members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat.
  */
 class DeleteChat extends TdFunction
 {
     public const TYPE_NAME = 'deleteChat';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): DeleteChat
     {
@@ -44,7 +38,7 @@ class DeleteChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Passport;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the description of an error in a Telegram Passport element
+ * Contains the description of an error in a Telegram Passport element.
  */
 class PassportElementErrorSource extends TdObject
 {
     public const TYPE_NAME = 'PassportElementErrorSource';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PassportElementErrorSource
     {

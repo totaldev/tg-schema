@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Network;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A mobile network
+ * A mobile network.
  */
 class NetworkTypeMobile extends NetworkType
 {

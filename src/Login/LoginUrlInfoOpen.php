@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Login;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An HTTP URL needs to be open
+ * An HTTP URL needs to be open.
  */
 class LoginUrlInfoOpen extends LoginUrlInfo
 {
     public const TYPE_NAME = 'loginUrlInfoOpen';
 
-    /**
-     * True, if there is no need to show an ordinary open URL confirmation
-     *
-     * @var bool
-     */
-    protected bool $skipConfirmation;
-
-    /**
-     * The URL to open
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url, bool $skipConfirmation)
-    {
+    public function __construct(
+        /**
+         * The URL to open.
+         */
+        protected string $url,
+        /**
+         * True, if there is no need to show an ordinary open URL confirmation.
+         */
+        protected bool   $skipConfirmation,
+    ) {
         parent::__construct();
-
-        $this->url = $url;
-        $this->skipConfirmation = $skipConfirmation;
     }
 
     public static function fromArray(array $array): LoginUrlInfoOpen
@@ -58,8 +47,8 @@ class LoginUrlInfoOpen extends LoginUrlInfo
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            '@type'             => static::TYPE_NAME,
+            'url'               => $this->url,
             'skip_confirmation' => $this->skipConfirmation,
         ];
     }

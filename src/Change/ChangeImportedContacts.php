@@ -12,23 +12,20 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled,
- * deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time
+ * deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time.
  */
 class ChangeImportedContacts extends TdFunction
 {
     public const TYPE_NAME = 'changeImportedContacts';
 
-    /**
-     * The new list of contacts, contact's vCard are ignored and are not imported
-     *
-     * @var Contact[]
-     */
-    protected array $contacts;
-
-    public function __construct(array $contacts)
-    {
-        $this->contacts = $contacts;
-    }
+    public function __construct(
+        /**
+         * The new list of contacts, contact's vCard are ignored and are not imported.
+         *
+         * @var Contact[]
+         */
+        protected array $contacts
+    ) {}
 
     public static function fromArray(array $array): ChangeImportedContacts
     {

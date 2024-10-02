@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to boost chats
+ * The ability to boost chats.
  */
 class PremiumFeatureChatBoost extends PremiumFeature
 {

@@ -9,40 +9,27 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A reference to a richTexts object on the same web page
+ * A reference to a richTexts object on the same page.
  */
 class RichTextReference extends RichText
 {
     public const TYPE_NAME = 'richTextReference';
 
-    /**
-     * The name of a richTextAnchor object, which is the first element of the target richTexts object
-     *
-     * @var string
-     */
-    protected string $anchorName;
-
-    /**
-     * The text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
-     * An HTTP URL, opening the reference
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(RichText $text, string $anchorName, string $url)
-    {
+    public function __construct(
+        /**
+         * The text.
+         */
+        protected RichText $text,
+        /**
+         * The name of a richTextAnchor object, which is the first element of the target richTexts object.
+         */
+        protected string   $anchorName,
+        /**
+         * An HTTP URL, opening the reference.
+         */
+        protected string   $url,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->anchorName = $anchorName;
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): RichTextReference
@@ -72,10 +59,10 @@ class RichTextReference extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'text'        => $this->text->typeSerialize(),
             'anchor_name' => $this->anchorName,
-            'url' => $this->url,
+            'url'         => $this->url,
         ];
     }
 }

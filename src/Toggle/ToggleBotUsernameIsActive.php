@@ -7,43 +7,29 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the
- * maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+ * maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true.
  */
 class ToggleBotUsernameIsActive extends TdFunction
 {
     public const TYPE_NAME = 'toggleBotUsernameIsActive';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Pass true to activate the username; pass false to disable it
-     *
-     * @var bool
-     */
-    protected bool $isActive;
-
-    /**
-     * The username to change
-     *
-     * @var string
-     */
-    protected string $username;
-
-    public function __construct(int $botUserId, string $username, bool $isActive)
-    {
-        $this->botUserId = $botUserId;
-        $this->username = $username;
-        $this->isActive = $isActive;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int    $botUserId,
+        /**
+         * The username to change.
+         */
+        protected string $username,
+        /**
+         * Pass true to activate the username; pass false to disable it.
+         */
+        protected bool   $isActive,
+    ) {}
 
     public static function fromArray(array $array): ToggleBotUsernameIsActive
     {
@@ -72,10 +58,10 @@ class ToggleBotUsernameIsActive extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'username' => $this->username,
-            'is_active' => $this->isActive,
+            'username'    => $this->username,
+            'is_active'   => $this->isActive,
         ];
     }
 }

@@ -7,26 +7,22 @@
 namespace Totaldev\TgSchema\Emojis;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of emoji
+ * Represents a list of emojis.
  */
 class Emojis extends TdObject
 {
     public const TYPE_NAME = 'emojis';
 
-    /**
-     * List of emojis
-     *
-     * @var string[]
-     */
-    protected array $emojis;
-
-    public function __construct(array $emojis)
-    {
-        $this->emojis = $emojis;
-    }
+    public function __construct(
+        /**
+         * List of emojis.
+         *
+         * @var string[]
+         */
+        protected array $emojis
+    ) {}
 
     public static function fromArray(array $array): Emojis
     {
@@ -43,7 +39,7 @@ class Emojis extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'emojis' => $this->emojis,
         ];
     }

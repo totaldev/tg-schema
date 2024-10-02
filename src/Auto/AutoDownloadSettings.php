@@ -7,100 +7,52 @@
 namespace Totaldev\TgSchema\Auto;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains auto-download settings
+ * Contains auto-download settings.
  */
 class AutoDownloadSettings extends TdObject
 {
     public const TYPE_NAME = 'autoDownloadSettings';
 
-    /**
-     * True, if the auto-download is enabled
-     *
-     * @var bool
-     */
-    protected bool $isAutoDownloadEnabled;
-
-    /**
-     * The maximum size of other file types to be auto-downloaded, in bytes
-     *
-     * @var int
-     */
-    protected int $maxOtherFileSize;
-
-    /**
-     * The maximum size of a photo file to be auto-downloaded, in bytes
-     *
-     * @var int
-     */
-    protected int $maxPhotoFileSize;
-
-    /**
-     * The maximum size of a video file to be auto-downloaded, in bytes
-     *
-     * @var int
-     */
-    protected int $maxVideoFileSize;
-
-    /**
-     * True, if the beginning of video files needs to be preloaded for instant playback
-     *
-     * @var bool
-     */
-    protected bool $preloadLargeVideos;
-
-    /**
-     * True, if the next audio track needs to be preloaded while the user is listening to an audio file
-     *
-     * @var bool
-     */
-    protected bool $preloadNextAudio;
-
-    /**
-     * True, if stories needs to be preloaded
-     *
-     * @var bool
-     */
-    protected bool $preloadStories;
-
-    /**
-     * True, if "use less data for calls" option needs to be enabled
-     *
-     * @var bool
-     */
-    protected bool $useLessDataForCalls;
-
-    /**
-     * The maximum suggested bitrate for uploaded videos, in kbit/s
-     *
-     * @var int
-     */
-    protected int $videoUploadBitrate;
-
     public function __construct(
-        bool $isAutoDownloadEnabled,
-        int  $maxPhotoFileSize,
-        int  $maxVideoFileSize,
-        int  $maxOtherFileSize,
-        int  $videoUploadBitrate,
-        bool $preloadLargeVideos,
-        bool $preloadNextAudio,
-        bool $preloadStories,
-        bool $useLessDataForCalls,
-    )
-    {
-        $this->isAutoDownloadEnabled = $isAutoDownloadEnabled;
-        $this->maxPhotoFileSize = $maxPhotoFileSize;
-        $this->maxVideoFileSize = $maxVideoFileSize;
-        $this->maxOtherFileSize = $maxOtherFileSize;
-        $this->videoUploadBitrate = $videoUploadBitrate;
-        $this->preloadLargeVideos = $preloadLargeVideos;
-        $this->preloadNextAudio = $preloadNextAudio;
-        $this->preloadStories = $preloadStories;
-        $this->useLessDataForCalls = $useLessDataForCalls;
-    }
+        /**
+         * True, if the auto-download is enabled.
+         */
+        protected bool $isAutoDownloadEnabled,
+        /**
+         * The maximum size of a photo file to be auto-downloaded, in bytes.
+         */
+        protected int  $maxPhotoFileSize,
+        /**
+         * The maximum size of a video file to be auto-downloaded, in bytes.
+         */
+        protected int  $maxVideoFileSize,
+        /**
+         * The maximum size of other file types to be auto-downloaded, in bytes.
+         */
+        protected int  $maxOtherFileSize,
+        /**
+         * The maximum suggested bitrate for uploaded videos, in kbit/s.
+         */
+        protected int  $videoUploadBitrate,
+        /**
+         * True, if the beginning of video files needs to be preloaded for instant playback.
+         */
+        protected bool $preloadLargeVideos,
+        /**
+         * True, if the next audio track needs to be preloaded while the user is listening to an audio file.
+         */
+        protected bool $preloadNextAudio,
+        /**
+         * True, if stories needs to be preloaded.
+         */
+        protected bool $preloadStories,
+        /**
+         * True, if "use less data for calls" option needs to be enabled.
+         */
+        protected bool $useLessDataForCalls,
+    ) {}
 
     public static function fromArray(array $array): AutoDownloadSettings
     {
@@ -165,16 +117,16 @@ class AutoDownloadSettings extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                    => static::TYPE_NAME,
             'is_auto_download_enabled' => $this->isAutoDownloadEnabled,
-            'max_photo_file_size' => $this->maxPhotoFileSize,
-            'max_video_file_size' => $this->maxVideoFileSize,
-            'max_other_file_size' => $this->maxOtherFileSize,
-            'video_upload_bitrate' => $this->videoUploadBitrate,
-            'preload_large_videos' => $this->preloadLargeVideos,
-            'preload_next_audio' => $this->preloadNextAudio,
-            'preload_stories' => $this->preloadStories,
-            'use_less_data_for_calls' => $this->useLessDataForCalls,
+            'max_photo_file_size'      => $this->maxPhotoFileSize,
+            'max_video_file_size'      => $this->maxVideoFileSize,
+            'max_other_file_size'      => $this->maxOtherFileSize,
+            'video_upload_bitrate'     => $this->videoUploadBitrate,
+            'preload_large_videos'     => $this->preloadLargeVideos,
+            'preload_next_audio'       => $this->preloadNextAudio,
+            'preload_stories'          => $this->preloadStories,
+            'use_less_data_for_calls'  => $this->useLessDataForCalls,
         ];
     }
 }

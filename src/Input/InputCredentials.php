@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the payment method chosen by the user
+ * Contains information about the payment method chosen by the user.
  */
 class InputCredentials extends TdObject
 {
     public const TYPE_NAME = 'InputCredentials';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputCredentials
     {

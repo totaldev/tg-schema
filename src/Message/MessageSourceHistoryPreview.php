@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from chat, message thread or forum topic history preview
+ * The message is from chat, message thread or forum topic history preview.
  */
 class MessageSourceHistoryPreview extends MessageSource
 {

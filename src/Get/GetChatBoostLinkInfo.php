@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+ * Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost.
  */
 class GetChatBoostLinkInfo extends TdFunction
 {
     public const TYPE_NAME = 'getChatBoostLinkInfo';
 
-    /**
-     * The link to boost a chat
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * The link to boost a chat.
+         */
+        protected string $url
+    ) {}
 
     public static function fromArray(array $array): GetChatBoostLinkInfo
     {
@@ -44,7 +38,7 @@ class GetChatBoostLinkInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

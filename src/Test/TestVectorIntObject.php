@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A simple object containing a vector of objects that hold a number; for testing only
+ * A simple object containing a vector of objects that hold a number; for testing only.
  */
 class TestVectorIntObject extends TdObject
 {
     public const TYPE_NAME = 'testVectorIntObject';
 
-    /**
-     * Vector of objects
-     *
-     * @var TestInt[]
-     */
-    protected array $value;
-
-    public function __construct(array $value)
-    {
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * Vector of objects.
+         *
+         * @var TestInt[]
+         */
+        protected array $value
+    ) {}
 
     public static function fromArray(array $array): TestVectorIntObject
     {

@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat editable username was changed
+ * The chat editable username was changed.
  */
 class ChatEventUsernameChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventUsernameChanged';
 
-    /**
-     * New chat username
-     *
-     * @var string
-     */
-    protected string $newUsername;
-
-    /**
-     * Previous chat username
-     *
-     * @var string
-     */
-    protected string $oldUsername;
-
-    public function __construct(string $oldUsername, string $newUsername)
-    {
+    public function __construct(
+        /**
+         * Previous chat username.
+         */
+        protected string $oldUsername,
+        /**
+         * New chat username.
+         */
+        protected string $newUsername,
+    ) {
         parent::__construct();
-
-        $this->oldUsername = $oldUsername;
-        $this->newUsername = $newUsername;
     }
 
     public static function fromArray(array $array): ChatEventUsernameChanged
@@ -58,7 +47,7 @@ class ChatEventUsernameChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'old_username' => $this->oldUsername,
             'new_username' => $this->newUsername,
         ];

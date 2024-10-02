@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Story;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A story content that is not supported in the current TDLib version
+ * A story content that is not supported in the current TDLib version.
  */
 class StoryContentUnsupported extends StoryContent
 {

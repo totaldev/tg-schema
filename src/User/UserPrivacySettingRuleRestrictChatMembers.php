@@ -6,27 +6,22 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A rule to restrict all members of specified basic groups and supergroups from doing something
+ * A rule to restrict all members of specified basic groups and supergroups from doing something.
  */
 class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule
 {
     public const TYPE_NAME = 'userPrivacySettingRuleRestrictChatMembers';
 
-    /**
-     * The chat identifiers, total number of chats in all rules must not exceed 20
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
-
-    public function __construct(array $chatIds)
-    {
+    public function __construct(
+        /**
+         * The chat identifiers, total number of chats in all rules must not exceed 20.
+         *
+         * @var int[]
+         */
+        protected array $chatIds
+    ) {
         parent::__construct();
-
-        $this->chatIds = $chatIds;
     }
 
     public static function fromArray(array $array): UserPrivacySettingRuleRestrictChatMembers
@@ -44,7 +39,7 @@ class UserPrivacySettingRuleRestrictChatMembers extends UserPrivacySettingRule
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'chat_ids' => $this->chatIds,
         ];
     }

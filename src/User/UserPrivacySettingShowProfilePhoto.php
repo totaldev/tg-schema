@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A privacy setting for managing whether the user's profile photo is visible
+ * A privacy setting for managing whether the user's profile photo is visible.
  */
 class UserPrivacySettingShowProfilePhoto extends UserPrivacySetting
 {

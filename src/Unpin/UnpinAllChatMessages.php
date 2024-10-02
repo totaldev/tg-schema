@@ -7,26 +7,21 @@
 namespace Totaldev\TgSchema\Unpin;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+ * Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages
+ * administrator right if the chat is a channel.
  */
 class UnpinAllChatMessages extends TdFunction
 {
     public const TYPE_NAME = 'unpinAllChatMessages';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): UnpinAllChatMessages
     {
@@ -43,7 +38,7 @@ class UnpinAllChatMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

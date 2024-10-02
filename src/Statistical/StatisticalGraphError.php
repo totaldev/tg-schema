@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Statistical;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An error message to be shown to the user instead of the graph
+ * An error message to be shown to the user instead of the graph.
  */
 class StatisticalGraphError extends StatisticalGraph
 {
     public const TYPE_NAME = 'statisticalGraphError';
 
-    /**
-     * The error message
-     *
-     * @var string
-     */
-    protected string $errorMessage;
-
-    public function __construct(string $errorMessage)
-    {
+    public function __construct(
+        /**
+         * The error message.
+         */
+        protected string $errorMessage
+    ) {
         parent::__construct();
-
-        $this->errorMessage = $errorMessage;
     }
 
     public static function fromArray(array $array): StatisticalGraphError
@@ -44,7 +37,7 @@ class StatisticalGraphError extends StatisticalGraph
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'error_message' => $this->errorMessage,
         ];
     }

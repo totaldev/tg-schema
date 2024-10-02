@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns database statistics
+ * Returns database statistics.
  */
 class GetDatabaseStatistics extends TdFunction
 {
     public const TYPE_NAME = 'getDatabaseStatistics';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetDatabaseStatistics
     {

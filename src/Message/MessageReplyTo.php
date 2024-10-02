@@ -4,23 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the message or the story a message is replying to
+ * Contains information about the message or the story a message is replying to.
  */
 class MessageReplyTo extends TdObject
 {
     public const TYPE_NAME = 'MessageReplyTo';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): MessageReplyTo
     {

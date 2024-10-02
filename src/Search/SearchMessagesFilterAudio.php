@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only audio messages
+ * Returns only audio messages.
  */
 class SearchMessagesFilterAudio extends SearchMessagesFilter
 {

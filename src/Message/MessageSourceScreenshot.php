@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message was screenshotted; the source must be used only if the message content was visible during the screenshot
+ * The message was screenshotted; the source must be used only if the message content was visible during the screenshot.
  */
 class MessageSourceScreenshot extends MessageSource
 {

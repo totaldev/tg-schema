@@ -11,55 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+ * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization.
  */
 class TestProxy extends TdFunction
 {
     public const TYPE_NAME = 'testProxy';
 
-    /**
-     * Identifier of a datacenter with which to test connection
-     *
-     * @var int
-     */
-    protected int $dcId;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * The maximum overall timeout for the request
-     *
-     * @var float
-     */
-    protected float $timeout;
-
-    /**
-     * Proxy type
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    public function __construct(string $server, int $port, ProxyType $type, int $dcId, float $timeout)
-    {
-        $this->server = $server;
-        $this->port = $port;
-        $this->type = $type;
-        $this->dcId = $dcId;
-        $this->timeout = $timeout;
-    }
+    public function __construct(
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
+        /**
+         * Identifier of a datacenter with which to test connection.
+         */
+        protected int       $dcId,
+        /**
+         * The maximum overall timeout for the request.
+         */
+        protected float     $timeout,
+    ) {}
 
     public static function fromArray(array $array): TestProxy
     {
@@ -100,11 +79,11 @@ class TestProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'server' => $this->server,
-            'port' => $this->port,
-            'type' => $this->type->typeSerialize(),
-            'dc_id' => $this->dcId,
+            '@type'   => static::TYPE_NAME,
+            'server'  => $this->server,
+            'port'    => $this->port,
+            'type'    => $this->type->typeSerialize(),
+            'dc_id'   => $this->dcId,
             'timeout' => $this->timeout,
         ];
     }

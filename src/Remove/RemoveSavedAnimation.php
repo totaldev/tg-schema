@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes an animation from the list of saved animations
+ * Removes an animation from the list of saved animations.
  */
 class RemoveSavedAnimation extends TdFunction
 {
     public const TYPE_NAME = 'removeSavedAnimation';
 
-    /**
-     * Animation file to be removed
-     *
-     * @var InputFile
-     */
-    protected InputFile $animation;
-
-    public function __construct(InputFile $animation)
-    {
-        $this->animation = $animation;
-    }
+    public function __construct(
+        /**
+         * Animation file to be removed.
+         */
+        protected InputFile $animation
+    ) {}
 
     public static function fromArray(array $array): RemoveSavedAnimation
     {
@@ -44,7 +39,7 @@ class RemoveSavedAnimation extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'animation' => $this->animation->typeSerialize(),
         ];
     }

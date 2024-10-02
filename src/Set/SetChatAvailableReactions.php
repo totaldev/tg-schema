@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+ * Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right.
  */
 class SetChatAvailableReactions extends TdFunction
 {
     public const TYPE_NAME = 'setChatAvailableReactions';
 
-    /**
-     * Reactions available in the chat. All emoji reactions must be active
-     *
-     * @var ChatAvailableReactions
-     */
-    protected ChatAvailableReactions $availableReactions;
-
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId, ChatAvailableReactions $availableReactions)
-    {
-        $this->chatId = $chatId;
-        $this->availableReactions = $availableReactions;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int                    $chatId,
+        /**
+         * Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified.
+         */
+        protected ChatAvailableReactions $availableReactions,
+    ) {}
 
     public static function fromArray(array $array): SetChatAvailableReactions
     {
@@ -58,8 +49,8 @@ class SetChatAvailableReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'               => static::TYPE_NAME,
+            'chat_id'             => $this->chatId,
             'available_reactions' => $this->availableReactions->typeSerialize(),
         ];
     }

@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes commands supported by the bot for the given user scope and language; for bots only
+ * Deletes commands supported by the bot for the given user scope and language; for bots only.
  */
 class DeleteCommands extends TdFunction
 {
     public const TYPE_NAME = 'deleteCommands';
 
-    /**
-     * A two-letter ISO 639-1 language code or an empty string
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    /**
-     * The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
-     *
-     * @var BotCommandScope
-     */
-    protected BotCommandScope $scope;
-
-    public function __construct(BotCommandScope $scope, string $languageCode)
-    {
-        $this->scope = $scope;
-        $this->languageCode = $languageCode;
-    }
+    public function __construct(
+        /**
+         * The scope to which the commands are relevant; pass null to delete commands in the default bot command scope.
+         */
+        protected BotCommandScope $scope,
+        /**
+         * A two-letter ISO 639-1 language code or an empty string.
+         */
+        protected string          $languageCode,
+    ) {}
 
     public static function fromArray(array $array): DeleteCommands
     {
@@ -58,8 +49,8 @@ class DeleteCommands extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'scope'         => $this->scope->typeSerialize(),
             'language_code' => $this->languageCode,
         ];
     }

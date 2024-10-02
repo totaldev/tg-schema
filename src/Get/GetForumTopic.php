@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a forum topic
+ * Returns information about a forum topic.
  */
 class GetForumTopic extends TdFunction
 {
     public const TYPE_NAME = 'getForumTopic';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message thread identifier of the forum topic
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $chatId, int $messageThreadId)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int $chatId,
+        /**
+         * Message thread identifier of the forum topic.
+         */
+        protected int $messageThreadId,
+    ) {}
 
     public static function fromArray(array $array): GetForumTopic
     {
@@ -57,8 +47,8 @@ class GetForumTopic extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
         ];
     }

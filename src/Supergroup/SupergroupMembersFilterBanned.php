@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns users banned from the supergroup or channel; can be used only by administrators
+ * Returns users banned from the supergroup or channel; can be used only by administrators.
  */
 class SupergroupMembersFilterBanned extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterBanned';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query
+    ) {
         parent::__construct();
-
-        $this->query = $query;
     }
 
     public static function fromArray(array $array): SupergroupMembersFilterBanned

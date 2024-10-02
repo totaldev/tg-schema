@@ -10,7 +10,7 @@
 
 The PHP TD Gram Schema generated TdLib Schema Classes using [phptdgram/schema-generator][link-generator] from [td_api.tl][link-td-api] file.
 
-#### Based on TdLib `td_api` v1.6.0 schema version 
+#### Based on TdLib `td_api` v1.6.0 schema version
 
 ## Install
 
@@ -113,22 +113,32 @@ $ composer ci-run
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
-
 ## License
 
 Please see [License File](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/phptdgram/schema.svg?style=flat-square
+
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+
 [ico-travis]: https://img.shields.io/travis/com/phptdgram/schema/master.svg?style=flat-square
+
 [ico-quality]: https://img.shields.io/scrutinizer/quality/g/phptdgram/schema?style=flat-square
+
 [ico-downloads]: https://img.shields.io/packagist/dt/phptdgram/schema.svg?style=flat-square
+
 [ico-email]: https://img.shields.io/badge/email-aurimas@niekis.lt-blue.svg?style=flat-square
 
 [link-travis]: https://travis-ci.com/phptdgram/schema
+
 [link-packagist]: https://packagist.org/packages/phptdgram/schema
+
 [link-scrutinizer]: https://scrutinizer-ci.com/g/phptdgram/schema
+
 [link-downloads]: https://packagist.org/packages/phptdgram/schema/stats
+
 [link-generator]: https://github.com/phptdgram/schema-generator
+
 [link-td-api]: https://github.com/tdlib/td/blob/v1.6.0/td/generate/scheme/td_api.tl
+
 [link-email]: mailto:aurimas@niekis.lt

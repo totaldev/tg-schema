@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A custom reason provided by the user
+ * A custom reason provided by the user.
  */
 class ReportReasonCustom extends ReportReason
 {

@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message was deleted
+ * A message was deleted.
  */
 class ChatEventMessageDeleted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMessageDeleted';
 
-    /**
-     * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive
-     *
-     * @var bool
-     */
-    protected bool $canReportAntiSpamFalsePositive;
-
-    /**
-     * Deleted message
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    public function __construct(Message $message, bool $canReportAntiSpamFalsePositive)
-    {
+    public function __construct(
+        /**
+         * Deleted message.
+         */
+        protected Message $message,
+        /**
+         * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive.
+         */
+        protected bool    $canReportAntiSpamFalsePositive,
+    ) {
         parent::__construct();
-
-        $this->message = $message;
-        $this->canReportAntiSpamFalsePositive = $canReportAntiSpamFalsePositive;
     }
 
     public static function fromArray(array $array): ChatEventMessageDeleted
@@ -59,8 +50,8 @@ class ChatEventMessageDeleted extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
+            '@type'                               => static::TYPE_NAME,
+            'message'                             => $this->message->typeSerialize(),
             'can_report_anti_spam_false_positive' => $this->canReportAntiSpamFalsePositive,
         ];
     }

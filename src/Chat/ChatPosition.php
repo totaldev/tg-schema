@@ -10,47 +10,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a position of a chat in a chat list
+ * Describes a position of a chat in a chat list.
  */
 class ChatPosition extends TdObject
 {
     public const TYPE_NAME = 'chatPosition';
 
-    /**
-     * True, if the chat is pinned in the chat list
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * The chat list
-     *
-     * @var ChatList
-     */
-    protected ChatList $list;
-
-    /**
-     * A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
-     *
-     * @var int
-     */
-    protected int $order;
-
-    /**
-     * Source of the chat in the chat list; may be null
-     *
-     * @var ChatSource|null
-     */
-    protected ?ChatSource $source;
-
-    public function __construct(ChatList $list, int $order, bool $isPinned, ?ChatSource $source)
-    {
-        $this->list = $list;
-        $this->order = $order;
-        $this->isPinned = $isPinned;
-        $this->source = $source;
-    }
+    public function __construct(
+        /**
+         * The chat list.
+         */
+        protected ChatList    $list,
+        /**
+         * A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order.
+         */
+        protected int         $order,
+        /**
+         * True, if the chat is pinned in the chat list.
+         */
+        protected bool        $isPinned,
+        /**
+         * Source of the chat in the chat list; may be null.
+         */
+        protected ?ChatSource $source,
+    ) {}
 
     public static function fromArray(array $array): ChatPosition
     {
@@ -58,7 +41,7 @@ class ChatPosition extends TdObject
             TdSchemaRegistry::fromArray($array['list']),
             $array['order'],
             $array['is_pinned'],
-            (isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null),
+            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
         );
     }
 
@@ -85,11 +68,11 @@ class ChatPosition extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'list' => $this->list->typeSerialize(),
-            'order' => $this->order,
+            '@type'     => static::TYPE_NAME,
+            'list'      => $this->list->typeSerialize(),
+            'order'     => $this->order,
             'is_pinned' => $this->isPinned,
-            'source' => (isset($this->source) ? $this->source : null),
+            'source'    => (isset($this->source) ? $this->source : null),
         ];
     }
 }

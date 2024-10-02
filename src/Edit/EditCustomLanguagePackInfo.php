@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits information about a custom local language pack in the current localization target. Can be called before authorization
+ * Edits information about a custom local language pack in the current localization target. Can be called before authorization.
  */
 class EditCustomLanguagePackInfo extends TdFunction
 {
     public const TYPE_NAME = 'editCustomLanguagePackInfo';
 
-    /**
-     * New information about the custom local language pack
-     *
-     * @var LanguagePackInfo
-     */
-    protected LanguagePackInfo $info;
-
-    public function __construct(LanguagePackInfo $info)
-    {
-        $this->info = $info;
-    }
+    public function __construct(
+        /**
+         * New information about the custom local language pack.
+         */
+        protected LanguagePackInfo $info
+    ) {}
 
     public static function fromArray(array $array): EditCustomLanguagePackInfo
     {
@@ -45,7 +40,7 @@ class EditCustomLanguagePackInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info' => $this->info->typeSerialize(),
+            'info'  => $this->info->typeSerialize(),
         ];
     }
 }

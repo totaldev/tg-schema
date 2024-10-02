@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Story\Story;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A story was changed
+ * A story was changed.
  */
 class UpdateStory extends Update
 {
     public const TYPE_NAME = 'updateStory';
 
-    /**
-     * The new information about the story
-     *
-     * @var Story
-     */
-    protected Story $story;
-
-    public function __construct(Story $story)
-    {
+    public function __construct(
+        /**
+         * The new information about the story.
+         */
+        protected Story $story
+    ) {
         parent::__construct();
-
-        $this->story = $story;
     }
 
     public static function fromArray(array $array): UpdateStory

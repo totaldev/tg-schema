@@ -10,31 +10,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A personal document to be saved to Telegram Passport
+ * A personal document to be saved to Telegram Passport.
  */
 class InputPersonalDocument extends TdObject
 {
     public const TYPE_NAME = 'inputPersonalDocument';
 
-    /**
-     * List of files containing the pages of the document
-     *
-     * @var InputFile[]
-     */
-    protected array $files;
-
-    /**
-     * List of files containing a certified English translation of the document
-     *
-     * @var InputFile[]
-     */
-    protected array $translation;
-
-    public function __construct(array $files, array $translation)
-    {
-        $this->files = $files;
-        $this->translation = $translation;
-    }
+    public function __construct(
+        /**
+         * List of files containing the pages of the document.
+         *
+         * @var InputFile[]
+         */
+        protected array $files,
+        /**
+         * List of files containing a certified English translation of the document.
+         *
+         * @var InputFile[]
+         */
+        protected array $translation,
+    ) {}
 
     public static function fromArray(array $array): InputPersonalDocument
     {

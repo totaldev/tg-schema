@@ -11,48 +11,31 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
- * Represents a point on the map
+ * Represents a point on the map.
  */
 class InlineQueryResultLocation extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultLocation';
 
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Location result
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * Result thumbnail in JPEG format; may be null
-     *
-     * @var Thumbnail|null
-     */
-    protected ?Thumbnail $thumbnail;
-
-    /**
-     * Title of the result
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $id, Location $location, string $title, ?Thumbnail $thumbnail)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string     $id,
+        /**
+         * Location result.
+         */
+        protected Location   $location,
+        /**
+         * Title of the result.
+         */
+        protected string     $title,
+        /**
+         * Result thumbnail in JPEG format; may be null.
+         */
+        protected ?Thumbnail $thumbnail,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->location = $location;
-        $this->title = $title;
-        $this->thumbnail = $thumbnail;
     }
 
     public static function fromArray(array $array): InlineQueryResultLocation
@@ -61,7 +44,7 @@ class InlineQueryResultLocation extends InlineQueryResult
             $array['id'],
             TdSchemaRegistry::fromArray($array['location']),
             $array['title'],
-            (isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
         );
     }
 
@@ -88,10 +71,10 @@ class InlineQueryResultLocation extends InlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'location' => $this->location->typeSerialize(),
-            'title' => $this->title,
+            '@type'     => static::TYPE_NAME,
+            'id'        => $this->id,
+            'location'  => $this->location->typeSerialize(),
+            'title'     => $this->title,
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
         ];
     }

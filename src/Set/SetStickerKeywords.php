@@ -11,31 +11,24 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+ * Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user.
  */
 class SetStickerKeywords extends TdFunction
 {
     public const TYPE_NAME = 'setStickerKeywords';
 
-    /**
-     * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
-     *
-     * @var string[]
-     */
-    protected array $keywords;
-
-    /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    public function __construct(InputFile $sticker, array $keywords)
-    {
-        $this->sticker = $sticker;
-        $this->keywords = $keywords;
-    }
+    public function __construct(
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
+        /**
+         * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker.
+         *
+         * @var string[]
+         */
+        protected array     $keywords,
+    ) {}
 
     public static function fromArray(array $array): SetStickerKeywords
     {
@@ -58,8 +51,8 @@ class SetStickerKeywords extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            '@type'    => static::TYPE_NAME,
+            'sticker'  => $this->sticker->typeSerialize(),
             'keywords' => $this->keywords,
         ];
     }

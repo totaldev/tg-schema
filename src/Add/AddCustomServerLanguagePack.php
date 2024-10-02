@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Add;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
+ * Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
  */
 class AddCustomServerLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'addCustomServerLanguagePack';
 
-    /**
-     * Identifier of a language pack to be added
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId)
-    {
-        $this->languagePackId = $languagePackId;
-    }
+    public function __construct(
+        /**
+         * Identifier of a language pack to be added.
+         */
+        protected string $languagePackId
+    ) {}
 
     public static function fromArray(array $array): AddCustomServerLanguagePack
     {
@@ -43,7 +37,7 @@ class AddCustomServerLanguagePack extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
         ];
     }

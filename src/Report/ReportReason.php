@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Report;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the reason why a chat is reported
+ * Describes the reason why a chat is reported.
  */
 class ReportReason extends TdObject
 {
     public const TYPE_NAME = 'ReportReason';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ReportReason
     {

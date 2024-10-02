@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The supergroup sticker set was changed
+ * The supergroup sticker set was changed.
  */
 class ChatEventStickerSetChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventStickerSetChanged';
 
-    /**
-     * New identifier of the chat sticker set; 0 if none
-     *
-     * @var int
-     */
-    protected int $newStickerSetId;
-
-    /**
-     * Previous identifier of the chat sticker set; 0 if none
-     *
-     * @var int
-     */
-    protected int $oldStickerSetId;
-
-    public function __construct(int $oldStickerSetId, int $newStickerSetId)
-    {
+    public function __construct(
+        /**
+         * Previous identifier of the chat sticker set; 0 if none.
+         */
+        protected int $oldStickerSetId,
+        /**
+         * New identifier of the chat sticker set; 0 if none.
+         */
+        protected int $newStickerSetId,
+    ) {
         parent::__construct();
-
-        $this->oldStickerSetId = $oldStickerSetId;
-        $this->newStickerSetId = $newStickerSetId;
     }
 
     public static function fromArray(array $array): ChatEventStickerSetChanged
@@ -58,7 +47,7 @@ class ChatEventStickerSetChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'              => static::TYPE_NAME,
             'old_sticker_set_id' => $this->oldStickerSetId,
             'new_sticker_set_id' => $this->newStickerSetId,
         ];

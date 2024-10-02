@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Background;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A filled background
+ * A filled background.
  */
 class BackgroundTypeFill extends BackgroundType
 {
     public const TYPE_NAME = 'backgroundTypeFill';
 
-    /**
-     * The background fill
-     *
-     * @var BackgroundFill
-     */
-    protected BackgroundFill $fill;
-
-    public function __construct(BackgroundFill $fill)
-    {
+    public function __construct(
+        /**
+         * The background fill.
+         */
+        protected BackgroundFill $fill
+    ) {
         parent::__construct();
-
-        $this->fill = $fill;
     }
 
     public static function fromArray(array $array): BackgroundTypeFill
@@ -45,7 +40,7 @@ class BackgroundTypeFill extends BackgroundType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'fill' => $this->fill->typeSerialize(),
+            'fill'  => $this->fill->typeSerialize(),
         ];
     }
 }

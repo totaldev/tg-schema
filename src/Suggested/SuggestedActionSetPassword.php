@@ -6,28 +6,20 @@
 
 namespace Totaldev\TgSchema\Suggested;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Suggests the user to set a 2-step verification password to be able to log in again
+ * Suggests the user to set a 2-step verification password to be able to log in again.
  */
 class SuggestedActionSetPassword extends SuggestedAction
 {
     public const TYPE_NAME = 'suggestedActionSetPassword';
 
-    /**
-     * The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password
-     * for security reasons
-     *
-     * @var int
-     */
-    protected int $authorizationDelay;
-
-    public function __construct(int $authorizationDelay)
-    {
+    public function __construct(
+        /**
+         * The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons.
+         */
+        protected int $authorizationDelay
+    ) {
         parent::__construct();
-
-        $this->authorizationDelay = $authorizationDelay;
     }
 
     public static function fromArray(array $array): SuggestedActionSetPassword
@@ -45,7 +37,7 @@ class SuggestedActionSetPassword extends SuggestedAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'               => static::TYPE_NAME,
             'authorization_delay' => $this->authorizationDelay,
         ];
     }

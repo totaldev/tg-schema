@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * New chat members were invited to a group
+ * New chat members were invited to a group.
  */
 class PushMessageContentChatAddMembers extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatAddMembers';
 
-    /**
-     * True, if the current user was added to the group
-     *
-     * @var bool
-     */
-    protected bool $isCurrentUser;
-
-    /**
-     * True, if the user has returned to the group themselves
-     *
-     * @var bool
-     */
-    protected bool $isReturned;
-
-    /**
-     * Name of the added member
-     *
-     * @var string
-     */
-    protected string $memberName;
-
-    public function __construct(string $memberName, bool $isCurrentUser, bool $isReturned)
-    {
+    public function __construct(
+        /**
+         * Name of the added member.
+         */
+        protected string $memberName,
+        /**
+         * True, if the current user was added to the group.
+         */
+        protected bool   $isCurrentUser,
+        /**
+         * True, if the user has returned to the group themselves.
+         */
+        protected bool   $isReturned,
+    ) {
         parent::__construct();
-
-        $this->memberName = $memberName;
-        $this->isCurrentUser = $isCurrentUser;
-        $this->isReturned = $isReturned;
     }
 
     public static function fromArray(array $array): PushMessageContentChatAddMembers
@@ -72,10 +57,10 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'member_name' => $this->memberName,
+            '@type'           => static::TYPE_NAME,
+            'member_name'     => $this->memberName,
             'is_current_user' => $this->isCurrentUser,
-            'is_returned' => $this->isReturned,
+            'is_returned'     => $this->isReturned,
         ];
     }
 }

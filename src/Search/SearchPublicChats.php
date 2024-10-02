@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public.
- * Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
+ * Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results.
  */
 class SearchPublicChats extends TdFunction
 {
     public const TYPE_NAME = 'searchPublicChats';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
-        $this->query = $query;
-    }
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query
+    ) {}
 
     public static function fromArray(array $array): SearchPublicChats
     {

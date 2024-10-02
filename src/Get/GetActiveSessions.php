@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns all active sessions of the current user
+ * Returns all active sessions of the current user.
  */
 class GetActiveSessions extends TdFunction
 {
     public const TYPE_NAME = 'getActiveSessions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetActiveSessions
     {

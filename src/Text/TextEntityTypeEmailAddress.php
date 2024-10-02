@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An email address
+ * An email address.
  */
 class TextEntityTypeEmailAddress extends TextEntityType
 {

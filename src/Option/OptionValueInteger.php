@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Option;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents an integer option
+ * Represents an integer option.
  */
 class OptionValueInteger extends OptionValue
 {
     public const TYPE_NAME = 'optionValueInteger';
 
-    /**
-     * The value of the option
-     *
-     * @var int
-     */
-    protected int $value;
-
-    public function __construct(int $value)
-    {
+    public function __construct(
+        /**
+         * The value of the option.
+         */
+        protected int $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): OptionValueInteger

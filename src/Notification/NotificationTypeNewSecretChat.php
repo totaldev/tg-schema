@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * New secret chat was created
+ * New secret chat was created.
  */
 class NotificationTypeNewSecretChat extends NotificationType
 {

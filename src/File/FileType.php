@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\File;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents the type of a file
+ * Represents the type of file.
  */
 class FileType extends TdObject
 {
     public const TYPE_NAME = 'FileType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): FileType
     {

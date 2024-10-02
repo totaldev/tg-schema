@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes available user privacy settings
+ * Describes available user privacy settings.
  */
 class UserPrivacySetting extends TdObject
 {
     public const TYPE_NAME = 'UserPrivacySetting';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): UserPrivacySetting
     {

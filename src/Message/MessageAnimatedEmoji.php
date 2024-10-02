@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Animated\AnimatedEmoji;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message with an animated emoji
+ * A message with an animated emoji.
  */
 class MessageAnimatedEmoji extends MessageContent
 {
     public const TYPE_NAME = 'messageAnimatedEmoji';
 
-    /**
-     * The animated emoji
-     *
-     * @var AnimatedEmoji
-     */
-    protected AnimatedEmoji $animatedEmoji;
-
-    /**
-     * The corresponding emoji
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    public function __construct(AnimatedEmoji $animatedEmoji, string $emoji)
-    {
+    public function __construct(
+        /**
+         * The animated emoji.
+         */
+        protected AnimatedEmoji $animatedEmoji,
+        /**
+         * The corresponding emoji.
+         */
+        protected string        $emoji,
+    ) {
         parent::__construct();
-
-        $this->animatedEmoji = $animatedEmoji;
-        $this->emoji = $emoji;
     }
 
     public static function fromArray(array $array): MessageAnimatedEmoji
@@ -59,9 +50,9 @@ class MessageAnimatedEmoji extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'animated_emoji' => $this->animatedEmoji->typeSerialize(),
-            'emoji' => $this->emoji,
+            'emoji'          => $this->emoji,
         ];
     }
 }

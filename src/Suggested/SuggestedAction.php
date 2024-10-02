@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Suggested;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an action suggested to the current user
+ * Describes an action suggested to the current user.
  */
 class SuggestedAction extends TdObject
 {
     public const TYPE_NAME = 'SuggestedAction';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): SuggestedAction
     {

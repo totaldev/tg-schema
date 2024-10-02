@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Forum\ForumTopicInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A forum topic was edited
+ * A forum topic was edited.
  */
 class ChatEventForumTopicEdited extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventForumTopicEdited';
 
-    /**
-     * New information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $newTopicInfo;
-
-    /**
-     * Old information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $oldTopicInfo;
-
-    public function __construct(ForumTopicInfo $oldTopicInfo, ForumTopicInfo $newTopicInfo)
-    {
+    public function __construct(
+        /**
+         * Old information about the topic.
+         */
+        protected ForumTopicInfo $oldTopicInfo,
+        /**
+         * New information about the topic.
+         */
+        protected ForumTopicInfo $newTopicInfo,
+    ) {
         parent::__construct();
-
-        $this->oldTopicInfo = $oldTopicInfo;
-        $this->newTopicInfo = $newTopicInfo;
     }
 
     public static function fromArray(array $array): ChatEventForumTopicEdited
@@ -59,7 +50,7 @@ class ChatEventForumTopicEdited extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'old_topic_info' => $this->oldTopicInfo->typeSerialize(),
             'new_topic_info' => $this->newTopicInfo->typeSerialize(),
         ];

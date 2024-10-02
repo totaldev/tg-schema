@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on a generic Apple device
+ * The session is running on a generic Apple device.
  */
 class SessionTypeApple extends SessionType
 {

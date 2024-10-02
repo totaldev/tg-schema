@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of pinned chats in the main chat list
+ * The maximum number of pinned chats in the main chat list.
  */
 class PremiumLimitTypePinnedChatCount extends PremiumLimitType
 {

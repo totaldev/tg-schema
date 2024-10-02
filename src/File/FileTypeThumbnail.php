@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a thumbnail of another file
+ * The file is a thumbnail of another file.
  */
 class FileTypeThumbnail extends FileType
 {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Email;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes reset state of a email address
+ * Describes reset state of an email address.
  */
 class EmailAddressResetState extends TdObject
 {
     public const TYPE_NAME = 'EmailAddressResetState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): EmailAddressResetState
     {

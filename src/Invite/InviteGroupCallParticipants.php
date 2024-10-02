@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Invite;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
+ * Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats.
  */
 class InviteGroupCallParticipants extends TdFunction
 {
     public const TYPE_NAME = 'inviteGroupCallParticipants';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * User identifiers. At most 10 users can be invited simultaneously
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(int $groupCallId, array $userIds)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->userIds = $userIds;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int   $groupCallId,
+        /**
+         * User identifiers. At most 10 users can be invited simultaneously.
+         *
+         * @var int[]
+         */
+        protected array $userIds,
+    ) {}
 
     public static function fromArray(array $array): InviteGroupCallParticipants
     {
@@ -57,9 +49,9 @@ class InviteGroupCallParticipants extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'user_ids' => $this->userIds,
+            'user_ids'      => $this->userIds,
         ];
     }
 }

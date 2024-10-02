@@ -6,50 +6,37 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\Chat\ChatPhotoInfo;
+use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about the sponsor of a message
+ * Information about the sponsor of a message.
  */
 class MessageSponsor extends TdObject
 {
     public const TYPE_NAME = 'messageSponsor';
 
-    /**
-     * Additional optional information about the sponsor to be shown along with the message
-     *
-     * @var string
-     */
-    protected string $info;
-
-    /**
-     * Photo of the sponsor; may be null if must not be shown
-     *
-     * @var ChatPhotoInfo|null
-     */
-    protected ?ChatPhotoInfo $photo;
-
-    /**
-     * Type of the sponsor
-     *
-     * @var MessageSponsorType
-     */
-    protected MessageSponsorType $type;
-
-    public function __construct(MessageSponsorType $type, ?ChatPhotoInfo $photo, string $info)
-    {
-        $this->type = $type;
-        $this->photo = $photo;
-        $this->info = $info;
-    }
+    public function __construct(
+        /**
+         * URL of the sponsor to be opened when the message is clicked.
+         */
+        protected string $url,
+        /**
+         * Photo of the sponsor; may be null if must not be shown.
+         */
+        protected ?Photo $photo,
+        /**
+         * Additional optional information about the sponsor to be shown along with the message.
+         */
+        protected string $info,
+    ) {}
 
     public static function fromArray(array $array): MessageSponsor
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
-            (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            $array['url'],
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['info'],
         );
     }
@@ -59,23 +46,23 @@ class MessageSponsor extends TdObject
         return $this->info;
     }
 
-    public function getPhoto(): ?ChatPhotoInfo
+    public function getPhoto(): ?Photo
     {
         return $this->photo;
     }
 
-    public function getType(): MessageSponsorType
+    public function getUrl(): string
     {
-        return $this->type;
+        return $this->url;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            'url'   => $this->url,
             'photo' => (isset($this->photo) ? $this->photo : null),
-            'info' => $this->info,
+            'info'  => $this->info,
         ];
     }
 }

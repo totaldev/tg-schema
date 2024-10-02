@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns restricted supergroup members; can be used only by administrators
+ * Returns restricted supergroup members; can be used only by administrators.
  */
 class SupergroupMembersFilterRestricted extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterRestricted';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query
+    ) {
         parent::__construct();
-
-        $this->query = $query;
     }
 
     public static function fromArray(array $array): SupergroupMembersFilterRestricted

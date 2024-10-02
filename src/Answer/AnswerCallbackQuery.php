@@ -7,58 +7,36 @@
 namespace Totaldev\TgSchema\Answer;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the result of a callback query; for bots only
+ * Sets the result of a callback query; for bots only.
  */
 class AnswerCallbackQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerCallbackQuery';
 
-    /**
-     * Time during which the result of the query can be cached, in seconds
-     *
-     * @var int
-     */
-    protected int $cacheTime;
-
-    /**
-     * Identifier of the callback query
-     *
-     * @var int
-     */
-    protected int $callbackQueryId;
-
-    /**
-     * Pass true to show an alert to the user instead of a toast notification
-     *
-     * @var bool
-     */
-    protected bool $showAlert;
-
-    /**
-     * Text of the answer
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * URL to be opened
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(int $callbackQueryId, string $text, bool $showAlert, string $url, int $cacheTime)
-    {
-        $this->callbackQueryId = $callbackQueryId;
-        $this->text = $text;
-        $this->showAlert = $showAlert;
-        $this->url = $url;
-        $this->cacheTime = $cacheTime;
-    }
+    public function __construct(
+        /**
+         * Identifier of the callback query.
+         */
+        protected int    $callbackQueryId,
+        /**
+         * Text of the answer.
+         */
+        protected string $text,
+        /**
+         * Pass true to show an alert to the user instead of a toast notification.
+         */
+        protected bool   $showAlert,
+        /**
+         * URL to be opened.
+         */
+        protected string $url,
+        /**
+         * Time during which the result of the query can be cached, in seconds.
+         */
+        protected int    $cacheTime,
+    ) {}
 
     public static function fromArray(array $array): AnswerCallbackQuery
     {
@@ -99,12 +77,12 @@ class AnswerCallbackQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'callback_query_id' => $this->callbackQueryId,
-            'text' => $this->text,
-            'show_alert' => $this->showAlert,
-            'url' => $this->url,
-            'cache_time' => $this->cacheTime,
+            'text'              => $this->text,
+            'show_alert'        => $this->showAlert,
+            'url'               => $this->url,
+            'cache_time'        => $this->cacheTime,
         ];
     }
 }

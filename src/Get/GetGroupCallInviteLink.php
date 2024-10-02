@@ -7,35 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns invite link to a video chat in a public chat
+ * Returns invite link to a video chat in a public chat.
  */
 class GetGroupCallInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'getGroupCallInviteLink';
 
-    /**
-     * Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires
-     * groupCall.can_be_managed group call flag
-     *
-     * @var bool
-     */
-    protected bool $canSelfUnmute;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId, bool $canSelfUnmute)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->canSelfUnmute = $canSelfUnmute;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag.
+         */
+        protected bool $canSelfUnmute,
+    ) {}
 
     public static function fromArray(array $array): GetGroupCallInviteLink
     {
@@ -58,8 +47,8 @@ class GetGroupCallInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'           => static::TYPE_NAME,
+            'group_call_id'   => $this->groupCallId,
             'can_self_unmute' => $this->canSelfUnmute,
         ];
     }

@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+ * Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked.
  */
 class SetMessageSenderBlockList extends TdFunction
 {
     public const TYPE_NAME = 'setMessageSenderBlockList';
 
-    /**
-     * New block list for the message sender; pass null to unblock the message sender
-     *
-     * @var BlockList
-     */
-    protected BlockList $blockList;
-
-    /**
-     * Identifier of a message sender to block/unblock
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    public function __construct(MessageSender $senderId, BlockList $blockList)
-    {
-        $this->senderId = $senderId;
-        $this->blockList = $blockList;
-    }
+    public function __construct(
+        /**
+         * Identifier of a message sender to block/unblock.
+         */
+        protected MessageSender $senderId,
+        /**
+         * New block list for the message sender; pass null to unblock the message sender.
+         */
+        protected BlockList     $blockList,
+    ) {}
 
     public static function fromArray(array $array): SetMessageSenderBlockList
     {
@@ -59,8 +50,8 @@ class SetMessageSenderBlockList extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sender_id' => $this->senderId->typeSerialize(),
+            '@type'      => static::TYPE_NAME,
+            'sender_id'  => $this->senderId->typeSerialize(),
             'block_list' => $this->blockList->typeSerialize(),
         ];
     }

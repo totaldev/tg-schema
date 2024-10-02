@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a chat list or a forum topic list
+ * The message is from a chat list or a forum topic list.
  */
 class MessageSourceChatList extends MessageSource
 {

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+ * Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right.
  */
 class ToggleSupergroupJoinToSendMessages extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupJoinToSendMessages';
 
-    /**
-     * New value of join_to_send_messages
-     *
-     * @var bool
-     */
-    protected bool $joinToSendMessages;
-
-    /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, bool $joinToSendMessages)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->joinToSendMessages = $joinToSendMessages;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup that isn't a broadcast group.
+         */
+        protected int  $supergroupId,
+        /**
+         * New value of join_to_send_messages.
+         */
+        protected bool $joinToSendMessages,
+    ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinToSendMessages
     {
@@ -57,8 +47,8 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
+            '@type'                 => static::TYPE_NAME,
+            'supergroup_id'         => $this->supergroupId,
             'join_to_send_messages' => $this->joinToSendMessages,
         ];
     }

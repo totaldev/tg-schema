@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A secret chat with a user
+ * A secret chat with a user.
  */
 class ChatTypeSecret extends ChatType
 {
     public const TYPE_NAME = 'chatTypeSecret';
 
-    /**
-     * Secret chat identifier
-     *
-     * @var int
-     */
-    protected int $secretChatId;
-
-    /**
-     * User identifier of the secret chat peer
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $secretChatId, int $userId)
-    {
+    public function __construct(
+        /**
+         * Secret chat identifier.
+         */
+        protected int $secretChatId,
+        /**
+         * User identifier of the other user in the secret chat.
+         */
+        protected int $userId,
+    ) {
         parent::__construct();
-
-        $this->secretChatId = $secretChatId;
-        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): ChatTypeSecret
@@ -58,9 +47,9 @@ class ChatTypeSecret extends ChatType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'secret_chat_id' => $this->secretChatId,
-            'user_id' => $this->userId,
+            'user_id'        => $this->userId,
         ];
     }
 }

@@ -6,36 +6,25 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is
- * no guarantee that it will be sent just after the number of online users has changed
+ * no guarantee that it is sent just after the number of online users has changed.
  */
 class UpdateChatOnlineMemberCount extends Update
 {
     public const TYPE_NAME = 'updateChatOnlineMemberCount';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New number of online members in the chat, or 0 if unknown
-     *
-     * @var int
-     */
-    protected int $onlineMemberCount;
-
-    public function __construct(int $chatId, int $onlineMemberCount)
-    {
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int $chatId,
+        /**
+         * New number of online members in the chat, or 0 if unknown.
+         */
+        protected int $onlineMemberCount,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->onlineMemberCount = $onlineMemberCount;
     }
 
     public static function fromArray(array $array): UpdateChatOnlineMemberCount
@@ -59,8 +48,8 @@ class UpdateChatOnlineMemberCount extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'               => static::TYPE_NAME,
+            'chat_id'             => $this->chatId,
             'online_member_count' => $this->onlineMemberCount,
         ];
     }

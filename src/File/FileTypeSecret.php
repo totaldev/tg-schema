@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file was sent to a secret chat (the file type is not known to the server)
+ * The file was sent to a secret chat (the file type is not known to the server).
  */
 class FileTypeSecret extends FileType
 {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used chats used to forward messages
+ * A category containing frequently used chats used to forward messages.
  */
 class TopChatCategoryForwardChats extends TopChatCategory
 {

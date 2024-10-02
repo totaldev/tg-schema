@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Invite;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is an invite link for a supergroup
+ * The link is an invite link for a supergroup.
  */
 class InviteLinkChatTypeSupergroup extends InviteLinkChatType
 {

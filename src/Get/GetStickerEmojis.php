@@ -12,23 +12,18 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the
- * corresponding Sticker object
+ * corresponding Sticker object.
  */
 class GetStickerEmojis extends TdFunction
 {
     public const TYPE_NAME = 'getStickerEmojis';
 
-    /**
-     * Sticker file identifier
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    public function __construct(InputFile $sticker)
-    {
-        $this->sticker = $sticker;
-    }
+    public function __construct(
+        /**
+         * Sticker file identifier.
+         */
+        protected InputFile $sticker
+    ) {}
 
     public static function fromArray(array $array): GetStickerEmojis
     {
@@ -45,7 +40,7 @@ class GetStickerEmojis extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
     }

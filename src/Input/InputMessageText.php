@@ -4,56 +4,41 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Link\LinkPreviewOptions;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A text message
+ * A text message.
  */
 class InputMessageText extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageText';
 
-    /**
-     * True, if a chat message draft must be deleted
-     *
-     * @var bool
-     */
-    protected bool $clearDraft;
-
-    /**
-     * True, if rich web page previews for URLs in the message text must be disabled
-     *
-     * @var bool
-     */
-    protected bool $disableWebPagePreview;
-
-    /**
-     * Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code,
-     * Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    public function __construct(FormattedText $text, bool $disableWebPagePreview = false, bool $clearDraft = false)
-    {
+    public function __construct(
+        /**
+         * Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually.
+         */
+        protected FormattedText       $text,
+        /**
+         * Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options.
+         */
+        protected ?LinkPreviewOptions $linkPreviewOptions = null,
+        /**
+         * True, if a chat message draft must be deleted.
+         */
+        protected bool                $clearDraft = false,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->disableWebPagePreview = $disableWebPagePreview;
-        $this->clearDraft = $clearDraft;
     }
 
     public static function fromArray(array $array): InputMessageText
     {
         return new static(
             TdSchemaRegistry::fromArray($array['text']),
-            $array['disable_web_page_preview'],
+            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
             $array['clear_draft'],
         );
     }
@@ -63,9 +48,9 @@ class InputMessageText extends InputMessageContent
         return $this->clearDraft;
     }
 
-    public function getDisableWebPagePreview(): bool
+    public function getLinkPreviewOptions(): ?LinkPreviewOptions
     {
-        return $this->disableWebPagePreview;
+        return $this->linkPreviewOptions;
     }
 
     public function getText(): FormattedText
@@ -76,10 +61,10 @@ class InputMessageText extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'disable_web_page_preview' => $this->disableWebPagePreview,
-            'clear_draft' => $this->clearDraft,
+            '@type'                => static::TYPE_NAME,
+            'text'                 => $this->text->typeSerialize(),
+            'link_preview_options' => (isset($this->linkPreviewOptions) ? $this->linkPreviewOptions : null),
+            'clear_draft'          => $this->clearDraft,
         ];
     }
 }

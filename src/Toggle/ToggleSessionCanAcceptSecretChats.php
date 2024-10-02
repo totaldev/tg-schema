@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a session can accept incoming secret chats
+ * Toggles whether a session can accept incoming secret chats.
  */
 class ToggleSessionCanAcceptSecretChats extends TdFunction
 {
     public const TYPE_NAME = 'toggleSessionCanAcceptSecretChats';
 
-    /**
-     * Pass true to allow accepting secret chats by the session; pass false otherwise
-     *
-     * @var bool
-     */
-    protected bool $canAcceptSecretChats;
-
-    /**
-     * Session identifier
-     *
-     * @var int
-     */
-    protected int $sessionId;
-
-    public function __construct(int $sessionId, bool $canAcceptSecretChats)
-    {
-        $this->sessionId = $sessionId;
-        $this->canAcceptSecretChats = $canAcceptSecretChats;
-    }
+    public function __construct(
+        /**
+         * Session identifier.
+         */
+        protected int  $sessionId,
+        /**
+         * Pass true to allow accepting secret chats by the session; pass false otherwise.
+         */
+        protected bool $canAcceptSecretChats,
+    ) {}
 
     public static function fromArray(array $array): ToggleSessionCanAcceptSecretChats
     {
@@ -57,8 +47,8 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'session_id' => $this->sessionId,
+            '@type'                   => static::TYPE_NAME,
+            'session_id'              => $this->sessionId,
             'can_accept_secret_chats' => $this->canAcceptSecretChats,
         ];
     }

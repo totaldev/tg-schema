@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called
- * synchronously
+ * synchronously.
  */
 class GetPushReceiverId extends TdFunction
 {
     public const TYPE_NAME = 'getPushReceiverId';
 
-    /**
-     * JSON-encoded push notification payload
-     *
-     * @var string
-     */
-    protected string $payload;
-
-    public function __construct(string $payload)
-    {
-        $this->payload = $payload;
-    }
+    public function __construct(
+        /**
+         * JSON-encoded push notification payload.
+         */
+        protected string $payload
+    ) {}
 
     public static function fromArray(array $array): GetPushReceiverId
     {
@@ -44,7 +38,7 @@ class GetPushReceiverId extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'payload' => $this->payload,
         ];
     }

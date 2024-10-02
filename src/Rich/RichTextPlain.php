@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Rich;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A plain text
+ * A plain text.
  */
 class RichTextPlain extends RichText
 {
     public const TYPE_NAME = 'richTextPlain';
 
-    /**
-     * Text
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected string $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): RichTextPlain
@@ -45,7 +38,7 @@ class RichTextPlain extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            'text'  => $this->text,
         ];
     }
 }

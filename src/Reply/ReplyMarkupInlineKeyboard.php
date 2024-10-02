@@ -10,24 +10,21 @@ use Totaldev\TgSchema\Inline\InlineKeyboardButton;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains an inline keyboard layout
+ * Contains an inline keyboard layout.
  */
 class ReplyMarkupInlineKeyboard extends ReplyMarkup
 {
     public const TYPE_NAME = 'replyMarkupInlineKeyboard';
 
-    /**
-     * A list of rows of inline keyboard buttons
-     *
-     * @var InlineKeyboardButton[][]
-     */
-    protected array $rows;
-
-    public function __construct(array $rows)
-    {
+    public function __construct(
+        /**
+         * A list of rows of inline keyboard buttons.
+         *
+         * @var InlineKeyboardButton[][]
+         */
+        protected array $rows
+    ) {
         parent::__construct();
-
-        $this->rows = $rows;
     }
 
     public static function fromArray(array $array): ReplyMarkupInlineKeyboard

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Background;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of a background
+ * Describes the type of background.
  */
 class BackgroundType extends TdObject
 {
     public const TYPE_NAME = 'BackgroundType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): BackgroundType
     {

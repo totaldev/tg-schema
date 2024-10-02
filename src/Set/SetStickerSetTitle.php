@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets a sticker set title; for bots only
+ * Sets a sticker set title.
  */
 class SetStickerSetTitle extends TdFunction
 {
     public const TYPE_NAME = 'setStickerSetTitle';
 
-    /**
-     * Sticker set name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * New sticker set title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $name, string $title)
-    {
-        $this->name = $name;
-        $this->title = $title;
-    }
+    public function __construct(
+        /**
+         * Sticker set name. The sticker set must be owned by the current user.
+         */
+        protected string $name,
+        /**
+         * New sticker set title.
+         */
+        protected string $title,
+    ) {}
 
     public static function fromArray(array $array): SetStickerSetTitle
     {
@@ -58,7 +48,7 @@ class SetStickerSetTitle extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
             'title' => $this->title,
         ];
     }

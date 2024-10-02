@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat has child abuse related content
+ * The chat has child abuse related content.
  */
 class ReportReasonChildAbuse extends ReportReason
 {

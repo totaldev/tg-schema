@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Bot;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A scope covering all private chats
+ * A scope covering all private chats.
  */
 class BotCommandScopeAllPrivateChats extends BotCommandScope
 {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Firebase;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains settings for Firebase Authentication in the official applications
+ * Contains settings for Firebase Authentication in the official applications.
  */
 class FirebaseAuthenticationSettings extends TdObject
 {
     public const TYPE_NAME = 'FirebaseAuthenticationSettings';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): FirebaseAuthenticationSettings
     {

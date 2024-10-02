@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Forum\ForumTopicInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The General forum topic was hidden or unhidden
+ * The General forum topic was hidden or unhidden.
  */
 class ChatEventForumTopicToggleIsHidden extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventForumTopicToggleIsHidden';
 
-    /**
-     * New information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $topicInfo;
-
-    public function __construct(ForumTopicInfo $topicInfo)
-    {
+    public function __construct(
+        /**
+         * New information about the topic.
+         */
+        protected ForumTopicInfo $topicInfo
+    ) {
         parent::__construct();
-
-        $this->topicInfo = $topicInfo;
     }
 
     public static function fromArray(array $array): ChatEventForumTopicToggleIsHidden
@@ -45,7 +40,7 @@ class ChatEventForumTopicToggleIsHidden extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'topic_info' => $this->topicInfo->typeSerialize(),
         ];
     }

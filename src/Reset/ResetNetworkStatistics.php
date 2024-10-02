@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Reset;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Resets all network data usage statistics to zero. Can be called before authorization
+ * Resets all network data usage statistics to zero. Can be called before authorization.
  */
 class ResetNetworkStatistics extends TdFunction
 {
     public const TYPE_NAME = 'resetNetworkStatistics';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResetNetworkStatistics
     {

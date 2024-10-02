@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call was ended before the conversation started. It was declined by the other party
+ * The call was ended before the conversation started. It was declined by the other party.
  */
 class CallDiscardReasonDeclined extends CallDiscardReason
 {

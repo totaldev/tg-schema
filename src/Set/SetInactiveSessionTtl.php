@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the period of inactivity after which sessions will automatically be terminated
+ * Changes the period of inactivity after which sessions will automatically be terminated.
  */
 class SetInactiveSessionTtl extends TdFunction
 {
     public const TYPE_NAME = 'setInactiveSessionTtl';
 
-    /**
-     * New number of days of inactivity before sessions will be automatically terminated; 1-366 days
-     *
-     * @var int
-     */
-    protected int $inactiveSessionTtlDays;
-
-    public function __construct(int $inactiveSessionTtlDays)
-    {
-        $this->inactiveSessionTtlDays = $inactiveSessionTtlDays;
-    }
+    public function __construct(
+        /**
+         * New number of days of inactivity before sessions will be automatically terminated; 1-366 days.
+         */
+        protected int $inactiveSessionTtlDays
+    ) {}
 
     public static function fromArray(array $array): SetInactiveSessionTtl
     {
@@ -43,7 +37,7 @@ class SetInactiveSessionTtl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                     => static::TYPE_NAME,
             'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
         ];
     }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is an unknown tg: link. Call getDeepLinkInfo to process the link
+ * The link is an unknown tg: link. Call getDeepLinkInfo to process the link.
  */
 class InternalLinkTypeUnknownDeepLink extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeUnknownDeepLink';
 
-    /**
-     * Link to be passed to getDeepLinkInfo
-     *
-     * @var string
-     */
-    protected string $link;
-
-    public function __construct(string $link)
-    {
+    public function __construct(
+        /**
+         * Link to be passed to getDeepLinkInfo.
+         */
+        protected string $link
+    ) {
         parent::__construct();
-
-        $this->link = $link;
     }
 
     public static function fromArray(array $array): InternalLinkTypeUnknownDeepLink
@@ -45,7 +38,7 @@ class InternalLinkTypeUnknownDeepLink extends InternalLinkType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link' => $this->link,
+            'link'  => $this->link,
         ];
     }
 }

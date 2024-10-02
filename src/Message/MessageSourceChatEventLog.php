@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a chat event log
+ * The message is from a chat event log.
  */
 class MessageSourceChatEventLog extends MessageSource
 {

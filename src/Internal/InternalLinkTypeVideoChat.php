@@ -6,43 +6,29 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
+ * The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the
+ * link.
  */
 class InternalLinkTypeVideoChat extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeVideoChat';
 
-    /**
-     * Username of the chat with the video chat
-     *
-     * @var string
-     */
-    protected string $chatUsername;
-
-    /**
-     * If non-empty, invite hash to be used to join the video chat without being muted by administrators
-     *
-     * @var string
-     */
-    protected string $inviteHash;
-
-    /**
-     * True, if the video chat is expected to be a live stream in a channel or a broadcast group
-     *
-     * @var bool
-     */
-    protected bool $isLiveStream;
-
-    public function __construct(string $chatUsername, string $inviteHash, bool $isLiveStream)
-    {
+    public function __construct(
+        /**
+         * Username of the chat with the video chat.
+         */
+        protected string $chatUsername,
+        /**
+         * If non-empty, invite hash to be used to join the video chat without being muted by administrators.
+         */
+        protected string $inviteHash,
+        /**
+         * True, if the video chat is expected to be a live stream in a channel or a broadcast group.
+         */
+        protected bool   $isLiveStream,
+    ) {
         parent::__construct();
-
-        $this->chatUsername = $chatUsername;
-        $this->inviteHash = $inviteHash;
-        $this->isLiveStream = $isLiveStream;
     }
 
     public static function fromArray(array $array): InternalLinkTypeVideoChat
@@ -72,9 +58,9 @@ class InternalLinkTypeVideoChat extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_username' => $this->chatUsername,
-            'invite_hash' => $this->inviteHash,
+            '@type'          => static::TYPE_NAME,
+            'chat_username'  => $this->chatUsername,
+            'invite_hash'    => $this->inviteHash,
             'is_live_stream' => $this->isLiveStream,
         ];
     }

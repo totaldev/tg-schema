@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat contains spam messages
+ * The chat contains spam messages.
  */
 class ReportReasonSpam extends ReportReason
 {

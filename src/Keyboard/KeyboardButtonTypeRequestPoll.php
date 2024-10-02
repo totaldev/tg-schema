@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Keyboard;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that allows the user to create and send a poll when pressed; available only in private chats
+ * A button that allows the user to create and send a poll when pressed; available only in private chats.
  */
 class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
 {
     public const TYPE_NAME = 'keyboardButtonTypeRequestPoll';
 
-    /**
-     * If true, only polls in quiz mode must be allowed to create
-     *
-     * @var bool
-     */
-    protected bool $forceQuiz;
-
-    /**
-     * If true, only regular polls must be allowed to create
-     *
-     * @var bool
-     */
-    protected bool $forceRegular;
-
-    public function __construct(bool $forceRegular, bool $forceQuiz)
-    {
+    public function __construct(
+        /**
+         * If true, only regular polls must be allowed to create.
+         */
+        protected bool $forceRegular,
+        /**
+         * If true, only polls in quiz mode must be allowed to create.
+         */
+        protected bool $forceQuiz,
+    ) {
         parent::__construct();
-
-        $this->forceRegular = $forceRegular;
-        $this->forceQuiz = $forceQuiz;
     }
 
     public static function fromArray(array $array): KeyboardButtonTypeRequestPoll
@@ -58,9 +47,9 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'force_regular' => $this->forceRegular,
-            'force_quiz' => $this->forceQuiz,
+            'force_quiz'    => $this->forceQuiz,
         ];
     }
 }

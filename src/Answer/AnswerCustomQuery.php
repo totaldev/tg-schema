@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Answer;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Answers a custom query; for bots only
+ * Answers a custom query; for bots only.
  */
 class AnswerCustomQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerCustomQuery';
 
-    /**
-     * Identifier of a custom query
-     *
-     * @var int
-     */
-    protected int $customQueryId;
-
-    /**
-     * JSON-serialized answer to the query
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(int $customQueryId, string $data)
-    {
-        $this->customQueryId = $customQueryId;
-        $this->data = $data;
-    }
+    public function __construct(
+        /**
+         * Identifier of a custom query.
+         */
+        protected int    $customQueryId,
+        /**
+         * JSON-serialized answer to the query.
+         */
+        protected string $data,
+    ) {}
 
     public static function fromArray(array $array): AnswerCustomQuery
     {
@@ -57,9 +47,9 @@ class AnswerCustomQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'custom_query_id' => $this->customQueryId,
-            'data' => $this->data,
+            'data'            => $this->data,
         ];
     }
 }

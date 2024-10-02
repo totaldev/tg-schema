@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains statistics about number of new members invited by a user
+ * Contains statistics about number of new members invited by a user.
  */
 class ChatStatisticsInviterInfo extends TdObject
 {
     public const TYPE_NAME = 'chatStatisticsInviterInfo';
 
-    /**
-     * Number of new members invited by the user
-     *
-     * @var int
-     */
-    protected int $addedMemberCount;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $addedMemberCount)
-    {
-        $this->userId = $userId;
-        $this->addedMemberCount = $addedMemberCount;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+        /**
+         * Number of new members invited by the user.
+         */
+        protected int $addedMemberCount,
+    ) {}
 
     public static function fromArray(array $array): ChatStatisticsInviterInfo
     {
@@ -57,8 +47,8 @@ class ChatStatisticsInviterInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
+            '@type'              => static::TYPE_NAME,
+            'user_id'            => $this->userId,
             'added_member_count' => $this->addedMemberCount,
         ];
     }

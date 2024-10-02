@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Suggested;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Suggests the user to restore a recently expired Premium subscription
+ * Suggests the user to restore a recently expired Premium subscription.
  */
 class SuggestedActionRestorePremium extends SuggestedAction
 {

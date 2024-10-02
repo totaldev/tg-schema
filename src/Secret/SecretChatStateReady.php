@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Secret;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The secret chat is ready to use
+ * The secret chat is ready to use.
  */
 class SecretChatStateReady extends SecretChatState
 {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to set a custom emoji as a forum topic icon
+ * The ability to set a custom emoji as a forum topic icon.
  */
 class PremiumFeatureForumTopicIcon extends PremiumFeature
 {

@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains autosave settings for a chat, which overrides default settings for the corresponding scope
+ * Contains autosave settings for a chat, which overrides default settings for the corresponding scope.
  */
 class AutosaveSettingsException extends TdObject
 {
     public const TYPE_NAME = 'autosaveSettingsException';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Autosave settings for the chat
-     *
-     * @var ScopeAutosaveSettings
-     */
-    protected ScopeAutosaveSettings $settings;
-
-    public function __construct(int $chatId, ScopeAutosaveSettings $settings)
-    {
-        $this->chatId = $chatId;
-        $this->settings = $settings;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int                   $chatId,
+        /**
+         * Autosave settings for the chat.
+         */
+        protected ScopeAutosaveSettings $settings,
+    ) {}
 
     public static function fromArray(array $array): AutosaveSettingsException
     {
@@ -58,8 +49,8 @@ class AutosaveSettingsException extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'    => static::TYPE_NAME,
+            'chat_id'  => $this->chatId,
             'settings' => $this->settings->typeSerialize(),
         ];
     }

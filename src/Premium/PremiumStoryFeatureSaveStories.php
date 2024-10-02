@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to save other's unprotected stories
+ * The ability to save other's unprotected stories.
  */
 class PremiumStoryFeatureSaveStories extends PremiumStoryFeature
 {

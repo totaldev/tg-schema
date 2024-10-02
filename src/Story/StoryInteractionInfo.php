@@ -7,50 +7,34 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about interactions with a story
+ * Contains information about interactions with a story.
  */
 class StoryInteractionInfo extends TdObject
 {
     public const TYPE_NAME = 'storyInteractionInfo';
 
-    /**
-     * Number of times the story was forwarded; 0 if none or unknown
-     *
-     * @var int
-     */
-    protected int $forwardCount;
-
-    /**
-     * Number of reactions added to the story; 0 if none or unknown
-     *
-     * @var int
-     */
-    protected int $reactionCount;
-
-    /**
-     * Identifiers of at most 3 recent viewers of the story
-     *
-     * @var int[]
-     */
-    protected array $recentViewerUserIds;
-
-    /**
-     * Number of times the story was viewed
-     *
-     * @var int
-     */
-    protected int $viewCount;
-
-    public function __construct(int $viewCount, int $forwardCount, int $reactionCount, array $recentViewerUserIds)
-    {
-        $this->viewCount = $viewCount;
-        $this->forwardCount = $forwardCount;
-        $this->reactionCount = $reactionCount;
-        $this->recentViewerUserIds = $recentViewerUserIds;
-    }
+    public function __construct(
+        /**
+         * Number of times the story was viewed.
+         */
+        protected int   $viewCount,
+        /**
+         * Number of times the story was forwarded; 0 if none or unknown.
+         */
+        protected int   $forwardCount,
+        /**
+         * Number of reactions added to the story; 0 if none or unknown.
+         */
+        protected int   $reactionCount,
+        /**
+         * Identifiers of at most 3 recent viewers of the story.
+         *
+         * @var int[]
+         */
+        protected array $recentViewerUserIds,
+    ) {}
 
     public static function fromArray(array $array): StoryInteractionInfo
     {
@@ -85,10 +69,10 @@ class StoryInteractionInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'view_count' => $this->viewCount,
-            'forward_count' => $this->forwardCount,
-            'reaction_count' => $this->reactionCount,
+            '@type'                  => static::TYPE_NAME,
+            'view_count'             => $this->viewCount,
+            'forward_count'          => $this->forwardCount,
+            'reaction_count'         => $this->reactionCount,
             'recent_viewer_user_ids' => $this->recentViewerUserIds,
         ];
     }

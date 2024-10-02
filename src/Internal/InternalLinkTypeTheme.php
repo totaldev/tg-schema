@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to a theme. TDLib has no theme support yet
+ * The link is a link to a cloud theme. TDLib has no theme support yet.
  */
 class InternalLinkTypeTheme extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeTheme';
 
-    /**
-     * Name of the theme
-     *
-     * @var string
-     */
-    protected string $themeName;
-
-    public function __construct(string $themeName)
-    {
+    public function __construct(
+        /**
+         * Name of the theme.
+         */
+        protected string $themeName
+    ) {
         parent::__construct();
-
-        $this->themeName = $themeName;
     }
 
     public static function fromArray(array $array): InternalLinkTypeTheme
@@ -44,7 +37,7 @@ class InternalLinkTypeTheme extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'theme_name' => $this->themeName,
         ];
     }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The messages was exported from a chat of unknown type
+ * The messages were exported from a chat of unknown type.
  */
 class MessageFileTypeUnknown extends MessageFileType
 {

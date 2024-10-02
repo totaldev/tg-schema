@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Chat\ChatPhoto;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An updated chat photo
+ * An updated chat photo.
  */
 class MessageChatChangePhoto extends MessageContent
 {
     public const TYPE_NAME = 'messageChatChangePhoto';
 
-    /**
-     * New chat photo
-     *
-     * @var ChatPhoto
-     */
-    protected ChatPhoto $photo;
-
-    public function __construct(ChatPhoto $photo)
-    {
+    public function __construct(
+        /**
+         * New chat photo.
+         */
+        protected ChatPhoto $photo
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): MessageChatChangePhoto

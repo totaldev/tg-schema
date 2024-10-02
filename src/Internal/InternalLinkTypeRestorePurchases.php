@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link forces restore of App Store purchases when opened. For official iOS application only
+ * The link forces restore of App Store purchases when opened. For official iOS application only.
  */
 class InternalLinkTypeRestorePurchases extends InternalLinkType
 {

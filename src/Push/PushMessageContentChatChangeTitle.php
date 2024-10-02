@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A chat title was edited
+ * A chat title was edited.
  */
 class PushMessageContentChatChangeTitle extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatChangeTitle';
 
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * New chat title.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): PushMessageContentChatChangeTitle

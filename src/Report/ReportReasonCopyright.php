@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat contains copyrighted content
+ * The chat contains copyrighted content.
  */
 class ReportReasonCopyright extends ReportReason
 {

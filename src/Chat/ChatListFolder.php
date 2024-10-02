@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A list of chats added to a chat folder
+ * A list of chats added to a chat folder.
  */
 class ChatListFolder extends ChatList
 {
     public const TYPE_NAME = 'chatListFolder';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId)
-    {
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int $chatFolderId
+    ) {
         parent::__construct();
-
-        $this->chatFolderId = $chatFolderId;
     }
 
     public static function fromArray(array $array): ChatListFolder
@@ -44,7 +37,7 @@ class ChatListFolder extends ChatList
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
     }

@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the default message auto-delete time for new chats
+ * Changes the default message auto-delete time for new chats.
  */
 class SetDefaultMessageAutoDeleteTime extends TdFunction
 {
     public const TYPE_NAME = 'setDefaultMessageAutoDeleteTime';
 
-    /**
-     * New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-     *
-     * @var MessageAutoDeleteTime
-     */
-    protected MessageAutoDeleteTime $messageAutoDeleteTime;
-
-    public function __construct(MessageAutoDeleteTime $messageAutoDeleteTime)
-    {
-        $this->messageAutoDeleteTime = $messageAutoDeleteTime;
-    }
+    public function __construct(
+        /**
+         * New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
+         */
+        protected MessageAutoDeleteTime $messageAutoDeleteTime
+    ) {}
 
     public static function fromArray(array $array): SetDefaultMessageAutoDeleteTime
     {
@@ -44,7 +39,7 @@ class SetDefaultMessageAutoDeleteTime extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                    => static::TYPE_NAME,
             'message_auto_delete_time' => $this->messageAutoDeleteTime->typeSerialize(),
         ];
     }

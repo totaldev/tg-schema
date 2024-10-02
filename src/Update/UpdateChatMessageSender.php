@@ -10,39 +10,30 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The message sender that is selected to send messages in a chat has changed
+ * The message sender that is selected to send messages in a chat has changed.
  */
 class UpdateChatMessageSender extends Update
 {
     public const TYPE_NAME = 'updateChatMessageSender';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of message_sender_id; may be null if the user can't change message sender
-     *
-     * @var MessageSender|null
-     */
-    protected ?MessageSender $messageSenderId;
-
-    public function __construct(int $chatId, ?MessageSender $messageSenderId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
+        /**
+         * New value of message_sender_id; may be null if the user can't change message sender.
+         */
+        protected ?MessageSender $messageSenderId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageSenderId = $messageSenderId;
     }
 
     public static function fromArray(array $array): UpdateChatMessageSender
     {
         return new static(
             $array['chat_id'],
-            (isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null),
+            isset($array['message_sender_id']) ? TdSchemaRegistry::fromArray($array['message_sender_id']) : null,
         );
     }
 
@@ -59,8 +50,8 @@ class UpdateChatMessageSender extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_sender_id' => (isset($this->messageSenderId) ? $this->messageSenderId : null),
         ];
     }

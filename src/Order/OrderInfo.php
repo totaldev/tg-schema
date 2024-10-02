@@ -11,47 +11,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Order information
+ * Order information.
  */
 class OrderInfo extends TdObject
 {
     public const TYPE_NAME = 'orderInfo';
 
-    /**
-     * Email address of the user
-     *
-     * @var string
-     */
-    protected string $emailAddress;
-
-    /**
-     * Name of the user
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * Phone number of the user
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    /**
-     * Shipping address for this order; may be null
-     *
-     * @var Address|null
-     */
-    protected ?Address $shippingAddress;
-
-    public function __construct(string $name, string $phoneNumber, string $emailAddress, ?Address $shippingAddress)
-    {
-        $this->name = $name;
-        $this->phoneNumber = $phoneNumber;
-        $this->emailAddress = $emailAddress;
-        $this->shippingAddress = $shippingAddress;
-    }
+    public function __construct(
+        /**
+         * Name of the user.
+         */
+        protected string   $name,
+        /**
+         * Phone number of the user.
+         */
+        protected string   $phoneNumber,
+        /**
+         * Email address of the user.
+         */
+        protected string   $emailAddress,
+        /**
+         * Shipping address for this order; may be null.
+         */
+        protected ?Address $shippingAddress,
+    ) {}
 
     public static function fromArray(array $array): OrderInfo
     {
@@ -59,7 +42,7 @@ class OrderInfo extends TdObject
             $array['name'],
             $array['phone_number'],
             $array['email_address'],
-            (isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null),
+            isset($array['shipping_address']) ? TdSchemaRegistry::fromArray($array['shipping_address']) : null,
         );
     }
 
@@ -86,10 +69,10 @@ class OrderInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'phone_number' => $this->phoneNumber,
-            'email_address' => $this->emailAddress,
+            '@type'            => static::TYPE_NAME,
+            'name'             => $this->name,
+            'phone_number'     => $this->phoneNumber,
+            'email_address'    => $this->emailAddress,
             'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
         ];
     }

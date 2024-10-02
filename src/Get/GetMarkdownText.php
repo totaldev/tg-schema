@@ -12,23 +12,18 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can
- * be called synchronously
+ * be called synchronously.
  */
 class GetMarkdownText extends TdFunction
 {
     public const TYPE_NAME = 'getMarkdownText';
 
-    /**
-     * The text
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    public function __construct(FormattedText $text)
-    {
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The text.
+         */
+        protected FormattedText $text
+    ) {}
 
     public static function fromArray(array $array): GetMarkdownText
     {
@@ -46,7 +41,7 @@ class GetMarkdownText extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            'text'  => $this->text->typeSerialize(),
         ];
     }
 }

@@ -11,32 +11,25 @@ use Totaldev\TgSchema\Encrypted\EncryptedPassportElement;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Telegram Passport data has been received; for bots only
+ * Telegram Passport data has been received; for bots only.
  */
 class MessagePassportDataReceived extends MessageContent
 {
     public const TYPE_NAME = 'messagePassportDataReceived';
 
-    /**
-     * Encrypted data credentials
-     *
-     * @var EncryptedCredentials
-     */
-    protected EncryptedCredentials $credentials;
-
-    /**
-     * List of received Telegram Passport elements
-     *
-     * @var EncryptedPassportElement[]
-     */
-    protected array $elements;
-
-    public function __construct(array $elements, EncryptedCredentials $credentials)
-    {
+    public function __construct(
+        /**
+         * List of received Telegram Passport elements.
+         *
+         * @var EncryptedPassportElement[]
+         */
+        protected array                $elements,
+        /**
+         * Encrypted data credentials.
+         */
+        protected EncryptedCredentials $credentials,
+    ) {
         parent::__construct();
-
-        $this->elements = $elements;
-        $this->credentials = $credentials;
     }
 
     public static function fromArray(array $array): MessagePassportDataReceived
@@ -60,7 +53,7 @@ class MessagePassportDataReceived extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->elements),
             'credentials' => $this->credentials->typeSerialize(),
         ];

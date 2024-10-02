@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The footer of a page
+ * The footer of a page.
  */
 class PageBlockFooter extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockFooter';
 
-    /**
-     * Footer
-     *
-     * @var RichText
-     */
-    protected RichText $footer;
-
-    public function __construct(RichText $footer)
-    {
+    public function __construct(
+        /**
+         * Footer.
+         */
+        protected RichText $footer
+    ) {
         parent::__construct();
-
-        $this->footer = $footer;
     }
 
     public static function fromArray(array $array): PageBlockFooter
@@ -45,7 +40,7 @@ class PageBlockFooter extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'footer' => $this->footer->typeSerialize(),
         ];
     }

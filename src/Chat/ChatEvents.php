@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of chat events
+ * Contains a list of chat events.
  */
 class ChatEvents extends TdObject
 {
     public const TYPE_NAME = 'chatEvents';
 
-    /**
-     * List of events
-     *
-     * @var ChatEvent[]
-     */
-    protected array $events;
-
-    public function __construct(array $events)
-    {
-        $this->events = $events;
-    }
+    public function __construct(
+        /**
+         * List of events.
+         *
+         * @var ChatEvent[]
+         */
+        protected array $events
+    ) {}
 
     public static function fromArray(array $array): ChatEvents
     {

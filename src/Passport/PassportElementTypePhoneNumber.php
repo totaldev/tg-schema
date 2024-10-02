@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Passport;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A Telegram Passport element containing the user's phone number
+ * A Telegram Passport element containing the user's phone number.
  */
 class PassportElementTypePhoneNumber extends PassportElementType
 {

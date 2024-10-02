@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A forum topic has been closed or opened
+ * A forum topic has been closed or opened.
  */
 class MessageForumTopicIsClosedToggled extends MessageContent
 {
     public const TYPE_NAME = 'messageForumTopicIsClosedToggled';
 
-    /**
-     * True, if the topic was closed; otherwise, the topic was reopened
-     *
-     * @var bool
-     */
-    protected bool $isClosed;
-
-    public function __construct(bool $isClosed)
-    {
+    public function __construct(
+        /**
+         * True, if the topic was closed; otherwise, the topic was reopened.
+         */
+        protected bool $isClosed
+    ) {
         parent::__construct();
-
-        $this->isClosed = $isClosed;
     }
 
     public static function fromArray(array $array): MessageForumTopicIsClosedToggled
@@ -44,7 +37,7 @@ class MessageForumTopicIsClosedToggled extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'is_closed' => $this->isClosed,
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Thumbnail;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes format of a thumbnail
+ * Describes format of a thumbnail.
  */
 class ThumbnailFormat extends TdObject
 {
     public const TYPE_NAME = 'ThumbnailFormat';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ThumbnailFormat
     {

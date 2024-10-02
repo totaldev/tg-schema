@@ -10,47 +10,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+ * Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported.
  */
 class ReportChatPhoto extends TdFunction
 {
     public const TYPE_NAME = 'reportChatPhoto';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the photo to report. Only full photos from chatPhoto can be reported
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
-     * The reason for reporting the chat photo
-     *
-     * @var ReportReason
-     */
-    protected ReportReason $reason;
-
-    /**
-     * Additional report details; 0-1024 characters
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(int $chatId, int $fileId, ReportReason $reason, string $text)
-    {
-        $this->chatId = $chatId;
-        $this->fileId = $fileId;
-        $this->reason = $reason;
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int          $chatId,
+        /**
+         * Identifier of the photo to report. Only full photos from chatPhoto can be reported.
+         */
+        protected int          $fileId,
+        /**
+         * The reason for reporting the chat photo.
+         */
+        protected ReportReason $reason,
+        /**
+         * Additional report details; 0-1024 characters.
+         */
+        protected string       $text,
+    ) {}
 
     public static function fromArray(array $array): ReportChatPhoto
     {
@@ -85,11 +68,11 @@ class ReportChatPhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
             'file_id' => $this->fileId,
-            'reason' => $this->reason->typeSerialize(),
-            'text' => $this->text,
+            'reason'  => $this->reason->typeSerialize(),
+            'text'    => $this->text,
         ];
     }
 }

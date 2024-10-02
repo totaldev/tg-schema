@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a list of recently used stickers
+ * Returns a list of recently used stickers.
  */
 class GetRecentStickers extends TdFunction
 {
     public const TYPE_NAME = 'getRecentStickers';
 
-    /**
-     * Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
-     *
-     * @var bool
-     */
-    protected bool $isAttached;
-
-    public function __construct(bool $isAttached)
-    {
-        $this->isAttached = $isAttached;
-    }
+    public function __construct(
+        /**
+         * Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers.
+         */
+        protected bool $isAttached
+    ) {}
 
     public static function fromArray(array $array): GetRecentStickers
     {
@@ -43,7 +37,7 @@ class GetRecentStickers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'is_attached' => $this->isAttached,
         ];
     }

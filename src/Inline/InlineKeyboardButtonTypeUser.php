@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
+ * A button with a user reference to be handled in the same way as textEntityTypeMentionName entities.
  */
 class InlineKeyboardButtonTypeUser extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeUser';
 
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId)
-    {
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeUser
@@ -44,7 +37,7 @@ class InlineKeyboardButtonTypeUser extends InlineKeyboardButtonType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
     }

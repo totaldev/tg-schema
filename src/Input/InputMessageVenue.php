@@ -10,24 +10,19 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Venue\Venue;
 
 /**
- * A message with information about a venue
+ * A message with information about a venue.
  */
 class InputMessageVenue extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageVenue';
 
-    /**
-     * Venue to send
-     *
-     * @var Venue
-     */
-    protected Venue $venue;
-
-    public function __construct(Venue $venue)
-    {
+    public function __construct(
+        /**
+         * Venue to send.
+         */
+        protected Venue $venue
+    ) {
         parent::__construct();
-
-        $this->venue = $venue;
     }
 
     public static function fromArray(array $array): InputMessageVenue

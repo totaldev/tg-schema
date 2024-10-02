@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Chat\ChatNotificationSettings;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Notification settings for a chat were changed
+ * Notification settings for a chat were changed.
  */
 class UpdateChatNotificationSettings extends Update
 {
     public const TYPE_NAME = 'updateChatNotificationSettings';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new notification settings
-     *
-     * @var ChatNotificationSettings
-     */
-    protected ChatNotificationSettings $notificationSettings;
-
-    public function __construct(int $chatId, ChatNotificationSettings $notificationSettings)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int                      $chatId,
+        /**
+         * The new notification settings.
+         */
+        protected ChatNotificationSettings $notificationSettings,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->notificationSettings = $notificationSettings;
     }
 
     public static function fromArray(array $array): UpdateChatNotificationSettings
@@ -59,8 +50,8 @@ class UpdateChatNotificationSettings extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
             'notification_settings' => $this->notificationSettings->typeSerialize(),
         ];
     }

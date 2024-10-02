@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Network;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains statistics about network usage
+ * Contains statistics about network usage.
  */
 class NetworkStatisticsEntry extends TdObject
 {
     public const TYPE_NAME = 'NetworkStatisticsEntry';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): NetworkStatisticsEntry
     {

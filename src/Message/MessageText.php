@@ -7,44 +7,51 @@
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Link\LinkPreview;
+use Totaldev\TgSchema\Link\LinkPreviewOptions;
 use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Web\WebPage;
 
 /**
- * A text message
+ * A text message.
  */
 class MessageText extends MessageContent
 {
     public const TYPE_NAME = 'messageText';
 
-    /**
-     * Text of the message
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    /**
-     * A preview of the web page that's mentioned in the text; may be null
-     *
-     * @var WebPage|null
-     */
-    protected ?WebPage $webPage;
-
-    public function __construct(FormattedText $text, ?WebPage $webPage)
-    {
+    public function __construct(
+        /**
+         * Text of the message.
+         */
+        protected FormattedText       $text,
+        /**
+         * A link preview attached to the message; may be null.
+         */
+        protected ?LinkPreview        $linkPreview,
+        /**
+         * Options which were used for generation of the link preview; may be null if default options were used.
+         */
+        protected ?LinkPreviewOptions $linkPreviewOptions,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->webPage = $webPage;
     }
 
     public static function fromArray(array $array): MessageText
     {
         return new static(
             TdSchemaRegistry::fromArray($array['text']),
-            (isset($array['web_page']) ? TdSchemaRegistry::fromArray($array['web_page']) : null),
+            isset($array['link_preview']) ? TdSchemaRegistry::fromArray($array['link_preview']) : null,
+            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
         );
+    }
+
+    public function getLinkPreview(): ?LinkPreview
+    {
+        return $this->linkPreview;
+    }
+
+    public function getLinkPreviewOptions(): ?LinkPreviewOptions
+    {
+        return $this->linkPreviewOptions;
     }
 
     public function getText(): FormattedText
@@ -52,17 +59,13 @@ class MessageText extends MessageContent
         return $this->text;
     }
 
-    public function getWebPage(): ?WebPage
-    {
-        return $this->webPage;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'web_page' => (isset($this->webPage) ? $this->webPage : null),
+            '@type'                => static::TYPE_NAME,
+            'text'                 => $this->text->typeSerialize(),
+            'link_preview'         => (isset($this->linkPreview) ? $this->linkPreview : null),
+            'link_preview_options' => (isset($this->linkPreviewOptions) ? $this->linkPreviewOptions : null),
         ];
     }
 }

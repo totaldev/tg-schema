@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Load;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check
- * whether all participants have already been loaded
+ * whether all participants have already been loaded.
  */
 class LoadGroupCallParticipants extends TdFunction
 {
     public const TYPE_NAME = 'loadGroupCallParticipants';
 
-    /**
-     * Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * The maximum number of participants to load; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    public function __construct(int $groupCallId, int $limit)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined.
+         */
+        protected int $groupCallId,
+        /**
+         * The maximum number of participants to load; up to 100.
+         */
+        protected int $limit,
+    ) {}
 
     public static function fromArray(array $array): LoadGroupCallParticipants
     {
@@ -58,9 +48,9 @@ class LoadGroupCallParticipants extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'limit' => $this->limit,
+            'limit'         => $this->limit,
         ];
     }
 }

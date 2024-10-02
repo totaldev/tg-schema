@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Describes the button that opens a Web App by calling getWebAppUrl
+ * Describes the button that opens a Web App by calling getWebAppUrl.
  */
 class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType
 {
     public const TYPE_NAME = 'inlineQueryResultsButtonTypeWebApp';
 
-    /**
-     * An HTTP URL to pass to getWebAppUrl
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
+    public function __construct(
+        /**
+         * An HTTP URL to pass to getWebAppUrl.
+         */
+        protected string $url
+    ) {
         parent::__construct();
-
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): InlineQueryResultsButtonTypeWebApp
@@ -45,7 +38,7 @@ class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
     }
 }

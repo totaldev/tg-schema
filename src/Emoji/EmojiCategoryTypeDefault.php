@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Emoji;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The category must be used by default
+ * The category must be used by default (e.g., for custom emoji or animation search).
  */
 class EmojiCategoryTypeDefault extends EmojiCategoryType
 {

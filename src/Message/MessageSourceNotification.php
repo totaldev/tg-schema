@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message is from a notification
+ * The message is from a notification.
  */
 class MessageSourceNotification extends MessageSource
 {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Rich;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a text object inside an instant-view web page
+ * Describes a formatted text object.
  */
 class RichText extends TdObject
 {
     public const TYPE_NAME = 'RichText';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): RichText
     {

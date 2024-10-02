@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Group;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the quality of a group call video
+ * Describes the quality of a group call video.
  */
 class GroupCallVideoQuality extends TdObject
 {
     public const TYPE_NAME = 'GroupCallVideoQuality';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GroupCallVideoQuality
     {

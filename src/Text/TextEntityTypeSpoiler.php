@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A spoiler text
+ * A spoiler text.
  */
 class TextEntityTypeSpoiler extends TextEntityType
 {

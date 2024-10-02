@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns the owner and administrators
+ * Returns the owner and administrators.
  */
 class ChatMembersFilterAdministrators extends ChatMembersFilter
 {

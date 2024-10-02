@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Suggested;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Suggests the user to subscribe to the Premium subscription with annual payments
+ * Suggests the user to subscribe to the Premium subscription with annual payments.
  */
 class SuggestedActionSubscribeToAnnualPremium extends SuggestedAction
 {

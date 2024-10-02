@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a newest pinned message in the chat
+ * Returns information about a newest pinned message in the chat.
  */
 class GetChatPinnedMessage extends TdFunction
 {
     public const TYPE_NAME = 'getChatPinnedMessage';
 
-    /**
-     * Identifier of the chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat the message belongs to.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetChatPinnedMessage
     {
@@ -43,7 +37,7 @@ class GetChatPinnedMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

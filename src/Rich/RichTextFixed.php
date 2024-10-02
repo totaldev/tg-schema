@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A fixed-width rich text
+ * A fixed-width rich text.
  */
 class RichTextFixed extends RichText
 {
     public const TYPE_NAME = 'richTextFixed';
 
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text
+    ) {
         parent::__construct();
-
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): RichTextFixed
@@ -45,7 +40,7 @@ class RichTextFixed extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            'text'  => $this->text->typeSerialize(),
         ];
     }
 }

@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a tg: deep link
+ * Contains information about a tg: deep link.
  */
 class DeepLinkInfo extends TdObject
 {
     public const TYPE_NAME = 'deepLinkInfo';
 
-    /**
-     * True, if the user must be asked to update the application
-     *
-     * @var bool
-     */
-    protected bool $needUpdateApplication;
-
-    /**
-     * Text to be shown to the user
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    public function __construct(FormattedText $text, bool $needUpdateApplication)
-    {
-        $this->text = $text;
-        $this->needUpdateApplication = $needUpdateApplication;
-    }
+    public function __construct(
+        /**
+         * Text to be shown to the user.
+         */
+        protected FormattedText $text,
+        /**
+         * True, if the user must be asked to update the application.
+         */
+        protected bool          $needUpdateApplication,
+    ) {}
 
     public static function fromArray(array $array): DeepLinkInfo
     {
@@ -58,8 +49,8 @@ class DeepLinkInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'                   => static::TYPE_NAME,
+            'text'                    => $this->text->typeSerialize(),
             'need_update_application' => $this->needUpdateApplication,
         ];
     }

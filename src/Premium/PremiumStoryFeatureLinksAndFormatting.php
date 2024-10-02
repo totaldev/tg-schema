@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to use links and formatting in story caption
+ * The ability to use links and formatting in story caption, and use inputStoryAreaTypeLink areas.
  */
 class PremiumStoryFeatureLinksAndFormatting extends PremiumStoryFeature
 {

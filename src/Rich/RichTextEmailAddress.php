@@ -9,32 +9,23 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A rich text email link
+ * A rich text email link.
  */
 class RichTextEmailAddress extends RichText
 {
     public const TYPE_NAME = 'richTextEmailAddress';
 
-    /**
-     * Email address
-     *
-     * @var string
-     */
-    protected string $emailAddress;
-
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text, string $emailAddress)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text,
+        /**
+         * Email address.
+         */
+        protected string   $emailAddress,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->emailAddress = $emailAddress;
     }
 
     public static function fromArray(array $array): RichTextEmailAddress
@@ -58,8 +49,8 @@ class RichTextEmailAddress extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'text'          => $this->text->typeSerialize(),
             'email_address' => $this->emailAddress,
         ];
     }

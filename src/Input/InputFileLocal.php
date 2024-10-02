@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A file defined by a local path
+ * A file defined by a local path.
  */
 class InputFileLocal extends InputFile
 {
     public const TYPE_NAME = 'inputFileLocal';
 
-    /**
-     * Local path to the file
-     *
-     * @var string
-     */
-    protected string $path;
-
-    public function __construct(string $path)
-    {
+    public function __construct(
+        /**
+         * Local path to the file.
+         */
+        protected string $path
+    ) {
         parent::__construct();
-
-        $this->path = $path;
     }
 
     public static function fromArray(array $array): InputFileLocal
@@ -45,7 +38,7 @@ class InputFileLocal extends InputFile
     {
         return [
             '@type' => static::TYPE_NAME,
-            'path' => $this->path,
+            'path'  => $this->path,
         ];
     }
 }

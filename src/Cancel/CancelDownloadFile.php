@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Cancel;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Stops the downloading of a file. If a file has already been downloaded, does nothing
+ * Stops the downloading of a file. If a file has already been downloaded, does nothing.
  */
 class CancelDownloadFile extends TdFunction
 {
     public const TYPE_NAME = 'cancelDownloadFile';
 
-    /**
-     * Identifier of a file to stop downloading
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
-     * Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
-     *
-     * @var bool
-     */
-    protected bool $onlyIfPending;
-
-    public function __construct(int $fileId, bool $onlyIfPending)
-    {
-        $this->fileId = $fileId;
-        $this->onlyIfPending = $onlyIfPending;
-    }
+    public function __construct(
+        /**
+         * Identifier of a file to stop downloading.
+         */
+        protected int  $fileId,
+        /**
+         * Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server.
+         */
+        protected bool $onlyIfPending,
+    ) {}
 
     public static function fromArray(array $array): CancelDownloadFile
     {
@@ -57,8 +47,8 @@ class CancelDownloadFile extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
+            '@type'           => static::TYPE_NAME,
+            'file_id'         => $this->fileId,
             'only_if_pending' => $this->onlyIfPending,
         ];
     }

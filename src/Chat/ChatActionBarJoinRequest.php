@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat is a private chat with an administrator of a chat to which the user sent join request
+ * The chat is a private chat with an administrator of a chat to which the user sent join request.
  */
 class ChatActionBarJoinRequest extends ChatActionBar
 {
     public const TYPE_NAME = 'chatActionBarJoinRequest';
 
-    /**
-     * True, if the join request was sent to a channel chat
-     *
-     * @var bool
-     */
-    protected bool $isChannel;
-
-    /**
-     * Point in time (Unix timestamp) when the join request was sent
-     *
-     * @var int
-     */
-    protected int $requestDate;
-
-    /**
-     * Title of the chat to which the join request was sent
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title, bool $isChannel, int $requestDate)
-    {
+    public function __construct(
+        /**
+         * Title of the chat to which the join request was sent.
+         */
+        protected string $title,
+        /**
+         * True, if the join request was sent to a channel chat.
+         */
+        protected bool   $isChannel,
+        /**
+         * Point in time (Unix timestamp) when the join request was sent.
+         */
+        protected int    $requestDate,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->isChannel = $isChannel;
-        $this->requestDate = $requestDate;
     }
 
     public static function fromArray(array $array): ChatActionBarJoinRequest
@@ -72,9 +57,9 @@ class ChatActionBarJoinRequest extends ChatActionBar
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'is_channel' => $this->isChannel,
+            '@type'        => static::TYPE_NAME,
+            'title'        => $this->title,
+            'is_channel'   => $this->isChannel,
             'request_date' => $this->requestDate,
         ];
     }

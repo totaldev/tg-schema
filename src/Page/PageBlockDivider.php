@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Page;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An empty block separating a page
+ * An empty block separating a page.
  */
 class PageBlockDivider extends PageBlock
 {

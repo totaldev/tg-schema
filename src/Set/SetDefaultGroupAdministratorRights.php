@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+ * Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only.
  */
 class SetDefaultGroupAdministratorRights extends TdFunction
 {
     public const TYPE_NAME = 'setDefaultGroupAdministratorRights';
 
-    /**
-     * Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
-     *
-     * @var ChatAdministratorRights
-     */
-    protected ChatAdministratorRights $defaultGroupAdministratorRights;
-
-    public function __construct(ChatAdministratorRights $defaultGroupAdministratorRights)
-    {
-        $this->defaultGroupAdministratorRights = $defaultGroupAdministratorRights;
-    }
+    public function __construct(
+        /**
+         * Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights.
+         */
+        protected ChatAdministratorRights $defaultGroupAdministratorRights
+    ) {}
 
     public static function fromArray(array $array): SetDefaultGroupAdministratorRights
     {
@@ -44,7 +39,7 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                              => static::TYPE_NAME,
             'default_group_administrator_rights' => $this->defaultGroupAdministratorRights->typeSerialize(),
         ];
     }

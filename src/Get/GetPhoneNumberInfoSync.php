@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified
- * language if properly localized country information is expected. Can be called synchronously
+ * language if properly localized country information is expected. Can be called synchronously.
  */
 class GetPhoneNumberInfoSync extends TdFunction
 {
     public const TYPE_NAME = 'getPhoneNumberInfoSync';
 
-    /**
-     * A two-letter ISO 639-1 language code for country information localization
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    /**
-     * The phone number prefix
-     *
-     * @var string
-     */
-    protected string $phoneNumberPrefix;
-
-    public function __construct(string $languageCode, string $phoneNumberPrefix)
-    {
-        $this->languageCode = $languageCode;
-        $this->phoneNumberPrefix = $phoneNumberPrefix;
-    }
+    public function __construct(
+        /**
+         * A two-letter ISO 639-1 language code for country information localization.
+         */
+        protected string $languageCode,
+        /**
+         * The phone number prefix.
+         */
+        protected string $phoneNumberPrefix,
+    ) {}
 
     public static function fromArray(array $array): GetPhoneNumberInfoSync
     {
@@ -58,8 +48,8 @@ class GetPhoneNumberInfoSync extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'language_code' => $this->languageCode,
+            '@type'               => static::TYPE_NAME,
+            'language_code'       => $this->languageCode,
             'phone_number_prefix' => $this->phoneNumberPrefix,
         ];
     }

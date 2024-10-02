@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The has_aggressive_anti_spam_enabled setting of a supergroup was toggled
+ * The has_aggressive_anti_spam_enabled setting of a supergroup was toggled.
  */
 class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventHasAggressiveAntiSpamEnabledToggled';
 
-    /**
-     * New value of has_aggressive_anti_spam_enabled
-     *
-     * @var bool
-     */
-    protected bool $hasAggressiveAntiSpamEnabled;
-
-    public function __construct(bool $hasAggressiveAntiSpamEnabled)
-    {
+    public function __construct(
+        /**
+         * New value of has_aggressive_anti_spam_enabled.
+         */
+        protected bool $hasAggressiveAntiSpamEnabled
+    ) {
         parent::__construct();
-
-        $this->hasAggressiveAntiSpamEnabled = $hasAggressiveAntiSpamEnabled;
     }
 
     public static function fromArray(array $array): ChatEventHasAggressiveAntiSpamEnabledToggled
@@ -44,7 +37,7 @@ class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                            => static::TYPE_NAME,
             'has_aggressive_anti_spam_enabled' => $this->hasAggressiveAntiSpamEnabled,
         ];
     }

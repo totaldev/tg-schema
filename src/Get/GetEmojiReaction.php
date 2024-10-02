@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+ * Returns information about an emoji reaction. Returns a 404 error if the reaction is not found.
  */
 class GetEmojiReaction extends TdFunction
 {
     public const TYPE_NAME = 'getEmojiReaction';
 
-    /**
-     * Text representation of the reaction
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    public function __construct(string $emoji)
-    {
-        $this->emoji = $emoji;
-    }
+    public function __construct(
+        /**
+         * Text representation of the reaction.
+         */
+        protected string $emoji
+    ) {}
 
     public static function fromArray(array $array): GetEmojiReaction
     {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of a clickable rectangle area on a story media
+ * Describes type of clickable area on a story media.
  */
 class StoryAreaType extends TdObject
 {
     public const TYPE_NAME = 'StoryAreaType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StoryAreaType
     {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of proxies that are currently set up. Can be called before authorization
+ * Returns the list of proxies that are currently set up. Can be called before authorization.
  */
 class GetProxies extends TdFunction
 {
     public const TYPE_NAME = 'getProxies';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetProxies
     {

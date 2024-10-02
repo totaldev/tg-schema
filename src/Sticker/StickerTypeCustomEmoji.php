@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The sticker is a custom emoji to be used inside message text and caption
+ * The sticker is a custom emoji to be used inside message text and caption.
  */
 class StickerTypeCustomEmoji extends StickerType
 {

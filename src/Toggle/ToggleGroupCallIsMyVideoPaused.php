@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether current user's video is paused
+ * Toggles whether current user's video is paused.
  */
 class ToggleGroupCallIsMyVideoPaused extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallIsMyVideoPaused';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true if the current user's video is paused
-     *
-     * @var bool
-     */
-    protected bool $isMyVideoPaused;
-
-    public function __construct(int $groupCallId, bool $isMyVideoPaused)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->isMyVideoPaused = $isMyVideoPaused;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * Pass true if the current user's video is paused.
+         */
+        protected bool $isMyVideoPaused,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoPaused
     {
@@ -57,8 +47,8 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'              => static::TYPE_NAME,
+            'group_call_id'      => $this->groupCallId,
             'is_my_video_paused' => $this->isMyVideoPaused,
         ];
     }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The sticker is an animation in TGS format
+ * The sticker is an animation in TGS format.
  */
 class StickerFormatTgs extends StickerFormat
 {

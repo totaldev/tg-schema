@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The sticker is an image in WEBP format
+ * The sticker is an image in WEBP format.
  */
 class StickerFormatWebp extends StickerFormat
 {

@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Minithumbnail;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Thumbnail image of a very poor quality and low resolution
+ * Thumbnail image of a very poor quality and low resolution.
  */
 class Minithumbnail extends TdObject
 {
     public const TYPE_NAME = 'minithumbnail';
 
-    /**
-     * The thumbnail in JPEG format
-     *
-     * @var string
-     */
-    protected string $data;
-
-    /**
-     * Thumbnail height, usually doesn't exceed 40
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Thumbnail width, usually doesn't exceed 40
-     *
-     * @var int
-     */
-    protected int $width;
-
-    public function __construct(int $width, int $height, string $data)
-    {
-        $this->width = $width;
-        $this->height = $height;
-        $this->data = $data;
-    }
+    public function __construct(
+        /**
+         * Thumbnail width, usually doesn't exceed 40.
+         */
+        protected int    $width,
+        /**
+         * Thumbnail height, usually doesn't exceed 40.
+         */
+        protected int    $height,
+        /**
+         * The thumbnail in JPEG format.
+         */
+        protected string $data,
+    ) {}
 
     public static function fromArray(array $array): Minithumbnail
     {
@@ -71,10 +57,10 @@ class Minithumbnail extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'width' => $this->width,
+            '@type'  => static::TYPE_NAME,
+            'width'  => $this->width,
             'height' => $this->height,
-            'data' => $this->data,
+            'data'   => $this->data,
         ];
     }
 }

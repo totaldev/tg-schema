@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Seconds;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a value representing a number of seconds
+ * Contains a value representing a number of seconds.
  */
 class Seconds extends TdObject
 {
     public const TYPE_NAME = 'seconds';
 
-    /**
-     * Number of seconds
-     *
-     * @var float
-     */
-    protected float $seconds;
-
-    public function __construct(float $seconds)
-    {
-        $this->seconds = $seconds;
-    }
+    public function __construct(
+        /**
+         * Number of seconds.
+         */
+        protected float $seconds
+    ) {}
 
     public static function fromArray(array $array): Seconds
     {
@@ -43,7 +37,7 @@ class Seconds extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'seconds' => $this->seconds,
         ];
     }

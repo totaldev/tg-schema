@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Chat\ChatPhoto;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A profile photo was suggested to a user in a private chat
+ * A profile photo was suggested to a user in a private chat.
  */
 class MessageSuggestProfilePhoto extends MessageContent
 {
     public const TYPE_NAME = 'messageSuggestProfilePhoto';
 
-    /**
-     * The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo
-     *
-     * @var ChatPhoto
-     */
-    protected ChatPhoto $photo;
-
-    public function __construct(ChatPhoto $photo)
-    {
+    public function __construct(
+        /**
+         * The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo.
+         */
+        protected ChatPhoto $photo
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): MessageSuggestProfilePhoto

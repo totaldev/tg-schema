@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes a profile photo for a bot
+ * Changes a profile photo for a bot.
  */
 class SetBotProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'setBotProfilePhoto';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Profile photo to set; pass null to delete the chat photo
-     *
-     * @var InputChatPhoto
-     */
-    protected InputChatPhoto $photo;
-
-    public function __construct(int $botUserId, InputChatPhoto $photo)
-    {
-        $this->botUserId = $botUserId;
-        $this->photo = $photo;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int            $botUserId,
+        /**
+         * Profile photo to set; pass null to delete the chat photo.
+         */
+        protected InputChatPhoto $photo,
+    ) {}
 
     public static function fromArray(array $array): SetBotProfilePhoto
     {
@@ -58,9 +49,9 @@ class SetBotProfilePhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'photo' => $this->photo->typeSerialize(),
+            'photo'       => $this->photo->typeSerialize(),
         ];
     }
 }

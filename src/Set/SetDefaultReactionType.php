@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes type of default reaction for the current user
+ * Changes type of default reaction for the current user.
  */
 class SetDefaultReactionType extends TdFunction
 {
     public const TYPE_NAME = 'setDefaultReactionType';
 
-    /**
-     * New type of the default reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    public function __construct(ReactionType $reactionType)
-    {
-        $this->reactionType = $reactionType;
-    }
+    public function __construct(
+        /**
+         * New type of the default reaction. The paid reaction can't be set as default.
+         */
+        protected ReactionType $reactionType
+    ) {}
 
     public static function fromArray(array $array): SetDefaultReactionType
     {
@@ -44,7 +39,7 @@ class SetDefaultReactionType extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'reaction_type' => $this->reactionType->typeSerialize(),
         ];
     }

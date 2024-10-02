@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Proxy;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A SOCKS5 proxy server
+ * A SOCKS5 proxy server.
  */
 class ProxyTypeSocks5 extends ProxyType
 {
     public const TYPE_NAME = 'proxyTypeSocks5';
 
-    /**
-     * Password for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
-     * Username for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $username;
-
-    public function __construct(string $username, string $password)
-    {
+    public function __construct(
+        /**
+         * Username for logging in; may be empty.
+         */
+        protected string $username,
+        /**
+         * Password for logging in; may be empty.
+         */
+        protected string $password,
+    ) {
         parent::__construct();
-
-        $this->username = $username;
-        $this->password = $password;
     }
 
     public static function fromArray(array $array): ProxyTypeSocks5
@@ -58,7 +47,7 @@ class ProxyTypeSocks5 extends ProxyType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'username' => $this->username,
             'password' => $this->password,
         ];

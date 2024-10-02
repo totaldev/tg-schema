@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents an available reaction
+ * Represents an available reaction.
  */
 class AvailableReaction extends TdObject
 {
     public const TYPE_NAME = 'availableReaction';
 
-    /**
-     * True, if Telegram Premium is needed to send the reaction
-     *
-     * @var bool
-     */
-    protected bool $needsPremium;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    public function __construct(ReactionType $type, bool $needsPremium)
-    {
-        $this->type = $type;
-        $this->needsPremium = $needsPremium;
-    }
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType $type,
+        /**
+         * True, if Telegram Premium is needed to send the reaction.
+         */
+        protected bool         $needsPremium,
+    ) {}
 
     public static function fromArray(array $array): AvailableReaction
     {
@@ -58,8 +49,8 @@ class AvailableReaction extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'type'          => $this->type->typeSerialize(),
             'needs_premium' => $this->needsPremium,
         ];
     }

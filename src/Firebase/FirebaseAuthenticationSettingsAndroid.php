@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Firebase;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Settings for Firebase Authentication in the official Android application
+ * Settings for Firebase Authentication in the official Android application.
  */
 class FirebaseAuthenticationSettingsAndroid extends FirebaseAuthenticationSettings
 {

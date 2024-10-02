@@ -11,55 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits an existing proxy server for network requests. Can be called before authorization
+ * Edits an existing proxy server for network requests. Can be called before authorization.
  */
 class EditProxy extends TdFunction
 {
     public const TYPE_NAME = 'editProxy';
 
-    /**
-     * Pass true to immediately enable the proxy
-     *
-     * @var bool
-     */
-    protected bool $enable;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy identifier
-     *
-     * @var int
-     */
-    protected int $proxyId;
-
-    /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Proxy type
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    public function __construct(int $proxyId, string $server, int $port, bool $enable, ProxyType $type)
-    {
-        $this->proxyId = $proxyId;
-        $this->server = $server;
-        $this->port = $port;
-        $this->enable = $enable;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Proxy identifier.
+         */
+        protected int       $proxyId,
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Pass true to immediately enable the proxy.
+         */
+        protected bool      $enable,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
+    ) {}
 
     public static function fromArray(array $array): EditProxy
     {
@@ -100,12 +79,12 @@ class EditProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
-            'server' => $this->server,
-            'port' => $this->port,
-            'enable' => $this->enable,
-            'type' => $this->type->typeSerialize(),
+            'server'   => $this->server,
+            'port'     => $this->port,
+            'enable'   => $this->enable,
+            'type'     => $this->type->typeSerialize(),
         ];
     }
 }

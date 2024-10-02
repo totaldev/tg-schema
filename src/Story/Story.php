@@ -7,231 +7,142 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a story
+ * Represents a story.
  */
 class Story extends TdObject
 {
     public const TYPE_NAME = 'story';
 
-    /**
-     * Clickable areas to be shown on the story content
-     *
-     * @var StoryArea[]
-     */
-    protected array $areas;
-
-    /**
-     * True, if the story can be deleted
-     *
-     * @var bool
-     */
-    protected bool $canBeDeleted;
-
-    /**
-     * True, if the story can be edited
-     *
-     * @var bool
-     */
-    protected bool $canBeEdited;
-
-    /**
-     * True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
-     *
-     * @var bool
-     */
-    protected bool $canBeForwarded;
-
-    /**
-     * True, if the story can be replied in the chat with the story sender
-     *
-     * @var bool
-     */
-    protected bool $canBeReplied;
-
-    /**
-     * True, if users viewed the story can be received through getStoryViewers
-     *
-     * @var bool
-     */
-    protected bool $canGetViewers;
-
-    /**
-     * True, if the story's is_pinned value can be changed
-     *
-     * @var bool
-     */
-    protected bool $canToggleIsPinned;
-
-    /**
-     * Caption of the story
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * Type of the chosen reaction; may be null if none
-     *
-     * @var ReactionType|null
-     */
-    protected ?ReactionType $chosenReactionType;
-
-    /**
-     * Content of the story
-     *
-     * @var StoryContent
-     */
-    protected StoryContent $content;
-
-    /**
-     * Point in time (Unix timestamp) when the story was published
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
-     *
-     * @var bool
-     */
-    protected bool $hasExpiredViewers;
-
-    /**
-     * Unique story identifier among stories of the given sender
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Information about interactions with the story; may be null if the story isn't owned or there were no interactions
-     *
-     * @var StoryInteractionInfo|null
-     */
-    protected ?StoryInteractionInfo $interactionInfo;
-
-    /**
-     * True, if the story is being edited by the current user
-     *
-     * @var bool
-     */
-    protected bool $isBeingEdited;
-
-    /**
-     * True, if the story is being sent by the current user
-     *
-     * @var bool
-     */
-    protected bool $isBeingSent;
-
-    /**
-     * True, if the story was edited
-     *
-     * @var bool
-     */
-    protected bool $isEdited;
-
-    /**
-     * True, if the story is saved in the sender's profile and will be available there after expiration
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * True, if the story is visible only for the current user
-     *
-     * @var bool
-     */
-    protected bool $isVisibleOnlyForSelf;
-
-    /**
-     * Privacy rules affecting story visibility; may be approximate for non-owned stories
-     *
-     * @var StoryPrivacySettings
-     */
-    protected StoryPrivacySettings $privacySettings;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $senderChatId;
-
     public function __construct(
-        int                   $id,
-        int                   $senderChatId,
-        int                   $date,
-        bool                  $isBeingSent,
-        bool                  $isBeingEdited,
-        bool                  $isEdited,
-        bool                  $isPinned,
-        bool                  $isVisibleOnlyForSelf,
-        bool                  $canBeDeleted,
-        bool                  $canBeEdited,
-        bool                  $canBeForwarded,
-        bool                  $canBeReplied,
-        bool                  $canToggleIsPinned,
-        bool                  $canGetViewers,
-        bool                  $hasExpiredViewers,
-        ?StoryInteractionInfo $interactionInfo,
-        ?ReactionType         $chosenReactionType,
-        StoryPrivacySettings  $privacySettings,
-        StoryContent          $content,
-        array                 $areas,
-        FormattedText         $caption,
-    )
-    {
-        $this->id = $id;
-        $this->senderChatId = $senderChatId;
-        $this->date = $date;
-        $this->isBeingSent = $isBeingSent;
-        $this->isBeingEdited = $isBeingEdited;
-        $this->isEdited = $isEdited;
-        $this->isPinned = $isPinned;
-        $this->isVisibleOnlyForSelf = $isVisibleOnlyForSelf;
-        $this->canBeDeleted = $canBeDeleted;
-        $this->canBeEdited = $canBeEdited;
-        $this->canBeForwarded = $canBeForwarded;
-        $this->canBeReplied = $canBeReplied;
-        $this->canToggleIsPinned = $canToggleIsPinned;
-        $this->canGetViewers = $canGetViewers;
-        $this->hasExpiredViewers = $hasExpiredViewers;
-        $this->interactionInfo = $interactionInfo;
-        $this->chosenReactionType = $chosenReactionType;
-        $this->privacySettings = $privacySettings;
-        $this->content = $content;
-        $this->areas = $areas;
-        $this->caption = $caption;
-    }
+        /**
+         * Unique story identifier among stories of the given sender.
+         */
+        protected int                   $id,
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int                   $senderChatId,
+        /**
+         * Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id.
+         */
+        protected ?MessageSender        $senderId,
+        /**
+         * Point in time (Unix timestamp) when the story was published.
+         */
+        protected int                   $date,
+        /**
+         * True, if the story is being sent by the current user.
+         */
+        protected bool                  $isBeingSent,
+        /**
+         * True, if the story is being edited by the current user.
+         */
+        protected bool                  $isBeingEdited,
+        /**
+         * True, if the story was edited.
+         */
+        protected bool                  $isEdited,
+        /**
+         * True, if the story is saved in the sender's profile and will be available there after expiration.
+         */
+        protected bool                  $isPostedToChatPage,
+        /**
+         * True, if the story is visible only for the current user.
+         */
+        protected bool                  $isVisibleOnlyForSelf,
+        /**
+         * True, if the story can be deleted.
+         */
+        protected bool                  $canBeDeleted,
+        /**
+         * True, if the story can be edited.
+         */
+        protected bool                  $canBeEdited,
+        /**
+         * True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden.
+         */
+        protected bool                  $canBeForwarded,
+        /**
+         * True, if the story can be replied in the chat with the story sender.
+         */
+        protected bool                  $canBeReplied,
+        /**
+         * True, if the story's is_posted_to_chat_page value can be changed.
+         */
+        protected bool                  $canToggleIsPostedToChatPage,
+        /**
+         * True, if the story statistics are available through getStoryStatistics.
+         */
+        protected bool                  $canGetStatistics,
+        /**
+         * True, if interactions with the story can be received through getStoryInteractions.
+         */
+        protected bool                  $canGetInteractions,
+        /**
+         * True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago.
+         */
+        protected bool                  $hasExpiredViewers,
+        /**
+         * Information about the original story; may be null if the story wasn't reposted.
+         */
+        protected ?StoryRepostInfo      $repostInfo,
+        /**
+         * Information about interactions with the story; may be null if the story isn't owned or there were no interactions.
+         */
+        protected ?StoryInteractionInfo $interactionInfo,
+        /**
+         * Type of the chosen reaction; may be null if none.
+         */
+        protected ?ReactionType         $chosenReactionType,
+        /**
+         * Privacy rules affecting story visibility; may be approximate for non-owned stories.
+         */
+        protected StoryPrivacySettings  $privacySettings,
+        /**
+         * Content of the story.
+         */
+        protected StoryContent          $content,
+        /**
+         * Clickable areas to be shown on the story content.
+         *
+         * @var StoryArea[]
+         */
+        protected array                 $areas,
+        /**
+         * Caption of the story.
+         */
+        protected FormattedText         $caption,
+    ) {}
 
     public static function fromArray(array $array): Story
     {
         return new static(
             $array['id'],
             $array['sender_chat_id'],
+            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
             $array['date'],
             $array['is_being_sent'],
             $array['is_being_edited'],
             $array['is_edited'],
-            $array['is_pinned'],
+            $array['is_posted_to_chat_page'],
             $array['is_visible_only_for_self'],
             $array['can_be_deleted'],
             $array['can_be_edited'],
             $array['can_be_forwarded'],
             $array['can_be_replied'],
-            $array['can_toggle_is_pinned'],
-            $array['can_get_viewers'],
+            $array['can_toggle_is_posted_to_chat_page'],
+            $array['can_get_statistics'],
+            $array['can_get_interactions'],
             $array['has_expired_viewers'],
-            (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
-            (isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null),
+            isset($array['repost_info']) ? TdSchemaRegistry::fromArray($array['repost_info']) : null,
+            isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null,
+            isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null,
             TdSchemaRegistry::fromArray($array['privacy_settings']),
             TdSchemaRegistry::fromArray($array['content']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
@@ -264,14 +175,19 @@ class Story extends TdObject
         return $this->canBeReplied;
     }
 
-    public function getCanGetViewers(): bool
+    public function getCanGetInteractions(): bool
     {
-        return $this->canGetViewers;
+        return $this->canGetInteractions;
     }
 
-    public function getCanToggleIsPinned(): bool
+    public function getCanGetStatistics(): bool
     {
-        return $this->canToggleIsPinned;
+        return $this->canGetStatistics;
+    }
+
+    public function getCanToggleIsPostedToChatPage(): bool
+    {
+        return $this->canToggleIsPostedToChatPage;
     }
 
     public function getCaption(): FormattedText
@@ -324,9 +240,9 @@ class Story extends TdObject
         return $this->isEdited;
     }
 
-    public function getIsPinned(): bool
+    public function getIsPostedToChatPage(): bool
     {
-        return $this->isPinned;
+        return $this->isPostedToChatPage;
     }
 
     public function getIsVisibleOnlyForSelf(): bool
@@ -339,36 +255,49 @@ class Story extends TdObject
         return $this->privacySettings;
     }
 
+    public function getRepostInfo(): ?StoryRepostInfo
+    {
+        return $this->repostInfo;
+    }
+
     public function getSenderChatId(): int
     {
         return $this->senderChatId;
     }
 
+    public function getSenderId(): ?MessageSender
+    {
+        return $this->senderId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'sender_chat_id' => $this->senderChatId,
-            'date' => $this->date,
-            'is_being_sent' => $this->isBeingSent,
-            'is_being_edited' => $this->isBeingEdited,
-            'is_edited' => $this->isEdited,
-            'is_pinned' => $this->isPinned,
-            'is_visible_only_for_self' => $this->isVisibleOnlyForSelf,
-            'can_be_deleted' => $this->canBeDeleted,
-            'can_be_edited' => $this->canBeEdited,
-            'can_be_forwarded' => $this->canBeForwarded,
-            'can_be_replied' => $this->canBeReplied,
-            'can_toggle_is_pinned' => $this->canToggleIsPinned,
-            'can_get_viewers' => $this->canGetViewers,
-            'has_expired_viewers' => $this->hasExpiredViewers,
-            'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
-            'chosen_reaction_type' => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
-            'privacy_settings' => $this->privacySettings->typeSerialize(),
-            'content' => $this->content->typeSerialize(),
+            '@type'                             => static::TYPE_NAME,
+            'id'                                => $this->id,
+            'sender_chat_id'                    => $this->senderChatId,
+            'sender_id'                         => (isset($this->senderId) ? $this->senderId : null),
+            'date'                              => $this->date,
+            'is_being_sent'                     => $this->isBeingSent,
+            'is_being_edited'                   => $this->isBeingEdited,
+            'is_edited'                         => $this->isEdited,
+            'is_posted_to_chat_page'            => $this->isPostedToChatPage,
+            'is_visible_only_for_self'          => $this->isVisibleOnlyForSelf,
+            'can_be_deleted'                    => $this->canBeDeleted,
+            'can_be_edited'                     => $this->canBeEdited,
+            'can_be_forwarded'                  => $this->canBeForwarded,
+            'can_be_replied'                    => $this->canBeReplied,
+            'can_toggle_is_posted_to_chat_page' => $this->canToggleIsPostedToChatPage,
+            'can_get_statistics'                => $this->canGetStatistics,
+            'can_get_interactions'              => $this->canGetInteractions,
+            'has_expired_viewers'               => $this->hasExpiredViewers,
+            'repost_info'                       => (isset($this->repostInfo) ? $this->repostInfo : null),
+            'interaction_info'                  => (isset($this->interactionInfo) ? $this->interactionInfo : null),
+            'chosen_reaction_type'              => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
+            'privacy_settings'                  => $this->privacySettings->typeSerialize(),
+            'content'                           => $this->content->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->areas),
-            'caption' => $this->caption->typeSerialize(),
+            'caption'                           => $this->caption->typeSerialize(),
         ];
     }
 }

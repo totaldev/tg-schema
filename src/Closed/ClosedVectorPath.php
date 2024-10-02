@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Vector\VectorPathCommand;
 
 /**
- * Represents a closed vector path. The path begins at the end point of the last command
+ * Represents a closed vector path. The path begins at the end point of the last command.
  */
 class ClosedVectorPath extends TdObject
 {
     public const TYPE_NAME = 'closedVectorPath';
 
-    /**
-     * List of vector path commands
-     *
-     * @var VectorPathCommand[]
-     */
-    protected array $commands;
-
-    public function __construct(array $commands)
-    {
-        $this->commands = $commands;
-    }
+    public function __construct(
+        /**
+         * List of vector path commands.
+         *
+         * @var VectorPathCommand[]
+         */
+        protected array $commands
+    ) {}
 
     public static function fromArray(array $array): ClosedVectorPath
     {

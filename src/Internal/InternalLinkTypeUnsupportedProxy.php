@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to an unsupported proxy. An alert can be shown to the user
+ * The link is a link to an unsupported proxy. An alert can be shown to the user.
  */
 class InternalLinkTypeUnsupportedProxy extends InternalLinkType
 {

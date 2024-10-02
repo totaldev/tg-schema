@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+ * A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded.
  */
 class InputMessageStory extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageStory';
 
-    /**
-     * Story identifier
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int $storySenderChatId,
+        /**
+         * Story identifier.
+         */
+        protected int $storyId,
+    ) {
         parent::__construct();
-
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
     }
 
     public static function fromArray(array $array): InputMessageStory
@@ -58,9 +47,9 @@ class InputMessageStory extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

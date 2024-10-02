@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Allowed to translate chat messages real-time
+ * Allowed to translate chat messages real-time.
  */
 class PremiumFeatureRealTimeChatTranslation extends PremiumFeature
 {

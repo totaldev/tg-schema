@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message was edited
+ * A message was edited.
  */
 class ChatEventMessageEdited extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMessageEdited';
 
-    /**
-     * The message after it was edited
-     *
-     * @var Message
-     */
-    protected Message $newMessage;
-
-    /**
-     * The original message before the edit
-     *
-     * @var Message
-     */
-    protected Message $oldMessage;
-
-    public function __construct(Message $oldMessage, Message $newMessage)
-    {
+    public function __construct(
+        /**
+         * The original message before the edit.
+         */
+        protected Message $oldMessage,
+        /**
+         * The message after it was edited.
+         */
+        protected Message $newMessage,
+    ) {
         parent::__construct();
-
-        $this->oldMessage = $oldMessage;
-        $this->newMessage = $newMessage;
     }
 
     public static function fromArray(array $array): ChatEventMessageEdited
@@ -59,7 +50,7 @@ class ChatEventMessageEdited extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'old_message' => $this->oldMessage->typeSerialize(),
             'new_message' => $this->newMessage->typeSerialize(),
         ];

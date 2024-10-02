@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+ * Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order.
  */
 class SearchOutgoingDocumentMessages extends TdFunction
 {
     public const TYPE_NAME = 'searchOutgoingDocumentMessages';
 
-    /**
-     * The maximum number of messages to be returned; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Query to search for in document file name and message caption
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query, int $limit)
-    {
-        $this->query = $query;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Query to search for in document file name and message caption.
+         */
+        protected string $query,
+        /**
+         * The maximum number of messages to be returned; up to 100.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchOutgoingDocumentMessages
     {

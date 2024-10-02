@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to convert voice notes to text
+ * The ability to convert voice notes to text.
  */
 class PremiumFeatureVoiceRecognition extends PremiumFeature
 {

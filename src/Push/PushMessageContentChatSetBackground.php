@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A chat background was edited
+ * A chat background was edited.
  */
 class PushMessageContentChatSetBackground extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatSetBackground';
 
-    /**
-     * True, if the set background is the same as the background of the current user
-     *
-     * @var bool
-     */
-    protected bool $isSame;
-
-    public function __construct(bool $isSame)
-    {
+    public function __construct(
+        /**
+         * True, if the set background is the same as the background of the current user.
+         */
+        protected bool $isSame
+    ) {
         parent::__construct();
-
-        $this->isSame = $isSame;
     }
 
     public static function fromArray(array $array): PushMessageContentChatSetBackground
@@ -44,7 +37,7 @@ class PushMessageContentChatSetBackground extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'is_same' => $this->isSame,
         ];
     }

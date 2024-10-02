@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Increased maximum upload file size
+ * Increased maximum upload file size.
  */
 class PremiumFeatureIncreasedUploadFileSize extends PremiumFeature
 {

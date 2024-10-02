@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the period of inactivity after which the account of the current user will automatically be deleted
+ * Changes the period of inactivity after which the account of the current user will automatically be deleted.
  */
 class SetAccountTtl extends TdFunction
 {
     public const TYPE_NAME = 'setAccountTtl';
 
-    /**
-     * New account TTL
-     *
-     * @var AccountTtl
-     */
-    protected AccountTtl $ttl;
-
-    public function __construct(AccountTtl $ttl)
-    {
-        $this->ttl = $ttl;
-    }
+    public function __construct(
+        /**
+         * New account TTL.
+         */
+        protected AccountTtl $ttl
+    ) {}
 
     public static function fromArray(array $array): SetAccountTtl
     {
@@ -45,7 +40,7 @@ class SetAccountTtl extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'ttl' => $this->ttl->typeSerialize(),
+            'ttl'   => $this->ttl->typeSerialize(),
         ];
     }
 }

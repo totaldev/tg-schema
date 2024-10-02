@@ -12,71 +12,40 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the result of an inline query; for bots only
+ * Sets the result of an inline query; for bots only.
  */
 class AnswerInlineQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerInlineQuery';
 
-    /**
-     * Button to be shown above inline query results; pass null if none
-     *
-     * @var InlineQueryResultsButton
-     */
-    protected InlineQueryResultsButton $button;
-
-    /**
-     * Allowed time to cache the results of the query, in seconds
-     *
-     * @var int
-     */
-    protected int $cacheTime;
-
-    /**
-     * Identifier of the inline query
-     *
-     * @var int
-     */
-    protected int $inlineQueryId;
-
-    /**
-     * Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the
-     * same query
-     *
-     * @var bool
-     */
-    protected bool $isPersonal;
-
-    /**
-     * Offset for the next inline query; pass an empty string if there are no more results
-     *
-     * @var string
-     */
-    protected string $nextOffset;
-
-    /**
-     * The results of the query
-     *
-     * @var InputInlineQueryResult[]
-     */
-    protected array $results;
-
     public function __construct(
-        int                      $inlineQueryId,
-        bool                     $isPersonal,
-        InlineQueryResultsButton $button,
-        array                    $results,
-        int                      $cacheTime,
-        string                   $nextOffset,
-    )
-    {
-        $this->inlineQueryId = $inlineQueryId;
-        $this->isPersonal = $isPersonal;
-        $this->button = $button;
-        $this->results = $results;
-        $this->cacheTime = $cacheTime;
-        $this->nextOffset = $nextOffset;
-    }
+        /**
+         * Identifier of the inline query.
+         */
+        protected int                      $inlineQueryId,
+        /**
+         * Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query.
+         */
+        protected bool                     $isPersonal,
+        /**
+         * Button to be shown above inline query results; pass null if none.
+         */
+        protected InlineQueryResultsButton $button,
+        /**
+         * The results of the query.
+         *
+         * @var InputInlineQueryResult[]
+         */
+        protected array                    $results,
+        /**
+         * Allowed time to cache the results of the query, in seconds.
+         */
+        protected int                      $cacheTime,
+        /**
+         * Offset for the next inline query; pass an empty string if there are no more results.
+         */
+        protected string                   $nextOffset,
+    ) {}
 
     public static function fromArray(array $array): AnswerInlineQuery
     {
@@ -123,13 +92,13 @@ class AnswerInlineQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'inline_query_id' => $this->inlineQueryId,
-            'is_personal' => $this->isPersonal,
-            'button' => $this->button->typeSerialize(),
+            'is_personal'     => $this->isPersonal,
+            'button'          => $this->button->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->results),
-            'cache_time' => $this->cacheTime,
-            'next_offset' => $this->nextOffset,
+            'cache_time'      => $this->cacheTime,
+            'next_offset'     => $this->nextOffset,
         ];
     }
 }

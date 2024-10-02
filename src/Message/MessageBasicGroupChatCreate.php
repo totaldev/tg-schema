@@ -6,35 +6,26 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A newly created basic group
+ * A newly created basic group.
  */
 class MessageBasicGroupChatCreate extends MessageContent
 {
     public const TYPE_NAME = 'messageBasicGroupChatCreate';
 
-    /**
-     * User identifiers of members in the basic group
-     *
-     * @var int[]
-     */
-    protected array $memberUserIds;
-
-    /**
-     * Title of the basic group
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title, array $memberUserIds)
-    {
+    public function __construct(
+        /**
+         * Title of the basic group.
+         */
+        protected string $title,
+        /**
+         * User identifiers of members in the basic group.
+         *
+         * @var int[]
+         */
+        protected array  $memberUserIds,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->memberUserIds = $memberUserIds;
     }
 
     public static function fromArray(array $array): MessageBasicGroupChatCreate
@@ -58,8 +49,8 @@ class MessageBasicGroupChatCreate extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
+            '@type'           => static::TYPE_NAME,
+            'title'           => $this->title,
             'member_user_ids' => $this->memberUserIds,
         ];
     }

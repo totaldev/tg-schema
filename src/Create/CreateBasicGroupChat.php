@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an existing chat corresponding to a known basic group
+ * Returns an existing chat corresponding to a known basic group.
  */
 class CreateBasicGroupChat extends TdFunction
 {
     public const TYPE_NAME = 'createBasicGroupChat';
 
-    /**
-     * Basic group identifier
-     *
-     * @var int
-     */
-    protected int $basicGroupId;
-
-    /**
-     * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-     *
-     * @var bool
-     */
-    protected bool $force;
-
-    public function __construct(int $basicGroupId, bool $force)
-    {
-        $this->basicGroupId = $basicGroupId;
-        $this->force = $force;
-    }
+    public function __construct(
+        /**
+         * Basic group identifier.
+         */
+        protected int  $basicGroupId,
+        /**
+         * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
+         */
+        protected bool $force,
+    ) {}
 
     public static function fromArray(array $array): CreateBasicGroupChat
     {
@@ -57,9 +47,9 @@ class CreateBasicGroupChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'basic_group_id' => $this->basicGroupId,
-            'force' => $this->force,
+            'force'          => $this->force,
         ];
     }
 }

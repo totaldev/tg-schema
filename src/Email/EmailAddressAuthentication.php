@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Email;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains authentication data for a email address
+ * Contains authentication data for an email address.
  */
 class EmailAddressAuthentication extends TdObject
 {
     public const TYPE_NAME = 'EmailAddressAuthentication';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): EmailAddressAuthentication
     {

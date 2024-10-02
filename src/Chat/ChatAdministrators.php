@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of chat administrators
+ * Represents a list of chat administrators.
  */
 class ChatAdministrators extends TdObject
 {
     public const TYPE_NAME = 'chatAdministrators';
 
-    /**
-     * A list of chat administrators
-     *
-     * @var ChatAdministrator[]
-     */
-    protected array $administrators;
-
-    public function __construct(array $administrators)
-    {
-        $this->administrators = $administrators;
-    }
+    public function __construct(
+        /**
+         * A list of chat administrators.
+         *
+         * @var ChatAdministrator[]
+         */
+        protected array $administrators
+    ) {}
 
     public static function fromArray(array $array): ChatAdministrators
     {

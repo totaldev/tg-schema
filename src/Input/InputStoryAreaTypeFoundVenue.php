@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An area pointing to a venue found by the bot getOption("venue_search_bot_username")
+ * An area pointing to a venue found by the bot getOption("venue_search_bot_username").
  */
 class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
 {
     public const TYPE_NAME = 'inputStoryAreaTypeFoundVenue';
 
-    /**
-     * Identifier of the inline query, used to found the venue
-     *
-     * @var int
-     */
-    protected int $queryId;
-
-    /**
-     * Identifier of the inline query result
-     *
-     * @var string
-     */
-    protected string $resultId;
-
-    public function __construct(int $queryId, string $resultId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the inline query, used to found the venue.
+         */
+        protected int    $queryId,
+        /**
+         * Identifier of the inline query result.
+         */
+        protected string $resultId,
+    ) {
         parent::__construct();
-
-        $this->queryId = $queryId;
-        $this->resultId = $resultId;
     }
 
     public static function fromArray(array $array): InputStoryAreaTypeFoundVenue
@@ -58,8 +47,8 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'query_id' => $this->queryId,
+            '@type'     => static::TYPE_NAME,
+            'query_id'  => $this->queryId,
             'result_id' => $this->resultId,
         ];
     }

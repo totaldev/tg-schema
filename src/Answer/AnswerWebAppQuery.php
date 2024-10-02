@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots
- * only
+ * only.
  */
 class AnswerWebAppQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerWebAppQuery';
 
-    /**
-     * The result of the query
-     *
-     * @var InputInlineQueryResult
-     */
-    protected InputInlineQueryResult $result;
-
-    /**
-     * Identifier of the Web App query
-     *
-     * @var string
-     */
-    protected string $webAppQueryId;
-
-    public function __construct(string $webAppQueryId, InputInlineQueryResult $result)
-    {
-        $this->webAppQueryId = $webAppQueryId;
-        $this->result = $result;
-    }
+    public function __construct(
+        /**
+         * Identifier of the Web App query.
+         */
+        protected string                 $webAppQueryId,
+        /**
+         * The result of the query.
+         */
+        protected InputInlineQueryResult $result,
+    ) {}
 
     public static function fromArray(array $array): AnswerWebAppQuery
     {
@@ -59,9 +50,9 @@ class AnswerWebAppQuery extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'web_app_query_id' => $this->webAppQueryId,
-            'result' => $this->result->typeSerialize(),
+            'result'           => $this->result->typeSerialize(),
         ];
     }
 }

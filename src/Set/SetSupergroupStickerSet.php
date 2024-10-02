@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the sticker set of a supergroup; requires can_change_info administrator right
+ * Changes the sticker set of a supergroup; requires can_change_info administrator right.
  */
 class SetSupergroupStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'setSupergroupStickerSet';
 
-    /**
-     * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-     *
-     * @var int
-     */
-    protected int $stickerSetId;
-
-    /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, int $stickerSetId)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->stickerSetId = $stickerSetId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int $supergroupId,
+        /**
+         * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
+         */
+        protected int $stickerSetId,
+    ) {}
 
     public static function fromArray(array $array): SetSupergroupStickerSet
     {
@@ -57,8 +47,8 @@ class SetSupergroupStickerSet extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
+            '@type'          => static::TYPE_NAME,
+            'supergroup_id'  => $this->supergroupId,
             'sticker_set_id' => $this->stickerSetId,
         ];
     }

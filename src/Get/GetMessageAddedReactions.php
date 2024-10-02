@@ -11,55 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns reactions added for a message, along with their sender
+ * Returns reactions added for a message, along with their sender.
  */
 class GetMessageAddedReactions extends TdFunction
 {
     public const TYPE_NAME = 'getMessageAddedReactions';
 
-    /**
-     * Identifier of the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The maximum number of reactions to be returned; must be positive and can't be greater than 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-     *
-     * @var string
-     */
-    protected string $offset;
-
-    /**
-     * Type of the reactions to return; pass null to return all added reactions
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    public function __construct(int $chatId, int $messageId, ReactionType $reactionType, string $offset, int $limit)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->reactionType = $reactionType;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        protected int          $chatId,
+        /**
+         * Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message.
+         */
+        protected int          $messageId,
+        /**
+         * Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported.
+         */
+        protected ReactionType $reactionType,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string       $offset,
+        /**
+         * The maximum number of reactions to be returned; must be positive and can't be greater than 100.
+         */
+        protected int          $limit,
+    ) {}
 
     public static function fromArray(array $array): GetMessageAddedReactions
     {
@@ -100,12 +79,12 @@ class GetMessageAddedReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'         => static::TYPE_NAME,
+            'chat_id'       => $this->chatId,
+            'message_id'    => $this->messageId,
             'reaction_type' => $this->reactionType->typeSerialize(),
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            'offset'        => $this->offset,
+            'limit'         => $this->limit,
         ];
     }
 }

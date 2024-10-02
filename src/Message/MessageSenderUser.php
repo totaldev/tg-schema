@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message was sent by a known user
+ * The message was sent by a known user.
  */
 class MessageSenderUser extends MessageSender
 {
     public const TYPE_NAME = 'messageSenderUser';
 
-    /**
-     * Identifier of the user that sent the message
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the user that sent the message.
+         */
+        protected int $userId
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): MessageSenderUser
@@ -44,7 +37,7 @@ class MessageSenderUser extends MessageSender
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
     }

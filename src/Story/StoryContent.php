@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the content of a story
+ * Contains the content of a story.
  */
 class StoryContent extends TdObject
 {
     public const TYPE_NAME = 'StoryContent';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StoryContent
     {

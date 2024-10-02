@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Passport;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A Telegram Passport element containing the user's bank statement
+ * A Telegram Passport element containing the user's bank statement.
  */
 class PassportElementTypeBankStatement extends PassportElementType
 {

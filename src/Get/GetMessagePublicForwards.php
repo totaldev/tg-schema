@@ -7,51 +7,33 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+ * Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if
+ * messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib.
  */
 class GetMessagePublicForwards extends TdFunction
 {
     public const TYPE_NAME = 'getMessagePublicForwards';
 
-    /**
-     * Chat identifier of the message
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages
-     * is chosen by TDLib and can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-     *
-     * @var string
-     */
-    protected string $offset;
-
-    public function __construct(int $chatId, int $messageId, string $offset, int $limit)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Chat identifier of the message.
+         */
+        protected int    $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int    $messageId,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
+        /**
+         * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): GetMessagePublicForwards
     {
@@ -86,11 +68,11 @@ class GetMessagePublicForwards extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            'offset'     => $this->offset,
+            'limit'      => $this->limit,
         ];
     }
 }

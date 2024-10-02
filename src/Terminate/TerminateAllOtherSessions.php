@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Terminate;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Terminates all other sessions of the current user
+ * Terminates all other sessions of the current user.
  */
 class TerminateAllOtherSessions extends TdFunction
 {
     public const TYPE_NAME = 'terminateAllOtherSessions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TerminateAllOtherSessions
     {

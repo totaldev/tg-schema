@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+ * Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true.
  */
 class GetBotName extends TdFunction
 {
     public const TYPE_NAME = 'getBotName';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * A two-letter ISO 639-1 language code or an empty string
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    public function __construct(int $botUserId, string $languageCode)
-    {
-        $this->botUserId = $botUserId;
-        $this->languageCode = $languageCode;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int    $botUserId,
+        /**
+         * A two-letter ISO 639-1 language code or an empty string.
+         */
+        protected string $languageCode,
+    ) {}
 
     public static function fromArray(array $array): GetBotName
     {
@@ -57,8 +47,8 @@ class GetBotName extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
+            '@type'         => static::TYPE_NAME,
+            'bot_user_id'   => $this->botUserId,
             'language_code' => $this->languageCode,
         ];
     }

@@ -7,50 +7,32 @@
 namespace Totaldev\TgSchema\Unconfirmed;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about an unconfirmed session
+ * Contains information about an unconfirmed session.
  */
 class UnconfirmedSession extends TdObject
 {
     public const TYPE_NAME = 'unconfirmedSession';
 
-    /**
-     * Model of the device that was used for the session creation, as provided by the application
-     *
-     * @var string
-     */
-    protected string $deviceModel;
-
-    /**
-     * Session identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * A human-readable description of the location from which the session was created, based on the IP address
-     *
-     * @var string
-     */
-    protected string $location;
-
-    /**
-     * Point in time (Unix timestamp) when the user has logged in
-     *
-     * @var int
-     */
-    protected int $logInDate;
-
-    public function __construct(int $id, int $logInDate, string $deviceModel, string $location)
-    {
-        $this->id = $id;
-        $this->logInDate = $logInDate;
-        $this->deviceModel = $deviceModel;
-        $this->location = $location;
-    }
+    public function __construct(
+        /**
+         * Session identifier.
+         */
+        protected int    $id,
+        /**
+         * Point in time (Unix timestamp) when the user has logged in.
+         */
+        protected int    $logInDate,
+        /**
+         * Model of the device that was used for the session creation, as provided by the application.
+         */
+        protected string $deviceModel,
+        /**
+         * A human-readable description of the location from which the session was created, based on the IP address.
+         */
+        protected string $location,
+    ) {}
 
     public static function fromArray(array $array): UnconfirmedSession
     {
@@ -85,11 +67,11 @@ class UnconfirmedSession extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'log_in_date' => $this->logInDate,
+            '@type'        => static::TYPE_NAME,
+            'id'           => $this->id,
+            'log_in_date'  => $this->logInDate,
             'device_model' => $this->deviceModel,
-            'location' => $this->location,
+            'location'     => $this->location,
         ];
     }
 }

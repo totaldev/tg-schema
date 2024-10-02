@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes notification settings for chats of a given type
+ * Changes notification settings for chats of a given type.
  */
 class SetScopeNotificationSettings extends TdFunction
 {
     public const TYPE_NAME = 'setScopeNotificationSettings';
 
-    /**
-     * The new notification settings for the given scope
-     *
-     * @var ScopeNotificationSettings
-     */
-    protected ScopeNotificationSettings $notificationSettings;
-
-    /**
-     * Types of chats for which to change the notification settings
-     *
-     * @var NotificationSettingsScope
-     */
-    protected NotificationSettingsScope $scope;
-
-    public function __construct(NotificationSettingsScope $scope, ScopeNotificationSettings $notificationSettings)
-    {
-        $this->scope = $scope;
-        $this->notificationSettings = $notificationSettings;
-    }
+    public function __construct(
+        /**
+         * Types of chats for which to change the notification settings.
+         */
+        protected NotificationSettingsScope $scope,
+        /**
+         * The new notification settings for the given scope.
+         */
+        protected ScopeNotificationSettings $notificationSettings,
+    ) {}
 
     public static function fromArray(array $array): SetScopeNotificationSettings
     {
@@ -59,8 +50,8 @@ class SetScopeNotificationSettings extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'scope'                 => $this->scope->typeSerialize(),
             'notification_settings' => $this->notificationSettings->typeSerialize(),
         ];
     }

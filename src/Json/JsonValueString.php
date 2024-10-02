@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Json;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a string JSON value
+ * Represents a string JSON value.
  */
 class JsonValueString extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueString';
 
-    /**
-     * The value
-     *
-     * @var string
-     */
-    protected string $value;
-
-    public function __construct(string $value)
-    {
+    public function __construct(
+        /**
+         * The value.
+         */
+        protected string $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): JsonValueString

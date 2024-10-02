@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called
- * synchronously
+ * synchronously.
  */
 class GetTextEntities extends TdFunction
 {
     public const TYPE_NAME = 'getTextEntities';
 
-    /**
-     * The text in which to look for entities
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text)
-    {
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The text in which to look for entities.
+         */
+        protected string $text
+    ) {}
 
     public static function fromArray(array $array): GetTextEntities
     {
@@ -45,7 +39,7 @@ class GetTextEntities extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            'text'  => $this->text,
         ];
     }
 }

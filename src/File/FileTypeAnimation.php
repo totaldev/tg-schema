@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is an animation
+ * The file is an animation.
  */
 class FileTypeAnimation extends FileType
 {

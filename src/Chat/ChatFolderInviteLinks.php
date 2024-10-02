@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of chat folder invite links
+ * Represents a list of chat folder invite links.
  */
 class ChatFolderInviteLinks extends TdObject
 {
     public const TYPE_NAME = 'chatFolderInviteLinks';
 
-    /**
-     * List of the invite links
-     *
-     * @var ChatFolderInviteLink[]
-     */
-    protected array $inviteLinks;
-
-    public function __construct(array $inviteLinks)
-    {
-        $this->inviteLinks = $inviteLinks;
-    }
+    public function __construct(
+        /**
+         * List of the invite links.
+         *
+         * @var ChatFolderInviteLink[]
+         */
+        protected array $inviteLinks
+    ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLinks
     {

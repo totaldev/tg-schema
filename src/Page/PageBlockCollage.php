@@ -9,32 +9,25 @@ namespace Totaldev\TgSchema\Page;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A collage
+ * A collage.
  */
 class PageBlockCollage extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockCollage';
 
-    /**
-     * Block caption
-     *
-     * @var PageBlockCaption
-     */
-    protected PageBlockCaption $caption;
-
-    /**
-     * Collage item contents
-     *
-     * @var PageBlock[]
-     */
-    protected array $pageBlocks;
-
-    public function __construct(array $pageBlocks, PageBlockCaption $caption)
-    {
+    public function __construct(
+        /**
+         * Collage item contents.
+         *
+         * @var PageBlock[]
+         */
+        protected array            $pageBlocks,
+        /**
+         * Block caption.
+         */
+        protected PageBlockCaption $caption,
+    ) {
         parent::__construct();
-
-        $this->pageBlocks = $pageBlocks;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): PageBlockCollage
@@ -58,7 +51,7 @@ class PageBlockCollage extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption' => $this->caption->typeSerialize(),
         ];

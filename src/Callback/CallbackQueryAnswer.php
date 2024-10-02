@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Callback;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a bot's answer to a callback query
+ * Contains a bot's answer to a callback query.
  */
 class CallbackQueryAnswer extends TdObject
 {
     public const TYPE_NAME = 'callbackQueryAnswer';
 
-    /**
-     * True, if an alert must be shown to the user instead of a toast notification
-     *
-     * @var bool
-     */
-    protected bool $showAlert;
-
-    /**
-     * Text of the answer
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * URL to be opened
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $text, bool $showAlert, string $url)
-    {
-        $this->text = $text;
-        $this->showAlert = $showAlert;
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * Text of the answer.
+         */
+        protected string $text,
+        /**
+         * True, if an alert must be shown to the user instead of a toast notification.
+         */
+        protected bool   $showAlert,
+        /**
+         * URL to be opened.
+         */
+        protected string $url,
+    ) {}
 
     public static function fromArray(array $array): CallbackQueryAnswer
     {
@@ -71,10 +57,10 @@ class CallbackQueryAnswer extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            '@type'      => static::TYPE_NAME,
+            'text'       => $this->text,
             'show_alert' => $this->showAlert,
-            'url' => $this->url,
+            'url'        => $this->url,
         ];
     }
 }

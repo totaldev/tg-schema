@@ -12,45 +12,37 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a reaction applied to a message
+ * Represents a reaction applied to a message.
  */
 class AddedReaction extends TdObject
 {
     public const TYPE_NAME = 'addedReaction';
 
-    /**
-     * Point in time (Unix timestamp) when the reaction was added
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * Identifier of the chat member, applied the reaction
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    public function __construct(ReactionType $type, MessageSender $senderId, int $date)
-    {
-        $this->type = $type;
-        $this->senderId = $senderId;
-        $this->date = $date;
-    }
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType  $type,
+        /**
+         * Identifier of the chat member, applied the reaction.
+         */
+        protected MessageSender $senderId,
+        /**
+         * True, if the reaction was added by the current user.
+         */
+        protected bool          $isOutgoing,
+        /**
+         * Point in time (Unix timestamp) when the reaction was added.
+         */
+        protected int           $date,
+    ) {}
 
     public static function fromArray(array $array): AddedReaction
     {
         return new static(
             TdSchemaRegistry::fromArray($array['type']),
             TdSchemaRegistry::fromArray($array['sender_id']),
+            $array['is_outgoing'],
             $array['date'],
         );
     }
@@ -58,6 +50,11 @@ class AddedReaction extends TdObject
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function getIsOutgoing(): bool
+    {
+        return $this->isOutgoing;
     }
 
     public function getSenderId(): MessageSender
@@ -73,10 +70,11 @@ class AddedReaction extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'sender_id' => $this->senderId->typeSerialize(),
-            'date' => $this->date,
+            '@type'       => static::TYPE_NAME,
+            'type'        => $this->type->typeSerialize(),
+            'sender_id'   => $this->senderId->typeSerialize(),
+            'is_outgoing' => $this->isOutgoing,
+            'date'        => $this->date,
         ];
     }
 }

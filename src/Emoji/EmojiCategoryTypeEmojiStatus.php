@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Emoji;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The category must be used for emoji status selection
+ * The category must be used for emoji status selection.
  */
 class EmojiCategoryTypeEmojiStatus extends EmojiCategoryType
 {

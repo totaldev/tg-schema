@@ -11,61 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+ * Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video.
  */
 class GetGroupCallStreamSegment extends TdFunction
 {
     public const TYPE_NAME = 'getGroupCallStreamSegment';
 
-    /**
-     * Identifier of an audio/video channel to get as received from tgcalls
-     *
-     * @var int
-     */
-    protected int $channelId;
-
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
-     *
-     * @var int
-     */
-    protected int $scale;
-
-    /**
-     * Point in time when the stream segment begins; Unix timestamp in milliseconds
-     *
-     * @var int
-     */
-    protected int $timeOffset;
-
-    /**
-     * Video quality as received from tgcalls; pass null to get the worst available quality
-     *
-     * @var GroupCallVideoQuality
-     */
-    protected GroupCallVideoQuality $videoQuality;
-
     public function __construct(
-        int                   $groupCallId,
-        int                   $timeOffset,
-        int                   $scale,
-        int                   $channelId,
-        GroupCallVideoQuality $videoQuality,
-    )
-    {
-        $this->groupCallId = $groupCallId;
-        $this->timeOffset = $timeOffset;
-        $this->scale = $scale;
-        $this->channelId = $channelId;
-        $this->videoQuality = $videoQuality;
-    }
+        /**
+         * Group call identifier.
+         */
+        protected int                   $groupCallId,
+        /**
+         * Point in time when the stream segment begins; Unix timestamp in milliseconds.
+         */
+        protected int                   $timeOffset,
+        /**
+         * Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds.
+         */
+        protected int                   $scale,
+        /**
+         * Identifier of an audio/video channel to get as received from tgcalls.
+         */
+        protected int                   $channelId,
+        /**
+         * Video quality as received from tgcalls; pass null to get the worst available quality.
+         */
+        protected GroupCallVideoQuality $videoQuality,
+    ) {}
 
     public static function fromArray(array $array): GetGroupCallStreamSegment
     {
@@ -106,11 +79,11 @@ class GetGroupCallStreamSegment extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'time_offset' => $this->timeOffset,
-            'scale' => $this->scale,
-            'channel_id' => $this->channelId,
+            'time_offset'   => $this->timeOffset,
+            'scale'         => $this->scale,
+            'channel_id'    => $this->channelId,
             'video_quality' => $this->videoQuality->typeSerialize(),
         ];
     }

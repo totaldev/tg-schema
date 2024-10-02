@@ -10,48 +10,39 @@ use Totaldev\TgSchema\Error\Error;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The message failed to be sent
+ * The message failed to be sent.
  */
 class MessageSendingStateFailed extends MessageSendingState
 {
     public const TYPE_NAME = 'messageSendingStateFailed';
 
-    /**
-     * True, if the message can be re-sent
-     *
-     * @var bool
-     */
-    protected bool $canRetry;
-
-    /**
-     * The cause of the message sending failure
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    /**
-     * True, if the message can be re-sent only on behalf of a different sender
-     *
-     * @var bool
-     */
-    protected bool $needAnotherSender;
-
-    /**
-     * Time left before the message can be re-sent, in seconds. No update is sent when this field changes
-     *
-     * @var float
-     */
-    protected float $retryAfter;
-
-    public function __construct(Error $error, bool $canRetry, bool $needAnotherSender, float $retryAfter)
-    {
+    public function __construct(
+        /**
+         * The cause of the message sending failure.
+         */
+        protected Error $error,
+        /**
+         * True, if the message can be re-sent using resendMessages or readdQuickReplyShortcutMessages.
+         */
+        protected bool  $canRetry,
+        /**
+         * True, if the message can be re-sent only on behalf of a different sender.
+         */
+        protected bool  $needAnotherSender,
+        /**
+         * True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message.
+         */
+        protected bool  $needAnotherReplyQuote,
+        /**
+         * True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages.
+         */
+        protected bool  $needDropReply,
+        /**
+         * Time left before the message can be re-sent, in seconds. No update is sent when this field changes.
+         */
+        protected float $retryAfter,
+    ) {
         parent::__construct();
-
-        $this->error = $error;
-        $this->canRetry = $canRetry;
-        $this->needAnotherSender = $needAnotherSender;
-        $this->retryAfter = $retryAfter;
     }
 
     public static function fromArray(array $array): MessageSendingStateFailed
@@ -60,6 +51,8 @@ class MessageSendingStateFailed extends MessageSendingState
             TdSchemaRegistry::fromArray($array['error']),
             $array['can_retry'],
             $array['need_another_sender'],
+            $array['need_another_reply_quote'],
+            $array['need_drop_reply'],
             $array['retry_after'],
         );
     }
@@ -74,9 +67,19 @@ class MessageSendingStateFailed extends MessageSendingState
         return $this->error;
     }
 
+    public function getNeedAnotherReplyQuote(): bool
+    {
+        return $this->needAnotherReplyQuote;
+    }
+
     public function getNeedAnotherSender(): bool
     {
         return $this->needAnotherSender;
+    }
+
+    public function getNeedDropReply(): bool
+    {
+        return $this->needDropReply;
     }
 
     public function getRetryAfter(): float
@@ -87,11 +90,13 @@ class MessageSendingStateFailed extends MessageSendingState
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'error' => $this->error->typeSerialize(),
-            'can_retry' => $this->canRetry,
-            'need_another_sender' => $this->needAnotherSender,
-            'retry_after' => $this->retryAfter,
+            '@type'                    => static::TYPE_NAME,
+            'error'                    => $this->error->typeSerialize(),
+            'can_retry'                => $this->canRetry,
+            'need_another_sender'      => $this->needAnotherSender,
+            'need_another_reply_quote' => $this->needAnotherReplyQuote,
+            'need_drop_reply'          => $this->needDropReply,
+            'retry_after'              => $this->retryAfter,
         ];
     }
 }

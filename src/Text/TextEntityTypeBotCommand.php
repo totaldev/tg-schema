@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A bot command, beginning with "/"
+ * A bot command, beginning with "/".
  */
 class TextEntityTypeBotCommand extends TextEntityType
 {

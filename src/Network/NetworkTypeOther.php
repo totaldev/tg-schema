@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Network;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A different network type (e.g., Ethernet network)
+ * A different network type (e.g., Ethernet network).
  */
 class NetworkTypeOther extends NetworkType
 {

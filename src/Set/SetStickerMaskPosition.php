@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+ * Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user.
  */
 class SetStickerMaskPosition extends TdFunction
 {
     public const TYPE_NAME = 'setStickerMaskPosition';
 
-    /**
-     * Position where the mask is placed; pass null to remove mask position
-     *
-     * @var MaskPosition
-     */
-    protected MaskPosition $maskPosition;
-
-    /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    public function __construct(InputFile $sticker, MaskPosition $maskPosition)
-    {
-        $this->sticker = $sticker;
-        $this->maskPosition = $maskPosition;
-    }
+    public function __construct(
+        /**
+         * Sticker.
+         */
+        protected InputFile    $sticker,
+        /**
+         * Position where the mask is placed; pass null to remove mask position.
+         */
+        protected MaskPosition $maskPosition,
+    ) {}
 
     public static function fromArray(array $array): SetStickerMaskPosition
     {
@@ -59,8 +50,8 @@ class SetStickerMaskPosition extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'sticker'       => $this->sticker->typeSerialize(),
             'mask_position' => $this->maskPosition->typeSerialize(),
         ];
     }

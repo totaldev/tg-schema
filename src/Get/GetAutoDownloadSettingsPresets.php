@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns auto-download settings presets for the current user
+ * Returns auto-download settings presets for the current user.
  */
 class GetAutoDownloadSettingsPresets extends TdFunction
 {
     public const TYPE_NAME = 'getAutoDownloadSettingsPresets';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetAutoDownloadSettingsPresets
     {

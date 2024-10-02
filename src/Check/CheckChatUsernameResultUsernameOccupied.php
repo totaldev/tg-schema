@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The username is occupied
+ * The username is occupied.
  */
 class CheckChatUsernameResultUsernameOccupied extends CheckChatUsernameResult
 {

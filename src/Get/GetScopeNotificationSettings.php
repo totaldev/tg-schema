@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the notification settings for chats of a given type
+ * Returns the notification settings for chats of a given type.
  */
 class GetScopeNotificationSettings extends TdFunction
 {
     public const TYPE_NAME = 'getScopeNotificationSettings';
 
-    /**
-     * Types of chats for which to return the notification settings information
-     *
-     * @var NotificationSettingsScope
-     */
-    protected NotificationSettingsScope $scope;
-
-    public function __construct(NotificationSettingsScope $scope)
-    {
-        $this->scope = $scope;
-    }
+    public function __construct(
+        /**
+         * Types of chats for which to return the notification settings information.
+         */
+        protected NotificationSettingsScope $scope
+    ) {}
 
     public static function fromArray(array $array): GetScopeNotificationSettings
     {

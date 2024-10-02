@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Web;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a Web App
+ * Contains information about a Web App.
  */
 class WebAppInfo extends TdObject
 {
     public const TYPE_NAME = 'webAppInfo';
 
-    /**
-     * Unique identifier for the Web App launch
-     *
-     * @var int
-     */
-    protected int $launchId;
-
-    /**
-     * A Web App URL to open in a web view
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(int $launchId, string $url)
-    {
-        $this->launchId = $launchId;
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * Unique identifier for the Web App launch.
+         */
+        protected int    $launchId,
+        /**
+         * A Web App URL to open in a web view.
+         */
+        protected string $url,
+    ) {}
 
     public static function fromArray(array $array): WebAppInfo
     {
@@ -57,9 +47,9 @@ class WebAppInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'launch_id' => $this->launchId,
-            'url' => $this->url,
+            'url'       => $this->url,
         ];
     }
 }

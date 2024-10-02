@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Identity\IdentityDocument;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A Telegram Passport element containing the user's internal passport
+ * A Telegram Passport element containing the user's internal passport.
  */
 class PassportElementInternalPassport extends PassportElement
 {
     public const TYPE_NAME = 'passportElementInternalPassport';
 
-    /**
-     * Internal passport
-     *
-     * @var IdentityDocument
-     */
-    protected IdentityDocument $internalPassport;
-
-    public function __construct(IdentityDocument $internalPassport)
-    {
+    public function __construct(
+        /**
+         * Internal passport.
+         */
+        protected IdentityDocument $internalPassport
+    ) {
         parent::__construct();
-
-        $this->internalPassport = $internalPassport;
     }
 
     public static function fromArray(array $array): PassportElementInternalPassport
@@ -45,7 +40,7 @@ class PassportElementInternalPassport extends PassportElement
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'internal_passport' => $this->internalPassport->typeSerialize(),
         ];
     }

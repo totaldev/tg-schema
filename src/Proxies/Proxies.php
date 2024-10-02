@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of proxy servers
+ * Represents a list of proxy servers.
  */
 class Proxies extends TdObject
 {
     public const TYPE_NAME = 'proxies';
 
-    /**
-     * List of proxy servers
-     *
-     * @var Proxy[]
-     */
-    protected array $proxies;
-
-    public function __construct(array $proxies)
-    {
-        $this->proxies = $proxies;
-    }
+    public function __construct(
+        /**
+         * List of proxy servers.
+         *
+         * @var Proxy[]
+         */
+        protected array $proxies
+    ) {}
 
     public static function fromArray(array $array): Proxies
     {

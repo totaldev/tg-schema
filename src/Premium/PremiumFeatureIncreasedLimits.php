@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Increased limits
+ * Increased limits.
  */
 class PremiumFeatureIncreasedLimits extends PremiumFeature
 {

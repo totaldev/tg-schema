@@ -10,32 +10,29 @@ use Totaldev\TgSchema\Chat\ChatFolderInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of chat folders or a chat folder has changed
+ * The list of chat folders or a chat folder has changed.
  */
 class UpdateChatFolders extends Update
 {
     public const TYPE_NAME = 'updateChatFolders';
 
-    /**
-     * The new list of chat folders
-     *
-     * @var ChatFolderInfo[]
-     */
-    protected array $chatFolders;
-
-    /**
-     * Position of the main chat list among chat folders, 0-based
-     *
-     * @var int
-     */
-    protected int $mainChatListPosition;
-
-    public function __construct(array $chatFolders, int $mainChatListPosition)
-    {
+    public function __construct(
+        /**
+         * The new list of chat folders.
+         *
+         * @var ChatFolderInfo[]
+         */
+        protected array $chatFolders,
+        /**
+         * Position of the main chat list among chat folders, 0-based.
+         */
+        protected int   $mainChatListPosition,
+        /**
+         * True, if folder tags are enabled.
+         */
+        protected bool  $areTagsEnabled,
+    ) {
         parent::__construct();
-
-        $this->chatFolders = $chatFolders;
-        $this->mainChatListPosition = $mainChatListPosition;
     }
 
     public static function fromArray(array $array): UpdateChatFolders
@@ -43,7 +40,13 @@ class UpdateChatFolders extends Update
         return new static(
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
             $array['main_chat_list_position'],
+            $array['are_tags_enabled'],
         );
+    }
+
+    public function getAreTagsEnabled(): bool
+    {
+        return $this->areTagsEnabled;
     }
 
     public function getChatFolders(): array
@@ -59,9 +62,10 @@ class UpdateChatFolders extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                   => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->chatFolders),
             'main_chat_list_position' => $this->mainChatListPosition,
+            'are_tags_enabled'        => $this->areTagsEnabled,
         ];
     }
 }

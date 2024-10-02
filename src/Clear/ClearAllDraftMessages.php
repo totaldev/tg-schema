@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Clears message drafts in all chats
+ * Clears message drafts in all chats.
  */
 class ClearAllDraftMessages extends TdFunction
 {
     public const TYPE_NAME = 'clearAllDraftMessages';
 
-    /**
-     * Pass true to keep local message drafts in secret chats
-     *
-     * @var bool
-     */
-    protected bool $excludeSecretChats;
-
-    public function __construct(bool $excludeSecretChats)
-    {
-        $this->excludeSecretChats = $excludeSecretChats;
-    }
+    public function __construct(
+        /**
+         * Pass true to keep local message drafts in secret chats.
+         */
+        protected bool $excludeSecretChats
+    ) {}
 
     public static function fromArray(array $array): ClearAllDraftMessages
     {
@@ -43,7 +37,7 @@ class ClearAllDraftMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'exclude_secret_chats' => $this->excludeSecretChats,
         ];
     }

@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A pull quote
+ * A pull quote.
  */
 class PageBlockPullQuote extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockPullQuote';
 
-    /**
-     * Quote credit
-     *
-     * @var RichText
-     */
-    protected RichText $credit;
-
-    /**
-     * Quote text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text, RichText $credit)
-    {
+    public function __construct(
+        /**
+         * Quote text.
+         */
+        protected RichText $text,
+        /**
+         * Quote credit.
+         */
+        protected RichText $credit,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->credit = $credit;
     }
 
     public static function fromArray(array $array): PageBlockPullQuote
@@ -59,8 +50,8 @@ class PageBlockPullQuote extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'  => static::TYPE_NAME,
+            'text'   => $this->text->typeSerialize(),
             'credit' => $this->credit->typeSerialize(),
         ];
     }

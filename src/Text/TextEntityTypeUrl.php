@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An HTTP URL
+ * An HTTP URL.
  */
 class TextEntityTypeUrl extends TextEntityType
 {

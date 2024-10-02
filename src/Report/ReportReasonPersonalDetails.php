@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat contains messages with personal details
+ * The chat contains messages with personal details.
  */
 class ReportReasonPersonalDetails extends ReportReason
 {

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the translatable state of a chat; for Telegram Premium users only
+ * Changes the translatable state of a chat.
  */
 class ToggleChatIsTranslatable extends TdFunction
 {
     public const TYPE_NAME = 'toggleChatIsTranslatable';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of is_translatable
-     *
-     * @var bool
-     */
-    protected bool $isTranslatable;
-
-    public function __construct(int $chatId, bool $isTranslatable)
-    {
-        $this->chatId = $chatId;
-        $this->isTranslatable = $isTranslatable;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * New value of is_translatable.
+         */
+        protected bool $isTranslatable,
+    ) {}
 
     public static function fromArray(array $array): ToggleChatIsTranslatable
     {
@@ -57,8 +47,8 @@ class ToggleChatIsTranslatable extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
             'is_translatable' => $this->isTranslatable,
         ];
     }

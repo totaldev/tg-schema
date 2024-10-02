@@ -9,32 +9,23 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A rich text phone number
+ * A rich text phone number.
  */
 class RichTextPhoneNumber extends RichText
 {
     public const TYPE_NAME = 'richTextPhoneNumber';
 
-    /**
-     * Phone number
-     *
-     * @var string
-     */
-    protected string $phoneNumber;
-
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text, string $phoneNumber)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text,
+        /**
+         * Phone number.
+         */
+        protected string   $phoneNumber,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->phoneNumber = $phoneNumber;
     }
 
     public static function fromArray(array $array): RichTextPhoneNumber
@@ -58,8 +49,8 @@ class RichTextPhoneNumber extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'        => static::TYPE_NAME,
+            'text'         => $this->text->typeSerialize(),
             'phone_number' => $this->phoneNumber,
         ];
     }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches a user by a token from the user's link
+ * Searches a user by a token from the user's link.
  */
 class SearchUserByToken extends TdFunction
 {
     public const TYPE_NAME = 'searchUserByToken';
 
-    /**
-     * Token to search for
-     *
-     * @var string
-     */
-    protected string $token;
-
-    public function __construct(string $token)
-    {
-        $this->token = $token;
-    }
+    public function __construct(
+        /**
+         * Token to search for.
+         */
+        protected string $token
+    ) {}
 
     public static function fromArray(array $array): SearchUserByToken
     {

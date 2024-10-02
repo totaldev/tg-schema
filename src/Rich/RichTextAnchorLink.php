@@ -9,40 +9,27 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A link to an anchor on the same web page
+ * A link to an anchor on the same page.
  */
 class RichTextAnchorLink extends RichText
 {
     public const TYPE_NAME = 'richTextAnchorLink';
 
-    /**
-     * The anchor name. If the name is empty, the link must bring back to top
-     *
-     * @var string
-     */
-    protected string $anchorName;
-
-    /**
-     * The link text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
-     * An HTTP URL, opening the anchor
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(RichText $text, string $anchorName, string $url)
-    {
+    public function __construct(
+        /**
+         * The link text.
+         */
+        protected RichText $text,
+        /**
+         * The anchor name. If the name is empty, the link must bring back to top.
+         */
+        protected string   $anchorName,
+        /**
+         * An HTTP URL, opening the anchor.
+         */
+        protected string   $url,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->anchorName = $anchorName;
-        $this->url = $url;
     }
 
     public static function fromArray(array $array): RichTextAnchorLink
@@ -72,10 +59,10 @@ class RichTextAnchorLink extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'text'        => $this->text->typeSerialize(),
             'anchor_name' => $this->anchorName,
-            'url' => $this->url,
+            'url'         => $this->url,
         ];
     }
 }

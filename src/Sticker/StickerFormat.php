@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Sticker;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes format of a sticker
+ * Describes format of a sticker.
  */
 class StickerFormat extends TdObject
 {
     public const TYPE_NAME = 'StickerFormat';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): StickerFormat
     {

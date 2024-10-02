@@ -7,64 +7,36 @@
 namespace Totaldev\TgSchema\Storage;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains approximate storage usage statistics, excluding files of unknown file type
+ * Contains approximate storage usage statistics, excluding files of unknown file type.
  */
 class StorageStatisticsFast extends TdObject
 {
     public const TYPE_NAME = 'storageStatisticsFast';
 
-    /**
-     * Size of the database
-     *
-     * @var int
-     */
-    protected int $databaseSize;
-
-    /**
-     * Approximate number of files
-     *
-     * @var int
-     */
-    protected int $fileCount;
-
-    /**
-     * Approximate total size of files, in bytes
-     *
-     * @var int
-     */
-    protected int $filesSize;
-
-    /**
-     * Size of the language pack database
-     *
-     * @var int
-     */
-    protected int $languagePackDatabaseSize;
-
-    /**
-     * Size of the TDLib internal log
-     *
-     * @var int
-     */
-    protected int $logSize;
-
     public function __construct(
-        int $filesSize,
-        int $fileCount,
-        int $databaseSize,
-        int $languagePackDatabaseSize,
-        int $logSize,
-    )
-    {
-        $this->filesSize = $filesSize;
-        $this->fileCount = $fileCount;
-        $this->databaseSize = $databaseSize;
-        $this->languagePackDatabaseSize = $languagePackDatabaseSize;
-        $this->logSize = $logSize;
-    }
+        /**
+         * Approximate total size of files, in bytes.
+         */
+        protected int $filesSize,
+        /**
+         * Approximate number of files.
+         */
+        protected int $fileCount,
+        /**
+         * Size of the database.
+         */
+        protected int $databaseSize,
+        /**
+         * Size of the language pack database.
+         */
+        protected int $languagePackDatabaseSize,
+        /**
+         * Size of the TDLib internal log.
+         */
+        protected int $logSize,
+    ) {}
 
     public static function fromArray(array $array): StorageStatisticsFast
     {
@@ -105,12 +77,12 @@ class StorageStatisticsFast extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'files_size' => $this->filesSize,
-            'file_count' => $this->fileCount,
-            'database_size' => $this->databaseSize,
+            '@type'                       => static::TYPE_NAME,
+            'files_size'                  => $this->filesSize,
+            'file_count'                  => $this->fileCount,
+            'database_size'               => $this->databaseSize,
             'language_pack_database_size' => $this->languagePackDatabaseSize,
-            'log_size' => $this->logSize,
+            'log_size'                    => $this->logSize,
         ];
     }
 }

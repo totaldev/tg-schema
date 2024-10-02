@@ -11,47 +11,32 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a call rating
+ * Sends a call rating.
  */
 class SendCallRating extends TdFunction
 {
     public const TYPE_NAME = 'sendCallRating';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * An optional user comment if the rating is less than 5
-     *
-     * @var string
-     */
-    protected string $comment;
-
-    /**
-     * List of the exact types of problems with the call, specified by the user
-     *
-     * @var CallProblem[]
-     */
-    protected array $problems;
-
-    /**
-     * Call rating; 1-5
-     *
-     * @var int
-     */
-    protected int $rating;
-
-    public function __construct(int $callId, int $rating, string $comment, array $problems)
-    {
-        $this->callId = $callId;
-        $this->rating = $rating;
-        $this->comment = $comment;
-        $this->problems = $problems;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int    $callId,
+        /**
+         * Call rating; 1-5.
+         */
+        protected int    $rating,
+        /**
+         * An optional user comment if the rating is less than 5.
+         */
+        protected string $comment,
+        /**
+         * List of the exact types of problems with the call, specified by the user.
+         *
+         * @var CallProblem[]
+         */
+        protected array  $problems,
+    ) {}
 
     public static function fromArray(array $array): SendCallRating
     {
@@ -86,9 +71,9 @@ class SendCallRating extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'call_id' => $this->callId,
-            'rating' => $this->rating,
+            'rating'  => $this->rating,
             'comment' => $this->comment,
             array_map(fn($x) => $x->typeSerialize(), $this->problems),
         ];

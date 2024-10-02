@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Clear;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Clears the list of recently found chats
+ * Clears the list of recently found chats.
  */
 class ClearRecentlyFoundChats extends TdFunction
 {
     public const TYPE_NAME = 'clearRecentlyFoundChats';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ClearRecentlyFoundChats
     {

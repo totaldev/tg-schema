@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A main list of chats
+ * A main list of chats.
  */
 class ChatListMain extends ChatList
 {

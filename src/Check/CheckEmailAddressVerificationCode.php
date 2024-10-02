@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks the email address verification code for Telegram Passport
+ * Checks the email address verification code for Telegram Passport.
  */
 class CheckEmailAddressVerificationCode extends TdFunction
 {
     public const TYPE_NAME = 'checkEmailAddressVerificationCode';
 
-    /**
-     * Verification code to check
-     *
-     * @var string
-     */
-    protected string $code;
-
-    public function __construct(string $code)
-    {
-        $this->code = $code;
-    }
+    public function __construct(
+        /**
+         * Verification code to check.
+         */
+        protected string $code
+    ) {}
 
     public static function fromArray(array $array): CheckEmailAddressVerificationCode
     {
@@ -44,7 +38,7 @@ class CheckEmailAddressVerificationCode extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code,
+            'code'  => $this->code,
         ];
     }
 }

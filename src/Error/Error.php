@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Error;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An object of this type can be returned on every function call, in case of an error
+ * An object of this type can be returned on every function call, in case of an error.
  */
 class Error extends TdObject
 {
     public const TYPE_NAME = 'error';
 
-    /**
-     * Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
-     *
-     * @var int
-     */
-    protected int $code;
-
-    /**
-     * Error message; subject to future changes
-     *
-     * @var string
-     */
-    protected string $message;
-
-    public function __construct(int $code, string $message)
-    {
-        $this->code = $code;
-        $this->message = $message;
-    }
+    public function __construct(
+        /**
+         * Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user.
+         */
+        protected int    $code,
+        /**
+         * Error message; subject to future changes.
+         */
+        protected string $message,
+    ) {}
 
     public static function fromArray(array $array): Error
     {
@@ -57,8 +47,8 @@ class Error extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'code' => $this->code,
+            '@type'   => static::TYPE_NAME,
+            'code'    => $this->code,
             'message' => $this->message,
         ];
     }

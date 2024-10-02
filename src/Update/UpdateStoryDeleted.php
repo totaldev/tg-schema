@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A story became inaccessible
+ * A story became inaccessible.
  */
 class UpdateStoryDeleted extends Update
 {
     public const TYPE_NAME = 'updateStoryDeleted';
 
-    /**
-     * Story identifier
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int $storySenderChatId,
+        /**
+         * Story identifier.
+         */
+        protected int $storyId,
+    ) {
         parent::__construct();
-
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
     }
 
     public static function fromArray(array $array): UpdateStoryDeleted
@@ -58,9 +47,9 @@ class UpdateStoryDeleted extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

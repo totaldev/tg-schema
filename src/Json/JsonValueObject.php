@@ -9,24 +9,21 @@ namespace Totaldev\TgSchema\Json;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a JSON object
+ * Represents a JSON object.
  */
 class JsonValueObject extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueObject';
 
-    /**
-     * The list of object members
-     *
-     * @var JsonObjectMember[]
-     */
-    protected array $members;
-
-    public function __construct(array $members)
-    {
+    public function __construct(
+        /**
+         * The list of object members.
+         *
+         * @var JsonObjectMember[]
+         */
+        protected array $members
+    ) {
         parent::__construct();
-
-        $this->members = $members;
     }
 
     public static function fromArray(array $array): JsonValueObject

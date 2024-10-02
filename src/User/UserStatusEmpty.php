@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user status was never changed
+ * The user's status has never been changed.
  */
 class UserStatusEmpty extends UserStatus
 {

@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Forum\ForumTopicInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new forum topic was created
+ * A new forum topic was created.
  */
 class ChatEventForumTopicCreated extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventForumTopicCreated';
 
-    /**
-     * Information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $topicInfo;
-
-    public function __construct(ForumTopicInfo $topicInfo)
-    {
+    public function __construct(
+        /**
+         * Information about the topic.
+         */
+        protected ForumTopicInfo $topicInfo
+    ) {
         parent::__construct();
-
-        $this->topicInfo = $topicInfo;
     }
 
     public static function fromArray(array $array): ChatEventForumTopicCreated
@@ -45,7 +40,7 @@ class ChatEventForumTopicCreated extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'topic_info' => $this->topicInfo->typeSerialize(),
         ];
     }

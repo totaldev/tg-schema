@@ -11,52 +11,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs server about a purchase through Google Play. For official applications only
+ * Informs server about a purchase through Google Play. For official applications only.
  */
 class AssignGooglePlayTransaction extends TdFunction
 {
     public const TYPE_NAME = 'assignGooglePlayTransaction';
 
-    /**
-     * Application package name
-     *
-     * @var string
-     */
-    protected string $packageName;
-
-    /**
-     * Google Play purchase token
-     *
-     * @var string
-     */
-    protected string $purchaseToken;
-
-    /**
-     * Transaction purpose
-     *
-     * @var StorePaymentPurpose
-     */
-    protected StorePaymentPurpose $purpose;
-
-    /**
-     * Identifier of the purchased store product
-     *
-     * @var string
-     */
-    protected string $storeProductId;
-
     public function __construct(
-        string              $packageName,
-        string              $storeProductId,
-        string              $purchaseToken,
-        StorePaymentPurpose $purpose,
-    )
-    {
-        $this->packageName = $packageName;
-        $this->storeProductId = $storeProductId;
-        $this->purchaseToken = $purchaseToken;
-        $this->purpose = $purpose;
-    }
+        /**
+         * Application package name.
+         */
+        protected string              $packageName,
+        /**
+         * Identifier of the purchased store product.
+         */
+        protected string              $storeProductId,
+        /**
+         * Google Play purchase token.
+         */
+        protected string              $purchaseToken,
+        /**
+         * Transaction purpose.
+         */
+        protected StorePaymentPurpose $purpose,
+    ) {}
 
     public static function fromArray(array $array): AssignGooglePlayTransaction
     {
@@ -91,11 +69,11 @@ class AssignGooglePlayTransaction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'package_name' => $this->packageName,
+            '@type'            => static::TYPE_NAME,
+            'package_name'     => $this->packageName,
             'store_product_id' => $this->storeProductId,
-            'purchase_token' => $this->purchaseToken,
-            'purpose' => $this->purpose->typeSerialize(),
+            'purchase_token'   => $this->purchaseToken,
+            'purpose'          => $this->purpose->typeSerialize(),
         ];
     }
 }

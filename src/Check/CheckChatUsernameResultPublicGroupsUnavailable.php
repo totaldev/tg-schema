@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user can't be a member of a public supergroup
+ * The user can't be a member of a public supergroup.
  */
 class CheckChatUsernameResultPublicGroupsUnavailable extends CheckChatUsernameResult
 {

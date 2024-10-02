@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of joined supergroups and channels
+ * The maximum number of joined supergroups and channels.
  */
 class PremiumLimitTypeSupergroupCount extends PremiumLimitType
 {

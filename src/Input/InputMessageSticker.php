@@ -9,56 +9,35 @@ namespace Totaldev\TgSchema\Input;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A sticker message
+ * A sticker message.
  */
 class InputMessageSticker extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageSticker';
 
-    /**
-     * Emoji used to choose the sticker
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    /**
-     * Sticker height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Sticker to be sent
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
-     * Sticker thumbnail; pass null to skip thumbnail uploading
-     *
-     * @var InputThumbnail
-     */
-    protected InputThumbnail $thumbnail;
-
-    /**
-     * Sticker width
-     *
-     * @var int
-     */
-    protected int $width;
-
-    public function __construct(InputFile $sticker, InputThumbnail $thumbnail, int $width, int $height, string $emoji)
-    {
+    public function __construct(
+        /**
+         * Sticker to be sent.
+         */
+        protected InputFile      $sticker,
+        /**
+         * Sticker thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected InputThumbnail $thumbnail,
+        /**
+         * Sticker width.
+         */
+        protected int            $width,
+        /**
+         * Sticker height.
+         */
+        protected int            $height,
+        /**
+         * Emoji used to choose the sticker.
+         */
+        protected string         $emoji,
+    ) {
         parent::__construct();
-
-        $this->sticker = $sticker;
-        $this->thumbnail = $thumbnail;
-        $this->width = $width;
-        $this->height = $height;
-        $this->emoji = $emoji;
     }
 
     public static function fromArray(array $array): InputMessageSticker
@@ -100,12 +79,12 @@ class InputMessageSticker extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
+            '@type'     => static::TYPE_NAME,
+            'sticker'   => $this->sticker->typeSerialize(),
             'thumbnail' => $this->thumbnail->typeSerialize(),
-            'width' => $this->width,
-            'height' => $this->height,
-            'emoji' => $this->emoji,
+            'width'     => $this->width,
+            'height'    => $this->height,
+            'emoji'     => $this->emoji,
         ];
     }
 }

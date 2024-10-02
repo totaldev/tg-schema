@@ -6,11 +6,9 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type
- * messageInvoice
+ * messageInvoice.
  */
 class InlineKeyboardButtonTypeBuy extends InlineKeyboardButtonType
 {

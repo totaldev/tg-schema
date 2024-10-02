@@ -10,32 +10,27 @@ use Totaldev\TgSchema\Suggested\SuggestedAction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of suggested to the user actions has changed
+ * The list of suggested to the user actions has changed.
  */
 class UpdateSuggestedActions extends Update
 {
     public const TYPE_NAME = 'updateSuggestedActions';
 
-    /**
-     * Added suggested actions
-     *
-     * @var SuggestedAction[]
-     */
-    protected array $addedActions;
-
-    /**
-     * Removed suggested actions
-     *
-     * @var SuggestedAction[]
-     */
-    protected array $removedActions;
-
-    public function __construct(array $addedActions, array $removedActions)
-    {
+    public function __construct(
+        /**
+         * Added suggested actions.
+         *
+         * @var SuggestedAction[]
+         */
+        protected array $addedActions,
+        /**
+         * Removed suggested actions.
+         *
+         * @var SuggestedAction[]
+         */
+        protected array $removedActions,
+    ) {
         parent::__construct();
-
-        $this->addedActions = $addedActions;
-        $this->removedActions = $removedActions;
     }
 
     public static function fromArray(array $array): UpdateSuggestedActions

@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of recommended chat folders
+ * Contains a list of recommended chat folders.
  */
 class RecommendedChatFolders extends TdObject
 {
     public const TYPE_NAME = 'recommendedChatFolders';
 
-    /**
-     * List of recommended chat folders
-     *
-     * @var RecommendedChatFolder[]
-     */
-    protected array $chatFolders;
-
-    public function __construct(array $chatFolders)
-    {
-        $this->chatFolders = $chatFolders;
-    }
+    public function __construct(
+        /**
+         * List of recommended chat folders.
+         *
+         * @var RecommendedChatFolder[]
+         */
+        protected array $chatFolders
+    ) {}
 
     public static function fromArray(array $array): RecommendedChatFolders
     {

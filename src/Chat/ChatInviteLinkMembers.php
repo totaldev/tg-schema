@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of chat members joined a chat via an invite link
+ * Contains a list of chat members joined a chat via an invite link.
  */
 class ChatInviteLinkMembers extends TdObject
 {
     public const TYPE_NAME = 'chatInviteLinkMembers';
 
-    /**
-     * List of chat members, joined a chat via an invite link
-     *
-     * @var ChatInviteLinkMember[]
-     */
-    protected array $members;
-
-    /**
-     * Approximate total number of chat members found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $members)
-    {
-        $this->totalCount = $totalCount;
-        $this->members = $members;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of chat members found.
+         */
+        protected int   $totalCount,
+        /**
+         * List of chat members, joined a chat via an invite link.
+         *
+         * @var ChatInviteLinkMember[]
+         */
+        protected array $members,
+    ) {}
 
     public static function fromArray(array $array): ChatInviteLinkMembers
     {
@@ -57,7 +50,7 @@ class ChatInviteLinkMembers extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->members),
         ];

@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Downloaded\DownloadedFileCounts;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+ * A file was removed from the file download list. This update is sent only after file download list is loaded for the first time.
  */
 class UpdateFileRemovedFromDownloads extends Update
 {
     public const TYPE_NAME = 'updateFileRemovedFromDownloads';
 
-    /**
-     * New number of being downloaded and recently downloaded files found
-     *
-     * @var DownloadedFileCounts
-     */
-    protected DownloadedFileCounts $counts;
-
-    /**
-     * File identifier
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    public function __construct(int $fileId, DownloadedFileCounts $counts)
-    {
+    public function __construct(
+        /**
+         * File identifier.
+         */
+        protected int                  $fileId,
+        /**
+         * New number of being downloaded and recently downloaded files found.
+         */
+        protected DownloadedFileCounts $counts,
+    ) {
         parent::__construct();
-
-        $this->fileId = $fileId;
-        $this->counts = $counts;
     }
 
     public static function fromArray(array $array): UpdateFileRemovedFromDownloads
@@ -59,9 +50,9 @@ class UpdateFileRemovedFromDownloads extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'file_id' => $this->fileId,
-            'counts' => $this->counts->typeSerialize(),
+            'counts'  => $this->counts->typeSerialize(),
         ];
     }
 }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Me;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of a URL linking to an internal Telegram entity
+ * Describes the type of URL linking to an internal Telegram entity.
  */
 class TMeUrlType extends TdObject
 {
     public const TYPE_NAME = 'TMeUrlType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TMeUrlType
     {

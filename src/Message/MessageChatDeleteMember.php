@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A chat member was deleted
+ * A chat member was deleted.
  */
 class MessageChatDeleteMember extends MessageContent
 {
     public const TYPE_NAME = 'messageChatDeleteMember';
 
-    /**
-     * User identifier of the deleted chat member
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId)
-    {
+    public function __construct(
+        /**
+         * User identifier of the deleted chat member.
+         */
+        protected int $userId
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): MessageChatDeleteMember
@@ -44,7 +37,7 @@ class MessageChatDeleteMember extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
         ];
     }

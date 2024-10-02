@@ -9,24 +9,21 @@ namespace Totaldev\TgSchema\Page;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A list of data blocks
+ * A list of data blocks.
  */
 class PageBlockList extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockList';
 
-    /**
-     * The items of the list
-     *
-     * @var PageBlockListItem[]
-     */
-    protected array $items;
-
-    public function __construct(array $items)
-    {
+    public function __construct(
+        /**
+         * The items of the list.
+         *
+         * @var PageBlockListItem[]
+         */
+        protected array $items
+    ) {
         parent::__construct();
-
-        $this->items = $items;
     }
 
     public static function fromArray(array $array): PageBlockList

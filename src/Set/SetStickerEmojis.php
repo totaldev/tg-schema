@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+ * Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user.
  */
 class SetStickerEmojis extends TdFunction
 {
     public const TYPE_NAME = 'setStickerEmojis';
 
-    /**
-     * New string with 1-20 emoji corresponding to the sticker
-     *
-     * @var string
-     */
-    protected string $emojis;
-
-    /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    public function __construct(InputFile $sticker, string $emojis)
-    {
-        $this->sticker = $sticker;
-        $this->emojis = $emojis;
-    }
+    public function __construct(
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
+        /**
+         * New string with 1-20 emoji corresponding to the sticker.
+         */
+        protected string    $emojis,
+    ) {}
 
     public static function fromArray(array $array): SetStickerEmojis
     {
@@ -58,9 +49,9 @@ class SetStickerEmojis extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
-            'emojis' => $this->emojis,
+            'emojis'  => $this->emojis,
         ];
     }
 }

@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+ * Contains a caption of another block.
  */
 class PageBlockCaption extends TdObject
 {
     public const TYPE_NAME = 'pageBlockCaption';
 
-    /**
-     * Block credit (like HTML tag <cite>)
-     *
-     * @var RichText
-     */
-    protected RichText $credit;
-
-    /**
-     * Content of the caption
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text, RichText $credit)
-    {
-        $this->text = $text;
-        $this->credit = $credit;
-    }
+    public function __construct(
+        /**
+         * Content of the caption.
+         */
+        protected RichText $text,
+        /**
+         * Block credit (like HTML tag <cite>).
+         */
+        protected RichText $credit,
+    ) {}
 
     public static function fromArray(array $array): PageBlockCaption
     {
@@ -58,8 +49,8 @@ class PageBlockCaption extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'  => static::TYPE_NAME,
+            'text'   => $this->text->typeSerialize(),
             'credit' => $this->credit->typeSerialize(),
         ];
     }

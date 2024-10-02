@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib on a file generation progress
+ * Informs TDLib on a file generation progress.
  */
 class SetFileGenerationProgress extends TdFunction
 {
     public const TYPE_NAME = 'setFileGenerationProgress';
 
-    /**
-     * Expected size of the generated file, in bytes; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $expectedSize;
-
-    /**
-     * The identifier of the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    /**
-     * The number of bytes already generated
-     *
-     * @var int
-     */
-    protected int $localPrefixSize;
-
-    public function __construct(int $generationId, int $expectedSize, int $localPrefixSize)
-    {
-        $this->generationId = $generationId;
-        $this->expectedSize = $expectedSize;
-        $this->localPrefixSize = $localPrefixSize;
-    }
+    public function __construct(
+        /**
+         * The identifier of the generation process.
+         */
+        protected int $generationId,
+        /**
+         * Expected size of the generated file, in bytes; 0 if unknown.
+         */
+        protected int $expectedSize,
+        /**
+         * The number of bytes already generated.
+         */
+        protected int $localPrefixSize,
+    ) {}
 
     public static function fromArray(array $array): SetFileGenerationProgress
     {
@@ -71,9 +57,9 @@ class SetFileGenerationProgress extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'generation_id' => $this->generationId,
-            'expected_size' => $this->expectedSize,
+            '@type'             => static::TYPE_NAME,
+            'generation_id'     => $this->generationId,
+            'expected_size'     => $this->expectedSize,
             'local_prefix_size' => $this->localPrefixSize,
         ];
     }

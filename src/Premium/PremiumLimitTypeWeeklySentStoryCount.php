@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of stories sent per week
+ * The maximum number of stories sent per week.
  */
 class PremiumLimitTypeWeeklySentStoryCount extends PremiumLimitType
 {

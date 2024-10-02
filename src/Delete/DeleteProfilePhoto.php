@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes a profile photo
+ * Deletes a profile photo.
  */
 class DeleteProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'deleteProfilePhoto';
 
-    /**
-     * Identifier of the profile photo to delete
-     *
-     * @var int
-     */
-    protected int $profilePhotoId;
-
-    public function __construct(int $profilePhotoId)
-    {
-        $this->profilePhotoId = $profilePhotoId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the profile photo to delete.
+         */
+        protected int $profilePhotoId
+    ) {}
 
     public static function fromArray(array $array): DeleteProfilePhoto
     {
@@ -43,7 +37,7 @@ class DeleteProfilePhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'profile_photo_id' => $this->profilePhotoId,
         ];
     }

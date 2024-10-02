@@ -11,31 +11,24 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the order of installed sticker sets
+ * Changes the order of installed sticker sets.
  */
 class ReorderInstalledStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'reorderInstalledStickerSets';
 
-    /**
-     * Identifiers of installed sticker sets in the new correct order
-     *
-     * @var int[]
-     */
-    protected array $stickerSetIds;
-
-    /**
-     * Type of the sticker sets to reorder
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    public function __construct(StickerType $stickerType, array $stickerSetIds)
-    {
-        $this->stickerType = $stickerType;
-        $this->stickerSetIds = $stickerSetIds;
-    }
+    public function __construct(
+        /**
+         * Type of the sticker sets to reorder.
+         */
+        protected StickerType $stickerType,
+        /**
+         * Identifiers of installed sticker sets in the new correct order.
+         *
+         * @var int[]
+         */
+        protected array       $stickerSetIds,
+    ) {}
 
     public static function fromArray(array $array): ReorderInstalledStickerSets
     {
@@ -58,8 +51,8 @@ class ReorderInstalledStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
+            '@type'           => static::TYPE_NAME,
+            'sticker_type'    => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
         ];
     }

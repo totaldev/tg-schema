@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user has too many chats with username, one of them must be made private first
+ * The user has too many chats with username, one of them must be made private first.
  */
 class CheckChatUsernameResultPublicChatsTooMany extends CheckChatUsernameResult
 {

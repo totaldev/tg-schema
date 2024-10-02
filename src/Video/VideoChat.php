@@ -11,46 +11,33 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a video chat
+ * Describes a video chat.
  */
 class VideoChat extends TdObject
 {
     public const TYPE_NAME = 'videoChat';
 
-    /**
-     * Default group call participant identifier to join the video chat; may be null
-     *
-     * @var MessageSender|null
-     */
-    protected ?MessageSender $defaultParticipantId;
-
-    /**
-     * Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * True, if the video chat has participants
-     *
-     * @var bool
-     */
-    protected bool $hasParticipants;
-
-    public function __construct(int $groupCallId, bool $hasParticipants, ?MessageSender $defaultParticipantId)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->hasParticipants = $hasParticipants;
-        $this->defaultParticipantId = $defaultParticipantId;
-    }
+    public function __construct(
+        /**
+         * Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall.
+         */
+        protected int            $groupCallId,
+        /**
+         * True, if the video chat has participants.
+         */
+        protected bool           $hasParticipants,
+        /**
+         * Default group call participant identifier to join the video chat; may be null.
+         */
+        protected ?MessageSender $defaultParticipantId,
+    ) {}
 
     public static function fromArray(array $array): VideoChat
     {
         return new static(
             $array['group_call_id'],
             $array['has_participants'],
-            (isset($array['default_participant_id']) ? TdSchemaRegistry::fromArray($array['default_participant_id']) : null),
+            isset($array['default_participant_id']) ? TdSchemaRegistry::fromArray($array['default_participant_id']) : null,
         );
     }
 
@@ -72,9 +59,9 @@ class VideoChat extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
-            'has_participants' => $this->hasParticipants,
+            '@type'                  => static::TYPE_NAME,
+            'group_call_id'          => $this->groupCallId,
+            'has_participants'       => $this->hasParticipants,
             'default_participant_id' => (isset($this->defaultParticipantId) ? $this->defaultParticipantId : null),
         ];
     }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
+ * Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously.
  */
 class GetJsonValue extends TdFunction
 {
     public const TYPE_NAME = 'getJsonValue';
 
-    /**
-     * The JSON-serialized string
-     *
-     * @var string
-     */
-    protected string $json;
-
-    public function __construct(string $json)
-    {
-        $this->json = $json;
-    }
+    public function __construct(
+        /**
+         * The JSON-serialized string.
+         */
+        protected string $json
+    ) {}
 
     public static function fromArray(array $array): GetJsonValue
     {
@@ -44,7 +38,7 @@ class GetJsonValue extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'json' => $this->json,
+            'json'  => $this->json,
         ];
     }
 }

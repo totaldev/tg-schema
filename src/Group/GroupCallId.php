@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Group;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the group call identifier
+ * Contains the group call identifier.
  */
 class GroupCallId extends TdObject
 {
     public const TYPE_NAME = 'groupCallId';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    public function __construct(int $id)
-    {
-        $this->id = $id;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int $id
+    ) {}
 
     public static function fromArray(array $array): GroupCallId
     {
@@ -44,7 +38,7 @@ class GroupCallId extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            'id'    => $this->id,
         ];
     }
 }

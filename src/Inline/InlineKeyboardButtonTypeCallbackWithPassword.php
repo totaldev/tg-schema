@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Inline;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot
+ * A button that asks for the 2-step verification password of the current user and then sends a callback query to a bot.
  */
 class InlineKeyboardButtonTypeCallbackWithPassword extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeCallbackWithPassword';
 
-    /**
-     * Data to be sent to the bot via a callback query
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(string $data)
-    {
+    public function __construct(
+        /**
+         * Data to be sent to the bot via a callback query.
+         */
+        protected string $data
+    ) {
         parent::__construct();
-
-        $this->data = $data;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeCallbackWithPassword
@@ -45,7 +38,7 @@ class InlineKeyboardButtonTypeCallbackWithPassword extends InlineKeyboardButtonT
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data' => $this->data,
+            'data'  => $this->data,
         ];
     }
 }

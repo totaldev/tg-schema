@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user must subscribe to Telegram Premium to be able to post stories
+ * The user must subscribe to Telegram Premium to be able to post stories.
  */
 class CanSendStoryResultPremiumNeeded extends CanSendStoryResult
 {

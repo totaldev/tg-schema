@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Thumbnail;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The thumbnail is in MPEG4 format. It will be used only for some animations and videos
+ * The thumbnail is in MPEG4 format. It will be used only for some animations and videos.
  */
 class ThumbnailFormatMpeg4 extends ThumbnailFormat
 {

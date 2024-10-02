@@ -11,62 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns pending join requests in a chat
+ * Returns pending join requests in a chat.
  */
 class GetChatJoinRequests extends TdFunction
 {
     public const TYPE_NAME = 'getChatJoinRequests';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users
-     * right in the chat for own links and owner privileges for other links
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    /**
-     * The maximum number of requests to join the chat to return
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * A chat join request from which to return next requests; pass null to get results from the beginning
-     *
-     * @var ChatJoinRequest
-     */
-    protected ChatJoinRequest $offsetRequest;
-
-    /**
-     * A query to search for in the first names, last names and usernames of the users to return
-     *
-     * @var string
-     */
-    protected string $query;
-
     public function __construct(
-        int             $chatId,
-        string          $inviteLink,
-        string          $query,
-        ChatJoinRequest $offsetRequest,
-        int             $limit,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->inviteLink = $inviteLink;
-        $this->query = $query;
-        $this->offsetRequest = $offsetRequest;
-        $this->limit = $limit;
-    }
+        /**
+         * Chat identifier.
+         */
+        protected int             $chatId,
+        /**
+         * Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+         */
+        protected string          $inviteLink,
+        /**
+         * A query to search for in the first names, last names and usernames of the users to return.
+         */
+        protected string          $query,
+        /**
+         * A chat join request from which to return next requests; pass null to get results from the beginning.
+         */
+        protected ChatJoinRequest $offsetRequest,
+        /**
+         * The maximum number of requests to join the chat to return.
+         */
+        protected int             $limit,
+    ) {}
 
     public static function fromArray(array $array): GetChatJoinRequests
     {
@@ -107,12 +79,12 @@ class GetChatJoinRequests extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'invite_link' => $this->inviteLink,
-            'query' => $this->query,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'invite_link'    => $this->inviteLink,
+            'query'          => $this->query,
             'offset_request' => $this->offsetRequest->typeSerialize(),
-            'limit' => $this->limit,
+            'limit'          => $this->limit,
         ];
     }
 }

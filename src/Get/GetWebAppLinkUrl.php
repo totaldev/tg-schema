@@ -11,79 +11,42 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
- * Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+ * Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked.
  */
 class GetWebAppLinkUrl extends TdFunction
 {
     public const TYPE_NAME = 'getWebAppLinkUrl';
 
-    /**
-     * Pass true if the current user allowed the bot to send them messages
-     *
-     * @var bool
-     */
-    protected bool $allowWriteAccess;
-
-    /**
-     * Short name of the application; 0-64 English letters, digits, and underscores
-     *
-     * @var string
-     */
-    protected string $applicationName;
-
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Identifier of the chat in which the link was clicked; pass 0 if none
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Start parameter from internalLinkTypeWebApp
-     *
-     * @var string
-     */
-    protected string $startParameter;
-
-    /**
-     * Preferred Web App theme; pass null to use the default theme
-     *
-     * @var ThemeParameters
-     */
-    protected ThemeParameters $theme;
-
-    /**
-     * Short name of the Web App
-     *
-     * @var string
-     */
-    protected string $webAppShortName;
-
     public function __construct(
-        int             $chatId,
-        int             $botUserId,
-        string          $webAppShortName,
-        string          $startParameter,
-        ThemeParameters $theme,
-        string          $applicationName,
-        bool            $allowWriteAccess,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->botUserId = $botUserId;
-        $this->webAppShortName = $webAppShortName;
-        $this->startParameter = $startParameter;
-        $this->theme = $theme;
-        $this->applicationName = $applicationName;
-        $this->allowWriteAccess = $allowWriteAccess;
-    }
+        /**
+         * Identifier of the chat in which the link was clicked; pass 0 if none.
+         */
+        protected int             $chatId,
+        /**
+         * Identifier of the target bot.
+         */
+        protected int             $botUserId,
+        /**
+         * Short name of the Web App.
+         */
+        protected string          $webAppShortName,
+        /**
+         * Start parameter from internalLinkTypeWebApp.
+         */
+        protected string          $startParameter,
+        /**
+         * Preferred Web App theme; pass null to use the default theme.
+         */
+        protected ThemeParameters $theme,
+        /**
+         * Short name of the current application; 0-64 English letters, digits, and underscores.
+         */
+        protected string          $applicationName,
+        /**
+         * Pass true if the current user allowed the bot to send them messages.
+         */
+        protected bool            $allowWriteAccess,
+    ) {}
 
     public static function fromArray(array $array): GetWebAppLinkUrl
     {
@@ -136,13 +99,13 @@ class GetWebAppLinkUrl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'bot_user_id' => $this->botUserId,
+            '@type'              => static::TYPE_NAME,
+            'chat_id'            => $this->chatId,
+            'bot_user_id'        => $this->botUserId,
             'web_app_short_name' => $this->webAppShortName,
-            'start_parameter' => $this->startParameter,
-            'theme' => $this->theme->typeSerialize(),
-            'application_name' => $this->applicationName,
+            'start_parameter'    => $this->startParameter,
+            'theme'              => $this->theme->typeSerialize(),
+            'application_name'   => $this->applicationName,
             'allow_write_access' => $this->allowWriteAccess,
         ];
     }

@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Forum\ForumTopicInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Basic information about a topic in a forum chat was changed
+ * Basic information about a topic in a forum chat was changed.
  */
 class UpdateForumTopicInfo extends Update
 {
     public const TYPE_NAME = 'updateForumTopicInfo';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $info;
-
-    public function __construct(int $chatId, ForumTopicInfo $info)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
+        /**
+         * New information about the topic.
+         */
+        protected ForumTopicInfo $info,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->info = $info;
     }
 
     public static function fromArray(array $array): UpdateForumTopicInfo
@@ -59,9 +50,9 @@ class UpdateForumTopicInfo extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'info' => $this->info->typeSerialize(),
+            'info'    => $this->info->typeSerialize(),
         ];
     }
 }

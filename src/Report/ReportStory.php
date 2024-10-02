@@ -10,47 +10,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Reports a story to the Telegram moderators
+ * Reports a story to the Telegram moderators.
  */
 class ReportStory extends TdFunction
 {
     public const TYPE_NAME = 'reportStory';
 
-    /**
-     * The reason for reporting the story
-     *
-     * @var ReportReason
-     */
-    protected ReportReason $reason;
-
-    /**
-     * The identifier of the story to report
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * The identifier of the sender of the story to report
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    /**
-     * Additional report details; 0-1024 characters
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(int $storySenderChatId, int $storyId, ReportReason $reason, string $text)
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-        $this->reason = $reason;
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The identifier of the sender of the story to report.
+         */
+        protected int          $storySenderChatId,
+        /**
+         * The identifier of the story to report.
+         */
+        protected int          $storyId,
+        /**
+         * The reason for reporting the story.
+         */
+        protected ReportReason $reason,
+        /**
+         * Additional report details; 0-1024 characters.
+         */
+        protected string       $text,
+    ) {}
 
     public static function fromArray(array $array): ReportStory
     {
@@ -85,11 +68,11 @@ class ReportStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-            'reason' => $this->reason->typeSerialize(),
-            'text' => $this->text,
+            'story_id'             => $this->storyId,
+            'reason'               => $this->reason->typeSerialize(),
+            'text'                 => $this->text,
         ];
     }
 }

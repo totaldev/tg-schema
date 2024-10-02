@@ -10,32 +10,27 @@ use Totaldev\TgSchema\Chat\ChatBackground;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new background was set in the chat
+ * A new background was set in the chat.
  */
 class MessageChatSetBackground extends MessageContent
 {
     public const TYPE_NAME = 'messageChatSetBackground';
 
-    /**
-     * The new background
-     *
-     * @var ChatBackground
-     */
-    protected ChatBackground $background;
-
-    /**
-     * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
-     *
-     * @var int
-     */
-    protected int $oldBackgroundMessageId;
-
-    public function __construct(int $oldBackgroundMessageId, ChatBackground $background)
-    {
+    public function __construct(
+        /**
+         * Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message.
+         */
+        protected int            $oldBackgroundMessageId,
+        /**
+         * The new background.
+         */
+        protected ChatBackground $background,
+        /**
+         * True, if the background was set only for self.
+         */
+        protected bool           $onlyForSelf,
+    ) {
         parent::__construct();
-
-        $this->oldBackgroundMessageId = $oldBackgroundMessageId;
-        $this->background = $background;
     }
 
     public static function fromArray(array $array): MessageChatSetBackground
@@ -43,6 +38,7 @@ class MessageChatSetBackground extends MessageContent
         return new static(
             $array['old_background_message_id'],
             TdSchemaRegistry::fromArray($array['background']),
+            $array['only_for_self'],
         );
     }
 
@@ -56,12 +52,18 @@ class MessageChatSetBackground extends MessageContent
         return $this->oldBackgroundMessageId;
     }
 
+    public function getOnlyForSelf(): bool
+    {
+        return $this->onlyForSelf;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                     => static::TYPE_NAME,
             'old_background_message_id' => $this->oldBackgroundMessageId,
-            'background' => $this->background->typeSerialize(),
+            'background'                => $this->background->typeSerialize(),
+            'only_for_self'             => $this->onlyForSelf,
         ];
     }
 }

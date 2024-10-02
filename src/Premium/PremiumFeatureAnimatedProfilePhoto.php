@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Profile photo animation on message and chat screens
+ * Profile photo animation on message and chat screens.
  */
 class PremiumFeatureAnimatedProfilePhoto extends PremiumFeature
 {

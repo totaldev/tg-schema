@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only photo messages
+ * Returns only photo messages.
  */
 class SearchMessagesFilterPhoto extends SearchMessagesFilter
 {

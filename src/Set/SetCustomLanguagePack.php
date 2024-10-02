@@ -12,32 +12,24 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds or changes a custom local language pack to the current localization target
+ * Adds or changes a custom local language pack to the current localization target.
  */
 class SetCustomLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'setCustomLanguagePack';
 
-    /**
-     * Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not
-     * exceed 64 characters. Can be called before authorization
-     *
-     * @var LanguagePackInfo
-     */
-    protected LanguagePackInfo $info;
-
-    /**
-     * Strings of the new language pack
-     *
-     * @var LanguagePackString[]
-     */
-    protected array $strings;
-
-    public function __construct(LanguagePackInfo $info, array $strings)
-    {
-        $this->info = $info;
-        $this->strings = $strings;
-    }
+    public function __construct(
+        /**
+         * Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization.
+         */
+        protected LanguagePackInfo $info,
+        /**
+         * Strings of the new language pack.
+         *
+         * @var LanguagePackString[]
+         */
+        protected array            $strings,
+    ) {}
 
     public static function fromArray(array $array): SetCustomLanguagePack
     {
@@ -61,7 +53,7 @@ class SetCustomLanguagePack extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info' => $this->info->typeSerialize(),
+            'info'  => $this->info->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }

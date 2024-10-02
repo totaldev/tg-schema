@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns all found messages, no filter is applied
+ * Returns all found messages, no filter is applied.
  */
 class SearchMessagesFilterEmpty extends SearchMessagesFilter
 {

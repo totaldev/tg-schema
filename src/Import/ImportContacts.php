@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+ * Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored.
  */
 class ImportContacts extends TdFunction
 {
     public const TYPE_NAME = 'importContacts';
 
-    /**
-     * The list of contacts to import or edit; contacts' vCard are ignored and are not imported
-     *
-     * @var Contact[]
-     */
-    protected array $contacts;
-
-    public function __construct(array $contacts)
-    {
-        $this->contacts = $contacts;
-    }
+    public function __construct(
+        /**
+         * The list of contacts to import or edit; contacts' vCard are ignored and are not imported.
+         *
+         * @var Contact[]
+         */
+        protected array $contacts
+    ) {}
 
     public static function fromArray(array $array): ImportContacts
     {

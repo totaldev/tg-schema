@@ -10,31 +10,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a clickable rectangle area on a story media
+ * Describes a clickable rectangle area on a story media.
  */
 class StoryArea extends TdObject
 {
     public const TYPE_NAME = 'storyArea';
 
-    /**
-     * Position of the area
-     *
-     * @var StoryAreaPosition
-     */
-    protected StoryAreaPosition $position;
-
-    /**
-     * Type of the area
-     *
-     * @var StoryAreaType
-     */
-    protected StoryAreaType $type;
-
-    public function __construct(StoryAreaPosition $position, StoryAreaType $type)
-    {
-        $this->position = $position;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Position of the area.
+         */
+        protected StoryAreaPosition $position,
+        /**
+         * Type of the area.
+         */
+        protected StoryAreaType     $type,
+    ) {}
 
     public static function fromArray(array $array): StoryArea
     {
@@ -57,9 +48,9 @@ class StoryArea extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'position' => $this->position->typeSerialize(),
-            'type' => $this->type->typeSerialize(),
+            'type'     => $this->type->typeSerialize(),
         ];
     }
 }

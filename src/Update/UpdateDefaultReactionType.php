@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The type of default reaction has changed
+ * The type of default reaction has changed.
  */
 class UpdateDefaultReactionType extends Update
 {
     public const TYPE_NAME = 'updateDefaultReactionType';
 
-    /**
-     * The new type of the default reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    public function __construct(ReactionType $reactionType)
-    {
+    public function __construct(
+        /**
+         * The new type of the default reaction.
+         */
+        protected ReactionType $reactionType
+    ) {
         parent::__construct();
-
-        $this->reactionType = $reactionType;
     }
 
     public static function fromArray(array $array): UpdateDefaultReactionType
@@ -45,7 +40,7 @@ class UpdateDefaultReactionType extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'reaction_type' => $this->reactionType->typeSerialize(),
         ];
     }

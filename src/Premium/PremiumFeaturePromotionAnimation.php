@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a promotion animation for a Premium feature
+ * Describes a promotion animation for a Premium feature.
  */
 class PremiumFeaturePromotionAnimation extends TdObject
 {
     public const TYPE_NAME = 'premiumFeaturePromotionAnimation';
 
-    /**
-     * Promotion animation for the feature
-     *
-     * @var Animation
-     */
-    protected Animation $animation;
-
-    /**
-     * Premium feature
-     *
-     * @var PremiumFeature
-     */
-    protected PremiumFeature $feature;
-
-    public function __construct(PremiumFeature $feature, Animation $animation)
-    {
-        $this->feature = $feature;
-        $this->animation = $animation;
-    }
+    public function __construct(
+        /**
+         * Premium feature.
+         */
+        protected PremiumFeature $feature,
+        /**
+         * Promotion animation for the feature.
+         */
+        protected Animation      $animation,
+    ) {}
 
     public static function fromArray(array $array): PremiumFeaturePromotionAnimation
     {
@@ -58,8 +49,8 @@ class PremiumFeaturePromotionAnimation extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'feature' => $this->feature->typeSerialize(),
+            '@type'     => static::TYPE_NAME,
+            'feature'   => $this->feature->typeSerialize(),
             'animation' => $this->animation->typeSerialize(),
         ];
     }

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for installed sticker sets by looking for specified query in their title and name
+ * Searches for installed sticker sets by looking for specified query in their title and name.
  */
 class SearchInstalledStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'searchInstalledStickerSets';
 
-    /**
-     * The maximum number of sticker sets to return
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * Type of the sticker sets to search for
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    public function __construct(StickerType $stickerType, string $query, int $limit)
-    {
-        $this->stickerType = $stickerType;
-        $this->query = $query;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Type of the sticker sets to search for.
+         */
+        protected StickerType $stickerType,
+        /**
+         * Query to search for.
+         */
+        protected string      $query,
+        /**
+         * The maximum number of sticker sets to return.
+         */
+        protected int         $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchInstalledStickerSets
     {
@@ -72,10 +59,10 @@ class SearchInstalledStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'sticker_type' => $this->stickerType->typeSerialize(),
-            'query' => $this->query,
-            'limit' => $this->limit,
+            'query'        => $this->query,
+            'limit'        => $this->limit,
         ];
     }
 }

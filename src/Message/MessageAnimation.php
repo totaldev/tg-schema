@@ -17,42 +17,29 @@ class MessageAnimation extends MessageContent
 {
     public const TYPE_NAME = 'messageAnimation';
 
-    /**
-     * The animation description
-     *
-     * @var Animation
-     */
-    protected Animation $animation;
-
-    /**
-     * Animation caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * True, if the animation preview must be covered by a spoiler animation
-     *
-     * @var bool
-     */
-    protected bool $hasSpoiler;
-
-    /**
-     * True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
-     *
-     * @var bool
-     */
-    protected bool $isSecret;
-
-    public function __construct(Animation $animation, FormattedText $caption, bool $hasSpoiler, bool $isSecret)
-    {
+    public function __construct(
+        /**
+         * The animation description.
+         */
+        protected Animation     $animation,
+        /**
+         * Animation caption.
+         */
+        protected FormattedText $caption,
+        /**
+         * True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation.
+         */
+        protected bool          $showCaptionAboveMedia,
+        /**
+         * True, if the animation preview must be covered by a spoiler animation.
+         */
+        protected bool          $hasSpoiler,
+        /**
+         * True, if the animation thumbnail must be blurred and the animation must be shown only while tapped.
+         */
+        protected bool          $isSecret,
+    ) {
         parent::__construct();
-
-        $this->animation = $animation;
-        $this->caption = $caption;
-        $this->hasSpoiler = $hasSpoiler;
-        $this->isSecret = $isSecret;
     }
 
     public static function fromArray(array $array): MessageAnimation
@@ -60,6 +47,7 @@ class MessageAnimation extends MessageContent
         return new static(
             TdSchemaRegistry::fromArray($array['animation']),
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['show_caption_above_media'],
             $array['has_spoiler'],
             $array['is_secret'],
         );
@@ -85,14 +73,20 @@ class MessageAnimation extends MessageContent
         return $this->isSecret;
     }
 
+    public function getShowCaptionAboveMedia(): bool
+    {
+        return $this->showCaptionAboveMedia;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'animation' => $this->animation->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-            'has_spoiler' => $this->hasSpoiler,
-            'is_secret' => $this->isSecret,
+            '@type'                    => static::TYPE_NAME,
+            'animation'                => $this->animation->typeSerialize(),
+            'caption'                  => $this->caption->typeSerialize(),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'has_spoiler'              => $this->hasSpoiler,
+            'is_secret'                => $this->isSecret,
         ];
     }
 }

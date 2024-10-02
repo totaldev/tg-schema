@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
+ * Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup.
  */
 class ChatMembersFilterRestricted extends ChatMembersFilter
 {

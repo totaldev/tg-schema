@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains basic information about a story
+ * Contains basic information about a story.
  */
 class StoryInfo extends TdObject
 {
     public const TYPE_NAME = 'storyInfo';
 
-    /**
-     * Point in time (Unix timestamp) when the story was published
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * True, if the story is available only to close friends
-     *
-     * @var bool
-     */
-    protected bool $isForCloseFriends;
-
-    /**
-     * Unique story identifier among stories of the given sender
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    public function __construct(int $storyId, int $date, bool $isForCloseFriends)
-    {
-        $this->storyId = $storyId;
-        $this->date = $date;
-        $this->isForCloseFriends = $isForCloseFriends;
-    }
+    public function __construct(
+        /**
+         * Unique story identifier among stories of the given sender.
+         */
+        protected int  $storyId,
+        /**
+         * Point in time (Unix timestamp) when the story was published.
+         */
+        protected int  $date,
+        /**
+         * True, if the story is available only to close friends.
+         */
+        protected bool $isForCloseFriends,
+    ) {}
 
     public static function fromArray(array $array): StoryInfo
     {
@@ -71,9 +57,9 @@ class StoryInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'story_id' => $this->storyId,
-            'date' => $this->date,
+            '@type'                => static::TYPE_NAME,
+            'story_id'             => $this->storyId,
+            'date'                 => $this->date,
             'is_for_close_friends' => $this->isForCloseFriends,
         ];
     }

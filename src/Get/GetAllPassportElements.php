@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns all available Telegram Passport elements
+ * Returns all available Telegram Passport elements.
  */
 class GetAllPassportElements extends TdFunction
 {
     public const TYPE_NAME = 'getAllPassportElements';
 
-    /**
-     * The 2-step verification password of the current user
-     *
-     * @var string
-     */
-    protected string $password;
-
-    public function __construct(string $password)
-    {
-        $this->password = $password;
-    }
+    public function __construct(
+        /**
+         * The 2-step verification password of the current user.
+         */
+        protected string $password
+    ) {}
 
     public static function fromArray(array $array): GetAllPassportElements
     {
@@ -43,7 +37,7 @@ class GetAllPassportElements extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'password' => $this->password,
         ];
     }

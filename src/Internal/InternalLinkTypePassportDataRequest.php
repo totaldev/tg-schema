@@ -6,62 +6,37 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was
- * received from outside of the application; otherwise, ignore it
+ * received from outside of the application; otherwise, ignore it.
  */
 class InternalLinkTypePassportDataRequest extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypePassportDataRequest';
 
-    /**
-     * User identifier of the service's bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or
-     * tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link
-     * tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
-     *
-     * @var string
-     */
-    protected string $callbackUrl;
-
-    /**
-     * Unique request identifier provided by the service
-     *
-     * @var string
-     */
-    protected string $nonce;
-
-    /**
-     * Service's public key
-     *
-     * @var string
-     */
-    protected string $publicKey;
-
-    /**
-     * Telegram Passport element types requested by the service
-     *
-     * @var string
-     */
-    protected string $scope;
-
-    public function __construct(int $botUserId, string $scope, string $publicKey, string $nonce, string $callbackUrl)
-    {
+    public function __construct(
+        /**
+         * User identifier of the service's bot; the corresponding user may be unknown yet.
+         */
+        protected int    $botUserId,
+        /**
+         * Telegram Passport element types requested by the service.
+         */
+        protected string $scope,
+        /**
+         * Service's public key.
+         */
+        protected string $publicKey,
+        /**
+         * Unique request identifier provided by the service.
+         */
+        protected string $nonce,
+        /**
+         * An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise.
+         */
+        protected string $callbackUrl,
+    ) {
         parent::__construct();
-
-        $this->botUserId = $botUserId;
-        $this->scope = $scope;
-        $this->publicKey = $publicKey;
-        $this->nonce = $nonce;
-        $this->callbackUrl = $callbackUrl;
     }
 
     public static function fromArray(array $array): InternalLinkTypePassportDataRequest
@@ -103,11 +78,11 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'scope' => $this->scope,
-            'public_key' => $this->publicKey,
-            'nonce' => $this->nonce,
+            '@type'        => static::TYPE_NAME,
+            'bot_user_id'  => $this->botUserId,
+            'scope'        => $this->scope,
+            'public_key'   => $this->publicKey,
+            'nonce'        => $this->nonce,
             'callback_url' => $this->callbackUrl,
         ];
     }

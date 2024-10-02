@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The name can be set
+ * The name can be set.
  */
 class CheckStickerSetNameResultOk extends CheckStickerSetNameResult
 {

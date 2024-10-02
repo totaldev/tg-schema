@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Page;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A page cover
+ * A page cover.
  */
 class PageBlockCover extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockCover';
 
-    /**
-     * Cover
-     *
-     * @var PageBlock
-     */
-    protected PageBlock $cover;
-
-    public function __construct(PageBlock $cover)
-    {
+    public function __construct(
+        /**
+         * Cover.
+         */
+        protected PageBlock $cover
+    ) {
         parent::__construct();
-
-        $this->cover = $cover;
     }
 
     public static function fromArray(array $array): PageBlockCover

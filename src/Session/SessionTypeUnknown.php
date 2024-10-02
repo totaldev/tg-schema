@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on an unknown type of device
+ * The session is running on an unknown type of device.
  */
 class SessionTypeUnknown extends SessionType
 {

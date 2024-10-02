@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Scope;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains autosave settings for an autosave settings scope
+ * Contains autosave settings for an autosave settings scope.
  */
 class ScopeAutosaveSettings extends TdObject
 {
     public const TYPE_NAME = 'scopeAutosaveSettings';
 
-    /**
-     * True, if photo autosave is enabled
-     *
-     * @var bool
-     */
-    protected bool $autosavePhotos;
-
-    /**
-     * True, if video autosave is enabled
-     *
-     * @var bool
-     */
-    protected bool $autosaveVideos;
-
-    /**
-     * The maximum size of a video file to be autosaved, in bytes; 512 KB - 4000 MB
-     *
-     * @var int
-     */
-    protected int $maxVideoFileSize;
-
-    public function __construct(bool $autosavePhotos, bool $autosaveVideos, int $maxVideoFileSize)
-    {
-        $this->autosavePhotos = $autosavePhotos;
-        $this->autosaveVideos = $autosaveVideos;
-        $this->maxVideoFileSize = $maxVideoFileSize;
-    }
+    public function __construct(
+        /**
+         * True, if photo autosave is enabled.
+         */
+        protected bool $autosavePhotos,
+        /**
+         * True, if video autosave is enabled.
+         */
+        protected bool $autosaveVideos,
+        /**
+         * The maximum size of a video file to be autosaved, in bytes; 512 KB - 4000 MB.
+         */
+        protected int  $maxVideoFileSize,
+    ) {}
 
     public static function fromArray(array $array): ScopeAutosaveSettings
     {
@@ -71,9 +57,9 @@ class ScopeAutosaveSettings extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'autosave_photos' => $this->autosavePhotos,
-            'autosave_videos' => $this->autosaveVideos,
+            '@type'               => static::TYPE_NAME,
+            'autosave_photos'     => $this->autosavePhotos,
+            'autosave_videos'     => $this->autosaveVideos,
             'max_video_file_size' => $this->maxVideoFileSize,
         ];
     }

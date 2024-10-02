@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * File with the date it was uploaded
+ * File with the date it was uploaded.
  */
 class DatedFile extends TdObject
 {
     public const TYPE_NAME = 'datedFile';
 
-    /**
-     * Point in time (Unix timestamp) when the file was uploaded
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * The file
-     *
-     * @var File
-     */
-    protected File $file;
-
-    public function __construct(File $file, int $date)
-    {
-        $this->file = $file;
-        $this->date = $date;
-    }
+    public function __construct(
+        /**
+         * The file.
+         */
+        protected File $file,
+        /**
+         * Point in time (Unix timestamp) when the file was uploaded.
+         */
+        protected int  $date,
+    ) {}
 
     public static function fromArray(array $array): DatedFile
     {
@@ -59,8 +50,8 @@ class DatedFile extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'file' => $this->file->typeSerialize(),
-            'date' => $this->date,
+            'file'  => $this->file->typeSerialize(),
+            'date'  => $this->date,
         ];
     }
 }

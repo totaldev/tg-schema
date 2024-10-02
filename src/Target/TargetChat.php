@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Target;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the target chat to be opened
+ * Describes the target chat to be opened.
  */
 class TargetChat extends TdObject
 {
     public const TYPE_NAME = 'TargetChat';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TargetChat
     {

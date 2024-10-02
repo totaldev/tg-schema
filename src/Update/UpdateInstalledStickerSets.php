@@ -10,32 +10,25 @@ use Totaldev\TgSchema\Sticker\StickerType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The list of installed sticker sets was updated
+ * The list of installed sticker sets was updated.
  */
 class UpdateInstalledStickerSets extends Update
 {
     public const TYPE_NAME = 'updateInstalledStickerSets';
 
-    /**
-     * The new list of installed ordinary sticker sets
-     *
-     * @var int[]
-     */
-    protected array $stickerSetIds;
-
-    /**
-     * Type of the affected stickers
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    public function __construct(StickerType $stickerType, array $stickerSetIds)
-    {
+    public function __construct(
+        /**
+         * Type of the affected stickers.
+         */
+        protected StickerType $stickerType,
+        /**
+         * The new list of installed ordinary sticker sets.
+         *
+         * @var int[]
+         */
+        protected array       $stickerSetIds,
+    ) {
         parent::__construct();
-
-        $this->stickerType = $stickerType;
-        $this->stickerSetIds = $stickerSetIds;
     }
 
     public static function fromArray(array $array): UpdateInstalledStickerSets
@@ -59,8 +52,8 @@ class UpdateInstalledStickerSets extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
+            '@type'           => static::TYPE_NAME,
+            'sticker_type'    => $this->stickerType->typeSerialize(),
             'sticker_set_ids' => $this->stickerSetIds,
         ];
     }

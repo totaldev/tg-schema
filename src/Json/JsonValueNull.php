@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Json;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a null JSON value
+ * Represents a null JSON value.
  */
 class JsonValueNull extends JsonValue
 {

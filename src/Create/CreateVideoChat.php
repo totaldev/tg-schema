@@ -7,51 +7,33 @@
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+ * Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats
+ * administrator right.
  */
 class CreateVideoChat extends TdFunction
 {
     public const TYPE_NAME = 'createVideoChat';
 
-    /**
-     * Identifier of a chat in which the video chat will be created
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
-     *
-     * @var bool
-     */
-    protected bool $isRtmpStream;
-
-    /**
-     * Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must
-     * be at least 10 seconds and at most 8 days in the future
-     *
-     * @var int
-     */
-    protected int $startDate;
-
-    /**
-     * Group call title; if empty, chat title will be used
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(int $chatId, string $title, int $startDate, bool $isRtmpStream)
-    {
-        $this->chatId = $chatId;
-        $this->title = $title;
-        $this->startDate = $startDate;
-        $this->isRtmpStream = $isRtmpStream;
-    }
+    public function __construct(
+        /**
+         * Identifier of a chat in which the video chat will be created.
+         */
+        protected int    $chatId,
+        /**
+         * Group call title; if empty, chat title will be used.
+         */
+        protected string $title,
+        /**
+         * Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future.
+         */
+        protected int    $startDate,
+        /**
+         * Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges.
+         */
+        protected bool   $isRtmpStream,
+    ) {}
 
     public static function fromArray(array $array): CreateVideoChat
     {
@@ -86,10 +68,10 @@ class CreateVideoChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'title' => $this->title,
-            'start_date' => $this->startDate,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'title'          => $this->title,
+            'start_date'     => $this->startDate,
             'is_rtmp_stream' => $this->isRtmpStream,
         ];
     }

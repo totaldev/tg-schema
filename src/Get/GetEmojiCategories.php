@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns available emojis categories
+ * Returns available emoji categories.
  */
 class GetEmojiCategories extends TdFunction
 {
     public const TYPE_NAME = 'getEmojiCategories';
 
-    /**
-     * Type of emoji categories to return; pass null to get default emoji categories
-     *
-     * @var EmojiCategoryType
-     */
-    protected EmojiCategoryType $type;
-
-    public function __construct(EmojiCategoryType $type)
-    {
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Type of emoji categories to return; pass null to get default emoji categories.
+         */
+        protected EmojiCategoryType $type
+    ) {}
 
     public static function fromArray(array $array): GetEmojiCategories
     {
@@ -45,7 +40,7 @@ class GetEmojiCategories extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            'type'  => $this->type->typeSerialize(),
         ];
     }
 }

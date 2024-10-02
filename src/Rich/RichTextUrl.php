@@ -9,40 +9,27 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A rich text URL link
+ * A rich text URL link.
  */
 class RichTextUrl extends RichText
 {
     public const TYPE_NAME = 'richTextUrl';
 
-    /**
-     * True, if the URL has cached instant view server-side
-     *
-     * @var bool
-     */
-    protected bool $isCached;
-
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
-     * URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(RichText $text, string $url, bool $isCached)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text,
+        /**
+         * URL.
+         */
+        protected string   $url,
+        /**
+         * True, if the URL has cached instant view server-side.
+         */
+        protected bool     $isCached,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->url = $url;
-        $this->isCached = $isCached;
     }
 
     public static function fromArray(array $array): RichTextUrl
@@ -72,9 +59,9 @@ class RichTextUrl extends RichText
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'url' => $this->url,
+            '@type'     => static::TYPE_NAME,
+            'text'      => $this->text->typeSerialize(),
+            'url'       => $this->url,
             'is_cached' => $this->isCached,
         ];
     }

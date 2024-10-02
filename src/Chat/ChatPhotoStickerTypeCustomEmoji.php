@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Information about the custom emoji, which was used to create the chat photo
+ * Information about the custom emoji, which was used to create the chat photo.
  */
 class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType
 {
     public const TYPE_NAME = 'chatPhotoStickerTypeCustomEmoji';
 
-    /**
-     * Identifier of the custom emoji
-     *
-     * @var int
-     */
-    protected int $customEmojiId;
-
-    public function __construct(int $customEmojiId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the custom emoji.
+         */
+        protected int $customEmojiId
+    ) {
         parent::__construct();
-
-        $this->customEmojiId = $customEmojiId;
     }
 
     public static function fromArray(array $array): ChatPhotoStickerTypeCustomEmoji
@@ -44,7 +37,7 @@ class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'custom_emoji_id' => $this->customEmojiId,
         ];
     }

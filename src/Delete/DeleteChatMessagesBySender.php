@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+ * Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges.
  */
 class DeleteChatMessagesBySender extends TdFunction
 {
     public const TYPE_NAME = 'deleteChatMessagesBySender';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the sender of messages to delete
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    public function __construct(int $chatId, MessageSender $senderId)
-    {
-        $this->chatId = $chatId;
-        $this->senderId = $senderId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * Identifier of the sender of messages to delete.
+         */
+        protected MessageSender $senderId,
+    ) {}
 
     public static function fromArray(array $array): DeleteChatMessagesBySender
     {
@@ -58,8 +49,8 @@ class DeleteChatMessagesBySender extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'     => static::TYPE_NAME,
+            'chat_id'   => $this->chatId,
             'sender_id' => $this->senderId->typeSerialize(),
         ];
     }

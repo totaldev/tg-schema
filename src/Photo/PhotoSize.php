@@ -11,55 +11,36 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an image in JPEG format
+ * Describes an image in JPEG format.
  */
 class PhotoSize extends TdObject
 {
     public const TYPE_NAME = 'photoSize';
 
-    /**
-     * Image height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Information about the image file
-     *
-     * @var File
-     */
-    protected File $photo;
-
-    /**
-     * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
-     *
-     * @var int[]
-     */
-    protected array $progressiveSizes;
-
-    /**
-     * Image type (see https://core.telegram.org/constructor/photoSize)
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
-     * Image width
-     *
-     * @var int
-     */
-    protected int $width;
-
-    public function __construct(string $type, File $photo, int $width, int $height, array $progressiveSizes)
-    {
-        $this->type = $type;
-        $this->photo = $photo;
-        $this->width = $width;
-        $this->height = $height;
-        $this->progressiveSizes = $progressiveSizes;
-    }
+    public function __construct(
+        /**
+         * Image type (see https://core.telegram.org/constructor/photoSize).
+         */
+        protected string $type,
+        /**
+         * Information about the image file.
+         */
+        protected File   $photo,
+        /**
+         * Image width.
+         */
+        protected int    $width,
+        /**
+         * Image height.
+         */
+        protected int    $height,
+        /**
+         * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes.
+         *
+         * @var int[]
+         */
+        protected array  $progressiveSizes,
+    ) {}
 
     public static function fromArray(array $array): PhotoSize
     {
@@ -100,11 +81,11 @@ class PhotoSize extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type,
-            'photo' => $this->photo->typeSerialize(),
-            'width' => $this->width,
-            'height' => $this->height,
+            '@type'             => static::TYPE_NAME,
+            'type'              => $this->type,
+            'photo'             => $this->photo->typeSerialize(),
+            'width'             => $this->width,
+            'height'            => $this->height,
             'progressive_sizes' => $this->progressiveSizes,
         ];
     }

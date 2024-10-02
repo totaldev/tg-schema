@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of language pack strings
+ * Contains a list of language pack strings.
  */
 class LanguagePackStrings extends TdObject
 {
     public const TYPE_NAME = 'languagePackStrings';
 
-    /**
-     * A list of language pack strings
-     *
-     * @var LanguagePackString[]
-     */
-    protected array $strings;
-
-    public function __construct(array $strings)
-    {
-        $this->strings = $strings;
-    }
+    public function __construct(
+        /**
+         * A list of language pack strings.
+         *
+         * @var LanguagePackString[]
+         */
+        protected array $strings
+    ) {}
 
     public static function fromArray(array $array): LanguagePackStrings
     {

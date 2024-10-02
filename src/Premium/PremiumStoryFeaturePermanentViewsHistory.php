@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The ability to check who opened the current user's stories after they expire
+ * The ability to check who opened the current user's stories after they expire.
  */
 class PremiumStoryFeaturePermanentViewsHistory extends PremiumStoryFeature
 {

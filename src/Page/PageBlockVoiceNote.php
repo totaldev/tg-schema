@@ -10,38 +10,29 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Voice\VoiceNote;
 
 /**
- * A voice note
+ * A voice note.
  */
 class PageBlockVoiceNote extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockVoiceNote';
 
-    /**
-     * Voice note caption
-     *
-     * @var PageBlockCaption
-     */
-    protected PageBlockCaption $caption;
-
-    /**
-     * Voice note; may be null
-     *
-     * @var VoiceNote|null
-     */
-    protected ?VoiceNote $voiceNote;
-
-    public function __construct(?VoiceNote $voiceNote, PageBlockCaption $caption)
-    {
+    public function __construct(
+        /**
+         * Voice note; may be null.
+         */
+        protected ?VoiceNote       $voiceNote,
+        /**
+         * Voice note caption.
+         */
+        protected PageBlockCaption $caption,
+    ) {
         parent::__construct();
-
-        $this->voiceNote = $voiceNote;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): PageBlockVoiceNote
     {
         return new static(
-            (isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null),
+            isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null,
             TdSchemaRegistry::fromArray($array['caption']),
         );
     }
@@ -59,9 +50,9 @@ class PageBlockVoiceNote extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
-            'caption' => $this->caption->typeSerialize(),
+            'caption'    => $this->caption->typeSerialize(),
         ];
     }
 }

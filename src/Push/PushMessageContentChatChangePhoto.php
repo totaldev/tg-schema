@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A chat photo was edited
+ * A chat photo was edited.
  */
 class PushMessageContentChatChangePhoto extends PushMessageContent
 {

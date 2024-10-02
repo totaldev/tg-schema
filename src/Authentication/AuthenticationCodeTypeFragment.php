@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Authentication;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+ * A digit-only authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT.
  */
 class AuthenticationCodeTypeFragment extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeFragment';
 
-    /**
-     * Length of the code
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * URL to open to receive the code
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url, int $length)
-    {
+    public function __construct(
+        /**
+         * URL to open to receive the code.
+         */
+        protected string $url,
+        /**
+         * Length of the code.
+         */
+        protected int    $length,
+    ) {
         parent::__construct();
-
-        $this->url = $url;
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): AuthenticationCodeTypeFragment
@@ -58,8 +47,8 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            '@type'  => static::TYPE_NAME,
+            'url'    => $this->url,
             'length' => $this->length,
         ];
     }

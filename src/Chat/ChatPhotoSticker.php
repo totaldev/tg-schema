@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about the sticker, which was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it
+ * Information about the sticker, which was used to create the chat photo. The sticker is shown at the center of the photo and occupies at most 67% of it.
  */
 class ChatPhotoSticker extends TdObject
 {
     public const TYPE_NAME = 'chatPhotoSticker';
 
-    /**
-     * The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported
-     *
-     * @var BackgroundFill
-     */
-    protected BackgroundFill $backgroundFill;
-
-    /**
-     * Type of the sticker
-     *
-     * @var ChatPhotoStickerType
-     */
-    protected ChatPhotoStickerType $type;
-
-    public function __construct(ChatPhotoStickerType $type, BackgroundFill $backgroundFill)
-    {
-        $this->type = $type;
-        $this->backgroundFill = $backgroundFill;
-    }
+    public function __construct(
+        /**
+         * Type of the sticker.
+         */
+        protected ChatPhotoStickerType $type,
+        /**
+         * The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported.
+         */
+        protected BackgroundFill       $backgroundFill,
+    ) {}
 
     public static function fromArray(array $array): ChatPhotoSticker
     {
@@ -58,8 +49,8 @@ class ChatPhotoSticker extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            '@type'           => static::TYPE_NAME,
+            'type'            => $this->type->typeSerialize(),
             'background_fill' => $this->backgroundFill->typeSerialize(),
         ];
     }

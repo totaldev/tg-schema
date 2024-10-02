@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about saved Telegram Passport elements
+ * Contains information about saved Telegram Passport elements.
  */
 class PassportElements extends TdObject
 {
     public const TYPE_NAME = 'passportElements';
 
-    /**
-     * Telegram Passport elements
-     *
-     * @var PassportElement[]
-     */
-    protected array $elements;
-
-    public function __construct(array $elements)
-    {
-        $this->elements = $elements;
-    }
+    public function __construct(
+        /**
+         * Telegram Passport elements.
+         *
+         * @var PassportElement[]
+         */
+        protected array $elements
+    ) {}
 
     public static function fromArray(array $array): PassportElements
     {

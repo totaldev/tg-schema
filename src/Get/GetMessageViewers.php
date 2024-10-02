@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the
- * message, are returned. The method can be called if message.can_get_viewers == true
+ * message, are returned. The method can be called if messageProperties.can_get_viewers == true.
  */
 class GetMessageViewers extends TdFunction
 {
     public const TYPE_NAME = 'getMessageViewers';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): GetMessageViewers
     {
@@ -58,8 +48,8 @@ class GetMessageViewers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

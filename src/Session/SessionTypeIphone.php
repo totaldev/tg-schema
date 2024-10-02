@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on an iPhone device
+ * The session is running on an iPhone device.
  */
 class SessionTypeIphone extends SessionType
 {

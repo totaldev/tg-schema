@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user has canceled the previous action
+ * The user has canceled the previous action.
  */
 class ChatActionCancel extends ChatAction
 {

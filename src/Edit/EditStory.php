@@ -13,61 +13,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes content and caption of a story. Can be called only if story.can_be_edited == true
+ * Changes content and caption of a story. Can be called only if story.can_be_edited == true.
  */
 class EditStory extends TdFunction
 {
     public const TYPE_NAME = 'editStory';
 
-    /**
-     * New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
-     *
-     * @var InputStoryAreas
-     */
-    protected InputStoryAreas $areas;
-
-    /**
-     * New story caption; pass null to keep the current caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * New content of the story; pass null to keep the current content
-     *
-     * @var InputStoryContent
-     */
-    protected InputStoryContent $content;
-
-    /**
-     * Identifier of the story to edit
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
     public function __construct(
-        int               $storySenderChatId,
-        int               $storyId,
-        InputStoryContent $content,
-        InputStoryAreas   $areas,
-        FormattedText     $caption,
-    )
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-        $this->content = $content;
-        $this->areas = $areas;
-        $this->caption = $caption;
-    }
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int               $storySenderChatId,
+        /**
+         * Identifier of the story to edit.
+         */
+        protected int               $storyId,
+        /**
+         * New content of the story; pass null to keep the current content.
+         */
+        protected InputStoryContent $content,
+        /**
+         * New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed.
+         */
+        protected InputStoryAreas   $areas,
+        /**
+         * New story caption; pass null to keep the current caption.
+         */
+        protected FormattedText     $caption,
+    ) {}
 
     public static function fromArray(array $array): EditStory
     {
@@ -108,12 +81,12 @@ class EditStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
-            'content' => $this->content->typeSerialize(),
-            'areas' => $this->areas->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
+            'story_id'             => $this->storyId,
+            'content'              => $this->content->typeSerialize(),
+            'areas'                => $this->areas->typeSerialize(),
+            'caption'              => $this->caption->typeSerialize(),
         ];
     }
 }

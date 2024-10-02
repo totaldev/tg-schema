@@ -12,70 +12,38 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a filled-out payment form to the bot for final verification
+ * Sends a filled-out payment form to the bot for final verification.
  */
 class SendPaymentForm extends TdFunction
 {
     public const TYPE_NAME = 'sendPaymentForm';
 
-    /**
-     * The credentials chosen by user for payment
-     *
-     * @var InputCredentials
-     */
-    protected InputCredentials $credentials;
-
-    /**
-     * The invoice
-     *
-     * @var InputInvoice
-     */
-    protected InputInvoice $inputInvoice;
-
-    /**
-     * Identifier returned by validateOrderInfo, or an empty string
-     *
-     * @var string
-     */
-    protected string $orderInfoId;
-
-    /**
-     * Payment form identifier returned by getPaymentForm
-     *
-     * @var int
-     */
-    protected int $paymentFormId;
-
-    /**
-     * Identifier of a chosen shipping option, if applicable
-     *
-     * @var string
-     */
-    protected string $shippingOptionId;
-
-    /**
-     * Chosen by the user amount of tip in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $tipAmount;
-
     public function __construct(
-        InputInvoice     $inputInvoice,
-        int              $paymentFormId,
-        string           $orderInfoId,
-        string           $shippingOptionId,
-        InputCredentials $credentials,
-        int              $tipAmount,
-    )
-    {
-        $this->inputInvoice = $inputInvoice;
-        $this->paymentFormId = $paymentFormId;
-        $this->orderInfoId = $orderInfoId;
-        $this->shippingOptionId = $shippingOptionId;
-        $this->credentials = $credentials;
-        $this->tipAmount = $tipAmount;
-    }
+        /**
+         * The invoice.
+         */
+        protected InputInvoice     $inputInvoice,
+        /**
+         * Payment form identifier returned by getPaymentForm.
+         */
+        protected int              $paymentFormId,
+        /**
+         * Identifier returned by validateOrderInfo, or an empty string.
+         */
+        protected string           $orderInfoId,
+        /**
+         * Identifier of a chosen shipping option, if applicable.
+         */
+        protected string           $shippingOptionId,
+        /**
+         * The credentials chosen by user for payment; pass null for a payment in Telegram Stars.
+         */
+        protected InputCredentials $credentials,
+        /**
+         * Chosen by the user amount of tip in the smallest units of the currency.
+         */
+        protected int              $tipAmount,
+    ) {}
 
     public static function fromArray(array $array): SendPaymentForm
     {
@@ -122,13 +90,13 @@ class SendPaymentForm extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'input_invoice' => $this->inputInvoice->typeSerialize(),
-            'payment_form_id' => $this->paymentFormId,
-            'order_info_id' => $this->orderInfoId,
+            '@type'              => static::TYPE_NAME,
+            'input_invoice'      => $this->inputInvoice->typeSerialize(),
+            'payment_form_id'    => $this->paymentFormId,
+            'order_info_id'      => $this->orderInfoId,
             'shipping_option_id' => $this->shippingOptionId,
-            'credentials' => $this->credentials->typeSerialize(),
-            'tip_amount' => $this->tipAmount,
+            'credentials'        => $this->credentials->typeSerialize(),
+            'tip_amount'         => $this->tipAmount,
         ];
     }
 }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Applies if a user enters new credentials using Apple Pay
+ * Applies if a user enters new credentials using Apple Pay.
  */
 class InputCredentialsApplePay extends InputCredentials
 {
     public const TYPE_NAME = 'inputCredentialsApplePay';
 
-    /**
-     * JSON-encoded data with the credential identifier
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(string $data)
-    {
+    public function __construct(
+        /**
+         * JSON-encoded data with the credential identifier.
+         */
+        protected string $data
+    ) {
         parent::__construct();
-
-        $this->data = $data;
     }
 
     public static function fromArray(array $array): InputCredentialsApplePay
@@ -45,7 +38,7 @@ class InputCredentialsApplePay extends InputCredentials
     {
         return [
             '@type' => static::TYPE_NAME,
-            'data' => $this->data,
+            'data'  => $this->data,
         ];
     }
 }

@@ -7,26 +7,22 @@
 namespace Totaldev\TgSchema\Emoji;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of custom emoji identifiers, which can be set as emoji statuses
+ * Contains a list of custom emoji identifiers for emoji statuses.
  */
 class EmojiStatuses extends TdObject
 {
     public const TYPE_NAME = 'emojiStatuses';
 
-    /**
-     * The list of custom emoji identifiers
-     *
-     * @var int[]
-     */
-    protected array $customEmojiIds;
-
-    public function __construct(array $customEmojiIds)
-    {
-        $this->customEmojiIds = $customEmojiIds;
-    }
+    public function __construct(
+        /**
+         * The list of custom emoji identifiers.
+         *
+         * @var int[]
+         */
+        protected array $customEmojiIds
+    ) {}
 
     public static function fromArray(array $array): EmojiStatuses
     {
@@ -43,7 +39,7 @@ class EmojiStatuses extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'custom_emoji_ids' => $this->customEmojiIds,
         ];
     }

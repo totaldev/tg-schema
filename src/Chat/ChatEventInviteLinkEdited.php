@@ -9,32 +9,23 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat invite link was edited
+ * A chat invite link was edited.
  */
 class ChatEventInviteLinkEdited extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventInviteLinkEdited';
 
-    /**
-     * New information about the invite link
-     *
-     * @var ChatInviteLink
-     */
-    protected ChatInviteLink $newInviteLink;
-
-    /**
-     * Previous information about the invite link
-     *
-     * @var ChatInviteLink
-     */
-    protected ChatInviteLink $oldInviteLink;
-
-    public function __construct(ChatInviteLink $oldInviteLink, ChatInviteLink $newInviteLink)
-    {
+    public function __construct(
+        /**
+         * Previous information about the invite link.
+         */
+        protected ChatInviteLink $oldInviteLink,
+        /**
+         * New information about the invite link.
+         */
+        protected ChatInviteLink $newInviteLink,
+    ) {
         parent::__construct();
-
-        $this->oldInviteLink = $oldInviteLink;
-        $this->newInviteLink = $newInviteLink;
     }
 
     public static function fromArray(array $array): ChatEventInviteLinkEdited
@@ -58,7 +49,7 @@ class ChatEventInviteLinkEdited extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'old_invite_link' => $this->oldInviteLink->typeSerialize(),
             'new_invite_link' => $this->newInviteLink->typeSerialize(),
         ];

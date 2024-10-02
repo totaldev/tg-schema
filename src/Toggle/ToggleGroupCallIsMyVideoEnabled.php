@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether current user's video is enabled
+ * Toggles whether current user's video is enabled.
  */
 class ToggleGroupCallIsMyVideoEnabled extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallIsMyVideoEnabled';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true if the current user's video is enabled
-     *
-     * @var bool
-     */
-    protected bool $isMyVideoEnabled;
-
-    public function __construct(int $groupCallId, bool $isMyVideoEnabled)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->isMyVideoEnabled = $isMyVideoEnabled;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int  $groupCallId,
+        /**
+         * Pass true if the current user's video is enabled.
+         */
+        protected bool $isMyVideoEnabled,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoEnabled
     {
@@ -57,8 +47,8 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'               => static::TYPE_NAME,
+            'group_call_id'       => $this->groupCallId,
             'is_my_video_enabled' => $this->isMyVideoEnabled,
         ];
     }

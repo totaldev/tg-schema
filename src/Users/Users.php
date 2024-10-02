@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Users;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of users
+ * Represents a list of users.
  */
 class Users extends TdObject
 {
     public const TYPE_NAME = 'users';
 
-    /**
-     * Approximate total number of users found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * A list of user identifiers
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(int $totalCount, array $userIds)
-    {
-        $this->totalCount = $totalCount;
-        $this->userIds = $userIds;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of users found.
+         */
+        protected int   $totalCount,
+        /**
+         * A list of user identifiers.
+         *
+         * @var int[]
+         */
+        protected array $userIds,
+    ) {}
 
     public static function fromArray(array $array): Users
     {
@@ -57,9 +49,9 @@ class Users extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            'user_ids' => $this->userIds,
+            'user_ids'    => $this->userIds,
         ];
     }
 }

@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A regular animated sticker
+ * A regular animated sticker.
  */
 class DiceStickersRegular extends DiceStickers
 {
     public const TYPE_NAME = 'diceStickersRegular';
 
-    /**
-     * The animated sticker with the dice animation
-     *
-     * @var Sticker
-     */
-    protected Sticker $sticker;
-
-    public function __construct(Sticker $sticker)
-    {
+    public function __construct(
+        /**
+         * The animated sticker with the dice animation.
+         */
+        protected Sticker $sticker
+    ) {
         parent::__construct();
-
-        $this->sticker = $sticker;
     }
 
     public static function fromArray(array $array): DiceStickersRegular
@@ -45,7 +40,7 @@ class DiceStickersRegular extends DiceStickers
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
     }

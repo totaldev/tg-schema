@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Connection;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Currently establishing a connection with a proxy server
+ * Establishing a connection with a proxy server.
  */
 class ConnectionStateConnectingToProxy extends ConnectionState
 {

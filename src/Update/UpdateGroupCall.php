@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Group\GroupCall;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about a group call was updated
+ * Information about a group call was updated.
  */
 class UpdateGroupCall extends Update
 {
     public const TYPE_NAME = 'updateGroupCall';
 
-    /**
-     * New data about a group call
-     *
-     * @var GroupCall
-     */
-    protected GroupCall $groupCall;
-
-    public function __construct(GroupCall $groupCall)
-    {
+    public function __construct(
+        /**
+         * New data about a group call.
+         */
+        protected GroupCall $groupCall
+    ) {
         parent::__construct();
-
-        $this->groupCall = $groupCall;
     }
 
     public static function fromArray(array $array): UpdateGroupCall
@@ -45,7 +40,7 @@ class UpdateGroupCall extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'group_call' => $this->groupCall->typeSerialize(),
         ];
     }

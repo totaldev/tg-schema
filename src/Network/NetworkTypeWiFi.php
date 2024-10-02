@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Network;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A Wi-Fi network
+ * A Wi-Fi network.
  */
 class NetworkTypeWiFi extends NetworkType
 {

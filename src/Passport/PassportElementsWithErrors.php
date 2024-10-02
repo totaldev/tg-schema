@@ -10,31 +10,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a Telegram Passport elements and corresponding errors
+ * Contains information about a Telegram Passport elements and corresponding errors.
  */
 class PassportElementsWithErrors extends TdObject
 {
     public const TYPE_NAME = 'passportElementsWithErrors';
 
-    /**
-     * Telegram Passport elements
-     *
-     * @var PassportElement[]
-     */
-    protected array $elements;
-
-    /**
-     * Errors in the elements that are already available
-     *
-     * @var PassportElementError[]
-     */
-    protected array $errors;
-
-    public function __construct(array $elements, array $errors)
-    {
-        $this->elements = $elements;
-        $this->errors = $errors;
-    }
+    public function __construct(
+        /**
+         * Telegram Passport elements.
+         *
+         * @var PassportElement[]
+         */
+        protected array $elements,
+        /**
+         * Errors in the elements that are already available.
+         *
+         * @var PassportElementError[]
+         */
+        protected array $errors,
+    ) {}
 
     public static function fromArray(array $array): PassportElementsWithErrors
     {

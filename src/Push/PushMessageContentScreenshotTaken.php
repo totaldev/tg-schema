@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A screenshot of a message in the chat has been taken
+ * A screenshot of a message in the chat has been taken.
  */
 class PushMessageContentScreenshotTaken extends PushMessageContent
 {

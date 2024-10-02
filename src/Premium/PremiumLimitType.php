@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Premium;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of a limit, increased for Premium users
+ * Describes type of limit, increased for Premium users.
  */
 class PremiumLimitType extends TdObject
 {
     public const TYPE_NAME = 'PremiumLimitType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PremiumLimitType
     {

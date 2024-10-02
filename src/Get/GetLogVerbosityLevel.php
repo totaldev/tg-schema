@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+ * Returns current verbosity level of the internal logging of TDLib. Can be called synchronously.
  */
 class GetLogVerbosityLevel extends TdFunction
 {
     public const TYPE_NAME = 'getLogVerbosityLevel';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetLogVerbosityLevel
     {

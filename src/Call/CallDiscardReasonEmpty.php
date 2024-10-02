@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call wasn't discarded, or the reason is unknown
+ * The call wasn't discarded, or the reason is unknown.
  */
 class CallDiscardReasonEmpty extends CallDiscardReason
 {

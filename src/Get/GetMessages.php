@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about messages. If a message is not found, returns null on the corresponding position of the result
+ * Returns information about messages. If a message is not found, returns null on the corresponding position of the result.
  */
 class GetMessages extends TdFunction
 {
     public const TYPE_NAME = 'getMessages';
 
-    /**
-     * Identifier of the chat the messages belong to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifiers of the messages to get
-     *
-     * @var int[]
-     */
-    protected array $messageIds;
-
-    public function __construct(int $chatId, array $messageIds)
-    {
-        $this->chatId = $chatId;
-        $this->messageIds = $messageIds;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat the messages belong to.
+         */
+        protected int   $chatId,
+        /**
+         * Identifiers of the messages to get.
+         *
+         * @var int[]
+         */
+        protected array $messageIds,
+    ) {}
 
     public static function fromArray(array $array): GetMessages
     {
@@ -57,8 +49,8 @@ class GetMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'message_ids' => $this->messageIds,
         ];
     }

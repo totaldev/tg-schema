@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+ * Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown.
  */
 class GetPremiumLimit extends TdFunction
 {
     public const TYPE_NAME = 'getPremiumLimit';
 
-    /**
-     * Type of the limit
-     *
-     * @var PremiumLimitType
-     */
-    protected PremiumLimitType $limitType;
-
-    public function __construct(PremiumLimitType $limitType)
-    {
-        $this->limitType = $limitType;
-    }
+    public function __construct(
+        /**
+         * Type of the limit.
+         */
+        protected PremiumLimitType $limitType
+    ) {}
 
     public static function fromArray(array $array): GetPremiumLimit
     {
@@ -44,7 +39,7 @@ class GetPremiumLimit extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'limit_type' => $this->limitType->typeSerialize(),
         ];
     }

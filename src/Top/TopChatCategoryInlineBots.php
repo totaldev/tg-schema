@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used chats with inline bots sorted by their usage in inline mode
+ * A category containing frequently used chats with inline bots sorted by their usage in inline mode.
  */
 class TopChatCategoryInlineBots extends TopChatCategory
 {

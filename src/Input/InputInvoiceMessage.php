@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An invoice from a message of the type messageInvoice
+ * An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia.
  */
 class InputInvoiceMessage extends InputInvoice
 {
     public const TYPE_NAME = 'inputInvoiceMessage';
 
-    /**
-     * Chat identifier of the message
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier of the message.
+         */
+        protected int $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int $messageId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
     }
 
     public static function fromArray(array $array): InputInvoiceMessage
@@ -58,8 +47,8 @@ class InputInvoiceMessage extends InputInvoice
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

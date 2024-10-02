@@ -11,45 +11,37 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns approximate number of messages of the specified type in the chat
+ * Returns approximate number of messages of the specified type in the chat.
  */
 class GetChatMessageCount extends TdFunction
 {
     public const TYPE_NAME = 'getChatMessageCount';
 
-    /**
-     * Identifier of the chat in which to count messages
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Filter for message content; searchMessagesFilterEmpty is unsupported in this function
-     *
-     * @var SearchMessagesFilter
-     */
-    protected SearchMessagesFilter $filter;
-
-    /**
-     * Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
-     *
-     * @var bool
-     */
-    protected bool $returnLocal;
-
-    public function __construct(int $chatId, SearchMessagesFilter $filter, bool $returnLocal)
-    {
-        $this->chatId = $chatId;
-        $this->filter = $filter;
-        $this->returnLocal = $returnLocal;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat in which to count messages.
+         */
+        protected int                  $chatId,
+        /**
+         * Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
+         */
+        protected SearchMessagesFilter $filter,
+        /**
+         * If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages.
+         */
+        protected int                  $savedMessagesTopicId,
+        /**
+         * Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally.
+         */
+        protected bool                 $returnLocal,
+    ) {}
 
     public static function fromArray(array $array): GetChatMessageCount
     {
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['filter']),
+            $array['saved_messages_topic_id'],
             $array['return_local'],
         );
     }
@@ -69,13 +61,19 @@ class GetChatMessageCount extends TdFunction
         return $this->returnLocal;
     }
 
+    public function getSavedMessagesTopicId(): int
+    {
+        return $this->savedMessagesTopicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'filter' => $this->filter->typeSerialize(),
-            'return_local' => $this->returnLocal,
+            '@type'                   => static::TYPE_NAME,
+            'chat_id'                 => $this->chatId,
+            'filter'                  => $this->filter->typeSerialize(),
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
+            'return_local'            => $this->returnLocal,
         ];
     }
 }

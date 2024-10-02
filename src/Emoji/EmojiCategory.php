@@ -11,52 +11,39 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of similar emoji to search for in getStickers and searchStickers
+ * Describes an emoji category.
  */
 class EmojiCategory extends TdObject
 {
     public const TYPE_NAME = 'emojiCategory';
 
-    /**
-     * List of emojis in the category
-     *
-     * @var string[]
-     */
-    protected array $emojis;
-
-    /**
-     * Custom emoji sticker, which represents icon of the category
-     *
-     * @var Sticker
-     */
-    protected Sticker $icon;
-
-    /**
-     * Name of the category
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name, Sticker $icon, array $emojis)
-    {
-        $this->name = $name;
-        $this->icon = $icon;
-        $this->emojis = $emojis;
-    }
+    public function __construct(
+        /**
+         * Name of the category.
+         */
+        protected string              $name,
+        /**
+         * Custom emoji sticker, which represents icon of the category.
+         */
+        protected Sticker             $icon,
+        /**
+         * Source of stickers for the emoji category.
+         */
+        protected EmojiCategorySource $source,
+        /**
+         * True, if the category must be shown first when choosing a sticker for the start page.
+         */
+        protected bool                $isGreeting,
+    ) {}
 
     public static function fromArray(array $array): EmojiCategory
     {
         return new static(
             $array['name'],
             TdSchemaRegistry::fromArray($array['icon']),
-            $array['emojis'],
+            TdSchemaRegistry::fromArray($array['source']),
+            $array['is_greeting'],
         );
-    }
-
-    public function getEmojis(): array
-    {
-        return $this->emojis;
     }
 
     public function getIcon(): Sticker
@@ -64,18 +51,29 @@ class EmojiCategory extends TdObject
         return $this->icon;
     }
 
+    public function getIsGreeting(): bool
+    {
+        return $this->isGreeting;
+    }
+
     public function getName(): string
     {
         return $this->name;
     }
 
+    public function getSource(): EmojiCategorySource
+    {
+        return $this->source;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
-            'icon' => $this->icon->typeSerialize(),
-            'emojis' => $this->emojis,
+            '@type'       => static::TYPE_NAME,
+            'name'        => $this->name,
+            'icon'        => $this->icon->typeSerialize(),
+            'source'      => $this->source->typeSerialize(),
+            'is_greeting' => $this->isGreeting,
         ];
     }
 }

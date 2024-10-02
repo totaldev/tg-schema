@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for
- * unknown links. Can be called before authorization
+ * unknown links. Can be called before authorization.
  */
 class GetDeepLinkInfo extends TdFunction
 {
     public const TYPE_NAME = 'getDeepLinkInfo';
 
-    /**
-     * The link
-     *
-     * @var string
-     */
-    protected string $link;
-
-    public function __construct(string $link)
-    {
-        $this->link = $link;
-    }
+    public function __construct(
+        /**
+         * The link.
+         */
+        protected string $link
+    ) {}
 
     public static function fromArray(array $array): GetDeepLinkInfo
     {
@@ -45,7 +39,7 @@ class GetDeepLinkInfo extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'link' => $this->link,
+            'link'  => $this->link,
         ];
     }
 }

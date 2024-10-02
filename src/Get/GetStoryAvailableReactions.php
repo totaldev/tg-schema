@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns reactions, which can be chosen for a story
+ * Returns reactions, which can be chosen for a story.
  */
 class GetStoryAvailableReactions extends TdFunction
 {
     public const TYPE_NAME = 'getStoryAvailableReactions';
 
-    /**
-     * Number of reaction per row, 5-25
-     *
-     * @var int
-     */
-    protected int $rowSize;
-
-    public function __construct(int $rowSize)
-    {
-        $this->rowSize = $rowSize;
-    }
+    public function __construct(
+        /**
+         * Number of reaction per row, 5-25.
+         */
+        protected int $rowSize
+    ) {}
 
     public static function fromArray(array $array): GetStoryAvailableReactions
     {
@@ -43,7 +37,7 @@ class GetStoryAvailableReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'row_size' => $this->rowSize,
         ];
     }

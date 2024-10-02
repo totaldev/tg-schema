@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
+ * The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire.
  */
 class CanSendStoryResultActiveStoryLimitExceeded extends CanSendStoryResult
 {

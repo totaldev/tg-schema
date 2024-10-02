@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Reaction\ReactionType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An area pointing to a suggested reaction
+ * An area pointing to a suggested reaction.
  */
 class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
 {
     public const TYPE_NAME = 'inputStoryAreaTypeSuggestedReaction';
 
-    /**
-     * True, if reaction has a dark background
-     *
-     * @var bool
-     */
-    protected bool $isDark;
-
-    /**
-     * True, if reaction corner is flipped
-     *
-     * @var bool
-     */
-    protected bool $isFlipped;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    public function __construct(ReactionType $reactionType, bool $isDark, bool $isFlipped)
-    {
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType $reactionType,
+        /**
+         * True, if reaction has a dark background.
+         */
+        protected bool         $isDark,
+        /**
+         * True, if reaction corner is flipped.
+         */
+        protected bool         $isFlipped,
+    ) {
         parent::__construct();
-
-        $this->reactionType = $reactionType;
-        $this->isDark = $isDark;
-        $this->isFlipped = $isFlipped;
     }
 
     public static function fromArray(array $array): InputStoryAreaTypeSuggestedReaction
@@ -73,10 +60,10 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'reaction_type' => $this->reactionType->typeSerialize(),
-            'is_dark' => $this->isDark,
-            'is_flipped' => $this->isFlipped,
+            'is_dark'       => $this->isDark,
+            'is_flipped'    => $this->isFlipped,
         ];
     }
 }

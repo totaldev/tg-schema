@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Database;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains database statistics
+ * Contains database statistics.
  */
 class DatabaseStatistics extends TdObject
 {
     public const TYPE_NAME = 'databaseStatistics';
 
-    /**
-     * Database statistics in an unspecified human-readable format
-     *
-     * @var string
-     */
-    protected string $statistics;
-
-    public function __construct(string $statistics)
-    {
-        $this->statistics = $statistics;
-    }
+    public function __construct(
+        /**
+         * Database statistics in an unspecified human-readable format.
+         */
+        protected string $statistics
+    ) {}
 
     public static function fromArray(array $array): DatabaseStatistics
     {
@@ -43,7 +37,7 @@ class DatabaseStatistics extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'statistics' => $this->statistics,
         ];
     }

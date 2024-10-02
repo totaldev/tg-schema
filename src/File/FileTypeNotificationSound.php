@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a notification sound
+ * The file is a notification sound.
  */
 class FileTypeNotificationSound extends FileType
 {

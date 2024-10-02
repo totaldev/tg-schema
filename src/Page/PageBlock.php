@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Page;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a block of an instant view web page
+ * Describes a block of an instant view for a web page.
  */
 class PageBlock extends TdObject
 {
     public const TYPE_NAME = 'PageBlock';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PageBlock
     {

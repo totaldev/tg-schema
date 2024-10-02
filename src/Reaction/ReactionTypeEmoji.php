@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Reaction;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A reaction with an emoji
+ * A reaction with an emoji.
  */
 class ReactionTypeEmoji extends ReactionType
 {
     public const TYPE_NAME = 'reactionTypeEmoji';
 
-    /**
-     * Text representation of the reaction
-     *
-     * @var string
-     */
-    protected string $emoji;
-
-    public function __construct(string $emoji)
-    {
+    public function __construct(
+        /**
+         * Text representation of the reaction.
+         */
+        protected string $emoji
+    ) {
         parent::__construct();
-
-        $this->emoji = $emoji;
     }
 
     public static function fromArray(array $array): ReactionTypeEmoji

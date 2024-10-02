@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns examples of premium stickers for demonstration purposes
+ * Returns examples of premium stickers for demonstration purposes.
  */
 class GetPremiumStickerExamples extends TdFunction
 {
     public const TYPE_NAME = 'getPremiumStickerExamples';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetPremiumStickerExamples
     {

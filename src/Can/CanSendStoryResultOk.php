@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A story can be sent
+ * A story can be sent.
  */
 class CanSendStoryResultOk extends CanSendStoryResult
 {

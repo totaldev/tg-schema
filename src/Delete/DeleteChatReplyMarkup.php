@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An
- * updateChatReplyMarkup update will be sent if the reply markup is changed
+ * updateChatReplyMarkup update will be sent if the reply markup is changed.
  */
 class DeleteChatReplyMarkup extends TdFunction
 {
     public const TYPE_NAME = 'deleteChatReplyMarkup';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The message identifier of the used keyboard
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * The message identifier of the used keyboard.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): DeleteChatReplyMarkup
     {
@@ -58,8 +48,8 @@ class DeleteChatReplyMarkup extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
         ];
     }

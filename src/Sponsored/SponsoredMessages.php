@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of sponsored messages
+ * Contains a list of sponsored messages.
  */
 class SponsoredMessages extends TdObject
 {
     public const TYPE_NAME = 'sponsoredMessages';
 
-    /**
-     * List of sponsored messages
-     *
-     * @var SponsoredMessage[]
-     */
-    protected array $messages;
-
-    /**
-     * The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages
-     *
-     * @var int
-     */
-    protected int $messagesBetween;
-
-    public function __construct(array $messages, int $messagesBetween)
-    {
-        $this->messages = $messages;
-        $this->messagesBetween = $messagesBetween;
-    }
+    public function __construct(
+        /**
+         * List of sponsored messages.
+         *
+         * @var SponsoredMessage[]
+         */
+        protected array $messages,
+        /**
+         * The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages.
+         */
+        protected int   $messagesBetween,
+    ) {}
 
     public static function fromArray(array $array): SponsoredMessages
     {
@@ -57,7 +50,7 @@ class SponsoredMessages extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->messages),
             'messages_between' => $this->messagesBetween,
         ];

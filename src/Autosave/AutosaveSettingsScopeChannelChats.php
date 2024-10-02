@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Autosave;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Autosave settings applied to all channel chats without chat-specific settings
+ * Autosave settings applied to all channel chats without chat-specific settings.
  */
 class AutosaveSettingsScopeChannelChats extends AutosaveSettingsScope
 {

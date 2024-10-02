@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the profile photos of a user. Personal and public photo aren't returned
+ * Returns the profile photos of a user. Personal and public photo aren't returned.
  */
 class GetUserProfilePhotos extends TdFunction
 {
     public const TYPE_NAME = 'getUserProfilePhotos';
 
-    /**
-     * The maximum number of photos to be returned; up to 100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * The number of photos to skip; must be non-negative
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $offset, int $limit)
-    {
-        $this->userId = $userId;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+        /**
+         * The number of photos to skip; must be non-negative.
+         */
+        protected int $offset,
+        /**
+         * The maximum number of photos to be returned; up to 100.
+         */
+        protected int $limit,
+    ) {}
 
     public static function fromArray(array $array): GetUserProfilePhotos
     {
@@ -71,10 +57,10 @@ class GetUserProfilePhotos extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            'offset'  => $this->offset,
+            'limit'   => $this->limit,
         ];
     }
 }

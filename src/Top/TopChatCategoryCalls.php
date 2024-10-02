@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used chats used for calls
+ * A category containing frequently used chats used for calls.
  */
 class TopChatCategoryCalls extends TopChatCategory
 {

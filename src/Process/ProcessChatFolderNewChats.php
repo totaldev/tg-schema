@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Process;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Process new chats added to a shareable chat folder by its owner
+ * Process new chats added to a shareable chat folder by its owner.
  */
 class ProcessChatFolderNewChats extends TdFunction
 {
     public const TYPE_NAME = 'processChatFolderNewChats';
 
-    /**
-     * Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
-     *
-     * @var int[]
-     */
-    protected array $addedChatIds;
-
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId, array $addedChatIds)
-    {
-        $this->chatFolderId = $chatFolderId;
-        $this->addedChatIds = $addedChatIds;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int   $chatFolderId,
+        /**
+         * Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet.
+         *
+         * @var int[]
+         */
+        protected array $addedChatIds,
+    ) {}
 
     public static function fromArray(array $array): ProcessChatFolderNewChats
     {
@@ -57,7 +49,7 @@ class ProcessChatFolderNewChats extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
             'added_chat_ids' => $this->addedChatIds,
         ];

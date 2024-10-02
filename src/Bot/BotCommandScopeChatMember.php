@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Bot;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A scope covering a member of a chat
+ * A scope covering a member of a chat.
  */
 class BotCommandScopeChatMember extends BotCommandScope
 {
     public const TYPE_NAME = 'botCommandScopeChatMember';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $chatId, int $userId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->userId = $userId;
     }
 
     public static function fromArray(array $array): BotCommandScopeChatMember
@@ -58,7 +47,7 @@ class BotCommandScopeChatMember extends BotCommandScope
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
             'user_id' => $this->userId,
         ];

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Poll;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of a poll
+ * Describes the type of poll.
  */
 class PollType extends TdObject
 {
     public const TYPE_NAME = 'PollType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PollType
     {

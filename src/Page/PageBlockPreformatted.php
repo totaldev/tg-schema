@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A preformatted text paragraph
+ * A preformatted text paragraph.
  */
 class PageBlockPreformatted extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockPreformatted';
 
-    /**
-     * Programming language for which the text needs to be formatted
-     *
-     * @var string
-     */
-    protected string $language;
-
-    /**
-     * Paragraph text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    public function __construct(RichText $text, string $language)
-    {
+    public function __construct(
+        /**
+         * Paragraph text.
+         */
+        protected RichText $text,
+        /**
+         * Programming language for which the text needs to be formatted.
+         */
+        protected string   $language,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->language = $language;
     }
 
     public static function fromArray(array $array): PageBlockPreformatted
@@ -59,8 +50,8 @@ class PageBlockPreformatted extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
+            '@type'    => static::TYPE_NAME,
+            'text'     => $this->text->typeSerialize(),
             'language' => $this->language,
         ];
     }

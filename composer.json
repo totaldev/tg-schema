@@ -44,7 +44,10 @@
     "scripts": {
         "cs-check": "php-cs-fixer fix --dry-run --diff --diff-format udiff",
         "cs-fix": "php-cs-fixer fix",
-        "ci-run": ["@cs-check", "@test-ci"]
+        "ci-run": [
+            "@cs-check",
+            "@test-ci"
+        ]
     },
     "extra": {
         "branch-alias": {

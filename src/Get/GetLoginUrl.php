@@ -7,52 +7,34 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type
  * inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the
- * button must be handled as an ordinary URL button
+ * button must be handled as an ordinary URL button.
  */
 class GetLoginUrl extends TdFunction
 {
     public const TYPE_NAME = 'getLoginUrl';
 
-    /**
-     * Pass true to allow the bot to send messages to the current user
-     *
-     * @var bool
-     */
-    protected bool $allowWriteAccess;
-
-    /**
-     * Button identifier
-     *
-     * @var int
-     */
-    protected int $buttonId;
-
-    /**
-     * Chat identifier of the message with the button
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier of the message with the button
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId, int $buttonId, bool $allowWriteAccess)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->buttonId = $buttonId;
-        $this->allowWriteAccess = $allowWriteAccess;
-    }
+    public function __construct(
+        /**
+         * Chat identifier of the message with the button.
+         */
+        protected int  $chatId,
+        /**
+         * Message identifier of the message with the button.
+         */
+        protected int  $messageId,
+        /**
+         * Button identifier.
+         */
+        protected int  $buttonId,
+        /**
+         * Pass true to allow the bot to send messages to the current user.
+         */
+        protected bool $allowWriteAccess,
+    ) {}
 
     public static function fromArray(array $array): GetLoginUrl
     {
@@ -87,10 +69,10 @@ class GetLoginUrl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'button_id' => $this->buttonId,
+            '@type'              => static::TYPE_NAME,
+            'chat_id'            => $this->chatId,
+            'message_id'         => $this->messageId,
+            'button_id'          => $this->buttonId,
             'allow_write_access' => $this->allowWriteAccess,
         ];
     }

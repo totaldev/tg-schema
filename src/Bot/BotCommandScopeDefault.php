@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Bot;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A scope covering all users
+ * A scope covering all users.
  */
 class BotCommandScopeDefault extends BotCommandScope
 {

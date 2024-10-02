@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Reset;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The password was reset
+ * The password was reset.
  */
 class ResetPasswordResultOk extends ResetPasswordResult
 {

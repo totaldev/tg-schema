@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Mask;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The mask is placed relatively to the mouth
+ * The mask is placed relatively to the mouth.
  */
 class MaskPointMouth extends MaskPoint
 {

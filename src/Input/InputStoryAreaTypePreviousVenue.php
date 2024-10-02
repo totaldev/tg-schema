@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Input;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An area pointing to a venue already added to the story
+ * An area pointing to a venue already added to the story.
  */
 class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
 {
     public const TYPE_NAME = 'inputStoryAreaTypePreviousVenue';
 
-    /**
-     * Identifier of the venue in the provider database
-     *
-     * @var string
-     */
-    protected string $venueId;
-
-    /**
-     * Provider of the venue
-     *
-     * @var string
-     */
-    protected string $venueProvider;
-
-    public function __construct(string $venueProvider, string $venueId)
-    {
+    public function __construct(
+        /**
+         * Provider of the venue.
+         */
+        protected string $venueProvider,
+        /**
+         * Identifier of the venue in the provider database.
+         */
+        protected string $venueId,
+    ) {
         parent::__construct();
-
-        $this->venueProvider = $venueProvider;
-        $this->venueId = $venueId;
     }
 
     public static function fromArray(array $array): InputStoryAreaTypePreviousVenue
@@ -58,9 +47,9 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'venue_provider' => $this->venueProvider,
-            'venue_id' => $this->venueId,
+            'venue_id'       => $this->venueId,
         ];
     }
 }

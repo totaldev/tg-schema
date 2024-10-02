@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Story;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The list of stories, shown in the Arvhive chat list
+ * The list of stories, shown in the Arvhive chat list.
  */
 class StoryListArchive extends StoryList
 {

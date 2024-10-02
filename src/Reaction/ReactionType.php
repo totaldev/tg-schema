@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Reaction;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of message reaction
+ * Describes type of message reaction.
  */
 class ReactionType extends TdObject
 {
     public const TYPE_NAME = 'ReactionType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ReactionType
     {

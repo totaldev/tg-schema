@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The has_protected_content setting of a channel was toggled
+ * The has_protected_content setting of a channel was toggled.
  */
 class ChatEventHasProtectedContentToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventHasProtectedContentToggled';
 
-    /**
-     * New value of has_protected_content
-     *
-     * @var bool
-     */
-    protected bool $hasProtectedContent;
-
-    public function __construct(bool $hasProtectedContent)
-    {
+    public function __construct(
+        /**
+         * New value of has_protected_content.
+         */
+        protected bool $hasProtectedContent
+    ) {
         parent::__construct();
-
-        $this->hasProtectedContent = $hasProtectedContent;
     }
 
     public static function fromArray(array $array): ChatEventHasProtectedContentToggled
@@ -44,7 +37,7 @@ class ChatEventHasProtectedContentToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'has_protected_content' => $this->hasProtectedContent,
         ];
     }

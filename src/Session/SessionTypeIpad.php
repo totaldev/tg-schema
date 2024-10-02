@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on an iPad device
+ * The session is running on an iPad device.
  */
 class SessionTypeIpad extends SessionType
 {

@@ -10,31 +10,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a single button in an inline keyboard
+ * Represents a single button in an inline keyboard.
  */
 class InlineKeyboardButton extends TdObject
 {
     public const TYPE_NAME = 'inlineKeyboardButton';
 
-    /**
-     * Text of the button
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * Type of the button
-     *
-     * @var InlineKeyboardButtonType
-     */
-    protected InlineKeyboardButtonType $type;
-
-    public function __construct(string $text, InlineKeyboardButtonType $type)
-    {
-        $this->text = $text;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Text of the button.
+         */
+        protected string                   $text,
+        /**
+         * Type of the button.
+         */
+        protected InlineKeyboardButtonType $type,
+    ) {}
 
     public static function fromArray(array $array): InlineKeyboardButton
     {
@@ -58,8 +49,8 @@ class InlineKeyboardButton extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'type' => $this->type->typeSerialize(),
+            'text'  => $this->text,
+            'type'  => $this->type->typeSerialize(),
         ];
     }
 }

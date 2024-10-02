@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A self-destructed video message
+ * A self-destructed video message.
  */
 class MessageExpiredVideo extends MessageContent
 {

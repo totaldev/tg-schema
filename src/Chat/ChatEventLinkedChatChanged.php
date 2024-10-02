@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The linked chat of a supergroup was changed
+ * The linked chat of a supergroup was changed.
  */
 class ChatEventLinkedChatChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventLinkedChatChanged';
 
-    /**
-     * New supergroup linked chat identifier
-     *
-     * @var int
-     */
-    protected int $newLinkedChatId;
-
-    /**
-     * Previous supergroup linked chat identifier
-     *
-     * @var int
-     */
-    protected int $oldLinkedChatId;
-
-    public function __construct(int $oldLinkedChatId, int $newLinkedChatId)
-    {
+    public function __construct(
+        /**
+         * Previous supergroup linked chat identifier.
+         */
+        protected int $oldLinkedChatId,
+        /**
+         * New supergroup linked chat identifier.
+         */
+        protected int $newLinkedChatId,
+    ) {
         parent::__construct();
-
-        $this->oldLinkedChatId = $oldLinkedChatId;
-        $this->newLinkedChatId = $newLinkedChatId;
     }
 
     public static function fromArray(array $array): ChatEventLinkedChatChanged
@@ -58,7 +47,7 @@ class ChatEventLinkedChatChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'              => static::TYPE_NAME,
             'old_linked_chat_id' => $this->oldLinkedChatId,
             'new_linked_chat_id' => $this->newLinkedChatId,
         ];

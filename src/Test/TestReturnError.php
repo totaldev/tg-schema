@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
+ * Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously.
  */
 class TestReturnError extends TdFunction
 {
     public const TYPE_NAME = 'testReturnError';
 
-    /**
-     * The error to be returned
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    public function __construct(Error $error)
-    {
-        $this->error = $error;
-    }
+    public function __construct(
+        /**
+         * The error to be returned.
+         */
+        protected Error $error
+    ) {}
 
     public static function fromArray(array $array): TestReturnError
     {

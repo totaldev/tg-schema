@@ -11,47 +11,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a proxy server for network requests. Can be called before authorization
+ * Adds a proxy server for network requests. Can be called before authorization.
  */
 class AddProxy extends TdFunction
 {
     public const TYPE_NAME = 'addProxy';
 
-    /**
-     * Pass true to immediately enable the proxy
-     *
-     * @var bool
-     */
-    protected bool $enable;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy server domain or IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Proxy type
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    public function __construct(string $server, int $port, bool $enable, ProxyType $type)
-    {
-        $this->server = $server;
-        $this->port = $port;
-        $this->enable = $enable;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Pass true to immediately enable the proxy.
+         */
+        protected bool      $enable,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
+    ) {}
 
     public static function fromArray(array $array): AddProxy
     {
@@ -86,11 +69,11 @@ class AddProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'server' => $this->server,
-            'port' => $this->port,
+            'port'   => $this->port,
             'enable' => $this->enable,
-            'type' => $this->type->typeSerialize(),
+            'type'   => $this->type->typeSerialize(),
         ];
     }
 }

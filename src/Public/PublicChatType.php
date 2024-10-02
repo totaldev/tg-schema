@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Public;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a type of public chats
+ * Describes type of public chat.
  */
 class PublicChatType extends TdObject
 {
     public const TYPE_NAME = 'PublicChatType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PublicChatType
     {

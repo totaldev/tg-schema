@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the marked as unread state of a chat
+ * Changes the marked as unread state of a chat.
  */
 class ToggleChatIsMarkedAsUnread extends TdFunction
 {
     public const TYPE_NAME = 'toggleChatIsMarkedAsUnread';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of is_marked_as_unread
-     *
-     * @var bool
-     */
-    protected bool $isMarkedAsUnread;
-
-    public function __construct(int $chatId, bool $isMarkedAsUnread)
-    {
-        $this->chatId = $chatId;
-        $this->isMarkedAsUnread = $isMarkedAsUnread;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * New value of is_marked_as_unread.
+         */
+        protected bool $isMarkedAsUnread,
+    ) {}
 
     public static function fromArray(array $array): ToggleChatIsMarkedAsUnread
     {
@@ -57,8 +47,8 @@ class ToggleChatIsMarkedAsUnread extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'               => static::TYPE_NAME,
+            'chat_id'             => $this->chatId,
             'is_marked_as_unread' => $this->isMarkedAsUnread,
         ];
     }

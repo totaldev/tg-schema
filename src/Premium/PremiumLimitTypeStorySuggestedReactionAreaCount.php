@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of suggested reaction areas on a story
+ * The maximum number of suggested reaction areas on a story.
  */
 class PremiumLimitTypeStorySuggestedReactionAreaCount extends PremiumLimitType
 {

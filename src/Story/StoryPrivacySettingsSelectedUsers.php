@@ -6,27 +6,22 @@
 
 namespace Totaldev\TgSchema\Story;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The story can be viewed by certain specified users
+ * The story can be viewed by certain specified users.
  */
 class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings
 {
     public const TYPE_NAME = 'storyPrivacySettingsSelectedUsers';
 
-    /**
-     * Identifiers of the users; always unknown and empty for non-owned stories
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(array $userIds)
-    {
+    public function __construct(
+        /**
+         * Identifiers of the users; always unknown and empty for non-owned stories.
+         *
+         * @var int[]
+         */
+        protected array $userIds
+    ) {
         parent::__construct();
-
-        $this->userIds = $userIds;
     }
 
     public static function fromArray(array $array): StoryPrivacySettingsSelectedUsers
@@ -44,7 +39,7 @@ class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'user_ids' => $this->userIds,
         ];
     }

@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
+ * Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings.
  */
 class SetAutosaveSettings extends TdFunction
 {
     public const TYPE_NAME = 'setAutosaveSettings';
 
-    /**
-     * Autosave settings scope
-     *
-     * @var AutosaveSettingsScope
-     */
-    protected AutosaveSettingsScope $scope;
-
-    /**
-     * New autosave settings for the scope; pass null to set autosave settings to default
-     *
-     * @var ScopeAutosaveSettings
-     */
-    protected ScopeAutosaveSettings $settings;
-
-    public function __construct(AutosaveSettingsScope $scope, ScopeAutosaveSettings $settings)
-    {
-        $this->scope = $scope;
-        $this->settings = $settings;
-    }
+    public function __construct(
+        /**
+         * Autosave settings scope.
+         */
+        protected AutosaveSettingsScope $scope,
+        /**
+         * New autosave settings for the scope; pass null to set autosave settings to default.
+         */
+        protected ScopeAutosaveSettings $settings,
+    ) {}
 
     public static function fromArray(array $array): SetAutosaveSettings
     {
@@ -59,8 +50,8 @@ class SetAutosaveSettings extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
+            '@type'    => static::TYPE_NAME,
+            'scope'    => $this->scope->typeSerialize(),
             'settings' => $this->settings->typeSerialize(),
         ];
     }

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+ * Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions.
  */
 class ReportMessageReactions extends TdFunction
 {
     public const TYPE_NAME = 'reportMessageReactions';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Identifier of the sender, which added the reaction
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    public function __construct(int $chatId, int $messageId, MessageSender $senderId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->senderId = $senderId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int           $messageId,
+        /**
+         * Identifier of the sender, which added the reaction.
+         */
+        protected MessageSender $senderId,
+    ) {}
 
     public static function fromArray(array $array): ReportMessageReactions
     {
@@ -72,10 +59,10 @@ class ReportMessageReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'sender_id' => $this->senderId->typeSerialize(),
+            'sender_id'  => $this->senderId->typeSerialize(),
         ];
     }
 }

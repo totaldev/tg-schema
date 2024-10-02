@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Allowed to use premium stickers with unique effects
+ * Allowed to use premium stickers with unique effects.
  */
 class PremiumFeatureUniqueStickers extends PremiumFeature
 {

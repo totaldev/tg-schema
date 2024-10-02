@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat contains pornographic messages
+ * The chat contains pornographic messages.
  */
 class ReportReasonPornography extends ReportReason
 {

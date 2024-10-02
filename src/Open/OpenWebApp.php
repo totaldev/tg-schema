@@ -6,86 +6,49 @@
 
 namespace Totaldev\TgSchema\Open;
 
-use Totaldev\TgSchema\Message\MessageReplyTo;
+use Totaldev\TgSchema\Input\InputMessageReplyTo;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeParameters;
 
 /**
  * Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an
- * inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+ * inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once.
  */
 class OpenWebApp extends TdFunction
 {
     public const TYPE_NAME = 'openWebApp';
 
-    /**
-     * Short name of the application; 0-64 English letters, digits, and underscores
-     *
-     * @var string
-     */
-    protected string $applicationName;
-
-    /**
-     * Identifier of the bot, providing the Web App
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * If not 0, a message thread identifier in which the message will be sent
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
-     * Identifier of the replied message or story for the message sent by the Web App; pass null if none
-     *
-     * @var MessageReplyTo
-     */
-    protected MessageReplyTo $replyTo;
-
-    /**
-     * Preferred Web App theme; pass null to use the default theme
-     *
-     * @var ThemeParameters
-     */
-    protected ThemeParameters $theme;
-
-    /**
-     * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
-     *
-     * @var string
-     */
-    protected string $url;
-
     public function __construct(
-        int             $chatId,
-        int             $botUserId,
-        string          $url,
-        ThemeParameters $theme,
-        string          $applicationName,
-        int             $messageThreadId,
-        MessageReplyTo  $replyTo,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->botUserId = $botUserId;
-        $this->url = $url;
-        $this->theme = $theme;
-        $this->applicationName = $applicationName;
-        $this->messageThreadId = $messageThreadId;
-        $this->replyTo = $replyTo;
-    }
+        /**
+         * Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats.
+         */
+        protected int                 $chatId,
+        /**
+         * Identifier of the bot, providing the Web App.
+         */
+        protected int                 $botUserId,
+        /**
+         * The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise.
+         */
+        protected string              $url,
+        /**
+         * Preferred Web App theme; pass null to use the default theme.
+         */
+        protected ThemeParameters     $theme,
+        /**
+         * Short name of the current application; 0-64 English letters, digits, and underscores.
+         */
+        protected string              $applicationName,
+        /**
+         * If not 0, the message thread identifier in which the message will be sent.
+         */
+        protected int                 $messageThreadId,
+        /**
+         * Information about the message or story to be replied in the message sent by the Web App; pass null if none.
+         */
+        protected InputMessageReplyTo $replyTo,
+    ) {}
 
     public static function fromArray(array $array): OpenWebApp
     {
@@ -120,7 +83,7 @@ class OpenWebApp extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getReplyTo(): MessageReplyTo
+    public function getReplyTo(): InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -138,14 +101,14 @@ class OpenWebApp extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'bot_user_id' => $this->botUserId,
-            'url' => $this->url,
-            'theme' => $this->theme->typeSerialize(),
-            'application_name' => $this->applicationName,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'bot_user_id'       => $this->botUserId,
+            'url'               => $this->url,
+            'theme'             => $this->theme->typeSerialize(),
+            'application_name'  => $this->applicationName,
             'message_thread_id' => $this->messageThreadId,
-            'reply_to' => $this->replyTo->typeSerialize(),
+            'reply_to'          => $this->replyTo->typeSerialize(),
         ];
     }
 }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Read;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Marks all mentions in a chat as read
+ * Marks all mentions in a chat as read.
  */
 class ReadAllChatMentions extends TdFunction
 {
     public const TYPE_NAME = 'readAllChatMentions';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): ReadAllChatMentions
     {
@@ -43,7 +37,7 @@ class ReadAllChatMentions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

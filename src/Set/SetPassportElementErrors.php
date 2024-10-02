@@ -12,31 +12,24 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until
- * the errors are fixed
+ * the errors are fixed.
  */
 class SetPassportElementErrors extends TdFunction
 {
     public const TYPE_NAME = 'setPassportElementErrors';
 
-    /**
-     * The errors
-     *
-     * @var InputPassportElementError[]
-     */
-    protected array $errors;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, array $errors)
-    {
-        $this->userId = $userId;
-        $this->errors = $errors;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int   $userId,
+        /**
+         * The errors.
+         *
+         * @var InputPassportElementError[]
+         */
+        protected array $errors,
+    ) {}
 
     public static function fromArray(array $array): SetPassportElementErrors
     {
@@ -59,7 +52,7 @@ class SetPassportElementErrors extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
             array_map(fn($x) => $x->typeSerialize(), $this->errors),
         ];

@@ -10,38 +10,29 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Video\VideoNote;
 
 /**
- * A video note message
+ * A video note message.
  */
 class PushMessageContentVideoNote extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentVideoNote';
 
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * Message content; may be null
-     *
-     * @var VideoNote|null
-     */
-    protected ?VideoNote $videoNote;
-
-    public function __construct(?VideoNote $videoNote, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Message content; may be null.
+         */
+        protected ?VideoNote $videoNote,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool       $isPinned,
+    ) {
         parent::__construct();
-
-        $this->videoNote = $videoNote;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentVideoNote
     {
         return new static(
-            (isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null),
+            isset($array['video_note']) ? TdSchemaRegistry::fromArray($array['video_note']) : null,
             $array['is_pinned'],
         );
     }
@@ -59,9 +50,9 @@ class PushMessageContentVideoNote extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
-            'is_pinned' => $this->isPinned,
+            'is_pinned'  => $this->isPinned,
         ];
     }
 }

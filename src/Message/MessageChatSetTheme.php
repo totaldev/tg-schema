@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A theme in the chat has been changed
+ * A theme in the chat has been changed.
  */
 class MessageChatSetTheme extends MessageContent
 {
     public const TYPE_NAME = 'messageChatSetTheme';
 
-    /**
-     * If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
-     *
-     * @var string
-     */
-    protected string $themeName;
-
-    public function __construct(string $themeName)
-    {
+    public function __construct(
+        /**
+         * If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one.
+         */
+        protected string $themeName
+    ) {
         parent::__construct();
-
-        $this->themeName = $themeName;
     }
 
     public static function fromArray(array $array): MessageChatSetTheme
@@ -44,7 +37,7 @@ class MessageChatSetTheme extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'theme_name' => $this->themeName,
         ];
     }

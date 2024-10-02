@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Notification\Notification;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A notification was changed
+ * A notification was changed.
  */
 class UpdateNotification extends Update
 {
     public const TYPE_NAME = 'updateNotification';
 
-    /**
-     * Changed notification
-     *
-     * @var Notification
-     */
-    protected Notification $notification;
-
-    /**
-     * Unique notification group identifier
-     *
-     * @var int
-     */
-    protected int $notificationGroupId;
-
-    public function __construct(int $notificationGroupId, Notification $notification)
-    {
+    public function __construct(
+        /**
+         * Unique notification group identifier.
+         */
+        protected int          $notificationGroupId,
+        /**
+         * Changed notification.
+         */
+        protected Notification $notification,
+    ) {
         parent::__construct();
-
-        $this->notificationGroupId = $notificationGroupId;
-        $this->notification = $notification;
     }
 
     public static function fromArray(array $array): UpdateNotification
@@ -59,9 +50,9 @@ class UpdateNotification extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'notification_group_id' => $this->notificationGroupId,
-            'notification' => $this->notification->typeSerialize(),
+            'notification'          => $this->notification->typeSerialize(),
         ];
     }
 }

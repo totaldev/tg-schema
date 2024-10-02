@@ -23,38 +23,21 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
 {
     public const TYPE_NAME = 'internalLinkTypeBotStartInGroup';
 
-    /**
-     * Expected administrator rights for the bot; may be null
-     *
-     * @var ChatAdministratorRights|null
-     */
-    protected ?ChatAdministratorRights $administratorRights;
-
-    /**
-     * Username of the bot
-     *
-     * @var string
-     */
-    protected string $botUsername;
-
-    /**
-     * The parameter to be passed to sendBotStartMessage
-     *
-     * @var string
-     */
-    protected string $startParameter;
-
     public function __construct(
-        string                   $botUsername,
-        string                   $startParameter,
-        ?ChatAdministratorRights $administratorRights,
-    )
-    {
+        /**
+         * Username of the bot.
+         */
+        protected string                   $botUsername,
+        /**
+         * The parameter to be passed to sendBotStartMessage.
+         */
+        protected string                   $startParameter,
+        /**
+         * Expected administrator rights for the bot; may be null.
+         */
+        protected ?ChatAdministratorRights $administratorRights,
+    ) {
         parent::__construct();
-
-        $this->botUsername = $botUsername;
-        $this->startParameter = $startParameter;
-        $this->administratorRights = $administratorRights;
     }
 
     public static function fromArray(array $array): InternalLinkTypeBotStartInGroup
@@ -62,7 +45,7 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
         return new static(
             $array['bot_username'],
             $array['start_parameter'],
-            (isset($array['administrator_rights']) ? TdSchemaRegistry::fromArray($array['administrator_rights']) : null),
+            isset($array['administrator_rights']) ? TdSchemaRegistry::fromArray($array['administrator_rights']) : null,
         );
     }
 
@@ -84,9 +67,9 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'bot_username' => $this->botUsername,
-            'start_parameter' => $this->startParameter,
+            '@type'                => static::TYPE_NAME,
+            'bot_username'         => $this->botUsername,
+            'start_parameter'      => $this->startParameter,
             'administrator_rights' => (isset($this->administratorRights) ? $this->administratorRights : null),
         ];
     }

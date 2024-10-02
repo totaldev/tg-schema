@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains custom information about the user
+ * Contains custom information about the user.
  */
 class UserSupportInfo extends TdObject
 {
     public const TYPE_NAME = 'userSupportInfo';
 
-    /**
-     * Information author
-     *
-     * @var string
-     */
-    protected string $author;
-
-    /**
-     * Information change date
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * Information message
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $message;
-
-    public function __construct(FormattedText $message, string $author, int $date)
-    {
-        $this->message = $message;
-        $this->author = $author;
-        $this->date = $date;
-    }
+    public function __construct(
+        /**
+         * Information message.
+         */
+        protected FormattedText $message,
+        /**
+         * Information author.
+         */
+        protected string        $author,
+        /**
+         * Information change date.
+         */
+        protected int           $date,
+    ) {}
 
     public static function fromArray(array $array): UserSupportInfo
     {
@@ -72,10 +59,10 @@ class UserSupportInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'message' => $this->message->typeSerialize(),
-            'author' => $this->author,
-            'date' => $this->date,
+            'author'  => $this->author,
+            'date'    => $this->date,
         ];
     }
 }

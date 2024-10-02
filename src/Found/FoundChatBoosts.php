@@ -11,39 +11,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of boosts applied to a chat
+ * Contains a list of boosts applied to a chat.
  */
 class FoundChatBoosts extends TdObject
 {
     public const TYPE_NAME = 'foundChatBoosts';
 
-    /**
-     * List of boosts
-     *
-     * @var ChatBoost[]
-     */
-    protected array $boosts;
-
-    /**
-     * The offset for the next request. If empty, there are no more results
-     *
-     * @var string
-     */
-    protected string $nextOffset;
-
-    /**
-     * Total number of boosts applied to the chat
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $boosts, string $nextOffset)
-    {
-        $this->totalCount = $totalCount;
-        $this->boosts = $boosts;
-        $this->nextOffset = $nextOffset;
-    }
+    public function __construct(
+        /**
+         * Total number of boosts applied to the chat.
+         */
+        protected int    $totalCount,
+        /**
+         * List of boosts.
+         *
+         * @var ChatBoost[]
+         */
+        protected array  $boosts,
+        /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
+    ) {}
 
     public static function fromArray(array $array): FoundChatBoosts
     {
@@ -72,7 +61,7 @@ class FoundChatBoosts extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->boosts),
             'next_offset' => $this->nextOffset,

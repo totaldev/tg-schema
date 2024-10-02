@@ -9,32 +9,25 @@ namespace Totaldev\TgSchema\Page;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A slideshow
+ * A slideshow.
  */
 class PageBlockSlideshow extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockSlideshow';
 
-    /**
-     * Block caption
-     *
-     * @var PageBlockCaption
-     */
-    protected PageBlockCaption $caption;
-
-    /**
-     * Slideshow item contents
-     *
-     * @var PageBlock[]
-     */
-    protected array $pageBlocks;
-
-    public function __construct(array $pageBlocks, PageBlockCaption $caption)
-    {
+    public function __construct(
+        /**
+         * Slideshow item contents.
+         *
+         * @var PageBlock[]
+         */
+        protected array            $pageBlocks,
+        /**
+         * Block caption.
+         */
+        protected PageBlockCaption $caption,
+    ) {
         parent::__construct();
-
-        $this->pageBlocks = $pageBlocks;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): PageBlockSlideshow
@@ -58,7 +51,7 @@ class PageBlockSlideshow extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption' => $this->caption->typeSerialize(),
         ];

@@ -10,48 +10,31 @@ use Totaldev\TgSchema\Downloaded\DownloadedFileCounts;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A file download was changed. This update is sent only after file download list is loaded for the first time
+ * A file download was changed. This update is sent only after file download list is loaded for the first time.
  */
 class UpdateFileDownload extends Update
 {
     public const TYPE_NAME = 'updateFileDownload';
 
-    /**
-     * Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
-     *
-     * @var int
-     */
-    protected int $completeDate;
-
-    /**
-     * New number of being downloaded and recently downloaded files found
-     *
-     * @var DownloadedFileCounts
-     */
-    protected DownloadedFileCounts $counts;
-
-    /**
-     * File identifier
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
-     * True, if downloading of the file is paused
-     *
-     * @var bool
-     */
-    protected bool $isPaused;
-
-    public function __construct(int $fileId, int $completeDate, bool $isPaused, DownloadedFileCounts $counts)
-    {
+    public function __construct(
+        /**
+         * File identifier.
+         */
+        protected int                  $fileId,
+        /**
+         * Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed.
+         */
+        protected int                  $completeDate,
+        /**
+         * True, if downloading of the file is paused.
+         */
+        protected bool                 $isPaused,
+        /**
+         * New number of being downloaded and recently downloaded files found.
+         */
+        protected DownloadedFileCounts $counts,
+    ) {
         parent::__construct();
-
-        $this->fileId = $fileId;
-        $this->completeDate = $completeDate;
-        $this->isPaused = $isPaused;
-        $this->counts = $counts;
     }
 
     public static function fromArray(array $array): UpdateFileDownload
@@ -87,11 +70,11 @@ class UpdateFileDownload extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
+            '@type'         => static::TYPE_NAME,
+            'file_id'       => $this->fileId,
             'complete_date' => $this->completeDate,
-            'is_paused' => $this->isPaused,
-            'counts' => $this->counts->typeSerialize(),
+            'is_paused'     => $this->isPaused,
+            'counts'        => $this->counts->typeSerialize(),
         ];
     }
 }

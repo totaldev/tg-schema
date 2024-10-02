@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Disabled ads
+ * Disabled ads.
  */
 class PremiumFeatureDisabledAds extends PremiumFeature
 {

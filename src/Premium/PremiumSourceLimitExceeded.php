@@ -9,24 +9,19 @@ namespace Totaldev\TgSchema\Premium;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A limit was exceeded
+ * A limit was exceeded.
  */
 class PremiumSourceLimitExceeded extends PremiumSource
 {
     public const TYPE_NAME = 'premiumSourceLimitExceeded';
 
-    /**
-     * Type of the exceeded limit
-     *
-     * @var PremiumLimitType
-     */
-    protected PremiumLimitType $limitType;
-
-    public function __construct(PremiumLimitType $limitType)
-    {
+    public function __construct(
+        /**
+         * Type of the exceeded limit.
+         */
+        protected PremiumLimitType $limitType
+    ) {
         parent::__construct();
-
-        $this->limitType = $limitType;
     }
 
     public static function fromArray(array $array): PremiumSourceLimitExceeded
@@ -44,7 +39,7 @@ class PremiumSourceLimitExceeded extends PremiumSource
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'limit_type' => $this->limitType->typeSerialize(),
         ];
     }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deleted a sticker set; for bots only
+ * Completely deletes a sticker set.
  */
 class DeleteStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'deleteStickerSet';
 
-    /**
-     * Sticker set name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
+    public function __construct(
+        /**
+         * Sticker set name. The sticker set must be owned by the current user.
+         */
+        protected string $name
+    ) {}
 
     public static function fromArray(array $array): DeleteStickerSet
     {
@@ -44,7 +38,7 @@ class DeleteStickerSet extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
         ];
     }
 }

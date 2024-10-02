@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session can be used
+ * The session can be used.
  */
 class CanTransferOwnershipResultOk extends CanTransferOwnershipResult
 {

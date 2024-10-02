@@ -7,19 +7,16 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post
- * a story there
+ * Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually
+ * trying to post a story there.
  */
 class GetChatsToSendStories extends TdFunction
 {
     public const TYPE_NAME = 'getChatsToSendStories';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetChatsToSendStories
     {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The other side kept disappearing
+ * The other side kept disappearing.
  */
 class CallProblemInterruptions extends CallProblem
 {

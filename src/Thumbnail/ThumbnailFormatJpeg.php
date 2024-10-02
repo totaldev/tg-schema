@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Thumbnail;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The thumbnail is in JPEG format
+ * The thumbnail is in JPEG format.
  */
 class ThumbnailFormatJpeg extends ThumbnailFormat
 {

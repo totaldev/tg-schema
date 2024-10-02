@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
+ * Returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
  */
 class TestSquareInt extends TdFunction
 {
     public const TYPE_NAME = 'testSquareInt';
 
-    /**
-     * Number to square
-     *
-     * @var int
-     */
-    protected int $x;
-
-    public function __construct(int $x)
-    {
-        $this->x = $x;
-    }
+    public function __construct(
+        /**
+         * Number to square.
+         */
+        protected int $x
+    ) {}
 
     public static function fromArray(array $array): TestSquareInt
     {
@@ -44,7 +38,7 @@ class TestSquareInt extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'x' => $this->x,
+            'x'     => $this->x,
         ];
     }
 }

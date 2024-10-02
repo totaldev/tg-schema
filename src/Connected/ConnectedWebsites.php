@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of websites the current user is logged in with Telegram
+ * Contains a list of websites the current user is logged in with Telegram.
  */
 class ConnectedWebsites extends TdObject
 {
     public const TYPE_NAME = 'connectedWebsites';
 
-    /**
-     * List of connected websites
-     *
-     * @var ConnectedWebsite[]
-     */
-    protected array $websites;
-
-    public function __construct(array $websites)
-    {
-        $this->websites = $websites;
-    }
+    public function __construct(
+        /**
+         * List of connected websites.
+         *
+         * @var ConnectedWebsite[]
+         */
+        protected array $websites
+    ) {}
 
     public static function fromArray(array $array): ConnectedWebsites
     {

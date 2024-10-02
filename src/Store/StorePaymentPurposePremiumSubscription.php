@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Store;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user subscribed to Telegram Premium
+ * The user subscribing to Telegram Premium.
  */
 class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
 {
     public const TYPE_NAME = 'storePaymentPurposePremiumSubscription';
 
-    /**
-     * Pass true if this is a restore of a Telegram Premium purchase; only for App Store
-     *
-     * @var bool
-     */
-    protected bool $isRestore;
-
-    /**
-     * Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
-     *
-     * @var bool
-     */
-    protected bool $isUpgrade;
-
-    public function __construct(bool $isRestore, bool $isUpgrade)
-    {
+    public function __construct(
+        /**
+         * Pass true if this is a restore of a Telegram Premium purchase; only for App Store.
+         */
+        protected bool $isRestore,
+        /**
+         * Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store.
+         */
+        protected bool $isUpgrade,
+    ) {
         parent::__construct();
-
-        $this->isRestore = $isRestore;
-        $this->isUpgrade = $isUpgrade;
     }
 
     public static function fromArray(array $array): StorePaymentPurposePremiumSubscription
@@ -58,7 +47,7 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'is_restore' => $this->isRestore,
             'is_upgrade' => $this->isUpgrade,
         ];

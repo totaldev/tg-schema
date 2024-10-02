@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
+ * Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user.
  */
 class RemoveNotification extends TdFunction
 {
     public const TYPE_NAME = 'removeNotification';
 
-    /**
-     * Identifier of notification group to which the notification belongs
-     *
-     * @var int
-     */
-    protected int $notificationGroupId;
-
-    /**
-     * Identifier of removed notification
-     *
-     * @var int
-     */
-    protected int $notificationId;
-
-    public function __construct(int $notificationGroupId, int $notificationId)
-    {
-        $this->notificationGroupId = $notificationGroupId;
-        $this->notificationId = $notificationId;
-    }
+    public function __construct(
+        /**
+         * Identifier of notification group to which the notification belongs.
+         */
+        protected int $notificationGroupId,
+        /**
+         * Identifier of removed notification.
+         */
+        protected int $notificationId,
+    ) {}
 
     public static function fromArray(array $array): RemoveNotification
     {
@@ -57,9 +47,9 @@ class RemoveNotification extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'notification_group_id' => $this->notificationGroupId,
-            'notification_id' => $this->notificationId,
+            'notification_id'       => $this->notificationId,
         ];
     }
 }

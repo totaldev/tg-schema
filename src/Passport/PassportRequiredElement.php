@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a description of the required Telegram Passport element that was requested by a service
+ * Contains a description of the required Telegram Passport element that was requested by a service.
  */
 class PassportRequiredElement extends TdObject
 {
     public const TYPE_NAME = 'passportRequiredElement';
 
-    /**
-     * List of Telegram Passport elements any of which is enough to provide
-     *
-     * @var PassportSuitableElement[]
-     */
-    protected array $suitableElements;
-
-    public function __construct(array $suitableElements)
-    {
-        $this->suitableElements = $suitableElements;
-    }
+    public function __construct(
+        /**
+         * List of Telegram Passport elements any of which is enough to provide.
+         *
+         * @var PassportSuitableElement[]
+         */
+        protected array $suitableElements
+    ) {}
 
     public static function fromArray(array $array): PassportRequiredElement
     {

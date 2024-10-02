@@ -9,39 +9,30 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The chat photo was changed
+ * The chat photo was changed.
  */
 class ChatEventPhotoChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventPhotoChanged';
 
-    /**
-     * New chat photo value; may be null
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $newPhoto;
-
-    /**
-     * Previous chat photo value; may be null
-     *
-     * @var ChatPhoto|null
-     */
-    protected ?ChatPhoto $oldPhoto;
-
-    public function __construct(?ChatPhoto $oldPhoto, ?ChatPhoto $newPhoto)
-    {
+    public function __construct(
+        /**
+         * Previous chat photo value; may be null.
+         */
+        protected ?ChatPhoto $oldPhoto,
+        /**
+         * New chat photo value; may be null.
+         */
+        protected ?ChatPhoto $newPhoto,
+    ) {
         parent::__construct();
-
-        $this->oldPhoto = $oldPhoto;
-        $this->newPhoto = $newPhoto;
     }
 
     public static function fromArray(array $array): ChatEventPhotoChanged
     {
         return new static(
-            (isset($array['old_photo']) ? TdSchemaRegistry::fromArray($array['old_photo']) : null),
-            (isset($array['new_photo']) ? TdSchemaRegistry::fromArray($array['new_photo']) : null),
+            isset($array['old_photo']) ? TdSchemaRegistry::fromArray($array['old_photo']) : null,
+            isset($array['new_photo']) ? TdSchemaRegistry::fromArray($array['new_photo']) : null,
         );
     }
 
@@ -58,7 +49,7 @@ class ChatEventPhotoChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'old_photo' => (isset($this->oldPhoto) ? $this->oldPhoto : null),
             'new_photo' => (isset($this->newPhoto) ? $this->newPhoto : null),
         ];

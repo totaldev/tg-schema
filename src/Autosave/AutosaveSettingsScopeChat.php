@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Autosave;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Autosave settings applied to a chat
+ * Autosave settings applied to a chat.
  */
 class AutosaveSettingsScopeChat extends AutosaveSettingsScope
 {
     public const TYPE_NAME = 'autosaveSettingsScopeChat';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
     }
 
     public static function fromArray(array $array): AutosaveSettingsScopeChat
@@ -44,7 +37,7 @@ class AutosaveSettingsScopeChat extends AutosaveSettingsScope
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

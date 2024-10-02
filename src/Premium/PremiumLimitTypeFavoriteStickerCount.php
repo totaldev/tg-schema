@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of favorite stickers
+ * The maximum number of favorite stickers.
  */
 class PremiumLimitTypeFavoriteStickerCount extends PremiumLimitType
 {

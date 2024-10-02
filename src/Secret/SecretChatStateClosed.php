@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Secret;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The secret chat is closed
+ * The secret chat is closed.
  */
 class SecretChatStateClosed extends SecretChatState
 {

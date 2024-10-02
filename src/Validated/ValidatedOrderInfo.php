@@ -11,31 +11,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options
+ * Contains a temporary identifier of validated order information, which is stored for one hour, and the available shipping options.
  */
 class ValidatedOrderInfo extends TdObject
 {
     public const TYPE_NAME = 'validatedOrderInfo';
 
-    /**
-     * Temporary identifier of the order information
-     *
-     * @var string
-     */
-    protected string $orderInfoId;
-
-    /**
-     * Available shipping options
-     *
-     * @var ShippingOption[]
-     */
-    protected array $shippingOptions;
-
-    public function __construct(string $orderInfoId, array $shippingOptions)
-    {
-        $this->orderInfoId = $orderInfoId;
-        $this->shippingOptions = $shippingOptions;
-    }
+    public function __construct(
+        /**
+         * Temporary identifier of the order information.
+         */
+        protected string $orderInfoId,
+        /**
+         * Available shipping options.
+         *
+         * @var ShippingOption[]
+         */
+        protected array  $shippingOptions,
+    ) {}
 
     public static function fromArray(array $array): ValidatedOrderInfo
     {
@@ -58,7 +51,7 @@ class ValidatedOrderInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'order_info_id' => $this->orderInfoId,
             array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
         ];

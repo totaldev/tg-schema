@@ -12,52 +12,30 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+ * Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side.
  */
 class EditMessageText extends TdFunction
 {
     public const TYPE_NAME = 'editMessageText';
 
-    /**
-     * The chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New text content of the message. Must be of type inputMessageText
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none; for bots only
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
     public function __construct(
-        int                 $chatId,
-        int                 $messageId,
-        ReplyMarkup         $replyMarkup,
-        InputMessageContent $inputMessageContent,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
-    }
+        /**
+         * The chat the message belongs to.
+         */
+        protected int                 $chatId,
+        /**
+         * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
+         */
+        protected int                 $messageId,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * New text content of the message. Must be of type inputMessageText.
+         */
+        protected InputMessageContent $inputMessageContent,
+    ) {}
 
     public static function fromArray(array $array): EditMessageText
     {
@@ -92,10 +70,10 @@ class EditMessageText extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
+            'message_id'            => $this->messageId,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

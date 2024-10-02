@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Traverse all chats in a chat list and marks all messages in the chats as read
+ * Traverse all chats in a chat list and marks all messages in the chats as read.
  */
 class ReadChatList extends TdFunction
 {
     public const TYPE_NAME = 'readChatList';
 
-    /**
-     * Chat list in which to mark all chats as read
-     *
-     * @var ChatList
-     */
-    protected ChatList $chatList;
-
-    public function __construct(ChatList $chatList)
-    {
-        $this->chatList = $chatList;
-    }
+    public function __construct(
+        /**
+         * Chat list in which to mark all chats as read.
+         */
+        protected ChatList $chatList
+    ) {}
 
     public static function fromArray(array $array): ReadChatList
     {
@@ -44,7 +39,7 @@ class ReadChatList extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'chat_list' => $this->chatList->typeSerialize(),
         ];
     }

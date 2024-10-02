@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of stories sent per month
+ * The maximum number of stories sent per month.
  */
 class PremiumLimitTypeMonthlySentStoryCount extends PremiumLimitType
 {

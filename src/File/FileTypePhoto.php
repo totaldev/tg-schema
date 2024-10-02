@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a photo
+ * The file is a photo.
  */
 class FileTypePhoto extends FileType
 {

@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Point\Point;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A cubic Bézier curve to a given point
+ * A cubic Bézier curve to a given point.
  */
 class VectorPathCommandCubicBezierCurve extends VectorPathCommand
 {
     public const TYPE_NAME = 'vectorPathCommandCubicBezierCurve';
 
-    /**
-     * The end control point of the curve
-     *
-     * @var Point
-     */
-    protected Point $endControlPoint;
-
-    /**
-     * The end point of the curve
-     *
-     * @var Point
-     */
-    protected Point $endPoint;
-
-    /**
-     * The start control point of the curve
-     *
-     * @var Point
-     */
-    protected Point $startControlPoint;
-
-    public function __construct(Point $startControlPoint, Point $endControlPoint, Point $endPoint)
-    {
+    public function __construct(
+        /**
+         * The start control point of the curve.
+         */
+        protected Point $startControlPoint,
+        /**
+         * The end control point of the curve.
+         */
+        protected Point $endControlPoint,
+        /**
+         * The end point of the curve.
+         */
+        protected Point $endPoint,
+    ) {
         parent::__construct();
-
-        $this->startControlPoint = $startControlPoint;
-        $this->endControlPoint = $endControlPoint;
-        $this->endPoint = $endPoint;
     }
 
     public static function fromArray(array $array): VectorPathCommandCubicBezierCurve
@@ -73,10 +60,10 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'               => static::TYPE_NAME,
             'start_control_point' => $this->startControlPoint->typeSerialize(),
-            'end_control_point' => $this->endControlPoint->typeSerialize(),
-            'end_point' => $this->endPoint->typeSerialize(),
+            'end_control_point'   => $this->endControlPoint->typeSerialize(),
+            'end_point'           => $this->endPoint->typeSerialize(),
         ];
     }
 }

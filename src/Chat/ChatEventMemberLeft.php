@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A member left the chat
+ * A member left the chat.
  */
 class ChatEventMemberLeft extends ChatEventAction
 {

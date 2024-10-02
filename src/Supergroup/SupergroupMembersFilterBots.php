@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns bot members of the supergroup or channel
+ * Returns bot members of the supergroup or channel.
  */
 class SupergroupMembersFilterBots extends SupergroupMembersFilter
 {

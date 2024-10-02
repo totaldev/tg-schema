@@ -2,16 +2,14 @@
 
 If you're here, you would like to contribute to this repository and you're really welcome!
 
-
 ## Bug reports
 
 If you find a bug or a documentation issue, please report it or even better: fix it :). If you report it,
 please be as precise as possible. Here is a little list of required information:
 
- - Precise description of the bug
- - Details of your environment (for example: OS, PHP version, installed extensions)
- - Backtrace which might help identifing the bug
-
+- Precise description of the bug
+- Details of your environment (for example: OS, PHP version, installed extensions)
+- Backtrace which might help identifing the bug
 
 ## Feature requests
 
@@ -19,7 +17,6 @@ If you think a feature is missing, please report it or even better: implement it
 precisely what you would like to see implemented and we will discuss what is the best approach for it. If you can do
 some research before submitting it and link the resources to your description, you're awesome! It will allow us to more
 easily understood/implement it.
-
 
 ## Sending a Pull Request
 
@@ -73,19 +70,16 @@ $ git pull --rebase upstream master
 $ git push -f origin feature-or-bug-fix-description
 ```
 
-
 ## Coding standard
 
 This repository follows the [PSR-2 standard](http://www.php-fig.org/psr/psr-2/) and so, if you want to contribute,
 you must follow these rules.
-
 
 ## Semver
 
 We are trying to follow [semver](http://semver.org/). When you are making BC breaking changes,
 please let us know why you think it is important.
 In this case, your patch can only be included in the next major version.
-
 
 ## Code of Conduct
 

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A new member joined the chat via an invite link
+ * A new member joined the chat via an invite link.
  */
 class MessageChatJoinByLink extends MessageContent
 {

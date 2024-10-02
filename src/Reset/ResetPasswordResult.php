@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Reset;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents result of 2-step verification password reset
+ * Represents result of 2-step verification password reset.
  */
 class ResetPasswordResult extends TdObject
 {
     public const TYPE_NAME = 'ResetPasswordResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResetPasswordResult
     {

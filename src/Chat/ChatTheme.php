@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Theme\ThemeSettings;
 
 /**
- * Describes a chat theme
+ * Describes a chat theme.
  */
 class ChatTheme extends TdObject
 {
     public const TYPE_NAME = 'chatTheme';
 
-    /**
-     * Theme settings for a dark chat theme
-     *
-     * @var ThemeSettings
-     */
-    protected ThemeSettings $darkSettings;
-
-    /**
-     * Theme settings for a light chat theme
-     *
-     * @var ThemeSettings
-     */
-    protected ThemeSettings $lightSettings;
-
-    /**
-     * Theme name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name, ThemeSettings $lightSettings, ThemeSettings $darkSettings)
-    {
-        $this->name = $name;
-        $this->lightSettings = $lightSettings;
-        $this->darkSettings = $darkSettings;
-    }
+    public function __construct(
+        /**
+         * Theme name.
+         */
+        protected string        $name,
+        /**
+         * Theme settings for a light chat theme.
+         */
+        protected ThemeSettings $lightSettings,
+        /**
+         * Theme settings for a dark chat theme.
+         */
+        protected ThemeSettings $darkSettings,
+    ) {}
 
     public static function fromArray(array $array): ChatTheme
     {
@@ -72,10 +59,10 @@ class ChatTheme extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            '@type'          => static::TYPE_NAME,
+            'name'           => $this->name,
             'light_settings' => $this->lightSettings->typeSerialize(),
-            'dark_settings' => $this->darkSettings->typeSerialize(),
+            'dark_settings'  => $this->darkSettings->typeSerialize(),
         ];
     }
 }

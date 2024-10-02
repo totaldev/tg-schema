@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Story\StoryList;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Number of chats in a story list has changed
+ * Number of chats in a story list has changed.
  */
 class UpdateStoryListChatCount extends Update
 {
     public const TYPE_NAME = 'updateStoryListChatCount';
 
-    /**
-     * Approximate total number of chats with active stories in the list
-     *
-     * @var int
-     */
-    protected int $chatCount;
-
-    /**
-     * The story list
-     *
-     * @var StoryList
-     */
-    protected StoryList $storyList;
-
-    public function __construct(StoryList $storyList, int $chatCount)
-    {
+    public function __construct(
+        /**
+         * The story list.
+         */
+        protected StoryList $storyList,
+        /**
+         * Approximate total number of chats with active stories in the list.
+         */
+        protected int       $chatCount,
+    ) {
         parent::__construct();
-
-        $this->storyList = $storyList;
-        $this->chatCount = $chatCount;
     }
 
     public static function fromArray(array $array): UpdateStoryListChatCount
@@ -59,7 +50,7 @@ class UpdateStoryListChatCount extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'story_list' => $this->storyList->typeSerialize(),
             'chat_count' => $this->chatCount,
         ];

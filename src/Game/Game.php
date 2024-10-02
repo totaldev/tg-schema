@@ -13,79 +13,42 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a game. Use getInternalLink with internalLinkTypeGame to share the game
+ * Describes a game. Use getInternalLink with internalLinkTypeGame to share the game.
  */
 class Game extends TdObject
 {
     public const TYPE_NAME = 'game';
 
-    /**
-     * Game animation; may be null
-     *
-     * @var Animation|null
-     */
-    protected ?Animation $animation;
-
-    /**
-     * Game description
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Unique game identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Game photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    /**
-     * Game short name
-     *
-     * @var string
-     */
-    protected string $shortName;
-
-    /**
-     * Game text, usually containing scoreboards for a game
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    /**
-     * Game title
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        int           $id,
-        string        $shortName,
-        string        $title,
-        FormattedText $text,
-        string        $description,
-        Photo         $photo,
-        ?Animation    $animation,
-    )
-    {
-        $this->id = $id;
-        $this->shortName = $shortName;
-        $this->title = $title;
-        $this->text = $text;
-        $this->description = $description;
-        $this->photo = $photo;
-        $this->animation = $animation;
-    }
+        /**
+         * Unique game identifier.
+         */
+        protected int           $id,
+        /**
+         * Game short name.
+         */
+        protected string        $shortName,
+        /**
+         * Game title.
+         */
+        protected string        $title,
+        /**
+         * Game text, usually containing scoreboards for a game.
+         */
+        protected FormattedText $text,
+        /**
+         * Game description.
+         */
+        protected string        $description,
+        /**
+         * Game photo.
+         */
+        protected Photo         $photo,
+        /**
+         * Game animation; may be null.
+         */
+        protected ?Animation    $animation,
+    ) {}
 
     public static function fromArray(array $array): Game
     {
@@ -96,7 +59,7 @@ class Game extends TdObject
             TdSchemaRegistry::fromArray($array['text']),
             $array['description'],
             TdSchemaRegistry::fromArray($array['photo']),
-            (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
         );
     }
 
@@ -138,14 +101,14 @@ class Game extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'short_name' => $this->shortName,
-            'title' => $this->title,
-            'text' => $this->text->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'short_name'  => $this->shortName,
+            'title'       => $this->title,
+            'text'        => $this->text->typeSerialize(),
             'description' => $this->description,
-            'photo' => $this->photo->typeSerialize(),
-            'animation' => (isset($this->animation) ? $this->animation : null),
+            'photo'       => $this->photo->typeSerialize(),
+            'animation'   => (isset($this->animation) ? $this->animation : null),
         ];
     }
 }

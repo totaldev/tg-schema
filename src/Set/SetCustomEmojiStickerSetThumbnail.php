@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets a custom emoji sticker set thumbnail; for bots only
+ * Sets a custom emoji sticker set thumbnail.
  */
 class SetCustomEmojiStickerSetThumbnail extends TdFunction
 {
     public const TYPE_NAME = 'setCustomEmojiStickerSetThumbnail';
 
-    /**
-     * Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-     *
-     * @var int
-     */
-    protected int $customEmojiId;
-
-    /**
-     * Sticker set name
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(string $name, int $customEmojiId)
-    {
-        $this->name = $name;
-        $this->customEmojiId = $customEmojiId;
-    }
+    public function __construct(
+        /**
+         * Sticker set name. The sticker set must be owned by the current user.
+         */
+        protected string $name,
+        /**
+         * Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail.
+         */
+        protected int    $customEmojiId,
+    ) {}
 
     public static function fromArray(array $array): SetCustomEmojiStickerSetThumbnail
     {
@@ -57,8 +47,8 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            '@type'           => static::TYPE_NAME,
+            'name'            => $this->name,
             'custom_emoji_id' => $this->customEmojiId,
         ];
     }

@@ -11,49 +11,31 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group
- * on their own using invite links, etc., unless unbanned first
+ * Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels,
+ * the user will not be able to return to the group on their own using invite links, etc., unless unbanned first.
  */
 class BanChatMember extends TdFunction
 {
     public const TYPE_NAME = 'banChatMember';
 
-    /**
-     * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from
-     * the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
-     *
-     * @var int
-     */
-    protected int $bannedUntilDate;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Member identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    /**
-     * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
-     *
-     * @var bool
-     */
-    protected bool $revokeMessages;
-
-    public function __construct(int $chatId, MessageSender $memberId, int $bannedUntilDate, bool $revokeMessages)
-    {
-        $this->chatId = $chatId;
-        $this->memberId = $memberId;
-        $this->bannedUntilDate = $bannedUntilDate;
-        $this->revokeMessages = $revokeMessages;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * Member identifier.
+         */
+        protected MessageSender $memberId,
+        /**
+         * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned.
+         */
+        protected int           $bannedUntilDate,
+        /**
+         * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels.
+         */
+        protected bool          $revokeMessages,
+    ) {}
 
     public static function fromArray(array $array): BanChatMember
     {
@@ -88,11 +70,11 @@ class BanChatMember extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'member_id'         => $this->memberId->typeSerialize(),
             'banned_until_date' => $this->bannedUntilDate,
-            'revoke_messages' => $this->revokeMessages,
+            'revoke_messages'   => $this->revokeMessages,
         ];
     }
 }

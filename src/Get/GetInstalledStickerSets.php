@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a list of installed sticker sets
+ * Returns a list of installed sticker sets.
  */
 class GetInstalledStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'getInstalledStickerSets';
 
-    /**
-     * Type of the sticker sets to return
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    public function __construct(StickerType $stickerType)
-    {
-        $this->stickerType = $stickerType;
-    }
+    public function __construct(
+        /**
+         * Type of the sticker sets to return.
+         */
+        protected StickerType $stickerType
+    ) {}
 
     public static function fromArray(array $array): GetInstalledStickerSets
     {
@@ -44,7 +39,7 @@ class GetInstalledStickerSets extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'sticker_type' => $this->stickerType->typeSerialize(),
         ];
     }

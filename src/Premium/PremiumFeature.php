@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Premium;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a feature available to Premium users
+ * Describes a feature available to Premium users.
  */
 class PremiumFeature extends TdObject
 {
     public const TYPE_NAME = 'PremiumFeature';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PremiumFeature
     {

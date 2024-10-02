@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only animation messages
+ * Returns only animation messages.
  */
 class SearchMessagesFilterAnimation extends SearchMessagesFilter
 {

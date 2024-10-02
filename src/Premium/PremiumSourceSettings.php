@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A user opened the Premium features screen from settings
+ * A user opened the Premium features screen from settings.
  */
 class PremiumSourceSettings extends PremiumSource
 {

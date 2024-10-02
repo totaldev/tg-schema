@@ -12,43 +12,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the text of an inline text or game message sent via a bot; for bots only
+ * Edits the text of an inline text or game message sent via a bot; for bots only.
  */
 class EditInlineMessageText extends TdFunction
 {
     public const TYPE_NAME = 'editInlineMessageText';
 
-    /**
-     * Inline message identifier
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
-     * New text content of the message. Must be of type inputMessageText
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
-    /**
-     * The new message reply markup; pass null if none
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
     public function __construct(
-        string              $inlineMessageId,
-        ReplyMarkup         $replyMarkup,
-        InputMessageContent $inputMessageContent,
-    )
-    {
-        $this->inlineMessageId = $inlineMessageId;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
-    }
+        /**
+         * Inline message identifier.
+         */
+        protected string              $inlineMessageId,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * New text content of the message. Must be of type inputMessageText.
+         */
+        protected InputMessageContent $inputMessageContent,
+    ) {}
 
     public static function fromArray(array $array): EditInlineMessageText
     {
@@ -77,9 +60,9 @@ class EditInlineMessageText extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'inline_message_id' => $this->inlineMessageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'inline_message_id'     => $this->inlineMessageId,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

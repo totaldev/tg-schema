@@ -7,35 +7,25 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if
- * supergroupFullInfo.can_get_statistics == true
+ * supergroupFullInfo.can_get_statistics == true.
  */
 class GetChatStatistics extends TdFunction
 {
     public const TYPE_NAME = 'getChatStatistics';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true if a dark theme is used by the application
-     *
-     * @var bool
-     */
-    protected bool $isDark;
-
-    public function __construct(int $chatId, bool $isDark)
-    {
-        $this->chatId = $chatId;
-        $this->isDark = $isDark;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * Pass true if a dark theme is used by the application.
+         */
+        protected bool $isDark,
+    ) {}
 
     public static function fromArray(array $array): GetChatStatistics
     {
@@ -58,7 +48,7 @@ class GetChatStatistics extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
             'is_dark' => $this->isDark,
         ];

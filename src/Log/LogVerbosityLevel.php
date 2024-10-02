@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Log;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a TDLib internal log verbosity level
+ * Contains a TDLib internal log verbosity level.
  */
 class LogVerbosityLevel extends TdObject
 {
     public const TYPE_NAME = 'logVerbosityLevel';
 
-    /**
-     * Log verbosity level
-     *
-     * @var int
-     */
-    protected int $verbosityLevel;
-
-    public function __construct(int $verbosityLevel)
-    {
-        $this->verbosityLevel = $verbosityLevel;
-    }
+    public function __construct(
+        /**
+         * Log verbosity level.
+         */
+        protected int $verbosityLevel
+    ) {}
 
     public static function fromArray(array $array): LogVerbosityLevel
     {
@@ -43,7 +37,7 @@ class LogVerbosityLevel extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'verbosity_level' => $this->verbosityLevel,
         ];
     }

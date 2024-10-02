@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a chat folder by its identifier
+ * Returns information about a chat folder by its identifier.
  */
 class GetChatFolder extends TdFunction
 {
     public const TYPE_NAME = 'getChatFolder';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId)
-    {
-        $this->chatFolderId = $chatFolderId;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int $chatFolderId
+    ) {}
 
     public static function fromArray(array $array): GetChatFolder
     {
@@ -43,7 +37,7 @@ class GetChatFolder extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
     }

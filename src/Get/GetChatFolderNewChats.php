@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period")
- * for the given chat folder
+ * for the given chat folder.
  */
 class GetChatFolderNewChats extends TdFunction
 {
     public const TYPE_NAME = 'getChatFolderNewChats';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId)
-    {
-        $this->chatFolderId = $chatFolderId;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int $chatFolderId
+    ) {}
 
     public static function fromArray(array $array): GetChatFolderNewChats
     {
@@ -44,7 +38,7 @@ class GetChatFolderNewChats extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
     }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
+ * Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously.
  */
 class GetFileMimeType extends TdFunction
 {
     public const TYPE_NAME = 'getFileMimeType';
 
-    /**
-     * The name of the file or path to the file
-     *
-     * @var string
-     */
-    protected string $fileName;
-
-    public function __construct(string $fileName)
-    {
-        $this->fileName = $fileName;
-    }
+    public function __construct(
+        /**
+         * The name of the file or path to the file.
+         */
+        protected string $fileName
+    ) {}
 
     public static function fromArray(array $array): GetFileMimeType
     {
@@ -43,7 +37,7 @@ class GetFileMimeType extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'file_name' => $this->fileName,
         ];
     }

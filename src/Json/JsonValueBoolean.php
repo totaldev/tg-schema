@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Json;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a boolean JSON value
+ * Represents a boolean JSON value.
  */
 class JsonValueBoolean extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueBoolean';
 
-    /**
-     * The value
-     *
-     * @var bool
-     */
-    protected bool $value;
-
-    public function __construct(bool $value)
-    {
+    public function __construct(
+        /**
+         * The value.
+         */
+        protected bool $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): JsonValueBoolean

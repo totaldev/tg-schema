@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Custom;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the result of a custom request
+ * Contains the result of a custom request.
  */
 class CustomRequestResult extends TdObject
 {
     public const TYPE_NAME = 'customRequestResult';
 
-    /**
-     * A JSON-serialized result
-     *
-     * @var string
-     */
-    protected string $result;
-
-    public function __construct(string $result)
-    {
-        $this->result = $result;
-    }
+    public function __construct(
+        /**
+         * A JSON-serialized result.
+         */
+        protected string $result
+    ) {}
 
     public static function fromArray(array $array): CustomRequestResult
     {
@@ -43,7 +37,7 @@ class CustomRequestResult extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'result' => $this->result,
         ];
     }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * File generation is no longer needed
+ * File generation is no longer needed.
  */
 class UpdateFileGenerationStop extends Update
 {
     public const TYPE_NAME = 'updateFileGenerationStop';
 
-    /**
-     * Unique identifier for the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    public function __construct(int $generationId)
-    {
+    public function __construct(
+        /**
+         * Unique identifier for the generation process.
+         */
+        protected int $generationId
+    ) {
         parent::__construct();
-
-        $this->generationId = $generationId;
     }
 
     public static function fromArray(array $array): UpdateFileGenerationStop
@@ -44,7 +37,7 @@ class UpdateFileGenerationStop extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'generation_id' => $this->generationId,
         ];
     }

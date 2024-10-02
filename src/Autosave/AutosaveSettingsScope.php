@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Autosave;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes scope of autosave settings
+ * Describes scope of autosave settings.
  */
 class AutosaveSettingsScope extends TdObject
 {
     public const TYPE_NAME = 'AutosaveSettingsScope';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): AutosaveSettingsScope
     {

@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call is pending, waiting to be accepted by a user
+ * The call is pending, waiting to be accepted by a user.
  */
 class CallStatePending extends CallState
 {
     public const TYPE_NAME = 'callStatePending';
 
-    /**
-     * True, if the call has already been created by the server
-     *
-     * @var bool
-     */
-    protected bool $isCreated;
-
-    /**
-     * True, if the call has already been received by the other party
-     *
-     * @var bool
-     */
-    protected bool $isReceived;
-
-    public function __construct(bool $isCreated, bool $isReceived)
-    {
+    public function __construct(
+        /**
+         * True, if the call has already been created by the server.
+         */
+        protected bool $isCreated,
+        /**
+         * True, if the call has already been received by the other party.
+         */
+        protected bool $isReceived,
+    ) {
         parent::__construct();
-
-        $this->isCreated = $isCreated;
-        $this->isReceived = $isReceived;
     }
 
     public static function fromArray(array $array): CallStatePending
@@ -58,8 +47,8 @@ class CallStatePending extends CallState
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'is_created' => $this->isCreated,
+            '@type'       => static::TYPE_NAME,
+            'is_created'  => $this->isCreated,
             'is_received' => $this->isReceived,
         ];
     }

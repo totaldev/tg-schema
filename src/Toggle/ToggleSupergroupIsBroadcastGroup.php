@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
+ * Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup.
  */
 class ToggleSupergroupIsBroadcastGroup extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupIsBroadcastGroup';
 
-    /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId)
-    {
-        $this->supergroupId = $supergroupId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int $supergroupId
+    ) {}
 
     public static function fromArray(array $array): ToggleSupergroupIsBroadcastGroup
     {
@@ -43,7 +37,7 @@ class ToggleSupergroupIsBroadcastGroup extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'supergroup_id' => $this->supergroupId,
         ];
     }

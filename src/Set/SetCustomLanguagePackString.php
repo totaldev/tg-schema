@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+ * Adds, edits or deletes a string in a custom local language pack. Can be called before authorization.
  */
 class SetCustomLanguagePackString extends TdFunction
 {
     public const TYPE_NAME = 'setCustomLanguagePackString';
 
-    /**
-     * Identifier of a previously added custom local language pack in the current localization target
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    /**
-     * New language pack string
-     *
-     * @var LanguagePackString
-     */
-    protected LanguagePackString $newString;
-
-    public function __construct(string $languagePackId, LanguagePackString $newString)
-    {
-        $this->languagePackId = $languagePackId;
-        $this->newString = $newString;
-    }
+    public function __construct(
+        /**
+         * Identifier of a previously added custom local language pack in the current localization target.
+         */
+        protected string             $languagePackId,
+        /**
+         * New language pack string.
+         */
+        protected LanguagePackString $newString,
+    ) {}
 
     public static function fromArray(array $array): SetCustomLanguagePackString
     {
@@ -58,9 +49,9 @@ class SetCustomLanguagePackString extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'language_pack_id' => $this->languagePackId,
-            'new_string' => $this->newString->typeSerialize(),
+            'new_string'       => $this->newString->typeSerialize(),
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used private chats with non-bot users
+ * A category containing frequently used private chats with non-bot users.
  */
 class TopChatCategoryUsers extends TopChatCategory
 {

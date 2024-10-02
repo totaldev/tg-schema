@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat represents a fake account
+ * The chat represents a fake account.
  */
 class ReportReasonFake extends ReportReason
 {

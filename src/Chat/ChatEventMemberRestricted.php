@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
+ * A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed.
  */
 class ChatEventMemberRestricted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberRestricted';
 
-    /**
-     * Affected chat member identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    /**
-     * New status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $newStatus;
-
-    /**
-     * Previous status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $oldStatus;
-
-    public function __construct(MessageSender $memberId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
-    {
+    public function __construct(
+        /**
+         * Affected chat member identifier.
+         */
+        protected MessageSender    $memberId,
+        /**
+         * Previous status of the chat member.
+         */
+        protected ChatMemberStatus $oldStatus,
+        /**
+         * New status of the chat member.
+         */
+        protected ChatMemberStatus $newStatus,
+    ) {
         parent::__construct();
-
-        $this->memberId = $memberId;
-        $this->oldStatus = $oldStatus;
-        $this->newStatus = $newStatus;
     }
 
     public static function fromArray(array $array): ChatEventMemberRestricted
@@ -73,8 +60,8 @@ class ChatEventMemberRestricted extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'member_id' => $this->memberId->typeSerialize(),
+            '@type'      => static::TYPE_NAME,
+            'member_id'  => $this->memberId->typeSerialize(),
             'old_status' => $this->oldStatus->typeSerialize(),
             'new_status' => $this->newStatus->typeSerialize(),
         ];

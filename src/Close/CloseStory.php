@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Close;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs TDLib that a story is closed by the user
+ * Informs TDLib that a story is closed by the user.
  */
 class CloseStory extends TdFunction
 {
     public const TYPE_NAME = 'closeStory';
 
-    /**
-     * The identifier of the story
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * The identifier of the sender of the story to close
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-    }
+    public function __construct(
+        /**
+         * The identifier of the sender of the story to close.
+         */
+        protected int $storySenderChatId,
+        /**
+         * The identifier of the story.
+         */
+        protected int $storyId,
+    ) {}
 
     public static function fromArray(array $array): CloseStory
     {
@@ -57,9 +47,9 @@ class CloseStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

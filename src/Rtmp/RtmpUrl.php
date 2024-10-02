@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Rtmp;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents an RTMP URL
+ * Represents an RTMP URL.
  */
 class RtmpUrl extends TdObject
 {
     public const TYPE_NAME = 'rtmpUrl';
 
-    /**
-     * Stream key
-     *
-     * @var string
-     */
-    protected string $streamKey;
-
-    /**
-     * The URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url, string $streamKey)
-    {
-        $this->url = $url;
-        $this->streamKey = $streamKey;
-    }
+    public function __construct(
+        /**
+         * The URL.
+         */
+        protected string $url,
+        /**
+         * Stream key.
+         */
+        protected string $streamKey,
+    ) {}
 
     public static function fromArray(array $array): RtmpUrl
     {
@@ -57,8 +47,8 @@ class RtmpUrl extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            '@type'      => static::TYPE_NAME,
+            'url'        => $this->url,
             'stream_key' => $this->streamKey,
         ];
     }

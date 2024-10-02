@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Can;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The 2-step verification was enabled recently, user needs to wait
+ * The 2-step verification was enabled recently, user needs to wait.
  */
 class CanTransferOwnershipResultPasswordTooFresh extends CanTransferOwnershipResult
 {
     public const TYPE_NAME = 'canTransferOwnershipResultPasswordTooFresh';
 
-    /**
-     * Time left before the session can be used to transfer ownership of a chat, in seconds
-     *
-     * @var int
-     */
-    protected int $retryAfter;
-
-    public function __construct(int $retryAfter)
-    {
+    public function __construct(
+        /**
+         * Time left before the session can be used to transfer ownership of a chat, in seconds.
+         */
+        protected int $retryAfter
+    ) {
         parent::__construct();
-
-        $this->retryAfter = $retryAfter;
     }
 
     public static function fromArray(array $array): CanTransferOwnershipResultPasswordTooFresh
@@ -44,7 +37,7 @@ class CanTransferOwnershipResultPasswordTooFresh extends CanTransferOwnershipRes
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'retry_after' => $this->retryAfter,
         ];
     }

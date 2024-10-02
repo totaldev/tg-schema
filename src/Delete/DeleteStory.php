@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Delete;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes a previously sent story. Can be called only if story.can_be_deleted == true
+ * Deletes a previously sent story. Can be called only if story.can_be_deleted == true.
  */
 class DeleteStory extends TdFunction
 {
     public const TYPE_NAME = 'deleteStory';
 
-    /**
-     * Identifier of the story to delete
-     *
-     * @var int
-     */
-    protected int $storyId;
-
-    /**
-     * Identifier of the chat that posted the story
-     *
-     * @var int
-     */
-    protected int $storySenderChatId;
-
-    public function __construct(int $storySenderChatId, int $storyId)
-    {
-        $this->storySenderChatId = $storySenderChatId;
-        $this->storyId = $storyId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat that posted the story.
+         */
+        protected int $storySenderChatId,
+        /**
+         * Identifier of the story to delete.
+         */
+        protected int $storyId,
+    ) {}
 
     public static function fromArray(array $array): DeleteStory
     {
@@ -57,9 +47,9 @@ class DeleteStory extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'story_sender_chat_id' => $this->storySenderChatId,
-            'story_id' => $this->storyId,
+            'story_id'             => $this->storyId,
         ];
     }
 }

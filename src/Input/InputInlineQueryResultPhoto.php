@@ -10,99 +10,51 @@ use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents link to a JPEG image
+ * Represents link to a JPEG image.
  */
 class InputInlineQueryResultPhoto extends InputInlineQueryResult
 {
     public const TYPE_NAME = 'inputInlineQueryResultPhoto';
 
-    /**
-     * A short description of the result, if known
-     *
-     * @var string
-     */
-    protected string $description;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice,
-     * inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
-    /**
-     * Height of the photo
-     *
-     * @var int
-     */
-    protected int $photoHeight;
-
-    /**
-     * The URL of the JPEG photo (photo size must not exceed 5MB)
-     *
-     * @var string
-     */
-    protected string $photoUrl;
-
-    /**
-     * Width of the photo
-     *
-     * @var int
-     */
-    protected int $photoWidth;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * URL of the photo thumbnail, if it exists
-     *
-     * @var string
-     */
-    protected string $thumbnailUrl;
-
-    /**
-     * Title of the result, if known
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        string              $id,
-        string              $title,
-        string              $description,
-        string              $thumbnailUrl,
-        string              $photoUrl,
-        int                 $photoWidth,
-        int                 $photoHeight,
-        ReplyMarkup         $replyMarkup,
-        InputMessageContent $inputMessageContent,
-    )
-    {
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string              $id,
+        /**
+         * Title of the result, if known.
+         */
+        protected string              $title,
+        /**
+         * A short description of the result, if known.
+         */
+        protected string              $description,
+        /**
+         * URL of the photo thumbnail, if it exists.
+         */
+        protected string              $thumbnailUrl,
+        /**
+         * The URL of the JPEG photo (photo size must not exceed 5MB).
+         */
+        protected string              $photoUrl,
+        /**
+         * Width of the photo.
+         */
+        protected int                 $photoWidth,
+        /**
+         * Height of the photo.
+         */
+        protected int                 $photoHeight,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
-        $this->thumbnailUrl = $thumbnailUrl;
-        $this->photoUrl = $photoUrl;
-        $this->photoWidth = $photoWidth;
-        $this->photoHeight = $photoHeight;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
     }
 
     public static function fromArray(array $array): InputInlineQueryResultPhoto
@@ -168,15 +120,15 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'thumbnail_url' => $this->thumbnailUrl,
-            'photo_url' => $this->photoUrl,
-            'photo_width' => $this->photoWidth,
-            'photo_height' => $this->photoHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            '@type'                 => static::TYPE_NAME,
+            'id'                    => $this->id,
+            'title'                 => $this->title,
+            'description'           => $this->description,
+            'thumbnail_url'         => $this->thumbnailUrl,
+            'photo_url'             => $this->photoUrl,
+            'photo_width'           => $this->photoWidth,
+            'photo_height'          => $this->photoHeight,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

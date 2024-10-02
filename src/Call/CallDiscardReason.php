@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Call;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the reason why a call was discarded
+ * Describes the reason why a call was discarded.
  */
 class CallDiscardReason extends TdObject
 {
     public const TYPE_NAME = 'CallDiscardReason';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CallDiscardReason
     {

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to the default message auto-delete timer settings section of the app settings
+ * The link is a link to the default message auto-delete timer settings section of the application settings.
  */
 class InternalLinkTypeDefaultMessageAutoDeleteTimerSettings extends InternalLinkType
 {

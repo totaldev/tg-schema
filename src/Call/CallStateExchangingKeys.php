@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The call has been answered and encryption keys are being exchanged
+ * The call has been answered and encryption keys are being exchanged.
  */
 class CallStateExchangingKeys extends CallState
 {

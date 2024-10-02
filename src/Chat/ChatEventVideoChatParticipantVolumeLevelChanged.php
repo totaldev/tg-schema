@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A video chat participant volume level was changed
+ * A video chat participant volume level was changed.
  */
 class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventVideoChatParticipantVolumeLevelChanged';
 
-    /**
-     * Identifier of the affected group call participant
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
-     * New value of volume_level; 1-20000 in hundreds of percents
-     *
-     * @var int
-     */
-    protected int $volumeLevel;
-
-    public function __construct(MessageSender $participantId, int $volumeLevel)
-    {
+    public function __construct(
+        /**
+         * Identifier of the affected group call participant.
+         */
+        protected MessageSender $participantId,
+        /**
+         * New value of volume_level; 1-20000 in hundreds of percents.
+         */
+        protected int           $volumeLevel,
+    ) {
         parent::__construct();
-
-        $this->participantId = $participantId;
-        $this->volumeLevel = $volumeLevel;
     }
 
     public static function fromArray(array $array): ChatEventVideoChatParticipantVolumeLevelChanged
@@ -59,9 +50,9 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'participant_id' => $this->participantId->typeSerialize(),
-            'volume_level' => $this->volumeLevel,
+            'volume_level'   => $this->volumeLevel,
         ];
     }
 }

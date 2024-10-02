@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Update\Update;
 
 /**
- * Contains a list of updates
+ * Contains a list of updates.
  */
 class Updates extends TdObject
 {
     public const TYPE_NAME = 'updates';
 
-    /**
-     * List of updates
-     *
-     * @var Update[]
-     */
-    protected array $updates;
-
-    public function __construct(array $updates)
-    {
-        $this->updates = $updates;
-    }
+    public function __construct(
+        /**
+         * List of updates.
+         *
+         * @var Update[]
+         */
+        protected array $updates
+    ) {}
 
     public static function fromArray(array $array): Updates
     {

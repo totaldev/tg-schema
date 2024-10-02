@@ -11,61 +11,34 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+ * Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message.
  */
 class AddMessageReaction extends TdFunction
 {
     public const TYPE_NAME = 'addMessageReaction';
 
-    /**
-     * Identifier of the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Pass true if the reaction is added with a big animation
-     *
-     * @var bool
-     */
-    protected bool $isBig;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Type of the reaction to add
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $reactionType;
-
-    /**
-     * Pass true if the reaction needs to be added to recent reactions
-     *
-     * @var bool
-     */
-    protected bool $updateRecentReactions;
-
     public function __construct(
-        int          $chatId,
-        int          $messageId,
-        ReactionType $reactionType,
-        bool         $isBig,
-        bool         $updateRecentReactions,
-    )
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->reactionType = $reactionType;
-        $this->isBig = $isBig;
-        $this->updateRecentReactions = $updateRecentReactions;
-    }
+        /**
+         * Identifier of the chat to which the message belongs.
+         */
+        protected int          $chatId,
+        /**
+         * Identifier of the message.
+         */
+        protected int          $messageId,
+        /**
+         * Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction.
+         */
+        protected ReactionType $reactionType,
+        /**
+         * Pass true if the reaction is added with a big animation.
+         */
+        protected bool         $isBig,
+        /**
+         * Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions.
+         */
+        protected bool         $updateRecentReactions,
+    ) {}
 
     public static function fromArray(array $array): AddMessageReaction
     {
@@ -106,11 +79,11 @@ class AddMessageReaction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reaction_type' => $this->reactionType->typeSerialize(),
-            'is_big' => $this->isBig,
+            '@type'                   => static::TYPE_NAME,
+            'chat_id'                 => $this->chatId,
+            'message_id'              => $this->messageId,
+            'reaction_type'           => $this->reactionType->typeSerialize(),
+            'is_big'                  => $this->isBig,
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
     }

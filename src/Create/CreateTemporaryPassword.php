@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a new temporary password for processing payments
+ * Creates a new temporary password for processing payments.
  */
 class CreateTemporaryPassword extends TdFunction
 {
     public const TYPE_NAME = 'createTemporaryPassword';
 
-    /**
-     * The 2-step verification password of the current user
-     *
-     * @var string
-     */
-    protected string $password;
-
-    /**
-     * Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
-     *
-     * @var int
-     */
-    protected int $validFor;
-
-    public function __construct(string $password, int $validFor)
-    {
-        $this->password = $password;
-        $this->validFor = $validFor;
-    }
+    public function __construct(
+        /**
+         * The 2-step verification password of the current user.
+         */
+        protected string $password,
+        /**
+         * Time during which the temporary password will be valid, in seconds; must be between 60 and 86400.
+         */
+        protected int    $validFor,
+    ) {}
 
     public static function fromArray(array $array): CreateTemporaryPassword
     {
@@ -57,8 +47,8 @@ class CreateTemporaryPassword extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'password' => $this->password,
+            '@type'     => static::TYPE_NAME,
+            'password'  => $this->password,
             'valid_for' => $this->validFor,
         ];
     }

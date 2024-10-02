@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of t.me URLs
+ * Contains a list of t.me URLs.
  */
 class TMeUrls extends TdObject
 {
     public const TYPE_NAME = 'tMeUrls';
 
-    /**
-     * List of URLs
-     *
-     * @var TMeUrl[]
-     */
-    protected array $urls;
-
-    public function __construct(array $urls)
-    {
-        $this->urls = $urls;
-    }
+    public function __construct(
+        /**
+         * List of URLs.
+         *
+         * @var TMeUrl[]
+         */
+        protected array $urls
+    ) {}
 
     public static function fromArray(array $array): TMeUrls
     {

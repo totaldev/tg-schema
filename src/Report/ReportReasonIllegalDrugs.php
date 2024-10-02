@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat has illegal drugs related content
+ * The chat has illegal drugs related content.
  */
 class ReportReasonIllegalDrugs extends ReportReason
 {

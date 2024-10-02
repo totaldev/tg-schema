@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs server about a purchase through App Store. For official applications only
+ * Informs server about a purchase through App Store. For official applications only.
  */
 class AssignAppStoreTransaction extends TdFunction
 {
     public const TYPE_NAME = 'assignAppStoreTransaction';
 
-    /**
-     * Transaction purpose
-     *
-     * @var StorePaymentPurpose
-     */
-    protected StorePaymentPurpose $purpose;
-
-    /**
-     * App Store receipt
-     *
-     * @var string
-     */
-    protected string $receipt;
-
-    public function __construct(string $receipt, StorePaymentPurpose $purpose)
-    {
-        $this->receipt = $receipt;
-        $this->purpose = $purpose;
-    }
+    public function __construct(
+        /**
+         * App Store receipt.
+         */
+        protected string              $receipt,
+        /**
+         * Transaction purpose.
+         */
+        protected StorePaymentPurpose $purpose,
+    ) {}
 
     public static function fromArray(array $array): AssignAppStoreTransaction
     {
@@ -58,7 +49,7 @@ class AssignAppStoreTransaction extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'receipt' => $this->receipt,
             'purpose' => $this->purpose->typeSerialize(),
         ];

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a sticker
+ * The file is a sticker.
  */
 class FileTypeSticker extends FileType
 {

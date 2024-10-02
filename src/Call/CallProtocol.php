@@ -7,64 +7,38 @@
 namespace Totaldev\TgSchema\Call;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Specifies the supported call protocols
+ * Specifies the supported call protocols.
  */
 class CallProtocol extends TdObject
 {
     public const TYPE_NAME = 'callProtocol';
 
-    /**
-     * List of supported tgcalls versions
-     *
-     * @var string[]
-     */
-    protected array $libraryVersions;
-
-    /**
-     * The maximum supported API layer; use 92
-     *
-     * @var int
-     */
-    protected int $maxLayer;
-
-    /**
-     * The minimum supported API layer; use 65
-     *
-     * @var int
-     */
-    protected int $minLayer;
-
-    /**
-     * True, if UDP peer-to-peer connections are supported
-     *
-     * @var bool
-     */
-    protected bool $udpP2p;
-
-    /**
-     * True, if connection through UDP reflectors is supported
-     *
-     * @var bool
-     */
-    protected bool $udpReflector;
-
     public function __construct(
-        bool  $udpP2p,
-        bool  $udpReflector,
-        int   $minLayer,
-        int   $maxLayer,
-        array $libraryVersions,
-    )
-    {
-        $this->udpP2p = $udpP2p;
-        $this->udpReflector = $udpReflector;
-        $this->minLayer = $minLayer;
-        $this->maxLayer = $maxLayer;
-        $this->libraryVersions = $libraryVersions;
-    }
+        /**
+         * True, if UDP peer-to-peer connections are supported.
+         */
+        protected bool  $udpP2p,
+        /**
+         * True, if connection through UDP reflectors is supported.
+         */
+        protected bool  $udpReflector,
+        /**
+         * The minimum supported API layer; use 65.
+         */
+        protected int   $minLayer,
+        /**
+         * The maximum supported API layer; use 92.
+         */
+        protected int   $maxLayer,
+        /**
+         * List of supported tgcalls versions.
+         *
+         * @var string[]
+         */
+        protected array $libraryVersions,
+    ) {}
 
     public static function fromArray(array $array): CallProtocol
     {
@@ -105,11 +79,11 @@ class CallProtocol extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'udp_p2p' => $this->udpP2p,
-            'udp_reflector' => $this->udpReflector,
-            'min_layer' => $this->minLayer,
-            'max_layer' => $this->maxLayer,
+            '@type'            => static::TYPE_NAME,
+            'udp_p2p'          => $this->udpP2p,
+            'udp_reflector'    => $this->udpReflector,
+            'min_layer'        => $this->minLayer,
+            'max_layer'        => $this->maxLayer,
             'library_versions' => $this->libraryVersions,
         ];
     }

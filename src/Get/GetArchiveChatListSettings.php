@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns settings for automatic moving of chats to and from the Archive chat lists
+ * Returns settings for automatic moving of chats to and from the Archive chat lists.
  */
 class GetArchiveChatListSettings extends TdFunction
 {
     public const TYPE_NAME = 'getArchiveChatListSettings';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetArchiveChatListSettings
     {

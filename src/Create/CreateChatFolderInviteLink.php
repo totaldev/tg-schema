@@ -7,43 +7,30 @@
 namespace Totaldev\TgSchema\Create;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+ * Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats.
  */
 class CreateChatFolderInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'createChatFolderInviteLink';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    /**
-     * Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically
-     * converted to supergroups before link creation
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
-
-    /**
-     * Name of the link; 0-32 characters
-     *
-     * @var string
-     */
-    protected string $name;
-
-    public function __construct(int $chatFolderId, string $name, array $chatIds)
-    {
-        $this->chatFolderId = $chatFolderId;
-        $this->name = $name;
-        $this->chatIds = $chatIds;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int    $chatFolderId,
+        /**
+         * Name of the link; 0-32 characters.
+         */
+        protected string $name,
+        /**
+         * Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation.
+         *
+         * @var int[]
+         */
+        protected array  $chatIds,
+    ) {}
 
     public static function fromArray(array $array): CreateChatFolderInviteLink
     {
@@ -72,10 +59,10 @@ class CreateChatFolderInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
-            'name' => $this->name,
-            'chat_ids' => $this->chatIds,
+            'name'           => $this->name,
+            'chat_ids'       => $this->chatIds,
         ];
     }
 }

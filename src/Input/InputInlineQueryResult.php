@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a single result of an inline query; for bots only
+ * Represents a single result of an inline query; for bots only.
  */
 class InputInlineQueryResult extends TdObject
 {
     public const TYPE_NAME = 'InputInlineQueryResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputInlineQueryResult
     {

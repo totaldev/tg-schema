@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Group;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an available stream in a group call
+ * Describes an available stream in a group call.
  */
 class GroupCallStream extends TdObject
 {
     public const TYPE_NAME = 'groupCallStream';
 
-    /**
-     * Identifier of an audio/video channel
-     *
-     * @var int
-     */
-    protected int $channelId;
-
-    /**
-     * Scale of segment durations in the stream. The duration is 1000/(2**scale) milliseconds
-     *
-     * @var int
-     */
-    protected int $scale;
-
-    /**
-     * Point in time when the stream currently ends; Unix timestamp in milliseconds
-     *
-     * @var int
-     */
-    protected int $timeOffset;
-
-    public function __construct(int $channelId, int $scale, int $timeOffset)
-    {
-        $this->channelId = $channelId;
-        $this->scale = $scale;
-        $this->timeOffset = $timeOffset;
-    }
+    public function __construct(
+        /**
+         * Identifier of an audio/video channel.
+         */
+        protected int $channelId,
+        /**
+         * Scale of segment durations in the stream. The duration is 1000/(2**scale) milliseconds.
+         */
+        protected int $scale,
+        /**
+         * Point in time when the stream currently ends; Unix timestamp in milliseconds.
+         */
+        protected int $timeOffset,
+    ) {}
 
     public static function fromArray(array $array): GroupCallStream
     {
@@ -71,9 +57,9 @@ class GroupCallStream extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'channel_id' => $this->channelId,
-            'scale' => $this->scale,
+            '@type'       => static::TYPE_NAME,
+            'channel_id'  => $this->channelId,
+            'scale'       => $this->scale,
             'time_offset' => $this->timeOffset,
         ];
     }

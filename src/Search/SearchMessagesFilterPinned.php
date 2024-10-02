@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only pinned messages
+ * Returns only pinned messages.
  */
 class SearchMessagesFilterPinned extends SearchMessagesFilter
 {

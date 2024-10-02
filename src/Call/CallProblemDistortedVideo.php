@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The video was distorted
+ * The video was distorted.
  */
 class CallProblemDistortedVideo extends CallProblem
 {

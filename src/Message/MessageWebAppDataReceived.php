@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Data from a Web App has been received; for bots only
+ * Data from a Web App has been received; for bots only.
  */
 class MessageWebAppDataReceived extends MessageContent
 {
     public const TYPE_NAME = 'messageWebAppDataReceived';
 
-    /**
-     * Text of the keyboardButtonTypeWebApp button, which opened the Web App
-     *
-     * @var string
-     */
-    protected string $buttonText;
-
-    /**
-     * The data
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(string $buttonText, string $data)
-    {
+    public function __construct(
+        /**
+         * Text of the keyboardButtonTypeWebApp button, which opened the Web App.
+         */
+        protected string $buttonText,
+        /**
+         * The data.
+         */
+        protected string $data,
+    ) {
         parent::__construct();
-
-        $this->buttonText = $buttonText;
-        $this->data = $data;
     }
 
     public static function fromArray(array $array): MessageWebAppDataReceived
@@ -58,9 +47,9 @@ class MessageWebAppDataReceived extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'button_text' => $this->buttonText,
-            'data' => $this->data,
+            'data'        => $this->data,
         ];
     }
 }

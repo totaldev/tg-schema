@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a code to verify an email address to be added to a user's Telegram Passport
+ * Sends a code to verify an email address to be added to a user's Telegram Passport.
  */
 class SendEmailAddressVerificationCode extends TdFunction
 {
     public const TYPE_NAME = 'sendEmailAddressVerificationCode';
 
-    /**
-     * Email address
-     *
-     * @var string
-     */
-    protected string $emailAddress;
-
-    public function __construct(string $emailAddress)
-    {
-        $this->emailAddress = $emailAddress;
-    }
+    public function __construct(
+        /**
+         * Email address.
+         */
+        protected string $emailAddress
+    ) {}
 
     public static function fromArray(array $array): SendEmailAddressVerificationCode
     {
@@ -43,7 +37,7 @@ class SendEmailAddressVerificationCode extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'email_address' => $this->emailAddress,
         ];
     }

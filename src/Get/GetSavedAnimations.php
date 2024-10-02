@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns saved animations
+ * Returns saved animations.
  */
 class GetSavedAnimations extends TdFunction
 {
     public const TYPE_NAME = 'getSavedAnimations';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetSavedAnimations
     {

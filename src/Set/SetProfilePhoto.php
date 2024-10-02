@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes a profile photo for the current user
+ * Changes a profile photo for the current user.
  */
 class SetProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'setProfilePhoto';
 
-    /**
-     * Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
-     *
-     * @var bool
-     */
-    protected bool $isPublic;
-
-    /**
-     * Profile photo to set
-     *
-     * @var InputChatPhoto
-     */
-    protected InputChatPhoto $photo;
-
-    public function __construct(InputChatPhoto $photo, bool $isPublic)
-    {
-        $this->photo = $photo;
-        $this->isPublic = $isPublic;
-    }
+    public function __construct(
+        /**
+         * Profile photo to set.
+         */
+        protected InputChatPhoto $photo,
+        /**
+         * Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings.
+         */
+        protected bool           $isPublic,
+    ) {}
 
     public static function fromArray(array $array): SetProfilePhoto
     {
@@ -58,8 +49,8 @@ class SetProfilePhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
+            '@type'     => static::TYPE_NAME,
+            'photo'     => $this->photo->typeSerialize(),
             'is_public' => $this->isPublic,
         ];
     }

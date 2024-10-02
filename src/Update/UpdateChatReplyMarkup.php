@@ -6,36 +6,25 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the
- * user
+ * user.
  */
 class UpdateChatReplyMarkup extends Update
 {
     public const TYPE_NAME = 'updateChatReplyMarkup';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-     *
-     * @var int
-     */
-    protected int $replyMarkupMessageId;
-
-    public function __construct(int $chatId, int $replyMarkupMessageId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
+         */
+        protected int $replyMarkupMessageId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->replyMarkupMessageId = $replyMarkupMessageId;
     }
 
     public static function fromArray(array $array): UpdateChatReplyMarkup
@@ -59,8 +48,8 @@ class UpdateChatReplyMarkup extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                   => static::TYPE_NAME,
+            'chat_id'                 => $this->chatId,
             'reply_markup_message_id' => $this->replyMarkupMessageId,
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns default list of custom emoji stickers for placing on a chat photo
+ * Returns default list of custom emoji stickers for placing on a chat photo.
  */
 class GetDefaultChatPhotoCustomEmojiStickers extends TdFunction
 {
     public const TYPE_NAME = 'getDefaultChatPhotoCustomEmojiStickers';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetDefaultChatPhotoCustomEmojiStickers
     {

@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Translation of chat messages was enabled or disabled
+ * Translation of chat messages was enabled or disabled.
  */
 class UpdateChatIsTranslatable extends Update
 {
     public const TYPE_NAME = 'updateChatIsTranslatable';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of is_translatable
-     *
-     * @var bool
-     */
-    protected bool $isTranslatable;
-
-    public function __construct(int $chatId, bool $isTranslatable)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * New value of is_translatable.
+         */
+        protected bool $isTranslatable,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->isTranslatable = $isTranslatable;
     }
 
     public static function fromArray(array $array): UpdateChatIsTranslatable
@@ -58,8 +47,8 @@ class UpdateChatIsTranslatable extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
             'is_translatable' => $this->isTranslatable,
         ];
     }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a wallpaper or a background pattern
+ * The file is a wallpaper or a background pattern.
  */
 class FileTypeWallpaper extends FileType
 {

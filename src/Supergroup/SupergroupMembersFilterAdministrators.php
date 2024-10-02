@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns the owner and administrators
+ * Returns the owner and administrators.
  */
 class SupergroupMembersFilterAdministrators extends SupergroupMembersFilter
 {

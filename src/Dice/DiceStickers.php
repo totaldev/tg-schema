@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Dice;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains animated stickers which must be used for dice animation rendering
+ * Contains animated stickers which must be used for dice animation rendering.
  */
 class DiceStickers extends TdObject
 {
     public const TYPE_NAME = 'DiceStickers';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DiceStickers
     {

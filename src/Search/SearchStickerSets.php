@@ -6,31 +6,32 @@
 
 namespace Totaldev\TgSchema\Search;
 
+use Totaldev\TgSchema\Sticker\StickerType;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
+ * Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results.
  */
 class SearchStickerSets extends TdFunction
 {
     public const TYPE_NAME = 'searchStickerSets';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
-        $this->query = $query;
-    }
+    public function __construct(
+        /**
+         * Type of the sticker sets to return.
+         */
+        protected StickerType $stickerType,
+        /**
+         * Query to search for.
+         */
+        protected string      $query,
+    ) {}
 
     public static function fromArray(array $array): SearchStickerSets
     {
         return new static(
+            TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['query'],
         );
     }
@@ -40,11 +41,17 @@ class SearchStickerSets extends TdFunction
         return $this->query;
     }
 
+    public function getStickerType(): StickerType
+    {
+        return $this->stickerType;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
+            '@type'        => static::TYPE_NAME,
+            'sticker_type' => $this->stickerType->typeSerialize(),
+            'query'        => $this->query,
         ];
     }
 }

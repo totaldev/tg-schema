@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about features, available to Premium users
+ * Returns information about features, available to Premium users.
  */
 class GetPremiumFeatures extends TdFunction
 {
     public const TYPE_NAME = 'getPremiumFeatures';
 
-    /**
-     * Source of the request; pass null if the method is called from some non-standard source
-     *
-     * @var PremiumSource
-     */
-    protected PremiumSource $source;
-
-    public function __construct(PremiumSource $source)
-    {
-        $this->source = $source;
-    }
+    public function __construct(
+        /**
+         * Source of the request; pass null if the method is called from some non-standard source.
+         */
+        protected PremiumSource $source
+    ) {}
 
     public static function fromArray(array $array): GetPremiumFeatures
     {
@@ -44,7 +39,7 @@ class GetPremiumFeatures extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'source' => $this->source->typeSerialize(),
         ];
     }

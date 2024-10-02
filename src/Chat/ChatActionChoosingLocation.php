@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is picking a location or venue to send
+ * The user is picking a location or venue to send.
  */
 class ChatActionChoosingLocation extends ChatAction
 {

@@ -6,43 +6,28 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Incoming messages were read or the number of unread messages has been changed
+ * Incoming messages were read or the number of unread messages has been changed.
  */
 class UpdateChatReadInbox extends Update
 {
     public const TYPE_NAME = 'updateChatReadInbox';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the last read incoming message
-     *
-     * @var int
-     */
-    protected int $lastReadInboxMessageId;
-
-    /**
-     * The number of unread messages left in the chat
-     *
-     * @var int
-     */
-    protected int $unreadCount;
-
-    public function __construct(int $chatId, int $lastReadInboxMessageId, int $unreadCount)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the last read incoming message.
+         */
+        protected int $lastReadInboxMessageId,
+        /**
+         * The number of unread messages left in the chat.
+         */
+        protected int $unreadCount,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->lastReadInboxMessageId = $lastReadInboxMessageId;
-        $this->unreadCount = $unreadCount;
     }
 
     public static function fromArray(array $array): UpdateChatReadInbox
@@ -72,10 +57,10 @@ class UpdateChatReadInbox extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                      => static::TYPE_NAME,
+            'chat_id'                    => $this->chatId,
             'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
-            'unread_count' => $this->unreadCount,
+            'unread_count'               => $this->unreadCount,
         ];
     }
 }

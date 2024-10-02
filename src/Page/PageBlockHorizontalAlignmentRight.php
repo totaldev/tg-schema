@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Page;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The content must be right-aligned
+ * The content must be right-aligned.
  */
 class PageBlockHorizontalAlignmentRight extends PageBlockHorizontalAlignment
 {

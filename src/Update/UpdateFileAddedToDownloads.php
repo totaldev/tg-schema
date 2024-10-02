@@ -11,32 +11,23 @@ use Totaldev\TgSchema\File\FileDownload;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+ * A file was added to the file download list. This update is sent only after file download list is loaded for the first time.
  */
 class UpdateFileAddedToDownloads extends Update
 {
     public const TYPE_NAME = 'updateFileAddedToDownloads';
 
-    /**
-     * New number of being downloaded and recently downloaded files found
-     *
-     * @var DownloadedFileCounts
-     */
-    protected DownloadedFileCounts $counts;
-
-    /**
-     * The added file download
-     *
-     * @var FileDownload
-     */
-    protected FileDownload $fileDownload;
-
-    public function __construct(FileDownload $fileDownload, DownloadedFileCounts $counts)
-    {
+    public function __construct(
+        /**
+         * The added file download.
+         */
+        protected FileDownload         $fileDownload,
+        /**
+         * New number of being downloaded and recently downloaded files found.
+         */
+        protected DownloadedFileCounts $counts,
+    ) {
         parent::__construct();
-
-        $this->fileDownload = $fileDownload;
-        $this->counts = $counts;
     }
 
     public static function fromArray(array $array): UpdateFileAddedToDownloads
@@ -60,9 +51,9 @@ class UpdateFileAddedToDownloads extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'file_download' => $this->fileDownload->typeSerialize(),
-            'counts' => $this->counts->typeSerialize(),
+            'counts'        => $this->counts->typeSerialize(),
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Bot;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A scope covering all group and supergroup chats
+ * A scope covering all group and supergroup chats.
  */
 class BotCommandScopeAllGroupChats extends BotCommandScope
 {

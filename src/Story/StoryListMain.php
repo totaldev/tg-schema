@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Story;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The list of stories, shown in the main chat list and folder chat lists
+ * The list of stories, shown in the main chat list and folder chat lists.
  */
 class StoryListMain extends StoryList
 {

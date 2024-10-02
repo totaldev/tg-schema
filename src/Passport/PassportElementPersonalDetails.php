@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Personal\PersonalDetails;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A Telegram Passport element containing the user's personal details
+ * A Telegram Passport element containing the user's personal details.
  */
 class PassportElementPersonalDetails extends PassportElement
 {
     public const TYPE_NAME = 'passportElementPersonalDetails';
 
-    /**
-     * Personal details of the user
-     *
-     * @var PersonalDetails
-     */
-    protected PersonalDetails $personalDetails;
-
-    public function __construct(PersonalDetails $personalDetails)
-    {
+    public function __construct(
+        /**
+         * Personal details of the user.
+         */
+        protected PersonalDetails $personalDetails
+    ) {
         parent::__construct();
-
-        $this->personalDetails = $personalDetails;
     }
 
     public static function fromArray(array $array): PassportElementPersonalDetails
@@ -45,7 +40,7 @@ class PassportElementPersonalDetails extends PassportElement
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'            => static::TYPE_NAME,
             'personal_details' => $this->personalDetails->typeSerialize(),
         ];
     }

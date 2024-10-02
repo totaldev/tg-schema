@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message was sent by an opened Web App, so the Web App needs to be closed
+ * A message was sent by an opened Web App, so the Web App needs to be closed.
  */
 class UpdateWebAppMessageSent extends Update
 {
     public const TYPE_NAME = 'updateWebAppMessageSent';
 
-    /**
-     * Identifier of Web App launch
-     *
-     * @var int
-     */
-    protected int $webAppLaunchId;
-
-    public function __construct(int $webAppLaunchId)
-    {
+    public function __construct(
+        /**
+         * Identifier of Web App launch.
+         */
+        protected int $webAppLaunchId
+    ) {
         parent::__construct();
-
-        $this->webAppLaunchId = $webAppLaunchId;
     }
 
     public static function fromArray(array $array): UpdateWebAppMessageSent
@@ -44,7 +37,7 @@ class UpdateWebAppMessageSent extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'web_app_launch_id' => $this->webAppLaunchId,
         ];
     }

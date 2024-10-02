@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the time when a scheduled message will be sent
+ * Contains information about the time when a scheduled message will be sent.
  */
 class MessageSchedulingState extends TdObject
 {
     public const TYPE_NAME = 'MessageSchedulingState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): MessageSchedulingState
     {

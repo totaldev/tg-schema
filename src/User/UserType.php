@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents the type of a user. The following types are possible: regular users, deleted users and bots
+ * Represents the type of user. The following types are possible: regular users, deleted users and bots.
  */
 class UserType extends TdObject
 {
     public const TYPE_NAME = 'UserType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): UserType
     {

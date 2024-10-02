@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only video messages
+ * Returns only video messages.
  */
 class SearchMessagesFilterVideo extends SearchMessagesFilter
 {

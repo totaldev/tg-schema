@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Audio\Audio;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents an audio file
+ * Represents an audio file.
  */
 class InlineQueryResultAudio extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultAudio';
 
-    /**
-     * Audio file
-     *
-     * @var Audio
-     */
-    protected Audio $audio;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    public function __construct(string $id, Audio $audio)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string $id,
+        /**
+         * Audio file.
+         */
+        protected Audio  $audio,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->audio = $audio;
     }
 
     public static function fromArray(array $array): InlineQueryResultAudio
@@ -60,7 +51,7 @@ class InlineQueryResultAudio extends InlineQueryResult
     {
         return [
             '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            'id'    => $this->id,
             'audio' => $this->audio->typeSerialize(),
         ];
     }

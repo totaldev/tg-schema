@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A newly created basic group
+ * A newly created basic group.
  */
 class PushMessageContentBasicGroupChatCreate extends PushMessageContent
 {

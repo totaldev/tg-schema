@@ -11,62 +11,35 @@ use Totaldev\TgSchema\Push\PushMessageContent;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * New message was received through a push notification
+ * New message was received through a push notification.
  */
 class NotificationTypeNewPushMessage extends NotificationType
 {
     public const TYPE_NAME = 'notificationTypeNewPushMessage';
 
-    /**
-     * Push message content
-     *
-     * @var PushMessageContent
-     */
-    protected PushMessageContent $content;
-
-    /**
-     * True, if the message is outgoing
-     *
-     * @var bool
-     */
-    protected bool $isOutgoing;
-
-    /**
-     * The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Identifier of the sender of the message. Corresponding user or chat may be inaccessible
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
-     * Name of the sender
-     *
-     * @var string
-     */
-    protected string $senderName;
-
     public function __construct(
-        int                $messageId,
-        MessageSender      $senderId,
-        string             $senderName,
-        bool               $isOutgoing,
-        PushMessageContent $content,
-    )
-    {
+        /**
+         * The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to be replied in the same chat.
+         */
+        protected int                $messageId,
+        /**
+         * Identifier of the sender of the message. Corresponding user or chat may be inaccessible.
+         */
+        protected MessageSender      $senderId,
+        /**
+         * Name of the sender.
+         */
+        protected string             $senderName,
+        /**
+         * True, if the message is outgoing.
+         */
+        protected bool               $isOutgoing,
+        /**
+         * Push message content.
+         */
+        protected PushMessageContent $content,
+    ) {
         parent::__construct();
-
-        $this->messageId = $messageId;
-        $this->senderId = $senderId;
-        $this->senderName = $senderName;
-        $this->isOutgoing = $isOutgoing;
-        $this->content = $content;
     }
 
     public static function fromArray(array $array): NotificationTypeNewPushMessage
@@ -108,12 +81,12 @@ class NotificationTypeNewPushMessage extends NotificationType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'message_id' => $this->messageId,
-            'sender_id' => $this->senderId->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'message_id'  => $this->messageId,
+            'sender_id'   => $this->senderId->typeSerialize(),
             'sender_name' => $this->senderName,
             'is_outgoing' => $this->isOutgoing,
-            'content' => $this->content->typeSerialize(),
+            'content'     => $this->content->typeSerialize(),
         ];
     }
 }

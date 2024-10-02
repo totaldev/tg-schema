@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of custom emojis, which can be used as forum topic icon by all users
+ * Returns the list of custom emoji, which can be used as forum topic icon by all users.
  */
 class GetForumTopicDefaultIcons extends TdFunction
 {
     public const TYPE_NAME = 'getForumTopicDefaultIcons';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetForumTopicDefaultIcons
     {

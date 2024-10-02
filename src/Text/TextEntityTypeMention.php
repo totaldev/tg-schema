@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A mention of a user, a supergroup, or a channel by their username
+ * A mention of a user, a supergroup, or a channel by their username.
  */
 class TextEntityTypeMention extends TextEntityType
 {

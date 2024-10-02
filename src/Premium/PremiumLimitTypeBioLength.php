@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum length of the user's bio
+ * The maximum length of the user's bio.
  */
 class PremiumLimitTypeBioLength extends PremiumLimitType
 {

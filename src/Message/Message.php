@@ -4,369 +4,169 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Fact\FactCheck;
 use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Unread\UnreadReaction;
 
 /**
- * Describes a message
+ * Describes a message.
  */
 class Message extends TdObject
 {
     public const TYPE_NAME = 'message';
 
-    /**
-     * For channel posts and anonymous group messages, optional author signature
-     *
-     * @var string
-     */
-    protected string $authorSignature;
-
-    /**
-     * Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
-     *
-     * @var float
-     */
-    protected float $autoDeleteIn;
-
-    /**
-     * True, if the message can be deleted for all users
-     *
-     * @var bool
-     */
-    protected bool $canBeDeletedForAllUsers;
-
-    /**
-     * True, if the message can be deleted only for the current user while other users will continue to see it
-     *
-     * @var bool
-     */
-    protected bool $canBeDeletedOnlyForSelf;
-
-    /**
-     * True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with
-     * this message by the application
-     *
-     * @var bool
-     */
-    protected bool $canBeEdited;
-
-    /**
-     * True, if the message can be forwarded
-     *
-     * @var bool
-     */
-    protected bool $canBeForwarded;
-
-    /**
-     * True, if content of the message can be saved locally or copied
-     *
-     * @var bool
-     */
-    protected bool $canBeSaved;
-
-    /**
-     * True, if the list of added reactions is available through getMessageAddedReactions
-     *
-     * @var bool
-     */
-    protected bool $canGetAddedReactions;
-
-    /**
-     * True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
-     *
-     * @var bool
-     */
-    protected bool $canGetMediaTimestampLinks;
-
-    /**
-     * True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
-     *
-     * @var bool
-     */
-    protected bool $canGetMessageThread;
-
-    /**
-     * True, if the message statistics are available through getMessageStatistics
-     *
-     * @var bool
-     */
-    protected bool $canGetStatistics;
-
-    /**
-     * True, if chat members already viewed the message can be received through getMessageViewers
-     *
-     * @var bool
-     */
-    protected bool $canGetViewers;
-
-    /**
-     * True, if reactions on the message can be reported through reportMessageReactions
-     *
-     * @var bool
-     */
-    protected bool $canReportReactions;
-
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * True, if the message contains an unread mention for the current user
-     *
-     * @var bool
-     */
-    protected bool $containsUnreadMention;
-
-    /**
-     * Content of the message
-     *
-     * @var MessageContent
-     */
-    protected MessageContent $content;
-
-    /**
-     * Point in time (Unix timestamp) when the message was sent
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * Point in time (Unix timestamp) when the message was last edited
-     *
-     * @var int
-     */
-    protected int $editDate;
-
-    /**
-     * Information about the initial message sender; may be null if none or unknown
-     *
-     * @var MessageForwardInfo|null
-     */
-    protected ?MessageForwardInfo $forwardInfo;
-
-    /**
-     * True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
-     *
-     * @var bool
-     */
-    protected bool $hasTimestampedMedia;
-
-    /**
-     * Message identifier; unique for the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Information about interactions with the message; may be null if none
-     *
-     * @var MessageInteractionInfo|null
-     */
-    protected ?MessageInteractionInfo $interactionInfo;
-
-    /**
-     * True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
-     *
-     * @var bool
-     */
-    protected bool $isChannelPost;
-
-    /**
-     * True, if the message is outgoing
-     *
-     * @var bool
-     */
-    protected bool $isOutgoing;
-
-    /**
-     * True, if the message is pinned
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * True, if the message is a forum topic message
-     *
-     * @var bool
-     */
-    protected bool $isTopicMessage;
-
-    /**
-     * Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
-     *
-     * @var int
-     */
-    protected int $mediaAlbumId;
-
-    /**
-     * If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    /**
-     * Reply markup for the message; may be null if none
-     *
-     * @var ReplyMarkup|null
-     */
-    protected ?ReplyMarkup $replyMarkup;
-
-    /**
-     * Information about the message or the story this message is replying to; may be null if none
-     *
-     * @var MessageReplyTo|null
-     */
-    protected ?MessageReplyTo $replyTo;
-
-    /**
-     * If non-empty, contains a human-readable description of the reason why access to this message must be restricted
-     *
-     * @var string
-     */
-    protected string $restrictionReason;
-
-    /**
-     * The scheduling state of the message; may be null if the message isn't scheduled
-     *
-     * @var MessageSchedulingState|null
-     */
-    protected ?MessageSchedulingState $schedulingState;
-
-    /**
-     * Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
-     *
-     * @var float
-     */
-    protected float $selfDestructIn;
-
-    /**
-     * The message's self-destruct type; may be null if none
-     *
-     * @var MessageSelfDestructType|null
-     */
-    protected ?MessageSelfDestructType $selfDestructType;
-
-    /**
-     * Identifier of the sender of the message
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $senderId;
-
-    /**
-     * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
-     *
-     * @var MessageSendingState|null
-     */
-    protected ?MessageSendingState $sendingState;
-
-    /**
-     * Information about unread reactions added to the message
-     *
-     * @var UnreadReaction[]
-     */
-    protected array $unreadReactions;
-
-    /**
-     * If non-zero, the user identifier of the bot through which this message was sent
-     *
-     * @var int
-     */
-    protected int $viaBotUserId;
-
     public function __construct(
-        int                      $id,
-        MessageSender            $senderId,
-        int                      $chatId,
-        ?MessageSendingState     $sendingState,
-        ?MessageSchedulingState  $schedulingState,
-        bool                     $isOutgoing,
-        bool                     $isPinned,
-        bool                     $canBeEdited,
-        bool                     $canBeForwarded,
-        bool                     $canBeSaved,
-        bool                     $canBeDeletedOnlyForSelf,
-        bool                     $canBeDeletedForAllUsers,
-        bool                     $canGetAddedReactions,
-        bool                     $canGetStatistics,
-        bool                     $canGetMessageThread,
-        bool                     $canGetViewers,
-        bool                     $canGetMediaTimestampLinks,
-        bool                     $canReportReactions,
-        bool                     $hasTimestampedMedia,
-        bool                     $isChannelPost,
-        bool                     $isTopicMessage,
-        bool                     $containsUnreadMention,
-        int                      $date,
-        int                      $editDate,
-        ?MessageForwardInfo      $forwardInfo,
-        ?MessageInteractionInfo  $interactionInfo,
-        array                    $unreadReactions,
-        ?MessageReplyTo          $replyTo,
-        int                      $messageThreadId,
-        ?MessageSelfDestructType $selfDestructType,
-        float                    $selfDestructIn,
-        float                    $autoDeleteIn,
-        int                      $viaBotUserId,
-        string                   $authorSignature,
-        int                      $mediaAlbumId,
-        string                   $restrictionReason,
-        MessageContent           $content,
-        ?ReplyMarkup             $replyMarkup,
-    )
-    {
-        $this->id = $id;
-        $this->senderId = $senderId;
-        $this->chatId = $chatId;
-        $this->sendingState = $sendingState;
-        $this->schedulingState = $schedulingState;
-        $this->isOutgoing = $isOutgoing;
-        $this->isPinned = $isPinned;
-        $this->canBeEdited = $canBeEdited;
-        $this->canBeForwarded = $canBeForwarded;
-        $this->canBeSaved = $canBeSaved;
-        $this->canBeDeletedOnlyForSelf = $canBeDeletedOnlyForSelf;
-        $this->canBeDeletedForAllUsers = $canBeDeletedForAllUsers;
-        $this->canGetAddedReactions = $canGetAddedReactions;
-        $this->canGetStatistics = $canGetStatistics;
-        $this->canGetMessageThread = $canGetMessageThread;
-        $this->canGetViewers = $canGetViewers;
-        $this->canGetMediaTimestampLinks = $canGetMediaTimestampLinks;
-        $this->canReportReactions = $canReportReactions;
-        $this->hasTimestampedMedia = $hasTimestampedMedia;
-        $this->isChannelPost = $isChannelPost;
-        $this->isTopicMessage = $isTopicMessage;
-        $this->containsUnreadMention = $containsUnreadMention;
-        $this->date = $date;
-        $this->editDate = $editDate;
-        $this->forwardInfo = $forwardInfo;
-        $this->interactionInfo = $interactionInfo;
-        $this->unreadReactions = $unreadReactions;
-        $this->replyTo = $replyTo;
-        $this->messageThreadId = $messageThreadId;
-        $this->selfDestructType = $selfDestructType;
-        $this->selfDestructIn = $selfDestructIn;
-        $this->autoDeleteIn = $autoDeleteIn;
-        $this->viaBotUserId = $viaBotUserId;
-        $this->authorSignature = $authorSignature;
-        $this->mediaAlbumId = $mediaAlbumId;
-        $this->restrictionReason = $restrictionReason;
-        $this->content = $content;
-        $this->replyMarkup = $replyMarkup;
-    }
+        /**
+         * Message identifier; unique for the chat to which the message belongs.
+         */
+        protected int                      $id,
+        /**
+         * Identifier of the sender of the message.
+         */
+        protected MessageSender            $senderId,
+        /**
+         * Chat identifier.
+         */
+        protected int                      $chatId,
+        /**
+         * The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent.
+         */
+        protected ?MessageSendingState     $sendingState,
+        /**
+         * The scheduling state of the message; may be null if the message isn't scheduled.
+         */
+        protected ?MessageSchedulingState  $schedulingState,
+        /**
+         * True, if the message is outgoing.
+         */
+        protected bool                     $isOutgoing,
+        /**
+         * True, if the message is pinned.
+         */
+        protected bool                     $isPinned,
+        /**
+         * True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message.
+         */
+        protected bool                     $isFromOffline,
+        /**
+         * True, if content of the message can be saved locally or copied.
+         */
+        protected bool                     $canBeSaved,
+        /**
+         * True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message.
+         */
+        protected bool                     $hasTimestampedMedia,
+        /**
+         * True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts.
+         */
+        protected bool                     $isChannelPost,
+        /**
+         * True, if the message is a forum topic message.
+         */
+        protected bool                     $isTopicMessage,
+        /**
+         * True, if the message contains an unread mention for the current user.
+         */
+        protected bool                     $containsUnreadMention,
+        /**
+         * Point in time (Unix timestamp) when the message was sent.
+         */
+        protected int                      $date,
+        /**
+         * Point in time (Unix timestamp) when the message was last edited.
+         */
+        protected int                      $editDate,
+        /**
+         * Information about the initial message sender; may be null if none or unknown.
+         */
+        protected ?MessageForwardInfo      $forwardInfo,
+        /**
+         * Information about the initial message for messages created with importMessages; may be null if the message isn't imported.
+         */
+        protected ?MessageImportInfo       $importInfo,
+        /**
+         * Information about interactions with the message; may be null if none.
+         */
+        protected ?MessageInteractionInfo  $interactionInfo,
+        /**
+         * Information about unread reactions added to the message.
+         *
+         * @var UnreadReaction[]
+         */
+        protected array                    $unreadReactions,
+        /**
+         * Information about fact-check added to the message; may be null if none.
+         */
+        protected ?FactCheck               $factCheck,
+        /**
+         * Information about the message or the story this message is replying to; may be null if none.
+         */
+        protected ?MessageReplyTo          $replyTo,
+        /**
+         * If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs.
+         */
+        protected int                      $messageThreadId,
+        /**
+         * Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages.
+         */
+        protected int                      $savedMessagesTopicId,
+        /**
+         * The message's self-destruct type; may be null if none.
+         */
+        protected ?MessageSelfDestructType $selfDestructType,
+        /**
+         * Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet.
+         */
+        protected float                    $selfDestructIn,
+        /**
+         * Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never.
+         */
+        protected float                    $autoDeleteIn,
+        /**
+         * If non-zero, the user identifier of the inline bot through which this message was sent.
+         */
+        protected int                      $viaBotUserId,
+        /**
+         * If non-zero, the user identifier of the business bot that sent this message.
+         */
+        protected int                      $senderBusinessBotUserId,
+        /**
+         * Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead.
+         */
+        protected int                      $senderBoostCount,
+        /**
+         * For channel posts and anonymous group messages, optional author signature.
+         */
+        protected string                   $authorSignature,
+        /**
+         * Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums.
+         */
+        protected int                      $mediaAlbumId,
+        /**
+         * Unique identifier of the effect added to the message; 0 if none.
+         */
+        protected int                      $effectId,
+        /**
+         * True, if media content of the message must be hidden with 18+ spoiler.
+         */
+        protected bool                     $hasSensitiveContent,
+        /**
+         * If non-empty, contains a human-readable description of the reason why access to this message must be restricted.
+         */
+        protected string                   $restrictionReason,
+        /**
+         * Content of the message.
+         */
+        protected MessageContent           $content,
+        /**
+         * Reply markup for the message; may be null if none.
+         */
+        protected ?ReplyMarkup             $replyMarkup,
+    ) {}
 
     public static function fromArray(array $array): Message
     {
@@ -374,41 +174,39 @@ class Message extends TdObject
             $array['id'],
             TdSchemaRegistry::fromArray($array['sender_id']),
             $array['chat_id'],
-            (isset($array['sending_state']) ? TdSchemaRegistry::fromArray($array['sending_state']) : null),
-            (isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null),
+            isset($array['sending_state']) ? TdSchemaRegistry::fromArray($array['sending_state']) : null,
+            isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null,
             $array['is_outgoing'],
             $array['is_pinned'],
-            $array['can_be_edited'],
-            $array['can_be_forwarded'],
+            $array['is_from_offline'],
             $array['can_be_saved'],
-            $array['can_be_deleted_only_for_self'],
-            $array['can_be_deleted_for_all_users'],
-            $array['can_get_added_reactions'],
-            $array['can_get_statistics'],
-            $array['can_get_message_thread'],
-            $array['can_get_viewers'],
-            $array['can_get_media_timestamp_links'],
-            $array['can_report_reactions'],
             $array['has_timestamped_media'],
             $array['is_channel_post'],
             $array['is_topic_message'],
             $array['contains_unread_mention'],
             $array['date'],
             $array['edit_date'],
-            (isset($array['forward_info']) ? TdSchemaRegistry::fromArray($array['forward_info']) : null),
-            (isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null),
+            isset($array['forward_info']) ? TdSchemaRegistry::fromArray($array['forward_info']) : null,
+            isset($array['import_info']) ? TdSchemaRegistry::fromArray($array['import_info']) : null,
+            isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null,
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
-            (isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null),
+            isset($array['fact_check']) ? TdSchemaRegistry::fromArray($array['fact_check']) : null,
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             $array['message_thread_id'],
-            (isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null),
+            $array['saved_messages_topic_id'],
+            isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
             $array['self_destruct_in'],
             $array['auto_delete_in'],
             $array['via_bot_user_id'],
+            $array['sender_business_bot_user_id'],
+            $array['sender_boost_count'],
             $array['author_signature'],
             $array['media_album_id'],
+            $array['effect_id'],
+            $array['has_sensitive_content'],
             $array['restriction_reason'],
             TdSchemaRegistry::fromArray($array['content']),
-            (isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
     }
 
@@ -422,59 +220,9 @@ class Message extends TdObject
         return $this->autoDeleteIn;
     }
 
-    public function getCanBeDeletedForAllUsers(): bool
-    {
-        return $this->canBeDeletedForAllUsers;
-    }
-
-    public function getCanBeDeletedOnlyForSelf(): bool
-    {
-        return $this->canBeDeletedOnlyForSelf;
-    }
-
-    public function getCanBeEdited(): bool
-    {
-        return $this->canBeEdited;
-    }
-
-    public function getCanBeForwarded(): bool
-    {
-        return $this->canBeForwarded;
-    }
-
     public function getCanBeSaved(): bool
     {
         return $this->canBeSaved;
-    }
-
-    public function getCanGetAddedReactions(): bool
-    {
-        return $this->canGetAddedReactions;
-    }
-
-    public function getCanGetMediaTimestampLinks(): bool
-    {
-        return $this->canGetMediaTimestampLinks;
-    }
-
-    public function getCanGetMessageThread(): bool
-    {
-        return $this->canGetMessageThread;
-    }
-
-    public function getCanGetStatistics(): bool
-    {
-        return $this->canGetStatistics;
-    }
-
-    public function getCanGetViewers(): bool
-    {
-        return $this->canGetViewers;
-    }
-
-    public function getCanReportReactions(): bool
-    {
-        return $this->canReportReactions;
     }
 
     public function getChatId(): int
@@ -502,9 +250,24 @@ class Message extends TdObject
         return $this->editDate;
     }
 
+    public function getEffectId(): int
+    {
+        return $this->effectId;
+    }
+
+    public function getFactCheck(): ?FactCheck
+    {
+        return $this->factCheck;
+    }
+
     public function getForwardInfo(): ?MessageForwardInfo
     {
         return $this->forwardInfo;
+    }
+
+    public function getHasSensitiveContent(): bool
+    {
+        return $this->hasSensitiveContent;
     }
 
     public function getHasTimestampedMedia(): bool
@@ -517,6 +280,11 @@ class Message extends TdObject
         return $this->id;
     }
 
+    public function getImportInfo(): ?MessageImportInfo
+    {
+        return $this->importInfo;
+    }
+
     public function getInteractionInfo(): ?MessageInteractionInfo
     {
         return $this->interactionInfo;
@@ -525,6 +293,11 @@ class Message extends TdObject
     public function getIsChannelPost(): bool
     {
         return $this->isChannelPost;
+    }
+
+    public function getIsFromOffline(): bool
+    {
+        return $this->isFromOffline;
     }
 
     public function getIsOutgoing(): bool
@@ -567,6 +340,11 @@ class Message extends TdObject
         return $this->restrictionReason;
     }
 
+    public function getSavedMessagesTopicId(): int
+    {
+        return $this->savedMessagesTopicId;
+    }
+
     public function getSchedulingState(): ?MessageSchedulingState
     {
         return $this->schedulingState;
@@ -580,6 +358,16 @@ class Message extends TdObject
     public function getSelfDestructType(): ?MessageSelfDestructType
     {
         return $this->selfDestructType;
+    }
+
+    public function getSenderBoostCount(): int
+    {
+        return $this->senderBoostCount;
+    }
+
+    public function getSenderBusinessBotUserId(): int
+    {
+        return $this->senderBusinessBotUserId;
     }
 
     public function getSenderId(): MessageSender
@@ -605,45 +393,43 @@ class Message extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'sender_id' => $this->senderId->typeSerialize(),
-            'chat_id' => $this->chatId,
-            'sending_state' => (isset($this->sendingState) ? $this->sendingState : null),
-            'scheduling_state' => (isset($this->schedulingState) ? $this->schedulingState : null),
-            'is_outgoing' => $this->isOutgoing,
-            'is_pinned' => $this->isPinned,
-            'can_be_edited' => $this->canBeEdited,
-            'can_be_forwarded' => $this->canBeForwarded,
-            'can_be_saved' => $this->canBeSaved,
-            'can_be_deleted_only_for_self' => $this->canBeDeletedOnlyForSelf,
-            'can_be_deleted_for_all_users' => $this->canBeDeletedForAllUsers,
-            'can_get_added_reactions' => $this->canGetAddedReactions,
-            'can_get_statistics' => $this->canGetStatistics,
-            'can_get_message_thread' => $this->canGetMessageThread,
-            'can_get_viewers' => $this->canGetViewers,
-            'can_get_media_timestamp_links' => $this->canGetMediaTimestampLinks,
-            'can_report_reactions' => $this->canReportReactions,
-            'has_timestamped_media' => $this->hasTimestampedMedia,
-            'is_channel_post' => $this->isChannelPost,
-            'is_topic_message' => $this->isTopicMessage,
-            'contains_unread_mention' => $this->containsUnreadMention,
-            'date' => $this->date,
-            'edit_date' => $this->editDate,
-            'forward_info' => (isset($this->forwardInfo) ? $this->forwardInfo : null),
-            'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
+            '@type'                       => static::TYPE_NAME,
+            'id'                          => $this->id,
+            'sender_id'                   => $this->senderId->typeSerialize(),
+            'chat_id'                     => $this->chatId,
+            'sending_state'               => (isset($this->sendingState) ? $this->sendingState : null),
+            'scheduling_state'            => (isset($this->schedulingState) ? $this->schedulingState : null),
+            'is_outgoing'                 => $this->isOutgoing,
+            'is_pinned'                   => $this->isPinned,
+            'is_from_offline'             => $this->isFromOffline,
+            'can_be_saved'                => $this->canBeSaved,
+            'has_timestamped_media'       => $this->hasTimestampedMedia,
+            'is_channel_post'             => $this->isChannelPost,
+            'is_topic_message'            => $this->isTopicMessage,
+            'contains_unread_mention'     => $this->containsUnreadMention,
+            'date'                        => $this->date,
+            'edit_date'                   => $this->editDate,
+            'forward_info'                => (isset($this->forwardInfo) ? $this->forwardInfo : null),
+            'import_info'                 => (isset($this->importInfo) ? $this->importInfo : null),
+            'interaction_info'            => (isset($this->interactionInfo) ? $this->interactionInfo : null),
             array_map(fn($x) => $x->typeSerialize(), $this->unreadReactions),
-            'reply_to' => (isset($this->replyTo) ? $this->replyTo : null),
-            'message_thread_id' => $this->messageThreadId,
-            'self_destruct_type' => (isset($this->selfDestructType) ? $this->selfDestructType : null),
-            'self_destruct_in' => $this->selfDestructIn,
-            'auto_delete_in' => $this->autoDeleteIn,
-            'via_bot_user_id' => $this->viaBotUserId,
-            'author_signature' => $this->authorSignature,
-            'media_album_id' => $this->mediaAlbumId,
-            'restriction_reason' => $this->restrictionReason,
-            'content' => $this->content->typeSerialize(),
-            'reply_markup' => (isset($this->replyMarkup) ? $this->replyMarkup : null),
+            'fact_check'                  => (isset($this->factCheck) ? $this->factCheck : null),
+            'reply_to'                    => (isset($this->replyTo) ? $this->replyTo : null),
+            'message_thread_id'           => $this->messageThreadId,
+            'saved_messages_topic_id'     => $this->savedMessagesTopicId,
+            'self_destruct_type'          => (isset($this->selfDestructType) ? $this->selfDestructType : null),
+            'self_destruct_in'            => $this->selfDestructIn,
+            'auto_delete_in'              => $this->autoDeleteIn,
+            'via_bot_user_id'             => $this->viaBotUserId,
+            'sender_business_bot_user_id' => $this->senderBusinessBotUserId,
+            'sender_boost_count'          => $this->senderBoostCount,
+            'author_signature'            => $this->authorSignature,
+            'media_album_id'              => $this->mediaAlbumId,
+            'effect_id'                   => $this->effectId,
+            'has_sensitive_content'       => $this->hasSensitiveContent,
+            'restriction_reason'          => $this->restrictionReason,
+            'content'                     => $this->content->typeSerialize(),
+            'reply_markup'                => (isset($this->replyMarkup) ? $this->replyMarkup : null),
         ];
     }
 }

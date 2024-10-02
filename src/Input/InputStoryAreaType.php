@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes type of a clickable rectangle area on a story media to be added
+ * Describes type of clickable area on a story media to be added.
  */
 class InputStoryAreaType extends TdObject
 {
     public const TYPE_NAME = 'InputStoryAreaType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputStoryAreaType
     {

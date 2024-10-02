@@ -12,40 +12,30 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return
- * partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+ * partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset".
  */
 class GetChatMessageCalendar extends TdFunction
 {
     public const TYPE_NAME = 'getChatMessageCalendar';
 
-    /**
-     * Identifier of the chat in which to return information about messages
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and
-     * searchMessagesFilterUnreadReaction are unsupported in this function
-     *
-     * @var SearchMessagesFilter
-     */
-    protected SearchMessagesFilter $filter;
-
-    /**
-     * The message identifier from which to return information about messages; use 0 to get results from the last message
-     *
-     * @var int
-     */
-    protected int $fromMessageId;
-
-    public function __construct(int $chatId, SearchMessagesFilter $filter, int $fromMessageId)
-    {
-        $this->chatId = $chatId;
-        $this->filter = $filter;
-        $this->fromMessageId = $fromMessageId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat in which to return information about messages.
+         */
+        protected int                  $chatId,
+        /**
+         * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
+         */
+        protected SearchMessagesFilter $filter,
+        /**
+         * The message identifier from which to return information about messages; use 0 to get results from the last message.
+         */
+        protected int                  $fromMessageId,
+        /**
+         * If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages.
+         */
+        protected int                  $savedMessagesTopicId,
+    ) {}
 
     public static function fromArray(array $array): GetChatMessageCalendar
     {
@@ -53,6 +43,7 @@ class GetChatMessageCalendar extends TdFunction
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['filter']),
             $array['from_message_id'],
+            $array['saved_messages_topic_id'],
         );
     }
 
@@ -71,13 +62,19 @@ class GetChatMessageCalendar extends TdFunction
         return $this->fromMessageId;
     }
 
+    public function getSavedMessagesTopicId(): int
+    {
+        return $this->savedMessagesTopicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'filter' => $this->filter->typeSerialize(),
-            'from_message_id' => $this->fromMessageId,
+            '@type'                   => static::TYPE_NAME,
+            'chat_id'                 => $this->chatId,
+            'filter'                  => $this->filter->typeSerialize(),
+            'from_message_id'         => $this->fromMessageId,
+            'saved_messages_topic_id' => $this->savedMessagesTopicId,
         ];
     }
 }

@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An updated chat title
+ * An updated chat title.
  */
 class MessageChatChangeTitle extends MessageContent
 {
     public const TYPE_NAME = 'messageChatChangeTitle';
 
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * New chat title.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): MessageChatChangeTitle

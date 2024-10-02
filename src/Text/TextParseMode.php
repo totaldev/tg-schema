@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Text;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the way the text needs to be parsed for text entities
+ * Describes the way the text needs to be parsed for text entities.
  */
 class TextParseMode extends TdObject
 {
     public const TYPE_NAME = 'TextParseMode';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TextParseMode
     {

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+ * Stops a poll.
  */
 class StopPoll extends TdFunction
 {
     public const TYPE_NAME = 'stopPoll';
 
-    /**
-     * Identifier of the chat to which the poll belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message containing the poll
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none; for bots only
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    public function __construct(int $chatId, int $messageId, ReplyMarkup $replyMarkup)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->replyMarkup = $replyMarkup;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the poll belongs.
+         */
+        protected int         $chatId,
+        /**
+         * Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped.
+         */
+        protected int         $messageId,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ReplyMarkup $replyMarkup,
+    ) {}
 
     public static function fromArray(array $array): StopPoll
     {
@@ -72,9 +59,9 @@ class StopPoll extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'message_id'   => $this->messageId,
             'reply_markup' => $this->replyMarkup->typeSerialize(),
         ];
     }

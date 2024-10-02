@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Forces an updates.getDifference call to the Telegram servers; for testing only
+ * Forces an updates.getDifference call to the Telegram servers; for testing only.
  */
 class TestGetDifference extends TdFunction
 {
     public const TYPE_NAME = 'testGetDifference';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TestGetDifference
     {

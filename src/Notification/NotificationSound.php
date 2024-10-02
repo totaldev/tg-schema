@@ -11,63 +11,38 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a notification sound in MP3 format
+ * Describes a notification sound in MP3 format.
  */
 class NotificationSound extends TdObject
 {
     public const TYPE_NAME = 'notificationSound';
 
-    /**
-     * Arbitrary data, defined while the sound was uploaded
-     *
-     * @var string
-     */
-    protected string $data;
-
-    /**
-     * Point in time (Unix timestamp) when the sound was created
-     *
-     * @var int
-     */
-    protected int $date;
-
-    /**
-     * Duration of the sound, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * Unique identifier of the notification sound
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * File containing the sound
-     *
-     * @var File
-     */
-    protected File $sound;
-
-    /**
-     * Title of the notification sound
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(int $id, int $duration, int $date, string $title, string $data, File $sound)
-    {
-        $this->id = $id;
-        $this->duration = $duration;
-        $this->date = $date;
-        $this->title = $title;
-        $this->data = $data;
-        $this->sound = $sound;
-    }
+    public function __construct(
+        /**
+         * Unique identifier of the notification sound.
+         */
+        protected int    $id,
+        /**
+         * Duration of the sound, in seconds.
+         */
+        protected int    $duration,
+        /**
+         * Point in time (Unix timestamp) when the sound was created.
+         */
+        protected int    $date,
+        /**
+         * Title of the notification sound.
+         */
+        protected string $title,
+        /**
+         * Arbitrary data, defined while the sound was uploaded.
+         */
+        protected string $data,
+        /**
+         * File containing the sound.
+         */
+        protected File   $sound,
+    ) {}
 
     public static function fromArray(array $array): NotificationSound
     {
@@ -114,13 +89,13 @@ class NotificationSound extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            '@type'    => static::TYPE_NAME,
+            'id'       => $this->id,
             'duration' => $this->duration,
-            'date' => $this->date,
-            'title' => $this->title,
-            'data' => $this->data,
-            'sound' => $this->sound->typeSerialize(),
+            'date'     => $this->date,
+            'title'    => $this->title,
+            'data'     => $this->data,
+            'sound'    => $this->sound->typeSerialize(),
         ];
     }
 }

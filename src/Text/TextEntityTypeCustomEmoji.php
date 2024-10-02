@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
+ * A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji.
  */
 class TextEntityTypeCustomEmoji extends TextEntityType
 {
     public const TYPE_NAME = 'textEntityTypeCustomEmoji';
 
-    /**
-     * Unique identifier of the custom emoji
-     *
-     * @var int
-     */
-    protected int $customEmojiId;
-
-    public function __construct(int $customEmojiId)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the custom emoji.
+         */
+        protected int $customEmojiId
+    ) {
         parent::__construct();
-
-        $this->customEmojiId = $customEmojiId;
     }
 
     public static function fromArray(array $array): TextEntityTypeCustomEmoji
@@ -44,7 +37,7 @@ class TextEntityTypeCustomEmoji extends TextEntityType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'custom_emoji_id' => $this->customEmojiId,
         ];
     }

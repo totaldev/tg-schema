@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Internal;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The link is a link to the change phone number section of the app
+ * The link is a link to the change phone number section of the application.
  */
 class InternalLinkTypeChangePhoneNumber extends InternalLinkType
 {

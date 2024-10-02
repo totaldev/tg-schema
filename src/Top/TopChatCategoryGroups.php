@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Top;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A category containing frequently used basic groups and supergroups
+ * A category containing frequently used basic groups and supergroups.
  */
 class TopChatCategoryGroups extends TopChatCategory
 {

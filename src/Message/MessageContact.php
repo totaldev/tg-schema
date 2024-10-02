@@ -10,24 +10,19 @@ use Totaldev\TgSchema\Contact\Contact;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message with a user contact
+ * A message with a user contact.
  */
 class MessageContact extends MessageContent
 {
     public const TYPE_NAME = 'messageContact';
 
-    /**
-     * The contact description
-     *
-     * @var Contact
-     */
-    protected Contact $contact;
-
-    public function __construct(Contact $contact)
-    {
+    public function __construct(
+        /**
+         * The contact description.
+         */
+        protected Contact $contact
+    ) {
         parent::__construct();
-
-        $this->contact = $contact;
     }
 
     public static function fromArray(array $array): MessageContact
@@ -45,7 +40,7 @@ class MessageContact extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'contact' => $this->contact->typeSerialize(),
         ];
     }

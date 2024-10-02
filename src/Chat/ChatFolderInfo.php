@@ -10,61 +10,38 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains basic information about a chat folder
+ * Contains basic information about a chat folder.
  */
 class ChatFolderInfo extends TdObject
 {
     public const TYPE_NAME = 'chatFolderInfo';
 
-    /**
-     * True, if the chat folder has invite links created by the current user
-     *
-     * @var bool
-     */
-    protected bool $hasMyInviteLinks;
-
-    /**
-     * The chosen or default icon for the chat folder
-     *
-     * @var ChatFolderIcon
-     */
-    protected ChatFolderIcon $icon;
-
-    /**
-     * Unique chat folder identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if at least one link has been created for the folder
-     *
-     * @var bool
-     */
-    protected bool $isShareable;
-
-    /**
-     * The title of the folder; 1-12 characters without line feeds
-     *
-     * @var string
-     */
-    protected string $title;
-
     public function __construct(
-        int            $id,
-        string         $title,
-        ChatFolderIcon $icon,
-        bool           $isShareable,
-        bool           $hasMyInviteLinks,
-    )
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->icon = $icon;
-        $this->isShareable = $isShareable;
-        $this->hasMyInviteLinks = $hasMyInviteLinks;
-    }
+        /**
+         * Unique chat folder identifier.
+         */
+        protected int            $id,
+        /**
+         * The title of the folder; 1-12 characters without line feeds.
+         */
+        protected string         $title,
+        /**
+         * The chosen or default icon for the chat folder.
+         */
+        protected ChatFolderIcon $icon,
+        /**
+         * The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled.
+         */
+        protected int            $colorId,
+        /**
+         * True, if at least one link has been created for the folder.
+         */
+        protected bool           $isShareable,
+        /**
+         * True, if the chat folder has invite links created by the current user.
+         */
+        protected bool           $hasMyInviteLinks,
+    ) {}
 
     public static function fromArray(array $array): ChatFolderInfo
     {
@@ -72,9 +49,15 @@ class ChatFolderInfo extends TdObject
             $array['id'],
             $array['title'],
             TdSchemaRegistry::fromArray($array['icon']),
+            $array['color_id'],
             $array['is_shareable'],
             $array['has_my_invite_links'],
         );
+    }
+
+    public function getColorId(): int
+    {
+        return $this->colorId;
     }
 
     public function getHasMyInviteLinks(): bool
@@ -105,11 +88,12 @@ class ChatFolderInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'title' => $this->title,
-            'icon' => $this->icon->typeSerialize(),
-            'is_shareable' => $this->isShareable,
+            '@type'               => static::TYPE_NAME,
+            'id'                  => $this->id,
+            'title'               => $this->title,
+            'icon'                => $this->icon->typeSerialize(),
+            'color_id'            => $this->colorId,
+            'is_shareable'        => $this->isShareable,
             'has_my_invite_links' => $this->hasMyInviteLinks,
         ];
     }

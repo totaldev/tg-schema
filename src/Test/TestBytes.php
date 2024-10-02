@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Test;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A simple object containing a sequence of bytes; for testing only
+ * A simple object containing a sequence of bytes; for testing only.
  */
 class TestBytes extends TdObject
 {
     public const TYPE_NAME = 'testBytes';
 
-    /**
-     * Bytes
-     *
-     * @var string
-     */
-    protected string $value;
-
-    public function __construct(string $value)
-    {
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * Bytes.
+         */
+        protected string $value
+    ) {}
 
     public static function fromArray(array $array): TestBytes
     {

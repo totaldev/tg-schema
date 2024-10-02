@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
+ * Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only.
  */
 class SetBotUpdatesStatus extends TdFunction
 {
     public const TYPE_NAME = 'setBotUpdatesStatus';
 
-    /**
-     * The last error message
-     *
-     * @var string
-     */
-    protected string $errorMessage;
-
-    /**
-     * The number of pending updates
-     *
-     * @var int
-     */
-    protected int $pendingUpdateCount;
-
-    public function __construct(int $pendingUpdateCount, string $errorMessage)
-    {
-        $this->pendingUpdateCount = $pendingUpdateCount;
-        $this->errorMessage = $errorMessage;
-    }
+    public function __construct(
+        /**
+         * The number of pending updates.
+         */
+        protected int    $pendingUpdateCount,
+        /**
+         * The last error message.
+         */
+        protected string $errorMessage,
+    ) {}
 
     public static function fromArray(array $array): SetBotUpdatesStatus
     {
@@ -57,9 +47,9 @@ class SetBotUpdatesStatus extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                => static::TYPE_NAME,
             'pending_update_count' => $this->pendingUpdateCount,
-            'error_message' => $this->errorMessage,
+            'error_message'        => $this->errorMessage,
         ];
     }
 }

@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of stickers
+ * Represents a list of stickers.
  */
 class Stickers extends TdObject
 {
     public const TYPE_NAME = 'stickers';
 
-    /**
-     * List of stickers
-     *
-     * @var Sticker[]
-     */
-    protected array $stickers;
-
-    public function __construct(array $stickers)
-    {
-        $this->stickers = $stickers;
-    }
+    public function __construct(
+        /**
+         * List of stickers.
+         *
+         * @var Sticker[]
+         */
+        protected array $stickers
+    ) {}
 
     public static function fromArray(array $array): Stickers
     {

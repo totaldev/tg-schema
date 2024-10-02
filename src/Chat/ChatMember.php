@@ -11,53 +11,30 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a user or a chat as a member of another chat
+ * Describes a user or a chat as a member of another chat.
  */
 class ChatMember extends TdObject
 {
     public const TYPE_NAME = 'chatMember';
 
-    /**
-     * Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $inviterUserId;
-
-    /**
-     * Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
-     *
-     * @var int
-     */
-    protected int $joinedChatDate;
-
-    /**
-     * Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned
-     * members and these chats must be supergroups or channels
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    /**
-     * Status of the member in the chat
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $status;
-
     public function __construct(
-        MessageSender    $memberId,
-        int              $inviterUserId,
-        int              $joinedChatDate,
-        ChatMemberStatus $status,
-    )
-    {
-        $this->memberId = $memberId;
-        $this->inviterUserId = $inviterUserId;
-        $this->joinedChatDate = $joinedChatDate;
-        $this->status = $status;
-    }
+        /**
+         * Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels.
+         */
+        protected MessageSender    $memberId,
+        /**
+         * Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown.
+         */
+        protected int              $inviterUserId,
+        /**
+         * Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat.
+         */
+        protected int              $joinedChatDate,
+        /**
+         * Status of the member in the chat.
+         */
+        protected ChatMemberStatus $status,
+    ) {}
 
     public static function fromArray(array $array): ChatMember
     {
@@ -92,11 +69,11 @@ class ChatMember extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'member_id' => $this->memberId->typeSerialize(),
-            'inviter_user_id' => $this->inviterUserId,
+            '@type'            => static::TYPE_NAME,
+            'member_id'        => $this->memberId->typeSerialize(),
+            'inviter_user_id'  => $this->inviterUserId,
             'joined_chat_date' => $this->joinedChatDate,
-            'status' => $this->status->typeSerialize(),
+            'status'           => $this->status->typeSerialize(),
         ];
     }
 }

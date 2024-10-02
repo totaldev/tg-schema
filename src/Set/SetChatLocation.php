@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is
- * allowed to use
+ * allowed to use.
  */
 class SetChatLocation extends TdFunction
 {
     public const TYPE_NAME = 'setChatLocation';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New location for the chat; must be valid and not null
-     *
-     * @var ChatLocation
-     */
-    protected ChatLocation $location;
-
-    public function __construct(int $chatId, ChatLocation $location)
-    {
-        $this->chatId = $chatId;
-        $this->location = $location;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int          $chatId,
+        /**
+         * New location for the chat; must be valid and not null.
+         */
+        protected ChatLocation $location,
+    ) {}
 
     public static function fromArray(array $array): SetChatLocation
     {
@@ -59,8 +50,8 @@ class SetChatLocation extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'    => static::TYPE_NAME,
+            'chat_id'  => $this->chatId,
             'location' => $this->location->typeSerialize(),
         ];
     }

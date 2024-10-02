@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes pause state of a file in the file download list
+ * Changes pause state of a file in the file download list.
  */
 class ToggleDownloadIsPaused extends TdFunction
 {
     public const TYPE_NAME = 'toggleDownloadIsPaused';
 
-    /**
-     * Identifier of the downloaded file
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    /**
-     * Pass true if the download is paused
-     *
-     * @var bool
-     */
-    protected bool $isPaused;
-
-    public function __construct(int $fileId, bool $isPaused)
-    {
-        $this->fileId = $fileId;
-        $this->isPaused = $isPaused;
-    }
+    public function __construct(
+        /**
+         * Identifier of the downloaded file.
+         */
+        protected int  $fileId,
+        /**
+         * Pass true if the download is paused.
+         */
+        protected bool $isPaused,
+    ) {}
 
     public static function fromArray(array $array): ToggleDownloadIsPaused
     {
@@ -57,8 +47,8 @@ class ToggleDownloadIsPaused extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
+            '@type'     => static::TYPE_NAME,
+            'file_id'   => $this->fileId,
             'is_paused' => $this->isPaused,
         ];
     }

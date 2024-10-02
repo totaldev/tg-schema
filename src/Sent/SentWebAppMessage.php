@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Sent;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Information about the message sent by answerWebAppQuery
+ * Information about the message sent by answerWebAppQuery.
  */
 class SentWebAppMessage extends TdObject
 {
     public const TYPE_NAME = 'sentWebAppMessage';
 
-    /**
-     * Identifier of the sent inline message, if known
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    public function __construct(string $inlineMessageId)
-    {
-        $this->inlineMessageId = $inlineMessageId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the sent inline message, if known.
+         */
+        protected string $inlineMessageId
+    ) {}
 
     public static function fromArray(array $array): SentWebAppMessage
     {
@@ -43,7 +37,7 @@ class SentWebAppMessage extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'             => static::TYPE_NAME,
             'inline_message_id' => $this->inlineMessageId,
         ];
     }

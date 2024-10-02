@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a profile photo
+ * The file is a profile photo.
  */
 class FileTypeProfilePhoto extends FileType
 {

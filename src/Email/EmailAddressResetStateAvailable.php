@@ -6,28 +6,21 @@
 
 namespace Totaldev\TgSchema\Email;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * Email address can be reset after the given period. Call resetAuthenticationEmailAddress to reset it and allow the user to authorize with a code sent to the
- * user's phone number
+ * user's phone number.
  */
 class EmailAddressResetStateAvailable extends EmailAddressResetState
 {
     public const TYPE_NAME = 'emailAddressResetStateAvailable';
 
-    /**
-     * Time required to wait before the email address can be reset; 0 if the user is subscribed to Telegram Premium
-     *
-     * @var int
-     */
-    protected int $waitPeriod;
-
-    public function __construct(int $waitPeriod)
-    {
+    public function __construct(
+        /**
+         * Time required to wait before the email address can be reset; 0 if the user is subscribed to Telegram Premium.
+         */
+        protected int $waitPeriod
+    ) {
         parent::__construct();
-
-        $this->waitPeriod = $waitPeriod;
     }
 
     public static function fromArray(array $array): EmailAddressResetStateAvailable
@@ -45,7 +38,7 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'wait_period' => $this->waitPeriod,
         ];
     }

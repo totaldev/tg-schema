@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a message with the callback button that originated a callback query; for bots only
+ * Returns information about a message with the callback button that originated a callback query; for bots only.
  */
 class GetCallbackQueryMessage extends TdFunction
 {
     public const TYPE_NAME = 'getCallbackQueryMessage';
 
-    /**
-     * Identifier of the callback query
-     *
-     * @var int
-     */
-    protected int $callbackQueryId;
-
-    /**
-     * Identifier of the chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId, int $callbackQueryId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->callbackQueryId = $callbackQueryId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat the message belongs to.
+         */
+        protected int $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int $messageId,
+        /**
+         * Identifier of the callback query.
+         */
+        protected int $callbackQueryId,
+    ) {}
 
     public static function fromArray(array $array): GetCallbackQueryMessage
     {
@@ -71,9 +57,9 @@ class GetCallbackQueryMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'message_id'        => $this->messageId,
             'callback_query_id' => $this->callbackQueryId,
         ];
     }

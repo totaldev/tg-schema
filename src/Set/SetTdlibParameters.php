@@ -4,168 +4,75 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+ * Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters.
  */
 class SetTdlibParameters extends TdFunction
 {
     public const TYPE_NAME = 'setTdlibParameters';
 
-    /**
-     * Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
-     *
-     * @var string
-     */
-    protected string $apiHash;
-
-    /**
-     * Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-     *
-     * @var int
-     */
-    protected int $apiId;
-
-    /**
-     * Application version; must be non-empty
-     *
-     * @var string
-     */
-    protected string $applicationVersion;
-
-    /**
-     * The path to the directory for the persistent database; if empty, the current working directory will be used
-     *
-     * @var string
-     */
-    protected string $databaseDirectory;
-
-    /**
-     * Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
-     *
-     * @var string
-     */
-    protected string $databaseEncryptionKey;
-
-    /**
-     * Model of the device the application is being run on; must be non-empty
-     *
-     * @var string
-     */
-    protected string $deviceModel;
-
-    /**
-     * Pass true to automatically delete old files in background
-     *
-     * @var bool
-     */
-    protected bool $enableStorageOptimizer;
-
-    /**
-     * The path to the directory for storing files; if empty, database_directory will be used
-     *
-     * @var string
-     */
-    protected string $filesDirectory;
-
-    /**
-     * Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
-     *
-     * @var bool
-     */
-    protected bool $ignoreFileNames;
-
-    /**
-     * IETF language tag of the user's operating system language; must be non-empty
-     *
-     * @var string
-     */
-    protected string $systemLanguageCode;
-
-    /**
-     * Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
-     *
-     * @var string
-     */
-    protected string $systemVersion;
-
-    /**
-     * Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
-     *
-     * @var bool
-     */
-    protected bool $useChatInfoDatabase;
-
-    /**
-     * Pass true to keep information about downloaded and uploaded files between application restarts
-     *
-     * @var bool
-     */
-    protected bool $useFileDatabase;
-
-    /**
-     * Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
-     *
-     * @var bool
-     */
-    protected bool $useMessageDatabase;
-
-    /**
-     * Pass true to enable support for secret chats
-     *
-     * @var bool
-     */
-    protected bool $useSecretChats;
-
-    /**
-     * Pass true to use Telegram test environment instead of the production environment
-     *
-     * @var bool
-     */
-    protected bool $useTestDc;
-
     public function __construct(
-        bool   $useTestDc,
-        string $databaseDirectory,
-        string $filesDirectory,
-        string $databaseEncryptionKey,
-        bool   $useFileDatabase,
-        bool   $useChatInfoDatabase,
-        bool   $useMessageDatabase,
-        bool   $useSecretChats,
-        int    $apiId,
-        string $apiHash,
-        string $systemLanguageCode,
-        string $deviceModel,
-        string $systemVersion,
-        string $applicationVersion,
-        bool   $enableStorageOptimizer,
-        bool   $ignoreFileNames,
-    )
-    {
-        $this->useTestDc = $useTestDc;
-        $this->databaseDirectory = $databaseDirectory;
-        $this->filesDirectory = $filesDirectory;
-        $this->databaseEncryptionKey = $databaseEncryptionKey;
-        $this->useFileDatabase = $useFileDatabase;
-        $this->useChatInfoDatabase = $useChatInfoDatabase;
-        $this->useMessageDatabase = $useMessageDatabase;
-        $this->useSecretChats = $useSecretChats;
-        $this->apiId = $apiId;
-        $this->apiHash = $apiHash;
-        $this->systemLanguageCode = $systemLanguageCode;
-        $this->deviceModel = $deviceModel;
-        $this->systemVersion = $systemVersion;
-        $this->applicationVersion = $applicationVersion;
-        $this->enableStorageOptimizer = $enableStorageOptimizer;
-        $this->ignoreFileNames = $ignoreFileNames;
-    }
+        /**
+         * Pass true to use Telegram test environment instead of the production environment.
+         */
+        protected bool   $useTestDc,
+        /**
+         * The path to the directory for the persistent database; if empty, the current working directory will be used.
+         */
+        protected string $databaseDirectory,
+        /**
+         * The path to the directory for storing files; if empty, database_directory will be used.
+         */
+        protected string $filesDirectory,
+        /**
+         * Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned.
+         */
+        protected string $databaseEncryptionKey,
+        /**
+         * Pass true to keep information about downloaded and uploaded files between application restarts.
+         */
+        protected bool   $useFileDatabase,
+        /**
+         * Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database.
+         */
+        protected bool   $useChatInfoDatabase,
+        /**
+         * Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database.
+         */
+        protected bool   $useMessageDatabase,
+        /**
+         * Pass true to enable support for secret chats.
+         */
+        protected bool   $useSecretChats,
+        /**
+         * Application identifier for Telegram API access, which can be obtained at https://my.telegram.org.
+         */
+        protected int    $apiId,
+        /**
+         * Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org.
+         */
+        protected string $apiHash,
+        /**
+         * IETF language tag of the user's operating system language; must be non-empty.
+         */
+        protected string $systemLanguageCode,
+        /**
+         * Model of the device the application is being run on; must be non-empty.
+         */
+        protected string $deviceModel,
+        /**
+         * Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib.
+         */
+        protected string $systemVersion,
+        /**
+         * Application version; must be non-empty.
+         */
+        protected string $applicationVersion,
+    ) {}
 
     public static function fromArray(array $array): SetTdlibParameters
     {
@@ -184,8 +91,6 @@ class SetTdlibParameters extends TdFunction
             $array['device_model'],
             $array['system_version'],
             $array['application_version'],
-            $array['enable_storage_optimizer'],
-            $array['ignore_file_names'],
         );
     }
 
@@ -219,19 +124,9 @@ class SetTdlibParameters extends TdFunction
         return $this->deviceModel;
     }
 
-    public function getEnableStorageOptimizer(): bool
-    {
-        return $this->enableStorageOptimizer;
-    }
-
     public function getFilesDirectory(): string
     {
         return $this->filesDirectory;
-    }
-
-    public function getIgnoreFileNames(): bool
-    {
-        return $this->ignoreFileNames;
     }
 
     public function getSystemLanguageCode(): string
@@ -272,23 +167,21 @@ class SetTdlibParameters extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'use_test_dc' => $this->useTestDc,
-            'database_directory' => $this->databaseDirectory,
-            'files_directory' => $this->filesDirectory,
+            '@type'                   => static::TYPE_NAME,
+            'use_test_dc'             => $this->useTestDc,
+            'database_directory'      => $this->databaseDirectory,
+            'files_directory'         => $this->filesDirectory,
             'database_encryption_key' => $this->databaseEncryptionKey,
-            'use_file_database' => $this->useFileDatabase,
-            'use_chat_info_database' => $this->useChatInfoDatabase,
-            'use_message_database' => $this->useMessageDatabase,
-            'use_secret_chats' => $this->useSecretChats,
-            'api_id' => $this->apiId,
-            'api_hash' => $this->apiHash,
-            'system_language_code' => $this->systemLanguageCode,
-            'device_model' => $this->deviceModel,
-            'system_version' => $this->systemVersion,
-            'application_version' => $this->applicationVersion,
-            'enable_storage_optimizer' => $this->enableStorageOptimizer,
-            'ignore_file_names' => $this->ignoreFileNames,
+            'use_file_database'       => $this->useFileDatabase,
+            'use_chat_info_database'  => $this->useChatInfoDatabase,
+            'use_message_database'    => $this->useMessageDatabase,
+            'use_secret_chats'        => $this->useSecretChats,
+            'api_id'                  => $this->apiId,
+            'api_hash'                => $this->apiHash,
+            'system_language_code'    => $this->systemLanguageCode,
+            'device_model'            => $this->deviceModel,
+            'system_version'          => $this->systemVersion,
+            'application_version'     => $this->applicationVersion,
         ];
     }
 }

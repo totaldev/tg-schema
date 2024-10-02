@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Page;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The content must be top-aligned
+ * The content must be top-aligned.
  */
 class PageBlockVerticalAlignmentTop extends PageBlockVerticalAlignment
 {

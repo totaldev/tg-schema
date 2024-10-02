@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns a suggested name for a new sticker set with a given title
+ * Returns a suggested name for a new sticker set with a given title.
  */
 class GetSuggestedStickerSetName extends TdFunction
 {
     public const TYPE_NAME = 'getSuggestedStickerSetName';
 
-    /**
-     * Sticker set title; 1-64 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
-        $this->title = $title;
-    }
+    public function __construct(
+        /**
+         * Sticker set title; 1-64 characters.
+         */
+        protected string $title
+    ) {}
 
     public static function fromArray(array $array): GetSuggestedStickerSetName
     {

@@ -10,39 +10,28 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a group call participant's video channel
+ * Contains information about a group call participant's video channel.
  */
 class GroupCallParticipantVideoInfo extends TdObject
 {
     public const TYPE_NAME = 'groupCallParticipantVideoInfo';
 
-    /**
-     * Video channel endpoint identifier
-     *
-     * @var string
-     */
-    protected string $endpointId;
-
-    /**
-     * True, if the video is paused. This flag needs to be ignored, if new video frames are received
-     *
-     * @var bool
-     */
-    protected bool $isPaused;
-
-    /**
-     * List of synchronization source groups of the video
-     *
-     * @var GroupCallVideoSourceGroup[]
-     */
-    protected array $sourceGroups;
-
-    public function __construct(array $sourceGroups, string $endpointId, bool $isPaused)
-    {
-        $this->sourceGroups = $sourceGroups;
-        $this->endpointId = $endpointId;
-        $this->isPaused = $isPaused;
-    }
+    public function __construct(
+        /**
+         * List of synchronization source groups of the video.
+         *
+         * @var GroupCallVideoSourceGroup[]
+         */
+        protected array  $sourceGroups,
+        /**
+         * Video channel endpoint identifier.
+         */
+        protected string $endpointId,
+        /**
+         * True, if the video is paused. This flag needs to be ignored, if new video frames are received.
+         */
+        protected bool   $isPaused,
+    ) {}
 
     public static function fromArray(array $array): GroupCallParticipantVideoInfo
     {
@@ -71,10 +60,10 @@ class GroupCallParticipantVideoInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->sourceGroups),
             'endpoint_id' => $this->endpointId,
-            'is_paused' => $this->isPaused,
+            'is_paused'   => $this->isPaused,
         ];
     }
 }

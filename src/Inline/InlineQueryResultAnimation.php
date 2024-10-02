@@ -10,40 +10,27 @@ use Totaldev\TgSchema\Animation\Animation;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents an animation file
+ * Represents an animation file.
  */
 class InlineQueryResultAnimation extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultAnimation';
 
-    /**
-     * Animation file
-     *
-     * @var Animation
-     */
-    protected Animation $animation;
-
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Animation title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $id, Animation $animation, string $title)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string    $id,
+        /**
+         * Animation file.
+         */
+        protected Animation $animation,
+        /**
+         * Animation title.
+         */
+        protected string    $title,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->animation = $animation;
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): InlineQueryResultAnimation
@@ -73,10 +60,10 @@ class InlineQueryResultAnimation extends InlineQueryResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
+            '@type'     => static::TYPE_NAME,
+            'id'        => $this->id,
             'animation' => $this->animation->typeSerialize(),
-            'title' => $this->title,
+            'title'     => $this->title,
         ];
     }
 }

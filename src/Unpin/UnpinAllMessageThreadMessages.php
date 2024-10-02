@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Unpin;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+ * Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup.
  */
 class UnpinAllMessageThreadMessages extends TdFunction
 {
     public const TYPE_NAME = 'unpinAllMessageThreadMessages';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message thread identifier in which messages will be unpinned
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $chatId, int $messageThreadId)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int $chatId,
+        /**
+         * Message thread identifier in which messages will be unpinned.
+         */
+        protected int $messageThreadId,
+    ) {}
 
     public static function fromArray(array $array): UnpinAllMessageThreadMessages
     {
@@ -57,8 +47,8 @@ class UnpinAllMessageThreadMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
         ];
     }

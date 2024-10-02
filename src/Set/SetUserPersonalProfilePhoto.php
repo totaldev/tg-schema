@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes a personal profile photo of a contact user
+ * Changes a personal profile photo of a contact user.
  */
 class SetUserPersonalProfilePhoto extends TdFunction
 {
     public const TYPE_NAME = 'setUserPersonalProfilePhoto';
 
-    /**
-     * Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
-     *
-     * @var InputChatPhoto
-     */
-    protected InputChatPhoto $photo;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, InputChatPhoto $photo)
-    {
-        $this->userId = $userId;
-        $this->photo = $photo;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int            $userId,
+        /**
+         * Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function.
+         */
+        protected InputChatPhoto $photo,
+    ) {}
 
     public static function fromArray(array $array): SetUserPersonalProfilePhoto
     {
@@ -58,9 +49,9 @@ class SetUserPersonalProfilePhoto extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'photo' => $this->photo->typeSerialize(),
+            'photo'   => $this->photo->typeSerialize(),
         ];
     }
 }

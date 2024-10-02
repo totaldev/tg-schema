@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns bot members of the chat
+ * Returns bot members of the chat.
  */
 class ChatMembersFilterBots extends ChatMembersFilter
 {

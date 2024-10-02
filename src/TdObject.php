@@ -8,7 +8,7 @@ namespace Totaldev\TgSchema;
 
 use JsonSerializable;
 
-abstract class TdObject implements TdTypeSerializableInterface, JsonSerializable
+abstract class TdObject implements JsonSerializable, TdTypeSerializableInterface
 {
     public const TYPE_NAME = '_tdObject';
 

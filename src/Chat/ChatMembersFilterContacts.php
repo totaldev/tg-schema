@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns contacts of the user
+ * Returns contacts of the user.
  */
 class ChatMembersFilterContacts extends ChatMembersFilter
 {

@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
+ * Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously.
  */
 class SetLogTagVerbosityLevel extends TdFunction
 {
     public const TYPE_NAME = 'setLogTagVerbosityLevel';
 
-    /**
-     * New verbosity level; 1-1024
-     *
-     * @var int
-     */
-    protected int $newVerbosityLevel;
-
-    /**
-     * Logging tag to change verbosity level
-     *
-     * @var string
-     */
-    protected string $tag;
-
-    public function __construct(string $tag, int $newVerbosityLevel)
-    {
-        $this->tag = $tag;
-        $this->newVerbosityLevel = $newVerbosityLevel;
-    }
+    public function __construct(
+        /**
+         * Logging tag to change verbosity level.
+         */
+        protected string $tag,
+        /**
+         * New verbosity level; 1-1024.
+         */
+        protected int    $newVerbosityLevel,
+    ) {}
 
     public static function fromArray(array $array): SetLogTagVerbosityLevel
     {
@@ -57,8 +47,8 @@ class SetLogTagVerbosityLevel extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'tag' => $this->tag,
+            '@type'               => static::TYPE_NAME,
+            'tag'                 => $this->tag,
             'new_verbosity_level' => $this->newVerbosityLevel,
         ];
     }

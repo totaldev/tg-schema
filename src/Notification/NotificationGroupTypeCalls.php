@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A group containing notifications of type notificationTypeNewCall
+ * A group containing notifications of type notificationTypeNewCall.
  */
 class NotificationGroupTypeCalls extends NotificationGroupType
 {

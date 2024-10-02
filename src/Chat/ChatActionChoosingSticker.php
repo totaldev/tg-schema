@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is picking a sticker to send
+ * The user is picking a sticker to send.
  */
 class ChatActionChoosingSticker extends ChatAction
 {

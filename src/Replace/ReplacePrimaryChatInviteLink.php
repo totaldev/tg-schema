@@ -7,27 +7,21 @@
 namespace Totaldev\TgSchema\Replace;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires
- * administrator privileges and can_invite_users right
+ * administrator privileges and can_invite_users right.
  */
 class ReplacePrimaryChatInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'replacePrimaryChatInviteLink';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): ReplacePrimaryChatInviteLink
     {
@@ -44,7 +38,7 @@ class ReplacePrimaryChatInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

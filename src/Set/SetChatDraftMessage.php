@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the draft message in a chat
+ * Changes the draft message in a chat.
  */
 class SetChatDraftMessage extends TdFunction
 {
     public const TYPE_NAME = 'setChatDraftMessage';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New draft message; pass null to remove the draft
-     *
-     * @var DraftMessage
-     */
-    protected DraftMessage $draftMessage;
-
-    /**
-     * If not 0, a message thread identifier in which the draft was changed
-     *
-     * @var int
-     */
-    protected int $messageThreadId;
-
-    public function __construct(int $chatId, int $messageThreadId, DraftMessage $draftMessage)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadId = $messageThreadId;
-        $this->draftMessage = $draftMessage;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int          $chatId,
+        /**
+         * If not 0, the message thread identifier in which the draft was changed.
+         */
+        protected int          $messageThreadId,
+        /**
+         * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
+         */
+        protected DraftMessage $draftMessage,
+    ) {}
 
     public static function fromArray(array $array): SetChatDraftMessage
     {
@@ -72,10 +59,10 @@ class SetChatDraftMessage extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'draft_message' => $this->draftMessage->typeSerialize(),
+            'draft_message'     => $this->draftMessage->typeSerialize(),
         ];
     }
 }

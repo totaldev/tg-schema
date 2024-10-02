@@ -6,27 +6,22 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The list of saved animations was updated
+ * The list of saved animations was updated.
  */
 class UpdateSavedAnimations extends Update
 {
     public const TYPE_NAME = 'updateSavedAnimations';
 
-    /**
-     * The new list of file identifiers of saved animations
-     *
-     * @var int[]
-     */
-    protected array $animationIds;
-
-    public function __construct(array $animationIds)
-    {
+    public function __construct(
+        /**
+         * The new list of file identifiers of saved animations.
+         *
+         * @var int[]
+         */
+        protected array $animationIds
+    ) {
         parent::__construct();
-
-        $this->animationIds = $animationIds;
     }
 
     public static function fromArray(array $array): UpdateSavedAnimations
@@ -44,7 +39,7 @@ class UpdateSavedAnimations extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'animation_ids' => $this->animationIds,
         ];
     }

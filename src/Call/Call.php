@@ -10,55 +10,34 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a call
+ * Describes a call.
  */
 class Call extends TdObject
 {
     public const TYPE_NAME = 'call';
 
-    /**
-     * Call identifier, not persistent
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if the call is outgoing
-     *
-     * @var bool
-     */
-    protected bool $isOutgoing;
-
-    /**
-     * True, if the call is a video call
-     *
-     * @var bool
-     */
-    protected bool $isVideo;
-
-    /**
-     * Call state
-     *
-     * @var CallState
-     */
-    protected CallState $state;
-
-    /**
-     * Peer user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $id, int $userId, bool $isOutgoing, bool $isVideo, CallState $state)
-    {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->isOutgoing = $isOutgoing;
-        $this->isVideo = $isVideo;
-        $this->state = $state;
-    }
+    public function __construct(
+        /**
+         * Call identifier, not persistent.
+         */
+        protected int       $id,
+        /**
+         * User identifier of the other call participant.
+         */
+        protected int       $userId,
+        /**
+         * True, if the call is outgoing.
+         */
+        protected bool      $isOutgoing,
+        /**
+         * True, if the call is a video call.
+         */
+        protected bool      $isVideo,
+        /**
+         * Call state.
+         */
+        protected CallState $state,
+    ) {}
 
     public static function fromArray(array $array): Call
     {
@@ -99,12 +78,12 @@ class Call extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'user_id' => $this->userId,
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'user_id'     => $this->userId,
             'is_outgoing' => $this->isOutgoing,
-            'is_video' => $this->isVideo,
-            'state' => $this->state->typeSerialize(),
+            'is_video'    => $this->isVideo,
+            'state'       => $this->state->typeSerialize(),
         ];
     }
 }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Keyboard;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a keyboard button type
+ * Describes a keyboard button type.
  */
 class KeyboardButtonType extends TdObject
 {
     public const TYPE_NAME = 'KeyboardButtonType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): KeyboardButtonType
     {

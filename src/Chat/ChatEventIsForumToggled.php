@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The is_forum setting of a channel was toggled
+ * The is_forum setting of a channel was toggled.
  */
 class ChatEventIsForumToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventIsForumToggled';
 
-    /**
-     * New value of is_forum
-     *
-     * @var bool
-     */
-    protected bool $isForum;
-
-    public function __construct(bool $isForum)
-    {
+    public function __construct(
+        /**
+         * New value of is_forum.
+         */
+        protected bool $isForum
+    ) {
         parent::__construct();
-
-        $this->isForum = $isForum;
     }
 
     public static function fromArray(array $array): ChatEventIsForumToggled
@@ -44,7 +37,7 @@ class ChatEventIsForumToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'is_forum' => $this->isForum,
         ];
     }

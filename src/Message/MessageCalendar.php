@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about found messages, split by days according to the option "utc_time_offset"
+ * Contains information about found messages, split by days according to the option "utc_time_offset".
  */
 class MessageCalendar extends TdObject
 {
     public const TYPE_NAME = 'messageCalendar';
 
-    /**
-     * Information about messages sent
-     *
-     * @var MessageCalendarDay[]
-     */
-    protected array $days;
-
-    /**
-     * Total number of found messages
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $days)
-    {
-        $this->totalCount = $totalCount;
-        $this->days = $days;
-    }
+    public function __construct(
+        /**
+         * Total number of found messages.
+         */
+        protected int   $totalCount,
+        /**
+         * Information about messages sent.
+         *
+         * @var MessageCalendarDay[]
+         */
+        protected array $days,
+    ) {}
 
     public static function fromArray(array $array): MessageCalendar
     {
@@ -57,7 +50,7 @@ class MessageCalendar extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->days),
         ];

@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the order of pinned forum topics
+ * Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup.
  */
 class SetPinnedForumTopics extends TdFunction
 {
     public const TYPE_NAME = 'setPinnedForumTopics';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new list of pinned forum topics
-     *
-     * @var int[]
-     */
-    protected array $messageThreadIds;
-
-    public function __construct(int $chatId, array $messageThreadIds)
-    {
-        $this->chatId = $chatId;
-        $this->messageThreadIds = $messageThreadIds;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int   $chatId,
+        /**
+         * The new list of pinned forum topics.
+         *
+         * @var int[]
+         */
+        protected array $messageThreadIds,
+    ) {}
 
     public static function fromArray(array $array): SetPinnedForumTopics
     {
@@ -57,8 +49,8 @@ class SetPinnedForumTopics extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'              => static::TYPE_NAME,
+            'chat_id'            => $this->chatId,
             'message_thread_ids' => $this->messageThreadIds,
         ];
     }

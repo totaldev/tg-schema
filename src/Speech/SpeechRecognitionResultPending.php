@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Speech;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The speech recognition is ongoing
+ * The speech recognition is ongoing.
  */
 class SpeechRecognitionResultPending extends SpeechRecognitionResult
 {
     public const TYPE_NAME = 'speechRecognitionResultPending';
 
-    /**
-     * Partially recognized text
-     *
-     * @var string
-     */
-    protected string $partialText;
-
-    public function __construct(string $partialText)
-    {
+    public function __construct(
+        /**
+         * Partially recognized text.
+         */
+        protected string $partialText
+    ) {
         parent::__construct();
-
-        $this->partialText = $partialText;
     }
 
     public static function fromArray(array $array): SpeechRecognitionResultPending
@@ -44,7 +37,7 @@ class SpeechRecognitionResultPending extends SpeechRecognitionResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'partial_text' => $this->partialText,
         ];
     }

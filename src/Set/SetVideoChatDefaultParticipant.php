@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes default participant identifier, on whose behalf a video chat in the chat will be joined
+ * Changes default participant identifier, on whose behalf a video chat in the chat will be joined.
  */
 class SetVideoChatDefaultParticipant extends TdFunction
 {
     public const TYPE_NAME = 'setVideoChatDefaultParticipant';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Default group call participant identifier to join the video chats
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $defaultParticipantId;
-
-    public function __construct(int $chatId, MessageSender $defaultParticipantId)
-    {
-        $this->chatId = $chatId;
-        $this->defaultParticipantId = $defaultParticipantId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * Default group call participant identifier to join the video chats.
+         */
+        protected MessageSender $defaultParticipantId,
+    ) {}
 
     public static function fromArray(array $array): SetVideoChatDefaultParticipant
     {
@@ -58,8 +49,8 @@ class SetVideoChatDefaultParticipant extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                  => static::TYPE_NAME,
+            'chat_id'                => $this->chatId,
             'default_participant_id' => $this->defaultParticipantId->typeSerialize(),
         ];
     }

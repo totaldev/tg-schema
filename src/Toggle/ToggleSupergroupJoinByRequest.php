@@ -7,34 +7,25 @@
 namespace Totaldev\TgSchema\Toggle;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+ * Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator
+ * right.
  */
 class ToggleSupergroupJoinByRequest extends TdFunction
 {
     public const TYPE_NAME = 'toggleSupergroupJoinByRequest';
 
-    /**
-     * New value of join_by_request
-     *
-     * @var bool
-     */
-    protected bool $joinByRequest;
-
-    /**
-     * Identifier of the channel
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    public function __construct(int $supergroupId, bool $joinByRequest)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->joinByRequest = $joinByRequest;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup that isn't a broadcast group.
+         */
+        protected int  $supergroupId,
+        /**
+         * New value of join_by_request.
+         */
+        protected bool $joinByRequest,
+    ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinByRequest
     {
@@ -57,8 +48,8 @@ class ToggleSupergroupJoinByRequest extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
+            '@type'           => static::TYPE_NAME,
+            'supergroup_id'   => $this->supergroupId,
             'join_by_request' => $this->joinByRequest,
         ];
     }

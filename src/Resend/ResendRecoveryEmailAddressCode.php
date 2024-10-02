@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Resend;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Resends the 2-step verification recovery email address verification code
+ * Resends the 2-step verification recovery email address verification code.
  */
 class ResendRecoveryEmailAddressCode extends TdFunction
 {
     public const TYPE_NAME = 'resendRecoveryEmailAddressCode';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ResendRecoveryEmailAddressCode
     {

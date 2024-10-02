@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an item of a list page block
+ * Describes an item of a list page block.
  */
 class PageBlockListItem extends TdObject
 {
     public const TYPE_NAME = 'pageBlockListItem';
 
-    /**
-     * Item label
-     *
-     * @var string
-     */
-    protected string $label;
-
-    /**
-     * Item blocks
-     *
-     * @var PageBlock[]
-     */
-    protected array $pageBlocks;
-
-    public function __construct(string $label, array $pageBlocks)
-    {
-        $this->label = $label;
-        $this->pageBlocks = $pageBlocks;
-    }
+    public function __construct(
+        /**
+         * Item label.
+         */
+        protected string $label,
+        /**
+         * Item blocks.
+         *
+         * @var PageBlock[]
+         */
+        protected array  $pageBlocks,
+    ) {}
 
     public static function fromArray(array $array): PageBlockListItem
     {

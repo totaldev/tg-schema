@@ -11,47 +11,36 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a reaction to a message
+ * Contains information about a reaction to a message.
  */
 class MessageReaction extends TdObject
 {
     public const TYPE_NAME = 'messageReaction';
 
-    /**
-     * True, if the reaction is chosen by the current user
-     *
-     * @var bool
-     */
-    protected bool $isChosen;
-
-    /**
-     * Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats
-     *
-     * @var MessageSender[]
-     */
-    protected array $recentSenderIds;
-
-    /**
-     * Number of times the reaction was added
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * Type of the reaction
-     *
-     * @var ReactionType
-     */
-    protected ReactionType $type;
-
-    public function __construct(ReactionType $type, int $totalCount, bool $isChosen, array $recentSenderIds)
-    {
-        $this->type = $type;
-        $this->totalCount = $totalCount;
-        $this->isChosen = $isChosen;
-        $this->recentSenderIds = $recentSenderIds;
-    }
+    public function __construct(
+        /**
+         * Type of the reaction.
+         */
+        protected ReactionType   $type,
+        /**
+         * Number of times the reaction was added.
+         */
+        protected int            $totalCount,
+        /**
+         * True, if the reaction is chosen by the current user.
+         */
+        protected bool           $isChosen,
+        /**
+         * Identifier of the message sender used by the current user to add the reaction; may be null if unknown or the reaction isn't chosen.
+         */
+        protected ?MessageSender $usedSenderId,
+        /**
+         * Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats.
+         *
+         * @var MessageSender[]
+         */
+        protected array          $recentSenderIds,
+    ) {}
 
     public static function fromArray(array $array): MessageReaction
     {
@@ -59,6 +48,7 @@ class MessageReaction extends TdObject
             TdSchemaRegistry::fromArray($array['type']),
             $array['total_count'],
             $array['is_chosen'],
+            isset($array['used_sender_id']) ? TdSchemaRegistry::fromArray($array['used_sender_id']) : null,
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
         );
     }
@@ -83,13 +73,19 @@ class MessageReaction extends TdObject
         return $this->type;
     }
 
+    public function getUsedSenderId(): ?MessageSender
+    {
+        return $this->usedSenderId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
-            'total_count' => $this->totalCount,
-            'is_chosen' => $this->isChosen,
+            '@type'          => static::TYPE_NAME,
+            'type'           => $this->type->typeSerialize(),
+            'total_count'    => $this->totalCount,
+            'is_chosen'      => $this->isChosen,
+            'used_sender_id' => (isset($this->usedSenderId) ? $this->usedSenderId : null),
             array_map(fn($x) => $x->typeSerialize(), $this->recentSenderIds),
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Push;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains content of a push message notification
+ * Contains content of a push message notification.
  */
 class PushMessageContent extends TdObject
 {
     public const TYPE_NAME = 'PushMessageContent';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PushMessageContent
     {

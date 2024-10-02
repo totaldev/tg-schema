@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns information about a group call
+ * Returns information about a group call.
  */
 class GetGroupCall extends TdFunction
 {
     public const TYPE_NAME = 'getGroupCall';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    public function __construct(int $groupCallId)
-    {
-        $this->groupCallId = $groupCallId;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int $groupCallId
+    ) {}
 
     public static function fromArray(array $array): GetGroupCall
     {
@@ -43,7 +37,7 @@ class GetGroupCall extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
         ];
     }

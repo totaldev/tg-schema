@@ -10,47 +10,32 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+ * Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported.
  */
 class ReportChat extends TdFunction
 {
     public const TYPE_NAME = 'reportChat';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifiers of reported messages; may be empty to report the whole chat
-     *
-     * @var int[]
-     */
-    protected array $messageIds;
-
-    /**
-     * The reason for reporting the chat
-     *
-     * @var ReportReason
-     */
-    protected ReportReason $reason;
-
-    /**
-     * Additional report details; 0-1024 characters
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(int $chatId, array $messageIds, ReportReason $reason, string $text)
-    {
-        $this->chatId = $chatId;
-        $this->messageIds = $messageIds;
-        $this->reason = $reason;
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int          $chatId,
+        /**
+         * Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported.
+         *
+         * @var int[]
+         */
+        protected array        $messageIds,
+        /**
+         * The reason for reporting the chat.
+         */
+        protected ReportReason $reason,
+        /**
+         * Additional report details; 0-1024 characters.
+         */
+        protected string       $text,
+    ) {}
 
     public static function fromArray(array $array): ReportChat
     {
@@ -85,11 +70,11 @@ class ReportChat extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
             'message_ids' => $this->messageIds,
-            'reason' => $this->reason->typeSerialize(),
-            'text' => $this->text,
+            'reason'      => $this->reason->typeSerialize(),
+            'text'        => $this->text,
         ];
     }
 }

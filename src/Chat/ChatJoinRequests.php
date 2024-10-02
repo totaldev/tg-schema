@@ -10,31 +10,24 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of requests to join a chat
+ * Contains a list of requests to join a chat.
  */
 class ChatJoinRequests extends TdObject
 {
     public const TYPE_NAME = 'chatJoinRequests';
 
-    /**
-     * List of the requests
-     *
-     * @var ChatJoinRequest[]
-     */
-    protected array $requests;
-
-    /**
-     * Approximate total number of requests found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    public function __construct(int $totalCount, array $requests)
-    {
-        $this->totalCount = $totalCount;
-        $this->requests = $requests;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of requests found.
+         */
+        protected int   $totalCount,
+        /**
+         * List of the requests.
+         *
+         * @var ChatJoinRequest[]
+         */
+        protected array $requests,
+    ) {}
 
     public static function fromArray(array $array): ChatJoinRequests
     {
@@ -57,7 +50,7 @@ class ChatJoinRequests extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
             array_map(fn($x) => $x->typeSerialize(), $this->requests),
         ];

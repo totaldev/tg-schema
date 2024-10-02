@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of chat invite link counts
+ * Contains a list of chat invite link counts.
  */
 class ChatInviteLinkCounts extends TdObject
 {
     public const TYPE_NAME = 'chatInviteLinkCounts';
 
-    /**
-     * List of invite link counts
-     *
-     * @var ChatInviteLinkCount[]
-     */
-    protected array $inviteLinkCounts;
-
-    public function __construct(array $inviteLinkCounts)
-    {
-        $this->inviteLinkCounts = $inviteLinkCounts;
-    }
+    public function __construct(
+        /**
+         * List of invite link counts.
+         *
+         * @var ChatInviteLinkCount[]
+         */
+        protected array $inviteLinkCounts
+    ) {}
 
     public static function fromArray(array $array): ChatInviteLinkCounts
     {

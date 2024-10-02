@@ -10,48 +10,33 @@ use Totaldev\TgSchema\Rich\RichText;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A table
+ * A table.
  */
 class PageBlockTable extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockTable';
 
-    /**
-     * Table caption
-     *
-     * @var RichText
-     */
-    protected RichText $caption;
-
-    /**
-     * Table cells
-     *
-     * @var PageBlockTableCell[][]
-     */
-    protected array $cells;
-
-    /**
-     * True, if the table is bordered
-     *
-     * @var bool
-     */
-    protected bool $isBordered;
-
-    /**
-     * True, if the table is striped
-     *
-     * @var bool
-     */
-    protected bool $isStriped;
-
-    public function __construct(RichText $caption, array $cells, bool $isBordered, bool $isStriped)
-    {
+    public function __construct(
+        /**
+         * Table caption.
+         */
+        protected RichText $caption,
+        /**
+         * Table cells.
+         *
+         * @var PageBlockTableCell[][]
+         */
+        protected array    $cells,
+        /**
+         * True, if the table is bordered.
+         */
+        protected bool     $isBordered,
+        /**
+         * True, if the table is striped.
+         */
+        protected bool     $isStriped,
+    ) {
         parent::__construct();
-
-        $this->caption = $caption;
-        $this->cells = $cells;
-        $this->isBordered = $isBordered;
-        $this->isStriped = $isStriped;
     }
 
     public static function fromArray(array $array): PageBlockTable
@@ -87,11 +72,11 @@ class PageBlockTable extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'caption' => $this->caption->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'caption'     => $this->caption->typeSerialize(),
             array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->cells),
             'is_bordered' => $this->isBordered,
-            'is_striped' => $this->isStriped,
+            'is_striped'  => $this->isStriped,
         ];
     }
 }

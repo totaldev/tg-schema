@@ -10,38 +10,49 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a boost of a chat
+ * Describes a boost applied to a chat.
  */
 class ChatBoost extends TdObject
 {
     public const TYPE_NAME = 'chatBoost';
 
-    /**
-     * Point in time (Unix timestamp) when the boost will automatically expire if the user will not prolongate their Telegram Premium subscription
-     *
-     * @var int
-     */
-    protected int $expirationDate;
-
-    /**
-     * Identifier of a user that boosted the chat
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId, int $expirationDate)
-    {
-        $this->userId = $userId;
-        $this->expirationDate = $expirationDate;
-    }
+    public function __construct(
+        /**
+         * Unique identifier of the boost.
+         */
+        protected string          $id,
+        /**
+         * The number of identical boosts applied.
+         */
+        protected int             $count,
+        /**
+         * Source of the boost.
+         */
+        protected ChatBoostSource $source,
+        /**
+         * Point in time (Unix timestamp) when the chat was boosted.
+         */
+        protected int             $startDate,
+        /**
+         * Point in time (Unix timestamp) when the boost will expire.
+         */
+        protected int             $expirationDate,
+    ) {}
 
     public static function fromArray(array $array): ChatBoost
     {
         return new static(
-            $array['user_id'],
+            $array['id'],
+            $array['count'],
+            TdSchemaRegistry::fromArray($array['source']),
+            $array['start_date'],
             $array['expiration_date'],
         );
+    }
+
+    public function getCount(): int
+    {
+        return $this->count;
     }
 
     public function getExpirationDate(): int
@@ -49,16 +60,29 @@ class ChatBoost extends TdObject
         return $this->expirationDate;
     }
 
-    public function getUserId(): int
+    public function getId(): string
     {
-        return $this->userId;
+        return $this->id;
+    }
+
+    public function getSource(): ChatBoostSource
+    {
+        return $this->source;
+    }
+
+    public function getStartDate(): int
+    {
+        return $this->startDate;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
+            '@type'           => static::TYPE_NAME,
+            'id'              => $this->id,
+            'count'           => $this->count,
+            'source'          => $this->source->typeSerialize(),
+            'start_date'      => $this->startDate,
             'expiration_date' => $this->expirationDate,
         ];
     }

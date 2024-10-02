@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about background to set
+ * Contains information about background to set.
  */
 class InputBackground extends TdObject
 {
     public const TYPE_NAME = 'InputBackground';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputBackground
     {

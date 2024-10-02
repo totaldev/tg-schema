@@ -10,31 +10,22 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a single button in a bot keyboard
+ * Represents a single button in a bot keyboard.
  */
 class KeyboardButton extends TdObject
 {
     public const TYPE_NAME = 'keyboardButton';
 
-    /**
-     * Text of the button
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * Type of the button
-     *
-     * @var KeyboardButtonType
-     */
-    protected KeyboardButtonType $type;
-
-    public function __construct(string $text, KeyboardButtonType $type)
-    {
-        $this->text = $text;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Text of the button.
+         */
+        protected string             $text,
+        /**
+         * Type of the button.
+         */
+        protected KeyboardButtonType $type,
+    ) {}
 
     public static function fromArray(array $array): KeyboardButton
     {
@@ -58,8 +49,8 @@ class KeyboardButton extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
-            'type' => $this->type->typeSerialize(),
+            'text'  => $this->text,
+            'type'  => $this->type->typeSerialize(),
         ];
     }
 }

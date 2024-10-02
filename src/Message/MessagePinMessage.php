@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A message has been pinned
+ * A message has been pinned.
  */
 class MessagePinMessage extends MessageContent
 {
     public const TYPE_NAME = 'messagePinMessage';
 
-    /**
-     * Identifier of the pinned message, can be an identifier of a deleted message or 0
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $messageId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the pinned message, can be an identifier of a deleted message or 0.
+         */
+        protected int $messageId
+    ) {
         parent::__construct();
-
-        $this->messageId = $messageId;
     }
 
     public static function fromArray(array $array): MessagePinMessage
@@ -44,7 +37,7 @@ class MessagePinMessage extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'      => static::TYPE_NAME,
             'message_id' => $this->messageId,
         ];
     }

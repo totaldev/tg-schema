@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Call;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The video was pixelated
+ * The video was pixelated.
  */
 class CallProblemPixelatedVideo extends CallProblem
 {

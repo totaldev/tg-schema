@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Used to search for supergroup or channel members via a (string) query
+ * Used to search for supergroup or channel members via a (string) query.
  */
 class SupergroupMembersFilterSearch extends SupergroupMembersFilter
 {
     public const TYPE_NAME = 'supergroupMembersFilterSearch';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    public function __construct(string $query)
-    {
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query
+    ) {
         parent::__construct();
-
-        $this->query = $query;
     }
 
     public static function fromArray(array $array): SupergroupMembersFilterSearch

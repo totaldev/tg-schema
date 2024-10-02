@@ -10,24 +10,19 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Venue\Venue;
 
 /**
- * An area pointing to a venue
+ * An area pointing to a venue.
  */
 class StoryAreaTypeVenue extends StoryAreaType
 {
     public const TYPE_NAME = 'storyAreaTypeVenue';
 
-    /**
-     * Information about the venue
-     *
-     * @var Venue
-     */
-    protected Venue $venue;
-
-    public function __construct(Venue $venue)
-    {
+    public function __construct(
+        /**
+         * Information about the venue.
+         */
+        protected Venue $venue
+    ) {
         parent::__construct();
-
-        $this->venue = $venue;
     }
 
     public static function fromArray(array $array): StoryAreaTypeVenue

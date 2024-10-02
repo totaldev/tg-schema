@@ -12,40 +12,28 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets the list of commands supported by the bot for the given user scope and language; for bots only
+ * Sets the list of commands supported by the bot for the given user scope and language; for bots only.
  */
 class SetCommands extends TdFunction
 {
     public const TYPE_NAME = 'setCommands';
 
-    /**
-     * List of the bot's commands
-     *
-     * @var BotCommand[]
-     */
-    protected array $commands;
-
-    /**
-     * A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no
-     * dedicated commands
-     *
-     * @var string
-     */
-    protected string $languageCode;
-
-    /**
-     * The scope to which the commands are relevant; pass null to change commands in the default bot command scope
-     *
-     * @var BotCommandScope
-     */
-    protected BotCommandScope $scope;
-
-    public function __construct(BotCommandScope $scope, string $languageCode, array $commands)
-    {
-        $this->scope = $scope;
-        $this->languageCode = $languageCode;
-        $this->commands = $commands;
-    }
+    public function __construct(
+        /**
+         * The scope to which the commands are relevant; pass null to change commands in the default bot command scope.
+         */
+        protected BotCommandScope $scope,
+        /**
+         * A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands.
+         */
+        protected string          $languageCode,
+        /**
+         * List of the bot's commands.
+         *
+         * @var BotCommand[]
+         */
+        protected array           $commands,
+    ) {}
 
     public static function fromArray(array $array): SetCommands
     {
@@ -74,8 +62,8 @@ class SetCommands extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
+            '@type'         => static::TYPE_NAME,
+            'scope'         => $this->scope->typeSerialize(),
             'language_code' => $this->languageCode,
             array_map(fn($x) => $x->typeSerialize(), $this->commands),
         ];

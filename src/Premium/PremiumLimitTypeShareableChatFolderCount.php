@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The maximum number of added shareable chat folders
+ * The maximum number of added shareable chat folders.
  */
 class PremiumLimitTypeShareableChatFolderCount extends PremiumLimitType
 {

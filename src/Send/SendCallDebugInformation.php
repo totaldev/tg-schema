@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends debug information for a call to Telegram servers
+ * Sends debug information for a call to Telegram servers.
  */
 class SendCallDebugInformation extends TdFunction
 {
     public const TYPE_NAME = 'sendCallDebugInformation';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * Debug information in application-specific format
-     *
-     * @var string
-     */
-    protected string $debugInformation;
-
-    public function __construct(int $callId, string $debugInformation)
-    {
-        $this->callId = $callId;
-        $this->debugInformation = $debugInformation;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int    $callId,
+        /**
+         * Debug information in application-specific format.
+         */
+        protected string $debugInformation,
+    ) {}
 
     public static function fromArray(array $array): SendCallDebugInformation
     {
@@ -57,8 +47,8 @@ class SendCallDebugInformation extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
+            '@type'             => static::TYPE_NAME,
+            'call_id'           => $this->callId,
             'debug_information' => $this->debugInformation,
         ];
     }

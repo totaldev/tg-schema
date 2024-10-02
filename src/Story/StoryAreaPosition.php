@@ -7,64 +7,40 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes position of a clickable rectangle area on a story media
+ * Describes position of a clickable rectangle area on a story media.
  */
 class StoryAreaPosition extends TdObject
 {
     public const TYPE_NAME = 'storyAreaPosition';
 
-    /**
-     * The ordinate of the rectangle's center, as a percentage of the media height
-     *
-     * @var float
-     */
-    protected float $heightPercentage;
-
-    /**
-     * Clockwise rotation angle of the rectangle, in degrees; 0-360
-     *
-     * @var float
-     */
-    protected float $rotationAngle;
-
-    /**
-     * The width of the rectangle, as a percentage of the media width
-     *
-     * @var float
-     */
-    protected float $widthPercentage;
-
-    /**
-     * The abscissa of the rectangle's center, as a percentage of the media width
-     *
-     * @var float
-     */
-    protected float $xPercentage;
-
-    /**
-     * The ordinate of the rectangle's center, as a percentage of the media height
-     *
-     * @var float
-     */
-    protected float $yPercentage;
-
     public function __construct(
-        float $xPercentage,
-        float $yPercentage,
-        float $widthPercentage,
-        float $heightPercentage,
-        float $rotationAngle,
-    )
-    {
-        $this->xPercentage = $xPercentage;
-        $this->yPercentage = $yPercentage;
-        $this->widthPercentage = $widthPercentage;
-        $this->heightPercentage = $heightPercentage;
-        $this->rotationAngle = $rotationAngle;
-    }
+        /**
+         * The abscissa of the rectangle's center, as a percentage of the media width.
+         */
+        protected float $xPercentage,
+        /**
+         * The ordinate of the rectangle's center, as a percentage of the media height.
+         */
+        protected float $yPercentage,
+        /**
+         * The width of the rectangle, as a percentage of the media width.
+         */
+        protected float $widthPercentage,
+        /**
+         * The height of the rectangle, as a percentage of the media height.
+         */
+        protected float $heightPercentage,
+        /**
+         * Clockwise rotation angle of the rectangle, in degrees; 0-360.
+         */
+        protected float $rotationAngle,
+        /**
+         * The radius of the rectangle corner rounding, as a percentage of the media width.
+         */
+        protected float $cornerRadiusPercentage,
+    ) {}
 
     public static function fromArray(array $array): StoryAreaPosition
     {
@@ -74,7 +50,13 @@ class StoryAreaPosition extends TdObject
             $array['width_percentage'],
             $array['height_percentage'],
             $array['rotation_angle'],
+            $array['corner_radius_percentage'],
         );
+    }
+
+    public function getCornerRadiusPercentage(): float
+    {
+        return $this->cornerRadiusPercentage;
     }
 
     public function getHeightPercentage(): float
@@ -105,12 +87,13 @@ class StoryAreaPosition extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'x_percentage' => $this->xPercentage,
-            'y_percentage' => $this->yPercentage,
-            'width_percentage' => $this->widthPercentage,
-            'height_percentage' => $this->heightPercentage,
-            'rotation_angle' => $this->rotationAngle,
+            '@type'                    => static::TYPE_NAME,
+            'x_percentage'             => $this->xPercentage,
+            'y_percentage'             => $this->yPercentage,
+            'width_percentage'         => $this->widthPercentage,
+            'height_percentage'        => $this->heightPercentage,
+            'rotation_angle'           => $this->rotationAngle,
+            'corner_radius_percentage' => $this->cornerRadiusPercentage,
         ];
     }
 }

@@ -9,24 +9,21 @@ namespace Totaldev\TgSchema\Rich;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A concatenation of rich texts
+ * A concatenation of rich texts.
  */
 class RichTexts extends RichText
 {
     public const TYPE_NAME = 'richTexts';
 
-    /**
-     * Texts
-     *
-     * @var RichText[]
-     */
-    protected array $texts;
-
-    public function __construct(array $texts)
-    {
+    public function __construct(
+        /**
+         * Texts.
+         *
+         * @var RichText[]
+         */
+        protected array $texts
+    ) {
         parent::__construct();
-
-        $this->texts = $texts;
     }
 
     public static function fromArray(array $array): RichTexts

@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of group call streams
+ * Represents a list of group call streams.
  */
 class GroupCallStreams extends TdObject
 {
     public const TYPE_NAME = 'groupCallStreams';
 
-    /**
-     * A list of group call streams
-     *
-     * @var GroupCallStream[]
-     */
-    protected array $streams;
-
-    public function __construct(array $streams)
-    {
-        $this->streams = $streams;
-    }
+    public function __construct(
+        /**
+         * A list of group call streams.
+         *
+         * @var GroupCallStream[]
+         */
+        protected array $streams
+    ) {}
 
     public static function fromArray(array $array): GroupCallStreams
     {

@@ -7,47 +7,38 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+ * Returns the list of boosts applied to a chat; requires administrator rights in the chat.
  */
 class GetChatBoosts extends TdFunction
 {
     public const TYPE_NAME = 'getChatBoosts';
 
-    /**
-     * Identifier of the chat
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-     *
-     * @var string
-     */
-    protected string $offset;
-
-    public function __construct(int $chatId, string $offset, int $limit)
-    {
-        $this->chatId = $chatId;
-        $this->offset = $offset;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat.
+         */
+        protected int    $chatId,
+        /**
+         * Pass true to receive only boosts received from gift codes and giveaways created by the chat.
+         */
+        protected bool   $onlyGiftCodes,
+        /**
+         * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+         */
+        protected string $offset,
+        /**
+         * The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): GetChatBoosts
     {
         return new static(
             $array['chat_id'],
+            $array['only_gift_codes'],
             $array['offset'],
             $array['limit'],
         );
@@ -68,13 +59,19 @@ class GetChatBoosts extends TdFunction
         return $this->offset;
     }
 
+    public function getOnlyGiftCodes(): bool
+    {
+        return $this->onlyGiftCodes;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'offset' => $this->offset,
-            'limit' => $this->limit,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
+            'only_gift_codes' => $this->onlyGiftCodes,
+            'offset'          => $this->offset,
+            'limit'           => $this->limit,
         ];
     }
 }

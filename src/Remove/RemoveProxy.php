@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Remove;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes a proxy server. Can be called before authorization
+ * Removes a proxy server. Can be called before authorization.
  */
 class RemoveProxy extends TdFunction
 {
     public const TYPE_NAME = 'removeProxy';
 
-    /**
-     * Proxy identifier
-     *
-     * @var int
-     */
-    protected int $proxyId;
-
-    public function __construct(int $proxyId)
-    {
-        $this->proxyId = $proxyId;
-    }
+    public function __construct(
+        /**
+         * Proxy identifier.
+         */
+        protected int $proxyId
+    ) {}
 
     public static function fromArray(array $array): RemoveProxy
     {
@@ -43,7 +37,7 @@ class RemoveProxy extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'proxy_id' => $this->proxyId,
         ];
     }

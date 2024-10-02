@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Update;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A chat content was allowed or restricted for saving
+ * A chat content was allowed or restricted for saving.
  */
 class UpdateChatHasProtectedContent extends Update
 {
     public const TYPE_NAME = 'updateChatHasProtectedContent';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New value of has_protected_content
-     *
-     * @var bool
-     */
-    protected bool $hasProtectedContent;
-
-    public function __construct(int $chatId, bool $hasProtectedContent)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int  $chatId,
+        /**
+         * New value of has_protected_content.
+         */
+        protected bool $hasProtectedContent,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->hasProtectedContent = $hasProtectedContent;
     }
 
     public static function fromArray(array $array): UpdateChatHasProtectedContent
@@ -58,8 +47,8 @@ class UpdateChatHasProtectedContent extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
             'has_protected_content' => $this->hasProtectedContent,
         ];
     }

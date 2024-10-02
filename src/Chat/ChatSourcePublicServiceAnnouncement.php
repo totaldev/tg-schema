@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat contains a public service announcement
+ * The chat contains a public service announcement.
  */
 class ChatSourcePublicServiceAnnouncement extends ChatSource
 {
     public const TYPE_NAME = 'chatSourcePublicServiceAnnouncement';
 
-    /**
-     * The text of the announcement
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * The type of the announcement
-     *
-     * @var string
-     */
-    protected string $type;
-
-    public function __construct(string $type, string $text)
-    {
+    public function __construct(
+        /**
+         * The type of the announcement.
+         */
+        protected string $type,
+        /**
+         * The text of the announcement.
+         */
+        protected string $text,
+    ) {
         parent::__construct();
-
-        $this->type = $type;
-        $this->text = $text;
     }
 
     public static function fromArray(array $array): ChatSourcePublicServiceAnnouncement
@@ -59,8 +48,8 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type' => $this->type,
-            'text' => $this->text,
+            'type'  => $this->type,
+            'text'  => $this->text,
         ];
     }
 }

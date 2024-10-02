@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The mute_new_participants setting of a video chat was toggled
+ * The mute_new_participants setting of a video chat was toggled.
  */
 class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventVideoChatMuteNewParticipantsToggled';
 
-    /**
-     * New value of the mute_new_participants setting
-     *
-     * @var bool
-     */
-    protected bool $muteNewParticipants;
-
-    public function __construct(bool $muteNewParticipants)
-    {
+    public function __construct(
+        /**
+         * New value of the mute_new_participants setting.
+         */
+        protected bool $muteNewParticipants
+    ) {
         parent::__construct();
-
-        $this->muteNewParticipants = $muteNewParticipants;
     }
 
     public static function fromArray(array $array): ChatEventVideoChatMuteNewParticipantsToggled
@@ -44,7 +37,7 @@ class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                 => static::TYPE_NAME,
             'mute_new_participants' => $this->muteNewParticipants,
         ];
     }

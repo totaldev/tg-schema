@@ -6,11 +6,9 @@
 
 namespace Totaldev\TgSchema\Notification;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
  * A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to
- * their messages, or a pinned message
+ * their messages, or a pinned message.
  */
 class NotificationGroupTypeMentions extends NotificationGroupType
 {

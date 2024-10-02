@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Session;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The session is running on a Windows device
+ * The session is running on a Windows device.
  */
 class SessionTypeWindows extends SessionType
 {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+ * Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used.
  */
 class GetSavedNotificationSounds extends TdFunction
 {
     public const TYPE_NAME = 'getSavedNotificationSounds';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetSavedNotificationSounds
     {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Top;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents the categories of chats for which a list of frequently used chats can be retrieved
+ * Represents the categories of chats for which a list of frequently used chats can be retrieved.
  */
 class TopChatCategory extends TdObject
 {
     public const TYPE_NAME = 'TopChatCategory';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TopChatCategory
     {

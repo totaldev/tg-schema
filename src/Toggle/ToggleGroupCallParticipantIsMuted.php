@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
+ * Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves.
  */
 class ToggleGroupCallParticipantIsMuted extends TdFunction
 {
     public const TYPE_NAME = 'toggleGroupCallParticipantIsMuted';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Pass true to mute the user; pass false to unmute them
-     *
-     * @var bool
-     */
-    protected bool $isMuted;
-
-    /**
-     * Participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    public function __construct(int $groupCallId, MessageSender $participantId, bool $isMuted)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->participantId = $participantId;
-        $this->isMuted = $isMuted;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int           $groupCallId,
+        /**
+         * Participant identifier.
+         */
+        protected MessageSender $participantId,
+        /**
+         * Pass true to mute the user; pass false to unmute them.
+         */
+        protected bool          $isMuted,
+    ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsMuted
     {
@@ -72,10 +59,10 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'          => static::TYPE_NAME,
+            'group_call_id'  => $this->groupCallId,
             'participant_id' => $this->participantId->typeSerialize(),
-            'is_muted' => $this->isMuted,
+            'is_muted'       => $this->isMuted,
         ];
     }
 }

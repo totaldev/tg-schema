@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a list of message senders, which can be used to send messages in a chat
+ * Represents a list of message senders, which can be used to send messages in a chat.
  */
 class ChatMessageSenders extends TdObject
 {
     public const TYPE_NAME = 'chatMessageSenders';
 
-    /**
-     * List of available message senders
-     *
-     * @var ChatMessageSender[]
-     */
-    protected array $senders;
-
-    public function __construct(array $senders)
-    {
-        $this->senders = $senders;
-    }
+    public function __construct(
+        /**
+         * List of available message senders.
+         *
+         * @var ChatMessageSender[]
+         */
+        protected array $senders
+    ) {}
 
     public static function fromArray(array $array): ChatMessageSenders
     {

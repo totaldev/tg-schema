@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\User;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A privacy setting for managing whether the user can be called
+ * A privacy setting for managing whether the user can be called.
  */
 class UserPrivacySettingAllowCalls extends UserPrivacySetting
 {

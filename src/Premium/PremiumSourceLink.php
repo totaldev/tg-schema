@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A user opened an internal link of the type internalLinkTypePremiumFeatures
+ * A user opened an internal link of the type internalLinkTypePremiumFeatures.
  */
 class PremiumSourceLink extends PremiumSource
 {
     public const TYPE_NAME = 'premiumSourceLink';
 
-    /**
-     * The referrer from the link
-     *
-     * @var string
-     */
-    protected string $referrer;
-
-    public function __construct(string $referrer)
-    {
+    public function __construct(
+        /**
+         * The referrer from the link.
+         */
+        protected string $referrer
+    ) {
         parent::__construct();
-
-        $this->referrer = $referrer;
     }
 
     public static function fromArray(array $array): PremiumSourceLink
@@ -44,7 +37,7 @@ class PremiumSourceLink extends PremiumSource
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'referrer' => $this->referrer,
         ];
     }

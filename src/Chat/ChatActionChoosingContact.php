@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is picking a contact to send
+ * The user is picking a contact to send.
  */
 class ChatActionChoosingContact extends ChatAction
 {

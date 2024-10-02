@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Chat;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Provides information about the status of a member in a chat
+ * Provides information about the status of a member in a chat.
  */
 class ChatMemberStatus extends TdObject
 {
     public const TYPE_NAME = 'ChatMemberStatus';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatMemberStatus
     {

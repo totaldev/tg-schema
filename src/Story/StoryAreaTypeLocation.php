@@ -7,34 +7,40 @@
 namespace Totaldev\TgSchema\Story;
 
 use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\Location\LocationAddress;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An area pointing to a location
+ * An area pointing to a location.
  */
 class StoryAreaTypeLocation extends StoryAreaType
 {
     public const TYPE_NAME = 'storyAreaTypeLocation';
 
-    /**
-     * The location
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    public function __construct(Location $location)
-    {
+    public function __construct(
+        /**
+         * The location.
+         */
+        protected Location         $location,
+        /**
+         * Address of the location; may be null if unknown.
+         */
+        protected ?LocationAddress $address,
+    ) {
         parent::__construct();
-
-        $this->location = $location;
     }
 
     public static function fromArray(array $array): StoryAreaTypeLocation
     {
         return new static(
             TdSchemaRegistry::fromArray($array['location']),
+            isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null,
         );
+    }
+
+    public function getAddress(): ?LocationAddress
+    {
+        return $this->address;
     }
 
     public function getLocation(): Location
@@ -45,8 +51,9 @@ class StoryAreaTypeLocation extends StoryAreaType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
+            'address'  => (isset($this->address) ? $this->address : null),
         ];
     }
 }

@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+ * Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined.
  */
 class GetVideoChatAvailableParticipants extends TdFunction
 {
     public const TYPE_NAME = 'getVideoChatAvailableParticipants';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): GetVideoChatAvailableParticipants
     {
@@ -43,7 +37,7 @@ class GetVideoChatAvailableParticipants extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

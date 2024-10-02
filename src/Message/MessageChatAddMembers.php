@@ -6,27 +6,22 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * New chat members were added
+ * New chat members were added.
  */
 class MessageChatAddMembers extends MessageContent
 {
     public const TYPE_NAME = 'messageChatAddMembers';
 
-    /**
-     * User identifiers of the new members
-     *
-     * @var int[]
-     */
-    protected array $memberUserIds;
-
-    public function __construct(array $memberUserIds)
-    {
+    public function __construct(
+        /**
+         * User identifiers of the new members.
+         *
+         * @var int[]
+         */
+        protected array $memberUserIds
+    ) {
         parent::__construct();
-
-        $this->memberUserIds = $memberUserIds;
     }
 
     public static function fromArray(array $array): MessageChatAddMembers
@@ -44,7 +39,7 @@ class MessageChatAddMembers extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'           => static::TYPE_NAME,
             'member_user_ids' => $this->memberUserIds,
         ];
     }

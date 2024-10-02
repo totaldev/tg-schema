@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The name is occupied
+ * The name is occupied.
  */
 class CheckStickerSetNameResultNameOccupied extends CheckStickerSetNameResult
 {

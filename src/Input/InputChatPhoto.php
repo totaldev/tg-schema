@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a photo to be set as a user profile or chat photo
+ * Describes a photo to be set as a user profile or chat photo.
  */
 class InputChatPhoto extends TdObject
 {
     public const TYPE_NAME = 'InputChatPhoto';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputChatPhoto
     {

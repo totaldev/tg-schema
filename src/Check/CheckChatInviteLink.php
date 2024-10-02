@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks the validity of an invite link for a chat and returns information about the corresponding chat
+ * Checks the validity of an invite link for a chat and returns information about the corresponding chat.
  */
 class CheckChatInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'checkChatInviteLink';
 
-    /**
-     * Invite link to be checked
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    public function __construct(string $inviteLink)
-    {
-        $this->inviteLink = $inviteLink;
-    }
+    public function __construct(
+        /**
+         * Invite link to be checked.
+         */
+        protected string $inviteLink
+    ) {}
 
     public static function fromArray(array $array): CheckChatInviteLink
     {
@@ -43,7 +37,7 @@ class CheckChatInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
         ];
     }

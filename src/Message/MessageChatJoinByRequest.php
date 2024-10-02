@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A new member was accepted to the chat by an administrator
+ * A new member was accepted to the chat by an administrator.
  */
 class MessageChatJoinByRequest extends MessageContent
 {

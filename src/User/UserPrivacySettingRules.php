@@ -11,23 +11,20 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches,
- * the action is not allowed
+ * the action is not allowed.
  */
 class UserPrivacySettingRules extends TdObject
 {
     public const TYPE_NAME = 'userPrivacySettingRules';
 
-    /**
-     * A list of rules
-     *
-     * @var UserPrivacySettingRule[]
-     */
-    protected array $rules;
-
-    public function __construct(array $rules)
-    {
-        $this->rules = $rules;
-    }
+    public function __construct(
+        /**
+         * A list of rules.
+         *
+         * @var UserPrivacySettingRule[]
+         */
+        protected array $rules
+    ) {}
 
     public static function fromArray(array $array): UserPrivacySettingRules
     {

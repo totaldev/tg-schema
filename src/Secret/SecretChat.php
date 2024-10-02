@@ -10,75 +10,38 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a secret chat
+ * Represents a secret chat.
  */
 class SecretChat extends TdObject
 {
     public const TYPE_NAME = 'secretChat';
 
-    /**
-     * Secret chat identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * True, if the chat was created by the current user; false otherwise
-     *
-     * @var bool
-     */
-    protected bool $isOutbound;
-
-    /**
-     * Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split
-     * into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9. The pixels must be used to make a 12x12 square image
-     * filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32
-     * 2-digit hex numbers
-     *
-     * @var string
-     */
-    protected string $keyHash;
-
-    /**
-     * Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are
-     * supported if the layer >= 101, files bigger than 2000MB are supported if the layer >= 143, spoiler and custom emoji text entities are supported if the
-     * layer >= 144
-     *
-     * @var int
-     */
-    protected int $layer;
-
-    /**
-     * State of the secret chat
-     *
-     * @var SecretChatState
-     */
-    protected SecretChatState $state;
-
-    /**
-     * Identifier of the chat partner
-     *
-     * @var int
-     */
-    protected int $userId;
-
     public function __construct(
-        int             $id,
-        int             $userId,
-        SecretChatState $state,
-        bool            $isOutbound,
-        string          $keyHash,
-        int             $layer,
-    )
-    {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->state = $state;
-        $this->isOutbound = $isOutbound;
-        $this->keyHash = $keyHash;
-        $this->layer = $layer;
-    }
+        /**
+         * Secret chat identifier.
+         */
+        protected int             $id,
+        /**
+         * Identifier of the chat partner.
+         */
+        protected int             $userId,
+        /**
+         * State of the secret chat.
+         */
+        protected SecretChatState $state,
+        /**
+         * True, if the chat was created by the current user; false otherwise.
+         */
+        protected bool            $isOutbound,
+        /**
+         * Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9. The pixels must be used to make a 12x12 square image filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers.
+         */
+        protected string          $keyHash,
+        /**
+         * Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are supported if the layer >= 101, files bigger than 2000MB are supported if the layer >= 143, spoiler and custom emoji text entities are supported if the layer >= 144.
+         */
+        protected int             $layer,
+    ) {}
 
     public static function fromArray(array $array): SecretChat
     {
@@ -125,13 +88,13 @@ class SecretChat extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'user_id' => $this->userId,
-            'state' => $this->state->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'user_id'     => $this->userId,
+            'state'       => $this->state->typeSerialize(),
             'is_outbound' => $this->isOutbound,
-            'key_hash' => $this->keyHash,
-            'layer' => $this->layer,
+            'key_hash'    => $this->keyHash,
+            'layer'       => $this->layer,
         ];
     }
 }

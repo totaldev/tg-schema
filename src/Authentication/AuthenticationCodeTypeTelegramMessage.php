@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Authentication;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * An authentication code is delivered via a private Telegram message, which can be viewed from another active session
+ * A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session.
  */
 class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType
 {
     public const TYPE_NAME = 'authenticationCodeTypeTelegramMessage';
 
-    /**
-     * Length of the code
-     *
-     * @var int
-     */
-    protected int $length;
-
-    public function __construct(int $length)
-    {
+    public function __construct(
+        /**
+         * Length of the code.
+         */
+        protected int $length
+    ) {
         parent::__construct();
-
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): AuthenticationCodeTypeTelegramMessage
@@ -44,7 +37,7 @@ class AuthenticationCodeTypeTelegramMessage extends AuthenticationCodeType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'  => static::TYPE_NAME,
             'length' => $this->length,
         ];
     }

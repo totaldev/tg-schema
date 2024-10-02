@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Statistical;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A graph data
+ * A graph data.
  */
 class StatisticalGraphData extends StatisticalGraph
 {
     public const TYPE_NAME = 'statisticalGraphData';
 
-    /**
-     * Graph data in JSON format
-     *
-     * @var string
-     */
-    protected string $jsonData;
-
-    /**
-     * If non-empty, a token which can be used to receive a zoomed in graph
-     *
-     * @var string
-     */
-    protected string $zoomToken;
-
-    public function __construct(string $jsonData, string $zoomToken)
-    {
+    public function __construct(
+        /**
+         * Graph data in JSON format.
+         */
+        protected string $jsonData,
+        /**
+         * If non-empty, a token which can be used to receive a zoomed in graph.
+         */
+        protected string $zoomToken,
+    ) {
         parent::__construct();
-
-        $this->jsonData = $jsonData;
-        $this->zoomToken = $zoomToken;
     }
 
     public static function fromArray(array $array): StatisticalGraphData
@@ -58,8 +47,8 @@ class StatisticalGraphData extends StatisticalGraph
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'json_data' => $this->jsonData,
+            '@type'      => static::TYPE_NAME,
+            'json_data'  => $this->jsonData,
             'zoom_token' => $this->zoomToken,
         ];
     }

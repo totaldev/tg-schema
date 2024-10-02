@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Check;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents result of checking whether a name can be used for a new sticker set
+ * Represents result of checking whether a name can be used for a new sticker set.
  */
 class CheckStickerSetNameResult extends TdObject
 {
     public const TYPE_NAME = 'CheckStickerSetNameResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CheckStickerSetNameResult
     {

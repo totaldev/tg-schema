@@ -9,49 +9,37 @@ namespace Totaldev\TgSchema\Input;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A video story
+ * A video story.
  */
 class InputStoryContentVideo extends InputStoryContent
 {
     public const TYPE_NAME = 'inputStoryContentVideo';
 
-    /**
-     * File identifiers of the stickers added to the video, if applicable
-     *
-     * @var int[]
-     */
-    protected array $addedStickerFileIds;
-
-    /**
-     * Precise duration of the video, in seconds; 0-60
-     *
-     * @var float
-     */
-    protected float $duration;
-
-    /**
-     * True, if the video has no sound
-     *
-     * @var bool
-     */
-    protected bool $isAnimation;
-
-    /**
-     * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key
-     * frames added each second
-     *
-     * @var InputFile
-     */
-    protected InputFile $video;
-
-    public function __construct(InputFile $video, array $addedStickerFileIds, float $duration, bool $isAnimation)
-    {
+    public function __construct(
+        /**
+         * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second.
+         */
+        protected InputFile $video,
+        /**
+         * File identifiers of the stickers added to the video, if applicable.
+         *
+         * @var int[]
+         */
+        protected array     $addedStickerFileIds,
+        /**
+         * Precise duration of the video, in seconds; 0-60.
+         */
+        protected float     $duration,
+        /**
+         * Timestamp of the frame, which will be used as video thumbnail.
+         */
+        protected float     $coverFrameTimestamp,
+        /**
+         * True, if the video has no sound.
+         */
+        protected bool      $isAnimation,
+    ) {
         parent::__construct();
-
-        $this->video = $video;
-        $this->addedStickerFileIds = $addedStickerFileIds;
-        $this->duration = $duration;
-        $this->isAnimation = $isAnimation;
     }
 
     public static function fromArray(array $array): InputStoryContentVideo
@@ -60,6 +48,7 @@ class InputStoryContentVideo extends InputStoryContent
             TdSchemaRegistry::fromArray($array['video']),
             $array['added_sticker_file_ids'],
             $array['duration'],
+            $array['cover_frame_timestamp'],
             $array['is_animation'],
         );
     }
@@ -67,6 +56,11 @@ class InputStoryContentVideo extends InputStoryContent
     public function getAddedStickerFileIds(): array
     {
         return $this->addedStickerFileIds;
+    }
+
+    public function getCoverFrameTimestamp(): float
+    {
+        return $this->coverFrameTimestamp;
     }
 
     public function getDuration(): float
@@ -87,11 +81,12 @@ class InputStoryContentVideo extends InputStoryContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
+            '@type'                  => static::TYPE_NAME,
+            'video'                  => $this->video->typeSerialize(),
             'added_sticker_file_ids' => $this->addedStickerFileIds,
-            'duration' => $this->duration,
-            'is_animation' => $this->isAnimation,
+            'duration'               => $this->duration,
+            'cover_frame_timestamp'  => $this->coverFrameTimestamp,
+            'is_animation'           => $this->isAnimation,
         ];
     }
 }

@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains the description of an error in a Telegram Passport element; for bots only
+ * Contains the description of an error in a Telegram Passport element; for bots only.
  */
 class InputPassportElementError extends TdObject
 {
     public const TYPE_NAME = 'inputPassportElementError';
 
-    /**
-     * Error message
-     *
-     * @var string
-     */
-    protected string $message;
-
-    /**
-     * Error source
-     *
-     * @var InputPassportElementErrorSource
-     */
-    protected InputPassportElementErrorSource $source;
-
-    /**
-     * Type of Telegram Passport element that has the error
-     *
-     * @var PassportElementType
-     */
-    protected PassportElementType $type;
-
-    public function __construct(PassportElementType $type, string $message, InputPassportElementErrorSource $source)
-    {
-        $this->type = $type;
-        $this->message = $message;
-        $this->source = $source;
-    }
+    public function __construct(
+        /**
+         * Type of Telegram Passport element that has the error.
+         */
+        protected PassportElementType             $type,
+        /**
+         * Error message.
+         */
+        protected string                          $message,
+        /**
+         * Error source.
+         */
+        protected InputPassportElementErrorSource $source,
+    ) {}
 
     public static function fromArray(array $array): InputPassportElementError
     {
@@ -72,10 +59,10 @@ class InputPassportElementError extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'type' => $this->type->typeSerialize(),
+            '@type'   => static::TYPE_NAME,
+            'type'    => $this->type->typeSerialize(),
             'message' => $this->message,
-            'source' => $this->source->typeSerialize(),
+            'source'  => $this->source->typeSerialize(),
         ];
     }
 }

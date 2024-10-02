@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Mask;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The mask is placed relatively to the forehead
+ * The mask is placed relatively to the forehead.
  */
 class MaskPointForehead extends MaskPoint
 {

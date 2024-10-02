@@ -10,32 +10,23 @@ use Totaldev\TgSchema\Target\TargetChat;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A button that forces an inline query to the bot to be inserted in the input field
+ * A button that forces an inline query to the bot to be inserted in the input field.
  */
 class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
 {
     public const TYPE_NAME = 'inlineKeyboardButtonTypeSwitchInline';
 
-    /**
-     * Inline query to be sent to the bot
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * Target chat from which to send the inline query
-     *
-     * @var TargetChat
-     */
-    protected TargetChat $targetChat;
-
-    public function __construct(string $query, TargetChat $targetChat)
-    {
+    public function __construct(
+        /**
+         * Inline query to be sent to the bot.
+         */
+        protected string     $query,
+        /**
+         * Target chat from which to send the inline query.
+         */
+        protected TargetChat $targetChat,
+    ) {
         parent::__construct();
-
-        $this->query = $query;
-        $this->targetChat = $targetChat;
     }
 
     public static function fromArray(array $array): InlineKeyboardButtonTypeSwitchInline
@@ -59,8 +50,8 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
+            '@type'       => static::TYPE_NAME,
+            'query'       => $this->query,
             'target_chat' => $this->targetChat->typeSerialize(),
         ];
     }

@@ -6,35 +6,24 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The auto-delete or self-destruct timer for messages in the chat has been changed
+ * The auto-delete or self-destruct timer for messages in the chat has been changed.
  */
 class MessageChatSetMessageAutoDeleteTime extends MessageContent
 {
     public const TYPE_NAME = 'messageChatSetMessageAutoDeleteTime';
 
-    /**
-     * If not 0, a user identifier, which default setting was automatically applied
-     *
-     * @var int
-     */
-    protected int $fromUserId;
-
-    /**
-     * New value auto-delete or self-destruct time, in seconds; 0 if disabled
-     *
-     * @var int
-     */
-    protected int $messageAutoDeleteTime;
-
-    public function __construct(int $messageAutoDeleteTime, int $fromUserId)
-    {
+    public function __construct(
+        /**
+         * New value auto-delete or self-destruct time, in seconds; 0 if disabled.
+         */
+        protected int $messageAutoDeleteTime,
+        /**
+         * If not 0, a user identifier, which default setting was automatically applied.
+         */
+        protected int $fromUserId,
+    ) {
         parent::__construct();
-
-        $this->messageAutoDeleteTime = $messageAutoDeleteTime;
-        $this->fromUserId = $fromUserId;
     }
 
     public static function fromArray(array $array): MessageChatSetMessageAutoDeleteTime
@@ -58,9 +47,9 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'                    => static::TYPE_NAME,
             'message_auto_delete_time' => $this->messageAutoDeleteTime,
-            'from_user_id' => $this->fromUserId,
+            'from_user_id'             => $this->fromUserId,
         ];
     }
 }

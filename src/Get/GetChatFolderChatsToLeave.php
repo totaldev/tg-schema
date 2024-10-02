@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+ * Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted.
  */
 class GetChatFolderChatsToLeave extends TdFunction
 {
     public const TYPE_NAME = 'getChatFolderChatsToLeave';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId)
-    {
-        $this->chatFolderId = $chatFolderId;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int $chatFolderId
+    ) {}
 
     public static function fromArray(array $array): GetChatFolderChatsToLeave
     {
@@ -43,7 +37,7 @@ class GetChatFolderChatsToLeave extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
     }

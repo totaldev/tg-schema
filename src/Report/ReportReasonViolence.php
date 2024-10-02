@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Report;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The chat promotes violence
+ * The chat promotes violence.
  */
 class ReportReasonViolence extends ReportReason
 {

@@ -12,31 +12,22 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be
- * called before authorization
+ * called before authorization.
  */
 class SetOption extends TdFunction
 {
     public const TYPE_NAME = 'setOption';
 
-    /**
-     * The name of the option
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * The new value of the option; pass null to reset option value to a default value
-     *
-     * @var OptionValue
-     */
-    protected OptionValue $value;
-
-    public function __construct(string $name, OptionValue $value)
-    {
-        $this->name = $name;
-        $this->value = $value;
-    }
+    public function __construct(
+        /**
+         * The name of the option.
+         */
+        protected string      $name,
+        /**
+         * The new value of the option; pass null to reset option value to a default value.
+         */
+        protected OptionValue $value,
+    ) {}
 
     public static function fromArray(array $array): SetOption
     {
@@ -60,7 +51,7 @@ class SetOption extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'name' => $this->name,
+            'name'  => $this->name,
             'value' => $this->value->typeSerialize(),
         ];
     }

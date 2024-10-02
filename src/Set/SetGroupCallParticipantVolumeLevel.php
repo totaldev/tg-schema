@@ -12,39 +12,26 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be
- * changed for all users with the default volume level
+ * changed for all users with the default volume level.
  */
 class SetGroupCallParticipantVolumeLevel extends TdFunction
 {
     public const TYPE_NAME = 'setGroupCallParticipantVolumeLevel';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * Participant identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $participantId;
-
-    /**
-     * New participant's volume level; 1-20000 in hundreds of percents
-     *
-     * @var int
-     */
-    protected int $volumeLevel;
-
-    public function __construct(int $groupCallId, MessageSender $participantId, int $volumeLevel)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->participantId = $participantId;
-        $this->volumeLevel = $volumeLevel;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int           $groupCallId,
+        /**
+         * Participant identifier.
+         */
+        protected MessageSender $participantId,
+        /**
+         * New participant's volume level; 1-20000 in hundreds of percents.
+         */
+        protected int           $volumeLevel,
+    ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantVolumeLevel
     {
@@ -73,10 +60,10 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'group_call_id' => $this->groupCallId,
+            '@type'          => static::TYPE_NAME,
+            'group_call_id'  => $this->groupCallId,
             'participant_id' => $this->participantId->typeSerialize(),
-            'volume_level' => $this->volumeLevel,
+            'volume_level'   => $this->volumeLevel,
         ];
     }
 }

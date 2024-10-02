@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Premium;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Improved download speed
+ * Improved download speed.
  */
 class PremiumFeatureImprovedDownloadSpeed extends PremiumFeature
 {

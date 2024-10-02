@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+ * Sends data received from a keyboardButtonTypeWebApp Web App to a bot.
  */
 class SendWebAppData extends TdFunction
 {
     public const TYPE_NAME = 'sendWebAppData';
 
-    /**
-     * Identifier of the target bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Text of the keyboardButtonTypeWebApp button, which opened the Web App
-     *
-     * @var string
-     */
-    protected string $buttonText;
-
-    /**
-     * The data
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(int $botUserId, string $buttonText, string $data)
-    {
-        $this->botUserId = $botUserId;
-        $this->buttonText = $buttonText;
-        $this->data = $data;
-    }
+    public function __construct(
+        /**
+         * Identifier of the target bot.
+         */
+        protected int    $botUserId,
+        /**
+         * Text of the keyboardButtonTypeWebApp button, which opened the Web App.
+         */
+        protected string $buttonText,
+        /**
+         * The data.
+         */
+        protected string $data,
+    ) {}
 
     public static function fromArray(array $array): SendWebAppData
     {
@@ -71,10 +57,10 @@ class SendWebAppData extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
             'button_text' => $this->buttonText,
-            'data' => $this->data,
+            'data'        => $this->data,
         ];
     }
 }

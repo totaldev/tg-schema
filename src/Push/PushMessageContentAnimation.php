@@ -16,40 +16,27 @@ class PushMessageContentAnimation extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentAnimation';
 
-    /**
-     * Message content; may be null
-     *
-     * @var Animation|null
-     */
-    protected ?Animation $animation;
-
-    /**
-     * Animation caption
-     *
-     * @var string
-     */
-    protected string $caption;
-
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(?Animation $animation, string $caption, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Message content; may be null.
+         */
+        protected ?Animation $animation,
+        /**
+         * Animation caption.
+         */
+        protected string     $caption,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool       $isPinned,
+    ) {
         parent::__construct();
-
-        $this->animation = $animation;
-        $this->caption = $caption;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentAnimation
     {
         return new static(
-            (isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null),
+            isset($array['animation']) ? TdSchemaRegistry::fromArray($array['animation']) : null,
             $array['caption'],
             $array['is_pinned'],
         );
@@ -73,9 +60,9 @@ class PushMessageContentAnimation extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'     => static::TYPE_NAME,
             'animation' => (isset($this->animation) ? $this->animation : null),
-            'caption' => $this->caption,
+            'caption'   => $this->caption,
             'is_pinned' => $this->isPinned,
         ];
     }

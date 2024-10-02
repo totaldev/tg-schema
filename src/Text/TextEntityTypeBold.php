@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Text;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A bold text
+ * A bold text.
  */
 class TextEntityTypeBold extends TextEntityType
 {

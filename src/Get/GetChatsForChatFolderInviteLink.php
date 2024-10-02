@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+ * Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link.
  */
 class GetChatsForChatFolderInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'getChatsForChatFolderInviteLink';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    public function __construct(int $chatFolderId)
-    {
-        $this->chatFolderId = $chatFolderId;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int $chatFolderId
+    ) {}
 
     public static function fromArray(array $array): GetChatsForChatFolderInviteLink
     {
@@ -43,7 +37,7 @@ class GetChatsForChatFolderInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
         ];
     }

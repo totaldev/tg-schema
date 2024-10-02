@@ -6,60 +6,49 @@
 
 namespace Totaldev\TgSchema\Input;
 
+use Totaldev\TgSchema\Message\MessageSelfDestructType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A video note message
+ * A video note message.
  */
 class InputMessageVideoNote extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageVideoNote';
 
-    /**
-     * Duration of the video, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * Video width and height; must be positive and not greater than 640
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Video thumbnail; pass null to skip thumbnail uploading
-     *
-     * @var InputThumbnail
-     */
-    protected InputThumbnail $thumbnail;
-
-    /**
-     * Video note to be sent
-     *
-     * @var InputFile
-     */
-    protected InputFile $videoNote;
-
-    public function __construct(InputFile $videoNote, InputThumbnail $thumbnail, int $duration, int $length)
-    {
+    public function __construct(
+        /**
+         * Video note to be sent.
+         */
+        protected InputFile                $videoNote,
+        /**
+         * Video thumbnail; may be null if empty; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail          $thumbnail,
+        /**
+         * Duration of the video, in seconds; 0-60.
+         */
+        protected int                      $duration,
+        /**
+         * Video width and height; must be positive and not greater than 640.
+         */
+        protected int                      $length,
+        /**
+         * Video note self-destruct type; may be null if none; pass null if none; private chats only.
+         */
+        protected ?MessageSelfDestructType $selfDestructType,
+    ) {
         parent::__construct();
-
-        $this->videoNote = $videoNote;
-        $this->thumbnail = $thumbnail;
-        $this->duration = $duration;
-        $this->length = $length;
     }
 
     public static function fromArray(array $array): InputMessageVideoNote
     {
         return new static(
             TdSchemaRegistry::fromArray($array['video_note']),
-            TdSchemaRegistry::fromArray($array['thumbnail']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             $array['duration'],
             $array['length'],
+            isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
         );
     }
 
@@ -73,7 +62,12 @@ class InputMessageVideoNote extends InputMessageContent
         return $this->length;
     }
 
-    public function getThumbnail(): InputThumbnail
+    public function getSelfDestructType(): ?MessageSelfDestructType
+    {
+        return $this->selfDestructType;
+    }
+
+    public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
     }
@@ -86,11 +80,12 @@ class InputMessageVideoNote extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'video_note' => $this->videoNote->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'duration' => $this->duration,
-            'length' => $this->length,
+            '@type'              => static::TYPE_NAME,
+            'video_note'         => $this->videoNote->typeSerialize(),
+            'thumbnail'          => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'duration'           => $this->duration,
+            'length'             => $this->length,
+            'self_destruct_type' => (isset($this->selfDestructType) ? $this->selfDestructType : null),
         ];
     }
 }

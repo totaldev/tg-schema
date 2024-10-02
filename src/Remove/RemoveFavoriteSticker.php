@@ -11,23 +11,18 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Removes a sticker from the list of favorite stickers
+ * Removes a sticker from the list of favorite stickers.
  */
 class RemoveFavoriteSticker extends TdFunction
 {
     public const TYPE_NAME = 'removeFavoriteSticker';
 
-    /**
-     * Sticker file to delete from the list
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    public function __construct(InputFile $sticker)
-    {
-        $this->sticker = $sticker;
-    }
+    public function __construct(
+        /**
+         * Sticker file to delete from the list.
+         */
+        protected InputFile $sticker
+    ) {}
 
     public static function fromArray(array $array): RemoveFavoriteSticker
     {
@@ -44,7 +39,7 @@ class RemoveFavoriteSticker extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'sticker' => $this->sticker->typeSerialize(),
         ];
     }

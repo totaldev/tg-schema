@@ -10,178 +10,86 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
+ * Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order.
  */
 class Session extends TdObject
 {
     public const TYPE_NAME = 'session';
 
-    /**
-     * Telegram API identifier, as provided by the application
-     *
-     * @var int
-     */
-    protected int $apiId;
-
-    /**
-     * Name of the application, as provided by the application
-     *
-     * @var string
-     */
-    protected string $applicationName;
-
-    /**
-     * The version of the application, as provided by the application
-     *
-     * @var string
-     */
-    protected string $applicationVersion;
-
-    /**
-     * True, if incoming calls can be accepted by the session
-     *
-     * @var bool
-     */
-    protected bool $canAcceptCalls;
-
-    /**
-     * True, if incoming secret chats can be accepted by the session
-     *
-     * @var bool
-     */
-    protected bool $canAcceptSecretChats;
-
-    /**
-     * Model of the device the application has been run or is running on, as provided by the application
-     *
-     * @var string
-     */
-    protected string $deviceModel;
-
-    /**
-     * Session identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * IP address from which the session was created, in human-readable format
-     *
-     * @var string
-     */
-    protected string $ipAddress;
-
-    /**
-     * True, if this session is the current session
-     *
-     * @var bool
-     */
-    protected bool $isCurrent;
-
-    /**
-     * True, if the application is an official application or uses the api_id of an official application
-     *
-     * @var bool
-     */
-    protected bool $isOfficialApplication;
-
-    /**
-     * True, if a 2-step verification password is needed to complete authorization of the session
-     *
-     * @var bool
-     */
-    protected bool $isPasswordPending;
-
-    /**
-     * True, if the session wasn't confirmed from another session
-     *
-     * @var bool
-     */
-    protected bool $isUnconfirmed;
-
-    /**
-     * Point in time (Unix timestamp) when the session was last used
-     *
-     * @var int
-     */
-    protected int $lastActiveDate;
-
-    /**
-     * A human-readable description of the location from which the session was created, based on the IP address
-     *
-     * @var string
-     */
-    protected string $location;
-
-    /**
-     * Point in time (Unix timestamp) when the user has logged in
-     *
-     * @var int
-     */
-    protected int $logInDate;
-
-    /**
-     * Operating system the application has been run or is running on, as provided by the application
-     *
-     * @var string
-     */
-    protected string $platform;
-
-    /**
-     * Version of the operating system the application has been run or is running on, as provided by the application
-     *
-     * @var string
-     */
-    protected string $systemVersion;
-
-    /**
-     * Session type based on the system and application version, which can be used to display a corresponding icon
-     *
-     * @var SessionType
-     */
-    protected SessionType $type;
-
     public function __construct(
-        int         $id,
-        bool        $isCurrent,
-        bool        $isPasswordPending,
-        bool        $isUnconfirmed,
-        bool        $canAcceptSecretChats,
-        bool        $canAcceptCalls,
-        SessionType $type,
-        int         $apiId,
-        string      $applicationName,
-        string      $applicationVersion,
-        bool        $isOfficialApplication,
-        string      $deviceModel,
-        string      $platform,
-        string      $systemVersion,
-        int         $logInDate,
-        int         $lastActiveDate,
-        string      $ipAddress,
-        string      $location,
-    )
-    {
-        $this->id = $id;
-        $this->isCurrent = $isCurrent;
-        $this->isPasswordPending = $isPasswordPending;
-        $this->isUnconfirmed = $isUnconfirmed;
-        $this->canAcceptSecretChats = $canAcceptSecretChats;
-        $this->canAcceptCalls = $canAcceptCalls;
-        $this->type = $type;
-        $this->apiId = $apiId;
-        $this->applicationName = $applicationName;
-        $this->applicationVersion = $applicationVersion;
-        $this->isOfficialApplication = $isOfficialApplication;
-        $this->deviceModel = $deviceModel;
-        $this->platform = $platform;
-        $this->systemVersion = $systemVersion;
-        $this->logInDate = $logInDate;
-        $this->lastActiveDate = $lastActiveDate;
-        $this->ipAddress = $ipAddress;
-        $this->location = $location;
-    }
+        /**
+         * Session identifier.
+         */
+        protected int         $id,
+        /**
+         * True, if this session is the current session.
+         */
+        protected bool        $isCurrent,
+        /**
+         * True, if a 2-step verification password is needed to complete authorization of the session.
+         */
+        protected bool        $isPasswordPending,
+        /**
+         * True, if the session wasn't confirmed from another session.
+         */
+        protected bool        $isUnconfirmed,
+        /**
+         * True, if incoming secret chats can be accepted by the session.
+         */
+        protected bool        $canAcceptSecretChats,
+        /**
+         * True, if incoming calls can be accepted by the session.
+         */
+        protected bool        $canAcceptCalls,
+        /**
+         * Session type based on the system and application version, which can be used to display a corresponding icon.
+         */
+        protected SessionType $type,
+        /**
+         * Telegram API identifier, as provided by the application.
+         */
+        protected int         $apiId,
+        /**
+         * Name of the application, as provided by the application.
+         */
+        protected string      $applicationName,
+        /**
+         * The version of the application, as provided by the application.
+         */
+        protected string      $applicationVersion,
+        /**
+         * True, if the application is an official application or uses the api_id of an official application.
+         */
+        protected bool        $isOfficialApplication,
+        /**
+         * Model of the device the application has been run or is running on, as provided by the application.
+         */
+        protected string      $deviceModel,
+        /**
+         * Operating system the application has been run or is running on, as provided by the application.
+         */
+        protected string      $platform,
+        /**
+         * Version of the operating system the application has been run or is running on, as provided by the application.
+         */
+        protected string      $systemVersion,
+        /**
+         * Point in time (Unix timestamp) when the user has logged in.
+         */
+        protected int         $logInDate,
+        /**
+         * Point in time (Unix timestamp) when the session was last used.
+         */
+        protected int         $lastActiveDate,
+        /**
+         * IP address from which the session was created, in human-readable format.
+         */
+        protected string      $ipAddress,
+        /**
+         * A human-readable description of the location from which the session was created, based on the IP address.
+         */
+        protected string      $location,
+    ) {}
 
     public static function fromArray(array $array): Session
     {
@@ -300,25 +208,25 @@ class Session extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'is_current' => $this->isCurrent,
-            'is_password_pending' => $this->isPasswordPending,
-            'is_unconfirmed' => $this->isUnconfirmed,
+            '@type'                   => static::TYPE_NAME,
+            'id'                      => $this->id,
+            'is_current'              => $this->isCurrent,
+            'is_password_pending'     => $this->isPasswordPending,
+            'is_unconfirmed'          => $this->isUnconfirmed,
             'can_accept_secret_chats' => $this->canAcceptSecretChats,
-            'can_accept_calls' => $this->canAcceptCalls,
-            'type' => $this->type->typeSerialize(),
-            'api_id' => $this->apiId,
-            'application_name' => $this->applicationName,
-            'application_version' => $this->applicationVersion,
+            'can_accept_calls'        => $this->canAcceptCalls,
+            'type'                    => $this->type->typeSerialize(),
+            'api_id'                  => $this->apiId,
+            'application_name'        => $this->applicationName,
+            'application_version'     => $this->applicationVersion,
             'is_official_application' => $this->isOfficialApplication,
-            'device_model' => $this->deviceModel,
-            'platform' => $this->platform,
-            'system_version' => $this->systemVersion,
-            'log_in_date' => $this->logInDate,
-            'last_active_date' => $this->lastActiveDate,
-            'ip_address' => $this->ipAddress,
-            'location' => $this->location,
+            'device_model'            => $this->deviceModel,
+            'platform'                => $this->platform,
+            'system_version'          => $this->systemVersion,
+            'log_in_date'             => $this->logInDate,
+            'last_active_date'        => $this->lastActiveDate,
+            'ip_address'              => $this->ipAddress,
+            'location'                => $this->location,
         ];
     }
 }

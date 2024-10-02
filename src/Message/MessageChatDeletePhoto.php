@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A deleted chat photo
+ * A deleted chat photo.
  */
 class MessageChatDeletePhoto extends MessageContent
 {

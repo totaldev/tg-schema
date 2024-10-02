@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Option;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Represents a string option
+ * Represents a string option.
  */
 class OptionValueString extends OptionValue
 {
     public const TYPE_NAME = 'optionValueString';
 
-    /**
-     * The value of the option
-     *
-     * @var string
-     */
-    protected string $value;
-
-    public function __construct(string $value)
-    {
+    public function __construct(
+        /**
+         * The value of the option.
+         */
+        protected string $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): OptionValueString

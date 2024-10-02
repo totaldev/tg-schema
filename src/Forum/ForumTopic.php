@@ -13,112 +13,60 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a forum topic
+ * Describes a forum topic.
  */
 class ForumTopic extends TdObject
 {
     public const TYPE_NAME = 'forumTopic';
 
-    /**
-     * A draft of a message in the topic; may be null if none
-     *
-     * @var DraftMessage|null
-     */
-    protected ?DraftMessage $draftMessage;
-
-    /**
-     * Basic information about the topic
-     *
-     * @var ForumTopicInfo
-     */
-    protected ForumTopicInfo $info;
-
-    /**
-     * True, if the topic is pinned in the topic list
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    /**
-     * Last message in the topic; may be null if unknown
-     *
-     * @var Message|null
-     */
-    protected ?Message $lastMessage;
-
-    /**
-     * Identifier of the last read incoming message
-     *
-     * @var int
-     */
-    protected int $lastReadInboxMessageId;
-
-    /**
-     * Identifier of the last read outgoing message
-     *
-     * @var int
-     */
-    protected int $lastReadOutboxMessageId;
-
-    /**
-     * Notification settings for the topic
-     *
-     * @var ChatNotificationSettings
-     */
-    protected ChatNotificationSettings $notificationSettings;
-
-    /**
-     * Number of unread messages in the topic
-     *
-     * @var int
-     */
-    protected int $unreadCount;
-
-    /**
-     * Number of unread messages with a mention/reply in the topic
-     *
-     * @var int
-     */
-    protected int $unreadMentionCount;
-
-    /**
-     * Number of messages with unread reactions in the topic
-     *
-     * @var int
-     */
-    protected int $unreadReactionCount;
-
     public function __construct(
-        ForumTopicInfo           $info,
-        ?Message                 $lastMessage,
-        bool                     $isPinned,
-        int                      $unreadCount,
-        int                      $lastReadInboxMessageId,
-        int                      $lastReadOutboxMessageId,
-        int                      $unreadMentionCount,
-        int                      $unreadReactionCount,
-        ChatNotificationSettings $notificationSettings,
-        ?DraftMessage            $draftMessage,
-    )
-    {
-        $this->info = $info;
-        $this->lastMessage = $lastMessage;
-        $this->isPinned = $isPinned;
-        $this->unreadCount = $unreadCount;
-        $this->lastReadInboxMessageId = $lastReadInboxMessageId;
-        $this->lastReadOutboxMessageId = $lastReadOutboxMessageId;
-        $this->unreadMentionCount = $unreadMentionCount;
-        $this->unreadReactionCount = $unreadReactionCount;
-        $this->notificationSettings = $notificationSettings;
-        $this->draftMessage = $draftMessage;
-    }
+        /**
+         * Basic information about the topic.
+         */
+        protected ForumTopicInfo           $info,
+        /**
+         * Last message in the topic; may be null if unknown.
+         */
+        protected ?Message                 $lastMessage,
+        /**
+         * True, if the topic is pinned in the topic list.
+         */
+        protected bool                     $isPinned,
+        /**
+         * Number of unread messages in the topic.
+         */
+        protected int                      $unreadCount,
+        /**
+         * Identifier of the last read incoming message.
+         */
+        protected int                      $lastReadInboxMessageId,
+        /**
+         * Identifier of the last read outgoing message.
+         */
+        protected int                      $lastReadOutboxMessageId,
+        /**
+         * Number of unread messages with a mention/reply in the topic.
+         */
+        protected int                      $unreadMentionCount,
+        /**
+         * Number of messages with unread reactions in the topic.
+         */
+        protected int                      $unreadReactionCount,
+        /**
+         * Notification settings for the topic.
+         */
+        protected ChatNotificationSettings $notificationSettings,
+        /**
+         * A draft of a message in the topic; may be null if none.
+         */
+        protected ?DraftMessage            $draftMessage,
+    ) {}
 
     public static function fromArray(array $array): ForumTopic
     {
         return new static(
             TdSchemaRegistry::fromArray($array['info']),
-            (isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null),
+            isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
             $array['is_pinned'],
             $array['unread_count'],
             $array['last_read_inbox_message_id'],
@@ -126,7 +74,7 @@ class ForumTopic extends TdObject
             $array['unread_mention_count'],
             $array['unread_reaction_count'],
             TdSchemaRegistry::fromArray($array['notification_settings']),
-            (isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null),
+            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
     }
 
@@ -183,17 +131,17 @@ class ForumTopic extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'info' => $this->info->typeSerialize(),
-            'last_message' => (isset($this->lastMessage) ? $this->lastMessage : null),
-            'is_pinned' => $this->isPinned,
-            'unread_count' => $this->unreadCount,
-            'last_read_inbox_message_id' => $this->lastReadInboxMessageId,
+            '@type'                       => static::TYPE_NAME,
+            'info'                        => $this->info->typeSerialize(),
+            'last_message'                => (isset($this->lastMessage) ? $this->lastMessage : null),
+            'is_pinned'                   => $this->isPinned,
+            'unread_count'                => $this->unreadCount,
+            'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
-            'unread_mention_count' => $this->unreadMentionCount,
-            'unread_reaction_count' => $this->unreadReactionCount,
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-            'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
+            'unread_mention_count'        => $this->unreadMentionCount,
+            'unread_reaction_count'       => $this->unreadReactionCount,
+            'notification_settings'       => $this->notificationSettings->typeSerialize(),
+            'draft_message'               => (isset($this->draftMessage) ? $this->draftMessage : null),
         ];
     }
 }

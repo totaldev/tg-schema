@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Can;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+ * Represents result of checking whether the current session can be used to transfer a chat ownership to another user.
  */
 class CanTransferOwnershipResult extends TdObject
 {
     public const TYPE_NAME = 'CanTransferOwnershipResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CanTransferOwnershipResult
     {

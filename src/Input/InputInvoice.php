@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes an invoice to process
+ * Describes an invoice to process.
  */
 class InputInvoice extends TdObject
 {
     public const TYPE_NAME = 'InputInvoice';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputInvoice
     {

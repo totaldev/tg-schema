@@ -7,34 +7,24 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets group call title. Requires groupCall.can_be_managed group call flag
+ * Sets group call title. Requires groupCall.can_be_managed group call flag.
  */
 class SetGroupCallTitle extends TdFunction
 {
     public const TYPE_NAME = 'setGroupCallTitle';
 
-    /**
-     * Group call identifier
-     *
-     * @var int
-     */
-    protected int $groupCallId;
-
-    /**
-     * New group call title; 1-64 characters
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(int $groupCallId, string $title)
-    {
-        $this->groupCallId = $groupCallId;
-        $this->title = $title;
-    }
+    public function __construct(
+        /**
+         * Group call identifier.
+         */
+        protected int    $groupCallId,
+        /**
+         * New group call title; 1-64 characters.
+         */
+        protected string $title,
+    ) {}
 
     public static function fromArray(array $array): SetGroupCallTitle
     {
@@ -57,9 +47,9 @@ class SetGroupCallTitle extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'         => static::TYPE_NAME,
             'group_call_id' => $this->groupCallId,
-            'title' => $this->title,
+            'title'         => $this->title,
         ];
     }
 }

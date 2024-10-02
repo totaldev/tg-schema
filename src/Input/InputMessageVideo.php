@@ -4,8 +4,6 @@
  * This phpFile is auto-generated.
  */
 
-//declare(strict_types=1);
-
 namespace Totaldev\TgSchema\Input;
 
 use Totaldev\TgSchema\Formatted\FormattedText;
@@ -13,107 +11,61 @@ use Totaldev\TgSchema\Message\MessageSelfDestructType;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A video message
+ * A video message.
  */
 class InputMessageVideo extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageVideo';
 
-    /**
-     * File identifiers of the stickers added to the video, if applicable
-     *
-     * @var int[]
-     */
-    protected array $addedStickerFileIds;
-
-    /**
-     * Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    /**
-     * Duration of the video, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * True, if the video preview must be covered by a spoiler animation; not supported in secret chats
-     *
-     * @var bool
-     */
-    protected bool $hasSpoiler;
-
-    /**
-     * Video height
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * Video self-destruct type; pass null if none; private chats only
-     *
-     * @var MessageSelfDestructType
-     */
-    protected MessageSelfDestructType $selfDestructType;
-
-    /**
-     * True, if the video is supposed to be streamed
-     *
-     * @var bool
-     */
-    protected bool $supportsStreaming;
-
-    /**
-     * Video thumbnail; pass null to skip thumbnail uploading
-     *
-     * @var InputThumbnail
-     */
-    protected InputThumbnail $thumbnail;
-
-    /**
-     * Video to be sent
-     *
-     * @var InputFile
-     */
-    protected InputFile $video;
-
-    /**
-     * Video width
-     *
-     * @var int
-     */
-    protected int $width;
-
     public function __construct(
-        InputFile               $video,
-        InputThumbnail          $thumbnail,
-        array                   $addedStickerFileIds,
-        int                     $duration,
-        int                     $width,
-        int                     $height,
-        bool                    $supportsStreaming,
-        FormattedText           $caption,
-        MessageSelfDestructType $selfDestructType,
-        bool                    $hasSpoiler,
-    )
-    {
+        /**
+         * Video to be sent.
+         */
+        protected InputFile               $video,
+        /**
+         * Video thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected InputThumbnail          $thumbnail,
+        /**
+         * File identifiers of the stickers added to the video, if applicable.
+         *
+         * @var int[]
+         */
+        protected array                   $addedStickerFileIds,
+        /**
+         * Duration of the video, in seconds.
+         */
+        protected int                     $duration,
+        /**
+         * Video width.
+         */
+        protected int                     $width,
+        /**
+         * Video height.
+         */
+        protected int                     $height,
+        /**
+         * True, if the video is supposed to be streamed.
+         */
+        protected bool                    $supportsStreaming,
+        /**
+         * Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
+         */
+        protected FormattedText           $caption,
+        /**
+         * True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats.
+         */
+        protected bool                    $showCaptionAboveMedia,
+        /**
+         * Video self-destruct type; pass null if none; private chats only.
+         */
+        protected MessageSelfDestructType $selfDestructType,
+        /**
+         * True, if the video preview must be covered by a spoiler animation; not supported in secret chats.
+         */
+        protected bool                    $hasSpoiler,
+    ) {
         parent::__construct();
-
-        $this->video = $video;
-        $this->thumbnail = $thumbnail;
-        $this->addedStickerFileIds = $addedStickerFileIds;
-        $this->duration = $duration;
-        $this->width = $width;
-        $this->height = $height;
-        $this->supportsStreaming = $supportsStreaming;
-        $this->caption = $caption;
-        $this->selfDestructType = $selfDestructType;
-        $this->hasSpoiler = $hasSpoiler;
     }
 
     public static function fromArray(array $array): InputMessageVideo
@@ -127,6 +79,7 @@ class InputMessageVideo extends InputMessageContent
             $array['height'],
             $array['supports_streaming'],
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['show_caption_above_media'],
             TdSchemaRegistry::fromArray($array['self_destruct_type']),
             $array['has_spoiler'],
         );
@@ -162,6 +115,11 @@ class InputMessageVideo extends InputMessageContent
         return $this->selfDestructType;
     }
 
+    public function getShowCaptionAboveMedia(): bool
+    {
+        return $this->showCaptionAboveMedia;
+    }
+
     public function getSupportsStreaming(): bool
     {
         return $this->supportsStreaming;
@@ -185,17 +143,18 @@ class InputMessageVideo extends InputMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'video' => $this->video->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'added_sticker_file_ids' => $this->addedStickerFileIds,
-            'duration' => $this->duration,
-            'width' => $this->width,
-            'height' => $this->height,
-            'supports_streaming' => $this->supportsStreaming,
-            'caption' => $this->caption->typeSerialize(),
-            'self_destruct_type' => $this->selfDestructType->typeSerialize(),
-            'has_spoiler' => $this->hasSpoiler,
+            '@type'                    => static::TYPE_NAME,
+            'video'                    => $this->video->typeSerialize(),
+            'thumbnail'                => $this->thumbnail->typeSerialize(),
+            'added_sticker_file_ids'   => $this->addedStickerFileIds,
+            'duration'                 => $this->duration,
+            'width'                    => $this->width,
+            'height'                   => $this->height,
+            'supports_streaming'       => $this->supportsStreaming,
+            'caption'                  => $this->caption->typeSerialize(),
+            'show_caption_above_media' => $this->showCaptionAboveMedia,
+            'self_destruct_type'       => $this->selfDestructType->typeSerialize(),
+            'has_spoiler'              => $this->hasSpoiler,
         ];
     }
 }

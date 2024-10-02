@@ -7,26 +7,20 @@
 namespace Totaldev\TgSchema\Replace;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+ * Replaces the current RTMP URL for streaming to the chat; requires owner privileges.
  */
 class ReplaceVideoChatRtmpUrl extends TdFunction
 {
     public const TYPE_NAME = 'replaceVideoChatRtmpUrl';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): ReplaceVideoChatRtmpUrl
     {
@@ -43,7 +37,7 @@ class ReplaceVideoChatRtmpUrl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

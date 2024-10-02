@@ -7,42 +7,28 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a custom request from a Web App
+ * Sends a custom request from a Web App.
  */
 class SendWebAppCustomRequest extends TdFunction
 {
     public const TYPE_NAME = 'sendWebAppCustomRequest';
 
-    /**
-     * Identifier of the bot
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * The method name
-     *
-     * @var string
-     */
-    protected string $method;
-
-    /**
-     * JSON-serialized method parameters
-     *
-     * @var string
-     */
-    protected string $parameters;
-
-    public function __construct(int $botUserId, string $method, string $parameters)
-    {
-        $this->botUserId = $botUserId;
-        $this->method = $method;
-        $this->parameters = $parameters;
-    }
+    public function __construct(
+        /**
+         * Identifier of the bot.
+         */
+        protected int    $botUserId,
+        /**
+         * The method name.
+         */
+        protected string $method,
+        /**
+         * JSON-serialized method parameters.
+         */
+        protected string $parameters,
+    ) {}
 
     public static function fromArray(array $array): SendWebAppCustomRequest
     {
@@ -71,10 +57,10 @@ class SendWebAppCustomRequest extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'method' => $this->method,
-            'parameters' => $this->parameters,
+            'method'      => $this->method,
+            'parameters'  => $this->parameters,
         ];
     }
 }

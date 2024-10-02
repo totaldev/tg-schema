@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the total number of imported contacts
+ * Returns the total number of imported contacts.
  */
 class GetImportedContactCount extends TdFunction
 {
     public const TYPE_NAME = 'getImportedContactCount';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetImportedContactCount
     {

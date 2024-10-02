@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Push;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * A profile photo was suggested to the user
+ * A profile photo was suggested to the user.
  */
 class PushMessageContentSuggestProfilePhoto extends PushMessageContent
 {

@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Reorder;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the order of chat folders
+ * Changes the order of chat folders.
  */
 class ReorderChatFolders extends TdFunction
 {
     public const TYPE_NAME = 'reorderChatFolders';
 
-    /**
-     * Identifiers of chat folders in the new correct order
-     *
-     * @var int[]
-     */
-    protected array $chatFolderIds;
-
-    /**
-     * Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
-     *
-     * @var int
-     */
-    protected int $mainChatListPosition;
-
-    public function __construct(array $chatFolderIds, int $mainChatListPosition)
-    {
-        $this->chatFolderIds = $chatFolderIds;
-        $this->mainChatListPosition = $mainChatListPosition;
-    }
+    public function __construct(
+        /**
+         * Identifiers of chat folders in the new correct order.
+         *
+         * @var int[]
+         */
+        protected array $chatFolderIds,
+        /**
+         * Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users.
+         */
+        protected int   $mainChatListPosition,
+    ) {}
 
     public static function fromArray(array $array): ReorderChatFolders
     {
@@ -57,8 +49,8 @@ class ReorderChatFolders extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_folder_ids' => $this->chatFolderIds,
+            '@type'                   => static::TYPE_NAME,
+            'chat_folder_ids'         => $this->chatFolderIds,
             'main_chat_list_position' => $this->mainChatListPosition,
         ];
     }

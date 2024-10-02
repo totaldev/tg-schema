@@ -7,34 +7,26 @@
 namespace Totaldev\TgSchema\Add;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a chat folder by an invite link
+ * Adds a chat folder by an invite link.
  */
 class AddChatFolderByInviteLink extends TdFunction
 {
     public const TYPE_NAME = 'addChatFolderByInviteLink';
 
-    /**
-     * Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
-     *
-     * @var int[]
-     */
-    protected array $chatIds;
-
-    /**
-     * Invite link for the chat folder
-     *
-     * @var string
-     */
-    protected string $inviteLink;
-
-    public function __construct(string $inviteLink, array $chatIds)
-    {
-        $this->inviteLink = $inviteLink;
-        $this->chatIds = $chatIds;
-    }
+    public function __construct(
+        /**
+         * Invite link for the chat folder.
+         */
+        protected string $inviteLink,
+        /**
+         * Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet.
+         *
+         * @var int[]
+         */
+        protected array  $chatIds,
+    ) {}
 
     public static function fromArray(array $array): AddChatFolderByInviteLink
     {
@@ -57,9 +49,9 @@ class AddChatFolderByInviteLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'       => static::TYPE_NAME,
             'invite_link' => $this->inviteLink,
-            'chat_ids' => $this->chatIds,
+            'chat_ids'    => $this->chatIds,
         ];
     }
 }

@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Thumbnail;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The thumbnail is in PNG format. It will be used only for background patterns
+ * The thumbnail is in PNG format. It will be used only for background patterns.
  */
 class ThumbnailFormatPng extends ThumbnailFormat
 {

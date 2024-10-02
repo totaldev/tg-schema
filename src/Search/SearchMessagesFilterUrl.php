@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Search;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * Returns only messages containing URLs
+ * Returns only messages containing URLs.
  */
 class SearchMessagesFilterUrl extends SearchMessagesFilter
 {

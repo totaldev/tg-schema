@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Message;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The message was sent on behalf of a chat
+ * The message was sent on behalf of a chat.
  */
 class MessageSenderChat extends MessageSender
 {
     public const TYPE_NAME = 'messageSenderChat';
 
-    /**
-     * Identifier of the chat that sent the message
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
+    public function __construct(
+        /**
+         * Identifier of the chat that sent the message.
+         */
+        protected int $chatId
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
     }
 
     public static function fromArray(array $array): MessageSenderChat
@@ -44,7 +37,7 @@ class MessageSenderChat extends MessageSender
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
         ];
     }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns an HTTPS link, which can be used to get information about the current user
+ * Returns an HTTPS link, which can be used to get information about the current user.
  */
 class GetUserLink extends TdFunction
 {
     public const TYPE_NAME = 'getUserLink';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetUserLink
     {

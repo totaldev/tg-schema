@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Page;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a horizontal alignment of a table cell content
+ * Describes a horizontal alignment of a table cell content.
  */
 class PageBlockHorizontalAlignment extends TdObject
 {
     public const TYPE_NAME = 'PageBlockHorizontalAlignment';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PageBlockHorizontalAlignment
     {

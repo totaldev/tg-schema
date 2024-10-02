@@ -9,71 +9,47 @@ namespace Totaldev\TgSchema\Call;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The call is ready to use
+ * The call is ready to use.
  */
 class CallStateReady extends CallState
 {
     public const TYPE_NAME = 'callStateReady';
 
-    /**
-     * True, if peer-to-peer connection is allowed by users privacy settings
-     *
-     * @var bool
-     */
-    protected bool $allowP2p;
-
-    /**
-     * A JSON-encoded call config
-     *
-     * @var string
-     */
-    protected string $config;
-
-    /**
-     * Encryption key emojis fingerprint
-     *
-     * @var string[]
-     */
-    protected array $emojis;
-
-    /**
-     * Call encryption key
-     *
-     * @var string
-     */
-    protected string $encryptionKey;
-
-    /**
-     * Call protocols supported by the peer
-     *
-     * @var CallProtocol
-     */
-    protected CallProtocol $protocol;
-
-    /**
-     * List of available call servers
-     *
-     * @var CallServer[]
-     */
-    protected array $servers;
-
     public function __construct(
-        CallProtocol $protocol,
-        array        $servers,
-        string       $config,
-        string       $encryptionKey,
-        array        $emojis,
-        bool         $allowP2p,
-    )
-    {
+        /**
+         * Call protocols supported by the other call participant.
+         */
+        protected CallProtocol $protocol,
+        /**
+         * List of available call servers.
+         *
+         * @var CallServer[]
+         */
+        protected array        $servers,
+        /**
+         * A JSON-encoded call config.
+         */
+        protected string       $config,
+        /**
+         * Call encryption key.
+         */
+        protected string       $encryptionKey,
+        /**
+         * Encryption key fingerprint represented as 4 emoji.
+         *
+         * @var string[]
+         */
+        protected array        $emojis,
+        /**
+         * True, if peer-to-peer connection is allowed by users privacy settings.
+         */
+        protected bool         $allowP2p,
+        /**
+         * Custom JSON-encoded call parameters to be passed to tgcalls.
+         */
+        protected string       $customParameters,
+    ) {
         parent::__construct();
-
-        $this->protocol = $protocol;
-        $this->servers = $servers;
-        $this->config = $config;
-        $this->encryptionKey = $encryptionKey;
-        $this->emojis = $emojis;
-        $this->allowP2p = $allowP2p;
     }
 
     public static function fromArray(array $array): CallStateReady
@@ -85,6 +61,7 @@ class CallStateReady extends CallState
             $array['encryption_key'],
             $array['emojis'],
             $array['allow_p2p'],
+            $array['custom_parameters'],
         );
     }
 
@@ -96,6 +73,11 @@ class CallStateReady extends CallState
     public function getConfig(): string
     {
         return $this->config;
+    }
+
+    public function getCustomParameters(): string
+    {
+        return $this->customParameters;
     }
 
     public function getEmojis(): array
@@ -121,13 +103,14 @@ class CallStateReady extends CallState
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'protocol' => $this->protocol->typeSerialize(),
+            '@type'             => static::TYPE_NAME,
+            'protocol'          => $this->protocol->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->servers),
-            'config' => $this->config,
-            'encryption_key' => $this->encryptionKey,
-            'emojis' => $this->emojis,
-            'allow_p2p' => $this->allowP2p,
+            'config'            => $this->config,
+            'encryption_key'    => $this->encryptionKey,
+            'emojis'            => $this->emojis,
+            'allow_p2p'         => $this->allowP2p,
+            'custom_parameters' => $this->customParameters,
         ];
     }
 }

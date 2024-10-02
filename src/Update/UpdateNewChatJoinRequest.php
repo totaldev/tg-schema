@@ -11,48 +11,31 @@ use Totaldev\TgSchema\Chat\ChatJoinRequest;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A user sent a join request to a chat; for bots only
+ * A user sent a join request to a chat; for bots only.
  */
 class UpdateNewChatJoinRequest extends Update
 {
     public const TYPE_NAME = 'updateNewChatJoinRequest';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The invite link, which was used to send join request; may be null
-     *
-     * @var ChatInviteLink|null
-     */
-    protected ?ChatInviteLink $inviteLink;
-
-    /**
-     * Join request
-     *
-     * @var ChatJoinRequest
-     */
-    protected ChatJoinRequest $request;
-
-    /**
-     * Chat identifier of the private chat with the user
-     *
-     * @var int
-     */
-    protected int $userChatId;
-
-    public function __construct(int $chatId, ChatJoinRequest $request, int $userChatId, ?ChatInviteLink $inviteLink)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int             $chatId,
+        /**
+         * Join request.
+         */
+        protected ChatJoinRequest $request,
+        /**
+         * Chat identifier of the private chat with the user.
+         */
+        protected int             $userChatId,
+        /**
+         * The invite link, which was used to send join request; may be null.
+         */
+        protected ?ChatInviteLink $inviteLink,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->request = $request;
-        $this->userChatId = $userChatId;
-        $this->inviteLink = $inviteLink;
     }
 
     public static function fromArray(array $array): UpdateNewChatJoinRequest
@@ -61,7 +44,7 @@ class UpdateNewChatJoinRequest extends Update
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['request']),
             $array['user_chat_id'],
-            (isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null),
+            isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
         );
     }
 
@@ -88,11 +71,11 @@ class UpdateNewChatJoinRequest extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'request' => $this->request->typeSerialize(),
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'request'      => $this->request->typeSerialize(),
             'user_chat_id' => $this->userChatId,
-            'invite_link' => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'invite_link'  => (isset($this->inviteLink) ? $this->inviteLink : null),
         ];
     }
 }

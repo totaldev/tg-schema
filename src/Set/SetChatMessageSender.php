@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Selects a message sender to send messages in a chat
+ * Selects a message sender to send messages in a chat.
  */
 class SetChatMessageSender extends TdFunction
 {
     public const TYPE_NAME = 'setChatMessageSender';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New message sender for the chat
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $messageSenderId;
-
-    public function __construct(int $chatId, MessageSender $messageSenderId)
-    {
-        $this->chatId = $chatId;
-        $this->messageSenderId = $messageSenderId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * New message sender for the chat.
+         */
+        protected MessageSender $messageSenderId,
+    ) {}
 
     public static function fromArray(array $array): SetChatMessageSender
     {
@@ -58,8 +49,8 @@ class SetChatMessageSender extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
             'message_sender_id' => $this->messageSenderId->typeSerialize(),
         ];
     }

@@ -10,62 +10,35 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Animated stickers to be combined into a slot machine
+ * Animated stickers to be combined into a slot machine.
  */
 class DiceStickersSlotMachine extends DiceStickers
 {
     public const TYPE_NAME = 'diceStickersSlotMachine';
 
-    /**
-     * The animated sticker with the slot machine background. The background animation must start playing after all reel animations finish
-     *
-     * @var Sticker
-     */
-    protected Sticker $background;
-
-    /**
-     * The animated sticker with the center reel
-     *
-     * @var Sticker
-     */
-    protected Sticker $centerReel;
-
-    /**
-     * The animated sticker with the left reel
-     *
-     * @var Sticker
-     */
-    protected Sticker $leftReel;
-
-    /**
-     * The animated sticker with the lever animation. The lever animation must play once in the initial dice state
-     *
-     * @var Sticker
-     */
-    protected Sticker $lever;
-
-    /**
-     * The animated sticker with the right reel
-     *
-     * @var Sticker
-     */
-    protected Sticker $rightReel;
-
     public function __construct(
-        Sticker $background,
-        Sticker $lever,
-        Sticker $leftReel,
-        Sticker $centerReel,
-        Sticker $rightReel,
-    )
-    {
+        /**
+         * The animated sticker with the slot machine background. The background animation must start playing after all reel animations finish.
+         */
+        protected Sticker $background,
+        /**
+         * The animated sticker with the lever animation. The lever animation must play once in the initial dice state.
+         */
+        protected Sticker $lever,
+        /**
+         * The animated sticker with the left reel.
+         */
+        protected Sticker $leftReel,
+        /**
+         * The animated sticker with the center reel.
+         */
+        protected Sticker $centerReel,
+        /**
+         * The animated sticker with the right reel.
+         */
+        protected Sticker $rightReel,
+    ) {
         parent::__construct();
-
-        $this->background = $background;
-        $this->lever = $lever;
-        $this->leftReel = $leftReel;
-        $this->centerReel = $centerReel;
-        $this->rightReel = $rightReel;
     }
 
     public static function fromArray(array $array): DiceStickersSlotMachine
@@ -107,12 +80,12 @@ class DiceStickersSlotMachine extends DiceStickers
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'background' => $this->background->typeSerialize(),
-            'lever' => $this->lever->typeSerialize(),
-            'left_reel' => $this->leftReel->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'background'  => $this->background->typeSerialize(),
+            'lever'       => $this->lever->typeSerialize(),
+            'left_reel'   => $this->leftReel->typeSerialize(),
             'center_reel' => $this->centerReel->typeSerialize(),
-            'right_reel' => $this->rightReel->typeSerialize(),
+            'right_reel'  => $this->rightReel->typeSerialize(),
         ];
     }
 }

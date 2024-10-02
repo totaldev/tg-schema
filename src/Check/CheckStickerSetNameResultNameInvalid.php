@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\Check;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The name is invalid
+ * The name is invalid.
  */
 class CheckStickerSetNameResultNameInvalid extends CheckStickerSetNameResult
 {

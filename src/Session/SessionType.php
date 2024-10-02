@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Session;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents the type of a session
+ * Represents the type of session.
  */
 class SessionType extends TdObject
 {
     public const TYPE_NAME = 'SessionType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): SessionType
     {

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Proxy;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the type of a proxy server
+ * Describes the type of proxy server.
  */
 class ProxyType extends TdObject
 {
     public const TYPE_NAME = 'ProxyType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ProxyType
     {

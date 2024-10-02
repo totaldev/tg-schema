@@ -11,39 +11,26 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Searches for stickers from public sticker sets that correspond to any of the given emoji
+ * Searches for stickers from public sticker sets that correspond to any of the given emoji.
  */
 class SearchStickers extends TdFunction
 {
     public const TYPE_NAME = 'searchStickers';
 
-    /**
-     * Space-separated list of emoji to search for; must be non-empty
-     *
-     * @var string
-     */
-    protected string $emojis;
-
-    /**
-     * The maximum number of stickers to be returned; 0-100
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    /**
-     * Type of the stickers to return
-     *
-     * @var StickerType
-     */
-    protected StickerType $stickerType;
-
-    public function __construct(StickerType $stickerType, string $emojis, int $limit)
-    {
-        $this->stickerType = $stickerType;
-        $this->emojis = $emojis;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Type of the stickers to return.
+         */
+        protected StickerType $stickerType,
+        /**
+         * Space-separated list of emojis to search for; must be non-empty.
+         */
+        protected string      $emojis,
+        /**
+         * The maximum number of stickers to be returned; 0-100.
+         */
+        protected int         $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchStickers
     {
@@ -72,10 +59,10 @@ class SearchStickers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'        => static::TYPE_NAME,
             'sticker_type' => $this->stickerType->typeSerialize(),
-            'emojis' => $this->emojis,
-            'limit' => $this->limit,
+            'emojis'       => $this->emojis,
+            'limit'        => $this->limit,
         ];
     }
 }

@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes when a message will be self-destructed
+ * Describes when a message will be self-destructed.
  */
 class MessageSelfDestructType extends TdObject
 {
     public const TYPE_NAME = 'MessageSelfDestructType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): MessageSelfDestructType
     {

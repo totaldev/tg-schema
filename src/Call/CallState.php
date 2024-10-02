@@ -7,18 +7,15 @@
 namespace Totaldev\TgSchema\Call;
 
 use Totaldev\TgSchema\TdObject;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes the current call state
+ * Describes the current call state.
  */
 class CallState extends TdObject
 {
     public const TYPE_NAME = 'CallState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CallState
     {

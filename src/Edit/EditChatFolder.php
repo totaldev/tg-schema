@@ -11,31 +11,22 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits existing chat folder. Returns information about the edited chat folder
+ * Edits existing chat folder. Returns information about the edited chat folder.
  */
 class EditChatFolder extends TdFunction
 {
     public const TYPE_NAME = 'editChatFolder';
 
-    /**
-     * Chat folder identifier
-     *
-     * @var int
-     */
-    protected int $chatFolderId;
-
-    /**
-     * The edited chat folder
-     *
-     * @var ChatFolder
-     */
-    protected ChatFolder $folder;
-
-    public function __construct(int $chatFolderId, ChatFolder $folder)
-    {
-        $this->chatFolderId = $chatFolderId;
-        $this->folder = $folder;
-    }
+    public function __construct(
+        /**
+         * Chat folder identifier.
+         */
+        protected int        $chatFolderId,
+        /**
+         * The edited chat folder.
+         */
+        protected ChatFolder $folder,
+    ) {}
 
     public static function fromArray(array $array): EditChatFolder
     {
@@ -58,9 +49,9 @@ class EditChatFolder extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'          => static::TYPE_NAME,
             'chat_folder_id' => $this->chatFolderId,
-            'folder' => $this->folder->typeSerialize(),
+            'folder'         => $this->folder->typeSerialize(),
         ];
     }
 }

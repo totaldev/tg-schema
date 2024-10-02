@@ -6,27 +6,20 @@
 
 namespace Totaldev\TgSchema\Chat;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The user is uploading a document
+ * The user is uploading a document.
  */
 class ChatActionUploadingDocument extends ChatAction
 {
     public const TYPE_NAME = 'chatActionUploadingDocument';
 
-    /**
-     * Upload progress, as a percentage
-     *
-     * @var int
-     */
-    protected int $progress;
-
-    public function __construct(int $progress)
-    {
+    public function __construct(
+        /**
+         * Upload progress, as a percentage.
+         */
+        protected int $progress
+    ) {
         parent::__construct();
-
-        $this->progress = $progress;
     }
 
     public static function fromArray(array $array): ChatActionUploadingDocument
@@ -44,7 +37,7 @@ class ChatActionUploadingDocument extends ChatAction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
+            '@type'    => static::TYPE_NAME,
             'progress' => $this->progress,
         ];
     }

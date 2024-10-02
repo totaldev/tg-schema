@@ -10,23 +10,20 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of story areas to be added
+ * Contains a list of story areas to be added.
  */
 class InputStoryAreas extends TdObject
 {
     public const TYPE_NAME = 'inputStoryAreas';
 
-    /**
-     * List of 0-10 input story areas
-     *
-     * @var InputStoryArea[]
-     */
-    protected array $areas;
-
-    public function __construct(array $areas)
-    {
-        $this->areas = $areas;
-    }
+    public function __construct(
+        /**
+         * List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user, and up to 3 inputStoryAreaTypeWeather areas.
+         *
+         * @var InputStoryArea[]
+         */
+        protected array $areas
+    ) {}
 
     public static function fromArray(array $array): InputStoryAreas
     {

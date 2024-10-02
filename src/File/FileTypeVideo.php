@@ -6,10 +6,8 @@
 
 namespace Totaldev\TgSchema\File;
 
-use Totaldev\TgSchema\TdSchemaRegistry;
-
 /**
- * The file is a video
+ * The file is a video.
  */
 class FileTypeVideo extends FileType
 {
