@@ -4,12 +4,11 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Inline;
 
 /**
- * A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
+ * A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type
+ * messageInvoice.
  */
 class InlineKeyboardButtonTypeBuy extends InlineKeyboardButtonType
 {

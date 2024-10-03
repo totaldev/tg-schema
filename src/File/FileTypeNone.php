@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\File;
 
 /**
- * The data is not a file
+ * The data is not a file.
  */
 class FileTypeNone extends FileType
 {

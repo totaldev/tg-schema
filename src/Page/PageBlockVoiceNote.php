@@ -4,54 +4,42 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Page;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Voice\VoiceNote;
 
 /**
- * A voice note
+ * A voice note.
  */
 class PageBlockVoiceNote extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockVoiceNote';
 
-    /**
-     * Voice note; may be null
-     *
-     * @var VoiceNote|null
-     */
-    protected ?VoiceNote $voiceNote;
-
-    /**
-     * Voice note caption
-     *
-     * @var PageBlockCaption
-     */
-    protected PageBlockCaption $caption;
-
-    public function __construct(?VoiceNote $voiceNote, PageBlockCaption $caption)
-    {
+    public function __construct(
+        /**
+         * Voice note; may be null.
+         */
+        protected ?VoiceNote       $voiceNote,
+        /**
+         * Voice note caption.
+         */
+        protected PageBlockCaption $caption,
+    ) {
         parent::__construct();
-
-        $this->voiceNote = $voiceNote;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): PageBlockVoiceNote
     {
         return new static(
-            (isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null),
+            isset($array['voice_note']) ? TdSchemaRegistry::fromArray($array['voice_note']) : null,
             TdSchemaRegistry::fromArray($array['caption']),
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): PageBlockCaption
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getVoiceNote(): ?VoiceNote
@@ -59,8 +47,12 @@ class PageBlockVoiceNote extends PageBlock
         return $this->voiceNote;
     }
 
-    public function getCaption(): PageBlockCaption
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type'      => static::TYPE_NAME,
+            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
+            'caption'    => $this->caption->typeSerialize(),
+        ];
     }
 }

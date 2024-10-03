@@ -4,37 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Page;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Rich\RichText;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The author and publishing date of a page
+ * The author and publishing date of a page.
  */
 class PageBlockAuthorDate extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockAuthorDate';
 
-    /**
-     * Author
-     *
-     * @var RichText
-     */
-    protected RichText $author;
-
-    /**
-     * Point in time (Unix timestamp) when the article was published; 0 if unknown
-     *
-     * @var int
-     */
-    protected int $publishDate;
-
-    public function __construct(RichText $author, int $publishDate)
-    {
+    public function __construct(
+        /**
+         * Author.
+         */
+        protected RichText $author,
+        /**
+         * Point in time (Unix timestamp) when the article was published; 0 if unknown.
+         */
+        protected int      $publishDate,
+    ) {
         parent::__construct();
-
-        $this->author = $author;
-        $this->publishDate = $publishDate;
     }
 
     public static function fromArray(array $array): PageBlockAuthorDate
@@ -45,15 +37,6 @@ class PageBlockAuthorDate extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'author' => $this->author->typeSerialize(),
-            'publish_date' => $this->publishDate,
-        ];
-    }
-
     public function getAuthor(): RichText
     {
         return $this->author;
@@ -62,5 +45,14 @@ class PageBlockAuthorDate extends PageBlock
     public function getPublishDate(): int
     {
         return $this->publishDate;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'        => static::TYPE_NAME,
+            'author'       => $this->author->typeSerialize(),
+            'publish_date' => $this->publishDate,
+        ];
     }
 }

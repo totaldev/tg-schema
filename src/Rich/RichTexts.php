@@ -4,29 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Rich;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A concatenation of rich texts
+ * A concatenation of rich texts.
  */
 class RichTexts extends RichText
 {
     public const TYPE_NAME = 'richTexts';
 
-    /**
-     * Texts
-     *
-     * @var RichText[]
-     */
-    protected array $texts;
-
-    public function __construct(array $texts)
-    {
+    public function __construct(
+        /**
+         * Texts.
+         *
+         * @var RichText[]
+         */
+        protected array $texts
+    ) {
         parent::__construct();
-
-        $this->texts = $texts;
     }
 
     public static function fromArray(array $array): RichTexts
@@ -36,16 +33,16 @@ class RichTexts extends RichText
         );
     }
 
+    public function getTexts(): array
+    {
+        return $this->texts;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->texts),
         ];
-    }
-
-    public function getTexts(): array
-    {
-        return $this->texts;
     }
 }

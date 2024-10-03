@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The chat editable username was changed
+ * The chat editable username was changed.
  */
 class ChatEventUsernameChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventUsernameChanged';
 
-    /**
-     * Previous chat username
-     *
-     * @var string
-     */
-    protected string $oldUsername;
-
-    /**
-     * New chat username
-     *
-     * @var string
-     */
-    protected string $newUsername;
-
-    public function __construct(string $oldUsername, string $newUsername)
-    {
+    public function __construct(
+        /**
+         * Previous chat username.
+         */
+        protected string $oldUsername,
+        /**
+         * New chat username.
+         */
+        protected string $newUsername,
+    ) {
         parent::__construct();
-
-        $this->oldUsername = $oldUsername;
-        $this->newUsername = $newUsername;
     }
 
     public static function fromArray(array $array): ChatEventUsernameChanged
@@ -45,13 +34,9 @@ class ChatEventUsernameChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewUsername(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_username' => $this->oldUsername,
-            'new_username' => $this->newUsername,
-        ];
+        return $this->newUsername;
     }
 
     public function getOldUsername(): string
@@ -59,8 +44,12 @@ class ChatEventUsernameChanged extends ChatEventAction
         return $this->oldUsername;
     }
 
-    public function getNewUsername(): string
+    public function typeSerialize(): array
     {
-        return $this->newUsername;
+        return [
+            '@type'        => static::TYPE_NAME,
+            'old_username' => $this->oldUsername,
+            'new_username' => $this->newUsername,
+        ];
     }
 }

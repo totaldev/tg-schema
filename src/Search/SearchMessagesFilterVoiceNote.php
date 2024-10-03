@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Search;
 
 /**
- * Returns only voice note messages
+ * Returns only voice note messages.
  */
 class SearchMessagesFilterVoiceNote extends SearchMessagesFilter
 {

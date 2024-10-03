@@ -4,28 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Clean;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
+ * Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure.
+ * Can be called synchronously.
  */
 class CleanFileName extends TdFunction
 {
     public const TYPE_NAME = 'cleanFileName';
 
-    /**
-     * File name or path to the file
-     *
-     * @var string
-     */
-    protected string $fileName;
-
-    public function __construct(string $fileName)
-    {
-        $this->fileName = $fileName;
-    }
+    public function __construct(
+        /**
+         * File name or path to the file.
+         */
+        protected string $fileName
+    ) {}
 
     public static function fromArray(array $array): CleanFileName
     {
@@ -34,16 +30,16 @@ class CleanFileName extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_name' => $this->fileName,
-        ];
-    }
-
     public function getFileName(): string
     {
         return $this->fileName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'     => static::TYPE_NAME,
+            'file_name' => $this->fileName,
+        ];
     }
 }

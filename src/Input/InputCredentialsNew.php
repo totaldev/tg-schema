@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Input;
 
 /**
- * Applies if a user enters new credentials on a payment provider website
+ * Applies if a user enters new credentials on a payment provider website.
  */
 class InputCredentialsNew extends InputCredentials
 {
     public const TYPE_NAME = 'inputCredentialsNew';
 
-    /**
-     * JSON-encoded data with the credential identifier from the payment provider
-     *
-     * @var string
-     */
-    protected string $data;
-
-    /**
-     * True, if the credential identifier can be saved on the server side
-     *
-     * @var bool
-     */
-    protected bool $allowSave;
-
-    public function __construct(string $data, bool $allowSave)
-    {
+    public function __construct(
+        /**
+         * JSON-encoded data with the credential identifier from the payment provider.
+         */
+        protected string $data,
+        /**
+         * True, if the credential identifier can be saved on the server side.
+         */
+        protected bool   $allowSave,
+    ) {
         parent::__construct();
-
-        $this->data = $data;
-        $this->allowSave = $allowSave;
     }
 
     public static function fromArray(array $array): InputCredentialsNew
@@ -45,13 +34,9 @@ class InputCredentialsNew extends InputCredentials
         );
     }
 
-    public function typeSerialize(): array
+    public function getAllowSave(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'data' => $this->data,
-            'allow_save' => $this->allowSave,
-        ];
+        return $this->allowSave;
     }
 
     public function getData(): string
@@ -59,8 +44,12 @@ class InputCredentialsNew extends InputCredentials
         return $this->data;
     }
 
-    public function getAllowSave(): bool
+    public function typeSerialize(): array
     {
-        return $this->allowSave;
+        return [
+            '@type'      => static::TYPE_NAME,
+            'data'       => $this->data,
+            'allow_save' => $this->allowSave,
+        ];
     }
 }

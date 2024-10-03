@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Text;
 
 /**
- * Text that must be formatted as if inside a code HTML tag
+ * Text that must be formatted as if inside a code HTML tag.
  */
 class TextEntityTypeCode extends TextEntityType
 {

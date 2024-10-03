@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Input;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Points to a file
+ * Points to a file.
  */
 class InputFile extends TdObject
 {
     public const TYPE_NAME = 'InputFile';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): InputFile
     {

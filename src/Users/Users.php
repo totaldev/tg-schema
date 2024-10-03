@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Users;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents a list of users
+ * Represents a list of users.
  */
 class Users extends TdObject
 {
     public const TYPE_NAME = 'users';
 
-    /**
-     * Approximate total number of users found
-     *
-     * @var int
-     */
-    protected int $totalCount;
-
-    /**
-     * A list of user identifiers
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(int $totalCount, array $userIds)
-    {
-        $this->totalCount = $totalCount;
-        $this->userIds = $userIds;
-    }
+    public function __construct(
+        /**
+         * Approximate total number of users found.
+         */
+        protected int   $totalCount,
+        /**
+         * A list of user identifiers.
+         *
+         * @var int[]
+         */
+        protected array $userIds,
+    ) {}
 
     public static function fromArray(array $array): Users
     {
@@ -41,15 +34,6 @@ class Users extends TdObject
             $array['total_count'],
             $array['user_ids'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            'user_ids' => $this->userIds,
-        ];
     }
 
     public function getTotalCount(): int
@@ -60,5 +44,14 @@ class Users extends TdObject
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'       => static::TYPE_NAME,
+            'total_count' => $this->totalCount,
+            'user_ids'    => $this->userIds,
+        ];
     }
 }

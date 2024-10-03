@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Page;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Rich\RichText;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+ * Contains a caption of another block.
  */
 class PageBlockCaption extends TdObject
 {
     public const TYPE_NAME = 'pageBlockCaption';
 
-    /**
-     * Content of the caption
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
-     * Block credit (like HTML tag <cite>)
-     *
-     * @var RichText
-     */
-    protected RichText $credit;
-
-    public function __construct(RichText $text, RichText $credit)
-    {
-        $this->text = $text;
-        $this->credit = $credit;
-    }
+    public function __construct(
+        /**
+         * Content of the caption.
+         */
+        protected RichText $text,
+        /**
+         * Block credit (like HTML tag <cite>).
+         */
+        protected RichText $credit,
+    ) {}
 
     public static function fromArray(array $array): PageBlockCaption
     {
@@ -43,13 +36,9 @@ class PageBlockCaption extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getCredit(): RichText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'credit' => $this->credit->typeSerialize(),
-        ];
+        return $this->credit;
     }
 
     public function getText(): RichText
@@ -57,8 +46,12 @@ class PageBlockCaption extends TdObject
         return $this->text;
     }
 
-    public function getCredit(): RichText
+    public function typeSerialize(): array
     {
-        return $this->credit;
+        return [
+            '@type'  => static::TYPE_NAME,
+            'text'   => $this->text->typeSerialize(),
+            'credit' => $this->credit->typeSerialize(),
+        ];
     }
 }

@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Chat;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes a chat located nearby
+ * Describes a chat located nearby.
  */
 class ChatNearby extends TdObject
 {
     public const TYPE_NAME = 'chatNearby';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Distance to the chat location, in meters
-     *
-     * @var int
-     */
-    protected int $distance;
-
-    public function __construct(int $chatId, int $distance)
-    {
-        $this->chatId = $chatId;
-        $this->distance = $distance;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Distance to the chat location, in meters.
+         */
+        protected int $distance,
+    ) {}
 
     public static function fromArray(array $array): ChatNearby
     {
@@ -41,15 +32,6 @@ class ChatNearby extends TdObject
             $array['chat_id'],
             $array['distance'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'distance' => $this->distance,
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +42,14 @@ class ChatNearby extends TdObject
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'chat_id'  => $this->chatId,
+            'distance' => $this->distance,
+        ];
     }
 }

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the period of inactivity after which the account of the current user will automatically be deleted
+ * Returns the period of inactivity after which the account of the current user will automatically be deleted.
  */
 class GetAccountTtl extends TdFunction
 {
     public const TYPE_NAME = 'getAccountTtl';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetAccountTtl
     {

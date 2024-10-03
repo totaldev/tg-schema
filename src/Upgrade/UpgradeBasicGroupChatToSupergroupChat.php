@@ -4,28 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Upgrade;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+ * Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges.
+ * Deactivates the original basic group.
  */
 class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
 {
     public const TYPE_NAME = 'upgradeBasicGroupChatToSupergroupChat';
 
-    /**
-     * Identifier of the chat to upgrade
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to upgrade.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): UpgradeBasicGroupChatToSupergroupChat
     {
@@ -34,16 +30,16 @@ class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+        ];
     }
 }

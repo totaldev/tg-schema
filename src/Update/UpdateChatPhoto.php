@@ -4,54 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Chat\ChatPhotoInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat photo was changed
+ * A chat photo was changed.
  */
 class UpdateChatPhoto extends Update
 {
     public const TYPE_NAME = 'updateChatPhoto';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The new chat photo; may be null
-     *
-     * @var ChatPhotoInfo|null
-     */
-    protected ?ChatPhotoInfo $photo;
-
-    public function __construct(int $chatId, ?ChatPhotoInfo $photo)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int            $chatId,
+        /**
+         * The new chat photo; may be null.
+         */
+        protected ?ChatPhotoInfo $photo,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): UpdateChatPhoto
     {
         return new static(
             $array['chat_id'],
-            (isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'photo' => (isset($this->photo) ? $this->photo : null),
-        ];
     }
 
     public function getChatId(): int
@@ -62,5 +45,14 @@ class UpdateChatPhoto extends Update
     public function getPhoto(): ?ChatPhotoInfo
     {
         return $this->photo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'photo'   => (isset($this->photo) ? $this->photo : null),
+        ];
     }
 }

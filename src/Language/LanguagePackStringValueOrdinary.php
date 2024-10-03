@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Language;
 
 /**
- * An ordinary language pack string
+ * An ordinary language pack string.
  */
 class LanguagePackStringValueOrdinary extends LanguagePackStringValue
 {
     public const TYPE_NAME = 'languagePackStringValueOrdinary';
 
-    /**
-     * String value
-     *
-     * @var string
-     */
-    protected string $value;
-
-    public function __construct(string $value)
-    {
+    public function __construct(
+        /**
+         * String value.
+         */
+        protected string $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): LanguagePackStringValueOrdinary
@@ -36,16 +29,16 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue
         );
     }
 
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
-    }
-
-    public function getValue(): string
-    {
-        return $this->value;
     }
 }

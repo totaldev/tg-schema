@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Public;
 
 /**
- * The chat is public, because it is a location-based supergroup
+ * The chat is public, because it is a location-based supergroup.
  */
 class PublicChatTypeIsLocationBased extends PublicChatType
 {

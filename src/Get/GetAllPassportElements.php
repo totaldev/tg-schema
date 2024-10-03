@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns all available Telegram Passport elements
+ * Returns all available Telegram Passport elements.
  */
 class GetAllPassportElements extends TdFunction
 {
     public const TYPE_NAME = 'getAllPassportElements';
 
-    /**
-     * The 2-step verification password of the current user
-     *
-     * @var string
-     */
-    protected string $password;
-
-    public function __construct(string $password)
-    {
-        $this->password = $password;
-    }
+    public function __construct(
+        /**
+         * The 2-step verification password of the current user.
+         */
+        protected string $password
+    ) {}
 
     public static function fromArray(array $array): GetAllPassportElements
     {
@@ -34,16 +29,16 @@ class GetAllPassportElements extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'password' => $this->password,
-        ];
-    }
-
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'password' => $this->password,
+        ];
     }
 }

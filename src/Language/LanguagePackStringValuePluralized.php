@@ -4,75 +4,43 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Language;
 
 /**
- * A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
+ * A language pack string which has different forms based on the number of some object it mentions. See
+ * https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information.
  */
 class LanguagePackStringValuePluralized extends LanguagePackStringValue
 {
     public const TYPE_NAME = 'languagePackStringValuePluralized';
 
-    /**
-     * Value for zero objects
-     *
-     * @var string
-     */
-    protected string $zeroValue;
-
-    /**
-     * Value for one object
-     *
-     * @var string
-     */
-    protected string $oneValue;
-
-    /**
-     * Value for two objects
-     *
-     * @var string
-     */
-    protected string $twoValue;
-
-    /**
-     * Value for few objects
-     *
-     * @var string
-     */
-    protected string $fewValue;
-
-    /**
-     * Value for many objects
-     *
-     * @var string
-     */
-    protected string $manyValue;
-
-    /**
-     * Default value
-     *
-     * @var string
-     */
-    protected string $otherValue;
-
     public function __construct(
-        string $zeroValue,
-        string $oneValue,
-        string $twoValue,
-        string $fewValue,
-        string $manyValue,
-        string $otherValue
+        /**
+         * Value for zero objects.
+         */
+        protected string $zeroValue,
+        /**
+         * Value for one object.
+         */
+        protected string $oneValue,
+        /**
+         * Value for two objects.
+         */
+        protected string $twoValue,
+        /**
+         * Value for few objects.
+         */
+        protected string $fewValue,
+        /**
+         * Value for many objects.
+         */
+        protected string $manyValue,
+        /**
+         * Default value.
+         */
+        protected string $otherValue,
     ) {
         parent::__construct();
-
-        $this->zeroValue = $zeroValue;
-        $this->oneValue = $oneValue;
-        $this->twoValue = $twoValue;
-        $this->fewValue = $fewValue;
-        $this->manyValue = $manyValue;
-        $this->otherValue = $otherValue;
     }
 
     public static function fromArray(array $array): LanguagePackStringValuePluralized
@@ -87,34 +55,6 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'zero_value' => $this->zeroValue,
-            'one_value' => $this->oneValue,
-            'two_value' => $this->twoValue,
-            'few_value' => $this->fewValue,
-            'many_value' => $this->manyValue,
-            'other_value' => $this->otherValue,
-        ];
-    }
-
-    public function getZeroValue(): string
-    {
-        return $this->zeroValue;
-    }
-
-    public function getOneValue(): string
-    {
-        return $this->oneValue;
-    }
-
-    public function getTwoValue(): string
-    {
-        return $this->twoValue;
-    }
-
     public function getFewValue(): string
     {
         return $this->fewValue;
@@ -125,8 +65,36 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
         return $this->manyValue;
     }
 
+    public function getOneValue(): string
+    {
+        return $this->oneValue;
+    }
+
     public function getOtherValue(): string
     {
         return $this->otherValue;
+    }
+
+    public function getTwoValue(): string
+    {
+        return $this->twoValue;
+    }
+
+    public function getZeroValue(): string
+    {
+        return $this->zeroValue;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'       => static::TYPE_NAME,
+            'zero_value'  => $this->zeroValue,
+            'one_value'   => $this->oneValue,
+            'two_value'   => $this->twoValue,
+            'few_value'   => $this->fewValue,
+            'many_value'  => $this->manyValue,
+            'other_value' => $this->otherValue,
+        ];
     }
 }

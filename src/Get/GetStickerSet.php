@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a sticker set by its identifier
+ * Returns information about a sticker set by its identifier.
  */
 class GetStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'getStickerSet';
 
-    /**
-     * Identifier of the sticker set
-     *
-     * @var int
-     */
-    protected int $setId;
-
-    public function __construct(int $setId)
-    {
-        $this->setId = $setId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the sticker set.
+         */
+        protected int $setId
+    ) {}
 
     public static function fromArray(array $array): GetStickerSet
     {
@@ -34,16 +29,16 @@ class GetStickerSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'set_id' => $this->setId,
-        ];
-    }
-
     public function getSetId(): int
     {
         return $this->setId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'  => static::TYPE_NAME,
+            'set_id' => $this->setId,
+        ];
     }
 }

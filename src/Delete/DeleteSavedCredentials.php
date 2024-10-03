@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Delete;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Deletes saved credentials for all payment provider bots
+ * Deletes saved credentials for all payment provider bots.
  */
 class DeleteSavedCredentials extends TdFunction
 {
     public const TYPE_NAME = 'deleteSavedCredentials';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): DeleteSavedCredentials
     {

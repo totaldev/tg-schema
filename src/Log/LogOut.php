@@ -4,20 +4,19 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Log;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
+ * Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes,
+ * updateAuthorizationState with authorizationStateClosed will be sent.
  */
 class LogOut extends TdFunction
 {
     public const TYPE_NAME = 'logOut';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): LogOut
     {

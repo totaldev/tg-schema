@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Can;
 
 /**
- * The 2-step verification needs to be enabled first
+ * The 2-step verification needs to be enabled first.
  */
 class CanTransferOwnershipResultPasswordNeeded extends CanTransferOwnershipResult
 {

@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+ * The message will be sent when the other user is online. Applicable to private chats only and when the exact online status of the other user is known.
  */
 class MessageSchedulingStateSendWhenOnline extends MessageSchedulingState
 {

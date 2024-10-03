@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Input;
 
 /**
- * A message with a game; not supported for channels or secret chats
+ * A message with a game; not supported for channels or secret chats.
  */
 class InputMessageGame extends InputMessageContent
 {
     public const TYPE_NAME = 'inputMessageGame';
 
-    /**
-     * User identifier of the bot that owns the game
-     *
-     * @var int
-     */
-    protected int $botUserId;
-
-    /**
-     * Short name of the game
-     *
-     * @var string
-     */
-    protected string $gameShortName;
-
-    public function __construct(int $botUserId, string $gameShortName)
-    {
+    public function __construct(
+        /**
+         * User identifier of the bot that owns the game.
+         */
+        protected int    $botUserId,
+        /**
+         * Short name of the game.
+         */
+        protected string $gameShortName,
+    ) {
         parent::__construct();
-
-        $this->botUserId = $botUserId;
-        $this->gameShortName = $gameShortName;
     }
 
     public static function fromArray(array $array): InputMessageGame
@@ -45,15 +34,6 @@ class InputMessageGame extends InputMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'bot_user_id' => $this->botUserId,
-            'game_short_name' => $this->gameShortName,
-        ];
-    }
-
     public function getBotUserId(): int
     {
         return $this->botUserId;
@@ -62,5 +42,14 @@ class InputMessageGame extends InputMessageContent
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'           => static::TYPE_NAME,
+            'bot_user_id'     => $this->botUserId,
+            'game_short_name' => $this->gameShortName,
+        ];
     }
 }

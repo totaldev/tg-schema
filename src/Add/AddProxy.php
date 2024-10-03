@@ -4,52 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Add;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Adds a proxy server for network requests. Can be called before authorization
+ * Adds a proxy server for network requests. Can be called before authorization.
  */
 class AddProxy extends TdFunction
 {
     public const TYPE_NAME = 'addProxy';
 
-    /**
-     * Proxy server IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Pass true to immediately enable the proxy
-     *
-     * @var bool
-     */
-    protected bool $enable;
-
-    /**
-     * Proxy type
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    public function __construct(string $server, int $port, bool $enable, ProxyType $type)
-    {
-        $this->server = $server;
-        $this->port = $port;
-        $this->enable = $enable;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Pass true to immediately enable the proxy.
+         */
+        protected bool      $enable,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
+    ) {}
 
     public static function fromArray(array $array): AddProxy
     {
@@ -61,20 +46,9 @@ class AddProxy extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getEnable(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'server' => $this->server,
-            'port' => $this->port,
-            'enable' => $this->enable,
-            'type' => $this->type->typeSerialize(),
-        ];
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
+        return $this->enable;
     }
 
     public function getPort(): int
@@ -82,13 +56,24 @@ class AddProxy extends TdFunction
         return $this->port;
     }
 
-    public function getEnable(): bool
+    public function getServer(): string
     {
-        return $this->enable;
+        return $this->server;
     }
 
     public function getType(): ProxyType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'  => static::TYPE_NAME,
+            'server' => $this->server,
+            'port'   => $this->port,
+            'enable' => $this->enable,
+            'type'   => $this->type->typeSerialize(),
+        ];
     }
 }

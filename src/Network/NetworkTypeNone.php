@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Network;
 
 /**
- * The network is not available
+ * The network is not available.
  */
 class NetworkTypeNone extends NetworkType
 {

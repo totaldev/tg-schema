@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Text;
 
 /**
- * A bold text
+ * A bold text.
  */
 class TextEntityTypeBold extends TextEntityType
 {

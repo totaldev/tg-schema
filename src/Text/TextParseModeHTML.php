@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Text;
 
 /**
- * The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+ * The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode.
  */
 class TextParseModeHTML extends TextParseMode
 {

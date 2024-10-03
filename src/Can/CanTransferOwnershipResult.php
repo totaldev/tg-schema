@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Can;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+ * Represents result of checking whether the current session can be used to transfer a chat ownership to another user.
  */
 class CanTransferOwnershipResult extends TdObject
 {
     public const TYPE_NAME = 'CanTransferOwnershipResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CanTransferOwnershipResult
     {

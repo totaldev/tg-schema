@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Notification;
 
 /**
- * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
+ * Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value.
  */
 class NotificationSettingsScopeGroupChats extends NotificationSettingsScope
 {

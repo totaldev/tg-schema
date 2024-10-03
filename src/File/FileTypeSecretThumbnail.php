@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\File;
 
 /**
- * The file is a thumbnail of a file from a secret chat
+ * The file is a thumbnail of a file from a secret chat.
  */
 class FileTypeSecretThumbnail extends FileType
 {

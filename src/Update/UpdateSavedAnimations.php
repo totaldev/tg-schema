@@ -4,29 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * The list of saved animations was updated
+ * The list of saved animations was updated.
  */
 class UpdateSavedAnimations extends Update
 {
     public const TYPE_NAME = 'updateSavedAnimations';
 
-    /**
-     * The new list of file identifiers of saved animations
-     *
-     * @var int[]
-     */
-    protected array $animationIds;
-
-    public function __construct(array $animationIds)
-    {
+    public function __construct(
+        /**
+         * The new list of file identifiers of saved animations.
+         *
+         * @var int[]
+         */
+        protected array $animationIds
+    ) {
         parent::__construct();
-
-        $this->animationIds = $animationIds;
     }
 
     public static function fromArray(array $array): UpdateSavedAnimations
@@ -36,16 +31,16 @@ class UpdateSavedAnimations extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'animation_ids' => $this->animationIds,
-        ];
-    }
-
     public function getAnimationIds(): array
     {
         return $this->animationIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'         => static::TYPE_NAME,
+            'animation_ids' => $this->animationIds,
+        ];
     }
 }

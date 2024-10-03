@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Test;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Forces an updates.getDifference call to the Telegram servers; for testing only
+ * Forces an updates.getDifference call to the Telegram servers; for testing only.
  */
 class TestGetDifference extends TdFunction
 {
     public const TYPE_NAME = 'testGetDifference';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TestGetDifference
     {

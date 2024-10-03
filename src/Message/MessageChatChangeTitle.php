@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * An updated chat title
+ * An updated chat title.
  */
 class MessageChatChangeTitle extends MessageContent
 {
     public const TYPE_NAME = 'messageChatChangeTitle';
 
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * New chat title.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): MessageChatChangeTitle
@@ -36,16 +29,16 @@ class MessageChatChangeTitle extends MessageContent
         );
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

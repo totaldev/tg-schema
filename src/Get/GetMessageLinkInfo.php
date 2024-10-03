@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
+ * Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage.
  */
 class GetMessageLinkInfo extends TdFunction
 {
     public const TYPE_NAME = 'getMessageLinkInfo';
 
-    /**
-     * The message link
-     *
-     * @var string
-     */
-    protected string $url;
-
-    public function __construct(string $url)
-    {
-        $this->url = $url;
-    }
+    public function __construct(
+        /**
+         * The message link.
+         */
+        protected string $url
+    ) {}
 
     public static function fromArray(array $array): GetMessageLinkInfo
     {
@@ -34,16 +29,16 @@ class GetMessageLinkInfo extends TdFunction
         );
     }
 
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'url' => $this->url,
+            'url'   => $this->url,
         ];
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }

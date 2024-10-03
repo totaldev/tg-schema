@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Remove;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Removes a chat from the list of recently found chats
+ * Removes a chat from the list of recently found chats.
  */
 class RemoveRecentlyFoundChat extends TdFunction
 {
     public const TYPE_NAME = 'removeRecentlyFoundChat';
 
-    /**
-     * Identifier of the chat to be removed
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    public function __construct(int $chatId)
-    {
-        $this->chatId = $chatId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to be removed.
+         */
+        protected int $chatId
+    ) {}
 
     public static function fromArray(array $array): RemoveRecentlyFoundChat
     {
@@ -34,16 +29,16 @@ class RemoveRecentlyFoundChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+        ];
     }
 }

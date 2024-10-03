@@ -4,29 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Json;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a JSON array
+ * Represents a JSON array.
  */
 class JsonValueArray extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueArray';
 
-    /**
-     * The list of array elements
-     *
-     * @var JsonValue[]
-     */
-    protected array $values;
-
-    public function __construct(array $values)
-    {
+    public function __construct(
+        /**
+         * The list of array elements.
+         *
+         * @var JsonValue[]
+         */
+        protected array $values
+    ) {
         parent::__construct();
-
-        $this->values = $values;
     }
 
     public static function fromArray(array $array): JsonValueArray
@@ -36,16 +33,16 @@ class JsonValueArray extends JsonValue
         );
     }
 
+    public function getValues(): array
+    {
+        return $this->values;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->values),
         ];
-    }
-
-    public function getValues(): array
-    {
-        return $this->values;
     }
 }

@@ -4,60 +4,41 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Test;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Proxy\ProxyType;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+ * Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization.
  */
 class TestProxy extends TdFunction
 {
     public const TYPE_NAME = 'testProxy';
 
-    /**
-     * Proxy server IP address
-     *
-     * @var string
-     */
-    protected string $server;
-
-    /**
-     * Proxy server port
-     *
-     * @var int
-     */
-    protected int $port;
-
-    /**
-     * Proxy type
-     *
-     * @var ProxyType
-     */
-    protected ProxyType $type;
-
-    /**
-     * Identifier of a datacenter with which to test connection
-     *
-     * @var int
-     */
-    protected int $dcId;
-
-    /**
-     * The maximum overall timeout for the request
-     *
-     * @var float
-     */
-    protected float $timeout;
-
-    public function __construct(string $server, int $port, ProxyType $type, int $dcId, float $timeout)
-    {
-        $this->server = $server;
-        $this->port = $port;
-        $this->type = $type;
-        $this->dcId = $dcId;
-        $this->timeout = $timeout;
-    }
+    public function __construct(
+        /**
+         * Proxy server domain or IP address.
+         */
+        protected string    $server,
+        /**
+         * Proxy server port.
+         */
+        protected int       $port,
+        /**
+         * Proxy type.
+         */
+        protected ProxyType $type,
+        /**
+         * Identifier of a datacenter with which to test connection.
+         */
+        protected int       $dcId,
+        /**
+         * The maximum overall timeout for the request.
+         */
+        protected float     $timeout,
+    ) {}
 
     public static function fromArray(array $array): TestProxy
     {
@@ -70,21 +51,9 @@ class TestProxy extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getDcId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'server' => $this->server,
-            'port' => $this->port,
-            'type' => $this->type->typeSerialize(),
-            'dc_id' => $this->dcId,
-            'timeout' => $this->timeout,
-        ];
-    }
-
-    public function getServer(): string
-    {
-        return $this->server;
+        return $this->dcId;
     }
 
     public function getPort(): int
@@ -92,18 +61,30 @@ class TestProxy extends TdFunction
         return $this->port;
     }
 
-    public function getType(): ProxyType
+    public function getServer(): string
     {
-        return $this->type;
-    }
-
-    public function getDcId(): int
-    {
-        return $this->dcId;
+        return $this->server;
     }
 
     public function getTimeout(): float
     {
         return $this->timeout;
+    }
+
+    public function getType(): ProxyType
+    {
+        return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'server'  => $this->server,
+            'port'    => $this->port,
+            'type'    => $this->type->typeSerialize(),
+            'dc_id'   => $this->dcId,
+            'timeout' => $this->timeout,
+        ];
     }
 }

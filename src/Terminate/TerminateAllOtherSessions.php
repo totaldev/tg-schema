@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Terminate;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Terminates all other sessions of the current user
+ * Terminates all other sessions of the current user.
  */
 class TerminateAllOtherSessions extends TdFunction
 {
     public const TYPE_NAME = 'terminateAllOtherSessions';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TerminateAllOtherSessions
     {

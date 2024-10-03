@@ -4,28 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Synchronize;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
+ * Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called
+ * explicitly for the current used/base language packs. Can be called before authorization.
  */
 class SynchronizeLanguagePack extends TdFunction
 {
     public const TYPE_NAME = 'synchronizeLanguagePack';
 
-    /**
-     * Language pack identifier
-     *
-     * @var string
-     */
-    protected string $languagePackId;
-
-    public function __construct(string $languagePackId)
-    {
-        $this->languagePackId = $languagePackId;
-    }
+    public function __construct(
+        /**
+         * Language pack identifier.
+         */
+        protected string $languagePackId
+    ) {}
 
     public static function fromArray(array $array): SynchronizeLanguagePack
     {
@@ -34,16 +30,16 @@ class SynchronizeLanguagePack extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'language_pack_id' => $this->languagePackId,
-        ];
-    }
-
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'            => static::TYPE_NAME,
+            'language_pack_id' => $this->languagePackId,
+        ];
     }
 }

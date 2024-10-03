@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\File;
 
 /**
- * The file is a file from Secure storage used for storing Telegram Passport files
+ * The file is a file from Secure storage used for storing Telegram Passport files.
  */
 class FileTypeSecure extends FileType
 {

@@ -4,28 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+ * Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called
+ * synchronously.
  */
 class GetTextEntities extends TdFunction
 {
     public const TYPE_NAME = 'getTextEntities';
 
-    /**
-     * The text in which to look for entities
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(string $text)
-    {
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The text in which to look for entities.
+         */
+        protected string $text
+    ) {}
 
     public static function fromArray(array $array): GetTextEntities
     {
@@ -34,16 +30,16 @@ class GetTextEntities extends TdFunction
         );
     }
 
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'text' => $this->text,
+            'text'  => $this->text,
         ];
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
     }
 }

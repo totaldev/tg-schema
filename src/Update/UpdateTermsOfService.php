@@ -4,37 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Terms\TermsOfService;
 
 /**
- * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
+ * New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason
+ * "Decline ToS update".
  */
 class UpdateTermsOfService extends Update
 {
     public const TYPE_NAME = 'updateTermsOfService';
 
-    /**
-     * Identifier of the terms of service
-     *
-     * @var string
-     */
-    protected string $termsOfServiceId;
-
-    /**
-     * The new terms of service
-     *
-     * @var TermsOfService
-     */
-    protected TermsOfService $termsOfService;
-
-    public function __construct(string $termsOfServiceId, TermsOfService $termsOfService)
-    {
+    public function __construct(
+        /**
+         * Identifier of the terms of service.
+         */
+        protected string         $termsOfServiceId,
+        /**
+         * The new terms of service.
+         */
+        protected TermsOfService $termsOfService,
+    ) {
         parent::__construct();
-
-        $this->termsOfServiceId = $termsOfServiceId;
-        $this->termsOfService = $termsOfService;
     }
 
     public static function fromArray(array $array): UpdateTermsOfService
@@ -45,13 +38,9 @@ class UpdateTermsOfService extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getTermsOfService(): TermsOfService
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'terms_of_service_id' => $this->termsOfServiceId,
-            'terms_of_service' => $this->termsOfService->typeSerialize(),
-        ];
+        return $this->termsOfService;
     }
 
     public function getTermsOfServiceId(): string
@@ -59,8 +48,12 @@ class UpdateTermsOfService extends Update
         return $this->termsOfServiceId;
     }
 
-    public function getTermsOfService(): TermsOfService
+    public function typeSerialize(): array
     {
-        return $this->termsOfService;
+        return [
+            '@type'               => static::TYPE_NAME,
+            'terms_of_service_id' => $this->termsOfServiceId,
+            'terms_of_service'    => $this->termsOfService->typeSerialize(),
+        ];
     }
 }

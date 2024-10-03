@@ -4,44 +4,31 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Change;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Installs/uninstalls or activates/archives a sticker set
+ * Installs/uninstalls or activates/archives a sticker set.
  */
 class ChangeStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'changeStickerSet';
 
-    /**
-     * Identifier of the sticker set
-     *
-     * @var int
-     */
-    protected int $setId;
-
-    /**
-     * The new value of is_installed
-     *
-     * @var bool
-     */
-    protected bool $isInstalled;
-
-    /**
-     * The new value of is_archived. A sticker set can't be installed and archived simultaneously
-     *
-     * @var bool
-     */
-    protected bool $isArchived;
-
-    public function __construct(int $setId, bool $isInstalled, bool $isArchived)
-    {
-        $this->setId = $setId;
-        $this->isInstalled = $isInstalled;
-        $this->isArchived = $isArchived;
-    }
+    public function __construct(
+        /**
+         * Identifier of the sticker set.
+         */
+        protected int  $setId,
+        /**
+         * The new value of is_installed.
+         */
+        protected bool $isInstalled,
+        /**
+         * The new value of is_archived. A sticker set can't be installed and archived simultaneously.
+         */
+        protected bool $isArchived,
+    ) {}
 
     public static function fromArray(array $array): ChangeStickerSet
     {
@@ -52,19 +39,9 @@ class ChangeStickerSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsArchived(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'set_id' => $this->setId,
-            'is_installed' => $this->isInstalled,
-            'is_archived' => $this->isArchived,
-        ];
-    }
-
-    public function getSetId(): int
-    {
-        return $this->setId;
+        return $this->isArchived;
     }
 
     public function getIsInstalled(): bool
@@ -72,8 +49,18 @@ class ChangeStickerSet extends TdFunction
         return $this->isInstalled;
     }
 
-    public function getIsArchived(): bool
+    public function getSetId(): int
     {
-        return $this->isArchived;
+        return $this->setId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'        => static::TYPE_NAME,
+            'set_id'       => $this->setId,
+            'is_installed' => $this->isInstalled,
+            'is_archived'  => $this->isArchived,
+        ];
     }
 }

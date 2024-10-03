@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * A new incoming event; for bots only
+ * A new incoming event; for bots only.
  */
 class UpdateNewCustomEvent extends Update
 {
     public const TYPE_NAME = 'updateNewCustomEvent';
 
-    /**
-     * A JSON-serialized event
-     *
-     * @var string
-     */
-    protected string $event;
-
-    public function __construct(string $event)
-    {
+    public function __construct(
+        /**
+         * A JSON-serialized event.
+         */
+        protected string $event
+    ) {
         parent::__construct();
-
-        $this->event = $event;
     }
 
     public static function fromArray(array $array): UpdateNewCustomEvent
@@ -36,16 +29,16 @@ class UpdateNewCustomEvent extends Update
         );
     }
 
+    public function getEvent(): string
+    {
+        return $this->event;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'event' => $this->event,
         ];
-    }
-
-    public function getEvent(): string
-    {
-        return $this->event;
     }
 }

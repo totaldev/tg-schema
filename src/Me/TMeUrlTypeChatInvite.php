@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Me;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Chat\ChatInviteLinkInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat invite link
+ * A chat invite link.
  */
 class TMeUrlTypeChatInvite extends TMeUrlType
 {
     public const TYPE_NAME = 'tMeUrlTypeChatInvite';
 
-    /**
-     * Information about the chat invite link
-     *
-     * @var ChatInviteLinkInfo
-     */
-    protected ChatInviteLinkInfo $info;
-
-    public function __construct(ChatInviteLinkInfo $info)
-    {
+    public function __construct(
+        /**
+         * Information about the chat invite link.
+         */
+        protected ChatInviteLinkInfo $info
+    ) {
         parent::__construct();
-
-        $this->info = $info;
     }
 
     public static function fromArray(array $array): TMeUrlTypeChatInvite
@@ -36,16 +32,16 @@ class TMeUrlTypeChatInvite extends TMeUrlType
         );
     }
 
+    public function getInfo(): ChatInviteLinkInfo
+    {
+        return $this->info;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'info' => $this->info->typeSerialize(),
+            'info'  => $this->info->typeSerialize(),
         ];
-    }
-
-    public function getInfo(): ChatInviteLinkInfo
-    {
-        return $this->info;
     }
 }

@@ -4,28 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Test;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
+ * Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization.
  */
 class TestCallVectorStringObject extends TdFunction
 {
     public const TYPE_NAME = 'testCallVectorStringObject';
 
-    /**
-     * Vector of objects to return
-     *
-     * @var TestString[]
-     */
-    protected array $x;
-
-    public function __construct(array $x)
-    {
-        $this->x = $x;
-    }
+    public function __construct(
+        /**
+         * Vector of objects to return.
+         *
+         * @var TestString[]
+         */
+        protected array $x
+    ) {}
 
     public static function fromArray(array $array): TestCallVectorStringObject
     {
@@ -34,16 +32,16 @@ class TestCallVectorStringObject extends TdFunction
         );
     }
 
+    public function getX(): array
+    {
+        return $this->x;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->x),
         ];
-    }
-
-    public function getX(): array
-    {
-        return $this->x;
     }
 }

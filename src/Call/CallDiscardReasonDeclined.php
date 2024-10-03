@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Call;
 
 /**
- * The call was ended before the conversation started. It was declined by the other party
+ * The call was ended before the conversation started. It was declined by the other party.
  */
 class CallDiscardReasonDeclined extends CallDiscardReason
 {

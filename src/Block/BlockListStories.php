@@ -4,48 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Block;
 
 /**
- * A message was unpinned
+ * The block list that disallows viewing of stories of the current user.
  */
-class ChatEventMessageUnpinned extends ChatEventAction
+class BlockListStories extends BlockList
 {
-    public const TYPE_NAME = 'chatEventMessageUnpinned';
+    public const TYPE_NAME = 'blockListStories';
 
-    /**
-     * Unpinned message
-     *
-     * @var Message
-     */
-    protected Message $message;
-
-    public function __construct(Message $message)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->message = $message;
     }
 
-    public static function fromArray(array $array): ChatEventMessageUnpinned
+    public static function fromArray(array $array): BlockListStories
     {
-        return new static(
-            TdSchemaRegistry::fromArray($array['message']),
-        );
+        return new static();
     }
 
     public function typeSerialize(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'message' => $this->message->typeSerialize(),
-        ];
-    }
-
-    public function getMessage(): Message
-    {
-        return $this->message;
+        return ['@type' => static::TYPE_NAME];
     }
 }

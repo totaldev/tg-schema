@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\User;
 
 /**
- * A rule to restrict all contacts of the user from doing something
+ * A rule to restrict all contacts of the user from doing something.
  */
 class UserPrivacySettingRuleRestrictContacts extends UserPrivacySettingRule
 {

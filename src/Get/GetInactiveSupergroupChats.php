@@ -4,20 +4,19 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+ * Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and
+ * receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium.
  */
 class GetInactiveSupergroupChats extends TdFunction
 {
     public const TYPE_NAME = 'getInactiveSupergroupChats';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetInactiveSupergroupChats
     {

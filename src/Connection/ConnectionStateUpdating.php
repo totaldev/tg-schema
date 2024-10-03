@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Connection;
 
 /**
- * Downloading data received while the application was offline
+ * Downloading data supposed to be received while the application was offline.
  */
 class ConnectionStateUpdating extends ConnectionState
 {

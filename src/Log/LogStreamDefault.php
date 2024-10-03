@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Log;
 
 /**
- * The log is written to stderr or an OS specific log
+ * The log is written to stderr or an OS specific log.
  */
 class LogStreamDefault extends LogStream
 {

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Option;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents the value of an option
+ * Represents the value of an option.
  */
 class OptionValue extends TdObject
 {
     public const TYPE_NAME = 'OptionValue';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): OptionValue
     {

@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Terminate;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Terminates a session of the current user
+ * Terminates a session of the current user.
  */
 class TerminateSession extends TdFunction
 {
     public const TYPE_NAME = 'terminateSession';
 
-    /**
-     * Session identifier
-     *
-     * @var int
-     */
-    protected int $sessionId;
-
-    public function __construct(int $sessionId)
-    {
-        $this->sessionId = $sessionId;
-    }
+    public function __construct(
+        /**
+         * Session identifier.
+         */
+        protected int $sessionId
+    ) {}
 
     public static function fromArray(array $array): TerminateSession
     {
@@ -34,16 +29,16 @@ class TerminateSession extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'session_id' => $this->sessionId,
-        ];
-    }
-
     public function getSessionId(): int
     {
         return $this->sessionId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'session_id' => $this->sessionId,
+        ];
     }
 }

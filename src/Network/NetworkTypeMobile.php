@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Network;
 
 /**
- * A mobile network
+ * A mobile network.
  */
 class NetworkTypeMobile extends NetworkType
 {

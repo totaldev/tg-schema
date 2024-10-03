@@ -4,45 +4,32 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Chat;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
+ * A chat member has gained/lost administrator status, or the list of their administrator privileges has changed.
  */
 class ChatEventMemberPromoted extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventMemberPromoted';
 
-    /**
-     * Affected chat member user identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * Previous status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $oldStatus;
-
-    /**
-     * New status of the chat member
-     *
-     * @var ChatMemberStatus
-     */
-    protected ChatMemberStatus $newStatus;
-
-    public function __construct(int $userId, ChatMemberStatus $oldStatus, ChatMemberStatus $newStatus)
-    {
+    public function __construct(
+        /**
+         * Affected chat member user identifier.
+         */
+        protected int              $userId,
+        /**
+         * Previous status of the chat member.
+         */
+        protected ChatMemberStatus $oldStatus,
+        /**
+         * New status of the chat member.
+         */
+        protected ChatMemberStatus $newStatus,
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
-        $this->oldStatus = $oldStatus;
-        $this->newStatus = $newStatus;
     }
 
     public static function fromArray(array $array): ChatEventMemberPromoted
@@ -54,19 +41,9 @@ class ChatEventMemberPromoted extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewStatus(): ChatMemberStatus
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'old_status' => $this->oldStatus->typeSerialize(),
-            'new_status' => $this->newStatus->typeSerialize(),
-        ];
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
+        return $this->newStatus;
     }
 
     public function getOldStatus(): ChatMemberStatus
@@ -74,8 +51,18 @@ class ChatEventMemberPromoted extends ChatEventAction
         return $this->oldStatus;
     }
 
-    public function getNewStatus(): ChatMemberStatus
+    public function getUserId(): int
     {
-        return $this->newStatus;
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'user_id'    => $this->userId,
+            'old_status' => $this->oldStatus->typeSerialize(),
+            'new_status' => $this->newStatus->typeSerialize(),
+        ];
     }
 }

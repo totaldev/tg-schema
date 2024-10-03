@@ -4,45 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * A new high score was achieved in a game
+ * A new high score was achieved in a game.
  */
 class MessageGameScore extends MessageContent
 {
     public const TYPE_NAME = 'messageGameScore';
 
-    /**
-     * Identifier of the message with the game, can be an identifier of a deleted message
-     *
-     * @var int
-     */
-    protected int $gameMessageId;
-
-    /**
-     * Identifier of the game; may be different from the games presented in the message with the game
-     *
-     * @var int
-     */
-    protected int $gameId;
-
-    /**
-     * New score
-     *
-     * @var int
-     */
-    protected int $score;
-
-    public function __construct(int $gameMessageId, int $gameId, int $score)
-    {
+    public function __construct(
+        /**
+         * Identifier of the message with the game, can be an identifier of a deleted message.
+         */
+        protected int $gameMessageId,
+        /**
+         * Identifier of the game; may be different from the games presented in the message with the game.
+         */
+        protected int $gameId,
+        /**
+         * New score.
+         */
+        protected int $score,
+    ) {
         parent::__construct();
-
-        $this->gameMessageId = $gameMessageId;
-        $this->gameId = $gameId;
-        $this->score = $score;
     }
 
     public static function fromArray(array $array): MessageGameScore
@@ -54,14 +39,9 @@ class MessageGameScore extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getGameId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'game_message_id' => $this->gameMessageId,
-            'game_id' => $this->gameId,
-            'score' => $this->score,
-        ];
+        return $this->gameId;
     }
 
     public function getGameMessageId(): int
@@ -69,13 +49,18 @@ class MessageGameScore extends MessageContent
         return $this->gameMessageId;
     }
 
-    public function getGameId(): int
-    {
-        return $this->gameId;
-    }
-
     public function getScore(): int
     {
         return $this->score;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'           => static::TYPE_NAME,
+            'game_message_id' => $this->gameMessageId,
+            'game_id'         => $this->gameId,
+            'score'           => $this->score,
+        ];
     }
 }

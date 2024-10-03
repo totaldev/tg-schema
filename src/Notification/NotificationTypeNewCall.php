@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Notification;
 
 /**
- * New call was received
+ * New call was received.
  */
 class NotificationTypeNewCall extends NotificationType
 {
     public const TYPE_NAME = 'notificationTypeNewCall';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    public function __construct(int $callId)
-    {
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int $callId
+    ) {
         parent::__construct();
-
-        $this->callId = $callId;
     }
 
     public static function fromArray(array $array): NotificationTypeNewCall
@@ -36,16 +29,16 @@ class NotificationTypeNewCall extends NotificationType
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'call_id' => $this->callId,
+        ];
     }
 }

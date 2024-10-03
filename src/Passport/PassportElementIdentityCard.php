@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Passport;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Identity\IdentityDocument;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A Telegram Passport element containing the user's identity card
+ * A Telegram Passport element containing the user's identity card.
  */
 class PassportElementIdentityCard extends PassportElement
 {
     public const TYPE_NAME = 'passportElementIdentityCard';
 
-    /**
-     * Identity card
-     *
-     * @var IdentityDocument
-     */
-    protected IdentityDocument $identityCard;
-
-    public function __construct(IdentityDocument $identityCard)
-    {
+    public function __construct(
+        /**
+         * Identity card.
+         */
+        protected IdentityDocument $identityCard
+    ) {
         parent::__construct();
-
-        $this->identityCard = $identityCard;
     }
 
     public static function fromArray(array $array): PassportElementIdentityCard
@@ -36,16 +32,16 @@ class PassportElementIdentityCard extends PassportElement
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'identity_card' => $this->identityCard->typeSerialize(),
-        ];
-    }
-
     public function getIdentityCard(): IdentityDocument
     {
         return $this->identityCard;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'         => static::TYPE_NAME,
+            'identity_card' => $this->identityCard->typeSerialize(),
+        ];
     }
 }

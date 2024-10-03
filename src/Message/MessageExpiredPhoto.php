@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * A self-destructed photo message
+ * A self-destructed photo message.
  */
 class MessageExpiredPhoto extends MessageContent
 {

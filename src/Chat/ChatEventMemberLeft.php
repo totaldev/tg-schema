@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * A member left the chat
+ * A member left the chat.
  */
 class ChatEventMemberLeft extends ChatEventAction
 {

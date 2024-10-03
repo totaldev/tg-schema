@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Push;
 
 /**
- * A message with a game
+ * A message with a game.
  */
 class PushMessageContentGame extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentGame';
 
-    /**
-     * Game title, empty for pinned game message
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(string $title, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Game title, empty for pinned game message.
+         */
+        protected string $title,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentGame
@@ -45,13 +34,9 @@ class PushMessageContentGame extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'is_pinned' => $this->isPinned,
-        ];
+        return $this->isPinned;
     }
 
     public function getTitle(): string
@@ -59,8 +44,12 @@ class PushMessageContentGame extends PushMessageContent
         return $this->title;
     }
 
-    public function getIsPinned(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPinned;
+        return [
+            '@type'     => static::TYPE_NAME,
+            'title'     => $this->title,
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

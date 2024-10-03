@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
+ * Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously.
  */
 class GetFileExtension extends TdFunction
 {
     public const TYPE_NAME = 'getFileExtension';
 
-    /**
-     * The MIME type of the file
-     *
-     * @var string
-     */
-    protected string $mimeType;
-
-    public function __construct(string $mimeType)
-    {
-        $this->mimeType = $mimeType;
-    }
+    public function __construct(
+        /**
+         * The MIME type of the file.
+         */
+        protected string $mimeType
+    ) {}
 
     public static function fromArray(array $array): GetFileExtension
     {
@@ -34,16 +29,16 @@ class GetFileExtension extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'mime_type' => $this->mimeType,
-        ];
-    }
-
     public function getMimeType(): string
     {
         return $this->mimeType;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'     => static::TYPE_NAME,
+            'mime_type' => $this->mimeType,
+        ];
     }
 }

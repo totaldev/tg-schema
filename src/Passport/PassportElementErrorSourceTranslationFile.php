@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Passport;
 
 /**
- * One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
+ * One of files with the translation of the document contains an error. The error will be considered resolved when the file changes.
  */
 class PassportElementErrorSourceTranslationFile extends PassportElementErrorSource
 {
     public const TYPE_NAME = 'passportElementErrorSourceTranslationFile';
 
-    /**
-     * Index of a file with the error
-     *
-     * @var int
-     */
-    protected int $fileIndex;
-
-    public function __construct(int $fileIndex)
-    {
+    public function __construct(
+        /**
+         * Index of a file with the error.
+         */
+        protected int $fileIndex
+    ) {
         parent::__construct();
-
-        $this->fileIndex = $fileIndex;
     }
 
     public static function fromArray(array $array): PassportElementErrorSourceTranslationFile
@@ -36,16 +29,16 @@ class PassportElementErrorSourceTranslationFile extends PassportElementErrorSour
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_index' => $this->fileIndex,
-        ];
-    }
-
     public function getFileIndex(): int
     {
         return $this->fileIndex;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'file_index' => $this->fileIndex,
+        ];
     }
 }

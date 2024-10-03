@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns all website where the current user used Telegram to log in
+ * Returns all website where the current user used Telegram to log in.
  */
 class GetConnectedWebsites extends TdFunction
 {
     public const TYPE_NAME = 'getConnectedWebsites';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetConnectedWebsites
     {

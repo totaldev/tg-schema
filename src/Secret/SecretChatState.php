@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Secret;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes the current secret chat state
+ * Describes the current secret chat state.
  */
 class SecretChatState extends TdObject
 {
     public const TYPE_NAME = 'SecretChatState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): SecretChatState
     {

@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Search;
 
 /**
- * Returns only messages with mentions of the current user, or messages that are replies to their messages
+ * Returns only messages with mentions of the current user, or messages that are replies to their messages.
  */
 class SearchMessagesFilterMention extends SearchMessagesFilter
 {

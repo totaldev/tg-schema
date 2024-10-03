@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Text;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents a part of the text which must be formatted differently
+ * Represents a part of the text which must be formatted differently.
  */
 class TextEntityType extends TdObject
 {
     public const TYPE_NAME = 'TextEntityType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TextEntityType
     {

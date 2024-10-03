@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Send;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Sends a custom request; for bots only
+ * Sends a custom request; for bots only.
  */
 class SendCustomRequest extends TdFunction
 {
     public const TYPE_NAME = 'sendCustomRequest';
 
-    /**
-     * The method name
-     *
-     * @var string
-     */
-    protected string $method;
-
-    /**
-     * JSON-serialized method parameters
-     *
-     * @var string
-     */
-    protected string $parameters;
-
-    public function __construct(string $method, string $parameters)
-    {
-        $this->method = $method;
-        $this->parameters = $parameters;
-    }
+    public function __construct(
+        /**
+         * The method name.
+         */
+        protected string $method,
+        /**
+         * JSON-serialized method parameters.
+         */
+        protected string $parameters,
+    ) {}
 
     public static function fromArray(array $array): SendCustomRequest
     {
@@ -41,15 +32,6 @@ class SendCustomRequest extends TdFunction
             $array['method'],
             $array['parameters'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'method' => $this->method,
-            'parameters' => $this->parameters,
-        ];
     }
 
     public function getMethod(): string
@@ -60,5 +42,14 @@ class SendCustomRequest extends TdFunction
     public function getParameters(): string
     {
         return $this->parameters;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'method'     => $this->method,
+            'parameters' => $this->parameters,
+        ];
     }
 }

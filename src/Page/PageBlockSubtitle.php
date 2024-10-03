@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Page;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Rich\RichText;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The subtitle of a page
+ * The subtitle of a page.
  */
 class PageBlockSubtitle extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockSubtitle';
 
-    /**
-     * Subtitle
-     *
-     * @var RichText
-     */
-    protected RichText $subtitle;
-
-    public function __construct(RichText $subtitle)
-    {
+    public function __construct(
+        /**
+         * Subtitle.
+         */
+        protected RichText $subtitle
+    ) {
         parent::__construct();
-
-        $this->subtitle = $subtitle;
     }
 
     public static function fromArray(array $array): PageBlockSubtitle
@@ -36,16 +32,16 @@ class PageBlockSubtitle extends PageBlock
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'subtitle' => $this->subtitle->typeSerialize(),
-        ];
-    }
-
     public function getSubtitle(): RichText
     {
         return $this->subtitle;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'subtitle' => $this->subtitle->typeSerialize(),
+        ];
     }
 }

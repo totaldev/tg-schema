@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The user has canceled the previous action
+ * The user has canceled the previous action.
  */
 class ChatActionCancel extends ChatAction
 {

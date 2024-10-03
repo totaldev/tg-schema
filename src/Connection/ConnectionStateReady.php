@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Connection;
 
 /**
- * There is a working connection to the Telegram servers
+ * There is a working connection to the Telegram servers.
  */
 class ConnectionStateReady extends ConnectionState
 {

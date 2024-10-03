@@ -4,44 +4,31 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+ * Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button.
  */
 class GetLoginUrlInfo extends TdFunction
 {
     public const TYPE_NAME = 'getLoginUrlInfo';
 
-    /**
-     * Chat identifier of the message with the button
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier of the message with the button
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * Button identifier
-     *
-     * @var int
-     */
-    protected int $buttonId;
-
-    public function __construct(int $chatId, int $messageId, int $buttonId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->buttonId = $buttonId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier of the message with the button.
+         */
+        protected int $chatId,
+        /**
+         * Message identifier of the message with the button. The message must not be scheduled.
+         */
+        protected int $messageId,
+        /**
+         * Button identifier.
+         */
+        protected int $buttonId,
+    ) {}
 
     public static function fromArray(array $array): GetLoginUrlInfo
     {
@@ -52,14 +39,9 @@ class GetLoginUrlInfo extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getButtonId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'button_id' => $this->buttonId,
-        ];
+        return $this->buttonId;
     }
 
     public function getChatId(): int
@@ -72,8 +54,13 @@ class GetLoginUrlInfo extends TdFunction
         return $this->messageId;
     }
 
-    public function getButtonId(): int
+    public function typeSerialize(): array
     {
-        return $this->buttonId;
+        return [
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
+            'message_id' => $this->messageId,
+            'button_id'  => $this->buttonId,
+        ];
     }
 }

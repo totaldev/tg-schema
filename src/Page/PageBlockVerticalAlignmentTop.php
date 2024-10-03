@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Page;
 
 /**
- * The content must be top-aligned
+ * The content must be top-aligned.
  */
 class PageBlockVerticalAlignmentTop extends PageBlockVerticalAlignment
 {

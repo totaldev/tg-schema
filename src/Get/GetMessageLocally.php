@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a message, if it is available without sending network request. This is an offline request
+ * Returns information about a message, if it is available without sending network request. This is an offline request.
  */
 class GetMessageLocally extends TdFunction
 {
     public const TYPE_NAME = 'getMessageLocally';
 
-    /**
-     * Identifier of the chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message to get
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat the message belongs to.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the message to get.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): GetMessageLocally
     {
@@ -41,15 +32,6 @@ class GetMessageLocally extends TdFunction
             $array['chat_id'],
             $array['message_id'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +42,14 @@ class GetMessageLocally extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

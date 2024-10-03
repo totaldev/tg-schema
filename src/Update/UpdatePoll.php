@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Poll\Poll;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A poll was updated; for bots only
+ * A poll was updated; for bots only.
  */
 class UpdatePoll extends Update
 {
     public const TYPE_NAME = 'updatePoll';
 
-    /**
-     * New data about the poll
-     *
-     * @var Poll
-     */
-    protected Poll $poll;
-
-    public function __construct(Poll $poll)
-    {
+    public function __construct(
+        /**
+         * New data about the poll.
+         */
+        protected Poll $poll
+    ) {
         parent::__construct();
-
-        $this->poll = $poll;
     }
 
     public static function fromArray(array $array): UpdatePoll
@@ -36,16 +32,16 @@ class UpdatePoll extends Update
         );
     }
 
+    public function getPoll(): Poll
+    {
+        return $this->poll;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'poll' => $this->poll->typeSerialize(),
+            'poll'  => $this->poll->typeSerialize(),
         ];
-    }
-
-    public function getPoll(): Poll
-    {
-        return $this->poll;
     }
 }

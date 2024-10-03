@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The user has started to play a game
+ * The user has started to play a game.
  */
 class ChatActionStartPlayingGame extends ChatAction
 {

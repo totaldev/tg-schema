@@ -4,45 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Device;
 
 /**
- * A token for Apple Push Notification service VoIP notifications
+ * A token for Apple Push Notification service VoIP notifications.
  */
 class DeviceTokenApplePushVoIP extends DeviceToken
 {
     public const TYPE_NAME = 'deviceTokenApplePushVoIP';
 
-    /**
-     * Device token; may be empty to deregister a device
-     *
-     * @var string
-     */
-    protected string $deviceToken;
-
-    /**
-     * True, if App Sandbox is enabled
-     *
-     * @var bool
-     */
-    protected bool $isAppSandbox;
-
-    /**
-     * True, if push notifications must be additionally encrypted
-     *
-     * @var bool
-     */
-    protected bool $encrypt;
-
-    public function __construct(string $deviceToken, bool $isAppSandbox, bool $encrypt)
-    {
+    public function __construct(
+        /**
+         * Device token; may be empty to deregister a device.
+         */
+        protected string $deviceToken,
+        /**
+         * True, if App Sandbox is enabled.
+         */
+        protected bool   $isAppSandbox,
+        /**
+         * True, if push notifications must be additionally encrypted.
+         */
+        protected bool   $encrypt,
+    ) {
         parent::__construct();
-
-        $this->deviceToken = $deviceToken;
-        $this->isAppSandbox = $isAppSandbox;
-        $this->encrypt = $encrypt;
     }
 
     public static function fromArray(array $array): DeviceTokenApplePushVoIP
@@ -54,19 +39,14 @@ class DeviceTokenApplePushVoIP extends DeviceToken
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'device_token' => $this->deviceToken,
-            'is_app_sandbox' => $this->isAppSandbox,
-            'encrypt' => $this->encrypt,
-        ];
-    }
-
     public function getDeviceToken(): string
     {
         return $this->deviceToken;
+    }
+
+    public function getEncrypt(): bool
+    {
+        return $this->encrypt;
     }
 
     public function getIsAppSandbox(): bool
@@ -74,8 +54,13 @@ class DeviceTokenApplePushVoIP extends DeviceToken
         return $this->isAppSandbox;
     }
 
-    public function getEncrypt(): bool
+    public function typeSerialize(): array
     {
-        return $this->encrypt;
+        return [
+            '@type'          => static::TYPE_NAME,
+            'device_token'   => $this->deviceToken,
+            'is_app_sandbox' => $this->isAppSandbox,
+            'encrypt'        => $this->encrypt,
+        ];
     }
 }

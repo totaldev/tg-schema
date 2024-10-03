@@ -4,36 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Search;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
+ * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main
+ * chat list.
  */
 class SearchChats extends TdFunction
 {
     public const TYPE_NAME = 'searchChats';
 
-    /**
-     * Query to search for. If the query is empty, returns up to 50 recently found chats
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * The maximum number of chats to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    public function __construct(string $query, int $limit)
-    {
-        $this->query = $query;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Query to search for. If the query is empty, returns up to 50 recently found chats.
+         */
+        protected string $query,
+        /**
+         * The maximum number of chats to be returned.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchChats
     {
@@ -43,13 +35,9 @@ class SearchChats extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
     public function getQuery(): string
@@ -57,8 +45,12 @@ class SearchChats extends TdFunction
         return $this->query;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'limit' => $this->limit,
+        ];
     }
 }

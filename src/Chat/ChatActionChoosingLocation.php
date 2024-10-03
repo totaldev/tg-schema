@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The user is picking a location or venue to send
+ * The user is picking a location or venue to send.
  */
 class ChatActionChoosingLocation extends ChatAction
 {

@@ -4,53 +4,34 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * The file generation process needs to be started by the application
+ * The file generation process needs to be started by the application.
  */
 class UpdateFileGenerationStart extends Update
 {
     public const TYPE_NAME = 'updateFileGenerationStart';
 
-    /**
-     * Unique identifier for the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    /**
-     * The path to a file from which a new file is generated; may be empty
-     *
-     * @var string
-     */
-    protected string $originalPath;
-
-    /**
-     * The path to a file that must be created and where the new file is generated
-     *
-     * @var string
-     */
-    protected string $destinationPath;
-
-    /**
-     * String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
-     *
-     * @var string
-     */
-    protected string $conversion;
-
-    public function __construct(int $generationId, string $originalPath, string $destinationPath, string $conversion)
-    {
+    public function __construct(
+        /**
+         * Unique identifier for the generation process.
+         */
+        protected int    $generationId,
+        /**
+         * The path to a file from which a new file is generated; may be empty.
+         */
+        protected string $originalPath,
+        /**
+         * The path to a file that must be created and where the new file is generated.
+         */
+        protected string $destinationPath,
+        /**
+         * String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application.
+         */
+        protected string $conversion,
+    ) {
         parent::__construct();
-
-        $this->generationId = $generationId;
-        $this->originalPath = $originalPath;
-        $this->destinationPath = $destinationPath;
-        $this->conversion = $conversion;
     }
 
     public static function fromArray(array $array): UpdateFileGenerationStart
@@ -63,15 +44,14 @@ class UpdateFileGenerationStart extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getConversion(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'generation_id' => $this->generationId,
-            'original_path' => $this->originalPath,
-            'destination_path' => $this->destinationPath,
-            'conversion' => $this->conversion,
-        ];
+        return $this->conversion;
+    }
+
+    public function getDestinationPath(): string
+    {
+        return $this->destinationPath;
     }
 
     public function getGenerationId(): int
@@ -84,13 +64,14 @@ class UpdateFileGenerationStart extends Update
         return $this->originalPath;
     }
 
-    public function getDestinationPath(): string
+    public function typeSerialize(): array
     {
-        return $this->destinationPath;
-    }
-
-    public function getConversion(): string
-    {
-        return $this->conversion;
+        return [
+            '@type'            => static::TYPE_NAME,
+            'generation_id'    => $this->generationId,
+            'original_path'    => $this->originalPath,
+            'destination_path' => $this->destinationPath,
+            'conversion'       => $this->conversion,
+        ];
     }
 }

@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Dated;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\File\File;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * File with the date it was uploaded
+ * File with the date it was uploaded.
  */
 class DatedFile extends TdObject
 {
     public const TYPE_NAME = 'datedFile';
 
-    /**
-     * The file
-     *
-     * @var File
-     */
-    protected File $file;
-
-    /**
-     * Point in time (Unix timestamp) when the file was uploaded
-     *
-     * @var int
-     */
-    protected int $date;
-
-    public function __construct(File $file, int $date)
-    {
-        $this->file = $file;
-        $this->date = $date;
-    }
+    public function __construct(
+        /**
+         * The file.
+         */
+        protected File $file,
+        /**
+         * Point in time (Unix timestamp) when the file was uploaded.
+         */
+        protected int  $date,
+    ) {}
 
     public static function fromArray(array $array): DatedFile
     {
@@ -43,13 +36,9 @@ class DatedFile extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getDate(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file' => $this->file->typeSerialize(),
-            'date' => $this->date,
-        ];
+        return $this->date;
     }
 
     public function getFile(): File
@@ -57,8 +46,12 @@ class DatedFile extends TdObject
         return $this->file;
     }
 
-    public function getDate(): int
+    public function typeSerialize(): array
     {
-        return $this->date;
+        return [
+            '@type' => static::TYPE_NAME,
+            'file'  => $this->file->typeSerialize(),
+            'date'  => $this->date,
+        ];
     }
 }

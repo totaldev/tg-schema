@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Supergroup;
 
 /**
- * Returns recently active users in reverse chronological order
+ * Returns recently active users in reverse chronological order.
  */
 class SupergroupMembersFilterRecent extends SupergroupMembersFilter
 {

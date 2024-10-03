@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Call;
 
 /**
- * The call is hanging up after discardCall has been called
+ * The call is hanging up after discardCall has been called.
  */
 class CallStateHangingUp extends CallState
 {

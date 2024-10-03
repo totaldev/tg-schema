@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Top;
 
 /**
- * A category containing frequently used basic groups and supergroups
+ * A category containing frequently used basic groups and supergroups.
  */
 class TopChatCategoryGroups extends TopChatCategory
 {

@@ -4,36 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Notification\NotificationSettingsScope;
+use Totaldev\TgSchema\Scope\ScopeNotificationSettings;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes notification settings for chats of a given type
+ * Changes notification settings for chats of a given type.
  */
 class SetScopeNotificationSettings extends TdFunction
 {
     public const TYPE_NAME = 'setScopeNotificationSettings';
 
-    /**
-     * Types of chats for which to change the notification settings
-     *
-     * @var NotificationSettingsScope
-     */
-    protected NotificationSettingsScope $scope;
-
-    /**
-     * The new notification settings for the given scope
-     *
-     * @var ScopeNotificationSettings
-     */
-    protected ScopeNotificationSettings $notificationSettings;
-
-    public function __construct(NotificationSettingsScope $scope, ScopeNotificationSettings $notificationSettings)
-    {
-        $this->scope = $scope;
-        $this->notificationSettings = $notificationSettings;
-    }
+    public function __construct(
+        /**
+         * Types of chats for which to change the notification settings.
+         */
+        protected NotificationSettingsScope $scope,
+        /**
+         * The new notification settings for the given scope.
+         */
+        protected ScopeNotificationSettings $notificationSettings,
+    ) {}
 
     public static function fromArray(array $array): SetScopeNotificationSettings
     {
@@ -43,13 +37,9 @@ class SetScopeNotificationSettings extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNotificationSettings(): ScopeNotificationSettings
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'scope' => $this->scope->typeSerialize(),
-            'notification_settings' => $this->notificationSettings->typeSerialize(),
-        ];
+        return $this->notificationSettings;
     }
 
     public function getScope(): NotificationSettingsScope
@@ -57,8 +47,12 @@ class SetScopeNotificationSettings extends TdFunction
         return $this->scope;
     }
 
-    public function getNotificationSettings(): ScopeNotificationSettings
+    public function typeSerialize(): array
     {
-        return $this->notificationSettings;
+        return [
+            '@type'                 => static::TYPE_NAME,
+            'scope'                 => $this->scope->typeSerialize(),
+            'notification_settings' => $this->notificationSettings->typeSerialize(),
+        ];
     }
 }

@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Input\InputFile;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+ * Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user.
  */
 class SetStickerPositionInSet extends TdFunction
 {
     public const TYPE_NAME = 'setStickerPositionInSet';
 
-    /**
-     * Sticker
-     *
-     * @var InputFile
-     */
-    protected InputFile $sticker;
-
-    /**
-     * New position of the sticker in the set, 0-based
-     *
-     * @var int
-     */
-    protected int $position;
-
-    public function __construct(InputFile $sticker, int $position)
-    {
-        $this->sticker = $sticker;
-        $this->position = $position;
-    }
+    public function __construct(
+        /**
+         * Sticker.
+         */
+        protected InputFile $sticker,
+        /**
+         * New position of the sticker in the set, 0-based.
+         */
+        protected int       $position,
+    ) {}
 
     public static function fromArray(array $array): SetStickerPositionInSet
     {
@@ -43,13 +36,9 @@ class SetStickerPositionInSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getPosition(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'position' => $this->position,
-        ];
+        return $this->position;
     }
 
     public function getSticker(): InputFile
@@ -57,8 +46,12 @@ class SetStickerPositionInSet extends TdFunction
         return $this->sticker;
     }
 
-    public function getPosition(): int
+    public function typeSerialize(): array
     {
-        return $this->position;
+        return [
+            '@type'    => static::TYPE_NAME,
+            'sticker'  => $this->sticker->typeSerialize(),
+            'position' => $this->position,
+        ];
     }
 }

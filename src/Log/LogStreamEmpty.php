@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Log;
 
 /**
- * The log is written nowhere
+ * The log is written nowhere.
  */
 class LogStreamEmpty extends LogStream
 {

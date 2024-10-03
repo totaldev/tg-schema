@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Passport;
 
 /**
- * The list of attached files contains an error. The error will be considered resolved when the list of files changes
+ * The list of attached files contains an error. The error will be considered resolved when the list of files changes.
  */
 class PassportElementErrorSourceFiles extends PassportElementErrorSource
 {

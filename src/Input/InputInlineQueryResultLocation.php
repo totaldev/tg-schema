@@ -4,102 +4,58 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Input;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Location\Location;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a point on the map
+ * Represents a point on the map.
  */
 class InputInlineQueryResultLocation extends InputInlineQueryResult
 {
     public const TYPE_NAME = 'inputInlineQueryResultLocation';
 
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Location result
-     *
-     * @var Location
-     */
-    protected Location $location;
-
-    /**
-     * Amount of time relative to the message sent time until the location can be updated, in seconds
-     *
-     * @var int
-     */
-    protected int $livePeriod;
-
-    /**
-     * Title of the result
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * URL of the result thumbnail, if it exists
-     *
-     * @var string
-     */
-    protected string $thumbnailUrl;
-
-    /**
-     * Thumbnail width, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailWidth;
-
-    /**
-     * Thumbnail height, if known
-     *
-     * @var int
-     */
-    protected int $thumbnailHeight;
-
-    /**
-     * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    /**
-     * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
-     *
-     * @var InputMessageContent
-     */
-    protected InputMessageContent $inputMessageContent;
-
     public function __construct(
-        string $id,
-        Location $location,
-        int $livePeriod,
-        string $title,
-        string $thumbnailUrl,
-        int $thumbnailWidth,
-        int $thumbnailHeight,
-        ReplyMarkup $replyMarkup,
-        InputMessageContent $inputMessageContent
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string              $id,
+        /**
+         * Location result.
+         */
+        protected Location            $location,
+        /**
+         * Amount of time relative to the message sent time until the location can be updated, in seconds.
+         */
+        protected int                 $livePeriod,
+        /**
+         * Title of the result.
+         */
+        protected string              $title,
+        /**
+         * URL of the result thumbnail, if it exists.
+         */
+        protected string              $thumbnailUrl,
+        /**
+         * Thumbnail width, if known.
+         */
+        protected int                 $thumbnailWidth,
+        /**
+         * Thumbnail height, if known.
+         */
+        protected int                 $thumbnailHeight,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
+         */
+        protected InputMessageContent $inputMessageContent,
     ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->location = $location;
-        $this->livePeriod = $livePeriod;
-        $this->title = $title;
-        $this->thumbnailUrl = $thumbnailUrl;
-        $this->thumbnailWidth = $thumbnailWidth;
-        $this->thumbnailHeight = $thumbnailHeight;
-        $this->replyMarkup = $replyMarkup;
-        $this->inputMessageContent = $inputMessageContent;
     }
 
     public static function fromArray(array $array): InputInlineQueryResultLocation
@@ -117,30 +73,14 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'location' => $this->location->typeSerialize(),
-            'live_period' => $this->livePeriod,
-            'title' => $this->title,
-            'thumbnail_url' => $this->thumbnailUrl,
-            'thumbnail_width' => $this->thumbnailWidth,
-            'thumbnail_height' => $this->thumbnailHeight,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
-        ];
-    }
-
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getLocation(): Location
+    public function getInputMessageContent(): InputMessageContent
     {
-        return $this->location;
+        return $this->inputMessageContent;
     }
 
     public function getLivePeriod(): int
@@ -148,9 +88,19 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
         return $this->livePeriod;
     }
 
-    public function getTitle(): string
+    public function getLocation(): Location
     {
-        return $this->title;
+        return $this->location;
+    }
+
+    public function getReplyMarkup(): ReplyMarkup
+    {
+        return $this->replyMarkup;
+    }
+
+    public function getThumbnailHeight(): int
+    {
+        return $this->thumbnailHeight;
     }
 
     public function getThumbnailUrl(): string
@@ -163,18 +113,24 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
         return $this->thumbnailWidth;
     }
 
-    public function getThumbnailHeight(): int
+    public function getTitle(): string
     {
-        return $this->thumbnailHeight;
+        return $this->title;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function typeSerialize(): array
     {
-        return $this->replyMarkup;
-    }
-
-    public function getInputMessageContent(): InputMessageContent
-    {
-        return $this->inputMessageContent;
+        return [
+            '@type'                 => static::TYPE_NAME,
+            'id'                    => $this->id,
+            'location'              => $this->location->typeSerialize(),
+            'live_period'           => $this->livePeriod,
+            'title'                 => $this->title,
+            'thumbnail_url'         => $this->thumbnailUrl,
+            'thumbnail_width'       => $this->thumbnailWidth,
+            'thumbnail_height'      => $this->thumbnailHeight,
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
+        ];
     }
 }

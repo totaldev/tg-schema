@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Chat;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes the different types of activity in a chat
+ * Describes the different types of activity in a chat.
  */
 class ChatAction extends TdObject
 {
     public const TYPE_NAME = 'ChatAction';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ChatAction
     {

@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Message;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Chat\ChatPhoto;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An updated chat photo
+ * An updated chat photo.
  */
 class MessageChatChangePhoto extends MessageContent
 {
     public const TYPE_NAME = 'messageChatChangePhoto';
 
-    /**
-     * New chat photo
-     *
-     * @var ChatPhoto
-     */
-    protected ChatPhoto $photo;
-
-    public function __construct(ChatPhoto $photo)
-    {
+    public function __construct(
+        /**
+         * New chat photo.
+         */
+        protected ChatPhoto $photo
+    ) {
         parent::__construct();
-
-        $this->photo = $photo;
     }
 
     public static function fromArray(array $array): MessageChatChangePhoto
@@ -36,16 +32,16 @@ class MessageChatChangePhoto extends MessageContent
         );
     }
 
+    public function getPhoto(): ChatPhoto
+    {
+        return $this->photo;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'photo' => $this->photo->typeSerialize(),
         ];
-    }
-
-    public function getPhoto(): ChatPhoto
-    {
-        return $this->photo;
     }
 }

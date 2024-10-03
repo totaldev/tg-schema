@@ -4,23 +4,21 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Link;
 
 /**
- * The user is offline, but was online last month
+ * The link preview type is unsupported yet.
  */
-class UserStatusLastMonth extends UserStatus
+class LinkPreviewTypeUnsupported extends LinkPreviewType
 {
-    public const TYPE_NAME = 'userStatusLastMonth';
+    public const TYPE_NAME = 'linkPreviewTypeUnsupported';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): UserStatusLastMonth
+    public static function fromArray(array $array): LinkPreviewTypeUnsupported
     {
         return new static();
     }

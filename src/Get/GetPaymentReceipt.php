@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a successful payment
+ * Returns information about a successful payment.
  */
 class GetPaymentReceipt extends TdFunction
 {
     public const TYPE_NAME = 'getPaymentReceipt';
 
-    /**
-     * Chat identifier of the messagePaymentSuccessful message
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Message identifier
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier of the messagePaymentSuccessful message.
+         */
+        protected int $chatId,
+        /**
+         * Message identifier.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): GetPaymentReceipt
     {
@@ -41,15 +32,6 @@ class GetPaymentReceipt extends TdFunction
             $array['chat_id'],
             $array['message_id'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +42,14 @@ class GetPaymentReceipt extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

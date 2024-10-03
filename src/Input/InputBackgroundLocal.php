@@ -4,29 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Input;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A background from a local file
+ * A background from a local file.
  */
 class InputBackgroundLocal extends InputBackground
 {
     public const TYPE_NAME = 'inputBackgroundLocal';
 
-    /**
-     * Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
-     *
-     * @var InputFile
-     */
-    protected InputFile $background;
-
-    public function __construct(InputFile $background)
-    {
+    public function __construct(
+        /**
+         * Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns.
+         */
+        protected InputFile $background
+    ) {
         parent::__construct();
-
-        $this->background = $background;
     }
 
     public static function fromArray(array $array): InputBackgroundLocal
@@ -36,16 +31,16 @@ class InputBackgroundLocal extends InputBackground
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'background' => $this->background->typeSerialize(),
-        ];
-    }
-
     public function getBackground(): InputFile
     {
         return $this->background;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'background' => $this->background->typeSerialize(),
+        ];
     }
 }

@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Chat\ChatPermissions;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+ * Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right.
  */
 class SetChatPermissions extends TdFunction
 {
     public const TYPE_NAME = 'setChatPermissions';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * New non-administrator members permissions in the chat
-     *
-     * @var ChatPermissions
-     */
-    protected ChatPermissions $permissions;
-
-    public function __construct(int $chatId, ChatPermissions $permissions)
-    {
-        $this->chatId = $chatId;
-        $this->permissions = $permissions;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int             $chatId,
+        /**
+         * New non-administrator members permissions in the chat.
+         */
+        protected ChatPermissions $permissions,
+    ) {}
 
     public static function fromArray(array $array): SetChatPermissions
     {
@@ -41,15 +34,6 @@ class SetChatPermissions extends TdFunction
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['permissions']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'permissions' => $this->permissions->typeSerialize(),
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +44,14 @@ class SetChatPermissions extends TdFunction
     public function getPermissions(): ChatPermissions
     {
         return $this->permissions;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
+            'permissions' => $this->permissions->typeSerialize(),
+        ];
     }
 }

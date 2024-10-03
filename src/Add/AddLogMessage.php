@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Add;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Adds a message to TDLib internal log. Can be called synchronously
+ * Adds a message to TDLib internal log. Can be called synchronously.
  */
 class AddLogMessage extends TdFunction
 {
     public const TYPE_NAME = 'addLogMessage';
 
-    /**
-     * The minimum verbosity level needed for the message to be logged; 0-1023
-     *
-     * @var int
-     */
-    protected int $verbosityLevel;
-
-    /**
-     * Text of a message to log
-     *
-     * @var string
-     */
-    protected string $text;
-
-    public function __construct(int $verbosityLevel, string $text)
-    {
-        $this->verbosityLevel = $verbosityLevel;
-        $this->text = $text;
-    }
+    public function __construct(
+        /**
+         * The minimum verbosity level needed for the message to be logged; 0-1023.
+         */
+        protected int    $verbosityLevel,
+        /**
+         * Text of a message to log.
+         */
+        protected string $text,
+    ) {}
 
     public static function fromArray(array $array): AddLogMessage
     {
@@ -43,13 +34,9 @@ class AddLogMessage extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getText(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'verbosity_level' => $this->verbosityLevel,
-            'text' => $this->text,
-        ];
+        return $this->text;
     }
 
     public function getVerbosityLevel(): int
@@ -57,8 +44,12 @@ class AddLogMessage extends TdFunction
         return $this->verbosityLevel;
     }
 
-    public function getText(): string
+    public function typeSerialize(): array
     {
-        return $this->text;
+        return [
+            '@type'           => static::TYPE_NAME,
+            'verbosity_level' => $this->verbosityLevel,
+            'text'            => $this->text,
+        ];
     }
 }

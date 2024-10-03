@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Accept;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Call\CallProtocol;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Accepts an incoming call
+ * Accepts an incoming call.
  */
 class AcceptCall extends TdFunction
 {
     public const TYPE_NAME = 'acceptCall';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * The call protocols supported by the application
-     *
-     * @var CallProtocol
-     */
-    protected CallProtocol $protocol;
-
-    public function __construct(int $callId, CallProtocol $protocol)
-    {
-        $this->callId = $callId;
-        $this->protocol = $protocol;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int          $callId,
+        /**
+         * The call protocols supported by the application.
+         */
+        protected CallProtocol $protocol,
+    ) {}
 
     public static function fromArray(array $array): AcceptCall
     {
@@ -41,15 +34,6 @@ class AcceptCall extends TdFunction
             $array['call_id'],
             TdSchemaRegistry::fromArray($array['protocol']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'protocol' => $this->protocol->typeSerialize(),
-        ];
     }
 
     public function getCallId(): int
@@ -60,5 +44,14 @@ class AcceptCall extends TdFunction
     public function getProtocol(): CallProtocol
     {
         return $this->protocol;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'call_id'  => $this->callId,
+            'protocol' => $this->protocol->typeSerialize(),
+        ];
     }
 }

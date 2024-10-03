@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Text;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes the way the text needs to be parsed for text entities
+ * Describes the way the text needs to be parsed for text entities.
  */
 class TextParseMode extends TdObject
 {
     public const TYPE_NAME = 'TextParseMode';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TextParseMode
     {

@@ -4,28 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Test;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Error\Error;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
+ * Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously.
  */
 class TestReturnError extends TdFunction
 {
     public const TYPE_NAME = 'testReturnError';
 
-    /**
-     * The error to be returned
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    public function __construct(Error $error)
-    {
-        $this->error = $error;
-    }
+    public function __construct(
+        /**
+         * The error to be returned.
+         */
+        protected Error $error
+    ) {}
 
     public static function fromArray(array $array): TestReturnError
     {
@@ -34,16 +31,16 @@ class TestReturnError extends TdFunction
         );
     }
 
+    public function getError(): Error
+    {
+        return $this->error;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'error' => $this->error->typeSerialize(),
         ];
-    }
-
-    public function getError(): Error
-    {
-        return $this->error;
     }
 }

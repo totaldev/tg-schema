@@ -4,44 +4,33 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Edit;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+ * Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side.
  */
 class EditMessageReplyMarkup extends TdFunction
 {
     public const TYPE_NAME = 'editMessageReplyMarkup';
 
-    /**
-     * The chat the message belongs to
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    public function __construct(int $chatId, int $messageId, ReplyMarkup $replyMarkup)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->replyMarkup = $replyMarkup;
-    }
+    public function __construct(
+        /**
+         * The chat the message belongs to.
+         */
+        protected int         $chatId,
+        /**
+         * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
+         */
+        protected int         $messageId,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ReplyMarkup $replyMarkup,
+    ) {}
 
     public static function fromArray(array $array): EditMessageReplyMarkup
     {
@@ -50,16 +39,6 @@ class EditMessageReplyMarkup extends TdFunction
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-        ];
     }
 
     public function getChatId(): int
@@ -75,5 +54,15 @@ class EditMessageReplyMarkup extends TdFunction
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'message_id'   => $this->messageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+        ];
     }
 }

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Connection;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes the current state of the connection to Telegram servers
+ * Describes the current state of the connection to Telegram servers.
  */
 class ConnectionState extends TdObject
 {
     public const TYPE_NAME = 'ConnectionState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): ConnectionState
     {

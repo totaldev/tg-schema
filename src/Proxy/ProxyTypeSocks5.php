@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Proxy;
 
 /**
- * A SOCKS5 proxy server
+ * A SOCKS5 proxy server.
  */
 class ProxyTypeSocks5 extends ProxyType
 {
     public const TYPE_NAME = 'proxyTypeSocks5';
 
-    /**
-     * Username for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $username;
-
-    /**
-     * Password for logging in; may be empty
-     *
-     * @var string
-     */
-    protected string $password;
-
-    public function __construct(string $username, string $password)
-    {
+    public function __construct(
+        /**
+         * Username for logging in; may be empty.
+         */
+        protected string $username,
+        /**
+         * Password for logging in; may be empty.
+         */
+        protected string $password,
+    ) {
         parent::__construct();
-
-        $this->username = $username;
-        $this->password = $password;
     }
 
     public static function fromArray(array $array): ProxyTypeSocks5
@@ -45,13 +34,9 @@ class ProxyTypeSocks5 extends ProxyType
         );
     }
 
-    public function typeSerialize(): array
+    public function getPassword(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'username' => $this->username,
-            'password' => $this->password,
-        ];
+        return $this->password;
     }
 
     public function getUsername(): string
@@ -59,8 +44,12 @@ class ProxyTypeSocks5 extends ProxyType
         return $this->username;
     }
 
-    public function getPassword(): string
+    public function typeSerialize(): array
     {
-        return $this->password;
+        return [
+            '@type'    => static::TYPE_NAME,
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
     }
 }

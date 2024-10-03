@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Check;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Checks the 2-step verification recovery email address verification code
+ * Checks the 2-step verification recovery email address verification code.
  */
 class CheckRecoveryEmailAddressCode extends TdFunction
 {
     public const TYPE_NAME = 'checkRecoveryEmailAddressCode';
 
-    /**
-     * Verification code to check
-     *
-     * @var string
-     */
-    protected string $code;
-
-    public function __construct(string $code)
-    {
-        $this->code = $code;
-    }
+    public function __construct(
+        /**
+         * Verification code to check.
+         */
+        protected string $code
+    ) {}
 
     public static function fromArray(array $array): CheckRecoveryEmailAddressCode
     {
@@ -34,16 +29,16 @@ class CheckRecoveryEmailAddressCode extends TdFunction
         );
     }
 
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'code' => $this->code,
+            'code'  => $this->code,
         ];
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
     }
 }

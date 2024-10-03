@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a user by their identifier. This is an offline request if the current user is not a bot
+ * Returns information about a user by their identifier. This is an offline request if the current user is not a bot.
  */
 class GetUser extends TdFunction
 {
     public const TYPE_NAME = 'getUser';
 
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    public function __construct(int $userId)
-    {
-        $this->userId = $userId;
-    }
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int $userId
+    ) {}
 
     public static function fromArray(array $array): GetUser
     {
@@ -34,16 +29,16 @@ class GetUser extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-        ];
-    }
-
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'user_id' => $this->userId,
+        ];
     }
 }

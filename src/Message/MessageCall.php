@@ -4,45 +4,33 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Message;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Call\CallDiscardReason;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A message with information about an ended call
+ * A message with information about an ended call.
  */
 class MessageCall extends MessageContent
 {
     public const TYPE_NAME = 'messageCall';
 
-    /**
-     * True, if the call was a video call
-     *
-     * @var bool
-     */
-    protected bool $isVideo;
-
-    /**
-     * Reason why the call was discarded
-     *
-     * @var CallDiscardReason
-     */
-    protected CallDiscardReason $discardReason;
-
-    /**
-     * Call duration, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    public function __construct(bool $isVideo, CallDiscardReason $discardReason, int $duration)
-    {
+    public function __construct(
+        /**
+         * True, if the call was a video call.
+         */
+        protected bool              $isVideo,
+        /**
+         * Reason why the call was discarded.
+         */
+        protected CallDiscardReason $discardReason,
+        /**
+         * Call duration, in seconds.
+         */
+        protected int               $duration,
+    ) {
         parent::__construct();
-
-        $this->isVideo = $isVideo;
-        $this->discardReason = $discardReason;
-        $this->duration = $duration;
     }
 
     public static function fromArray(array $array): MessageCall
@@ -54,21 +42,6 @@ class MessageCall extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_video' => $this->isVideo,
-            'discard_reason' => $this->discardReason->typeSerialize(),
-            'duration' => $this->duration,
-        ];
-    }
-
-    public function getIsVideo(): bool
-    {
-        return $this->isVideo;
-    }
-
     public function getDiscardReason(): CallDiscardReason
     {
         return $this->discardReason;
@@ -77,5 +50,20 @@ class MessageCall extends MessageContent
     public function getDuration(): int
     {
         return $this->duration;
+    }
+
+    public function getIsVideo(): bool
+    {
+        return $this->isVideo;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'          => static::TYPE_NAME,
+            'is_video'       => $this->isVideo,
+            'discard_reason' => $this->discardReason->typeSerialize(),
+            'duration'       => $this->duration,
+        ];
     }
 }

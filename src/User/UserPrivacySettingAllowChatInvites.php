@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\User;
 
 /**
- * A privacy setting for managing whether the user can be invited to chats
+ * A privacy setting for managing whether the user can be invited to chats.
  */
 class UserPrivacySettingAllowChatInvites extends UserPrivacySetting
 {

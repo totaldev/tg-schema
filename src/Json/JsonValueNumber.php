@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Json;
 
 /**
- * Represents a numeric JSON value
+ * Represents a numeric JSON value.
  */
 class JsonValueNumber extends JsonValue
 {
     public const TYPE_NAME = 'jsonValueNumber';
 
-    /**
-     * The value
-     *
-     * @var float
-     */
-    protected float $value;
-
-    public function __construct(float $value)
-    {
+    public function __construct(
+        /**
+         * The value.
+         */
+        protected float $value
+    ) {
         parent::__construct();
-
-        $this->value = $value;
     }
 
     public static function fromArray(array $array): JsonValueNumber
@@ -36,16 +29,16 @@ class JsonValueNumber extends JsonValue
         );
     }
 
+    public function getValue(): float
+    {
+        return $this->value;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'value' => $this->value,
         ];
-    }
-
-    public function getValue(): float
-    {
-        return $this->value;
     }
 }

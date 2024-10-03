@@ -4,23 +4,21 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TdSchema;
+namespace Totaldev\TgSchema\Report;
 
 /**
  * The location-based chat is unrelated to its stated location.
  */
-class ChatReportReasonUnrelatedLocation extends ChatReportReason
+class ReportReasonUnrelatedLocation extends ReportReason
 {
-    public const TYPE_NAME = 'chatReportReasonUnrelatedLocation';
+    public const TYPE_NAME = 'reportReasonUnrelatedLocation';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): ChatReportReasonUnrelatedLocation
+    public static function fromArray(array $array): ReportReasonUnrelatedLocation
     {
         return new static();
     }

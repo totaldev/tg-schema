@@ -4,44 +4,31 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Minithumbnail;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Thumbnail image of a very poor quality and low resolution
+ * Thumbnail image of a very poor quality and low resolution.
  */
 class Minithumbnail extends TdObject
 {
     public const TYPE_NAME = 'minithumbnail';
 
-    /**
-     * Thumbnail width, usually doesn't exceed 40
-     *
-     * @var int
-     */
-    protected int $width;
-
-    /**
-     * Thumbnail height, usually doesn't exceed 40
-     *
-     * @var int
-     */
-    protected int $height;
-
-    /**
-     * The thumbnail in JPEG format
-     *
-     * @var string
-     */
-    protected string $data;
-
-    public function __construct(int $width, int $height, string $data)
-    {
-        $this->width = $width;
-        $this->height = $height;
-        $this->data = $data;
-    }
+    public function __construct(
+        /**
+         * Thumbnail width, usually doesn't exceed 40.
+         */
+        protected int    $width,
+        /**
+         * Thumbnail height, usually doesn't exceed 40.
+         */
+        protected int    $height,
+        /**
+         * The thumbnail in JPEG format.
+         */
+        protected string $data,
+    ) {}
 
     public static function fromArray(array $array): Minithumbnail
     {
@@ -52,19 +39,9 @@ class Minithumbnail extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getData(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'width' => $this->width,
-            'height' => $this->height,
-            'data' => $this->data,
-        ];
-    }
-
-    public function getWidth(): int
-    {
-        return $this->width;
+        return $this->data;
     }
 
     public function getHeight(): int
@@ -72,8 +49,18 @@ class Minithumbnail extends TdObject
         return $this->height;
     }
 
-    public function getData(): string
+    public function getWidth(): int
     {
-        return $this->data;
+        return $this->width;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'  => static::TYPE_NAME,
+            'width'  => $this->width,
+            'height' => $this->height,
+            'data'   => $this->data,
+        ];
     }
 }

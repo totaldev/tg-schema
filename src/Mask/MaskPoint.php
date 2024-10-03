@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Mask;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Part of the face, relative to which a mask is placed
+ * Part of the face, relative to which a mask is placed.
  */
 class MaskPoint extends TdObject
 {
     public const TYPE_NAME = 'MaskPoint';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): MaskPoint
     {

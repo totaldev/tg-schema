@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Me;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes the type of a URL linking to an internal Telegram entity
+ * Describes the type of URL linking to an internal Telegram entity.
  */
 class TMeUrlType extends TdObject
 {
     public const TYPE_NAME = 'TMeUrlType';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): TMeUrlType
     {

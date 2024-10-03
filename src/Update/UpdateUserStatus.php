@@ -4,37 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\User\UserStatus;
 
 /**
- * The user went online or offline
+ * The user went online or offline.
  */
 class UpdateUserStatus extends Update
 {
     public const TYPE_NAME = 'updateUserStatus';
 
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * New status of the user
-     *
-     * @var UserStatus
-     */
-    protected UserStatus $status;
-
-    public function __construct(int $userId, UserStatus $status)
-    {
+    public function __construct(
+        /**
+         * User identifier.
+         */
+        protected int        $userId,
+        /**
+         * New status of the user.
+         */
+        protected UserStatus $status,
+    ) {
         parent::__construct();
-
-        $this->userId = $userId;
-        $this->status = $status;
     }
 
     public static function fromArray(array $array): UpdateUserStatus
@@ -45,13 +37,9 @@ class UpdateUserStatus extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getStatus(): UserStatus
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_id' => $this->userId,
-            'status' => $this->status->typeSerialize(),
-        ];
+        return $this->status;
     }
 
     public function getUserId(): int
@@ -59,8 +47,12 @@ class UpdateUserStatus extends Update
         return $this->userId;
     }
 
-    public function getStatus(): UserStatus
+    public function typeSerialize(): array
     {
-        return $this->status;
+        return [
+            '@type'   => static::TYPE_NAME,
+            'user_id' => $this->userId,
+            'status'  => $this->status->typeSerialize(),
+        ];
     }
 }

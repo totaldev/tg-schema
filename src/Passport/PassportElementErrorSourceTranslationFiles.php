@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Passport;
 
 /**
- * The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
+ * The translation of the document contains an error. The error will be considered resolved when the list of translation files changes.
  */
 class PassportElementErrorSourceTranslationFiles extends PassportElementErrorSource
 {

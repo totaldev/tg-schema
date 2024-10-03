@@ -4,37 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * The list of recently used stickers was updated
+ * The list of recently used stickers was updated.
  */
 class UpdateRecentStickers extends Update
 {
     public const TYPE_NAME = 'updateRecentStickers';
 
-    /**
-     * True, if the list of stickers attached to photo or video files was updated; otherwise, the list of sent stickers is updated
-     *
-     * @var bool
-     */
-    protected bool $isAttached;
-
-    /**
-     * The new list of file identifiers of recently used stickers
-     *
-     * @var int[]
-     */
-    protected array $stickerIds;
-
-    public function __construct(bool $isAttached, array $stickerIds)
-    {
+    public function __construct(
+        /**
+         * True, if the list of stickers attached to photo or video files was updated; otherwise, the list of sent stickers is updated.
+         */
+        protected bool  $isAttached,
+        /**
+         * The new list of file identifiers of recently used stickers.
+         *
+         * @var int[]
+         */
+        protected array $stickerIds,
+    ) {
         parent::__construct();
-
-        $this->isAttached = $isAttached;
-        $this->stickerIds = $stickerIds;
     }
 
     public static function fromArray(array $array): UpdateRecentStickers
@@ -45,15 +36,6 @@ class UpdateRecentStickers extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'is_attached' => $this->isAttached,
-            'sticker_ids' => $this->stickerIds,
-        ];
-    }
-
     public function getIsAttached(): bool
     {
         return $this->isAttached;
@@ -62,5 +44,14 @@ class UpdateRecentStickers extends Update
     public function getStickerIds(): array
     {
         return $this->stickerIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'       => static::TYPE_NAME,
+            'is_attached' => $this->isAttached,
+            'sticker_ids' => $this->stickerIds,
+        ];
     }
 }

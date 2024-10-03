@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Secret;
 
 /**
- * The secret chat is not yet created; waiting for the other user to get online
+ * The secret chat is not yet created; waiting for the other user to get online.
  */
 class SecretChatStatePending extends SecretChatState
 {

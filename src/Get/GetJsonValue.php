@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
+ * Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously.
  */
 class GetJsonValue extends TdFunction
 {
     public const TYPE_NAME = 'getJsonValue';
 
-    /**
-     * The JSON-serialized string
-     *
-     * @var string
-     */
-    protected string $json;
-
-    public function __construct(string $json)
-    {
-        $this->json = $json;
-    }
+    public function __construct(
+        /**
+         * The JSON-serialized string.
+         */
+        protected string $json
+    ) {}
 
     public static function fromArray(array $array): GetJsonValue
     {
@@ -34,16 +29,16 @@ class GetJsonValue extends TdFunction
         );
     }
 
+    public function getJson(): string
+    {
+        return $this->json;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'json' => $this->json,
+            'json'  => $this->json,
         ];
-    }
-
-    public function getJson(): string
-    {
-        return $this->json;
     }
 }

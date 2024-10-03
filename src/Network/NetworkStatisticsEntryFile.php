@@ -4,53 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Network;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\File\FileType;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about the total amount of data that was used to send and receive files
+ * Contains information about the total amount of data that was used to send and receive files.
  */
 class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
 {
     public const TYPE_NAME = 'networkStatisticsEntryFile';
 
-    /**
-     * Type of the file the data is part of; pass null if the data isn't related to files
-     *
-     * @var FileType
-     */
-    protected FileType $fileType;
-
-    /**
-     * Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
-     *
-     * @var NetworkType
-     */
-    protected NetworkType $networkType;
-
-    /**
-     * Total number of bytes sent
-     *
-     * @var int
-     */
-    protected int $sentBytes;
-
-    /**
-     * Total number of bytes received
-     *
-     * @var int
-     */
-    protected int $receivedBytes;
-
-    public function __construct(FileType $fileType, NetworkType $networkType, int $sentBytes, int $receivedBytes)
-    {
+    public function __construct(
+        /**
+         * Type of the file the data is part of; pass null if the data isn't related to files.
+         */
+        protected FileType    $fileType,
+        /**
+         * Type of the network the data was sent through. Call setNetworkType to maintain the actual network type.
+         */
+        protected NetworkType $networkType,
+        /**
+         * Total number of bytes sent.
+         */
+        protected int         $sentBytes,
+        /**
+         * Total number of bytes received.
+         */
+        protected int         $receivedBytes,
+    ) {
         parent::__construct();
-
-        $this->fileType = $fileType;
-        $this->networkType = $networkType;
-        $this->sentBytes = $sentBytes;
-        $this->receivedBytes = $receivedBytes;
     }
 
     public static function fromArray(array $array): NetworkStatisticsEntryFile
@@ -63,17 +47,6 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_type' => $this->fileType->typeSerialize(),
-            'network_type' => $this->networkType->typeSerialize(),
-            'sent_bytes' => $this->sentBytes,
-            'received_bytes' => $this->receivedBytes,
-        ];
-    }
-
     public function getFileType(): FileType
     {
         return $this->fileType;
@@ -84,13 +57,24 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         return $this->networkType;
     }
 
+    public function getReceivedBytes(): int
+    {
+        return $this->receivedBytes;
+    }
+
     public function getSentBytes(): int
     {
         return $this->sentBytes;
     }
 
-    public function getReceivedBytes(): int
+    public function typeSerialize(): array
     {
-        return $this->receivedBytes;
+        return [
+            '@type'          => static::TYPE_NAME,
+            'file_type'      => $this->fileType->typeSerialize(),
+            'network_type'   => $this->networkType->typeSerialize(),
+            'sent_bytes'     => $this->sentBytes,
+            'received_bytes' => $this->receivedBytes,
+        ];
     }
 }

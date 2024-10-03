@@ -24,15 +24,15 @@ class SendMessage extends TdFunction
         /**
          * Target chat.
          */
-        protected int                  $chatId,
+        protected int                 $chatId,
         /**
          * The content of the message to be sent.
          */
-        protected InputMessageContent  $inputMessageContent,
+        protected InputMessageContent $inputMessageContent,
         /**
          * If not 0, the message thread identifier in which the message will be sent.
          */
-        protected int                  $messageThreadId = 0,
+        protected int                 $messageThreadId = 0,
         /**
          * Information about the message or story to be replied; pass null if none.
          */

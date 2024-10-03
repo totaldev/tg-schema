@@ -4,37 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Basic\BasicGroupFullInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Some data in basicGroupFullInfo has been changed
+ * Some data in basicGroupFullInfo has been changed.
  */
 class UpdateBasicGroupFullInfo extends Update
 {
     public const TYPE_NAME = 'updateBasicGroupFullInfo';
 
-    /**
-     * Identifier of a basic group
-     *
-     * @var int
-     */
-    protected int $basicGroupId;
-
-    /**
-     * New full information about the group
-     *
-     * @var BasicGroupFullInfo
-     */
-    protected BasicGroupFullInfo $basicGroupFullInfo;
-
-    public function __construct(int $basicGroupId, BasicGroupFullInfo $basicGroupFullInfo)
-    {
+    public function __construct(
+        /**
+         * Identifier of a basic group.
+         */
+        protected int                $basicGroupId,
+        /**
+         * New full information about the group.
+         */
+        protected BasicGroupFullInfo $basicGroupFullInfo,
+    ) {
         parent::__construct();
-
-        $this->basicGroupId = $basicGroupId;
-        $this->basicGroupFullInfo = $basicGroupFullInfo;
     }
 
     public static function fromArray(array $array): UpdateBasicGroupFullInfo
@@ -45,13 +37,9 @@ class UpdateBasicGroupFullInfo extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getBasicGroupFullInfo(): BasicGroupFullInfo
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'basic_group_id' => $this->basicGroupId,
-            'basic_group_full_info' => $this->basicGroupFullInfo->typeSerialize(),
-        ];
+        return $this->basicGroupFullInfo;
     }
 
     public function getBasicGroupId(): int
@@ -59,8 +47,12 @@ class UpdateBasicGroupFullInfo extends Update
         return $this->basicGroupId;
     }
 
-    public function getBasicGroupFullInfo(): BasicGroupFullInfo
+    public function typeSerialize(): array
     {
-        return $this->basicGroupFullInfo;
+        return [
+            '@type'                 => static::TYPE_NAME,
+            'basic_group_id'        => $this->basicGroupId,
+            'basic_group_full_info' => $this->basicGroupFullInfo->typeSerialize(),
+        ];
     }
 }

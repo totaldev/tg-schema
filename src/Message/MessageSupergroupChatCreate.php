@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * A newly created supergroup or channel
+ * A newly created supergroup or channel.
  */
 class MessageSupergroupChatCreate extends MessageContent
 {
     public const TYPE_NAME = 'messageSupergroupChatCreate';
 
-    /**
-     * Title of the supergroup or channel
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * Title of the supergroup or channel.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): MessageSupergroupChatCreate
@@ -36,16 +29,16 @@ class MessageSupergroupChatCreate extends MessageContent
         );
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

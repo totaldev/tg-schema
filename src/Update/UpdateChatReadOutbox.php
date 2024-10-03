@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * Outgoing messages were read
+ * Outgoing messages were read.
  */
 class UpdateChatReadOutbox extends Update
 {
     public const TYPE_NAME = 'updateChatReadOutbox';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of last read outgoing message
-     *
-     * @var int
-     */
-    protected int $lastReadOutboxMessageId;
-
-    public function __construct(int $chatId, int $lastReadOutboxMessageId)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of last read outgoing message.
+         */
+        protected int $lastReadOutboxMessageId,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->lastReadOutboxMessageId = $lastReadOutboxMessageId;
     }
 
     public static function fromArray(array $array): UpdateChatReadOutbox
@@ -45,15 +34,6 @@ class UpdateChatReadOutbox extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +42,14 @@ class UpdateChatReadOutbox extends Update
     public function getLastReadOutboxMessageId(): int
     {
         return $this->lastReadOutboxMessageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'                       => static::TYPE_NAME,
+            'chat_id'                     => $this->chatId,
+            'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
+        ];
     }
 }

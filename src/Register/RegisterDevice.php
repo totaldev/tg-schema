@@ -4,36 +4,31 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Register;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Device\DeviceToken;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
+ * Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription.
  */
 class RegisterDevice extends TdFunction
 {
     public const TYPE_NAME = 'registerDevice';
 
-    /**
-     * Device token
-     *
-     * @var DeviceToken
-     */
-    protected DeviceToken $deviceToken;
-
-    /**
-     * List of user identifiers of other users currently using the application
-     *
-     * @var int[]
-     */
-    protected array $otherUserIds;
-
-    public function __construct(DeviceToken $deviceToken, array $otherUserIds)
-    {
-        $this->deviceToken = $deviceToken;
-        $this->otherUserIds = $otherUserIds;
-    }
+    public function __construct(
+        /**
+         * Device token.
+         */
+        protected DeviceToken $deviceToken,
+        /**
+         * List of user identifiers of other users currently using the application.
+         *
+         * @var int[]
+         */
+        protected array       $otherUserIds,
+    ) {}
 
     public static function fromArray(array $array): RegisterDevice
     {
@@ -41,15 +36,6 @@ class RegisterDevice extends TdFunction
             TdSchemaRegistry::fromArray($array['device_token']),
             $array['other_user_ids'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'device_token' => $this->deviceToken->typeSerialize(),
-            'other_user_ids' => $this->otherUserIds,
-        ];
     }
 
     public function getDeviceToken(): DeviceToken
@@ -60,5 +46,14 @@ class RegisterDevice extends TdFunction
     public function getOtherUserIds(): array
     {
         return $this->otherUserIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'          => static::TYPE_NAME,
+            'device_token'   => $this->deviceToken->typeSerialize(),
+            'other_user_ids' => $this->otherUserIds,
+        ];
     }
 }

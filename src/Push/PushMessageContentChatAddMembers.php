@@ -4,45 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Push;
 
 /**
- * New chat members were invited to a group
+ * New chat members were invited to a group.
  */
 class PushMessageContentChatAddMembers extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatAddMembers';
 
-    /**
-     * Name of the added member
-     *
-     * @var string
-     */
-    protected string $memberName;
-
-    /**
-     * True, if the current user was added to the group
-     *
-     * @var bool
-     */
-    protected bool $isCurrentUser;
-
-    /**
-     * True, if the user has returned to the group themselves
-     *
-     * @var bool
-     */
-    protected bool $isReturned;
-
-    public function __construct(string $memberName, bool $isCurrentUser, bool $isReturned)
-    {
+    public function __construct(
+        /**
+         * Name of the added member.
+         */
+        protected string $memberName,
+        /**
+         * True, if the current user was added to the group.
+         */
+        protected bool   $isCurrentUser,
+        /**
+         * True, if the user has returned to the group themselves.
+         */
+        protected bool   $isReturned,
+    ) {
         parent::__construct();
-
-        $this->memberName = $memberName;
-        $this->isCurrentUser = $isCurrentUser;
-        $this->isReturned = $isReturned;
     }
 
     public static function fromArray(array $array): PushMessageContentChatAddMembers
@@ -54,21 +39,6 @@ class PushMessageContentChatAddMembers extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'member_name' => $this->memberName,
-            'is_current_user' => $this->isCurrentUser,
-            'is_returned' => $this->isReturned,
-        ];
-    }
-
-    public function getMemberName(): string
-    {
-        return $this->memberName;
-    }
-
     public function getIsCurrentUser(): bool
     {
         return $this->isCurrentUser;
@@ -77,5 +47,20 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public function getIsReturned(): bool
     {
         return $this->isReturned;
+    }
+
+    public function getMemberName(): string
+    {
+        return $this->memberName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'           => static::TYPE_NAME,
+            'member_name'     => $this->memberName,
+            'is_current_user' => $this->isCurrentUser,
+            'is_returned'     => $this->isReturned,
+        ];
     }
 }

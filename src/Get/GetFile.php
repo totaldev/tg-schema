@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a file; this is an offline request
+ * Returns information about a file; this is an offline request.
  */
 class GetFile extends TdFunction
 {
     public const TYPE_NAME = 'getFile';
 
-    /**
-     * Identifier of the file to get
-     *
-     * @var int
-     */
-    protected int $fileId;
-
-    public function __construct(int $fileId)
-    {
-        $this->fileId = $fileId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the file to get.
+         */
+        protected int $fileId
+    ) {}
 
     public static function fromArray(array $array): GetFile
     {
@@ -34,16 +29,16 @@ class GetFile extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'file_id' => $this->fileId,
-        ];
-    }
-
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'file_id' => $this->fileId,
+        ];
     }
 }

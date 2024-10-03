@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Input;
 
 /**
- * A file defined by a local path
+ * A file defined by a local path.
  */
 class InputFileLocal extends InputFile
 {
     public const TYPE_NAME = 'inputFileLocal';
 
-    /**
-     * Local path to the file
-     *
-     * @var string
-     */
-    protected string $path;
-
-    public function __construct(string $path)
-    {
+    public function __construct(
+        /**
+         * Local path to the file.
+         */
+        protected string $path
+    ) {
         parent::__construct();
-
-        $this->path = $path;
     }
 
     public static function fromArray(array $array): InputFileLocal
@@ -36,16 +29,16 @@ class InputFileLocal extends InputFile
         );
     }
 
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'path' => $this->path,
+            'path'  => $this->path,
         ];
-    }
-
-    public function getPath(): string
-    {
-        return $this->path;
     }
 }

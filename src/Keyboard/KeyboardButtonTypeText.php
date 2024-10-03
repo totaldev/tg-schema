@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Keyboard;
 
 /**
- * A simple button, with text that must be sent when the button is pressed
+ * A simple button, with text that must be sent when the button is pressed.
  */
 class KeyboardButtonTypeText extends KeyboardButtonType
 {

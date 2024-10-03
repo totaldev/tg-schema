@@ -4,37 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Message;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Document\Document;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A document message (general file)
+ * A document message (general file).
  */
 class MessageDocument extends MessageContent
 {
     public const TYPE_NAME = 'messageDocument';
 
-    /**
-     * The document description
-     *
-     * @var Document
-     */
-    protected Document $document;
-
-    /**
-     * Document caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    public function __construct(Document $document, FormattedText $caption)
-    {
+    public function __construct(
+        /**
+         * The document description.
+         */
+        protected Document      $document,
+        /**
+         * Document caption.
+         */
+        protected FormattedText $caption,
+    ) {
         parent::__construct();
-
-        $this->document = $document;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): MessageDocument
@@ -45,13 +38,9 @@ class MessageDocument extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getCaption(): FormattedText
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'document' => $this->document->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
+        return $this->caption;
     }
 
     public function getDocument(): Document
@@ -59,8 +48,12 @@ class MessageDocument extends MessageContent
         return $this->document;
     }
 
-    public function getCaption(): FormattedText
+    public function typeSerialize(): array
     {
-        return $this->caption;
+        return [
+            '@type'    => static::TYPE_NAME,
+            'document' => $this->document->typeSerialize(),
+            'caption'  => $this->caption->typeSerialize(),
+        ];
     }
 }

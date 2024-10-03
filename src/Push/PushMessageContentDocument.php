@@ -4,54 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Push;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Document\Document;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A document message (a general file)
+ * A document message (a general file).
  */
 class PushMessageContentDocument extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentDocument';
 
-    /**
-     * Message content; may be null
-     *
-     * @var Document|null
-     */
-    protected ?Document $document;
-
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(?Document $document, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Message content; may be null.
+         */
+        protected ?Document $document,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool      $isPinned,
+    ) {
         parent::__construct();
-
-        $this->document = $document;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentDocument
     {
         return new static(
-            (isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null),
+            isset($array['document']) ? TdSchemaRegistry::fromArray($array['document']) : null,
             $array['is_pinned'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'document' => (isset($this->document) ? $this->document : null),
-            'is_pinned' => $this->isPinned,
-        ];
     }
 
     public function getDocument(): ?Document
@@ -62,5 +45,14 @@ class PushMessageContentDocument extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'     => static::TYPE_NAME,
+            'document'  => (isset($this->document) ? $this->document : null),
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

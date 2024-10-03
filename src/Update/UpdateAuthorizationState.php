@@ -4,29 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Authorization\AuthorizationState;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * The user authorization state has changed
+ * The user authorization state has changed.
  */
 class UpdateAuthorizationState extends Update
 {
     public const TYPE_NAME = 'updateAuthorizationState';
 
-    /**
-     * New authorization state
-     *
-     * @var AuthorizationState
-     */
-    protected AuthorizationState $authorizationState;
-
-    public function __construct(AuthorizationState $authorizationState)
-    {
+    public function __construct(
+        /**
+         * New authorization state.
+         */
+        protected AuthorizationState $authorizationState
+    ) {
         parent::__construct();
-
-        $this->authorizationState = $authorizationState;
     }
 
     public static function fromArray(array $array): UpdateAuthorizationState
@@ -36,16 +32,16 @@ class UpdateAuthorizationState extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'authorization_state' => $this->authorizationState->typeSerialize(),
-        ];
-    }
-
     public function getAuthorizationState(): AuthorizationState
     {
         return $this->authorizationState;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'               => static::TYPE_NAME,
+            'authorization_state' => $this->authorizationState->typeSerialize(),
+        ];
     }
 }

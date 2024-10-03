@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Finish;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Error\Error;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Finishes the file generation
+ * Finishes the file generation.
  */
 class FinishFileGeneration extends TdFunction
 {
     public const TYPE_NAME = 'finishFileGeneration';
 
-    /**
-     * The identifier of the generation process
-     *
-     * @var int
-     */
-    protected int $generationId;
-
-    /**
-     * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
-     *
-     * @var Error
-     */
-    protected Error $error;
-
-    public function __construct(int $generationId, Error $error)
-    {
-        $this->generationId = $generationId;
-        $this->error = $error;
-    }
+    public function __construct(
+        /**
+         * The identifier of the generation process.
+         */
+        protected int   $generationId,
+        /**
+         * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded.
+         */
+        protected Error $error,
+    ) {}
 
     public static function fromArray(array $array): FinishFileGeneration
     {
@@ -43,13 +36,9 @@ class FinishFileGeneration extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getError(): Error
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'generation_id' => $this->generationId,
-            'error' => $this->error->typeSerialize(),
-        ];
+        return $this->error;
     }
 
     public function getGenerationId(): int
@@ -57,8 +46,12 @@ class FinishFileGeneration extends TdFunction
         return $this->generationId;
     }
 
-    public function getError(): Error
+    public function typeSerialize(): array
     {
-        return $this->error;
+        return [
+            '@type'         => static::TYPE_NAME,
+            'generation_id' => $this->generationId,
+            'error'         => $this->error->typeSerialize(),
+        ];
     }
 }

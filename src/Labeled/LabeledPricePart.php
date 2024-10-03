@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Labeled;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Portion of the price of a product (e.g., "delivery cost", "tax amount")
+ * Portion of the price of a product (e.g., "delivery cost", "tax amount").
  */
 class LabeledPricePart extends TdObject
 {
     public const TYPE_NAME = 'labeledPricePart';
 
-    /**
-     * Label for this portion of the product price
-     *
-     * @var string
-     */
-    protected string $label;
-
-    /**
-     * Currency amount in the smallest units of the currency
-     *
-     * @var int
-     */
-    protected int $amount;
-
-    public function __construct(string $label, int $amount)
-    {
-        $this->label = $label;
-        $this->amount = $amount;
-    }
+    public function __construct(
+        /**
+         * Label for this portion of the product price.
+         */
+        protected string $label,
+        /**
+         * Currency amount in the smallest units of the currency.
+         */
+        protected int    $amount,
+    ) {}
 
     public static function fromArray(array $array): LabeledPricePart
     {
@@ -43,13 +34,9 @@ class LabeledPricePart extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getAmount(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'label' => $this->label,
-            'amount' => $this->amount,
-        ];
+        return $this->amount;
     }
 
     public function getLabel(): string
@@ -57,8 +44,12 @@ class LabeledPricePart extends TdObject
         return $this->label;
     }
 
-    public function getAmount(): int
+    public function typeSerialize(): array
     {
-        return $this->amount;
+        return [
+            '@type'  => static::TYPE_NAME,
+            'label'  => $this->label,
+            'amount' => $this->amount,
+        ];
     }
 }

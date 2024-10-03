@@ -4,36 +4,29 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Deep;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about a tg: deep link
+ * Contains information about a tg: deep link.
  */
 class DeepLinkInfo extends TdObject
 {
     public const TYPE_NAME = 'deepLinkInfo';
 
-    /**
-     * Text to be shown to the user
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $text;
-
-    /**
-     * True, if the user must be asked to update the application
-     *
-     * @var bool
-     */
-    protected bool $needUpdateApplication;
-
-    public function __construct(FormattedText $text, bool $needUpdateApplication)
-    {
-        $this->text = $text;
-        $this->needUpdateApplication = $needUpdateApplication;
-    }
+    public function __construct(
+        /**
+         * Text to be shown to the user.
+         */
+        protected FormattedText $text,
+        /**
+         * True, if the user must be asked to update the application.
+         */
+        protected bool          $needUpdateApplication,
+    ) {}
 
     public static function fromArray(array $array): DeepLinkInfo
     {
@@ -43,13 +36,9 @@ class DeepLinkInfo extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedUpdateApplication(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'need_update_application' => $this->needUpdateApplication,
-        ];
+        return $this->needUpdateApplication;
     }
 
     public function getText(): FormattedText
@@ -57,8 +46,12 @@ class DeepLinkInfo extends TdObject
         return $this->text;
     }
 
-    public function getNeedUpdateApplication(): bool
+    public function typeSerialize(): array
     {
-        return $this->needUpdateApplication;
+        return [
+            '@type'                   => static::TYPE_NAME,
+            'text'                    => $this->text->typeSerialize(),
+            'need_update_application' => $this->needUpdateApplication,
+        ];
     }
 }

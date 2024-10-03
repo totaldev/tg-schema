@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Keyboard;
 
 /**
- * A button that sends the user's phone number when pressed; available only in private chats
+ * A button that sends the user's phone number when pressed; available only in private chats.
  */
 class KeyboardButtonTypeRequestPhoneNumber extends KeyboardButtonType
 {

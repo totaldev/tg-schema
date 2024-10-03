@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Passport;
 
 /**
- * A Telegram Passport element containing the user's utility bill
+ * A Telegram Passport element containing the user's utility bill.
  */
 class PassportElementTypeUtilityBill extends PassportElementType
 {

@@ -4,36 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Search;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
+ * Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main
+ * chat list.
  */
 class SearchChatsOnServer extends TdFunction
 {
     public const TYPE_NAME = 'searchChatsOnServer';
 
-    /**
-     * Query to search for
-     *
-     * @var string
-     */
-    protected string $query;
-
-    /**
-     * The maximum number of chats to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    public function __construct(string $query, int $limit)
-    {
-        $this->query = $query;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Query to search for.
+         */
+        protected string $query,
+        /**
+         * The maximum number of chats to be returned.
+         */
+        protected int    $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchChatsOnServer
     {
@@ -43,13 +35,9 @@ class SearchChatsOnServer extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getLimit(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'query' => $this->query,
-            'limit' => $this->limit,
-        ];
+        return $this->limit;
     }
 
     public function getQuery(): string
@@ -57,8 +45,12 @@ class SearchChatsOnServer extends TdFunction
         return $this->query;
     }
 
-    public function getLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->limit;
+        return [
+            '@type' => static::TYPE_NAME,
+            'query' => $this->query,
+            'limit' => $this->limit,
+        ];
     }
 }

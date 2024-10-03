@@ -4,29 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Page;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A page cover
+ * A page cover.
  */
 class PageBlockCover extends PageBlock
 {
     public const TYPE_NAME = 'pageBlockCover';
 
-    /**
-     * Cover
-     *
-     * @var PageBlock
-     */
-    protected PageBlock $cover;
-
-    public function __construct(PageBlock $cover)
-    {
+    public function __construct(
+        /**
+         * Cover.
+         */
+        protected PageBlock $cover
+    ) {
         parent::__construct();
-
-        $this->cover = $cover;
     }
 
     public static function fromArray(array $array): PageBlockCover
@@ -36,16 +31,16 @@ class PageBlockCover extends PageBlock
         );
     }
 
+    public function getCover(): PageBlock
+    {
+        return $this->cover;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'cover' => $this->cover->typeSerialize(),
         ];
-    }
-
-    public function getCover(): PageBlock
-    {
-        return $this->cover;
     }
 }

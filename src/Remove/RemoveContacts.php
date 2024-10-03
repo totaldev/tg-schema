@@ -4,28 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Remove;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Removes users from the contact list
+ * Removes users from the contact list.
  */
 class RemoveContacts extends TdFunction
 {
     public const TYPE_NAME = 'removeContacts';
 
-    /**
-     * Identifiers of users to be deleted
-     *
-     * @var int[]
-     */
-    protected array $userIds;
-
-    public function __construct(array $userIds)
-    {
-        $this->userIds = $userIds;
-    }
+    public function __construct(
+        /**
+         * Identifiers of users to be deleted.
+         *
+         * @var int[]
+         */
+        protected array $userIds
+    ) {}
 
     public static function fromArray(array $array): RemoveContacts
     {
@@ -34,16 +31,16 @@ class RemoveContacts extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'user_ids' => $this->userIds,
-        ];
-    }
-
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'user_ids' => $this->userIds,
+        ];
     }
 }

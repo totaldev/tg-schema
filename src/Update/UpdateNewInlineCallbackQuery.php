@@ -4,66 +4,41 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Update;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Callback\CallbackQueryPayload;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A new incoming callback query from a message sent via a bot; for bots only
+ * A new incoming callback query from a message sent via a bot; for bots only.
  */
 class UpdateNewInlineCallbackQuery extends Update
 {
     public const TYPE_NAME = 'updateNewInlineCallbackQuery';
 
-    /**
-     * Unique query identifier
-     *
-     * @var int
-     */
-    protected int $id;
-
-    /**
-     * Identifier of the user who sent the query
-     *
-     * @var int
-     */
-    protected int $senderUserId;
-
-    /**
-     * Identifier of the inline message from which the query originated
-     *
-     * @var string
-     */
-    protected string $inlineMessageId;
-
-    /**
-     * An identifier uniquely corresponding to the chat a message was sent to
-     *
-     * @var int
-     */
-    protected int $chatInstance;
-
-    /**
-     * Query payload
-     *
-     * @var CallbackQueryPayload
-     */
-    protected CallbackQueryPayload $payload;
-
     public function __construct(
-        int $id,
-        int $senderUserId,
-        string $inlineMessageId,
-        int $chatInstance,
-        CallbackQueryPayload $payload
+        /**
+         * Unique query identifier.
+         */
+        protected int                  $id,
+        /**
+         * Identifier of the user who sent the query.
+         */
+        protected int                  $senderUserId,
+        /**
+         * Identifier of the inline message from which the query originated.
+         */
+        protected string               $inlineMessageId,
+        /**
+         * An identifier uniquely corresponding to the chat a message was sent to.
+         */
+        protected int                  $chatInstance,
+        /**
+         * Query payload.
+         */
+        protected CallbackQueryPayload $payload,
     ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->senderUserId = $senderUserId;
-        $this->inlineMessageId = $inlineMessageId;
-        $this->chatInstance = $chatInstance;
-        $this->payload = $payload;
     }
 
     public static function fromArray(array $array): UpdateNewInlineCallbackQuery
@@ -77,16 +52,9 @@ class UpdateNewInlineCallbackQuery extends Update
         );
     }
 
-    public function typeSerialize(): array
+    public function getChatInstance(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'sender_user_id' => $this->senderUserId,
-            'inline_message_id' => $this->inlineMessageId,
-            'chat_instance' => $this->chatInstance,
-            'payload' => $this->payload->typeSerialize(),
-        ];
+        return $this->chatInstance;
     }
 
     public function getId(): int
@@ -94,23 +62,30 @@ class UpdateNewInlineCallbackQuery extends Update
         return $this->id;
     }
 
-    public function getSenderUserId(): int
-    {
-        return $this->senderUserId;
-    }
-
     public function getInlineMessageId(): string
     {
         return $this->inlineMessageId;
     }
 
-    public function getChatInstance(): int
-    {
-        return $this->chatInstance;
-    }
-
     public function getPayload(): CallbackQueryPayload
     {
         return $this->payload;
+    }
+
+    public function getSenderUserId(): int
+    {
+        return $this->senderUserId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'             => static::TYPE_NAME,
+            'id'                => $this->id,
+            'sender_user_id'    => $this->senderUserId,
+            'inline_message_id' => $this->inlineMessageId,
+            'chat_instance'     => $this->chatInstance,
+            'payload'           => $this->payload->typeSerialize(),
+        ];
     }
 }

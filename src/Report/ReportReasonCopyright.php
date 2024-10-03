@@ -4,23 +4,21 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TdSchema;
+namespace Totaldev\TgSchema\Report;
 
 /**
  * The chat contains copyrighted content.
  */
-class ChatReportReasonCopyright extends ChatReportReason
+class ReportReasonCopyright extends ReportReason
 {
-    public const TYPE_NAME = 'chatReportReasonCopyright';
+    public const TYPE_NAME = 'reportReasonCopyright';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function fromArray(array $array): ChatReportReasonCopyright
+    public static function fromArray(array $array): ReportReasonCopyright
     {
         return new static();
     }

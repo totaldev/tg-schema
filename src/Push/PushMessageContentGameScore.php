@@ -4,45 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Push;
 
 /**
- * A new high score was achieved in a game
+ * A new high score was achieved in a game.
  */
 class PushMessageContentGameScore extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentGameScore';
 
-    /**
-     * Game title, empty for pinned message
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * New score, 0 for pinned message
-     *
-     * @var int
-     */
-    protected int $score;
-
-    /**
-     * True, if the message is a pinned message with the specified content
-     *
-     * @var bool
-     */
-    protected bool $isPinned;
-
-    public function __construct(string $title, int $score, bool $isPinned)
-    {
+    public function __construct(
+        /**
+         * Game title, empty for pinned message.
+         */
+        protected string $title,
+        /**
+         * New score, 0 for pinned message.
+         */
+        protected int    $score,
+        /**
+         * True, if the message is a pinned message with the specified content.
+         */
+        protected bool   $isPinned,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->score = $score;
-        $this->isPinned = $isPinned;
     }
 
     public static function fromArray(array $array): PushMessageContentGameScore
@@ -54,19 +39,9 @@ class PushMessageContentGameScore extends PushMessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsPinned(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'score' => $this->score,
-            'is_pinned' => $this->isPinned,
-        ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
+        return $this->isPinned;
     }
 
     public function getScore(): int
@@ -74,8 +49,18 @@ class PushMessageContentGameScore extends PushMessageContent
         return $this->score;
     }
 
-    public function getIsPinned(): bool
+    public function getTitle(): string
     {
-        return $this->isPinned;
+        return $this->title;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'     => static::TYPE_NAME,
+            'title'     => $this->title,
+            'score'     => $this->score,
+            'is_pinned' => $this->isPinned,
+        ];
     }
 }

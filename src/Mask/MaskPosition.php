@@ -4,52 +4,36 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Mask;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Position on a photo where a mask is placed
+ * Position on a photo where a mask is placed.
  */
 class MaskPosition extends TdObject
 {
     public const TYPE_NAME = 'maskPosition';
 
-    /**
-     * Part of the face, relative to which the mask is placed
-     *
-     * @var MaskPoint
-     */
-    protected MaskPoint $point;
-
-    /**
-     * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
-     *
-     * @var float
-     */
-    protected float $xShift;
-
-    /**
-     * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
-     *
-     * @var float
-     */
-    protected float $yShift;
-
-    /**
-     * Mask scaling coefficient. (For example, 2.0 means a doubled size)
-     *
-     * @var float
-     */
-    protected float $scale;
-
-    public function __construct(MaskPoint $point, float $xShift, float $yShift, float $scale)
-    {
-        $this->point = $point;
-        $this->xShift = $xShift;
-        $this->yShift = $yShift;
-        $this->scale = $scale;
-    }
+    public function __construct(
+        /**
+         * Part of the face, relative to which the mask is placed.
+         */
+        protected MaskPoint $point,
+        /**
+         * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position).
+         */
+        protected float     $xShift,
+        /**
+         * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position).
+         */
+        protected float     $yShift,
+        /**
+         * Mask scaling coefficient. (For example, 2.0 means a doubled size).
+         */
+        protected float     $scale,
+    ) {}
 
     public static function fromArray(array $array): MaskPosition
     {
@@ -61,20 +45,14 @@ class MaskPosition extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'point' => $this->point->typeSerialize(),
-            'x_shift' => $this->xShift,
-            'y_shift' => $this->yShift,
-            'scale' => $this->scale,
-        ];
-    }
-
     public function getPoint(): MaskPoint
     {
         return $this->point;
+    }
+
+    public function getScale(): float
+    {
+        return $this->scale;
     }
 
     public function getXShift(): float
@@ -87,8 +65,14 @@ class MaskPosition extends TdObject
         return $this->yShift;
     }
 
-    public function getScale(): float
+    public function typeSerialize(): array
     {
-        return $this->scale;
+        return [
+            '@type'   => static::TYPE_NAME,
+            'point'   => $this->point->typeSerialize(),
+            'x_shift' => $this->xShift,
+            'y_shift' => $this->yShift,
+            'scale'   => $this->scale,
+        ];
     }
 }

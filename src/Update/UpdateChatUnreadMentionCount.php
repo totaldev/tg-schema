@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Update;
 
 /**
- * The chat unread_mention_count has changed
+ * The chat unread_mention_count has changed.
  */
 class UpdateChatUnreadMentionCount extends Update
 {
     public const TYPE_NAME = 'updateChatUnreadMentionCount';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The number of unread mention messages left in the chat
-     *
-     * @var int
-     */
-    protected int $unreadMentionCount;
-
-    public function __construct(int $chatId, int $unreadMentionCount)
-    {
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * The number of unread mention messages left in the chat.
+         */
+        protected int $unreadMentionCount,
+    ) {
         parent::__construct();
-
-        $this->chatId = $chatId;
-        $this->unreadMentionCount = $unreadMentionCount;
     }
 
     public static function fromArray(array $array): UpdateChatUnreadMentionCount
@@ -45,15 +34,6 @@ class UpdateChatUnreadMentionCount extends Update
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'unread_mention_count' => $this->unreadMentionCount,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
@@ -62,5 +42,14 @@ class UpdateChatUnreadMentionCount extends Update
     public function getUnreadMentionCount(): int
     {
         return $this->unreadMentionCount;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'                => static::TYPE_NAME,
+            'chat_id'              => $this->chatId,
+            'unread_mention_count' => $this->unreadMentionCount,
+        ];
     }
 }

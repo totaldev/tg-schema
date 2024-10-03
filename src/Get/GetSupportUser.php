@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns a user that can be contacted to get support
+ * Returns a user that can be contacted to get support.
  */
 class GetSupportUser extends TdFunction
 {
     public const TYPE_NAME = 'getSupportUser';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetSupportUser
     {

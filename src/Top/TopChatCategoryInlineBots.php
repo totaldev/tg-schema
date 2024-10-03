@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Top;
 
 /**
- * A category containing frequently used chats with inline bots sorted by their usage in inline mode
+ * A category containing frequently used chats with inline bots sorted by their usage in inline mode.
  */
 class TopChatCategoryInlineBots extends TopChatCategory
 {

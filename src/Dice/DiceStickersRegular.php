@@ -4,54 +4,32 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Dice;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Sticker\Sticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A sticker message
+ * A regular animated sticker.
  */
-class MessageSticker extends MessageContent
+class DiceStickersRegular extends DiceStickers
 {
-    public const TYPE_NAME = 'messageSticker';
+    public const TYPE_NAME = 'diceStickersRegular';
 
-    /**
-     * The sticker description
-     *
-     * @var Sticker
-     */
-    protected Sticker $sticker;
-
-    /**
-     * True, if premium animation of the sticker must be played
-     *
-     * @var bool
-     */
-    protected bool $isPremium;
-
-    public function __construct(Sticker $sticker, bool $isPremium)
-    {
+    public function __construct(
+        /**
+         * The animated sticker with the dice animation.
+         */
+        protected Sticker $sticker
+    ) {
         parent::__construct();
-
-        $this->sticker = $sticker;
-        $this->isPremium = $isPremium;
     }
 
-    public static function fromArray(array $array): MessageSticker
+    public static function fromArray(array $array): DiceStickersRegular
     {
         return new static(
             TdSchemaRegistry::fromArray($array['sticker']),
-            $array['is_premium'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'sticker' => $this->sticker->typeSerialize(),
-            'is_premium' => $this->isPremium,
-        ];
     }
 
     public function getSticker(): Sticker
@@ -59,8 +37,11 @@ class MessageSticker extends MessageContent
         return $this->sticker;
     }
 
-    public function getIsPremium(): bool
+    public function typeSerialize(): array
     {
-        return $this->isPremium;
+        return [
+            '@type'   => static::TYPE_NAME,
+            'sticker' => $this->sticker->typeSerialize(),
+        ];
     }
 }

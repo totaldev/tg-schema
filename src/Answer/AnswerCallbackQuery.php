@@ -4,60 +4,39 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Answer;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Sets the result of a callback query; for bots only
+ * Sets the result of a callback query; for bots only.
  */
 class AnswerCallbackQuery extends TdFunction
 {
     public const TYPE_NAME = 'answerCallbackQuery';
 
-    /**
-     * Identifier of the callback query
-     *
-     * @var int
-     */
-    protected int $callbackQueryId;
-
-    /**
-     * Text of the answer
-     *
-     * @var string
-     */
-    protected string $text;
-
-    /**
-     * Pass true to show an alert to the user instead of a toast notification
-     *
-     * @var bool
-     */
-    protected bool $showAlert;
-
-    /**
-     * URL to be opened
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
-     * Time during which the result of the query can be cached, in seconds
-     *
-     * @var int
-     */
-    protected int $cacheTime;
-
-    public function __construct(int $callbackQueryId, string $text, bool $showAlert, string $url, int $cacheTime)
-    {
-        $this->callbackQueryId = $callbackQueryId;
-        $this->text = $text;
-        $this->showAlert = $showAlert;
-        $this->url = $url;
-        $this->cacheTime = $cacheTime;
-    }
+    public function __construct(
+        /**
+         * Identifier of the callback query.
+         */
+        protected int    $callbackQueryId,
+        /**
+         * Text of the answer.
+         */
+        protected string $text,
+        /**
+         * Pass true to show an alert to the user instead of a toast notification.
+         */
+        protected bool   $showAlert,
+        /**
+         * URL to be opened.
+         */
+        protected string $url,
+        /**
+         * Time during which the result of the query can be cached, in seconds.
+         */
+        protected int    $cacheTime,
+    ) {}
 
     public static function fromArray(array $array): AnswerCallbackQuery
     {
@@ -70,16 +49,9 @@ class AnswerCallbackQuery extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getCacheTime(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'callback_query_id' => $this->callbackQueryId,
-            'text' => $this->text,
-            'show_alert' => $this->showAlert,
-            'url' => $this->url,
-            'cache_time' => $this->cacheTime,
-        ];
+        return $this->cacheTime;
     }
 
     public function getCallbackQueryId(): int
@@ -87,14 +59,14 @@ class AnswerCallbackQuery extends TdFunction
         return $this->callbackQueryId;
     }
 
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
     public function getShowAlert(): bool
     {
         return $this->showAlert;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
     }
 
     public function getUrl(): string
@@ -102,8 +74,15 @@ class AnswerCallbackQuery extends TdFunction
         return $this->url;
     }
 
-    public function getCacheTime(): int
+    public function typeSerialize(): array
     {
-        return $this->cacheTime;
+        return [
+            '@type'             => static::TYPE_NAME,
+            'callback_query_id' => $this->callbackQueryId,
+            'text'              => $this->text,
+            'show_alert'        => $this->showAlert,
+            'url'               => $this->url,
+            'cache_time'        => $this->cacheTime,
+        ];
     }
 }

@@ -4,44 +4,33 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Stop;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+ * Stops a poll.
  */
 class StopPoll extends TdFunction
 {
     public const TYPE_NAME = 'stopPoll';
 
-    /**
-     * Identifier of the chat to which the poll belongs
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the message containing the poll
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    /**
-     * The new message reply markup; pass null if none; for bots only
-     *
-     * @var ReplyMarkup
-     */
-    protected ReplyMarkup $replyMarkup;
-
-    public function __construct(int $chatId, int $messageId, ReplyMarkup $replyMarkup)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-        $this->replyMarkup = $replyMarkup;
-    }
+    public function __construct(
+        /**
+         * Identifier of the chat to which the poll belongs.
+         */
+        protected int         $chatId,
+        /**
+         * Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped.
+         */
+        protected int         $messageId,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ReplyMarkup $replyMarkup,
+    ) {}
 
     public static function fromArray(array $array): StopPoll
     {
@@ -50,16 +39,6 @@ class StopPoll extends TdFunction
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['reply_markup']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
-        ];
     }
 
     public function getChatId(): int
@@ -75,5 +54,15 @@ class StopPoll extends TdFunction
     public function getReplyMarkup(): ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'message_id'   => $this->messageId,
+            'reply_markup' => $this->replyMarkup->typeSerialize(),
+        ];
     }
 }

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Request;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Requests to send a 2-step verification password recovery code to an email address that was previously set up
+ * Requests to send a 2-step verification password recovery code to an email address that was previously set up.
  */
 class RequestPasswordRecovery extends TdFunction
 {
     public const TYPE_NAME = 'requestPasswordRecovery';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): RequestPasswordRecovery
     {

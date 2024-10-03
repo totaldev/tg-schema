@@ -4,36 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Auto\AutoDownloadSettings;
+use Totaldev\TgSchema\Network\NetworkType;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets auto-download settings
+ * Sets auto-download settings.
  */
 class SetAutoDownloadSettings extends TdFunction
 {
     public const TYPE_NAME = 'setAutoDownloadSettings';
 
-    /**
-     * New user auto-download settings
-     *
-     * @var AutoDownloadSettings
-     */
-    protected AutoDownloadSettings $settings;
-
-    /**
-     * Type of the network for which the new settings are relevant
-     *
-     * @var NetworkType
-     */
-    protected NetworkType $type;
-
-    public function __construct(AutoDownloadSettings $settings, NetworkType $type)
-    {
-        $this->settings = $settings;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * New user auto-download settings.
+         */
+        protected AutoDownloadSettings $settings,
+        /**
+         * Type of the network for which the new settings are relevant.
+         */
+        protected NetworkType          $type,
+    ) {}
 
     public static function fromArray(array $array): SetAutoDownloadSettings
     {
@@ -41,15 +35,6 @@ class SetAutoDownloadSettings extends TdFunction
             TdSchemaRegistry::fromArray($array['settings']),
             TdSchemaRegistry::fromArray($array['type']),
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'settings' => $this->settings->typeSerialize(),
-            'type' => $this->type->typeSerialize(),
-        ];
     }
 
     public function getSettings(): AutoDownloadSettings
@@ -60,5 +45,14 @@ class SetAutoDownloadSettings extends TdFunction
     public function getType(): NetworkType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'    => static::TYPE_NAME,
+            'settings' => $this->settings->typeSerialize(),
+            'type'     => $this->type->typeSerialize(),
+        ];
     }
 }

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about the current temporary password
+ * Returns information about the current temporary password.
  */
 class GetTemporaryPasswordState extends TdFunction
 {
     public const TYPE_NAME = 'getTemporaryPasswordState';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): GetTemporaryPasswordState
     {

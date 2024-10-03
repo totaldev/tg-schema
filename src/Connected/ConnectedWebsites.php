@@ -4,28 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Connected;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of websites the current user is logged in with Telegram
+ * Contains a list of websites the current user is logged in with Telegram.
  */
 class ConnectedWebsites extends TdObject
 {
     public const TYPE_NAME = 'connectedWebsites';
 
-    /**
-     * List of connected websites
-     *
-     * @var ConnectedWebsite[]
-     */
-    protected array $websites;
-
-    public function __construct(array $websites)
-    {
-        $this->websites = $websites;
-    }
+    public function __construct(
+        /**
+         * List of connected websites.
+         *
+         * @var ConnectedWebsite[]
+         */
+        protected array $websites
+    ) {}
 
     public static function fromArray(array $array): ConnectedWebsites
     {
@@ -34,16 +32,16 @@ class ConnectedWebsites extends TdObject
         );
     }
 
+    public function getWebsites(): array
+    {
+        return $this->websites;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->websites),
         ];
-    }
-
-    public function getWebsites(): array
-    {
-        return $this->websites;
     }
 }

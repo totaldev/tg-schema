@@ -4,52 +4,34 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Bot;
 
 /**
- * Returns information about a single member of a chat
+ * A scope covering a member of a chat.
  */
-class GetChatMember extends TdFunction
+class BotCommandScopeChatMember extends BotCommandScope
 {
-    public const TYPE_NAME = 'getChatMember';
+    public const TYPE_NAME = 'botCommandScopeChatMember';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Member identifier
-     *
-     * @var MessageSender
-     */
-    protected MessageSender $memberId;
-
-    public function __construct(int $chatId, MessageSender $memberId)
-    {
-        $this->chatId = $chatId;
-        $this->memberId = $memberId;
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+    ) {
+        parent::__construct();
     }
 
-    public static function fromArray(array $array): GetChatMember
+    public static function fromArray(array $array): BotCommandScopeChatMember
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['member_id']),
+            $array['user_id'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'member_id' => $this->memberId->typeSerialize(),
-        ];
     }
 
     public function getChatId(): int
@@ -57,8 +39,17 @@ class GetChatMember extends TdFunction
         return $this->chatId;
     }
 
-    public function getMemberId(): MessageSender
+    public function getUserId(): int
     {
-        return $this->memberId;
+        return $this->userId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'user_id' => $this->userId,
+        ];
     }
 }

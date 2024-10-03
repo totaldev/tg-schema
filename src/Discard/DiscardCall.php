@@ -4,60 +4,39 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Discard;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Discards a call
+ * Discards a call.
  */
 class DiscardCall extends TdFunction
 {
     public const TYPE_NAME = 'discardCall';
 
-    /**
-     * Call identifier
-     *
-     * @var int
-     */
-    protected int $callId;
-
-    /**
-     * Pass true if the user was disconnected
-     *
-     * @var bool
-     */
-    protected bool $isDisconnected;
-
-    /**
-     * The call duration, in seconds
-     *
-     * @var int
-     */
-    protected int $duration;
-
-    /**
-     * Pass true if the call was a video call
-     *
-     * @var bool
-     */
-    protected bool $isVideo;
-
-    /**
-     * Identifier of the connection used during the call
-     *
-     * @var int
-     */
-    protected int $connectionId;
-
-    public function __construct(int $callId, bool $isDisconnected, int $duration, bool $isVideo, int $connectionId)
-    {
-        $this->callId = $callId;
-        $this->isDisconnected = $isDisconnected;
-        $this->duration = $duration;
-        $this->isVideo = $isVideo;
-        $this->connectionId = $connectionId;
-    }
+    public function __construct(
+        /**
+         * Call identifier.
+         */
+        protected int  $callId,
+        /**
+         * Pass true if the user was disconnected.
+         */
+        protected bool $isDisconnected,
+        /**
+         * The call duration, in seconds.
+         */
+        protected int  $duration,
+        /**
+         * Pass true if the call was a video call.
+         */
+        protected bool $isVideo,
+        /**
+         * Identifier of the connection used during the call.
+         */
+        protected int  $connectionId,
+    ) {}
 
     public static function fromArray(array $array): DiscardCall
     {
@@ -70,26 +49,14 @@ class DiscardCall extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'is_disconnected' => $this->isDisconnected,
-            'duration' => $this->duration,
-            'is_video' => $this->isVideo,
-            'connection_id' => $this->connectionId,
-        ];
-    }
-
     public function getCallId(): int
     {
         return $this->callId;
     }
 
-    public function getIsDisconnected(): bool
+    public function getConnectionId(): int
     {
-        return $this->isDisconnected;
+        return $this->connectionId;
     }
 
     public function getDuration(): int
@@ -97,13 +64,25 @@ class DiscardCall extends TdFunction
         return $this->duration;
     }
 
+    public function getIsDisconnected(): bool
+    {
+        return $this->isDisconnected;
+    }
+
     public function getIsVideo(): bool
     {
         return $this->isVideo;
     }
 
-    public function getConnectionId(): int
+    public function typeSerialize(): array
     {
-        return $this->connectionId;
+        return [
+            '@type'           => static::TYPE_NAME,
+            'call_id'         => $this->callId,
+            'is_disconnected' => $this->isDisconnected,
+            'duration'        => $this->duration,
+            'is_video'        => $this->isVideo,
+            'connection_id'   => $this->connectionId,
+        ];
     }
 }

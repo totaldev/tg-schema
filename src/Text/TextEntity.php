@@ -4,44 +4,32 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Text;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a part of the text that needs to be formatted in some unusual way
+ * Represents a part of the text that needs to be formatted in some unusual way.
  */
 class TextEntity extends TdObject
 {
     public const TYPE_NAME = 'textEntity';
 
-    /**
-     * Offset of the entity, in UTF-16 code units
-     *
-     * @var int
-     */
-    protected int $offset;
-
-    /**
-     * Length of the entity, in UTF-16 code units
-     *
-     * @var int
-     */
-    protected int $length;
-
-    /**
-     * Type of the entity
-     *
-     * @var TextEntityType
-     */
-    protected TextEntityType $type;
-
-    public function __construct(int $offset, int $length, TextEntityType $type)
-    {
-        $this->offset = $offset;
-        $this->length = $length;
-        $this->type = $type;
-    }
+    public function __construct(
+        /**
+         * Offset of the entity, in UTF-16 code units.
+         */
+        protected int            $offset,
+        /**
+         * Length of the entity, in UTF-16 code units.
+         */
+        protected int            $length,
+        /**
+         * Type of the entity.
+         */
+        protected TextEntityType $type,
+    ) {}
 
     public static function fromArray(array $array): TextEntity
     {
@@ -52,14 +40,9 @@ class TextEntity extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getLength(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'offset' => $this->offset,
-            'length' => $this->length,
-            'type' => $this->type->typeSerialize(),
-        ];
+        return $this->length;
     }
 
     public function getOffset(): int
@@ -67,13 +50,18 @@ class TextEntity extends TdObject
         return $this->offset;
     }
 
-    public function getLength(): int
-    {
-        return $this->length;
-    }
-
     public function getType(): TextEntityType
     {
         return $this->type;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'  => static::TYPE_NAME,
+            'offset' => $this->offset,
+            'length' => $this->length,
+            'type'   => $this->type->typeSerialize(),
+        ];
     }
 }

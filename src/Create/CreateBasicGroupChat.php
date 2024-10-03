@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Create;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns an existing chat corresponding to a known basic group
+ * Returns an existing chat corresponding to a known basic group.
  */
 class CreateBasicGroupChat extends TdFunction
 {
     public const TYPE_NAME = 'createBasicGroupChat';
 
-    /**
-     * Basic group identifier
-     *
-     * @var int
-     */
-    protected int $basicGroupId;
-
-    /**
-     * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-     *
-     * @var bool
-     */
-    protected bool $force;
-
-    public function __construct(int $basicGroupId, bool $force)
-    {
-        $this->basicGroupId = $basicGroupId;
-        $this->force = $force;
-    }
+    public function __construct(
+        /**
+         * Basic group identifier.
+         */
+        protected int  $basicGroupId,
+        /**
+         * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
+         */
+        protected bool $force,
+    ) {}
 
     public static function fromArray(array $array): CreateBasicGroupChat
     {
@@ -41,15 +32,6 @@ class CreateBasicGroupChat extends TdFunction
             $array['basic_group_id'],
             $array['force'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'basic_group_id' => $this->basicGroupId,
-            'force' => $this->force,
-        ];
     }
 
     public function getBasicGroupId(): int
@@ -60,5 +42,14 @@ class CreateBasicGroupChat extends TdFunction
     public function getForce(): bool
     {
         return $this->force;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'          => static::TYPE_NAME,
+            'basic_group_id' => $this->basicGroupId,
+            'force'          => $this->force,
+        ];
     }
 }

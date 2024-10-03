@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Get;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a secret chat by its identifier. This is an offline request
+ * Returns information about a secret chat by its identifier. This is an offline request.
  */
 class GetSecretChat extends TdFunction
 {
     public const TYPE_NAME = 'getSecretChat';
 
-    /**
-     * Secret chat identifier
-     *
-     * @var int
-     */
-    protected int $secretChatId;
-
-    public function __construct(int $secretChatId)
-    {
-        $this->secretChatId = $secretChatId;
-    }
+    public function __construct(
+        /**
+         * Secret chat identifier.
+         */
+        protected int $secretChatId
+    ) {}
 
     public static function fromArray(array $array): GetSecretChat
     {
@@ -34,16 +29,16 @@ class GetSecretChat extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'secret_chat_id' => $this->secretChatId,
-        ];
-    }
-
     public function getSecretChatId(): int
     {
         return $this->secretChatId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'          => static::TYPE_NAME,
+            'secret_chat_id' => $this->secretChatId,
+        ];
     }
 }

@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Check;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents result of checking whether a username can be set for a chat
+ * Represents result of checking whether a username can be set for a chat.
  */
 class CheckChatUsernameResult extends TdObject
 {
     public const TYPE_NAME = 'CheckChatUsernameResult';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): CheckChatUsernameResult
     {

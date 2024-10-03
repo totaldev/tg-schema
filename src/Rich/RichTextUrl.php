@@ -4,45 +4,32 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Rich;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A rich text URL link
+ * A rich text URL link.
  */
 class RichTextUrl extends RichText
 {
     public const TYPE_NAME = 'richTextUrl';
 
-    /**
-     * Text
-     *
-     * @var RichText
-     */
-    protected RichText $text;
-
-    /**
-     * URL
-     *
-     * @var string
-     */
-    protected string $url;
-
-    /**
-     * True, if the URL has cached instant view server-side
-     *
-     * @var bool
-     */
-    protected bool $isCached;
-
-    public function __construct(RichText $text, string $url, bool $isCached)
-    {
+    public function __construct(
+        /**
+         * Text.
+         */
+        protected RichText $text,
+        /**
+         * URL.
+         */
+        protected string   $url,
+        /**
+         * True, if the URL has cached instant view server-side.
+         */
+        protected bool     $isCached,
+    ) {
         parent::__construct();
-
-        $this->text = $text;
-        $this->url = $url;
-        $this->isCached = $isCached;
     }
 
     public static function fromArray(array $array): RichTextUrl
@@ -54,14 +41,9 @@ class RichTextUrl extends RichText
         );
     }
 
-    public function typeSerialize(): array
+    public function getIsCached(): bool
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'text' => $this->text->typeSerialize(),
-            'url' => $this->url,
-            'is_cached' => $this->isCached,
-        ];
+        return $this->isCached;
     }
 
     public function getText(): RichText
@@ -74,8 +56,13 @@ class RichTextUrl extends RichText
         return $this->url;
     }
 
-    public function getIsCached(): bool
+    public function typeSerialize(): array
     {
-        return $this->isCached;
+        return [
+            '@type'     => static::TYPE_NAME,
+            'text'      => $this->text->typeSerialize(),
+            'url'       => $this->url,
+            'is_cached' => $this->isCached,
+        ];
     }
 }

@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Passport;
 
 /**
- * The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
+ * The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes.
  */
 class PassportElementErrorSourceSelfie extends PassportElementErrorSource
 {

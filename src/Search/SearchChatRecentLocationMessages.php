@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Search;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+ * Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user.
  */
 class SearchChatRecentLocationMessages extends TdFunction
 {
     public const TYPE_NAME = 'searchChatRecentLocationMessages';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The maximum number of messages to be returned
-     *
-     * @var int
-     */
-    protected int $limit;
-
-    public function __construct(int $chatId, int $limit)
-    {
-        $this->chatId = $chatId;
-        $this->limit = $limit;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * The maximum number of messages to be returned.
+         */
+        protected int $limit,
+    ) {}
 
     public static function fromArray(array $array): SearchChatRecentLocationMessages
     {
@@ -41,15 +32,6 @@ class SearchChatRecentLocationMessages extends TdFunction
             $array['chat_id'],
             $array['limit'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'limit' => $this->limit,
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +42,14 @@ class SearchChatRecentLocationMessages extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'limit'   => $this->limit,
+        ];
     }
 }

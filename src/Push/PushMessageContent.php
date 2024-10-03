@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Push;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains content of a push message notification
+ * Contains content of a push message notification.
  */
 class PushMessageContent extends TdObject
 {
     public const TYPE_NAME = 'PushMessageContent';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): PushMessageContent
     {

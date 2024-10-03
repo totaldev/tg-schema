@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Language;
 
 /**
- * A deleted language pack string, the value must be taken from the built-in English language pack
+ * A deleted language pack string, the value must be taken from the built-in English language pack.
  */
 class LanguagePackStringValueDeleted extends LanguagePackStringValue
 {

@@ -4,44 +4,32 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Add;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Adds a new member to a chat. Members can't be added to private or secret chats
+ * Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members
+ * that weren't added.
  */
 class AddChatMember extends TdFunction
 {
     public const TYPE_NAME = 'addChatMember';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * Identifier of the user
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
-     *
-     * @var int
-     */
-    protected int $forwardLimit;
-
-    public function __construct(int $chatId, int $userId, int $forwardLimit)
-    {
-        $this->chatId = $chatId;
-        $this->userId = $userId;
-        $this->forwardLimit = $forwardLimit;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * Identifier of the user.
+         */
+        protected int $userId,
+        /**
+         * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot.
+         */
+        protected int $forwardLimit,
+    ) {}
 
     public static function fromArray(array $array): AddChatMember
     {
@@ -52,19 +40,14 @@ class AddChatMember extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'user_id' => $this->userId,
-            'forward_limit' => $this->forwardLimit,
-        ];
-    }
-
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getForwardLimit(): int
+    {
+        return $this->forwardLimit;
     }
 
     public function getUserId(): int
@@ -72,8 +55,13 @@ class AddChatMember extends TdFunction
         return $this->userId;
     }
 
-    public function getForwardLimit(): int
+    public function typeSerialize(): array
     {
-        return $this->forwardLimit;
+        return [
+            '@type'         => static::TYPE_NAME,
+            'chat_id'       => $this->chatId,
+            'user_id'       => $this->userId,
+            'forward_limit' => $this->forwardLimit,
+        ];
     }
 }

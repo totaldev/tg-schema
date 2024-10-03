@@ -4,48 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+ * The chat is a recently created group chat to which new members can be invited.
  */
-class ChatActionBarReportSpam extends ChatActionBar
+class ChatActionBarInviteMembers extends ChatActionBar
 {
-    public const TYPE_NAME = 'chatActionBarReportSpam';
+    public const TYPE_NAME = 'chatActionBarInviteMembers';
 
-    /**
-     * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
-     *
-     * @var bool
-     */
-    protected bool $canUnarchive;
-
-    public function __construct(bool $canUnarchive)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->canUnarchive = $canUnarchive;
     }
 
-    public static function fromArray(array $array): ChatActionBarReportSpam
+    public static function fromArray(array $array): ChatActionBarInviteMembers
     {
-        return new static(
-            $array['can_unarchive'],
-        );
+        return new static();
     }
 
     public function typeSerialize(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'can_unarchive' => $this->canUnarchive,
-        ];
-    }
-
-    public function getCanUnarchive(): bool
-    {
-        return $this->canUnarchive;
+        return ['@type' => static::TYPE_NAME];
     }
 }

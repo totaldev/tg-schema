@@ -4,36 +4,27 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the sticker set of a supergroup; requires can_change_info administrator right
+ * Changes the sticker set of a supergroup; requires can_change_info administrator right.
  */
 class SetSupergroupStickerSet extends TdFunction
 {
     public const TYPE_NAME = 'setSupergroupStickerSet';
 
-    /**
-     * Identifier of the supergroup
-     *
-     * @var int
-     */
-    protected int $supergroupId;
-
-    /**
-     * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-     *
-     * @var int
-     */
-    protected int $stickerSetId;
-
-    public function __construct(int $supergroupId, int $stickerSetId)
-    {
-        $this->supergroupId = $supergroupId;
-        $this->stickerSetId = $stickerSetId;
-    }
+    public function __construct(
+        /**
+         * Identifier of the supergroup.
+         */
+        protected int $supergroupId,
+        /**
+         * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
+         */
+        protected int $stickerSetId,
+    ) {}
 
     public static function fromArray(array $array): SetSupergroupStickerSet
     {
@@ -43,13 +34,9 @@ class SetSupergroupStickerSet extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
+    public function getStickerSetId(): int
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'supergroup_id' => $this->supergroupId,
-            'sticker_set_id' => $this->stickerSetId,
-        ];
+        return $this->stickerSetId;
     }
 
     public function getSupergroupId(): int
@@ -57,8 +44,12 @@ class SetSupergroupStickerSet extends TdFunction
         return $this->supergroupId;
     }
 
-    public function getStickerSetId(): int
+    public function typeSerialize(): array
     {
-        return $this->stickerSetId;
+        return [
+            '@type'          => static::TYPE_NAME,
+            'supergroup_id'  => $this->supergroupId,
+            'sticker_set_id' => $this->stickerSetId,
+        ];
     }
 }

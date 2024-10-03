@@ -4,20 +4,18 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\User;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Represents a single rule for managing user privacy settings
+ * Represents a single rule for managing user privacy settings.
  */
 class UserPrivacySettingRule extends TdObject
 {
     public const TYPE_NAME = 'UserPrivacySettingRule';
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function fromArray(array $array): UserPrivacySettingRule
     {

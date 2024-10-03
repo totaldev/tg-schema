@@ -4,28 +4,25 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Set;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Log\LogStream;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sets new log stream for internal logging of TDLib. Can be called synchronously
+ * Sets new log stream for internal logging of TDLib. Can be called synchronously.
  */
 class SetLogStream extends TdFunction
 {
     public const TYPE_NAME = 'setLogStream';
 
-    /**
-     * New log stream
-     *
-     * @var LogStream
-     */
-    protected LogStream $logStream;
-
-    public function __construct(LogStream $logStream)
-    {
-        $this->logStream = $logStream;
-    }
+    public function __construct(
+        /**
+         * New log stream.
+         */
+        protected LogStream $logStream
+    ) {}
 
     public static function fromArray(array $array): SetLogStream
     {
@@ -34,16 +31,16 @@ class SetLogStream extends TdFunction
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'log_stream' => $this->logStream->typeSerialize(),
-        ];
-    }
-
     public function getLogStream(): LogStream
     {
         return $this->logStream;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'log_stream' => $this->logStream->typeSerialize(),
+        ];
     }
 }

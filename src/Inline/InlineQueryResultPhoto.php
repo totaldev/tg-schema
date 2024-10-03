@@ -4,53 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Inline;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Photo\Photo;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Represents a photo
+ * Represents a photo.
  */
 class InlineQueryResultPhoto extends InlineQueryResult
 {
     public const TYPE_NAME = 'inlineQueryResultPhoto';
 
-    /**
-     * Unique identifier of the query result
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
-     * Photo
-     *
-     * @var Photo
-     */
-    protected Photo $photo;
-
-    /**
-     * Title of the result, if known
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * A short description of the result, if known
-     *
-     * @var string
-     */
-    protected string $description;
-
-    public function __construct(string $id, Photo $photo, string $title, string $description)
-    {
+    public function __construct(
+        /**
+         * Unique identifier of the query result.
+         */
+        protected string $id,
+        /**
+         * Photo.
+         */
+        protected Photo  $photo,
+        /**
+         * Title of the result, if known.
+         */
+        protected string $title,
+        /**
+         * A short description of the result, if known.
+         */
+        protected string $description,
+    ) {
         parent::__construct();
-
-        $this->id = $id;
-        $this->photo = $photo;
-        $this->title = $title;
-        $this->description = $description;
     }
 
     public static function fromArray(array $array): InlineQueryResultPhoto
@@ -63,15 +47,9 @@ class InlineQueryResultPhoto extends InlineQueryResult
         );
     }
 
-    public function typeSerialize(): array
+    public function getDescription(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'id' => $this->id,
-            'photo' => $this->photo->typeSerialize(),
-            'title' => $this->title,
-            'description' => $this->description,
-        ];
+        return $this->description;
     }
 
     public function getId(): string
@@ -89,8 +67,14 @@ class InlineQueryResultPhoto extends InlineQueryResult
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function typeSerialize(): array
     {
-        return $this->description;
+        return [
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'photo'       => $this->photo->typeSerialize(),
+            'title'       => $this->title,
+            'description' => $this->description,
+        ];
     }
 }

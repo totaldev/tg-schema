@@ -4,36 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Delete;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
+ * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An
+ * updateChatReplyMarkup update will be sent if the reply markup is changed.
  */
 class DeleteChatReplyMarkup extends TdFunction
 {
     public const TYPE_NAME = 'deleteChatReplyMarkup';
 
-    /**
-     * Chat identifier
-     *
-     * @var int
-     */
-    protected int $chatId;
-
-    /**
-     * The message identifier of the used keyboard
-     *
-     * @var int
-     */
-    protected int $messageId;
-
-    public function __construct(int $chatId, int $messageId)
-    {
-        $this->chatId = $chatId;
-        $this->messageId = $messageId;
-    }
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int $chatId,
+        /**
+         * The message identifier of the used keyboard.
+         */
+        protected int $messageId,
+    ) {}
 
     public static function fromArray(array $array): DeleteChatReplyMarkup
     {
@@ -41,15 +33,6 @@ class DeleteChatReplyMarkup extends TdFunction
             $array['chat_id'],
             $array['message_id'],
         );
-    }
-
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'message_id' => $this->messageId,
-        ];
     }
 
     public function getChatId(): int
@@ -60,5 +43,14 @@ class DeleteChatReplyMarkup extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
+            'message_id' => $this->messageId,
+        ];
     }
 }

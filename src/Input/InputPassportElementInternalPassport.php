@@ -4,29 +4,24 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Input;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A Telegram Passport element to be saved containing the user's internal passport
+ * A Telegram Passport element to be saved containing the user's internal passport.
  */
 class InputPassportElementInternalPassport extends InputPassportElement
 {
     public const TYPE_NAME = 'inputPassportElementInternalPassport';
 
-    /**
-     * The internal passport to be saved
-     *
-     * @var InputIdentityDocument
-     */
-    protected InputIdentityDocument $internalPassport;
-
-    public function __construct(InputIdentityDocument $internalPassport)
-    {
+    public function __construct(
+        /**
+         * The internal passport to be saved.
+         */
+        protected InputIdentityDocument $internalPassport
+    ) {
         parent::__construct();
-
-        $this->internalPassport = $internalPassport;
     }
 
     public static function fromArray(array $array): InputPassportElementInternalPassport
@@ -36,16 +31,16 @@ class InputPassportElementInternalPassport extends InputPassportElement
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'internal_passport' => $this->internalPassport->typeSerialize(),
-        ];
-    }
-
     public function getInternalPassport(): InputIdentityDocument
     {
         return $this->internalPassport;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'             => static::TYPE_NAME,
+            'internal_passport' => $this->internalPassport->typeSerialize(),
+        ];
     }
 }

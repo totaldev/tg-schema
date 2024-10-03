@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Authorization;
 
 /**
- * The user has been successfully authorized. TDLib is now ready to answer general requests
+ * The user has been successfully authorized. TDLib is now ready to answer general requests.
  */
 class AuthorizationStateReady extends AuthorizationState
 {

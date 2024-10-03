@@ -4,37 +4,30 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Message;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\Audio\Audio;
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * An audio message
+ * An audio message.
  */
 class MessageAudio extends MessageContent
 {
     public const TYPE_NAME = 'messageAudio';
 
-    /**
-     * The audio description
-     *
-     * @var Audio
-     */
-    protected Audio $audio;
-
-    /**
-     * Audio caption
-     *
-     * @var FormattedText
-     */
-    protected FormattedText $caption;
-
-    public function __construct(Audio $audio, FormattedText $caption)
-    {
+    public function __construct(
+        /**
+         * The audio description.
+         */
+        protected Audio         $audio,
+        /**
+         * Audio caption.
+         */
+        protected FormattedText $caption,
+    ) {
         parent::__construct();
-
-        $this->audio = $audio;
-        $this->caption = $caption;
     }
 
     public static function fromArray(array $array): MessageAudio
@@ -45,15 +38,6 @@ class MessageAudio extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'audio' => $this->audio->typeSerialize(),
-            'caption' => $this->caption->typeSerialize(),
-        ];
-    }
-
     public function getAudio(): Audio
     {
         return $this->audio;
@@ -62,5 +46,14 @@ class MessageAudio extends MessageContent
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'   => static::TYPE_NAME,
+            'audio'   => $this->audio->typeSerialize(),
+            'caption' => $this->caption->typeSerialize(),
+        ];
     }
 }

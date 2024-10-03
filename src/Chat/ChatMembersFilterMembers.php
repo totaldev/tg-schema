@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * Returns all chat members, including restricted chat members
+ * Returns all chat members, including restricted chat members.
  */
 class ChatMembersFilterMembers extends ChatMembersFilter
 {

@@ -4,37 +4,28 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Message;
 
 /**
- * A newly created basic group
+ * A newly created basic group.
  */
 class MessageBasicGroupChatCreate extends MessageContent
 {
     public const TYPE_NAME = 'messageBasicGroupChatCreate';
 
-    /**
-     * Title of the basic group
-     *
-     * @var string
-     */
-    protected string $title;
-
-    /**
-     * User identifiers of members in the basic group
-     *
-     * @var int[]
-     */
-    protected array $memberUserIds;
-
-    public function __construct(string $title, array $memberUserIds)
-    {
+    public function __construct(
+        /**
+         * Title of the basic group.
+         */
+        protected string $title,
+        /**
+         * User identifiers of members in the basic group.
+         *
+         * @var int[]
+         */
+        protected array  $memberUserIds,
+    ) {
         parent::__construct();
-
-        $this->title = $title;
-        $this->memberUserIds = $memberUserIds;
     }
 
     public static function fromArray(array $array): MessageBasicGroupChatCreate
@@ -45,13 +36,9 @@ class MessageBasicGroupChatCreate extends MessageContent
         );
     }
 
-    public function typeSerialize(): array
+    public function getMemberUserIds(): array
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            'member_user_ids' => $this->memberUserIds,
-        ];
+        return $this->memberUserIds;
     }
 
     public function getTitle(): string
@@ -59,8 +46,12 @@ class MessageBasicGroupChatCreate extends MessageContent
         return $this->title;
     }
 
-    public function getMemberUserIds(): array
+    public function typeSerialize(): array
     {
-        return $this->memberUserIds;
+        return [
+            '@type'           => static::TYPE_NAME,
+            'title'           => $this->title,
+            'member_user_ids' => $this->memberUserIds,
+        ];
     }
 }

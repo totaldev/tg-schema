@@ -4,37 +4,26 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Chat;
 
 /**
- * The chat title was changed
+ * The chat title was changed.
  */
 class ChatEventTitleChanged extends ChatEventAction
 {
     public const TYPE_NAME = 'chatEventTitleChanged';
 
-    /**
-     * Previous chat title
-     *
-     * @var string
-     */
-    protected string $oldTitle;
-
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $newTitle;
-
-    public function __construct(string $oldTitle, string $newTitle)
-    {
+    public function __construct(
+        /**
+         * Previous chat title.
+         */
+        protected string $oldTitle,
+        /**
+         * New chat title.
+         */
+        protected string $newTitle,
+    ) {
         parent::__construct();
-
-        $this->oldTitle = $oldTitle;
-        $this->newTitle = $newTitle;
     }
 
     public static function fromArray(array $array): ChatEventTitleChanged
@@ -45,13 +34,9 @@ class ChatEventTitleChanged extends ChatEventAction
         );
     }
 
-    public function typeSerialize(): array
+    public function getNewTitle(): string
     {
-        return [
-            '@type' => static::TYPE_NAME,
-            'old_title' => $this->oldTitle,
-            'new_title' => $this->newTitle,
-        ];
+        return $this->newTitle;
     }
 
     public function getOldTitle(): string
@@ -59,8 +44,12 @@ class ChatEventTitleChanged extends ChatEventAction
         return $this->oldTitle;
     }
 
-    public function getNewTitle(): string
+    public function typeSerialize(): array
     {
-        return $this->newTitle;
+        return [
+            '@type'     => static::TYPE_NAME,
+            'old_title' => $this->oldTitle,
+            'new_title' => $this->newTitle,
+        ];
     }
 }

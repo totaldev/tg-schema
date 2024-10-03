@@ -4,44 +4,31 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Game;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains one row of the game high score table
+ * Contains one row of the game high score table.
  */
 class GameHighScore extends TdObject
 {
     public const TYPE_NAME = 'gameHighScore';
 
-    /**
-     * Position in the high score table
-     *
-     * @var int
-     */
-    protected int $position;
-
-    /**
-     * User identifier
-     *
-     * @var int
-     */
-    protected int $userId;
-
-    /**
-     * User score
-     *
-     * @var int
-     */
-    protected int $score;
-
-    public function __construct(int $position, int $userId, int $score)
-    {
-        $this->position = $position;
-        $this->userId = $userId;
-        $this->score = $score;
-    }
+    public function __construct(
+        /**
+         * Position in the high score table.
+         */
+        protected int $position,
+        /**
+         * User identifier.
+         */
+        protected int $userId,
+        /**
+         * User score.
+         */
+        protected int $score,
+    ) {}
 
     public static function fromArray(array $array): GameHighScore
     {
@@ -52,19 +39,14 @@ class GameHighScore extends TdObject
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'position' => $this->position,
-            'user_id' => $this->userId,
-            'score' => $this->score,
-        ];
-    }
-
     public function getPosition(): int
     {
         return $this->position;
+    }
+
+    public function getScore(): int
+    {
+        return $this->score;
     }
 
     public function getUserId(): int
@@ -72,8 +54,13 @@ class GameHighScore extends TdObject
         return $this->userId;
     }
 
-    public function getScore(): int
+    public function typeSerialize(): array
     {
-        return $this->score;
+        return [
+            '@type'    => static::TYPE_NAME,
+            'position' => $this->position,
+            'user_id'  => $this->userId,
+            'score'    => $this->score,
+        ];
     }
 }

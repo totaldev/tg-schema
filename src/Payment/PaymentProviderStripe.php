@@ -4,46 +4,37 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TdSchema;
+namespace Totaldev\TgSchema\Payment;
 
 /**
  * Stripe payment provider.
  */
-class PaymentsProviderStripe extends TdObject
+class PaymentProviderStripe extends PaymentProvider
 {
-    public const TYPE_NAME = 'paymentsProviderStripe';
+    public const TYPE_NAME = 'paymentProviderStripe';
 
-    /**
-     * Stripe API publishable key.
-     */
-    protected string $publishableKey;
-
-    /**
-     * True, if the user country must be provided.
-     */
-    protected bool $needCountry;
-
-    /**
-     * True, if the user ZIP/postal code must be provided.
-     */
-    protected bool $needPostalCode;
-
-    /**
-     * True, if the cardholder name must be provided.
-     */
-    protected bool $needCardholderName;
-
-    public function __construct(string $publishableKey, bool $needCountry, bool $needPostalCode, bool $needCardholderName)
-    {
-        $this->publishableKey     = $publishableKey;
-        $this->needCountry        = $needCountry;
-        $this->needPostalCode     = $needPostalCode;
-        $this->needCardholderName = $needCardholderName;
+    public function __construct(
+        /**
+         * Stripe API publishable key.
+         */
+        protected string $publishableKey,
+        /**
+         * True, if the user country must be provided.
+         */
+        protected bool   $needCountry,
+        /**
+         * True, if the user ZIP/postal code must be provided.
+         */
+        protected bool   $needPostalCode,
+        /**
+         * True, if the cardholder name must be provided.
+         */
+        protected bool   $needCardholderName,
+    ) {
+        parent::__construct();
     }
 
-    public static function fromArray(array $array): PaymentsProviderStripe
+    public static function fromArray(array $array): PaymentProviderStripe
     {
         return new static(
             $array['publishable_key'],
@@ -53,20 +44,9 @@ class PaymentsProviderStripe extends TdObject
         );
     }
 
-    public function typeSerialize(): array
+    public function getNeedCardholderName(): bool
     {
-        return [
-            '@type'                => static::TYPE_NAME,
-            'publishable_key'      => $this->publishableKey,
-            'need_country'         => $this->needCountry,
-            'need_postal_code'     => $this->needPostalCode,
-            'need_cardholder_name' => $this->needCardholderName,
-        ];
-    }
-
-    public function getPublishableKey(): string
-    {
-        return $this->publishableKey;
+        return $this->needCardholderName;
     }
 
     public function getNeedCountry(): bool
@@ -79,8 +59,19 @@ class PaymentsProviderStripe extends TdObject
         return $this->needPostalCode;
     }
 
-    public function getNeedCardholderName(): bool
+    public function getPublishableKey(): string
     {
-        return $this->needCardholderName;
+        return $this->publishableKey;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'                => static::TYPE_NAME,
+            'publishable_key'      => $this->publishableKey,
+            'need_country'         => $this->needCountry,
+            'need_postal_code'     => $this->needPostalCode,
+            'need_cardholder_name' => $this->needCardholderName,
+        ];
     }
 }

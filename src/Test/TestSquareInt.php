@@ -4,28 +4,23 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
+namespace Totaldev\TgSchema\Test;
 
-namespace Totaldev\TgSchema;
+use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
+ * Returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
  */
 class TestSquareInt extends TdFunction
 {
     public const TYPE_NAME = 'testSquareInt';
 
-    /**
-     * Number to square
-     *
-     * @var int
-     */
-    protected int $x;
-
-    public function __construct(int $x)
-    {
-        $this->x = $x;
-    }
+    public function __construct(
+        /**
+         * Number to square.
+         */
+        protected int $x
+    ) {}
 
     public static function fromArray(array $array): TestSquareInt
     {
@@ -34,16 +29,16 @@ class TestSquareInt extends TdFunction
         );
     }
 
+    public function getX(): int
+    {
+        return $this->x;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
-            'x' => $this->x,
+            'x'     => $this->x,
         ];
-    }
-
-    public function getX(): int
-    {
-        return $this->x;
     }
 }

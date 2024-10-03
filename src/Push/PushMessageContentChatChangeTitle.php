@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Push;
 
 /**
- * A chat title was edited
+ * A chat title was edited.
  */
 class PushMessageContentChatChangeTitle extends PushMessageContent
 {
     public const TYPE_NAME = 'pushMessageContentChatChangeTitle';
 
-    /**
-     * New chat title
-     *
-     * @var string
-     */
-    protected string $title;
-
-    public function __construct(string $title)
-    {
+    public function __construct(
+        /**
+         * New chat title.
+         */
+        protected string $title
+    ) {
         parent::__construct();
-
-        $this->title = $title;
     }
 
     public static function fromArray(array $array): PushMessageContentChatChangeTitle
@@ -36,16 +29,16 @@ class PushMessageContentChatChangeTitle extends PushMessageContent
         );
     }
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
         ];
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }

@@ -4,12 +4,10 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Search;
 
 /**
- * Returns only video note messages
+ * Returns only video note messages.
  */
 class SearchMessagesFilterVideoNote extends SearchMessagesFilter
 {

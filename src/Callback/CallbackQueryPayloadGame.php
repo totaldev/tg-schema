@@ -4,29 +4,22 @@
  * This phpFile is auto-generated.
  */
 
-declare(strict_types=1);
-
-namespace Totaldev\TgSchema;
+namespace Totaldev\TgSchema\Callback;
 
 /**
- * The payload for a game callback button
+ * The payload for a game callback button.
  */
 class CallbackQueryPayloadGame extends CallbackQueryPayload
 {
     public const TYPE_NAME = 'callbackQueryPayloadGame';
 
-    /**
-     * A short name of the game that was attached to the callback button
-     *
-     * @var string
-     */
-    protected string $gameShortName;
-
-    public function __construct(string $gameShortName)
-    {
+    public function __construct(
+        /**
+         * A short name of the game that was attached to the callback button.
+         */
+        protected string $gameShortName
+    ) {
         parent::__construct();
-
-        $this->gameShortName = $gameShortName;
     }
 
     public static function fromArray(array $array): CallbackQueryPayloadGame
@@ -36,16 +29,16 @@ class CallbackQueryPayloadGame extends CallbackQueryPayload
         );
     }
 
-    public function typeSerialize(): array
-    {
-        return [
-            '@type' => static::TYPE_NAME,
-            'game_short_name' => $this->gameShortName,
-        ];
-    }
-
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'           => static::TYPE_NAME,
+            'game_short_name' => $this->gameShortName,
+        ];
     }
 }
