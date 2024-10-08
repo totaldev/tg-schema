@@ -94,11 +94,11 @@ class SendMessage extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'message_thread_id'     => $this->messageThreadId,
-            'reply_to'              => $this->replyTo->typeSerialize(),
-            'options'               => $this->options->typeSerialize(),
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
+            'message_thread_id'     => $this->messageThreadId,
+            'reply_to'              => $this->replyTo?->typeSerialize(),
+            'options'               => $this->options?->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup?->typeSerialize(),
         ];
     }
 }
