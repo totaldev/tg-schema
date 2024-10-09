@@ -47,7 +47,7 @@ class PhoneNumberAuthenticationSettings extends TdObject
          *
          * @var string[]
          */
-        protected array                          $authenticationTokens,
+        protected array                          $authenticationTokens = [],
     ) {}
 
     public static function fromArray(array $array): PhoneNumberAuthenticationSettings
