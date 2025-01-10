@@ -8,7 +8,6 @@ namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\Phone\PhoneNumberAuthenticationSettings;
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is
@@ -23,7 +22,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
         /**
          * The phone number of the user, in international format.
          */
-        protected string                            $phoneNumber,
+        protected string                             $phoneNumber,
         /**
          * Settings for the authentication of the user's phone number; pass null to use default settings.
          */
@@ -34,7 +33,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
     {
         return new static(
             $array['phone_number'],
-            TdSchemaRegistry::fromArray($array['settings']),
+            PhoneNumberAuthenticationSettings::fromArray($array['settings'] ?? []),
         );
     }
 
@@ -53,7 +52,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'phone_number' => $this->phoneNumber,
-            'settings'     => $this->settings->typeSerialize(),
+            'settings'     => $this->settings?->typeSerialize(),
         ];
     }
 }
