@@ -23,7 +23,7 @@ class MessageInviteVideoChatParticipants extends MessageContent
          *
          * @var int[]
          */
-        protected array $userIds,
+        protected array $userIds
     ) {
         parent::__construct();
     }

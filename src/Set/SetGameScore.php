@@ -39,7 +39,7 @@ class SetGameScore extends TdFunction
         /**
          * Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
          */
-        protected bool $force,
+        protected bool $force
     ) {}
 
     public static function fromArray(array $array): SetGameScore

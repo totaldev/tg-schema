@@ -22,7 +22,7 @@ class UpdateChatReplyMarkup extends Update
         /**
          * Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat.
          */
-        protected int $replyMarkupMessageId,
+        protected int $replyMarkupMessageId
     ) {
         parent::__construct();
     }

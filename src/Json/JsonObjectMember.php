@@ -24,7 +24,7 @@ class JsonObjectMember extends TdObject
         /**
          * Member's value.
          */
-        protected JsonValue $value,
+        protected JsonValue $value
     ) {}
 
     public static function fromArray(array $array): JsonObjectMember

@@ -24,7 +24,7 @@ class UpdateChatPermissions extends Update
         /**
          * The new chat permissions.
          */
-        protected ChatPermissions $permissions,
+        protected ChatPermissions $permissions
     ) {
         parent::__construct();
     }

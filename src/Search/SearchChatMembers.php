@@ -34,7 +34,7 @@ class SearchChatMembers extends TdFunction
         /**
          * The type of users to search for; pass null to search among all chat members.
          */
-        protected ChatMembersFilter $filter,
+        protected ChatMembersFilter $filter
     ) {}
 
     public static function fromArray(array $array): SearchChatMembers

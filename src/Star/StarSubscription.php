@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains information about subscription to a channel chat paid in Telegram Stars.
+ * Contains information about subscription to a channel chat, a bot, or a business account that was paid in Telegram Stars.
  */
 class StarSubscription extends TdObject
 {
@@ -22,17 +22,13 @@ class StarSubscription extends TdObject
          */
         protected string                  $id,
         /**
-         * Identifier of the channel chat that is subscribed.
+         * Identifier of the chat that is subscribed.
          */
         protected int                     $chatId,
         /**
          * Point in time (Unix timestamp) when the subscription will expire or expired.
          */
         protected int                     $expirationDate,
-        /**
-         * True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again.
-         */
-        protected bool                    $canReuse,
         /**
          * True, if the subscription was canceled.
          */
@@ -42,13 +38,13 @@ class StarSubscription extends TdObject
          */
         protected bool                    $isExpiring,
         /**
-         * The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore.
-         */
-        protected string                  $inviteLink,
-        /**
          * The subscription plan.
          */
         protected StarSubscriptionPricing $pricing,
+        /**
+         * Type of the subscription.
+         */
+        protected StarSubscriptionType    $type,
     ) {}
 
     public static function fromArray(array $array): StarSubscription
@@ -57,17 +53,11 @@ class StarSubscription extends TdObject
             $array['id'],
             $array['chat_id'],
             $array['expiration_date'],
-            $array['can_reuse'],
             $array['is_canceled'],
             $array['is_expiring'],
-            $array['invite_link'],
             TdSchemaRegistry::fromArray($array['pricing']),
+            TdSchemaRegistry::fromArray($array['type']),
         );
-    }
-
-    public function getCanReuse(): bool
-    {
-        return $this->canReuse;
     }
 
     public function getChatId(): int
@@ -85,11 +75,6 @@ class StarSubscription extends TdObject
         return $this->id;
     }
 
-    public function getInviteLink(): string
-    {
-        return $this->inviteLink;
-    }
-
     public function getIsCanceled(): bool
     {
         return $this->isCanceled;
@@ -105,6 +90,11 @@ class StarSubscription extends TdObject
         return $this->pricing;
     }
 
+    public function getType(): StarSubscriptionType
+    {
+        return $this->type;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -112,11 +102,10 @@ class StarSubscription extends TdObject
             'id'              => $this->id,
             'chat_id'         => $this->chatId,
             'expiration_date' => $this->expirationDate,
-            'can_reuse'       => $this->canReuse,
             'is_canceled'     => $this->isCanceled,
             'is_expiring'     => $this->isExpiring,
-            'invite_link'     => $this->inviteLink,
             'pricing'         => $this->pricing->typeSerialize(),
+            'type'            => $this->type->typeSerialize(),
         ];
     }
 }

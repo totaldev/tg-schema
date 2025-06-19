@@ -17,7 +17,7 @@ class ChatAdministratorRights extends TdObject
 
     public function __construct(
         /**
-         * True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only.
+         * True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only.
          */
         protected bool $canManageChat,
         /**
@@ -25,7 +25,7 @@ class ChatAdministratorRights extends TdObject
          */
         protected bool $canChangeInfo,
         /**
-         * True, if the administrator can create channel posts or view channel statistics; applicable to channels only.
+         * True, if the administrator can create channel posts, answer to channel direct messages, or view channel statistics; applicable to channels only.
          */
         protected bool $canPostMessages,
         /**

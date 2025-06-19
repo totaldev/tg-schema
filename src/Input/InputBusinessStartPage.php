@@ -28,7 +28,7 @@ class InputBusinessStartPage extends TdObject
         /**
          * Greeting sticker of the start page; pass null if none. The sticker must belong to a sticker set and must not be a custom emoji.
          */
-        protected InputFile $sticker,
+        protected InputFile $sticker
     ) {}
 
     public static function fromArray(array $array): InputBusinessStartPage

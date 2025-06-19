@@ -20,27 +20,27 @@ class StarSubscriptions extends TdObject
         /**
          * The amount of owned Telegram Stars.
          */
-        protected int    $starCount,
+        protected StarAmount $starAmount,
         /**
-         * List of subbscriptions for Telegram Stars.
+         * List of subscriptions for Telegram Stars.
          *
          * @var StarSubscription[]
          */
-        protected array  $subscriptions,
+        protected array      $subscriptions,
         /**
          * The number of Telegram Stars required to buy to extend subscriptions expiring soon.
          */
-        protected int    $requiredStarCount,
+        protected int        $requiredStarCount,
         /**
          * The offset for the next request. If empty, then there are no more results.
          */
-        protected string $nextOffset,
+        protected string     $nextOffset,
     ) {}
 
     public static function fromArray(array $array): StarSubscriptions
     {
         return new static(
-            $array['star_count'],
+            TdSchemaRegistry::fromArray($array['star_amount']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['subscriptions']),
             $array['required_star_count'],
             $array['next_offset'],
@@ -57,9 +57,9 @@ class StarSubscriptions extends TdObject
         return $this->requiredStarCount;
     }
 
-    public function getStarCount(): int
+    public function getStarAmount(): StarAmount
     {
-        return $this->starCount;
+        return $this->starAmount;
     }
 
     public function getSubscriptions(): array
@@ -71,7 +71,7 @@ class StarSubscriptions extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'star_count'          => $this->starCount,
+            'star_amount'         => $this->starAmount->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->subscriptions),
             'required_star_count' => $this->requiredStarCount,
             'next_offset'         => $this->nextOffset,

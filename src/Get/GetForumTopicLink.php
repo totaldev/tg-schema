@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns an HTTPS link to a topic in a forum chat. This is an offline request.
+ * Returns an HTTPS link to a topic in a forum chat. This is an offline method.
  */
 class GetForumTopicLink extends TdFunction
 {
@@ -23,7 +23,7 @@ class GetForumTopicLink extends TdFunction
         /**
          * Message thread identifier of the forum topic.
          */
-        protected int $messageThreadId,
+        protected int $messageThreadId
     ) {}
 
     public static function fromArray(array $array): GetForumTopicLink

@@ -31,7 +31,7 @@ class ImportMessages extends TdFunction
          *
          * @var InputFile[]
          */
-        protected array     $attachedFiles,
+        protected array     $attachedFiles
     ) {}
 
     public static function fromArray(array $array): ImportMessages

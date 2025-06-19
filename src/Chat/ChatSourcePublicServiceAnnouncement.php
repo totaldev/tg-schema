@@ -21,7 +21,7 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
         /**
          * The text of the announcement.
          */
-        protected string $text,
+        protected string $text
     ) {
         parent::__construct();
     }

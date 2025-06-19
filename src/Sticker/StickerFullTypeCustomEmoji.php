@@ -21,7 +21,7 @@ class StickerFullTypeCustomEmoji extends StickerFullType
         /**
          * True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places.
          */
-        protected bool $needsRepainting,
+        protected bool $needsRepainting
     ) {
         parent::__construct();
     }

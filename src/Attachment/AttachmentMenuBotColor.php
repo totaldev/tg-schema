@@ -17,13 +17,13 @@ class AttachmentMenuBotColor extends TdObject
 
     public function __construct(
         /**
-         * Color in the RGB24 format for light themes.
+         * Color in the RGB format for light themes.
          */
         protected int $lightColor,
         /**
-         * Color in the RGB24 format for dark themes.
+         * Color in the RGB format for dark themes.
          */
-        protected int $darkColor,
+        protected int $darkColor
     ) {}
 
     public static function fromArray(array $array): AttachmentMenuBotColor

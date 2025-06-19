@@ -24,7 +24,7 @@ class UpdateChatPosition extends Update
         /**
          * New chat position. If new order is 0, then the chat needs to be removed from the list.
          */
-        protected ChatPosition $position,
+        protected ChatPosition $position
     ) {
         parent::__construct();
     }

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Thumbnail\Thumbnail;
 
 /**
- * Describes a video file sent in a story.
+ * Describes a video file posted as a story.
  */
 class StoryVideo extends TdObject
 {
@@ -49,7 +49,7 @@ class StoryVideo extends TdObject
          */
         protected ?Thumbnail     $thumbnail,
         /**
-         * Size of file prefix, which is supposed to be preloaded, in bytes.
+         * Size of file prefix, which is expected to be preloaded, in bytes.
          */
         protected int            $preloadPrefixSize,
         /**

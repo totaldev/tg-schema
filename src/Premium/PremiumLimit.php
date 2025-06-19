@@ -28,7 +28,7 @@ class PremiumLimit extends TdObject
         /**
          * Value of the limit for Premium users.
          */
-        protected int              $premiumValue,
+        protected int              $premiumValue
     ) {}
 
     public static function fromArray(array $array): PremiumLimit

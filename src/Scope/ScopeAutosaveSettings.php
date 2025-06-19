@@ -27,7 +27,7 @@ class ScopeAutosaveSettings extends TdObject
         /**
          * The maximum size of a video file to be autosaved, in bytes; 512 KB - 4000 MB.
          */
-        protected int  $maxVideoFileSize,
+        protected int  $maxVideoFileSize
     ) {}
 
     public static function fromArray(array $array): ScopeAutosaveSettings

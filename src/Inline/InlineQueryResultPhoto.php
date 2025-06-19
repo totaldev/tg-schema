@@ -32,7 +32,7 @@ class InlineQueryResultPhoto extends InlineQueryResult
         /**
          * A short description of the result, if known.
          */
-        protected string $description,
+        protected string $description
     ) {
         parent::__construct();
     }

@@ -21,7 +21,7 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
         /**
          * If not 0, a user identifier, which default setting was automatically applied.
          */
-        protected int $fromUserId,
+        protected int $fromUserId
     ) {
         parent::__construct();
     }

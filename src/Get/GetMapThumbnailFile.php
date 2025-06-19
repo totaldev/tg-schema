@@ -41,7 +41,7 @@ class GetMapThumbnailFile extends TdFunction
         /**
          * Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown.
          */
-        protected int      $chatId,
+        protected int      $chatId
     ) {}
 
     public static function fromArray(array $array): GetMapThumbnailFile

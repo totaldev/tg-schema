@@ -27,7 +27,7 @@ class PaidReactor extends TdObject
          */
         protected int            $starCount,
         /**
-         * True, if the reactor is one of the most active reactors; can be false if the reactor is the current user.
+         * True, if the reactor is one of the most active reactors; may be false if the reactor is the current user.
          */
         protected bool           $isTop,
         /**
@@ -37,7 +37,7 @@ class PaidReactor extends TdObject
         /**
          * True, if the reactor is anonymous.
          */
-        protected bool           $isAnonymous,
+        protected bool           $isAnonymous
     ) {}
 
     public static function fromArray(array $array): PaidReactor

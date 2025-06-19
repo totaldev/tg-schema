@@ -21,7 +21,7 @@ class UpdateChatUnreadReactionCount extends Update
         /**
          * The number of messages with unread reactions left in the chat.
          */
-        protected int $unreadReactionCount,
+        protected int $unreadReactionCount
     ) {
         parent::__construct();
     }

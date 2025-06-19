@@ -25,7 +25,7 @@ class UpdateFileDownloads extends Update
         /**
          * Total downloaded size of files in the file download list, in bytes.
          */
-        protected int $downloadedSize,
+        protected int $downloadedSize
     ) {
         parent::__construct();
     }

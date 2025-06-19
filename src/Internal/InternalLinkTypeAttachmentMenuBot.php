@@ -33,7 +33,7 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
         /**
          * URL to be passed to openWebApp.
          */
-        protected string     $url,
+        protected string     $url
     ) {
         parent::__construct();
     }

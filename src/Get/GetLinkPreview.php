@@ -26,7 +26,7 @@ class GetLinkPreview extends TdFunction
         /**
          * Options to be used for generation of the link preview; pass null to use default link preview options.
          */
-        protected LinkPreviewOptions $linkPreviewOptions,
+        protected LinkPreviewOptions $linkPreviewOptions
     ) {}
 
     public static function fromArray(array $array): GetLinkPreview

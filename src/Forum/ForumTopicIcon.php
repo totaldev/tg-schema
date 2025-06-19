@@ -23,7 +23,7 @@ class ForumTopicIcon extends TdObject
         /**
          * Unique identifier of the custom emoji shown on the topic icon; 0 if none.
          */
-        protected int $customEmojiId,
+        protected int $customEmojiId
     ) {}
 
     public static function fromArray(array $array): ForumTopicIcon

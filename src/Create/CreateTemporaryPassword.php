@@ -23,7 +23,7 @@ class CreateTemporaryPassword extends TdFunction
         /**
          * Time during which the temporary password will be valid, in seconds; must be between 60 and 86400.
          */
-        protected int    $validFor,
+        protected int    $validFor
     ) {}
 
     public static function fromArray(array $array): CreateTemporaryPassword

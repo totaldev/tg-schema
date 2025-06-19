@@ -23,7 +23,7 @@ class ToggleChatIsTranslatable extends TdFunction
         /**
          * New value of is_translatable.
          */
-        protected bool $isTranslatable,
+        protected bool $isTranslatable
     ) {}
 
     public static function fromArray(array $array): ToggleChatIsTranslatable

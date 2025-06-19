@@ -24,7 +24,7 @@ class PageBlockPreformatted extends PageBlock
         /**
          * Programming language for which the text needs to be formatted.
          */
-        protected string   $language,
+        protected string   $language
     ) {
         parent::__construct();
     }

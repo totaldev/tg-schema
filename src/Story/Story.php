@@ -21,25 +21,25 @@ class Story extends TdObject
 
     public function __construct(
         /**
-         * Unique story identifier among stories of the given sender.
+         * Unique story identifier among stories posted by the given chat.
          */
         protected int                   $id,
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int                   $senderChatId,
+        protected int                   $posterChatId,
         /**
-         * Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id.
+         * Identifier of the user or chat that posted the story; may be null if the story is posted on behalf of the poster_chat_id.
          */
-        protected ?MessageSender        $senderId,
+        protected ?MessageSender        $posterId,
         /**
          * Point in time (Unix timestamp) when the story was published.
          */
         protected int                   $date,
         /**
-         * True, if the story is being sent by the current user.
+         * True, if the story is being posted by the current user.
          */
-        protected bool                  $isBeingSent,
+        protected bool                  $isBeingPosted,
         /**
          * True, if the story is being edited by the current user.
          */
@@ -49,7 +49,7 @@ class Story extends TdObject
          */
         protected bool                  $isEdited,
         /**
-         * True, if the story is saved in the sender's profile and will be available there after expiration.
+         * True, if the story is saved in the profile of the chat that posted it and will be available there after expiration.
          */
         protected bool                  $isPostedToChatPage,
         /**
@@ -69,7 +69,7 @@ class Story extends TdObject
          */
         protected bool                  $canBeForwarded,
         /**
-         * True, if the story can be replied in the chat with the story sender.
+         * True, if the story can be replied in the chat with the user that posted the story.
          */
         protected bool                  $canBeReplied,
         /**
@@ -124,10 +124,10 @@ class Story extends TdObject
     {
         return new static(
             $array['id'],
-            $array['sender_chat_id'],
-            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
+            $array['poster_chat_id'],
+            isset($array['poster_id']) ? TdSchemaRegistry::fromArray($array['poster_id']) : null,
             $array['date'],
-            $array['is_being_sent'],
+            $array['is_being_posted'],
             $array['is_being_edited'],
             $array['is_edited'],
             $array['is_posted_to_chat_page'],
@@ -230,9 +230,9 @@ class Story extends TdObject
         return $this->isBeingEdited;
     }
 
-    public function getIsBeingSent(): bool
+    public function getIsBeingPosted(): bool
     {
-        return $this->isBeingSent;
+        return $this->isBeingPosted;
     }
 
     public function getIsEdited(): bool
@@ -250,6 +250,16 @@ class Story extends TdObject
         return $this->isVisibleOnlyForSelf;
     }
 
+    public function getPosterChatId(): int
+    {
+        return $this->posterChatId;
+    }
+
+    public function getPosterId(): ?MessageSender
+    {
+        return $this->posterId;
+    }
+
     public function getPrivacySettings(): StoryPrivacySettings
     {
         return $this->privacySettings;
@@ -260,25 +270,15 @@ class Story extends TdObject
         return $this->repostInfo;
     }
 
-    public function getSenderChatId(): int
-    {
-        return $this->senderChatId;
-    }
-
-    public function getSenderId(): ?MessageSender
-    {
-        return $this->senderId;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type'                             => static::TYPE_NAME,
             'id'                                => $this->id,
-            'sender_chat_id'                    => $this->senderChatId,
-            'sender_id'                         => (isset($this->senderId) ? $this->senderId : null),
+            'poster_chat_id'                    => $this->posterChatId,
+            'poster_id'                         => (isset($this->posterId) ? $this->posterId : null),
             'date'                              => $this->date,
-            'is_being_sent'                     => $this->isBeingSent,
+            'is_being_posted'                   => $this->isBeingPosted,
             'is_being_edited'                   => $this->isBeingEdited,
             'is_edited'                         => $this->isEdited,
             'is_posted_to_chat_page'            => $this->isPostedToChatPage,

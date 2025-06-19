@@ -21,7 +21,7 @@ class ChatTypeSecret extends ChatType
         /**
          * User identifier of the other user in the secret chat.
          */
-        protected int $userId,
+        protected int $userId
     ) {
         parent::__construct();
     }

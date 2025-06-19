@@ -32,7 +32,7 @@ class PageBlockVideo extends PageBlock
         /**
          * True, if the video must be looped.
          */
-        protected bool             $isLooped,
+        protected bool             $isLooped
     ) {
         parent::__construct();
     }

@@ -23,7 +23,7 @@ class SearchUserByPhoneNumber extends TdFunction
         /**
          * Pass true to get only locally available information without sending network requests.
          */
-        protected bool   $onlyLocal,
+        protected bool   $onlyLocal
     ) {}
 
     public static function fromArray(array $array): SearchUserByPhoneNumber

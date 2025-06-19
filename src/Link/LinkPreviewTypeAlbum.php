@@ -25,7 +25,7 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
         /**
          * Album caption.
          */
-        protected string $caption,
+        protected string $caption
     ) {
         parent::__construct();
     }

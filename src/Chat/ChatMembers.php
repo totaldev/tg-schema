@@ -26,7 +26,7 @@ class ChatMembers extends TdObject
          *
          * @var ChatMember[]
          */
-        protected array $members,
+        protected array $members
     ) {}
 
     public static function fromArray(array $array): ChatMembers

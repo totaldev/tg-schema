@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Toggles whether a group call participant hand is rased.
+ * Toggles whether a group call participant hand is rased; for video chats only.
  */
 class ToggleGroupCallParticipantIsHandRaised extends TdFunction
 {
@@ -27,9 +27,9 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
          */
         protected MessageSender $participantId,
         /**
-         * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand.
+         * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand.
          */
-        protected bool          $isHandRaised,
+        protected bool          $isHandRaised
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsHandRaised

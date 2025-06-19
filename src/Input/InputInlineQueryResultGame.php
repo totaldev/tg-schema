@@ -28,7 +28,7 @@ class InputInlineQueryResultGame extends InputInlineQueryResult
         /**
          * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
          */
-        protected ReplyMarkup $replyMarkup,
+        protected ReplyMarkup $replyMarkup
     ) {
         parent::__construct();
     }

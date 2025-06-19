@@ -25,7 +25,7 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
         /**
          * Address of the location; pass null if unknown.
          */
-        protected LocationAddress $address,
+        protected LocationAddress $address
     ) {
         parent::__construct();
     }

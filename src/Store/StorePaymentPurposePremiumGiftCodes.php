@@ -6,8 +6,11 @@
 
 namespace Totaldev\TgSchema\Store;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
- * The user creating Telegram Premium gift codes for other users.
+ * The user boosting a chat by creating Telegram Premium gift codes for other users.
  */
 class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
 {
@@ -15,23 +18,27 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
 
     public function __construct(
         /**
-         * Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none.
+         * Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user.
          */
-        protected int    $boostedChatId,
+        protected int           $boostedChatId,
         /**
          * ISO 4217 currency code of the payment currency.
          */
-        protected string $currency,
+        protected string        $currency,
         /**
          * Paid amount, in the smallest units of the currency.
          */
-        protected int    $amount,
+        protected int           $amount,
         /**
          * Identifiers of the users which can activate the gift codes.
          *
          * @var int[]
          */
-        protected array  $userIds,
+        protected array         $userIds,
+        /**
+         * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
+         */
+        protected FormattedText $text,
     ) {
         parent::__construct();
     }
@@ -43,6 +50,7 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
             $array['currency'],
             $array['amount'],
             $array['user_ids'],
+            TdSchemaRegistry::fromArray($array['text']),
         );
     }
 
@@ -61,6 +69,11 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
         return $this->currency;
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function getUserIds(): array
     {
         return $this->userIds;
@@ -74,6 +87,7 @@ class StorePaymentPurposePremiumGiftCodes extends StorePaymentPurpose
             'currency'        => $this->currency,
             'amount'          => $this->amount,
             'user_ids'        => $this->userIds,
+            'text'            => $this->text->typeSerialize(),
         ];
     }
 }

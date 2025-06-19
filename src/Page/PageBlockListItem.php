@@ -26,7 +26,7 @@ class PageBlockListItem extends TdObject
          *
          * @var PageBlock[]
          */
-        protected array  $pageBlocks,
+        protected array  $pageBlocks
     ) {}
 
     public static function fromArray(array $array): PageBlockListItem

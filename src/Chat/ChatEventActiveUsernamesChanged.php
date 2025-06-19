@@ -25,7 +25,7 @@ class ChatEventActiveUsernamesChanged extends ChatEventAction
          *
          * @var string[]
          */
-        protected array $newUsernames,
+        protected array $newUsernames
     ) {
         parent::__construct();
     }

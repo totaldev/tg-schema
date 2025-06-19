@@ -17,19 +17,19 @@ class OpenStory extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the sender of the opened story.
+         * The identifier of the chat that posted the opened story.
          */
-        protected int $storySenderChatId,
+        protected int $storyPosterChatId,
         /**
          * The identifier of the story.
          */
-        protected int $storyId,
+        protected int $storyId
     ) {}
 
     public static function fromArray(array $array): OpenStory
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
         );
     }
@@ -39,16 +39,16 @@ class OpenStory extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
         ];
     }

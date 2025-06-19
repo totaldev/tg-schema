@@ -26,7 +26,7 @@ class SetScopeNotificationSettings extends TdFunction
         /**
          * The new notification settings for the given scope.
          */
-        protected ScopeNotificationSettings $notificationSettings,
+        protected ScopeNotificationSettings $notificationSettings
     ) {}
 
     public static function fromArray(array $array): SetScopeNotificationSettings

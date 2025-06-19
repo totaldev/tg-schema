@@ -24,7 +24,7 @@ class TMeUrl extends TdObject
         /**
          * Type of the URL.
          */
-        protected TMeUrlType $type,
+        protected TMeUrlType $type
     ) {}
 
     public static function fromArray(array $array): TMeUrl

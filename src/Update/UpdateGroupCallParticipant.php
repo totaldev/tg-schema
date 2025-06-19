@@ -19,13 +19,13 @@ class UpdateGroupCallParticipant extends Update
 
     public function __construct(
         /**
-         * Identifier of group call.
+         * Identifier of the group call.
          */
         protected int                  $groupCallId,
         /**
-         * New data about a participant.
+         * New data about the participant.
          */
-        protected GroupCallParticipant $participant,
+        protected GroupCallParticipant $participant
     ) {
         parent::__construct();
     }

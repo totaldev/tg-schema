@@ -24,7 +24,7 @@ class ChatEventMessageEdited extends ChatEventAction
         /**
          * The message after it was edited.
          */
-        protected Message $newMessage,
+        protected Message $newMessage
     ) {
         parent::__construct();
     }

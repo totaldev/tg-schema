@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Start;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Starts recording of an active group call. Requires groupCall.can_be_managed group call flag.
+ * Starts recording of an active group call; for video chats only. Requires groupCall.can_be_managed right.
  */
 class StartGroupCallRecording extends TdFunction
 {
@@ -31,7 +31,7 @@ class StartGroupCallRecording extends TdFunction
         /**
          * Pass true to use portrait orientation for video instead of landscape one.
          */
-        protected bool   $usePortraitOrientation,
+        protected bool   $usePortraitOrientation
     ) {}
 
     public static function fromArray(array $array): StartGroupCallRecording

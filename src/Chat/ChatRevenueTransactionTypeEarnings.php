@@ -21,7 +21,7 @@ class ChatRevenueTransactionTypeEarnings extends ChatRevenueTransactionType
         /**
          * Point in time (Unix timestamp) when the earnings ended.
          */
-        protected int $endDate,
+        protected int $endDate
     ) {
         parent::__construct();
     }

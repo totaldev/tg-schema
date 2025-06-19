@@ -18,6 +18,10 @@ class SearchPublicStoriesByTag extends TdFunction
 
     public function __construct(
         /**
+         * Identifier of the chat that posted the stories to search for; pass 0 to search stories in all chats.
+         */
+        protected int    $storyPosterChatId,
+        /**
          * Hashtag or cashtag to search for.
          */
         protected string $tag,
@@ -28,12 +32,13 @@ class SearchPublicStoriesByTag extends TdFunction
         /**
          * The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchPublicStoriesByTag
     {
         return new static(
+            $array['story_poster_chat_id'],
             $array['tag'],
             $array['offset'],
             $array['limit'],
@@ -50,6 +55,11 @@ class SearchPublicStoriesByTag extends TdFunction
         return $this->offset;
     }
 
+    public function getStoryPosterChatId(): int
+    {
+        return $this->storyPosterChatId;
+    }
+
     public function getTag(): string
     {
         return $this->tag;
@@ -58,10 +68,11 @@ class SearchPublicStoriesByTag extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
-            'tag'    => $this->tag,
-            'offset' => $this->offset,
-            'limit'  => $this->limit,
+            '@type'                => static::TYPE_NAME,
+            'story_poster_chat_id' => $this->storyPosterChatId,
+            'tag'                  => $this->tag,
+            'offset'               => $this->offset,
+            'limit'                => $this->limit,
         ];
     }
 }

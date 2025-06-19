@@ -28,7 +28,7 @@ class ReadFilePart extends TdFunction
         /**
          * Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
          */
-        protected int $count,
+        protected int $count
     ) {}
 
     public static function fromArray(array $array): ReadFilePart

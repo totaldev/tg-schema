@@ -28,7 +28,7 @@ class ChatRevenueTransactionTypeWithdrawal extends ChatRevenueTransactionType
         /**
          * State of the withdrawal.
          */
-        protected RevenueWithdrawalState $state,
+        protected RevenueWithdrawalState $state
     ) {
         parent::__construct();
     }

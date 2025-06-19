@@ -28,7 +28,7 @@ class InlineQueryResultAnimation extends InlineQueryResult
         /**
          * Animation title.
          */
-        protected string    $title,
+        protected string    $title
     ) {
         parent::__construct();
     }

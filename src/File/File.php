@@ -38,7 +38,7 @@ class File extends TdObject
         /**
          * Information about the remote copy of the file.
          */
-        protected RemoteFile $remote,
+        protected RemoteFile $remote
     ) {}
 
     public static function fromArray(array $array): File

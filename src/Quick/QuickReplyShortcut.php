@@ -32,7 +32,7 @@ class QuickReplyShortcut extends TdObject
         /**
          * The total number of messages in the shortcut.
          */
-        protected int               $messageCount,
+        protected int               $messageCount
     ) {}
 
     public static function fromArray(array $array): QuickReplyShortcut

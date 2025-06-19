@@ -19,9 +19,9 @@ class MessageVideoChatScheduled extends MessageContent
          */
         protected int $groupCallId,
         /**
-         * Point in time (Unix timestamp) when the group call is supposed to be started by an administrator.
+         * Point in time (Unix timestamp) when the group call is expected to be started by an administrator.
          */
-        protected int $startDate,
+        protected int $startDate
     ) {
         parent::__construct();
     }

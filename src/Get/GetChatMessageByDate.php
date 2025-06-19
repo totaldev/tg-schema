@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the last message sent in a chat no later than the specified date.
+ * Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist.
  */
 class GetChatMessageByDate extends TdFunction
 {
@@ -23,7 +23,7 @@ class GetChatMessageByDate extends TdFunction
         /**
          * Point in time (Unix timestamp) relative to which to search for messages.
          */
-        protected int $date,
+        protected int $date
     ) {}
 
     public static function fromArray(array $array): GetChatMessageByDate

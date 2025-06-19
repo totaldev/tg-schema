@@ -21,7 +21,7 @@ class ProxyTypeSocks5 extends ProxyType
         /**
          * Password for logging in; may be empty.
          */
-        protected string $password,
+        protected string $password
     ) {
         parent::__construct();
     }

@@ -6,12 +6,13 @@
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\Search\SearchMessagesFilter;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns approximate number of messages of the specified type in the chat.
+ * Returns approximate number of messages of the specified type in the chat or its topic.
  */
 class GetChatMessageCount extends TdFunction
 {
@@ -23,25 +24,25 @@ class GetChatMessageCount extends TdFunction
          */
         protected int                  $chatId,
         /**
+         * Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics.
+         */
+        protected MessageTopic         $topicId,
+        /**
          * Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
-         * If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages.
-         */
-        protected int                  $savedMessagesTopicId,
-        /**
          * Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally.
          */
-        protected bool                 $returnLocal,
+        protected bool                 $returnLocal
     ) {}
 
     public static function fromArray(array $array): GetChatMessageCount
     {
         return new static(
             $array['chat_id'],
+            TdSchemaRegistry::fromArray($array['topic_id']),
             TdSchemaRegistry::fromArray($array['filter']),
-            $array['saved_messages_topic_id'],
             $array['return_local'],
         );
     }
@@ -61,19 +62,19 @@ class GetChatMessageCount extends TdFunction
         return $this->returnLocal;
     }
 
-    public function getSavedMessagesTopicId(): int
+    public function getTopicId(): MessageTopic
     {
-        return $this->savedMessagesTopicId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                   => static::TYPE_NAME,
-            'chat_id'                 => $this->chatId,
-            'filter'                  => $this->filter->typeSerialize(),
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
-            'return_local'            => $this->returnLocal,
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'topic_id'     => $this->topicId->typeSerialize(),
+            'filter'       => $this->filter->typeSerialize(),
+            'return_local' => $this->returnLocal,
         ];
     }
 }

@@ -23,7 +23,7 @@ class SetChatClientData extends TdFunction
         /**
          * New value of client_data.
          */
-        protected string $clientData,
+        protected string $clientData
     ) {}
 
     public static function fromArray(array $array): SetChatClientData

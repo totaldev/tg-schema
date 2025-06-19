@@ -27,7 +27,7 @@ class ToggleForumTopicIsClosed extends TdFunction
         /**
          * Pass true to close the topic; pass false to reopen it.
          */
-        protected bool $isClosed,
+        protected bool $isClosed
     ) {}
 
     public static function fromArray(array $array): ToggleForumTopicIsClosed

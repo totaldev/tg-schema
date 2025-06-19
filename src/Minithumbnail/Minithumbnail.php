@@ -27,7 +27,7 @@ class Minithumbnail extends TdObject
         /**
          * The thumbnail in JPEG format.
          */
-        protected string $data,
+        protected string $data
     ) {}
 
     public static function fromArray(array $array): Minithumbnail

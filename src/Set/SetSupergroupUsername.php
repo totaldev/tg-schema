@@ -23,7 +23,7 @@ class SetSupergroupUsername extends TdFunction
         /**
          * New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username.
          */
-        protected string $username,
+        protected string $username
     ) {}
 
     public static function fromArray(array $array): SetSupergroupUsername

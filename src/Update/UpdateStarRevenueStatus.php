@@ -26,7 +26,7 @@ class UpdateStarRevenueStatus extends Update
         /**
          * New Telegram Star revenue status.
          */
-        protected StarRevenueStatus $status,
+        protected StarRevenueStatus $status
     ) {
         parent::__construct();
     }

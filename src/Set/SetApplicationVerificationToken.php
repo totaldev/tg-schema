@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Application verification has been completed. Can be called before authorization.
+ * Application or reCAPTCHA verification has been completed. Can be called before authorization.
  */
 class SetApplicationVerificationToken extends TdFunction
 {
@@ -17,13 +17,13 @@ class SetApplicationVerificationToken extends TdFunction
 
     public function __construct(
         /**
-         * Unique identifier for the verification process as received from updateApplicationVerificationRequired.
+         * Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired.
          */
         protected int    $verificationId,
         /**
-         * Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request.
+         * Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request.
          */
-        protected string $token,
+        protected string $token
     ) {}
 
     public static function fromArray(array $array): SetApplicationVerificationToken

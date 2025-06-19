@@ -21,7 +21,7 @@ class UpdateChatViewAsTopics extends Update
         /**
          * New value of view_as_topics.
          */
-        protected bool $viewAsTopics,
+        protected bool $viewAsTopics
     ) {
         parent::__construct();
     }

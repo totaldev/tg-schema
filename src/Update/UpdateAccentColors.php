@@ -24,11 +24,11 @@ class UpdateAccentColors extends Update
          */
         protected array $colors,
         /**
-         * The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order.
+         * The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order.
          *
          * @var int[]
          */
-        protected array $availableAccentColorIds,
+        protected array $availableAccentColorIds
     ) {
         parent::__construct();
     }

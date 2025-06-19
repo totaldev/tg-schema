@@ -32,7 +32,7 @@ class InputMessagePaidMedia extends InputMessageContent
          */
         protected FormattedText $caption,
         /**
-         * True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats.
+         * True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats.
          */
         protected bool          $showCaptionAboveMedia,
         /**

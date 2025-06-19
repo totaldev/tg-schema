@@ -29,7 +29,7 @@ class BusinessStartPage extends TdObject
         /**
          * Greeting sticker of the start page; may be null if none.
          */
-        protected ?Sticker $sticker,
+        protected ?Sticker $sticker
     ) {}
 
     public static function fromArray(array $array): BusinessStartPage

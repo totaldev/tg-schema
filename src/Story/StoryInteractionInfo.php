@@ -33,7 +33,7 @@ class StoryInteractionInfo extends TdObject
          *
          * @var int[]
          */
-        protected array $recentViewerUserIds,
+        protected array $recentViewerUserIds
     ) {}
 
     public static function fromArray(array $array): StoryInteractionInfo

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Delete;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Deletes a previously sent story. Can be called only if story.can_be_deleted == true.
+ * Deletes a previously posted story. Can be called only if story.can_be_deleted == true.
  */
 class DeleteStory extends TdFunction
 {
@@ -19,17 +19,17 @@ class DeleteStory extends TdFunction
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int $storySenderChatId,
+        protected int $storyPosterChatId,
         /**
          * Identifier of the story to delete.
          */
-        protected int $storyId,
+        protected int $storyId
     ) {}
 
     public static function fromArray(array $array): DeleteStory
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
         );
     }
@@ -39,16 +39,16 @@ class DeleteStory extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
         ];
     }

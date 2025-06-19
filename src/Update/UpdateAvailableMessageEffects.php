@@ -25,7 +25,7 @@ class UpdateAvailableMessageEffects extends Update
          *
          * @var int[]
          */
-        protected array $stickerEffectIds,
+        protected array $stickerEffectIds
     ) {
         parent::__construct();
     }

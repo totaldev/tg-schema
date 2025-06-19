@@ -37,7 +37,7 @@ class FileDownload extends TdObject
         /**
          * True, if downloading of the file is paused.
          */
-        protected bool    $isPaused,
+        protected bool    $isPaused
     ) {}
 
     public static function fromArray(array $array): FileDownload

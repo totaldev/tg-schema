@@ -21,7 +21,7 @@ class UpdateNewCallSignalingData extends Update
         /**
          * The data.
          */
-        protected string $data,
+        protected string $data
     ) {
         parent::__construct();
     }

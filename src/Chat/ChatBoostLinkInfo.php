@@ -23,7 +23,7 @@ class ChatBoostLinkInfo extends TdObject
         /**
          * Identifier of the chat to which the link points; 0 if the chat isn't found.
          */
-        protected int  $chatId,
+        protected int  $chatId
     ) {}
 
     public static function fromArray(array $array): ChatBoostLinkInfo

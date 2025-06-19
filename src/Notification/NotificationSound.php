@@ -41,7 +41,7 @@ class NotificationSound extends TdObject
         /**
          * File containing the sound.
          */
-        protected File   $sound,
+        protected File   $sound
     ) {}
 
     public static function fromArray(array $array): NotificationSound

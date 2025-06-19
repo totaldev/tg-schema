@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Vector\VectorPathCommand;
 
 /**
- * Represents a closed vector path. The path begins at the end point of the last command.
+ * Represents a closed vector path. The path begins at the end point of the last command. The coordinate system origin is in the upper-left corner.
  */
 class ClosedVectorPath extends TdObject
 {

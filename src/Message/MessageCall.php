@@ -28,7 +28,7 @@ class MessageCall extends MessageContent
         /**
          * Call duration, in seconds.
          */
-        protected int               $duration,
+        protected int               $duration
     ) {
         parent::__construct();
     }

@@ -21,7 +21,7 @@ class InputPassportElementErrorSourceDataField extends InputPassportElementError
         /**
          * Current data hash.
          */
-        protected string $dataHash,
+        protected string $dataHash
     ) {
         parent::__construct();
     }

@@ -24,7 +24,7 @@ class InlineQueryResultAudio extends InlineQueryResult
         /**
          * Audio file.
          */
-        protected Audio  $audio,
+        protected Audio  $audio
     ) {
         parent::__construct();
     }

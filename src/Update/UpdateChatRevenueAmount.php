@@ -25,7 +25,7 @@ class UpdateChatRevenueAmount extends Update
         /**
          * New amount of earned revenue.
          */
-        protected ChatRevenueAmount $revenueAmount,
+        protected ChatRevenueAmount $revenueAmount
     ) {
         parent::__construct();
     }

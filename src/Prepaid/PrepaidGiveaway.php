@@ -37,7 +37,7 @@ class PrepaidGiveaway extends TdObject
         /**
          * Point in time (Unix timestamp) when the giveaway was paid.
          */
-        protected int           $paymentDate,
+        protected int           $paymentDate
     ) {}
 
     public static function fromArray(array $array): PrepaidGiveaway

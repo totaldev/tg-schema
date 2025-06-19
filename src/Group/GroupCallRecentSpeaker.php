@@ -25,7 +25,7 @@ class GroupCallRecentSpeaker extends TdObject
         /**
          * True, is the user has spoken recently.
          */
-        protected bool          $isSpeaking,
+        protected bool          $isSpeaking
     ) {}
 
     public static function fromArray(array $array): GroupCallRecentSpeaker

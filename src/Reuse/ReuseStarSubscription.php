@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Reuse;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Reuses an active subscription and joins the subscribed chat again.
+ * Reuses an active Telegram Star subscription to a channel chat and joins the chat again.
  */
 class ReuseStarSubscription extends TdFunction
 {

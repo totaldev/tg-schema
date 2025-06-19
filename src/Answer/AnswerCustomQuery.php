@@ -23,7 +23,7 @@ class AnswerCustomQuery extends TdFunction
         /**
          * JSON-serialized answer to the query.
          */
-        protected string $data,
+        protected string $data
     ) {}
 
     public static function fromArray(array $array): AnswerCustomQuery

@@ -25,7 +25,7 @@ class GetInternalLink extends TdFunction
         /**
          * Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link.
          */
-        protected bool             $isHttp,
+        protected bool             $isHttp
     ) {}
 
     public static function fromArray(array $array): GetInternalLink

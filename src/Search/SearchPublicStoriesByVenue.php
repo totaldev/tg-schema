@@ -32,7 +32,7 @@ class SearchPublicStoriesByVenue extends TdFunction
         /**
          * The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchPublicStoriesByVenue

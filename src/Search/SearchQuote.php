@@ -30,7 +30,7 @@ class SearchQuote extends TdFunction
         /**
          * Approximate quote position in UTF-16 code units.
          */
-        protected int           $quotePosition,
+        protected int           $quotePosition
     ) {}
 
     public static function fromArray(array $array): SearchQuote

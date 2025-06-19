@@ -33,7 +33,7 @@ class OrderInfo extends TdObject
         /**
          * Shipping address for this order; may be null.
          */
-        protected ?Address $shippingAddress,
+        protected ?Address $shippingAddress
     ) {}
 
     public static function fromArray(array $array): OrderInfo

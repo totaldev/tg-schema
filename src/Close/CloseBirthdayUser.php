@@ -25,7 +25,7 @@ class CloseBirthdayUser extends TdObject
         /**
          * Birthdate of the user.
          */
-        protected Birthdate $birthdate,
+        protected Birthdate $birthdate
     ) {}
 
     public static function fromArray(array $array): CloseBirthdayUser

@@ -37,7 +37,7 @@ class GetInlineQueryResults extends TdFunction
         /**
          * Offset of the first entry to return; use empty string to get the first chunk of results.
          */
-        protected string   $offset,
+        protected string   $offset
     ) {}
 
     public static function fromArray(array $array): GetInlineQueryResults

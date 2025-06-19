@@ -29,7 +29,7 @@ class SendBotStartMessage extends TdFunction
         /**
          * A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking).
          */
-        protected string $parameter,
+        protected string $parameter
     ) {}
 
     public static function fromArray(array $array): SendBotStartMessage

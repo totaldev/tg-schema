@@ -30,7 +30,7 @@ class PageBlockDetails extends PageBlock
         /**
          * True, if the block is open by default.
          */
-        protected bool     $isOpen,
+        protected bool     $isOpen
     ) {
         parent::__construct();
     }

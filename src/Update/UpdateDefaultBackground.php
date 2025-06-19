@@ -24,7 +24,7 @@ class UpdateDefaultBackground extends Update
         /**
          * The new default background; may be null.
          */
-        protected ?Background $background,
+        protected ?Background $background
     ) {
         parent::__construct();
     }

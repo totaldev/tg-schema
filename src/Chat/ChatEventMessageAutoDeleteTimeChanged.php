@@ -21,7 +21,7 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
         /**
          * New value of message_auto_delete_time.
          */
-        protected int $newMessageAutoDeleteTime,
+        protected int $newMessageAutoDeleteTime
     ) {
         parent::__construct();
     }

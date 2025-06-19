@@ -21,7 +21,7 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         /**
          * If non-zero, the identifier of the current message thread.
          */
-        protected int    $messageThreadId,
+        protected int    $messageThreadId
     ) {
         parent::__construct();
     }

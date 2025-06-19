@@ -34,7 +34,7 @@ class PageBlockTable extends PageBlock
         /**
          * True, if the table is striped.
          */
-        protected bool     $isStriped,
+        protected bool     $isStriped
     ) {
         parent::__construct();
     }

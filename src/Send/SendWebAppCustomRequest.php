@@ -27,7 +27,7 @@ class SendWebAppCustomRequest extends TdFunction
         /**
          * JSON-serialized method parameters.
          */
-        protected string $parameters,
+        protected string $parameters
     ) {}
 
     public static function fromArray(array $array): SendWebAppCustomRequest

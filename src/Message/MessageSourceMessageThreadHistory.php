@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Message;
 
 /**
- * The message is from a message thread history.
+ * The message is from history of a message thread.
  */
 class MessageSourceMessageThreadHistory extends MessageSource
 {

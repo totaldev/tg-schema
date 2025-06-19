@@ -23,7 +23,7 @@ class SetQuickReplyShortcutName extends TdFunction
         /**
          * New name for the shortcut. Use checkQuickReplyShortcutName to check its validness.
          */
-        protected string $name,
+        protected string $name
     ) {}
 
     public static function fromArray(array $array): SetQuickReplyShortcutName

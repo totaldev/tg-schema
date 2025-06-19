@@ -21,7 +21,7 @@ class UpdateChatHasProtectedContent extends Update
         /**
          * New value of has_protected_content.
          */
-        protected bool $hasProtectedContent,
+        protected bool $hasProtectedContent
     ) {
         parent::__construct();
     }

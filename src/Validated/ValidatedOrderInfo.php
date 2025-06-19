@@ -27,7 +27,7 @@ class ValidatedOrderInfo extends TdObject
          *
          * @var ShippingOption[]
          */
-        protected array  $shippingOptions,
+        protected array  $shippingOptions
     ) {}
 
     public static function fromArray(array $array): ValidatedOrderInfo

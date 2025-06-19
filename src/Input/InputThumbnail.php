@@ -28,7 +28,7 @@ class InputThumbnail extends TdObject
         /**
          * Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown.
          */
-        protected int       $height,
+        protected int       $height
     ) {}
 
     public static function fromArray(array $array): InputThumbnail

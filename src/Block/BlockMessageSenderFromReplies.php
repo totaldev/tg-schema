@@ -31,7 +31,7 @@ class BlockMessageSenderFromReplies extends TdFunction
         /**
          * Pass true to report the sender to the Telegram moderators.
          */
-        protected bool $reportSpam,
+        protected bool $reportSpam
     ) {}
 
     public static function fromArray(array $array): BlockMessageSenderFromReplies

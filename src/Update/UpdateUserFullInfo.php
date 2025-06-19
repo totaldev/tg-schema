@@ -24,7 +24,7 @@ class UpdateUserFullInfo extends Update
         /**
          * New full information about the user.
          */
-        protected UserFullInfo $userFullInfo,
+        protected UserFullInfo $userFullInfo
     ) {
         parent::__construct();
     }

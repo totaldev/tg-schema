@@ -31,7 +31,7 @@ class ShippingOption extends TdObject
          *
          * @var LabeledPricePart[]
          */
-        protected array  $priceParts,
+        protected array  $priceParts
     ) {}
 
     public static function fromArray(array $array): ShippingOption

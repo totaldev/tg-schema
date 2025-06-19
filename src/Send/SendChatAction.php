@@ -33,7 +33,7 @@ class SendChatAction extends TdFunction
         /**
          * The action description; pass null to cancel the currently active action.
          */
-        protected ChatAction $action,
+        protected ChatAction $action
     ) {}
 
     public static function fromArray(array $array): SendChatAction

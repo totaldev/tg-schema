@@ -24,7 +24,7 @@ class MessageCalendarDay extends TdObject
         /**
          * First message sent on the day.
          */
-        protected Message $message,
+        protected Message $message
     ) {}
 
     public static function fromArray(array $array): MessageCalendarDay

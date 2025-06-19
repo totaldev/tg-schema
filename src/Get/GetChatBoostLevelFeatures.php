@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns the list of features available on the specific chat boost level; this is an offline request.
+ * Returns the list of features available on the specific chat boost level. This is an offline method.
  */
 class GetChatBoostLevelFeatures extends TdFunction
 {
@@ -23,7 +23,7 @@ class GetChatBoostLevelFeatures extends TdFunction
         /**
          * Chat boost level.
          */
-        protected int  $level,
+        protected int  $level
     ) {}
 
     public static function fromArray(array $array): GetChatBoostLevelFeatures

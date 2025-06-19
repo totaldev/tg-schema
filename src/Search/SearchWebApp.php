@@ -23,7 +23,7 @@ class SearchWebApp extends TdFunction
         /**
          * Short name of the Web App.
          */
-        protected string $webAppShortName,
+        protected string $webAppShortName
     ) {}
 
     public static function fromArray(array $array): SearchWebApp

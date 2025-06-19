@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\Search\SearchMessagesFilter;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -24,26 +25,26 @@ class GetChatMessageCalendar extends TdFunction
          */
         protected int                  $chatId,
         /**
+         * Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported.
+         */
+        protected MessageTopic         $topicId,
+        /**
          * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
          * The message identifier from which to return information about messages; use 0 to get results from the last message.
          */
-        protected int                  $fromMessageId,
-        /**
-         * If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages.
-         */
-        protected int                  $savedMessagesTopicId,
+        protected int                  $fromMessageId
     ) {}
 
     public static function fromArray(array $array): GetChatMessageCalendar
     {
         return new static(
             $array['chat_id'],
+            TdSchemaRegistry::fromArray($array['topic_id']),
             TdSchemaRegistry::fromArray($array['filter']),
             $array['from_message_id'],
-            $array['saved_messages_topic_id'],
         );
     }
 
@@ -62,19 +63,19 @@ class GetChatMessageCalendar extends TdFunction
         return $this->fromMessageId;
     }
 
-    public function getSavedMessagesTopicId(): int
+    public function getTopicId(): MessageTopic
     {
-        return $this->savedMessagesTopicId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                   => static::TYPE_NAME,
-            'chat_id'                 => $this->chatId,
-            'filter'                  => $this->filter->typeSerialize(),
-            'from_message_id'         => $this->fromMessageId,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
+            'topic_id'        => $this->topicId->typeSerialize(),
+            'filter'          => $this->filter->typeSerialize(),
+            'from_message_id' => $this->fromMessageId,
         ];
     }
 }

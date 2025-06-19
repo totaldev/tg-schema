@@ -28,7 +28,7 @@ class SetCustomLanguagePack extends TdFunction
          *
          * @var LanguagePackString[]
          */
-        protected array            $strings,
+        protected array            $strings
     ) {}
 
     public static function fromArray(array $array): SetCustomLanguagePack

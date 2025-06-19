@@ -27,7 +27,7 @@ class TimeZone extends TdObject
         /**
          * Current UTC time offset for the time zone.
          */
-        protected int    $utcTimeOffset,
+        protected int    $utcTimeOffset
     ) {}
 
     public static function fromArray(array $array): TimeZone

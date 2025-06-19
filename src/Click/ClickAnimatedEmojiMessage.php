@@ -24,7 +24,7 @@ class ClickAnimatedEmojiMessage extends TdFunction
         /**
          * Identifier of the clicked message.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): ClickAnimatedEmojiMessage

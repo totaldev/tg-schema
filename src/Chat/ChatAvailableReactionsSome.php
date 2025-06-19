@@ -26,7 +26,7 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
         /**
          * The maximum allowed number of reactions per message; 1-11.
          */
-        protected int   $maxReactionCount,
+        protected int   $maxReactionCount
     ) {
         parent::__construct();
     }

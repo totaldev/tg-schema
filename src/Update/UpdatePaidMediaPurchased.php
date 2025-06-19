@@ -21,7 +21,7 @@ class UpdatePaidMediaPurchased extends Update
         /**
          * Bot-specified payload for the paid media.
          */
-        protected string $payload,
+        protected string $payload
     ) {
         parent::__construct();
     }

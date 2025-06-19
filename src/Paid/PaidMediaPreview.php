@@ -32,7 +32,7 @@ class PaidMediaPreview extends PaidMedia
         /**
          * Media minithumbnail; may be null.
          */
-        protected ?Minithumbnail $minithumbnail,
+        protected ?Minithumbnail $minithumbnail
     ) {
         parent::__construct();
     }

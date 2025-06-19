@@ -29,7 +29,7 @@ class StarRevenueStatistics extends TdObject
         /**
          * Current conversion rate of a Telegram Star to USD.
          */
-        protected float             $usdRate,
+        protected float             $usdRate
     ) {}
 
     public static function fromArray(array $array): StarRevenueStatistics

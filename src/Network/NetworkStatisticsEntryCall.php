@@ -31,7 +31,7 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
         /**
          * Total call duration, in seconds.
          */
-        protected float       $duration,
+        protected float       $duration
     ) {
         parent::__construct();
     }

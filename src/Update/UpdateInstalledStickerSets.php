@@ -26,7 +26,7 @@ class UpdateInstalledStickerSets extends Update
          *
          * @var int[]
          */
-        protected array       $stickerSetIds,
+        protected array       $stickerSetIds
     ) {
         parent::__construct();
     }

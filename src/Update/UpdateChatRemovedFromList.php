@@ -24,7 +24,7 @@ class UpdateChatRemovedFromList extends Update
         /**
          * The chat list from which the chat was removed.
          */
-        protected ChatList $chatList,
+        protected ChatList $chatList
     ) {
         parent::__construct();
     }

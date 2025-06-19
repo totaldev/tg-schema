@@ -25,7 +25,7 @@ class SetBotProfilePhoto extends TdFunction
         /**
          * Profile photo to set; pass null to delete the chat photo.
          */
-        protected InputChatPhoto $photo,
+        protected InputChatPhoto $photo
     ) {}
 
     public static function fromArray(array $array): SetBotProfilePhoto

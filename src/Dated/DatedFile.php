@@ -25,7 +25,7 @@ class DatedFile extends TdObject
         /**
          * Point in time (Unix timestamp) when the file was uploaded.
          */
-        protected int  $date,
+        protected int  $date
     ) {}
 
     public static function fromArray(array $array): DatedFile

@@ -34,7 +34,7 @@ class AddedReaction extends TdObject
         /**
          * Point in time (Unix timestamp) when the reaction was added.
          */
-        protected int           $date,
+        protected int           $date
     ) {}
 
     public static function fromArray(array $array): AddedReaction

@@ -26,7 +26,7 @@ class InternalLinkTypeBotStart extends InternalLinkType
         /**
          * True, if sendBotStartMessage must be called automatically without showing the START button.
          */
-        protected bool   $autostart,
+        protected bool   $autostart
     ) {
         parent::__construct();
     }

@@ -21,7 +21,7 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
         /**
          * Identifier of the sticker in the set.
          */
-        protected int $stickerId,
+        protected int $stickerId
     ) {
         parent::__construct();
     }

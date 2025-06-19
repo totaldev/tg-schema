@@ -39,7 +39,7 @@ class PhotoSize extends TdObject
          *
          * @var int[]
          */
-        protected array  $progressiveSizes,
+        protected array  $progressiveSizes
     ) {}
 
     public static function fromArray(array $array): PhotoSize

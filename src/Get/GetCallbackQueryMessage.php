@@ -27,7 +27,7 @@ class GetCallbackQueryMessage extends TdFunction
         /**
          * Identifier of the callback query.
          */
-        protected int $callbackQueryId,
+        protected int $callbackQueryId
     ) {}
 
     public static function fromArray(array $array): GetCallbackQueryMessage

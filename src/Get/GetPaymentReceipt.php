@@ -23,7 +23,7 @@ class GetPaymentReceipt extends TdFunction
         /**
          * Message identifier.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetPaymentReceipt

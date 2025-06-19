@@ -33,7 +33,7 @@ class EmojiCategory extends TdObject
         /**
          * True, if the category must be shown first when choosing a sticker for the start page.
          */
-        protected bool                $isGreeting,
+        protected bool                $isGreeting
     ) {}
 
     public static function fromArray(array $array): EmojiCategory

@@ -24,7 +24,7 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
         /**
          * New emoji status; may be null if none.
          */
-        protected ?EmojiStatus $newEmojiStatus,
+        protected ?EmojiStatus $newEmojiStatus
     ) {
         parent::__construct();
     }

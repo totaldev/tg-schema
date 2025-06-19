@@ -23,7 +23,7 @@ class SetProfileAccentColor extends TdFunction
         /**
          * Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none.
          */
-        protected int $profileBackgroundCustomEmojiId,
+        protected int $profileBackgroundCustomEmojiId
     ) {}
 
     public static function fromArray(array $array): SetProfileAccentColor

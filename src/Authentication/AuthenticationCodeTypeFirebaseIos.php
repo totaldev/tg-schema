@@ -19,13 +19,13 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
          */
         protected string $receipt,
         /**
-         * Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds.
+         * Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds.
          */
         protected int    $pushTimeout,
         /**
          * Length of the code.
          */
-        protected int    $length,
+        protected int    $length
     ) {
         parent::__construct();
     }

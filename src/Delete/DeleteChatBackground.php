@@ -23,7 +23,7 @@ class DeleteChatBackground extends TdFunction
         /**
          * Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user.
          */
-        protected bool $restorePrevious,
+        protected bool $restorePrevious
     ) {}
 
     public static function fromArray(array $array): DeleteChatBackground

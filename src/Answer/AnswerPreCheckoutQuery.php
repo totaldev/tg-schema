@@ -23,7 +23,7 @@ class AnswerPreCheckoutQuery extends TdFunction
         /**
          * An error message, empty on success.
          */
-        protected string $errorMessage,
+        protected string $errorMessage
     ) {}
 
     public static function fromArray(array $array): AnswerPreCheckoutQuery

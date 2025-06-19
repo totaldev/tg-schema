@@ -26,10 +26,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
          */
         protected string              $url,
         /**
-         * True, if the URL must be not shown.
-         */
-        protected bool                $hideUrl,
-        /**
          * Title of the result.
          */
         protected string              $title,
@@ -66,7 +62,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
         return new static(
             $array['id'],
             $array['url'],
-            $array['hide_url'],
             $array['title'],
             $array['description'],
             $array['thumbnail_url'],
@@ -80,11 +75,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function getHideUrl(): bool
-    {
-        return $this->hideUrl;
     }
 
     public function getId(): string
@@ -133,7 +123,6 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
             '@type'                 => static::TYPE_NAME,
             'id'                    => $this->id,
             'url'                   => $this->url,
-            'hide_url'              => $this->hideUrl,
             'title'                 => $this->title,
             'description'           => $this->description,
             'thumbnail_url'         => $this->thumbnailUrl,

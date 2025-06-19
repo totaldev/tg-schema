@@ -25,7 +25,7 @@ class ChatLocation extends TdObject
         /**
          * Location address; 1-64 characters, as defined by the chat owner.
          */
-        protected string   $address,
+        protected string   $address
     ) {}
 
     public static function fromArray(array $array): ChatLocation

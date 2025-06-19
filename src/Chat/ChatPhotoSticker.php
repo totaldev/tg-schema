@@ -25,7 +25,7 @@ class ChatPhotoSticker extends TdObject
         /**
          * The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported.
          */
-        protected BackgroundFill       $backgroundFill,
+        protected BackgroundFill       $backgroundFill
     ) {}
 
     public static function fromArray(array $array): ChatPhotoSticker

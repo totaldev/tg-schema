@@ -26,7 +26,7 @@ class BusinessOpeningHours extends TdObject
          *
          * @var BusinessOpeningHoursInterval[]
          */
-        protected array  $openingHours,
+        protected array  $openingHours
     ) {}
 
     public static function fromArray(array $array): BusinessOpeningHours

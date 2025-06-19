@@ -25,7 +25,7 @@ class GetLanguagePackStrings extends TdFunction
          *
          * @var string[]
          */
-        protected array  $keys,
+        protected array  $keys
     ) {}
 
     public static function fromArray(array $array): GetLanguagePackStrings

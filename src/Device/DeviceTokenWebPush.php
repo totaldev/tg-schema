@@ -25,7 +25,7 @@ class DeviceTokenWebPush extends DeviceToken
         /**
          * Base64url-encoded authentication secret.
          */
-        protected string $authBase64url,
+        protected string $authBase64url
     ) {
         parent::__construct();
     }

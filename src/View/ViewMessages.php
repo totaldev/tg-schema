@@ -37,7 +37,7 @@ class ViewMessages extends TdFunction
         /**
          * Pass true to mark as read the specified messages even the chat is closed.
          */
-        protected bool          $forceRead,
+        protected bool          $forceRead
     ) {}
 
     public static function fromArray(array $array): ViewMessages

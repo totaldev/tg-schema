@@ -27,7 +27,7 @@ class ReorderInstalledStickerSets extends TdFunction
          *
          * @var int[]
          */
-        protected array       $stickerSetIds,
+        protected array       $stickerSetIds
     ) {}
 
     public static function fromArray(array $array): ReorderInstalledStickerSets

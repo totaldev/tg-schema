@@ -23,7 +23,7 @@ class ChatBoostLink extends TdObject
         /**
          * True, if the link will work for non-members of the chat.
          */
-        protected bool   $isPublic,
+        protected bool   $isPublic
     ) {}
 
     public static function fromArray(array $array): ChatBoostLink

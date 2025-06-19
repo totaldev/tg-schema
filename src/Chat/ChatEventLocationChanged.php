@@ -23,7 +23,7 @@ class ChatEventLocationChanged extends ChatEventAction
         /**
          * New location; may be null.
          */
-        protected ?ChatLocation $newLocation,
+        protected ?ChatLocation $newLocation
     ) {
         parent::__construct();
     }

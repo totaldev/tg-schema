@@ -28,7 +28,7 @@ class SearchPublicMessagesByTag extends TdFunction
         /**
          * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchPublicMessagesByTag

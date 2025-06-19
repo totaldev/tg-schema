@@ -32,7 +32,7 @@ class UpdateChatDraftMessage extends Update
          *
          * @var ChatPosition[]
          */
-        protected array         $positions,
+        protected array         $positions
     ) {
         parent::__construct();
     }

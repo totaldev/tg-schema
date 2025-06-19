@@ -26,7 +26,7 @@ class SponsoredMessages extends TdObject
         /**
          * The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages.
          */
-        protected int   $messagesBetween,
+        protected int   $messagesBetween
     ) {}
 
     public static function fromArray(array $array): SponsoredMessages

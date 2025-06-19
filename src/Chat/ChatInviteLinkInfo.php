@@ -9,6 +9,7 @@ namespace Totaldev\TgSchema\Chat;
 use Totaldev\TgSchema\Invite\InviteLinkChatType;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Verification\VerificationStatus;
 
 /**
  * Contains information about a chat invite link.
@@ -69,17 +70,9 @@ class ChatInviteLinkInfo extends TdObject
          */
         protected bool                            $isPublic,
         /**
-         * True, if the chat is verified.
+         * Information about verification status of the chat; may be null if none.
          */
-        protected bool                            $isVerified,
-        /**
-         * True, if many users reported this chat as a scam.
-         */
-        protected bool                            $isScam,
-        /**
-         * True, if many users reported this chat as a fake account.
-         */
-        protected bool                            $isFake,
+        protected ?VerificationStatus             $verificationStatus,
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkInfo
@@ -97,9 +90,7 @@ class ChatInviteLinkInfo extends TdObject
             isset($array['subscription_info']) ? TdSchemaRegistry::fromArray($array['subscription_info']) : null,
             $array['creates_join_request'],
             $array['is_public'],
-            $array['is_verified'],
-            $array['is_scam'],
-            $array['is_fake'],
+            isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
         );
     }
 
@@ -128,24 +119,9 @@ class ChatInviteLinkInfo extends TdObject
         return $this->description;
     }
 
-    public function getIsFake(): bool
-    {
-        return $this->isFake;
-    }
-
     public function getIsPublic(): bool
     {
         return $this->isPublic;
-    }
-
-    public function getIsScam(): bool
-    {
-        return $this->isScam;
-    }
-
-    public function getIsVerified(): bool
-    {
-        return $this->isVerified;
     }
 
     public function getMemberCount(): int
@@ -178,6 +154,11 @@ class ChatInviteLinkInfo extends TdObject
         return $this->type;
     }
 
+    public function getVerificationStatus(): ?VerificationStatus
+    {
+        return $this->verificationStatus;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -194,9 +175,7 @@ class ChatInviteLinkInfo extends TdObject
             'subscription_info'    => (isset($this->subscriptionInfo) ? $this->subscriptionInfo : null),
             'creates_join_request' => $this->createsJoinRequest,
             'is_public'            => $this->isPublic,
-            'is_verified'          => $this->isVerified,
-            'is_scam'              => $this->isScam,
-            'is_fake'              => $this->isFake,
+            'verification_status'  => (isset($this->verificationStatus) ? $this->verificationStatus : null),
         ];
     }
 }

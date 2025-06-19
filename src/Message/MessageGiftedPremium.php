@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -20,35 +21,39 @@ class MessageGiftedPremium extends MessageContent
         /**
          * The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing.
          */
-        protected int      $gifterUserId,
+        protected int           $gifterUserId,
         /**
          * The identifier of a user that received Telegram Premium; 0 if the gift is incoming.
          */
-        protected int      $receiverUserId,
+        protected int           $receiverUserId,
+        /**
+         * Message added to the gifted Telegram Premium by the sender.
+         */
+        protected FormattedText $text,
         /**
          * Currency for the paid amount.
          */
-        protected string   $currency,
+        protected string        $currency,
         /**
          * The paid amount, in the smallest units of the currency.
          */
-        protected int      $amount,
+        protected int           $amount,
         /**
          * Cryptocurrency used to pay for the gift; may be empty if none.
          */
-        protected string   $cryptocurrency,
+        protected string        $cryptocurrency,
         /**
          * The paid amount, in the smallest units of the cryptocurrency; 0 if none.
          */
-        protected int      $cryptocurrencyAmount,
+        protected int           $cryptocurrencyAmount,
         /**
          * Number of months the Telegram Premium subscription will be active.
          */
-        protected int      $monthCount,
+        protected int           $monthCount,
         /**
          * A sticker to be shown in the message; may be null if unknown.
          */
-        protected ?Sticker $sticker,
+        protected ?Sticker      $sticker,
     ) {
         parent::__construct();
     }
@@ -58,6 +63,7 @@ class MessageGiftedPremium extends MessageContent
         return new static(
             $array['gifter_user_id'],
             $array['receiver_user_id'],
+            TdSchemaRegistry::fromArray($array['text']),
             $array['currency'],
             $array['amount'],
             $array['cryptocurrency'],
@@ -107,12 +113,18 @@ class MessageGiftedPremium extends MessageContent
         return $this->sticker;
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                 => static::TYPE_NAME,
             'gifter_user_id'        => $this->gifterUserId,
             'receiver_user_id'      => $this->receiverUserId,
+            'text'                  => $this->text->typeSerialize(),
             'currency'              => $this->currency,
             'amount'                => $this->amount,
             'cryptocurrency'        => $this->cryptocurrency,

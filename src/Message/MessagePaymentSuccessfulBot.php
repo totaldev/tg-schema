@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Order\OrderInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A payment has been completed; for bots only.
+ * A payment has been received by the bot or the business account.
  */
 class MessagePaymentSuccessfulBot extends MessageContent
 {
@@ -26,6 +26,10 @@ class MessagePaymentSuccessfulBot extends MessageContent
          */
         protected int        $totalAmount,
         /**
+         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
+         */
+        protected int        $subscriptionUntilDate,
+        /**
          * True, if this is a recurring payment.
          */
         protected bool       $isRecurring,
@@ -38,11 +42,11 @@ class MessagePaymentSuccessfulBot extends MessageContent
          */
         protected string     $invoicePayload,
         /**
-         * Identifier of the shipping option chosen by the user; may be empty if not applicable.
+         * Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only.
          */
         protected string     $shippingOptionId,
         /**
-         * Information about the order; may be null.
+         * Information about the order; may be null; for bots only.
          */
         protected ?OrderInfo $orderInfo,
         /**
@@ -62,6 +66,7 @@ class MessagePaymentSuccessfulBot extends MessageContent
         return new static(
             $array['currency'],
             $array['total_amount'],
+            $array['subscription_until_date'],
             $array['is_recurring'],
             $array['is_first_recurring'],
             $array['invoice_payload'],
@@ -107,6 +112,11 @@ class MessagePaymentSuccessfulBot extends MessageContent
         return $this->shippingOptionId;
     }
 
+    public function getSubscriptionUntilDate(): int
+    {
+        return $this->subscriptionUntilDate;
+    }
+
     public function getTelegramPaymentChargeId(): string
     {
         return $this->telegramPaymentChargeId;
@@ -123,6 +133,7 @@ class MessagePaymentSuccessfulBot extends MessageContent
             '@type'                      => static::TYPE_NAME,
             'currency'                   => $this->currency,
             'total_amount'               => $this->totalAmount,
+            'subscription_until_date'    => $this->subscriptionUntilDate,
             'is_recurring'               => $this->isRecurring,
             'is_first_recurring'         => $this->isFirstRecurring,
             'invoice_payload'            => $this->invoicePayload,

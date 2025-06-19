@@ -24,7 +24,7 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
         /**
          * New value of volume_level; 1-20000 in hundreds of percents.
          */
-        protected int           $volumeLevel,
+        protected int           $volumeLevel
     ) {
         parent::__construct();
     }

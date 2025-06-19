@@ -24,7 +24,7 @@ class RevokeChatInviteLink extends TdFunction
         /**
          * Invite link to be revoked.
          */
-        protected string $inviteLink,
+        protected string $inviteLink
     ) {}
 
     public static function fromArray(array $array): RevokeChatInviteLink

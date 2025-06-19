@@ -7,8 +7,8 @@
 namespace Totaldev\TgSchema\Chat;
 
 /**
- * The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji
- * status, then a notice about emoji status usage must be shown.
+ * The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an
+ * emoji status, then a notice about emoji status usage must be shown.
  */
 class ChatActionBarReportSpam extends ChatActionBar
 {

@@ -21,7 +21,7 @@ class UpdateChatTitle extends Update
         /**
          * The new chat title.
          */
-        protected string $title,
+        protected string $title
     ) {
         parent::__construct();
     }

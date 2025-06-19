@@ -27,7 +27,7 @@ class CallbackQueryAnswer extends TdObject
         /**
          * URL to be opened.
          */
-        protected string $url,
+        protected string $url
     ) {}
 
     public static function fromArray(array $array): CallbackQueryAnswer

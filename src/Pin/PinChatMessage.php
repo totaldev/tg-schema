@@ -31,7 +31,7 @@ class PinChatMessage extends TdFunction
         /**
          * Pass true to pin the message only for self; private chats only.
          */
-        protected bool $onlyForSelf,
+        protected bool $onlyForSelf
     ) {}
 
     public static function fromArray(array $array): PinChatMessage

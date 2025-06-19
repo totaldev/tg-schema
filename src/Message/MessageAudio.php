@@ -25,7 +25,7 @@ class MessageAudio extends MessageContent
         /**
          * Audio caption.
          */
-        protected FormattedText $caption,
+        protected FormattedText $caption
     ) {
         parent::__construct();
     }

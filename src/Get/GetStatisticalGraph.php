@@ -27,7 +27,7 @@ class GetStatisticalGraph extends TdFunction
         /**
          * X-value for zoomed in graph or 0 otherwise.
          */
-        protected int    $x,
+        protected int    $x
     ) {}
 
     public static function fromArray(array $array): GetStatisticalGraph

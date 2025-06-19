@@ -23,7 +23,7 @@ class TemporaryPasswordState extends TdObject
         /**
          * Time left before the temporary password expires, in seconds.
          */
-        protected int  $validFor,
+        protected int  $validFor
     ) {}
 
     public static function fromArray(array $array): TemporaryPasswordState

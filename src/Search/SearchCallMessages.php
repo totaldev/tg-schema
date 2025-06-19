@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Search;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the
- * number of returned messages is chosen by TDLib.
+ * Searches for call and group call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal
+ * performance, the number of returned messages is chosen by TDLib.
  */
 class SearchCallMessages extends TdFunction
 {
@@ -28,7 +28,7 @@ class SearchCallMessages extends TdFunction
         /**
          * Pass true to search only for messages with missed/declined calls.
          */
-        protected bool   $onlyMissed,
+        protected bool   $onlyMissed
     ) {}
 
     public static function fromArray(array $array): SearchCallMessages

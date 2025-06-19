@@ -23,11 +23,11 @@ class LinkPreviewTypeTheme extends LinkPreviewType
          *
          * @var Document[]
          */
-        protected array         $documents,
+        protected array          $documents,
         /**
-         * Settings for the cloud theme.
+         * Settings for the cloud theme; may be null if unknown.
          */
-        protected ThemeSettings $settings,
+        protected ?ThemeSettings $settings
     ) {
         parent::__construct();
     }
@@ -36,7 +36,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType
     {
         return new static(
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['documents']),
-            TdSchemaRegistry::fromArray($array['settings']),
+            isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
         );
     }
 
@@ -45,7 +45,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType
         return $this->documents;
     }
 
-    public function getSettings(): ThemeSettings
+    public function getSettings(): ?ThemeSettings
     {
         return $this->settings;
     }
@@ -55,7 +55,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType
         return [
             '@type'    => static::TYPE_NAME,
             array_map(fn($x) => $x->typeSerialize(), $this->documents),
-            'settings' => $this->settings->typeSerialize(),
+            'settings' => (isset($this->settings) ? $this->settings : null),
         ];
     }
 }

@@ -23,7 +23,7 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
         /**
          * Pass true to allow accepting secret chats by the session; pass false otherwise.
          */
-        protected bool $canAcceptSecretChats,
+        protected bool $canAcceptSecretChats
     ) {}
 
     public static function fromArray(array $array): ToggleSessionCanAcceptSecretChats

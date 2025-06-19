@@ -48,6 +48,10 @@ class ChatBoostFeatures extends TdObject
          */
         protected int   $minCustomEmojiStickerSetBoostLevel,
         /**
+         * The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only.
+         */
+        protected int   $minAutomaticTranslationBoostLevel,
+        /**
          * The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only.
          */
         protected int   $minSpeechRecognitionBoostLevel,
@@ -67,6 +71,7 @@ class ChatBoostFeatures extends TdObject
             $array['min_chat_theme_background_boost_level'],
             $array['min_custom_background_boost_level'],
             $array['min_custom_emoji_sticker_set_boost_level'],
+            $array['min_automatic_translation_boost_level'],
             $array['min_speech_recognition_boost_level'],
             $array['min_sponsored_message_disable_boost_level'],
         );
@@ -75,6 +80,11 @@ class ChatBoostFeatures extends TdObject
     public function getFeatures(): array
     {
         return $this->features;
+    }
+
+    public function getMinAutomaticTranslationBoostLevel(): int
+    {
+        return $this->minAutomaticTranslationBoostLevel;
     }
 
     public function getMinBackgroundCustomEmojiBoostLevel(): int
@@ -128,6 +138,7 @@ class ChatBoostFeatures extends TdObject
             'min_chat_theme_background_boost_level'           => $this->minChatThemeBackgroundBoostLevel,
             'min_custom_background_boost_level'               => $this->minCustomBackgroundBoostLevel,
             'min_custom_emoji_sticker_set_boost_level'        => $this->minCustomEmojiStickerSetBoostLevel,
+            'min_automatic_translation_boost_level'           => $this->minAutomaticTranslationBoostLevel,
             'min_speech_recognition_boost_level'              => $this->minSpeechRecognitionBoostLevel,
             'min_sponsored_message_disable_boost_level'       => $this->minSponsoredMessageDisableBoostLevel,
         ];

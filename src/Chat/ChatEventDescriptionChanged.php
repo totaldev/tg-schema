@@ -21,7 +21,7 @@ class ChatEventDescriptionChanged extends ChatEventAction
         /**
          * New chat description.
          */
-        protected string $newDescription,
+        protected string $newDescription
     ) {
         parent::__construct();
     }

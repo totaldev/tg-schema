@@ -23,7 +23,7 @@ class AddLogMessage extends TdFunction
         /**
          * Text of a message to log.
          */
-        protected string $text,
+        protected string $text
     ) {}
 
     public static function fromArray(array $array): AddLogMessage

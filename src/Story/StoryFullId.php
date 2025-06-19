@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Story;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Contains identifier of a story along with identifier of its sender.
+ * Contains identifier of a story along with identifier of the chat that posted it.
  */
 class StoryFullId extends TdObject
 {
@@ -19,24 +19,24 @@ class StoryFullId extends TdObject
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int $senderChatId,
+        protected int $posterChatId,
         /**
-         * Unique story identifier among stories of the given sender.
+         * Unique story identifier among stories of the chat.
          */
-        protected int $storyId,
+        protected int $storyId
     ) {}
 
     public static function fromArray(array $array): StoryFullId
     {
         return new static(
-            $array['sender_chat_id'],
+            $array['poster_chat_id'],
             $array['story_id'],
         );
     }
 
-    public function getSenderChatId(): int
+    public function getPosterChatId(): int
     {
-        return $this->senderChatId;
+        return $this->posterChatId;
     }
 
     public function getStoryId(): int
@@ -48,7 +48,7 @@ class StoryFullId extends TdObject
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'sender_chat_id' => $this->senderChatId,
+            'poster_chat_id' => $this->posterChatId,
             'story_id'       => $this->storyId,
         ];
     }

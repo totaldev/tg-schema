@@ -28,7 +28,7 @@ class UpdateUnreadMessageCount extends Update
         /**
          * Total number of unread messages in unmuted chats.
          */
-        protected int      $unreadUnmutedCount,
+        protected int      $unreadUnmutedCount
     ) {
         parent::__construct();
     }

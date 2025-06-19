@@ -29,7 +29,7 @@ class TelegramPaymentPurposeGiftedStars extends TelegramPaymentPurpose
         /**
          * Number of bought Telegram Stars.
          */
-        protected int    $starCount,
+        protected int    $starCount
     ) {
         parent::__construct();
     }

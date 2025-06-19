@@ -7,6 +7,8 @@
 namespace Totaldev\TgSchema\Main;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Web\WebAppOpenMode;
 
 /**
  * Contains information about the main Web App of a bot.
@@ -19,24 +21,24 @@ class MainWebApp extends TdObject
         /**
          * URL of the Web App to open.
          */
-        protected string $url,
+        protected string         $url,
         /**
-         * True, if the Web App must always be opened in the compact mode instead of the full-size mode.
+         * The mode in which the Web App must be opened.
          */
-        protected bool   $isCompact,
+        protected WebAppOpenMode $mode
     ) {}
 
     public static function fromArray(array $array): MainWebApp
     {
         return new static(
             $array['url'],
-            $array['is_compact'],
+            TdSchemaRegistry::fromArray($array['mode']),
         );
     }
 
-    public function getIsCompact(): bool
+    public function getMode(): WebAppOpenMode
     {
-        return $this->isCompact;
+        return $this->mode;
     }
 
     public function getUrl(): string
@@ -47,9 +49,9 @@ class MainWebApp extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'url'        => $this->url,
-            'is_compact' => $this->isCompact,
+            '@type' => static::TYPE_NAME,
+            'url'   => $this->url,
+            'mode'  => $this->mode->typeSerialize(),
         ];
     }
 }

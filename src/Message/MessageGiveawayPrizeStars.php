@@ -10,7 +10,7 @@ use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A Telegram Stars were received by the cuurent user from a giveaway.
+ * A Telegram Stars were received by the current user from a giveaway.
  */
 class MessageGiveawayPrizeStars extends MessageContent
 {

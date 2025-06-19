@@ -8,7 +8,7 @@ namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Theme\ThemeParameters;
+use Totaldev\TgSchema\Web\WebAppOpenParameters;
 
 /**
  * Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button.
@@ -19,21 +19,17 @@ class GetWebAppUrl extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the target bot.
+         * Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method.
          */
-        protected int             $botUserId,
+        protected int                  $botUserId,
         /**
          * The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu.
          */
-        protected string          $url,
+        protected string               $url,
         /**
-         * Preferred Web App theme; pass null to use the default theme.
+         * Parameters to use to open the Web App.
          */
-        protected ThemeParameters $theme,
-        /**
-         * Short name of the current application; 0-64 English letters, digits, and underscores.
-         */
-        protected string          $applicationName,
+        protected WebAppOpenParameters $parameters
     ) {}
 
     public static function fromArray(array $array): GetWebAppUrl
@@ -41,14 +37,8 @@ class GetWebAppUrl extends TdFunction
         return new static(
             $array['bot_user_id'],
             $array['url'],
-            TdSchemaRegistry::fromArray($array['theme']),
-            $array['application_name'],
+            TdSchemaRegistry::fromArray($array['parameters']),
         );
-    }
-
-    public function getApplicationName(): string
-    {
-        return $this->applicationName;
     }
 
     public function getBotUserId(): int
@@ -56,9 +46,9 @@ class GetWebAppUrl extends TdFunction
         return $this->botUserId;
     }
 
-    public function getTheme(): ThemeParameters
+    public function getParameters(): WebAppOpenParameters
     {
-        return $this->theme;
+        return $this->parameters;
     }
 
     public function getUrl(): string
@@ -69,11 +59,10 @@ class GetWebAppUrl extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'bot_user_id'      => $this->botUserId,
-            'url'              => $this->url,
-            'theme'            => $this->theme->typeSerialize(),
-            'application_name' => $this->applicationName,
+            '@type'       => static::TYPE_NAME,
+            'bot_user_id' => $this->botUserId,
+            'url'         => $this->url,
+            'parameters'  => $this->parameters->typeSerialize(),
         ];
     }
 }

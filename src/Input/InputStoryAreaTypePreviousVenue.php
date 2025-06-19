@@ -21,7 +21,7 @@ class InputStoryAreaTypePreviousVenue extends InputStoryAreaType
         /**
          * Identifier of the venue in the provider database.
          */
-        protected string $venueId,
+        protected string $venueId
     ) {
         parent::__construct();
     }

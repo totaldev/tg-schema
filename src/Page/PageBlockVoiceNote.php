@@ -24,7 +24,7 @@ class PageBlockVoiceNote extends PageBlock
         /**
          * Voice note caption.
          */
-        protected PageBlockCaption $caption,
+        protected PageBlockCaption $caption
     ) {
         parent::__construct();
     }

@@ -25,7 +25,7 @@ class UpdateUserPrivacySettingRules extends Update
         /**
          * New privacy rules.
          */
-        protected UserPrivacySettingRules $rules,
+        protected UserPrivacySettingRules $rules
     ) {
         parent::__construct();
     }

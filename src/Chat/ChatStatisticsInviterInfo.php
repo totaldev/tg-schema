@@ -23,7 +23,7 @@ class ChatStatisticsInviterInfo extends TdObject
         /**
          * Number of new members invited by the user.
          */
-        protected int $addedMemberCount,
+        protected int $addedMemberCount
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsInviterInfo

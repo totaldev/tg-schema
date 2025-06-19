@@ -21,7 +21,7 @@ class ChatEventTitleChanged extends ChatEventAction
         /**
          * New chat title.
          */
-        protected string $newTitle,
+        protected string $newTitle
     ) {
         parent::__construct();
     }

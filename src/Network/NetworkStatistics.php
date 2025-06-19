@@ -26,7 +26,7 @@ class NetworkStatistics extends TdObject
          *
          * @var NetworkStatisticsEntry[]
          */
-        protected array $entries,
+        protected array $entries
     ) {}
 
     public static function fromArray(array $array): NetworkStatistics

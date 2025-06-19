@@ -25,7 +25,7 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
         /**
          * True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected.
          */
-        protected bool          $containsLink,
+        protected bool          $containsLink
     ) {
         parent::__construct();
     }

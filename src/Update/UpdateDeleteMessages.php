@@ -31,7 +31,7 @@ class UpdateDeleteMessages extends Update
         /**
          * True, if the messages are deleted only from the cache and can possibly be retrieved again in the future.
          */
-        protected bool  $fromCache,
+        protected bool  $fromCache
     ) {
         parent::__construct();
     }

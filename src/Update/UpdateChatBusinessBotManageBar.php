@@ -24,7 +24,7 @@ class UpdateChatBusinessBotManageBar extends Update
         /**
          * The new value of the business bot manage bar; may be null.
          */
-        protected ?BusinessBotManageBar $businessBotManageBar,
+        protected ?BusinessBotManageBar $businessBotManageBar
     ) {
         parent::__construct();
     }

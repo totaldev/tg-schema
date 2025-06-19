@@ -33,7 +33,7 @@ class LaunchPrepaidGiveaway extends TdFunction
         /**
          * The number of Telegram Stars to be distributed through the giveaway; pass 0 for Telegram Premium giveaways.
          */
-        protected int                $starCount,
+        protected int                $starCount
     ) {}
 
     public static function fromArray(array $array): LaunchPrepaidGiveaway

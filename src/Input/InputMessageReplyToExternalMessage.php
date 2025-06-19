@@ -27,7 +27,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         /**
          * Quote from the message to be replied; pass null if none.
          */
-        protected InputTextQuote $quote,
+        protected InputTextQuote $quote
     ) {
         parent::__construct();
     }

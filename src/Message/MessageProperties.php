@@ -17,6 +17,10 @@ class MessageProperties extends TdObject
 
     public function __construct(
         /**
+         * True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options.
+         */
+        protected bool $canBeCopied,
+        /**
          * True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options.
          */
         protected bool $canBeCopiedToSecretChat,
@@ -29,11 +33,11 @@ class MessageProperties extends TdObject
          */
         protected bool $canBeDeletedForAllUsers,
         /**
-         * True, if the message can be edited using the methods editMessageText, editMessageMedia, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message.
+         * True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message.
          */
         protected bool $canBeEdited,
         /**
-         * True, if the message can be forwarded using inputMessageForwarded or forwardMessages.
+         * True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options.
          */
         protected bool $canBeForwarded,
         /**
@@ -53,7 +57,7 @@ class MessageProperties extends TdObject
          */
         protected bool $canBeRepliedInAnotherChat,
         /**
-         * True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options.
+         * True, if content of the message can be saved locally.
          */
         protected bool $canBeSaved,
         /**
@@ -61,9 +65,17 @@ class MessageProperties extends TdObject
          */
         protected bool $canBeSharedInStory,
         /**
+         * True, if the message can be edited using the method editMessageMedia.
+         */
+        protected bool $canEditMedia,
+        /**
          * True, if scheduling state of the message can be edited.
          */
         protected bool $canEditSchedulingState,
+        /**
+         * True, if author of the message sent on behalf of a chat can be received through getMessageAuthor.
+         */
+        protected bool $canGetAuthor,
         /**
          * True, if code for message embedding can be received using getMessageEmbeddingCode.
          */
@@ -121,6 +133,7 @@ class MessageProperties extends TdObject
     public static function fromArray(array $array): MessageProperties
     {
         return new static(
+            $array['can_be_copied'],
             $array['can_be_copied_to_secret_chat'],
             $array['can_be_deleted_only_for_self'],
             $array['can_be_deleted_for_all_users'],
@@ -132,7 +145,9 @@ class MessageProperties extends TdObject
             $array['can_be_replied_in_another_chat'],
             $array['can_be_saved'],
             $array['can_be_shared_in_story'],
+            $array['can_edit_media'],
             $array['can_edit_scheduling_state'],
+            $array['can_get_author'],
             $array['can_get_embedding_code'],
             $array['can_get_link'],
             $array['can_get_media_timestamp_links'],
@@ -147,6 +162,11 @@ class MessageProperties extends TdObject
             $array['can_set_fact_check'],
             $array['need_show_statistics'],
         );
+    }
+
+    public function getCanBeCopied(): bool
+    {
+        return $this->canBeCopied;
     }
 
     public function getCanBeCopiedToSecretChat(): bool
@@ -204,9 +224,19 @@ class MessageProperties extends TdObject
         return $this->canBeSharedInStory;
     }
 
+    public function getCanEditMedia(): bool
+    {
+        return $this->canEditMedia;
+    }
+
     public function getCanEditSchedulingState(): bool
     {
         return $this->canEditSchedulingState;
+    }
+
+    public function getCanGetAuthor(): bool
+    {
+        return $this->canGetAuthor;
     }
 
     public function getCanGetEmbeddingCode(): bool
@@ -278,6 +308,7 @@ class MessageProperties extends TdObject
     {
         return [
             '@type'                          => static::TYPE_NAME,
+            'can_be_copied'                  => $this->canBeCopied,
             'can_be_copied_to_secret_chat'   => $this->canBeCopiedToSecretChat,
             'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
             'can_be_deleted_for_all_users'   => $this->canBeDeletedForAllUsers,
@@ -289,7 +320,9 @@ class MessageProperties extends TdObject
             'can_be_replied_in_another_chat' => $this->canBeRepliedInAnotherChat,
             'can_be_saved'                   => $this->canBeSaved,
             'can_be_shared_in_story'         => $this->canBeSharedInStory,
+            'can_edit_media'                 => $this->canEditMedia,
             'can_edit_scheduling_state'      => $this->canEditSchedulingState,
+            'can_get_author'                 => $this->canGetAuthor,
             'can_get_embedding_code'         => $this->canGetEmbeddingCode,
             'can_get_link'                   => $this->canGetLink,
             'can_get_media_timestamp_links'  => $this->canGetMediaTimestampLinks,

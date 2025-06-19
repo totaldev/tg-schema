@@ -26,7 +26,7 @@ class ChatPhotos extends TdObject
          *
          * @var ChatPhoto[]
          */
-        protected array $photos,
+        protected array $photos
     ) {}
 
     public static function fromArray(array $array): ChatPhotos

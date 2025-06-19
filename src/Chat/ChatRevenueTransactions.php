@@ -26,7 +26,7 @@ class ChatRevenueTransactions extends TdObject
          *
          * @var ChatRevenueTransaction[]
          */
-        protected array $transactions,
+        protected array $transactions
     ) {}
 
     public static function fromArray(array $array): ChatRevenueTransactions

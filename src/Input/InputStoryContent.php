@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Input;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * The content of a story to send.
+ * The content of a story to post.
  */
 class InputStoryContent extends TdObject
 {

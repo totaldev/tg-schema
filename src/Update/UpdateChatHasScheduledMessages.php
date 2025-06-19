@@ -21,7 +21,7 @@ class UpdateChatHasScheduledMessages extends Update
         /**
          * New value of has_scheduled_messages.
          */
-        protected bool $hasScheduledMessages,
+        protected bool $hasScheduledMessages
     ) {
         parent::__construct();
     }

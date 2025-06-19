@@ -27,7 +27,7 @@ class ChatAdministrator extends TdObject
         /**
          * True, if the user is the owner of the chat.
          */
-        protected bool   $isOwner,
+        protected bool   $isOwner
     ) {}
 
     public static function fromArray(array $array): ChatAdministrator

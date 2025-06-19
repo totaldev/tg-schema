@@ -22,7 +22,7 @@ class InternalLinkTypeInstantView extends InternalLinkType
         /**
          * An URL to open if getWebPageInstantView fails.
          */
-        protected string $fallbackUrl,
+        protected string $fallbackUrl
     ) {
         parent::__construct();
     }

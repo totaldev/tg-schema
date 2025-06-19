@@ -23,7 +23,7 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
         /**
          * True, if the user has joined the chat using an invite link for a chat folder.
          */
-        protected bool           $viaChatFolderInviteLink,
+        protected bool           $viaChatFolderInviteLink
     ) {
         parent::__construct();
     }

@@ -26,7 +26,7 @@ class SetChatEmojiStatus extends TdFunction
         /**
          * New emoji status; pass null to remove emoji status.
          */
-        protected EmojiStatus $emojiStatus,
+        protected EmojiStatus $emojiStatus
     ) {}
 
     public static function fromArray(array $array): SetChatEmojiStatus

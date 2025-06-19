@@ -23,7 +23,7 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
         /**
          * The new value of is_all_history_available.
          */
-        protected bool $isAllHistoryAvailable,
+        protected bool $isAllHistoryAvailable
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupIsAllHistoryAvailable

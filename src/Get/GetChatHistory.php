@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdFunction;
 
 /**
  * Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the
- * number of returned messages is chosen by TDLib. This is an offline request if only_local is true.
+ * number of returned messages is chosen by TDLib. This is an offline method if only_local is true.
  */
 class GetChatHistory extends TdFunction
 {
@@ -36,7 +36,7 @@ class GetChatHistory extends TdFunction
         /**
          * Pass true to get only messages that are available without sending network requests.
          */
-        protected bool $onlyLocal,
+        protected bool $onlyLocal
     ) {}
 
     public static function fromArray(array $array): GetChatHistory

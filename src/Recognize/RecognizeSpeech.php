@@ -23,7 +23,7 @@ class RecognizeSpeech extends TdFunction
         /**
          * Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): RecognizeSpeech

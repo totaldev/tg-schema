@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns sponsored messages to be shown in a chat; for channel chats only.
+ * Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only.
  */
 class GetChatSponsoredMessages extends TdFunction
 {

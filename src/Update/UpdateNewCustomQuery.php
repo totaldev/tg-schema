@@ -25,7 +25,7 @@ class UpdateNewCustomQuery extends Update
         /**
          * Query timeout.
          */
-        protected int    $timeout,
+        protected int    $timeout
     ) {
         parent::__construct();
     }

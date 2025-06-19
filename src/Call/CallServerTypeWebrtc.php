@@ -29,7 +29,7 @@ class CallServerTypeWebrtc extends CallServerType
         /**
          * True, if the server supports STUN.
          */
-        protected bool   $supportsStun,
+        protected bool   $supportsStun
     ) {
         parent::__construct();
     }

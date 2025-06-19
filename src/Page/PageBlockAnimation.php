@@ -28,7 +28,7 @@ class PageBlockAnimation extends PageBlock
         /**
          * True, if the animation must be played automatically.
          */
-        protected bool             $needAutoplay,
+        protected bool             $needAutoplay
     ) {
         parent::__construct();
     }

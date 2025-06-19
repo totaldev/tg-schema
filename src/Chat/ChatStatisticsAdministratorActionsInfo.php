@@ -31,7 +31,7 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
         /**
          * Number of users restricted by the administrator.
          */
-        protected int $restrictedUserCount,
+        protected int $restrictedUserCount
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsAdministratorActionsInfo

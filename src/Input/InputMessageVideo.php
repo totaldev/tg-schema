@@ -19,13 +19,21 @@ class InputMessageVideo extends InputMessageContent
 
     public function __construct(
         /**
-         * Video to be sent.
+         * Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender.
          */
         protected InputFile               $video,
         /**
          * Video thumbnail; pass null to skip thumbnail uploading.
          */
         protected InputThumbnail          $thumbnail,
+        /**
+         * Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages.
+         */
+        protected InputFile               $cover,
+        /**
+         * Timestamp from which the video playing must start, in seconds.
+         */
+        protected int                     $startTimestamp,
         /**
          * File identifiers of the stickers added to the video, if applicable.
          *
@@ -45,7 +53,7 @@ class InputMessageVideo extends InputMessageContent
          */
         protected int                     $height,
         /**
-         * True, if the video is supposed to be streamed.
+         * True, if the video is expected to be streamed.
          */
         protected bool                    $supportsStreaming,
         /**
@@ -73,6 +81,8 @@ class InputMessageVideo extends InputMessageContent
         return new static(
             TdSchemaRegistry::fromArray($array['video']),
             TdSchemaRegistry::fromArray($array['thumbnail']),
+            TdSchemaRegistry::fromArray($array['cover']),
+            $array['start_timestamp'],
             $array['added_sticker_file_ids'],
             $array['duration'],
             $array['width'],
@@ -93,6 +103,11 @@ class InputMessageVideo extends InputMessageContent
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function getCover(): InputFile
+    {
+        return $this->cover;
     }
 
     public function getDuration(): int
@@ -118,6 +133,11 @@ class InputMessageVideo extends InputMessageContent
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function getStartTimestamp(): int
+    {
+        return $this->startTimestamp;
     }
 
     public function getSupportsStreaming(): bool
@@ -146,6 +166,8 @@ class InputMessageVideo extends InputMessageContent
             '@type'                    => static::TYPE_NAME,
             'video'                    => $this->video->typeSerialize(),
             'thumbnail'                => $this->thumbnail->typeSerialize(),
+            'cover'                    => $this->cover->typeSerialize(),
+            'start_timestamp'          => $this->startTimestamp,
             'added_sticker_file_ids'   => $this->addedStickerFileIds,
             'duration'                 => $this->duration,
             'width'                    => $this->width,

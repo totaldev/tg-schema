@@ -21,7 +21,7 @@ class UpdateStoryStealthMode extends Update
         /**
          * Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown.
          */
-        protected int $cooldownUntilDate,
+        protected int $cooldownUntilDate
     ) {
         parent::__construct();
     }

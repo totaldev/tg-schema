@@ -25,7 +25,7 @@ class FactCheck extends TdObject
         /**
          * A two-letter ISO 3166-1 alpha-2 country code of the country for which the fact-check is shown.
          */
-        protected string        $countryCode,
+        protected string        $countryCode
     ) {}
 
     public static function fromArray(array $array): FactCheck

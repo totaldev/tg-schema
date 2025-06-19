@@ -26,7 +26,7 @@ class SetMessageSenderBlockList extends TdFunction
         /**
          * New block list for the message sender; pass null to unblock the message sender.
          */
-        protected BlockList     $blockList,
+        protected BlockList     $blockList
     ) {}
 
     public static function fromArray(array $array): SetMessageSenderBlockList

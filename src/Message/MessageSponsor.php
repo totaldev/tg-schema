@@ -29,7 +29,7 @@ class MessageSponsor extends TdObject
         /**
          * Additional optional information about the sponsor to be shown along with the message.
          */
-        protected string $info,
+        protected string $info
     ) {}
 
     public static function fromArray(array $array): MessageSponsor

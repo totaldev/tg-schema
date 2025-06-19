@@ -32,7 +32,7 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
          *
          * @var InputMessageContent[]
          */
-        protected array  $inputMessageContents,
+        protected array  $inputMessageContents
     ) {}
 
     public static function fromArray(array $array): AddQuickReplyShortcutMessageAlbum

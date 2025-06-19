@@ -23,7 +23,7 @@ class GetForumTopic extends TdFunction
         /**
          * Message thread identifier of the forum topic.
          */
-        protected int $messageThreadId,
+        protected int $messageThreadId
     ) {}
 
     public static function fromArray(array $array): GetForumTopic

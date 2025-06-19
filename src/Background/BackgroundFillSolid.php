@@ -15,7 +15,7 @@ class BackgroundFillSolid extends BackgroundFill
 
     public function __construct(
         /**
-         * A color of the background in the RGB24 format.
+         * A color of the background in the RGB format.
          */
         protected int $color
     ) {

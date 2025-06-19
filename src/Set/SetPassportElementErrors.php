@@ -28,7 +28,7 @@ class SetPassportElementErrors extends TdFunction
          *
          * @var InputPassportElementError[]
          */
-        protected array $errors,
+        protected array $errors
     ) {}
 
     public static function fromArray(array $array): SetPassportElementErrors

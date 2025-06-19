@@ -23,7 +23,7 @@ class GetFileDownloadedPrefixSize extends TdFunction
         /**
          * Offset from which downloaded prefix size needs to be calculated.
          */
-        protected int $offset,
+        protected int $offset
     ) {}
 
     public static function fromArray(array $array): GetFileDownloadedPrefixSize

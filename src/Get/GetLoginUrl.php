@@ -33,7 +33,7 @@ class GetLoginUrl extends TdFunction
         /**
          * Pass true to allow the bot to send messages to the current user.
          */
-        protected bool $allowWriteAccess,
+        protected bool $allowWriteAccess
     ) {}
 
     public static function fromArray(array $array): GetLoginUrl

@@ -23,7 +23,7 @@ class ToggleSupergroupJoinToSendMessages extends TdFunction
         /**
          * New value of join_to_send_messages.
          */
-        protected bool $joinToSendMessages,
+        protected bool $joinToSendMessages
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinToSendMessages

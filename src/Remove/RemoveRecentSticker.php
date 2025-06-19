@@ -25,7 +25,7 @@ class RemoveRecentSticker extends TdFunction
         /**
          * Sticker file to delete.
          */
-        protected InputFile $sticker,
+        protected InputFile $sticker
     ) {}
 
     public static function fromArray(array $array): RemoveRecentSticker

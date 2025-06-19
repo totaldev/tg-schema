@@ -32,7 +32,7 @@ class SetCommands extends TdFunction
          *
          * @var BotCommand[]
          */
-        protected array           $commands,
+        protected array           $commands
     ) {}
 
     public static function fromArray(array $array): SetCommands

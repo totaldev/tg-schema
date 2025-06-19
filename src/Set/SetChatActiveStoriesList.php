@@ -25,7 +25,7 @@ class SetChatActiveStoriesList extends TdFunction
         /**
          * New list for active stories posted by the chat.
          */
-        protected StoryList $storyList,
+        protected StoryList $storyList
     ) {}
 
     public static function fromArray(array $array): SetChatActiveStoriesList

@@ -24,7 +24,7 @@ class UpdateChatPhoto extends Update
         /**
          * The new chat photo; may be null.
          */
-        protected ?ChatPhotoInfo $photo,
+        protected ?ChatPhotoInfo $photo
     ) {
         parent::__construct();
     }

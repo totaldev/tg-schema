@@ -23,7 +23,7 @@ class SetAccentColor extends TdFunction
         /**
          * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none.
          */
-        protected int $backgroundCustomEmojiId,
+        protected int $backgroundCustomEmojiId
     ) {}
 
     public static function fromArray(array $array): SetAccentColor

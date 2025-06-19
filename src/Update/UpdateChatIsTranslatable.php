@@ -21,7 +21,7 @@ class UpdateChatIsTranslatable extends Update
         /**
          * New value of is_translatable.
          */
-        protected bool $isTranslatable,
+        protected bool $isTranslatable
     ) {
         parent::__construct();
     }

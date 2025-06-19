@@ -21,11 +21,11 @@ class ReportSupergroupSpam extends TdFunction
          */
         protected int   $supergroupId,
         /**
-         * Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported.
+         * Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported.
          *
          * @var int[]
          */
-        protected array $messageIds,
+        protected array $messageIds
     ) {}
 
     public static function fromArray(array $array): ReportSupergroupSpam

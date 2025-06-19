@@ -19,7 +19,7 @@ class GetStory extends TdFunction
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int  $storySenderChatId,
+        protected int  $storyPosterChatId,
         /**
          * Story identifier.
          */
@@ -27,13 +27,13 @@ class GetStory extends TdFunction
         /**
          * Pass true to get only locally available information without sending network requests.
          */
-        protected bool $onlyLocal,
+        protected bool $onlyLocal
     ) {}
 
     public static function fromArray(array $array): GetStory
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
             $array['only_local'],
         );
@@ -49,16 +49,16 @@ class GetStory extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
             'only_local'           => $this->onlyLocal,
         ];

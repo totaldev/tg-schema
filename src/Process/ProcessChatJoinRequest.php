@@ -27,7 +27,7 @@ class ProcessChatJoinRequest extends TdFunction
         /**
          * Pass true to approve the request; pass false to decline it.
          */
-        protected bool $approve,
+        protected bool $approve
     ) {}
 
     public static function fromArray(array $array): ProcessChatJoinRequest

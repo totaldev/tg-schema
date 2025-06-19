@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Informs TDLib that speaking state of a participant of an active group has changed.
+ * Informs TDLib that speaking state of a participant of an active group call has changed. Returns identifier of the participant if it is found.
  */
 class SetGroupCallParticipantIsSpeaking extends TdFunction
 {
@@ -27,7 +27,7 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
         /**
          * Pass true if the user is speaking.
          */
-        protected bool $isSpeaking,
+        protected bool $isSpeaking
     ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantIsSpeaking

@@ -23,7 +23,7 @@ class BotMenuButton extends TdObject
         /**
          * URL of a Web App to open when the button is pressed. If the link is of the type internalLinkTypeWebApp, then it must be processed accordingly. Otherwise, the link must be passed to openWebApp.
          */
-        protected string $url,
+        protected string $url
     ) {}
 
     public static function fromArray(array $array): BotMenuButton

@@ -12,7 +12,7 @@ use Totaldev\TgSchema\TdFunction;
  * Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message,
  * the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage,
  * messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messageGiveawayCompleted and topic messages without non-bundled replied message
- * respectively.
+ * respectively. Returns a 404 error if the message doesn't exist.
  */
 class GetRepliedMessage extends TdFunction
 {
@@ -26,7 +26,7 @@ class GetRepliedMessage extends TdFunction
         /**
          * Identifier of the reply message.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetRepliedMessage

@@ -28,7 +28,7 @@ class PageBlockPhoto extends PageBlock
         /**
          * URL that needs to be opened when the photo is clicked.
          */
-        protected string           $url,
+        protected string           $url
     ) {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ class ImportedContacts extends TdObject
          *
          * @var int[]
          */
-        protected array $importerCount,
+        protected array $importerCount
     ) {}
 
     public static function fromArray(array $array): ImportedContacts

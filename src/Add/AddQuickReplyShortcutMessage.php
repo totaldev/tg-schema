@@ -31,7 +31,7 @@ class AddQuickReplyShortcutMessage extends TdFunction
         /**
          * The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected InputMessageContent $inputMessageContent
     ) {}
 
     public static function fromArray(array $array): AddQuickReplyShortcutMessage

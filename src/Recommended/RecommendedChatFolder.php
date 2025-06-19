@@ -25,7 +25,7 @@ class RecommendedChatFolder extends TdObject
         /**
          * Chat folder description.
          */
-        protected string     $description,
+        protected string     $description
     ) {}
 
     public static function fromArray(array $array): RecommendedChatFolder

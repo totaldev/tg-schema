@@ -25,7 +25,7 @@ class SetUserPersonalProfilePhoto extends TdFunction
         /**
          * Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function.
          */
-        protected InputChatPhoto $photo,
+        protected InputChatPhoto $photo
     ) {}
 
     public static function fromArray(array $array): SetUserPersonalProfilePhoto

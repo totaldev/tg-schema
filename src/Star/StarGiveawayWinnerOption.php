@@ -27,7 +27,7 @@ class StarGiveawayWinnerOption extends TdObject
         /**
          * True, if the option must be chosen by default.
          */
-        protected bool $isDefault,
+        protected bool $isDefault
     ) {}
 
     public static function fromArray(array $array): StarGiveawayWinnerOption

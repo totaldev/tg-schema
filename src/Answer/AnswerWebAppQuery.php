@@ -26,7 +26,7 @@ class AnswerWebAppQuery extends TdFunction
         /**
          * The result of the query.
          */
-        protected InputInlineQueryResult $result,
+        protected InputInlineQueryResult $result
     ) {}
 
     public static function fromArray(array $array): AnswerWebAppQuery

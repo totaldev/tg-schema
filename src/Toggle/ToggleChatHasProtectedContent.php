@@ -23,7 +23,7 @@ class ToggleChatHasProtectedContent extends TdFunction
         /**
          * New value of has_protected_content.
          */
-        protected bool $hasProtectedContent,
+        protected bool $hasProtectedContent
     ) {}
 
     public static function fromArray(array $array): ToggleChatHasProtectedContent

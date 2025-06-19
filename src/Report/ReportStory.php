@@ -7,7 +7,6 @@
 namespace Totaldev\TgSchema\Report;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Reports a story to the Telegram moderators.
@@ -18,36 +17,36 @@ class ReportStory extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the sender of the story to report.
+         * The identifier of the poster of the story to report.
          */
-        protected int          $storySenderChatId,
+        protected int    $storyPosterChatId,
         /**
          * The identifier of the story to report.
          */
-        protected int          $storyId,
+        protected int    $storyId,
         /**
-         * The reason for reporting the story.
+         * Option identifier chosen by the user; leave empty for the initial request.
          */
-        protected ReportReason $reason,
+        protected string $optionId,
         /**
-         * Additional report details; 0-1024 characters.
+         * Additional report details; 0-1024 characters; leave empty for the initial request.
          */
-        protected string       $text,
+        protected string $text
     ) {}
 
     public static function fromArray(array $array): ReportStory
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
-            TdSchemaRegistry::fromArray($array['reason']),
+            $array['option_id'],
             $array['text'],
         );
     }
 
-    public function getReason(): ReportReason
+    public function getOptionId(): string
     {
-        return $this->reason;
+        return $this->optionId;
     }
 
     public function getStoryId(): int
@@ -55,9 +54,9 @@ class ReportStory extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function getText(): string
@@ -69,9 +68,9 @@ class ReportStory extends TdFunction
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
-            'reason'               => $this->reason->typeSerialize(),
+            'option_id'            => $this->optionId,
             'text'                 => $this->text,
         ];
     }

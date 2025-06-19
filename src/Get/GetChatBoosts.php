@@ -31,7 +31,7 @@ class GetChatBoosts extends TdFunction
         /**
          * The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): GetChatBoosts

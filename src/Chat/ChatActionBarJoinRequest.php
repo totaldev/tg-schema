@@ -25,7 +25,7 @@ class ChatActionBarJoinRequest extends ChatActionBar
         /**
          * Point in time (Unix timestamp) when the join request was sent.
          */
-        protected int    $requestDate,
+        protected int    $requestDate
     ) {
         parent::__construct();
     }

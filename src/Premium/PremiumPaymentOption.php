@@ -31,7 +31,7 @@ class PremiumPaymentOption extends TdObject
          */
         protected int               $discountPercentage,
         /**
-         * Number of months the Telegram Premium subscription will be active.
+         * Number of months the Telegram Premium subscription will be active. Use getPremiumInfoSticker to get the sticker to be used as representation of the Telegram Premium subscription.
          */
         protected int               $monthCount,
         /**

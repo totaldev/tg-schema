@@ -23,7 +23,7 @@ class GetUserChatBoosts extends TdFunction
         /**
          * Identifier of the user.
          */
-        protected int $userId,
+        protected int $userId
     ) {}
 
     public static function fromArray(array $array): GetUserChatBoosts

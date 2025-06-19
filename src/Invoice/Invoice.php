@@ -29,6 +29,10 @@ class Invoice extends TdObject
          */
         protected array  $priceParts,
         /**
+         * The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription.
+         */
+        protected int    $subscriptionPeriod,
+        /**
          * The maximum allowed amount of tip in the smallest units of the currency.
          */
         protected int    $maxTipAmount,
@@ -85,6 +89,7 @@ class Invoice extends TdObject
         return new static(
             $array['currency'],
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            $array['subscription_period'],
             $array['max_tip_amount'],
             $array['suggested_tip_amounts'],
             $array['recurring_payment_terms_of_service_url'],
@@ -160,6 +165,11 @@ class Invoice extends TdObject
         return $this->sendPhoneNumberToProvider;
     }
 
+    public function getSubscriptionPeriod(): int
+    {
+        return $this->subscriptionPeriod;
+    }
+
     public function getSuggestedTipAmounts(): array
     {
         return $this->suggestedTipAmounts;
@@ -176,6 +186,7 @@ class Invoice extends TdObject
             '@type'                                  => static::TYPE_NAME,
             'currency'                               => $this->currency,
             array_map(fn($x) => $x->typeSerialize(), $this->priceParts),
+            'subscription_period'                    => $this->subscriptionPeriod,
             'max_tip_amount'                         => $this->maxTipAmount,
             'suggested_tip_amounts'                  => $this->suggestedTipAmounts,
             'recurring_payment_terms_of_service_url' => $this->recurringPaymentTermsOfServiceUrl,

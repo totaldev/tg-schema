@@ -24,7 +24,7 @@ class PageBlockAuthorDate extends PageBlock
         /**
          * Point in time (Unix timestamp) when the article was published; 0 if unknown.
          */
-        protected int      $publishDate,
+        protected int      $publishDate
     ) {
         parent::__construct();
     }

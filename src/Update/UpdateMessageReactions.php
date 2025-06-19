@@ -34,7 +34,7 @@ class UpdateMessageReactions extends Update
          *
          * @var MessageReaction[]
          */
-        protected array $reactions,
+        protected array $reactions
     ) {
         parent::__construct();
     }

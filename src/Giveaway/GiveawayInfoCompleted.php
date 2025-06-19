@@ -27,7 +27,7 @@ class GiveawayInfoCompleted extends GiveawayInfo
          */
         protected bool   $wasRefunded,
         /**
-         * True, if the cuurent user is a winner of the giveaway.
+         * True, if the current user is a winner of the giveaway.
          */
         protected bool   $isWinner,
         /**

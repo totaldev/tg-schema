@@ -27,7 +27,7 @@ class ChatJoinRequest extends TdObject
         /**
          * A short bio of the user.
          */
-        protected string $bio,
+        protected string $bio
     ) {}
 
     public static function fromArray(array $array): ChatJoinRequest

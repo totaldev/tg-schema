@@ -45,7 +45,7 @@ class Video extends TdObject
          */
         protected bool           $hasStickers,
         /**
-         * True, if the video is supposed to be streamed.
+         * True, if the video is expected to be streamed.
          */
         protected bool           $supportsStreaming,
         /**

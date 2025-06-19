@@ -27,7 +27,7 @@ class RichTextReference extends RichText
         /**
          * An HTTP URL, opening the reference.
          */
-        protected string   $url,
+        protected string   $url
     ) {
         parent::__construct();
     }

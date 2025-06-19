@@ -30,7 +30,7 @@ class SetDefaultBackground extends TdFunction
         /**
          * Pass true if the background is set for a dark theme.
          */
-        protected bool            $forDarkTheme,
+        protected bool            $forDarkTheme
     ) {}
 
     public static function fromArray(array $array): SetDefaultBackground

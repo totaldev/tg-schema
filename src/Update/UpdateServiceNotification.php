@@ -24,7 +24,7 @@ class UpdateServiceNotification extends Update
         /**
          * Notification content.
          */
-        protected MessageContent $content,
+        protected MessageContent $content
     ) {
         parent::__construct();
     }

@@ -38,6 +38,10 @@ class MessageSendingStateFailed extends MessageSendingState
          */
         protected bool  $needDropReply,
         /**
+         * The number of Telegram Stars that must be paid to send the message; 0 if the current amount is correct.
+         */
+        protected int   $requiredPaidMessageStarCount,
+        /**
          * Time left before the message can be re-sent, in seconds. No update is sent when this field changes.
          */
         protected float $retryAfter,
@@ -53,6 +57,7 @@ class MessageSendingStateFailed extends MessageSendingState
             $array['need_another_sender'],
             $array['need_another_reply_quote'],
             $array['need_drop_reply'],
+            $array['required_paid_message_star_count'],
             $array['retry_after'],
         );
     }
@@ -82,6 +87,11 @@ class MessageSendingStateFailed extends MessageSendingState
         return $this->needDropReply;
     }
 
+    public function getRequiredPaidMessageStarCount(): int
+    {
+        return $this->requiredPaidMessageStarCount;
+    }
+
     public function getRetryAfter(): float
     {
         return $this->retryAfter;
@@ -90,13 +100,14 @@ class MessageSendingStateFailed extends MessageSendingState
     public function typeSerialize(): array
     {
         return [
-            '@type'                    => static::TYPE_NAME,
-            'error'                    => $this->error->typeSerialize(),
-            'can_retry'                => $this->canRetry,
-            'need_another_sender'      => $this->needAnotherSender,
-            'need_another_reply_quote' => $this->needAnotherReplyQuote,
-            'need_drop_reply'          => $this->needDropReply,
-            'retry_after'              => $this->retryAfter,
+            '@type'                            => static::TYPE_NAME,
+            'error'                            => $this->error->typeSerialize(),
+            'can_retry'                        => $this->canRetry,
+            'need_another_sender'              => $this->needAnotherSender,
+            'need_another_reply_quote'         => $this->needAnotherReplyQuote,
+            'need_drop_reply'                  => $this->needDropReply,
+            'required_paid_message_star_count' => $this->requiredPaidMessageStarCount,
+            'retry_after'                      => $this->retryAfter,
         ];
     }
 }

@@ -25,7 +25,7 @@ class InputStoryArea extends TdObject
         /**
          * Type of the area.
          */
-        protected InputStoryAreaType $type,
+        protected InputStoryAreaType $type
     ) {}
 
     public static function fromArray(array $array): InputStoryArea

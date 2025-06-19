@@ -23,7 +23,7 @@ class RemoveNotificationGroup extends TdFunction
         /**
          * The maximum identifier of removed notifications.
          */
-        protected int $maxNotificationId,
+        protected int $maxNotificationId
     ) {}
 
     public static function fromArray(array $array): RemoveNotificationGroup

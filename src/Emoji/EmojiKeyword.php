@@ -23,7 +23,7 @@ class EmojiKeyword extends TdObject
         /**
          * The keyword.
          */
-        protected string $keyword,
+        protected string $keyword
     ) {}
 
     public static function fromArray(array $array): EmojiKeyword

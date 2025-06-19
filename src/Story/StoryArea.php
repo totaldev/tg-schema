@@ -24,7 +24,7 @@ class StoryArea extends TdObject
         /**
          * Type of the area.
          */
-        protected StoryAreaType     $type,
+        protected StoryAreaType     $type
     ) {}
 
     public static function fromArray(array $array): StoryArea

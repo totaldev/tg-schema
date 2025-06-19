@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Story;
 
 /**
- * The original story was a public story with known sender.
+ * The original story was a public story that was posted by a known chat.
  */
 class StoryOriginPublicStory extends StoryOrigin
 {
@@ -21,7 +21,7 @@ class StoryOriginPublicStory extends StoryOrigin
         /**
          * Story identifier of the original story.
          */
-        protected int $storyId,
+        protected int $storyId
     ) {
         parent::__construct();
     }

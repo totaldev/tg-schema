@@ -24,7 +24,7 @@ class DeleteAccount extends TdFunction
         /**
          * The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week.
          */
-        protected string $password,
+        protected string $password
     ) {}
 
     public static function fromArray(array $array): DeleteAccount

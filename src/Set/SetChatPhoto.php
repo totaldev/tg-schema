@@ -25,7 +25,7 @@ class SetChatPhoto extends TdFunction
         /**
          * New chat photo; pass null to delete the chat photo.
          */
-        protected InputChatPhoto $photo,
+        protected InputChatPhoto $photo
     ) {}
 
     public static function fromArray(array $array): SetChatPhoto

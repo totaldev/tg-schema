@@ -21,7 +21,7 @@ class StatisticalGraphData extends StatisticalGraph
         /**
          * If non-empty, a token which can be used to receive a zoomed in graph.
          */
-        protected string $zoomToken,
+        protected string $zoomToken
     ) {
         parent::__construct();
     }

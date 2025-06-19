@@ -26,7 +26,7 @@ class MessageCalendar extends TdObject
          *
          * @var MessageCalendarDay[]
          */
-        protected array $days,
+        protected array $days
     ) {}
 
     public static function fromArray(array $array): MessageCalendar

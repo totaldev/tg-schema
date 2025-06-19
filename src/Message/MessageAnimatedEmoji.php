@@ -24,7 +24,7 @@ class MessageAnimatedEmoji extends MessageContent
         /**
          * The corresponding emoji.
          */
-        protected string        $emoji,
+        protected string        $emoji
     ) {
         parent::__construct();
     }

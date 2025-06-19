@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges.
+ * Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right.
  */
 class DeleteChatMessagesBySender extends TdFunction
 {
@@ -25,7 +25,7 @@ class DeleteChatMessagesBySender extends TdFunction
         /**
          * Identifier of the sender of messages to delete.
          */
-        protected MessageSender $senderId,
+        protected MessageSender $senderId
     ) {}
 
     public static function fromArray(array $array): DeleteChatMessagesBySender

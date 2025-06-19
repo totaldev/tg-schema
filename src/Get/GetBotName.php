@@ -23,7 +23,7 @@ class GetBotName extends TdFunction
         /**
          * A two-letter ISO 639-1 language code or an empty string.
          */
-        protected string $languageCode,
+        protected string $languageCode
     ) {}
 
     public static function fromArray(array $array): GetBotName

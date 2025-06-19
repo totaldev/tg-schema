@@ -28,7 +28,7 @@ class PassportElementsWithErrors extends TdObject
          *
          * @var PassportElementError[]
          */
-        protected array $errors,
+        protected array $errors
     ) {}
 
     public static function fromArray(array $array): PassportElementsWithErrors

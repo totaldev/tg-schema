@@ -36,7 +36,7 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
         /**
          * Expected height of the embedded player.
          */
-        protected int    $height,
+        protected int    $height
     ) {
         parent::__construct();
     }

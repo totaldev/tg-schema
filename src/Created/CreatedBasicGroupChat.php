@@ -25,7 +25,7 @@ class CreatedBasicGroupChat extends TdObject
         /**
          * Information about failed to add members.
          */
-        protected FailedToAddMembers $failedToAddMembers,
+        protected FailedToAddMembers $failedToAddMembers
     ) {}
 
     public static function fromArray(array $array): CreatedBasicGroupChat

@@ -24,7 +24,7 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
         /**
          * Identifier of the erroneously deleted message from chatEventMessageDeleted.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): ReportSupergroupAntiSpamFalsePositive

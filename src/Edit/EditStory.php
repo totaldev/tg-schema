@@ -23,7 +23,7 @@ class EditStory extends TdFunction
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int               $storySenderChatId,
+        protected int               $storyPosterChatId,
         /**
          * Identifier of the story to edit.
          */
@@ -45,7 +45,7 @@ class EditStory extends TdFunction
     public static function fromArray(array $array): EditStory
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
             TdSchemaRegistry::fromArray($array['content']),
             TdSchemaRegistry::fromArray($array['areas']),
@@ -73,16 +73,16 @@ class EditStory extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
             'content'              => $this->content->typeSerialize(),
             'areas'                => $this->areas->typeSerialize(),

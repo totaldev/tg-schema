@@ -11,8 +11,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be
- * changed for all users with the default volume level.
+ * Changes volume level of a participant of an active group call. If the current user can manage the group call or is the owner of the group call, then the
+ * participant's volume level will be changed for all users with the default volume level.
  */
 class SetGroupCallParticipantVolumeLevel extends TdFunction
 {
@@ -30,7 +30,7 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
         /**
          * New participant's volume level; 1-20000 in hundreds of percents.
          */
-        protected int           $volumeLevel,
+        protected int           $volumeLevel
     ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantVolumeLevel

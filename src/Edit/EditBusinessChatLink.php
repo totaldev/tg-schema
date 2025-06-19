@@ -25,7 +25,7 @@ class EditBusinessChatLink extends TdFunction
         /**
          * New description of the link.
          */
-        protected InputBusinessChatLink $linkInfo,
+        protected InputBusinessChatLink $linkInfo
     ) {}
 
     public static function fromArray(array $array): EditBusinessChatLink

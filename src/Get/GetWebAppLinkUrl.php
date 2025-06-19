@@ -8,7 +8,7 @@ namespace Totaldev\TgSchema\Get;
 
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
-use Totaldev\TgSchema\Theme\ThemeParameters;
+use Totaldev\TgSchema\Web\WebAppOpenParameters;
 
 /**
  * Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked.
@@ -21,31 +21,27 @@ class GetWebAppLinkUrl extends TdFunction
         /**
          * Identifier of the chat in which the link was clicked; pass 0 if none.
          */
-        protected int             $chatId,
+        protected int                  $chatId,
         /**
          * Identifier of the target bot.
          */
-        protected int             $botUserId,
+        protected int                  $botUserId,
         /**
          * Short name of the Web App.
          */
-        protected string          $webAppShortName,
+        protected string               $webAppShortName,
         /**
          * Start parameter from internalLinkTypeWebApp.
          */
-        protected string          $startParameter,
-        /**
-         * Preferred Web App theme; pass null to use the default theme.
-         */
-        protected ThemeParameters $theme,
-        /**
-         * Short name of the current application; 0-64 English letters, digits, and underscores.
-         */
-        protected string          $applicationName,
+        protected string               $startParameter,
         /**
          * Pass true if the current user allowed the bot to send them messages.
          */
-        protected bool            $allowWriteAccess,
+        protected bool                 $allowWriteAccess,
+        /**
+         * Parameters to use to open the Web App.
+         */
+        protected WebAppOpenParameters $parameters,
     ) {}
 
     public static function fromArray(array $array): GetWebAppLinkUrl
@@ -55,20 +51,14 @@ class GetWebAppLinkUrl extends TdFunction
             $array['bot_user_id'],
             $array['web_app_short_name'],
             $array['start_parameter'],
-            TdSchemaRegistry::fromArray($array['theme']),
-            $array['application_name'],
             $array['allow_write_access'],
+            TdSchemaRegistry::fromArray($array['parameters']),
         );
     }
 
     public function getAllowWriteAccess(): bool
     {
         return $this->allowWriteAccess;
-    }
-
-    public function getApplicationName(): string
-    {
-        return $this->applicationName;
     }
 
     public function getBotUserId(): int
@@ -81,14 +71,14 @@ class GetWebAppLinkUrl extends TdFunction
         return $this->chatId;
     }
 
+    public function getParameters(): WebAppOpenParameters
+    {
+        return $this->parameters;
+    }
+
     public function getStartParameter(): string
     {
         return $this->startParameter;
-    }
-
-    public function getTheme(): ThemeParameters
-    {
-        return $this->theme;
     }
 
     public function getWebAppShortName(): string
@@ -104,9 +94,8 @@ class GetWebAppLinkUrl extends TdFunction
             'bot_user_id'        => $this->botUserId,
             'web_app_short_name' => $this->webAppShortName,
             'start_parameter'    => $this->startParameter,
-            'theme'              => $this->theme->typeSerialize(),
-            'application_name'   => $this->applicationName,
             'allow_write_access' => $this->allowWriteAccess,
+            'parameters'         => $this->parameters->typeSerialize(),
         ];
     }
 }

@@ -29,6 +29,10 @@ class ForumTopic extends TdObject
          */
         protected ?Message                 $lastMessage,
         /**
+         * A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order.
+         */
+        protected int                      $order,
+        /**
          * True, if the topic is pinned in the topic list.
          */
         protected bool                     $isPinned,
@@ -67,6 +71,7 @@ class ForumTopic extends TdObject
         return new static(
             TdSchemaRegistry::fromArray($array['info']),
             isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
+            $array['order'],
             $array['is_pinned'],
             $array['unread_count'],
             $array['last_read_inbox_message_id'],
@@ -113,6 +118,11 @@ class ForumTopic extends TdObject
         return $this->notificationSettings;
     }
 
+    public function getOrder(): int
+    {
+        return $this->order;
+    }
+
     public function getUnreadCount(): int
     {
         return $this->unreadCount;
@@ -134,6 +144,7 @@ class ForumTopic extends TdObject
             '@type'                       => static::TYPE_NAME,
             'info'                        => $this->info->typeSerialize(),
             'last_message'                => (isset($this->lastMessage) ? $this->lastMessage : null),
+            'order'                       => $this->order,
             'is_pinned'                   => $this->isPinned,
             'unread_count'                => $this->unreadCount,
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,

@@ -25,7 +25,7 @@ class SetSavedMessagesTagLabel extends TdFunction
         /**
          * New label for the tag; 0-12 characters.
          */
-        protected string       $label,
+        protected string       $label
     ) {}
 
     public static function fromArray(array $array): SetSavedMessagesTagLabel

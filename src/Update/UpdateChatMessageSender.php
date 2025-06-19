@@ -24,7 +24,7 @@ class UpdateChatMessageSender extends Update
         /**
          * New value of message_sender_id; may be null if the user can't change message sender.
          */
-        protected ?MessageSender $messageSenderId,
+        protected ?MessageSender $messageSenderId
     ) {
         parent::__construct();
     }

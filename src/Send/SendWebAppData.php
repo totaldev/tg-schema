@@ -27,7 +27,7 @@ class SendWebAppData extends TdFunction
         /**
          * The data.
          */
-        protected string $data,
+        protected string $data
     ) {}
 
     public static function fromArray(array $array): SendWebAppData

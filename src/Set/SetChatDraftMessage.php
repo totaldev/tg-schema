@@ -29,7 +29,7 @@ class SetChatDraftMessage extends TdFunction
         /**
          * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
          */
-        protected DraftMessage $draftMessage,
+        protected DraftMessage $draftMessage
     ) {}
 
     public static function fromArray(array $array): SetChatDraftMessage

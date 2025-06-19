@@ -26,10 +26,6 @@ class InlineQueryResultArticle extends InlineQueryResult
          */
         protected string     $url,
         /**
-         * True, if the URL must be not shown.
-         */
-        protected bool       $hideUrl,
-        /**
          * Title of the result.
          */
         protected string     $title,
@@ -40,7 +36,7 @@ class InlineQueryResultArticle extends InlineQueryResult
         /**
          * Result thumbnail in JPEG format; may be null.
          */
-        protected ?Thumbnail $thumbnail,
+        protected ?Thumbnail $thumbnail
     ) {
         parent::__construct();
     }
@@ -50,7 +46,6 @@ class InlineQueryResultArticle extends InlineQueryResult
         return new static(
             $array['id'],
             $array['url'],
-            $array['hide_url'],
             $array['title'],
             $array['description'],
             isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
@@ -60,11 +55,6 @@ class InlineQueryResultArticle extends InlineQueryResult
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function getHideUrl(): bool
-    {
-        return $this->hideUrl;
     }
 
     public function getId(): string
@@ -93,7 +83,6 @@ class InlineQueryResultArticle extends InlineQueryResult
             '@type'       => static::TYPE_NAME,
             'id'          => $this->id,
             'url'         => $this->url,
-            'hide_url'    => $this->hideUrl,
             'title'       => $this->title,
             'description' => $this->description,
             'thumbnail'   => (isset($this->thumbnail) ? $this->thumbnail : null),

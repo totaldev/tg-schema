@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Chat;
 
 /**
- * Describes a story sent by the chat.
+ * Describes a story posted on behalf of the chat.
  */
 class ChatStatisticsObjectTypeStory extends ChatStatisticsObjectType
 {

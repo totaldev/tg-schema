@@ -21,7 +21,7 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
         /**
          * If true, only polls in quiz mode must be allowed to create.
          */
-        protected bool $forceQuiz,
+        protected bool $forceQuiz
     ) {
         parent::__construct();
     }

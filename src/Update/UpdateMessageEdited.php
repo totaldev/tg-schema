@@ -32,7 +32,7 @@ class UpdateMessageEdited extends Update
         /**
          * New message reply markup; may be null.
          */
-        protected ?ReplyMarkup $replyMarkup,
+        protected ?ReplyMarkup $replyMarkup
     ) {
         parent::__construct();
     }

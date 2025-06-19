@@ -23,7 +23,7 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
         /**
          * Pass true if the current user's video is paused.
          */
-        protected bool $isMyVideoPaused,
+        protected bool $isMyVideoPaused
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoPaused

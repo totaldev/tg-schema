@@ -21,7 +21,7 @@ class InputStoryAreaTypeMessage extends InputStoryAreaType
         /**
          * Identifier of the message. Use messageProperties.can_be_shared_in_story to check whether the message is suitable.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {
         parent::__construct();
     }

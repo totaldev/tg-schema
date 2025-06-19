@@ -25,7 +25,7 @@ class PremiumFeaturePromotionAnimation extends TdObject
         /**
          * Promotion animation for the feature.
          */
-        protected Animation      $animation,
+        protected Animation      $animation
     ) {}
 
     public static function fromArray(array $array): PremiumFeaturePromotionAnimation

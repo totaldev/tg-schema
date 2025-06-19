@@ -25,7 +25,7 @@ class ReorderChatFolders extends TdFunction
         /**
          * Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users.
          */
-        protected int   $mainChatListPosition,
+        protected int   $mainChatListPosition
     ) {}
 
     public static function fromArray(array $array): ReorderChatFolders

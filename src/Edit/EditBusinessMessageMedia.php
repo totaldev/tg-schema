@@ -12,7 +12,8 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only.
+ * Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account;
+ * for bots only.
  */
 class EditBusinessMessageMedia extends TdFunction
 {

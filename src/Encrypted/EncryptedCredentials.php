@@ -27,7 +27,7 @@ class EncryptedCredentials extends TdObject
         /**
          * Secret for data decryption, encrypted with the service's public key.
          */
-        protected string $secret,
+        protected string $secret
     ) {}
 
     public static function fromArray(array $array): EncryptedCredentials

@@ -23,7 +23,7 @@ class Error extends TdObject
         /**
          * Error message; subject to future changes.
          */
-        protected string $message,
+        protected string $message
     ) {}
 
     public static function fromArray(array $array): Error

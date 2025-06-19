@@ -25,7 +25,7 @@ class ChatMessageSender extends TdObject
         /**
          * True, if Telegram Premium is needed to use the message sender.
          */
-        protected bool          $needsPremium,
+        protected bool          $needsPremium
     ) {}
 
     public static function fromArray(array $array): ChatMessageSender

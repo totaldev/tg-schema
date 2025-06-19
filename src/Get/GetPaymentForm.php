@@ -27,7 +27,7 @@ class GetPaymentForm extends TdFunction
         /**
          * Preferred payment form theme; pass null to use the default theme.
          */
-        protected ThemeParameters $theme,
+        protected ThemeParameters $theme
     ) {}
 
     public static function fromArray(array $array): GetPaymentForm

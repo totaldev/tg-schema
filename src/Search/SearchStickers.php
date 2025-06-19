@@ -23,9 +23,23 @@ class SearchStickers extends TdFunction
          */
         protected StickerType $stickerType,
         /**
-         * Space-separated list of emojis to search for; must be non-empty.
+         * Space-separated list of emojis to search for.
          */
         protected string      $emojis,
+        /**
+         * Query to search for; may be empty to search for emoji only.
+         */
+        protected string      $query,
+        /**
+         * List of possible IETF language tags of the user's input language; may be empty if unknown.
+         *
+         * @var string[]
+         */
+        protected array       $inputLanguageCodes,
+        /**
+         * The offset from which to return the stickers; must be non-negative.
+         */
+        protected int         $offset,
         /**
          * The maximum number of stickers to be returned; 0-100.
          */
@@ -37,6 +51,9 @@ class SearchStickers extends TdFunction
         return new static(
             TdSchemaRegistry::fromArray($array['sticker_type']),
             $array['emojis'],
+            $array['query'],
+            $array['input_language_codes'],
+            $array['offset'],
             $array['limit'],
         );
     }
@@ -46,9 +63,24 @@ class SearchStickers extends TdFunction
         return $this->emojis;
     }
 
+    public function getInputLanguageCodes(): array
+    {
+        return $this->inputLanguageCodes;
+    }
+
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getQuery(): string
+    {
+        return $this->query;
     }
 
     public function getStickerType(): StickerType
@@ -59,10 +91,13 @@ class SearchStickers extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'sticker_type' => $this->stickerType->typeSerialize(),
-            'emojis'       => $this->emojis,
-            'limit'        => $this->limit,
+            '@type'                => static::TYPE_NAME,
+            'sticker_type'         => $this->stickerType->typeSerialize(),
+            'emojis'               => $this->emojis,
+            'query'                => $this->query,
+            'input_language_codes' => $this->inputLanguageCodes,
+            'offset'               => $this->offset,
+            'limit'                => $this->limit,
         ];
     }
 }

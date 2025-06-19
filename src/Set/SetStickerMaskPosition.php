@@ -26,7 +26,7 @@ class SetStickerMaskPosition extends TdFunction
         /**
          * Position where the mask is placed; pass null to remove mask position.
          */
-        protected MaskPosition $maskPosition,
+        protected MaskPosition $maskPosition
     ) {}
 
     public static function fromArray(array $array): SetStickerMaskPosition

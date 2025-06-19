@@ -26,7 +26,7 @@ class BankCardInfo extends TdObject
          *
          * @var BankCardActionOpenUrl[]
          */
-        protected array  $actions,
+        protected array  $actions
     ) {}
 
     public static function fromArray(array $array): BankCardInfo

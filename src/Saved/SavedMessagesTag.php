@@ -29,7 +29,7 @@ class SavedMessagesTag extends TdObject
         /**
          * Number of times the tag was used; may be 0 if the tag has non-empty label.
          */
-        protected int          $count,
+        protected int          $count
     ) {}
 
     public static function fromArray(array $array): SavedMessagesTag

@@ -21,7 +21,7 @@ class InputMessageDice extends InputMessageContent
         /**
          * True, if the chat message draft must be deleted.
          */
-        protected bool   $clearDraft,
+        protected bool   $clearDraft
     ) {
         parent::__construct();
     }

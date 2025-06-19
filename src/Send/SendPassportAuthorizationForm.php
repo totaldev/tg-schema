@@ -28,7 +28,7 @@ class SendPassportAuthorizationForm extends TdFunction
          *
          * @var PassportElementType[]
          */
-        protected array $types,
+        protected array $types
     ) {}
 
     public static function fromArray(array $array): SendPassportAuthorizationForm

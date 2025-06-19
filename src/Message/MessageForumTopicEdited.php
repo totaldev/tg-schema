@@ -25,7 +25,7 @@ class MessageForumTopicEdited extends MessageContent
         /**
          * New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false.
          */
-        protected int    $iconCustomEmojiId,
+        protected int    $iconCustomEmojiId
     ) {
         parent::__construct();
     }

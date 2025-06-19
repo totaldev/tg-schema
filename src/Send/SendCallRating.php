@@ -35,7 +35,7 @@ class SendCallRating extends TdFunction
          *
          * @var CallProblem[]
          */
-        protected array  $problems,
+        protected array  $problems
     ) {}
 
     public static function fromArray(array $array): SendCallRating

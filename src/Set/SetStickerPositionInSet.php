@@ -25,7 +25,7 @@ class SetStickerPositionInSet extends TdFunction
         /**
          * New position of the sticker in the set, 0-based.
          */
-        protected int       $position,
+        protected int       $position
     ) {}
 
     public static function fromArray(array $array): SetStickerPositionInSet

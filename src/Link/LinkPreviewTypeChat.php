@@ -29,7 +29,7 @@ class LinkPreviewTypeChat extends LinkPreviewType
         /**
          * True, if the link only creates join request.
          */
-        protected bool               $createsJoinRequest,
+        protected bool               $createsJoinRequest
     ) {
         parent::__construct();
     }

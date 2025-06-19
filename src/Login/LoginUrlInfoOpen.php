@@ -21,7 +21,7 @@ class LoginUrlInfoOpen extends LoginUrlInfo
         /**
          * True, if there is no need to show an ordinary open URL confirmation.
          */
-        protected bool   $skipConfirmation,
+        protected bool   $skipConfirmation
     ) {
         parent::__construct();
     }

@@ -24,7 +24,7 @@ class ToggleSupergroupHasHiddenMembers extends TdFunction
         /**
          * New value of has_hidden_members.
          */
-        protected bool $hasHiddenMembers,
+        protected bool $hasHiddenMembers
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasHiddenMembers

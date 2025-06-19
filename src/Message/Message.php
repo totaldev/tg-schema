@@ -53,7 +53,7 @@ class Message extends TdObject
          */
         protected bool                     $isFromOffline,
         /**
-         * True, if content of the message can be saved locally or copied.
+         * True, if content of the message can be saved locally.
          */
         protected bool                     $canBeSaved,
         /**
@@ -65,19 +65,15 @@ class Message extends TdObject
          */
         protected bool                     $isChannelPost,
         /**
-         * True, if the message is a forum topic message.
-         */
-        protected bool                     $isTopicMessage,
-        /**
          * True, if the message contains an unread mention for the current user.
          */
         protected bool                     $containsUnreadMention,
         /**
-         * Point in time (Unix timestamp) when the message was sent.
+         * Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages.
          */
         protected int                      $date,
         /**
-         * Point in time (Unix timestamp) when the message was last edited.
+         * Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages.
          */
         protected int                      $editDate,
         /**
@@ -111,9 +107,9 @@ class Message extends TdObject
          */
         protected int                      $messageThreadId,
         /**
-         * Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages.
+         * Identifier of the topic within the chat to which the message belongs; may be null if none.
          */
-        protected int                      $savedMessagesTopicId,
+        protected ?MessageTopic            $topicId,
         /**
          * The message's self-destruct type; may be null if none.
          */
@@ -138,6 +134,10 @@ class Message extends TdObject
          * Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead.
          */
         protected int                      $senderBoostCount,
+        /**
+         * The number of Telegram Stars the sender paid to send the message.
+         */
+        protected int                      $paidMessageStarCount,
         /**
          * For channel posts and anonymous group messages, optional author signature.
          */
@@ -182,7 +182,6 @@ class Message extends TdObject
             $array['can_be_saved'],
             $array['has_timestamped_media'],
             $array['is_channel_post'],
-            $array['is_topic_message'],
             $array['contains_unread_mention'],
             $array['date'],
             $array['edit_date'],
@@ -193,13 +192,14 @@ class Message extends TdObject
             isset($array['fact_check']) ? TdSchemaRegistry::fromArray($array['fact_check']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             $array['message_thread_id'],
-            $array['saved_messages_topic_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
             $array['self_destruct_in'],
             $array['auto_delete_in'],
             $array['via_bot_user_id'],
             $array['sender_business_bot_user_id'],
             $array['sender_boost_count'],
+            $array['paid_message_star_count'],
             $array['author_signature'],
             $array['media_album_id'],
             $array['effect_id'],
@@ -310,11 +310,6 @@ class Message extends TdObject
         return $this->isPinned;
     }
 
-    public function getIsTopicMessage(): bool
-    {
-        return $this->isTopicMessage;
-    }
-
     public function getMediaAlbumId(): int
     {
         return $this->mediaAlbumId;
@@ -323,6 +318,11 @@ class Message extends TdObject
     public function getMessageThreadId(): int
     {
         return $this->messageThreadId;
+    }
+
+    public function getPaidMessageStarCount(): int
+    {
+        return $this->paidMessageStarCount;
     }
 
     public function getReplyMarkup(): ?ReplyMarkup
@@ -338,11 +338,6 @@ class Message extends TdObject
     public function getRestrictionReason(): string
     {
         return $this->restrictionReason;
-    }
-
-    public function getSavedMessagesTopicId(): int
-    {
-        return $this->savedMessagesTopicId;
     }
 
     public function getSchedulingState(): ?MessageSchedulingState
@@ -380,6 +375,11 @@ class Message extends TdObject
         return $this->sendingState;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function getUnreadReactions(): array
     {
         return $this->unreadReactions;
@@ -405,7 +405,6 @@ class Message extends TdObject
             'can_be_saved'                => $this->canBeSaved,
             'has_timestamped_media'       => $this->hasTimestampedMedia,
             'is_channel_post'             => $this->isChannelPost,
-            'is_topic_message'            => $this->isTopicMessage,
             'contains_unread_mention'     => $this->containsUnreadMention,
             'date'                        => $this->date,
             'edit_date'                   => $this->editDate,
@@ -416,13 +415,14 @@ class Message extends TdObject
             'fact_check'                  => (isset($this->factCheck) ? $this->factCheck : null),
             'reply_to'                    => (isset($this->replyTo) ? $this->replyTo : null),
             'message_thread_id'           => $this->messageThreadId,
-            'saved_messages_topic_id'     => $this->savedMessagesTopicId,
+            'topic_id'                    => (isset($this->topicId) ? $this->topicId : null),
             'self_destruct_type'          => (isset($this->selfDestructType) ? $this->selfDestructType : null),
             'self_destruct_in'            => $this->selfDestructIn,
             'auto_delete_in'              => $this->autoDeleteIn,
             'via_bot_user_id'             => $this->viaBotUserId,
             'sender_business_bot_user_id' => $this->senderBusinessBotUserId,
             'sender_boost_count'          => $this->senderBoostCount,
+            'paid_message_star_count'     => $this->paidMessageStarCount,
             'author_signature'            => $this->authorSignature,
             'media_album_id'              => $this->mediaAlbumId,
             'effect_id'                   => $this->effectId,

@@ -32,7 +32,7 @@ class StoryAreaTypeSuggestedReaction extends StoryAreaType
         /**
          * True, if reaction corner is flipped.
          */
-        protected bool         $isFlipped,
+        protected bool         $isFlipped
     ) {
         parent::__construct();
     }

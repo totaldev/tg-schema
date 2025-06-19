@@ -26,25 +26,25 @@ class SendMessage extends TdFunction
          */
         protected int                 $chatId,
         /**
-         * The content of the message to be sent.
-         */
-        protected InputMessageContent $inputMessageContent,
-        /**
          * If not 0, the message thread identifier in which the message will be sent.
          */
-        protected int                 $messageThreadId = 0,
+        protected int                 $messageThreadId,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
-        protected ?InputMessageReplyTo $replyTo = null,
+        protected InputMessageReplyTo $replyTo,
         /**
          * Options to be used to send the message; pass null to use default options.
          */
-        protected ?MessageSendOptions  $options = null,
+        protected MessageSendOptions  $options,
         /**
          * Markup for replying to the message; pass null if none; for bots only.
          */
-        protected ?ReplyMarkup         $replyMarkup = null,
+        protected ReplyMarkup         $replyMarkup,
+        /**
+         * The content of the message to be sent.
+         */
+        protected InputMessageContent $inputMessageContent,
     ) {}
 
     public static function fromArray(array $array): SendMessage
@@ -94,11 +94,11 @@ class SendMessage extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
             'message_thread_id'     => $this->messageThreadId,
-            'reply_to'              => $this->replyTo?->typeSerialize(),
-            'options'               => $this->options?->typeSerialize(),
-            'reply_markup'          => $this->replyMarkup?->typeSerialize(),
+            'reply_to'              => $this->replyTo->typeSerialize(),
+            'options'               => $this->options->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }
 }

@@ -23,7 +23,7 @@ class RemoveNotification extends TdFunction
         /**
          * Identifier of removed notification.
          */
-        protected int $notificationId,
+        protected int $notificationId
     ) {}
 
     public static function fromArray(array $array): RemoveNotification

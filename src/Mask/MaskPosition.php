@@ -32,7 +32,7 @@ class MaskPosition extends TdObject
         /**
          * Mask scaling coefficient. (For example, 2.0 means a doubled size).
          */
-        protected float     $scale,
+        protected float     $scale
     ) {}
 
     public static function fromArray(array $array): MaskPosition

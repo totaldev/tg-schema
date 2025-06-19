@@ -21,7 +21,7 @@ class StoryAreaTypeMessage extends StoryAreaType
         /**
          * Identifier of the message.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {
         parent::__construct();
     }

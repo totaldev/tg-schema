@@ -28,7 +28,7 @@ class UpdateMessageInteractionInfo extends Update
         /**
          * New information about interactions with the message; may be null.
          */
-        protected ?MessageInteractionInfo $interactionInfo,
+        protected ?MessageInteractionInfo $interactionInfo
     ) {
         parent::__construct();
     }

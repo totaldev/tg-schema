@@ -34,7 +34,7 @@ class StorageStatisticsByChat extends TdObject
          *
          * @var StorageStatisticsByFileType[]
          */
-        protected array $byFileType,
+        protected array $byFileType
     ) {}
 
     public static function fromArray(array $array): StorageStatisticsByChat

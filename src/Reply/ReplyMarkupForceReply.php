@@ -21,7 +21,7 @@ class ReplyMarkupForceReply extends ReplyMarkup
         /**
          * If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters.
          */
-        protected string $inputFieldPlaceholder,
+        protected string $inputFieldPlaceholder
     ) {
         parent::__construct();
     }

@@ -31,7 +31,7 @@ class GetPassportAuthorizationForm extends TdFunction
         /**
          * Unique request identifier provided by the service.
          */
-        protected string $nonce,
+        protected string $nonce
     ) {}
 
     public static function fromArray(array $array): GetPassportAuthorizationForm

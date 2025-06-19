@@ -23,7 +23,7 @@ class RtmpUrl extends TdObject
         /**
          * Stream key.
          */
-        protected string $streamKey,
+        protected string $streamKey
     ) {}
 
     public static function fromArray(array $array): RtmpUrl

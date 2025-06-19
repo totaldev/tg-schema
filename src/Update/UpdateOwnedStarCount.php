@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Star\StarAmount;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The number of Telegram Stars owned by the current user has changed.
  */
@@ -15,9 +18,9 @@ class UpdateOwnedStarCount extends Update
 
     public function __construct(
         /**
-         * The new number of Telegram Stars owned.
+         * The new amount of owned Telegram Stars.
          */
-        protected int $starCount
+        protected StarAmount $starAmount
     ) {
         parent::__construct();
     }
@@ -25,20 +28,20 @@ class UpdateOwnedStarCount extends Update
     public static function fromArray(array $array): UpdateOwnedStarCount
     {
         return new static(
-            $array['star_count'],
+            TdSchemaRegistry::fromArray($array['star_amount']),
         );
     }
 
-    public function getStarCount(): int
+    public function getStarAmount(): StarAmount
     {
-        return $this->starCount;
+        return $this->starAmount;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'star_count' => $this->starCount,
+            '@type'       => static::TYPE_NAME,
+            'star_amount' => $this->starAmount->typeSerialize(),
         ];
     }
 }

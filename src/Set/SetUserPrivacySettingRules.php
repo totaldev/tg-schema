@@ -26,7 +26,7 @@ class SetUserPrivacySettingRules extends TdFunction
         /**
          * The new privacy rules.
          */
-        protected UserPrivacySettingRules $rules,
+        protected UserPrivacySettingRules $rules
     ) {}
 
     public static function fromArray(array $array): SetUserPrivacySettingRules

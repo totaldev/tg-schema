@@ -32,7 +32,7 @@ class InlineQueryResultDocument extends InlineQueryResult
         /**
          * Document description.
          */
-        protected string   $description,
+        protected string   $description
     ) {
         parent::__construct();
     }

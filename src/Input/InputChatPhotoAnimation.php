@@ -23,7 +23,7 @@ class InputChatPhotoAnimation extends InputChatPhoto
         /**
          * Timestamp of the frame, which will be used as static chat photo.
          */
-        protected float     $mainFrameTimestamp,
+        protected float     $mainFrameTimestamp
     ) {
         parent::__construct();
     }

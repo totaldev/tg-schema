@@ -23,7 +23,7 @@ class SearchHashtags extends TdFunction
         /**
          * The maximum number of hashtags to be returned.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchHashtags

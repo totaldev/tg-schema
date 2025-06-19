@@ -30,7 +30,7 @@ class UpdateMessageSendFailed extends Update
         /**
          * The cause of the message sending failure.
          */
-        protected Error   $error,
+        protected Error   $error
     ) {
         parent::__construct();
     }

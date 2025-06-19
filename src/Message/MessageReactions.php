@@ -37,7 +37,7 @@ class MessageReactions extends TdObject
         /**
          * True, if the list of added reactions is available using getMessageAddedReactions.
          */
-        protected bool  $canGetAddedReactions,
+        protected bool  $canGetAddedReactions
     ) {}
 
     public static function fromArray(array $array): MessageReactions

@@ -29,7 +29,7 @@ class MessageVoiceNote extends MessageContent
         /**
          * True, if at least one of the recipients has listened to the voice note.
          */
-        protected bool          $isListened,
+        protected bool          $isListened
     ) {
         parent::__construct();
     }

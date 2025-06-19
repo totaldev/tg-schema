@@ -24,7 +24,7 @@ class DeleteAllRevokedChatInviteLinks extends TdFunction
         /**
          * User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner.
          */
-        protected int $creatorUserId,
+        protected int $creatorUserId
     ) {}
 
     public static function fromArray(array $array): DeleteAllRevokedChatInviteLinks

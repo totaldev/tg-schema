@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Replace;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Replaces the current RTMP URL for streaming to the chat; requires owner privileges.
+ * Replaces the current RTMP URL for streaming to the video chat of a chat; requires owner privileges in the chat.
  */
 class ReplaceVideoChatRtmpUrl extends TdFunction
 {

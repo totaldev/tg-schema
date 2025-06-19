@@ -6,12 +6,14 @@
 
 namespace Totaldev\TgSchema\Get;
 
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\Search\SearchMessagesFilter;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats.
+ * Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat and topic. Cannot be used in secret
+ * chats.
  */
 class GetChatMessagePosition extends TdFunction
 {
@@ -23,31 +25,26 @@ class GetChatMessagePosition extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Message identifier.
+         * Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages.
          */
-        protected int                  $messageId,
+        protected MessageTopic         $topicId,
         /**
          * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
-         * If not 0, only messages in the specified thread will be considered; supergroups only.
+         * Message identifier.
          */
-        protected int                  $messageThreadId,
-        /**
-         * If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages.
-         */
-        protected int                  $savedMessagesTopicId,
+        protected int                  $messageId
     ) {}
 
     public static function fromArray(array $array): GetChatMessagePosition
     {
         return new static(
             $array['chat_id'],
-            $array['message_id'],
+            TdSchemaRegistry::fromArray($array['topic_id']),
             TdSchemaRegistry::fromArray($array['filter']),
-            $array['message_thread_id'],
-            $array['saved_messages_topic_id'],
+            $array['message_id'],
         );
     }
 
@@ -66,25 +63,19 @@ class GetChatMessagePosition extends TdFunction
         return $this->messageId;
     }
 
-    public function getMessageThreadId(): int
+    public function getTopicId(): MessageTopic
     {
-        return $this->messageThreadId;
-    }
-
-    public function getSavedMessagesTopicId(): int
-    {
-        return $this->savedMessagesTopicId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'                   => static::TYPE_NAME,
-            'chat_id'                 => $this->chatId,
-            'message_id'              => $this->messageId,
-            'filter'                  => $this->filter->typeSerialize(),
-            'message_thread_id'       => $this->messageThreadId,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
+            '@type'      => static::TYPE_NAME,
+            'chat_id'    => $this->chatId,
+            'topic_id'   => $this->topicId->typeSerialize(),
+            'filter'     => $this->filter->typeSerialize(),
+            'message_id' => $this->messageId,
         ];
     }
 }

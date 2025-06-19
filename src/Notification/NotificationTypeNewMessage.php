@@ -24,7 +24,7 @@ class NotificationTypeNewMessage extends NotificationType
         /**
          * True, if message content must be displayed in notifications.
          */
-        protected bool    $showPreview,
+        protected bool    $showPreview
     ) {
         parent::__construct();
     }

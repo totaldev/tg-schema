@@ -27,7 +27,7 @@ class SetChatAccentColor extends TdFunction
         /**
          * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set.
          */
-        protected int $backgroundCustomEmojiId,
+        protected int $backgroundCustomEmojiId
     ) {}
 
     public static function fromArray(array $array): SetChatAccentColor

@@ -24,7 +24,7 @@ class OpenMessageContent extends TdFunction
         /**
          * Identifier of the message with the opened content.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): OpenMessageContent

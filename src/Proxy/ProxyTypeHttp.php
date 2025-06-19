@@ -25,7 +25,7 @@ class ProxyTypeHttp extends ProxyType
         /**
          * Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method.
          */
-        protected bool   $httpOnly,
+        protected bool   $httpOnly
     ) {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ class Birthdate extends TdObject
         /**
          * Birth year; 0 if unknown.
          */
-        protected int $year,
+        protected int $year
     ) {}
 
     public static function fromArray(array $array): Birthdate

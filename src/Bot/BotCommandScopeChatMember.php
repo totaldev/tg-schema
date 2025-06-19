@@ -21,7 +21,7 @@ class BotCommandScopeChatMember extends BotCommandScope
         /**
          * User identifier.
          */
-        protected int $userId,
+        protected int $userId
     ) {
         parent::__construct();
     }

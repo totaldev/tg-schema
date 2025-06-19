@@ -29,7 +29,7 @@ class ChatTheme extends TdObject
         /**
          * Theme settings for a dark chat theme.
          */
-        protected ThemeSettings $darkSettings,
+        protected ThemeSettings $darkSettings
     ) {}
 
     public static function fromArray(array $array): ChatTheme

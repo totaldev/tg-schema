@@ -29,7 +29,7 @@ class InputPassportElementError extends TdObject
         /**
          * Error source.
          */
-        protected InputPassportElementErrorSource $source,
+        protected InputPassportElementErrorSource $source
     ) {}
 
     public static function fromArray(array $array): InputPassportElementError

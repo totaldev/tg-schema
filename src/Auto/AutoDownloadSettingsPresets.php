@@ -18,20 +18,20 @@ class AutoDownloadSettingsPresets extends TdObject
 
     public function __construct(
         /**
-         * Preset with lowest settings; supposed to be used by default when roaming.
+         * Preset with lowest settings; expected to be used by default when roaming.
          */
         protected AutoDownloadSettings $low,
         /**
-         * Preset with medium settings; supposed to be used by default when using mobile data.
+         * Preset with medium settings; expected to be used by default when using mobile data.
          */
         protected AutoDownloadSettings $medium,
         /**
-         * Preset with highest settings; supposed to be used by default when connected on Wi-Fi.
+         * Preset with highest settings; expected to be used by default when connected on Wi-Fi.
          */
-        protected AutoDownloadSettings $high,
+        protected AutoDownloadSettings $high
     ) {}
 
-    public static function fromArray(array $array): AutoDownloadSettingsPresets
+    public static function fromArray(array $array): AutoDownloadSebttingsPresets
     {
         return new static(
             TdSchemaRegistry::fromArray($array['low']),

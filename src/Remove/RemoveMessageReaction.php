@@ -29,7 +29,7 @@ class RemoveMessageReaction extends TdFunction
         /**
          * Type of the reaction to remove. The paid reaction can't be removed.
          */
-        protected ReactionType $reactionType,
+        protected ReactionType $reactionType
     ) {}
 
     public static function fromArray(array $array): RemoveMessageReaction

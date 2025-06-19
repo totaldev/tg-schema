@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Refund;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Refunds a previously done payment in Telegram Stars.
+ * Refunds a previously done payment in Telegram Stars; for bots only.
  */
 class RefundStarPayment extends TdFunction
 {
@@ -23,7 +23,7 @@ class RefundStarPayment extends TdFunction
         /**
          * Telegram payment identifier.
          */
-        protected string $telegramPaymentChargeId,
+        protected string $telegramPaymentChargeId
     ) {}
 
     public static function fromArray(array $array): RefundStarPayment

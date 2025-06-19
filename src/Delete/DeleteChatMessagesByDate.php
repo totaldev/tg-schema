@@ -32,7 +32,7 @@ class DeleteChatMessagesByDate extends TdFunction
         /**
          * Pass true to delete chat messages for all users; private chats only.
          */
-        protected bool $revoke,
+        protected bool $revoke
     ) {}
 
     public static function fromArray(array $array): DeleteChatMessagesByDate

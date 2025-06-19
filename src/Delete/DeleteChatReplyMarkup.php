@@ -24,7 +24,7 @@ class DeleteChatReplyMarkup extends TdFunction
         /**
          * The message identifier of the used keyboard.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): DeleteChatReplyMarkup

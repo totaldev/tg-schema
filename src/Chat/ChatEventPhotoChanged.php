@@ -23,7 +23,7 @@ class ChatEventPhotoChanged extends ChatEventAction
         /**
          * New chat photo value; may be null.
          */
-        protected ?ChatPhoto $newPhoto,
+        protected ?ChatPhoto $newPhoto
     ) {
         parent::__construct();
     }

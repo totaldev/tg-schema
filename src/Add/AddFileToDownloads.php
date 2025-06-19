@@ -33,7 +33,7 @@ class AddFileToDownloads extends TdFunction
         /**
          * Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first.
          */
-        protected int $priority,
+        protected int $priority
     ) {}
 
     public static function fromArray(array $array): AddFileToDownloads

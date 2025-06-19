@@ -32,7 +32,7 @@ class ReportChatPhoto extends TdFunction
         /**
          * Additional report details; 0-1024 characters.
          */
-        protected string       $text,
+        protected string       $text
     ) {}
 
     public static function fromArray(array $array): ReportChatPhoto

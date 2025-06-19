@@ -24,7 +24,7 @@ class UpdateChatAddedToList extends Update
         /**
          * The chat list to which the chat was added.
          */
-        protected ChatList $chatList,
+        protected ChatList $chatList
     ) {
         parent::__construct();
     }

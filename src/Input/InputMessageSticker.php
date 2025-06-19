@@ -35,7 +35,7 @@ class InputMessageSticker extends InputMessageContent
         /**
          * Emoji used to choose the sticker.
          */
-        protected string         $emoji,
+        protected string         $emoji
     ) {
         parent::__construct();
     }

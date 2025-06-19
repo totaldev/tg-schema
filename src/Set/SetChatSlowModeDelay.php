@@ -23,7 +23,7 @@ class SetChatSlowModeDelay extends TdFunction
         /**
          * New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600.
          */
-        protected int $slowModeDelay,
+        protected int $slowModeDelay
     ) {}
 
     public static function fromArray(array $array): SetChatSlowModeDelay

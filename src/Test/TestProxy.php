@@ -37,7 +37,7 @@ class TestProxy extends TdFunction
         /**
          * The maximum overall timeout for the request.
          */
-        protected float     $timeout,
+        protected float     $timeout
     ) {}
 
     public static function fromArray(array $array): TestProxy

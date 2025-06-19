@@ -22,7 +22,7 @@ class UpdateChatOnlineMemberCount extends Update
         /**
          * New number of online members in the chat, or 0 if unknown.
          */
-        protected int $onlineMemberCount,
+        protected int $onlineMemberCount
     ) {
         parent::__construct();
     }

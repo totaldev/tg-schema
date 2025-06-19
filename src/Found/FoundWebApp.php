@@ -29,7 +29,7 @@ class FoundWebApp extends TdObject
         /**
          * True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden.
          */
-        protected bool   $skipConfirmation,
+        protected bool   $skipConfirmation
     ) {}
 
     public static function fromArray(array $array): FoundWebApp

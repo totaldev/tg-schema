@@ -27,7 +27,7 @@ class GiveawayInfoOngoing extends GiveawayInfo
         /**
          * True, if the giveaway has ended and results are being prepared.
          */
-        protected bool                      $isEnded,
+        protected bool                      $isEnded
     ) {
         parent::__construct();
     }

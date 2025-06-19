@@ -24,7 +24,7 @@ class UpdateChatActionBar extends Update
         /**
          * The new value of the action bar; may be null.
          */
-        protected ?ChatActionBar $actionBar,
+        protected ?ChatActionBar $actionBar
     ) {
         parent::__construct();
     }

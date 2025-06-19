@@ -25,7 +25,7 @@ class UpdateTermsOfService extends Update
         /**
          * The new terms of service.
          */
-        protected TermsOfService $termsOfService,
+        protected TermsOfService $termsOfService
     ) {
         parent::__construct();
     }

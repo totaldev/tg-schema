@@ -23,7 +23,7 @@ class UpdateRecentStickers extends Update
          *
          * @var int[]
          */
-        protected array $stickerIds,
+        protected array $stickerIds
     ) {
         parent::__construct();
     }

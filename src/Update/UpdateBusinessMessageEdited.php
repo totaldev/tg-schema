@@ -24,7 +24,7 @@ class UpdateBusinessMessageEdited extends Update
         /**
          * The edited message.
          */
-        protected BusinessMessage $message,
+        protected BusinessMessage $message
     ) {
         parent::__construct();
     }

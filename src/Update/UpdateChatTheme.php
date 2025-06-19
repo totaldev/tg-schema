@@ -21,7 +21,7 @@ class UpdateChatTheme extends Update
         /**
          * The new name of the chat theme; may be empty if theme was reset to default.
          */
-        protected string $themeName,
+        protected string $themeName
     ) {
         parent::__construct();
     }

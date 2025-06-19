@@ -32,7 +32,7 @@ class PageBlockChatLink extends PageBlock
         /**
          * Chat username by which all other information about the chat can be resolved.
          */
-        protected string         $username,
+        protected string         $username
     ) {
         parent::__construct();
     }

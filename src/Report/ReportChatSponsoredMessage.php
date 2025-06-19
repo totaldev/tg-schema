@@ -27,7 +27,7 @@ class ReportChatSponsoredMessage extends TdFunction
         /**
          * Option identifier chosen by the user; leave empty for the initial request.
          */
-        protected string $optionId,
+        protected string $optionId
     ) {}
 
     public static function fromArray(array $array): ReportChatSponsoredMessage

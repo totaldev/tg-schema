@@ -24,7 +24,7 @@ class InlineQueryResultGame extends InlineQueryResult
         /**
          * Game result.
          */
-        protected Game   $game,
+        protected Game   $game
     ) {
         parent::__construct();
     }

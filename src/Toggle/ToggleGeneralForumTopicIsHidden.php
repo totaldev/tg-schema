@@ -23,7 +23,7 @@ class ToggleGeneralForumTopicIsHidden extends TdFunction
         /**
          * Pass true to hide and close the General topic; pass false to unhide it.
          */
-        protected bool $isHidden,
+        protected bool $isHidden
     ) {}
 
     public static function fromArray(array $array): ToggleGeneralForumTopicIsHidden

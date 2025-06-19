@@ -25,7 +25,7 @@ class InputBusinessChatLink extends TdObject
         /**
          * Link title.
          */
-        protected string        $title,
+        protected string        $title
     ) {}
 
     public static function fromArray(array $array): InputBusinessChatLink

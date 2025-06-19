@@ -37,7 +37,7 @@ class SharedUser extends TdObject
         /**
          * Profile photo of the user; for bots only; may be null.
          */
-        protected ?Photo $photo,
+        protected ?Photo $photo
     ) {}
 
     public static function fromArray(array $array): SharedUser

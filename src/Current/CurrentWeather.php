@@ -23,7 +23,7 @@ class CurrentWeather extends TdObject
         /**
          * Emoji representing the weather.
          */
-        protected string $emoji,
+        protected string $emoji
     ) {}
 
     public static function fromArray(array $array): CurrentWeather

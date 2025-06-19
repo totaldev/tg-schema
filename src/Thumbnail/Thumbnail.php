@@ -33,7 +33,7 @@ class Thumbnail extends TdObject
         /**
          * The thumbnail.
          */
-        protected File            $file,
+        protected File            $file
     ) {}
 
     public static function fromArray(array $array): Thumbnail

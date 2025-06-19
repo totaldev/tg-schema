@@ -23,7 +23,7 @@ class GetGiveawayInfo extends TdFunction
         /**
          * Identifier of the giveaway or a giveaway winners message in the chat.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetGiveawayInfo

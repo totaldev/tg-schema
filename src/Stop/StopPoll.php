@@ -29,7 +29,7 @@ class StopPoll extends TdFunction
         /**
          * The new message reply markup; pass null if none; for bots only.
          */
-        protected ReplyMarkup $replyMarkup,
+        protected ReplyMarkup $replyMarkup
     ) {}
 
     public static function fromArray(array $array): StopPoll

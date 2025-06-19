@@ -24,7 +24,7 @@ class SetSupergroupCustomEmojiStickerSet extends TdFunction
         /**
          * New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup.
          */
-        protected int $customEmojiStickerSetId,
+        protected int $customEmojiStickerSetId
     ) {}
 
     public static function fromArray(array $array): SetSupergroupCustomEmojiStickerSet

@@ -23,7 +23,7 @@ class StarSubscriptionPricing extends TdObject
         /**
          * The amount of Telegram Stars that must be paid for each period.
          */
-        protected int $starCount,
+        protected int $starCount
     ) {}
 
     public static function fromArray(array $array): StarSubscriptionPricing

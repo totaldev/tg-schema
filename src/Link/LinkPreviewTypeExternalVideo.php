@@ -33,7 +33,7 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType
         /**
          * Duration of the video, in seconds; 0 if unknown.
          */
-        protected int    $duration,
+        protected int    $duration
     ) {
         parent::__construct();
     }

@@ -21,7 +21,7 @@ class RevenueWithdrawalStateSucceeded extends RevenueWithdrawalState
         /**
          * The URL where the withdrawal transaction can be viewed.
          */
-        protected string $url,
+        protected string $url
     ) {
         parent::__construct();
     }

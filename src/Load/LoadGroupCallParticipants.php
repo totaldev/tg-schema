@@ -24,7 +24,7 @@ class LoadGroupCallParticipants extends TdFunction
         /**
          * The maximum number of participants to load; up to 100.
          */
-        protected int $limit,
+        protected int $limit
     ) {}
 
     public static function fromArray(array $array): LoadGroupCallParticipants

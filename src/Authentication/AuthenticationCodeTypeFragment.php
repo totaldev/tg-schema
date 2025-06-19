@@ -21,7 +21,7 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
         /**
          * Length of the code.
          */
-        protected int    $length,
+        protected int    $length
     ) {
         parent::__construct();
     }

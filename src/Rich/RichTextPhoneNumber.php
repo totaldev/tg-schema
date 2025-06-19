@@ -23,7 +23,7 @@ class RichTextPhoneNumber extends RichText
         /**
          * Phone number.
          */
-        protected string   $phoneNumber,
+        protected string   $phoneNumber
     ) {
         parent::__construct();
     }

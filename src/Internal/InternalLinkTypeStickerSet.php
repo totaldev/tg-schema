@@ -22,7 +22,7 @@ class InternalLinkTypeStickerSet extends InternalLinkType
         /**
          * True, if the sticker set is expected to contain custom emoji.
          */
-        protected bool   $expectCustomEmoji,
+        protected bool   $expectCustomEmoji
     ) {
         parent::__construct();
     }

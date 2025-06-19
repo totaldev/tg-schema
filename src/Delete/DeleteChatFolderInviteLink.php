@@ -23,7 +23,7 @@ class DeleteChatFolderInviteLink extends TdFunction
         /**
          * Invite link to be deleted.
          */
-        protected string $inviteLink,
+        protected string $inviteLink
     ) {}
 
     public static function fromArray(array $array): DeleteChatFolderInviteLink

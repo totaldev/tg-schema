@@ -27,7 +27,7 @@ class SetStickerKeywords extends TdFunction
          *
          * @var string[]
          */
-        protected array     $keywords,
+        protected array     $keywords
     ) {}
 
     public static function fromArray(array $array): SetStickerKeywords

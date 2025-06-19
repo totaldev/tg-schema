@@ -23,7 +23,7 @@ class CancelDownloadFile extends TdFunction
         /**
          * Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server.
          */
-        protected bool $onlyIfPending,
+        protected bool $onlyIfPending
     ) {}
 
     public static function fromArray(array $array): CancelDownloadFile

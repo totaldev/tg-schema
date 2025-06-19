@@ -24,7 +24,7 @@ class GetExternalLink extends TdFunction
         /**
          * Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages.
          */
-        protected bool   $allowWriteAccess,
+        protected bool   $allowWriteAccess
     ) {}
 
     public static function fromArray(array $array): GetExternalLink

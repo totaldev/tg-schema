@@ -27,7 +27,7 @@ class AddRecentSticker extends TdFunction
         /**
          * Sticker file to add.
          */
-        protected InputFile $sticker,
+        protected InputFile $sticker
     ) {}
 
     public static function fromArray(array $array): AddRecentSticker

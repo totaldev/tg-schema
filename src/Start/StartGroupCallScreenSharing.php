@@ -27,7 +27,7 @@ class StartGroupCallScreenSharing extends TdFunction
         /**
          * Group call join payload; received from tgcalls.
          */
-        protected string $payload,
+        protected string $payload
     ) {}
 
     public static function fromArray(array $array): StartGroupCallScreenSharing

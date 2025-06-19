@@ -27,7 +27,7 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
         /**
          * Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false.
          */
-        protected bool $allowWriteAccess,
+        protected bool $allowWriteAccess
     ) {}
 
     public static function fromArray(array $array): ToggleBotIsAddedToAttachmentMenu

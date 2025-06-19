@@ -25,7 +25,7 @@ class SetPinnedForumTopics extends TdFunction
          *
          * @var int[]
          */
-        protected array $messageThreadIds,
+        protected array $messageThreadIds
     ) {}
 
     public static function fromArray(array $array): SetPinnedForumTopics

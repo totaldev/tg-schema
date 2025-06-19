@@ -35,7 +35,7 @@ class Contact extends TdObject
         /**
          * Identifier of the user, if known; 0 otherwise.
          */
-        protected int    $userId,
+        protected int    $userId
     ) {}
 
     public static function fromArray(array $array): Contact

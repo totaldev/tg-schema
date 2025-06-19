@@ -19,13 +19,13 @@ class GetStarRevenueStatistics extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true.
+         * Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true.
          */
         protected MessageSender $ownerId,
         /**
          * Pass true if a dark theme is used by the application.
          */
-        protected bool          $isDark,
+        protected bool          $isDark
     ) {}
 
     public static function fromArray(array $array): GetStarRevenueStatistics

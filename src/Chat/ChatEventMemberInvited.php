@@ -23,7 +23,7 @@ class ChatEventMemberInvited extends ChatEventAction
         /**
          * New member status.
          */
-        protected ChatMemberStatus $status,
+        protected ChatMemberStatus $status
     ) {
         parent::__construct();
     }

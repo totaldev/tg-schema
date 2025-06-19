@@ -24,7 +24,7 @@ class UpdateNotification extends Update
         /**
          * Changed notification.
          */
-        protected Notification $notification,
+        protected Notification $notification
     ) {
         parent::__construct();
     }

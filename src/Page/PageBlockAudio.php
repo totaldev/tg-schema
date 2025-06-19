@@ -24,7 +24,7 @@ class PageBlockAudio extends PageBlock
         /**
          * Audio file caption.
          */
-        protected PageBlockCaption $caption,
+        protected PageBlockCaption $caption
     ) {
         parent::__construct();
     }

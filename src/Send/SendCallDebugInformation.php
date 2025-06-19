@@ -23,7 +23,7 @@ class SendCallDebugInformation extends TdFunction
         /**
          * Debug information in application-specific format.
          */
-        protected string $debugInformation,
+        protected string $debugInformation
     ) {}
 
     public static function fromArray(array $array): SendCallDebugInformation

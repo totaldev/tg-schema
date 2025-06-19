@@ -25,7 +25,7 @@ class MessageGameScore extends MessageContent
         /**
          * New score.
          */
-        protected int $score,
+        protected int $score
     ) {
         parent::__construct();
     }

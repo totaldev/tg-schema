@@ -27,7 +27,7 @@ class SetBotInfoDescription extends TdFunction
         /**
          * New bot's description on the specified language.
          */
-        protected string $description,
+        protected string $description
     ) {}
 
     public static function fromArray(array $array): SetBotInfoDescription

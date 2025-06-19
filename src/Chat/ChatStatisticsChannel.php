@@ -40,15 +40,15 @@ class ChatStatisticsChannel extends ChatStatistics
          */
         protected StatisticalValue $meanMessageReactionCount,
         /**
-         * Mean number of times the recently sent stories were viewed.
+         * Mean number of times the recently posted stories were viewed.
          */
         protected StatisticalValue $meanStoryViewCount,
         /**
-         * Mean number of times the recently sent stories were shared.
+         * Mean number of times the recently posted stories were shared.
          */
         protected StatisticalValue $meanStoryShareCount,
         /**
-         * Mean number of times reactions were added to the recently sent stories.
+         * Mean number of times reactions were added to the recently posted stories.
          */
         protected StatisticalValue $meanStoryReactionCount,
         /**
@@ -104,7 +104,7 @@ class ChatStatisticsChannel extends ChatStatistics
          */
         protected StatisticalGraph $instantViewInteractionGraph,
         /**
-         * Detailed statistics about number of views and shares of recently sent messages and stories.
+         * Detailed statistics about number of views and shares of recently sent messages and posted stories.
          *
          * @var ChatStatisticsInteractionInfo[]
          */

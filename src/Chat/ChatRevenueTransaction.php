@@ -28,7 +28,7 @@ class ChatRevenueTransaction extends TdObject
         /**
          * Type of the transaction.
          */
-        protected ChatRevenueTransactionType $type,
+        protected ChatRevenueTransactionType $type
     ) {}
 
     public static function fromArray(array $array): ChatRevenueTransaction

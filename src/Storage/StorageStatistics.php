@@ -30,7 +30,7 @@ class StorageStatistics extends TdObject
          *
          * @var StorageStatisticsByChat[]
          */
-        protected array $byChat,
+        protected array $byChat
     ) {}
 
     public static function fromArray(array $array): StorageStatistics

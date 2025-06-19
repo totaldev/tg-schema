@@ -28,7 +28,7 @@ class WriteGeneratedFilePart extends TdFunction
         /**
          * The data to write.
          */
-        protected string $data,
+        protected string $data
     ) {}
 
     public static function fromArray(array $array): WriteGeneratedFilePart

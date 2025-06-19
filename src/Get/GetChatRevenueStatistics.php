@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdFunction;
 
 /**
  * Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics ==
- * true.
+ * true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true.
  */
 class GetChatRevenueStatistics extends TdFunction
 {
@@ -24,7 +24,7 @@ class GetChatRevenueStatistics extends TdFunction
         /**
          * Pass true if a dark theme is used by the application.
          */
-        protected bool $isDark,
+        protected bool $isDark
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueStatistics

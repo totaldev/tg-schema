@@ -24,7 +24,7 @@ class UpdateChatBoost extends Update
         /**
          * New information about the boost.
          */
-        protected ChatBoost $boost,
+        protected ChatBoost $boost
     ) {
         parent::__construct();
     }

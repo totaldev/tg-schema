@@ -26,7 +26,7 @@ class SetAutoDownloadSettings extends TdFunction
         /**
          * Type of the network for which the new settings are relevant.
          */
-        protected NetworkType          $type,
+        protected NetworkType          $type
     ) {}
 
     public static function fromArray(array $array): SetAutoDownloadSettings

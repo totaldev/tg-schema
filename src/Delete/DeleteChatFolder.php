@@ -25,7 +25,7 @@ class DeleteChatFolder extends TdFunction
          *
          * @var int[]
          */
-        protected array $leaveChatIds,
+        protected array $leaveChatIds
     ) {}
 
     public static function fromArray(array $array): DeleteChatFolder

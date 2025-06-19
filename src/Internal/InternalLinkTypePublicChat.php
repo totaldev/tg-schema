@@ -27,7 +27,7 @@ class InternalLinkTypePublicChat extends InternalLinkType
         /**
          * True, if chat profile information screen must be opened; otherwise, the chat itself must be opened.
          */
-        protected bool   $openProfile,
+        protected bool   $openProfile
     ) {
         parent::__construct();
     }

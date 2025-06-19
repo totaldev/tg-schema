@@ -25,7 +25,7 @@ class ProcessChatFolderNewChats extends TdFunction
          *
          * @var int[]
          */
-        protected array $addedChatIds,
+        protected array $addedChatIds
     ) {}
 
     public static function fromArray(array $array): ProcessChatFolderNewChats

@@ -19,6 +19,14 @@ class ForumTopicInfo extends TdObject
 
     public function __construct(
         /**
+         * Identifier of the forum chat to which the topic belongs.
+         */
+        protected int            $chatId,
+        /**
+         * Forum topic identifier of the topic.
+         */
+        protected int            $forumTopicId,
+        /**
          * Message thread identifier of the topic.
          */
         protected int            $messageThreadId,
@@ -59,6 +67,8 @@ class ForumTopicInfo extends TdObject
     public static function fromArray(array $array): ForumTopicInfo
     {
         return new static(
+            $array['chat_id'],
+            $array['forum_topic_id'],
             $array['message_thread_id'],
             $array['name'],
             TdSchemaRegistry::fromArray($array['icon']),
@@ -71,6 +81,11 @@ class ForumTopicInfo extends TdObject
         );
     }
 
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
     public function getCreationDate(): int
     {
         return $this->creationDate;
@@ -79,6 +94,11 @@ class ForumTopicInfo extends TdObject
     public function getCreatorId(): MessageSender
     {
         return $this->creatorId;
+    }
+
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
     }
 
     public function getIcon(): ForumTopicIcon
@@ -120,6 +140,8 @@ class ForumTopicInfo extends TdObject
     {
         return [
             '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'forum_topic_id'    => $this->forumTopicId,
             'message_thread_id' => $this->messageThreadId,
             'name'              => $this->name,
             'icon'              => $this->icon->typeSerialize(),

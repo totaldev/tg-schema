@@ -29,7 +29,7 @@ class SetMessageFactCheck extends TdFunction
         /**
          * New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported.
          */
-        protected FormattedText $text,
+        protected FormattedText $text
     ) {}
 
     public static function fromArray(array $array): SetMessageFactCheck

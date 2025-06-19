@@ -30,7 +30,7 @@ class UnreadReaction extends TdObject
         /**
          * True, if the reaction was added with a big animation.
          */
-        protected bool          $isBig,
+        protected bool          $isBig
     ) {}
 
     public static function fromArray(array $array): UnreadReaction

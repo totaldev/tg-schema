@@ -27,7 +27,7 @@ class RichTextUrl extends RichText
         /**
          * True, if the URL has cached instant view server-side.
          */
-        protected bool     $isCached,
+        protected bool     $isCached
     ) {
         parent::__construct();
     }

@@ -23,7 +23,7 @@ class ChatEventBackgroundChanged extends ChatEventAction
         /**
          * New background; may be null if none.
          */
-        protected ?ChatBackground $newBackground,
+        protected ?ChatBackground $newBackground
     ) {
         parent::__construct();
     }

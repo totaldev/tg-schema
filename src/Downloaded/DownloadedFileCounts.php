@@ -27,7 +27,7 @@ class DownloadedFileCounts extends TdObject
         /**
          * Number of completed file downloads found.
          */
-        protected int $completedCount,
+        protected int $completedCount
     ) {}
 
     public static function fromArray(array $array): DownloadedFileCounts

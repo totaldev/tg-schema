@@ -18,13 +18,13 @@ class UpdateMessageSendSucceeded extends Update
 
     public function __construct(
         /**
-         * The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change.
+         * The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled, or non-scheduled.
          */
         protected Message $message,
         /**
          * The previous temporary message identifier.
          */
-        protected int     $oldMessageId,
+        protected int     $oldMessageId
     ) {
         parent::__construct();
     }

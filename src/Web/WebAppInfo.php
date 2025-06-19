@@ -23,7 +23,7 @@ class WebAppInfo extends TdObject
         /**
          * A Web App URL to open in a web view.
          */
-        protected string $url,
+        protected string $url
     ) {}
 
     public static function fromArray(array $array): WebAppInfo

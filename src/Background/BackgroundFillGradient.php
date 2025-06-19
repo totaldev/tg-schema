@@ -15,17 +15,17 @@ class BackgroundFillGradient extends BackgroundFill
 
     public function __construct(
         /**
-         * A top color of the background in the RGB24 format.
+         * A top color of the background in the RGB format.
          */
         protected int $topColor,
         /**
-         * A bottom color of the background in the RGB24 format.
+         * A bottom color of the background in the RGB format.
          */
         protected int $bottomColor,
         /**
          * Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45.
          */
-        protected int $rotationAngle,
+        protected int $rotationAngle
     ) {
         parent::__construct();
     }

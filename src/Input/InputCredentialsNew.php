@@ -21,7 +21,7 @@ class InputCredentialsNew extends InputCredentials
         /**
          * True, if the credential identifier can be saved on the server side.
          */
-        protected bool   $allowSave,
+        protected bool   $allowSave
     ) {
         parent::__construct();
     }

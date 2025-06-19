@@ -23,9 +23,9 @@ class SetProfilePhoto extends TdFunction
          */
         protected InputChatPhoto $photo,
         /**
-         * Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings.
+         * Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings.
          */
-        protected bool           $isPublic,
+        protected bool           $isPublic
     ) {}
 
     public static function fromArray(array $array): SetProfilePhoto

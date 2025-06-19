@@ -23,7 +23,7 @@ class ToggleChatViewAsTopics extends TdFunction
         /**
          * New value of view_as_topics.
          */
-        protected bool $viewAsTopics,
+        protected bool $viewAsTopics
     ) {}
 
     public static function fromArray(array $array): ToggleChatViewAsTopics

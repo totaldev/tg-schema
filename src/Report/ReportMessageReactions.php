@@ -29,7 +29,7 @@ class ReportMessageReactions extends TdFunction
         /**
          * Identifier of the sender, which added the reaction.
          */
-        protected MessageSender $senderId,
+        protected MessageSender $senderId
     ) {}
 
     public static function fromArray(array $array): ReportMessageReactions

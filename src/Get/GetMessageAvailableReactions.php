@@ -28,7 +28,7 @@ class GetMessageAvailableReactions extends TdFunction
         /**
          * Number of reaction per row, 5-25.
          */
-        protected int $rowSize,
+        protected int $rowSize
     ) {}
 
     public static function fromArray(array $array): GetMessageAvailableReactions

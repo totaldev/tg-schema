@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Target;
 
 /**
- * The currently opened chat needs to be kept.
+ * The currently opened chat and forum topic must be kept.
  */
 class TargetChatCurrent extends TargetChat
 {

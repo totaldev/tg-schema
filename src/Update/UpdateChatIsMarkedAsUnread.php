@@ -21,7 +21,7 @@ class UpdateChatIsMarkedAsUnread extends Update
         /**
          * New value of is_marked_as_unread.
          */
-        protected bool $isMarkedAsUnread,
+        protected bool $isMarkedAsUnread
     ) {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ class SetMessageReactions extends TdFunction
          */
         protected int   $messageId,
         /**
-         * Types of the reaction to set.
+         * Types of the reaction to set; pass an empty list to remove the reactions.
          *
          * @var ReactionType[]
          */
@@ -35,7 +35,7 @@ class SetMessageReactions extends TdFunction
         /**
          * Pass true if the reactions are added with a big animation.
          */
-        protected bool  $isBig,
+        protected bool  $isBig
     ) {}
 
     public static function fromArray(array $array): SetMessageReactions

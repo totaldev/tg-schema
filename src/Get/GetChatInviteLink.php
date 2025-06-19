@@ -24,7 +24,7 @@ class GetChatInviteLink extends TdFunction
         /**
          * Invite link to get.
          */
-        protected string $inviteLink,
+        protected string $inviteLink
     ) {}
 
     public static function fromArray(array $array): GetChatInviteLink

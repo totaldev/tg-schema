@@ -33,7 +33,7 @@ class Stories extends TdObject
          *
          * @var int[]
          */
-        protected array $pinnedStoryIds,
+        protected array $pinnedStoryIds
     ) {}
 
     public static function fromArray(array $array): Stories

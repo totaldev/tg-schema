@@ -35,7 +35,7 @@ class GetPollVoters extends TdFunction
         /**
          * The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached.
          */
-        protected int $limit,
+        protected int $limit
     ) {}
 
     public static function fromArray(array $array): GetPollVoters

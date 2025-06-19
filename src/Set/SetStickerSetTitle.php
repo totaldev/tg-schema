@@ -23,7 +23,7 @@ class SetStickerSetTitle extends TdFunction
         /**
          * New sticker set title.
          */
-        protected string $title,
+        protected string $title
     ) {}
 
     public static function fromArray(array $array): SetStickerSetTitle

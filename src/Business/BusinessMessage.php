@@ -25,7 +25,7 @@ class BusinessMessage extends TdObject
         /**
          * Message that is replied by the message in the same chat; may be null if none.
          */
-        protected ?Message $replyToMessage,
+        protected ?Message $replyToMessage
     ) {}
 
     public static function fromArray(array $array): BusinessMessage

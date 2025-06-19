@@ -6,7 +6,9 @@
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Alternative\AlternativeVideo;
 use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Video\Video;
 
@@ -22,6 +24,20 @@ class MessageVideo extends MessageContent
          * The video description.
          */
         protected Video         $video,
+        /**
+         * Alternative qualities of the video.
+         *
+         * @var AlternativeVideo[]
+         */
+        protected array         $alternativeVideos,
+        /**
+         * Cover of the video; may be null if none.
+         */
+        protected ?Photo        $cover,
+        /**
+         * Timestamp from which the video playing must start, in seconds.
+         */
+        protected int           $startTimestamp,
         /**
          * Video caption.
          */
@@ -46,6 +62,9 @@ class MessageVideo extends MessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['video']),
+            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
+            isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
+            $array['start_timestamp'],
             TdSchemaRegistry::fromArray($array['caption']),
             $array['show_caption_above_media'],
             $array['has_spoiler'],
@@ -53,9 +72,19 @@ class MessageVideo extends MessageContent
         );
     }
 
+    public function getAlternativeVideos(): array
+    {
+        return $this->alternativeVideos;
+    }
+
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function getCover(): ?Photo
+    {
+        return $this->cover;
     }
 
     public function getHasSpoiler(): bool
@@ -73,6 +102,11 @@ class MessageVideo extends MessageContent
         return $this->showCaptionAboveMedia;
     }
 
+    public function getStartTimestamp(): int
+    {
+        return $this->startTimestamp;
+    }
+
     public function getVideo(): Video
     {
         return $this->video;
@@ -83,6 +117,9 @@ class MessageVideo extends MessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'video'                    => $this->video->typeSerialize(),
+            array_map(fn($x) => $x->typeSerialize(), $this->alternativeVideos),
+            'cover'                    => (isset($this->cover) ? $this->cover : null),
+            'start_timestamp'          => $this->startTimestamp,
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
             'has_spoiler'              => $this->hasSpoiler,

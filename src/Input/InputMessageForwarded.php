@@ -26,9 +26,17 @@ class InputMessageForwarded extends InputMessageContent
          */
         protected int                $messageId,
         /**
-         * True, if a game message is being shared from a launched game; applies only to game messages.
+         * Pass true if a game message is being shared from a launched game; applies only to game messages.
          */
         protected bool               $inGameShare,
+        /**
+         * Pass true to replace video start timestamp in the forwarded message.
+         */
+        protected bool               $replaceVideoStartTimestamp,
+        /**
+         * The new video start timestamp; ignored if replace_video_start_timestamp == false.
+         */
+        protected int                $newVideoStartTimestamp,
         /**
          * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual.
          */
@@ -43,6 +51,8 @@ class InputMessageForwarded extends InputMessageContent
             $array['from_chat_id'],
             $array['message_id'],
             $array['in_game_share'],
+            $array['replace_video_start_timestamp'],
+            $array['new_video_start_timestamp'],
             TdSchemaRegistry::fromArray($array['copy_options']),
         );
     }
@@ -67,14 +77,26 @@ class InputMessageForwarded extends InputMessageContent
         return $this->messageId;
     }
 
+    public function getNewVideoStartTimestamp(): int
+    {
+        return $this->newVideoStartTimestamp;
+    }
+
+    public function getReplaceVideoStartTimestamp(): bool
+    {
+        return $this->replaceVideoStartTimestamp;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
-            'from_chat_id'  => $this->fromChatId,
-            'message_id'    => $this->messageId,
-            'in_game_share' => $this->inGameShare,
-            'copy_options'  => $this->copyOptions->typeSerialize(),
+            '@type'                         => static::TYPE_NAME,
+            'from_chat_id'                  => $this->fromChatId,
+            'message_id'                    => $this->messageId,
+            'in_game_share'                 => $this->inGameShare,
+            'replace_video_start_timestamp' => $this->replaceVideoStartTimestamp,
+            'new_video_start_timestamp'     => $this->newVideoStartTimestamp,
+            'copy_options'                  => $this->copyOptions->typeSerialize(),
         ];
     }
 }

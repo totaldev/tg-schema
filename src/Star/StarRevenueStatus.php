@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Star;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Contains information about Telegram Stars earned by a bot or a chat.
@@ -17,46 +18,46 @@ class StarRevenueStatus extends TdObject
 
     public function __construct(
         /**
-         * Total number of Telegram Stars earned.
+         * Total amount of Telegram Stars earned.
          */
-        protected int  $totalCount,
+        protected StarAmount $totalAmount,
         /**
-         * The number of Telegram Stars that aren't withdrawn yet.
+         * The amount of Telegram Stars that aren't withdrawn yet.
          */
-        protected int  $currentCount,
+        protected StarAmount $currentAmount,
         /**
-         * The number of Telegram Stars that are available for withdrawal.
+         * The amount of Telegram Stars that are available for withdrawal.
          */
-        protected int  $availableCount,
+        protected StarAmount $availableAmount,
         /**
          * True, if Telegram Stars can be withdrawn now or later.
          */
-        protected bool $withdrawalEnabled,
+        protected bool       $withdrawalEnabled,
         /**
          * Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now.
          */
-        protected int  $nextWithdrawalIn,
+        protected int        $nextWithdrawalIn,
     ) {}
 
     public static function fromArray(array $array): StarRevenueStatus
     {
         return new static(
-            $array['total_count'],
-            $array['current_count'],
-            $array['available_count'],
+            TdSchemaRegistry::fromArray($array['total_amount']),
+            TdSchemaRegistry::fromArray($array['current_amount']),
+            TdSchemaRegistry::fromArray($array['available_amount']),
             $array['withdrawal_enabled'],
             $array['next_withdrawal_in'],
         );
     }
 
-    public function getAvailableCount(): int
+    public function getAvailableAmount(): StarAmount
     {
-        return $this->availableCount;
+        return $this->availableAmount;
     }
 
-    public function getCurrentCount(): int
+    public function getCurrentAmount(): StarAmount
     {
-        return $this->currentCount;
+        return $this->currentAmount;
     }
 
     public function getNextWithdrawalIn(): int
@@ -64,9 +65,9 @@ class StarRevenueStatus extends TdObject
         return $this->nextWithdrawalIn;
     }
 
-    public function getTotalCount(): int
+    public function getTotalAmount(): StarAmount
     {
-        return $this->totalCount;
+        return $this->totalAmount;
     }
 
     public function getWithdrawalEnabled(): bool
@@ -78,9 +79,9 @@ class StarRevenueStatus extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'total_count'        => $this->totalCount,
-            'current_count'      => $this->currentCount,
-            'available_count'    => $this->availableCount,
+            'total_amount'       => $this->totalAmount->typeSerialize(),
+            'current_amount'     => $this->currentAmount->typeSerialize(),
+            'available_amount'   => $this->availableAmount->typeSerialize(),
             'withdrawal_enabled' => $this->withdrawalEnabled,
             'next_withdrawal_in' => $this->nextWithdrawalIn,
         ];

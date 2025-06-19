@@ -25,7 +25,7 @@ class BusinessLocation extends TdObject
         /**
          * Location address; 1-96 characters.
          */
-        protected string    $address,
+        protected string    $address
     ) {}
 
     public static function fromArray(array $array): BusinessLocation

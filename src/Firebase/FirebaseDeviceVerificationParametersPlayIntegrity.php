@@ -21,7 +21,7 @@ class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVe
         /**
          * Cloud project number to pass to the Play Integrity API.
          */
-        protected int    $cloudProjectNumber,
+        protected int    $cloudProjectNumber
     ) {
         parent::__construct();
     }

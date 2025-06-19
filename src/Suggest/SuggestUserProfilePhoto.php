@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Suggests a profile photo to another regular user with common messages.
+ * Suggests a profile photo to another regular user with common messages and allowing non-paid messages.
  */
 class SuggestUserProfilePhoto extends TdFunction
 {
@@ -25,7 +25,7 @@ class SuggestUserProfilePhoto extends TdFunction
         /**
          * Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function.
          */
-        protected InputChatPhoto $photo,
+        protected InputChatPhoto $photo
     ) {}
 
     public static function fromArray(array $array): SuggestUserProfilePhoto

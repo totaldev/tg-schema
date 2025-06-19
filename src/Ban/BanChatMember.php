@@ -34,7 +34,7 @@ class BanChatMember extends TdFunction
         /**
          * Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels.
          */
-        protected bool          $revokeMessages,
+        protected bool          $revokeMessages
     ) {}
 
     public static function fromArray(array $array): BanChatMember

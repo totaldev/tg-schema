@@ -28,7 +28,7 @@ class RichTextIcon extends RichText
         /**
          * Height of a bounding box in which the image must be shown; 0 if unknown.
          */
-        protected int      $height,
+        protected int      $height
     ) {
         parent::__construct();
     }

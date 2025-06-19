@@ -36,7 +36,7 @@ class Call extends TdObject
         /**
          * Call state.
          */
-        protected CallState $state,
+        protected CallState $state
     ) {}
 
     public static function fromArray(array $array): Call

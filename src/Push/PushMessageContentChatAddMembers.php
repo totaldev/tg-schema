@@ -25,7 +25,7 @@ class PushMessageContentChatAddMembers extends PushMessageContent
         /**
          * True, if the user has returned to the group themselves.
          */
-        protected bool   $isReturned,
+        protected bool   $isReturned
     ) {
         parent::__construct();
     }

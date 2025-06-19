@@ -28,7 +28,7 @@ class InternalLinkTypeProxy extends InternalLinkType
         /**
          * Type of the proxy.
          */
-        protected ProxyType $type,
+        protected ProxyType $type
     ) {
         parent::__construct();
     }

@@ -33,7 +33,7 @@ class ProfileAccentColors extends TdObject
          *
          * @var int[]
          */
-        protected array $storyColors,
+        protected array $storyColors
     ) {}
 
     public static function fromArray(array $array): ProfileAccentColors

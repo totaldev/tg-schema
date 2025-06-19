@@ -25,7 +25,7 @@ class MessageStatistics extends TdObject
         /**
          * A graph containing number of message reactions.
          */
-        protected StatisticalGraph $messageReactionGraph,
+        protected StatisticalGraph $messageReactionGraph
     ) {}
 
     public static function fromArray(array $array): MessageStatistics

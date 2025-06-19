@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Premium;
 
 /**
- * The maximum length of captions of sent stories.
+ * The maximum length of captions of posted stories.
  */
 class PremiumLimitTypeStoryCaptionLength extends PremiumLimitType
 {

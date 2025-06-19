@@ -22,7 +22,7 @@ class AuthorizationStateWaitEmailAddress extends AuthorizationState
         /**
          * True, if authorization through Google ID is allowed.
          */
-        protected bool $allowGoogleId,
+        protected bool $allowGoogleId
     ) {
         parent::__construct();
     }

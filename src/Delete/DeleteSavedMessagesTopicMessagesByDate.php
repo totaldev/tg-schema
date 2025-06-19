@@ -27,7 +27,7 @@ class DeleteSavedMessagesTopicMessagesByDate extends TdFunction
         /**
          * The maximum date of the messages to delete.
          */
-        protected int $maxDate,
+        protected int $maxDate
     ) {}
 
     public static function fromArray(array $array): DeleteSavedMessagesTopicMessagesByDate

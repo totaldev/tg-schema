@@ -25,7 +25,7 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
         /**
          * True, if the user has left the group themselves.
          */
-        protected bool   $isLeft,
+        protected bool   $isLeft
     ) {
         parent::__construct();
     }

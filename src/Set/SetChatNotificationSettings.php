@@ -25,7 +25,7 @@ class SetChatNotificationSettings extends TdFunction
         /**
          * New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever.
          */
-        protected ChatNotificationSettings $notificationSettings,
+        protected ChatNotificationSettings $notificationSettings
     ) {}
 
     public static function fromArray(array $array): SetChatNotificationSettings

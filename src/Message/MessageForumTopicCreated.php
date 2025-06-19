@@ -24,7 +24,7 @@ class MessageForumTopicCreated extends MessageContent
         /**
          * Icon of the topic.
          */
-        protected ForumTopicIcon $icon,
+        protected ForumTopicIcon $icon
     ) {
         parent::__construct();
     }

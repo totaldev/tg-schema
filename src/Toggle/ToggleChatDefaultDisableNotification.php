@@ -23,7 +23,7 @@ class ToggleChatDefaultDisableNotification extends TdFunction
         /**
          * New value of default_disable_notification.
          */
-        protected bool $defaultDisableNotification,
+        protected bool $defaultDisableNotification
     ) {}
 
     public static function fromArray(array $array): ToggleChatDefaultDisableNotification

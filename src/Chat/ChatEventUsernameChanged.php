@@ -21,7 +21,7 @@ class ChatEventUsernameChanged extends ChatEventAction
         /**
          * New chat username.
          */
-        protected string $newUsername,
+        protected string $newUsername
     ) {
         parent::__construct();
     }

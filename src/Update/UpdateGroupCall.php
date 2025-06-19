@@ -18,7 +18,7 @@ class UpdateGroupCall extends Update
 
     public function __construct(
         /**
-         * New data about a group call.
+         * New data about the group call.
          */
         protected GroupCall $groupCall
     ) {

@@ -29,7 +29,7 @@ class GetCallbackQueryAnswer extends TdFunction
         /**
          * Query payload.
          */
-        protected CallbackQueryPayload $payload,
+        protected CallbackQueryPayload $payload
     ) {}
 
     public static function fromArray(array $array): GetCallbackQueryAnswer

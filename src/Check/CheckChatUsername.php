@@ -23,7 +23,7 @@ class CheckChatUsername extends TdFunction
         /**
          * Username to be checked.
          */
-        protected string $username,
+        protected string $username
     ) {}
 
     public static function fromArray(array $array): CheckChatUsername

@@ -21,7 +21,7 @@ class MessageOriginChat extends MessageOrigin
         /**
          * For messages originally sent by an anonymous chat administrator, original message author signature.
          */
-        protected string $authorSignature,
+        protected string $authorSignature
     ) {
         parent::__construct();
     }

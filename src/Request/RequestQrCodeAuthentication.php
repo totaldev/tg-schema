@@ -10,8 +10,9 @@ use Totaldev\TgSchema\TdFunction;
 
 /**
  * Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is
- * authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress,
- * authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword.
+ * authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is
+ * authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode,
+ * authorizationStateWaitRegistration, or authorizationStateWaitPassword.
  */
 class RequestQrCodeAuthentication extends TdFunction
 {

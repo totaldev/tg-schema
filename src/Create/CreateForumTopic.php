@@ -29,7 +29,7 @@ class CreateForumTopic extends TdFunction
         /**
          * Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
          */
-        protected ForumTopicIcon $icon,
+        protected ForumTopicIcon $icon
     ) {}
 
     public static function fromArray(array $array): CreateForumTopic

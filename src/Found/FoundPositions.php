@@ -25,7 +25,7 @@ class FoundPositions extends TdObject
          *
          * @var int[]
          */
-        protected array $positions,
+        protected array $positions
     ) {}
 
     public static function fromArray(array $array): FoundPositions

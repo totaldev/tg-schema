@@ -24,7 +24,7 @@ class UpdateChatAvailableReactions extends Update
         /**
          * The new reactions, available in the chat.
          */
-        protected ChatAvailableReactions $availableReactions,
+        protected ChatAvailableReactions $availableReactions
     ) {
         parent::__construct();
     }

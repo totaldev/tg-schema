@@ -26,7 +26,7 @@ class ChatJoinRequests extends TdObject
          *
          * @var ChatJoinRequest[]
          */
-        protected array $requests,
+        protected array $requests
     ) {}
 
     public static function fromArray(array $array): ChatJoinRequests

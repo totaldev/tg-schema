@@ -26,7 +26,7 @@ class MessagePositions extends TdObject
          *
          * @var MessagePosition[]
          */
-        protected array $positions,
+        protected array $positions
     ) {}
 
     public static function fromArray(array $array): MessagePositions

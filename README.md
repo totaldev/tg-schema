@@ -10,7 +10,7 @@
 
 The PHP TD Gram Schema generated TdLib Schema Classes using [totaldev/schema-generator][link-generator] from [td_api.tl][link-td-api] file.
 
-#### Based on TdLib `td_api` v1.8.15 schema version 
+#### Based on TdLib `td_api` v1.8.36 schema version
 
 ## Install
 
@@ -89,45 +89,34 @@ class Totaldev\TgSchema\UpdateAuthorizationState#3 (2) {
 }
 ```
 
-## Testing
-
-Run PHP style checker
-
-```bash
-$ composer cs-check
-```
-
-Run PHP style fixer
-
-```bash
-$ composer cs-fix
-```
-
-Run all continuous integration tests
-
-```bash
-$ composer ci-run
-```
-
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
-
 
 ## License
 
 Please see [License File](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/totaldev/schema.svg?style=flat-square
+
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+
 [ico-travis]: https://img.shields.io/travis/com/totaldev/schema/master.svg?style=flat-square
+
 [ico-quality]: https://img.shields.io/scrutinizer/quality/g/totaldev/schema?style=flat-square
+
 [ico-downloads]: https://img.shields.io/packagist/dt/totaldev/schema.svg?style=flat-square
+
 [ico-email]: https://img.shields.io/badge/email-aurimas@niekis.lt-blue.svg?style=flat-square
 
 [link-travis]: https://travis-ci.com/totaldev/schema
+
 [link-packagist]: https://packagist.org/packages/totaldev/schema
+
 [link-scrutinizer]: https://scrutinizer-ci.com/g/totaldev/schema
+
 [link-downloads]: https://packagist.org/packages/totaldev/schema/stats
+
 [link-generator]: https://github.com/totaldev/schema-generator
+
 [link-td-api]: https://github.com/tdlib/td/blob/v1.8.15/td/generate/scheme/td_api.tl

@@ -25,7 +25,7 @@ class DeepLinkInfo extends TdObject
         /**
          * True, if the user must be asked to update the application.
          */
-        protected bool          $needUpdateApplication,
+        protected bool          $needUpdateApplication
     ) {}
 
     public static function fromArray(array $array): DeepLinkInfo

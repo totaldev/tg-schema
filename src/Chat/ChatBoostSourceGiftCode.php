@@ -21,7 +21,7 @@ class ChatBoostSourceGiftCode extends ChatBoostSource
         /**
          * The created Telegram Premium gift code, which is known only if this is a gift code for the current user, or it has already been claimed.
          */
-        protected string $giftCode,
+        protected string $giftCode
     ) {
         parent::__construct();
     }

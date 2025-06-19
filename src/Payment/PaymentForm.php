@@ -33,7 +33,7 @@ class PaymentForm extends TdObject
         /**
          * Information about the product.
          */
-        protected ProductInfo     $productInfo,
+        protected ProductInfo     $productInfo
     ) {}
 
     public static function fromArray(array $array): PaymentForm

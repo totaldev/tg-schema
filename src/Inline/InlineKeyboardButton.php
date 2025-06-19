@@ -24,7 +24,7 @@ class InlineKeyboardButton extends TdObject
         /**
          * Type of the button.
          */
-        protected InlineKeyboardButtonType $type,
+        protected InlineKeyboardButtonType $type
     ) {}
 
     public static function fromArray(array $array): InlineKeyboardButton

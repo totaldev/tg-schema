@@ -23,7 +23,7 @@ class SetBotUpdatesStatus extends TdFunction
         /**
          * The last error message.
          */
-        protected string $errorMessage,
+        protected string $errorMessage
     ) {}
 
     public static function fromArray(array $array): SetBotUpdatesStatus

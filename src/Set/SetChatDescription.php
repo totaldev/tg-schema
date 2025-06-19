@@ -23,7 +23,7 @@ class SetChatDescription extends TdFunction
         /**
          * New chat description; 0-255 characters.
          */
-        protected string $description,
+        protected string $description
     ) {}
 
     public static function fromArray(array $array): SetChatDescription

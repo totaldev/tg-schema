@@ -23,7 +23,7 @@ class ChatEventPermissionsChanged extends ChatEventAction
         /**
          * New chat permissions.
          */
-        protected ChatPermissions $newPermissions,
+        protected ChatPermissions $newPermissions
     ) {
         parent::__construct();
     }

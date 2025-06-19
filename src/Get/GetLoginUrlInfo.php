@@ -27,7 +27,7 @@ class GetLoginUrlInfo extends TdFunction
         /**
          * Button identifier.
          */
-        protected int $buttonId,
+        protected int $buttonId
     ) {}
 
     public static function fromArray(array $array): GetLoginUrlInfo

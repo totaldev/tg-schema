@@ -28,7 +28,7 @@ class MessageVideoNote extends MessageContent
         /**
          * True, if the video note thumbnail must be blurred and the video note must be shown only while tapped.
          */
-        protected bool      $isSecret,
+        protected bool      $isSecret
     ) {
         parent::__construct();
     }

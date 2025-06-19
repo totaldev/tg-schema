@@ -23,7 +23,7 @@ class GetBotMediaPreviewInfo extends TdFunction
         /**
          * A two-letter ISO 639-1 language code for which to get previews. If empty, then default previews are returned.
          */
-        protected string $languageCode,
+        protected string $languageCode
     ) {}
 
     public static function fromArray(array $array): GetBotMediaPreviewInfo

@@ -32,7 +32,7 @@ class PreliminaryUploadFile extends TdFunction
         /**
          * Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first.
          */
-        protected int       $priority,
+        protected int       $priority
     ) {}
 
     public static function fromArray(array $array): PreliminaryUploadFile

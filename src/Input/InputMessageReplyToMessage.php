@@ -23,7 +23,7 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
         /**
          * Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats.
          */
-        protected InputTextQuote $quote,
+        protected InputTextQuote $quote
     ) {
         parent::__construct();
     }

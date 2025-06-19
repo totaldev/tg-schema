@@ -25,7 +25,7 @@ class EditChatFolder extends TdFunction
         /**
          * The edited chat folder.
          */
-        protected ChatFolder $folder,
+        protected ChatFolder $folder
     ) {}
 
     public static function fromArray(array $array): EditChatFolder

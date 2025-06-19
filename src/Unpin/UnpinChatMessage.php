@@ -24,7 +24,7 @@ class UnpinChatMessage extends TdFunction
         /**
          * Identifier of the removed pinned message.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): UnpinChatMessage

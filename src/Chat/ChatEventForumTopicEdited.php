@@ -24,7 +24,7 @@ class ChatEventForumTopicEdited extends ChatEventAction
         /**
          * New information about the topic.
          */
-        protected ForumTopicInfo $newTopicInfo,
+        protected ForumTopicInfo $newTopicInfo
     ) {
         parent::__construct();
     }

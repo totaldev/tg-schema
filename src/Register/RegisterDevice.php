@@ -27,7 +27,7 @@ class RegisterDevice extends TdFunction
          *
          * @var int[]
          */
-        protected array       $otherUserIds,
+        protected array       $otherUserIds
     ) {}
 
     public static function fromArray(array $array): RegisterDevice

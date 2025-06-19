@@ -15,7 +15,7 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason
 
     public function __construct(
         /**
-         * Cause of the verification failure, for example, PLAY_SERVICES_NOT_AVAILABLE, APNS_RECEIVE_TIMEOUT, or APNS_INIT_FAILED.
+         * Cause of the verification failure, for example, "PLAY_SERVICES_NOT_AVAILABLE", "APNS_RECEIVE_TIMEOUT", or "APNS_INIT_FAILED".
          */
         protected string $errorMessage
     ) {

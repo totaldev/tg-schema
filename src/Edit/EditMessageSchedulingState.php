@@ -28,9 +28,9 @@ class EditMessageSchedulingState extends TdFunction
          */
         protected int                    $messageId,
         /**
-         * The new message scheduling state; pass null to send the message immediately.
+         * The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed.
          */
-        protected MessageSchedulingState $schedulingState,
+        protected MessageSchedulingState $schedulingState
     ) {}
 
     public static function fromArray(array $array): EditMessageSchedulingState

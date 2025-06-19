@@ -29,7 +29,7 @@ class CreateCall extends TdFunction
         /**
          * Pass true to create a video call.
          */
-        protected bool         $isVideo,
+        protected bool         $isVideo
     ) {}
 
     public static function fromArray(array $array): CreateCall

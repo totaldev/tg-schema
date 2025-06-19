@@ -32,7 +32,7 @@ class SetChatMemberStatus extends TdFunction
         /**
          * The new status of the member in the chat.
          */
-        protected ChatMemberStatus $status,
+        protected ChatMemberStatus $status
     ) {}
 
     public static function fromArray(array $array): SetChatMemberStatus

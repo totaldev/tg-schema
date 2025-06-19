@@ -24,7 +24,7 @@ class ToggleSupergroupJoinByRequest extends TdFunction
         /**
          * New value of join_by_request.
          */
-        protected bool $joinByRequest,
+        protected bool $joinByRequest
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupJoinByRequest

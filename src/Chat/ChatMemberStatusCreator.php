@@ -25,7 +25,7 @@ class ChatMemberStatusCreator extends ChatMemberStatus
         /**
          * True, if the user is a member of the chat.
          */
-        protected bool   $isMember,
+        protected bool   $isMember
     ) {
         parent::__construct();
     }

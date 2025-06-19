@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdFunction;
 
 /**
  * Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics
- * == true.
+ * == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true.
  */
 class GetChatRevenueTransactions extends TdFunction
 {
@@ -28,7 +28,7 @@ class GetChatRevenueTransactions extends TdFunction
         /**
          * The maximum number of transactions to be returned; up to 200.
          */
-        protected int $limit,
+        protected int $limit
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueTransactions

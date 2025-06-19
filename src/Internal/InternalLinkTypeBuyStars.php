@@ -21,7 +21,7 @@ class InternalLinkTypeBuyStars extends InternalLinkType
         /**
          * Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions.
          */
-        protected string $purpose,
+        protected string $purpose
     ) {
         parent::__construct();
     }

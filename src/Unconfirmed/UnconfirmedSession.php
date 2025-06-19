@@ -31,7 +31,7 @@ class UnconfirmedSession extends TdObject
         /**
          * A human-readable description of the location from which the session was created, based on the IP address.
          */
-        protected string $location,
+        protected string $location
     ) {}
 
     public static function fromArray(array $array): UnconfirmedSession

@@ -29,7 +29,7 @@ class TermsOfService extends TdObject
         /**
          * True, if a blocking popup with terms of service must be shown to the user.
          */
-        protected bool          $showPopup,
+        protected bool          $showPopup
     ) {}
 
     public static function fromArray(array $array): TermsOfService

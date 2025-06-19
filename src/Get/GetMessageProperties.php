@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns properties of a message; this is an offline request.
+ * Returns properties of a message. This is an offline method.
  */
 class GetMessageProperties extends TdFunction
 {
@@ -23,7 +23,7 @@ class GetMessageProperties extends TdFunction
         /**
          * Identifier of the message.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetMessageProperties

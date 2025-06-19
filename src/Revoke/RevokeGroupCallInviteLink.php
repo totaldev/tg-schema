@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Revoke;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag.
+ * Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise.
  */
 class RevokeGroupCallInviteLink extends TdFunction
 {

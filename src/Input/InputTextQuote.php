@@ -25,7 +25,7 @@ class InputTextQuote extends TdObject
         /**
          * Quote position in the original message in UTF-16 code units.
          */
-        protected int           $position,
+        protected int           $position
     ) {}
 
     public static function fromArray(array $array): InputTextQuote

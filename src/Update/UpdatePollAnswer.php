@@ -30,7 +30,7 @@ class UpdatePollAnswer extends Update
          *
          * @var int[]
          */
-        protected array         $optionIds,
+        protected array         $optionIds
     ) {
         parent::__construct();
     }

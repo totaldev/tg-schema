@@ -33,7 +33,7 @@ class EditBotMediaPreview extends TdFunction
         /**
          * Content of the new preview.
          */
-        protected InputStoryContent $content,
+        protected InputStoryContent $content
     ) {}
 
     public static function fromArray(array $array): EditBotMediaPreview

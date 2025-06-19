@@ -23,7 +23,7 @@ class GetStarSubscriptions extends TdFunction
         /**
          * Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected string $offset,
+        protected string $offset
     ) {}
 
     public static function fromArray(array $array): GetStarSubscriptions

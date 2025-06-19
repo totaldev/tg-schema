@@ -26,7 +26,7 @@ class MessageUsersShared extends MessageContent
         /**
          * Identifier of the keyboard button with the request.
          */
-        protected int   $buttonId,
+        protected int   $buttonId
     ) {
         parent::__construct();
     }

@@ -35,7 +35,7 @@ class MessagePaidMedia extends MessageContent
         /**
          * True, if the caption must be shown above the media; otherwise, the caption must be shown below the media.
          */
-        protected bool          $showCaptionAboveMedia,
+        protected bool          $showCaptionAboveMedia
     ) {
         parent::__construct();
     }

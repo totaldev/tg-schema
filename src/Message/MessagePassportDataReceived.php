@@ -27,7 +27,7 @@ class MessagePassportDataReceived extends MessageContent
         /**
          * Encrypted data credentials.
          */
-        protected EncryptedCredentials $credentials,
+        protected EncryptedCredentials $credentials
     ) {
         parent::__construct();
     }

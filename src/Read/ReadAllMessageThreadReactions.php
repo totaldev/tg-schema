@@ -23,7 +23,7 @@ class ReadAllMessageThreadReactions extends TdFunction
         /**
          * Message thread identifier in which reactions are marked as read.
          */
-        protected int $messageThreadId,
+        protected int $messageThreadId
     ) {}
 
     public static function fromArray(array $array): ReadAllMessageThreadReactions

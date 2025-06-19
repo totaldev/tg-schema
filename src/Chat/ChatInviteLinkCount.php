@@ -27,7 +27,7 @@ class ChatInviteLinkCount extends TdObject
         /**
          * Number of revoked invite links.
          */
-        protected int $revokedInviteLinkCount,
+        protected int $revokedInviteLinkCount
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkCount

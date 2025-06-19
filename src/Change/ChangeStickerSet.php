@@ -27,7 +27,7 @@ class ChangeStickerSet extends TdFunction
         /**
          * The new value of is_archived. A sticker set can't be installed and archived simultaneously.
          */
-        protected bool $isArchived,
+        protected bool $isArchived
     ) {}
 
     public static function fromArray(array $array): ChangeStickerSet

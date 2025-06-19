@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\End;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Ends a group call. Requires groupCall.can_be_managed.
+ * Ends a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise.
  */
 class EndGroupCall extends TdFunction
 {

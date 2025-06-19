@@ -27,7 +27,7 @@ class ChatEventMemberSubscriptionExtended extends ChatEventAction
         /**
          * New status of the chat member.
          */
-        protected ChatMemberStatus $newStatus,
+        protected ChatMemberStatus $newStatus
     ) {
         parent::__construct();
     }

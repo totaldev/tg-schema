@@ -6,7 +6,6 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\Closed\ClosedVectorPath;
 use Totaldev\TgSchema\File\File;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -49,12 +48,6 @@ class Sticker extends TdObject
          */
         protected StickerFullType $fullType,
         /**
-         * Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner.
-         *
-         * @var ClosedVectorPath[]
-         */
-        protected array           $outline,
-        /**
          * Sticker thumbnail in WEBP or JPEG format; may be null.
          */
         protected ?Thumbnail      $thumbnail,
@@ -74,7 +67,6 @@ class Sticker extends TdObject
             $array['emoji'],
             TdSchemaRegistry::fromArray($array['format']),
             TdSchemaRegistry::fromArray($array['full_type']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['outline']),
             isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             TdSchemaRegistry::fromArray($array['sticker']),
         );
@@ -103,11 +95,6 @@ class Sticker extends TdObject
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getOutline(): array
-    {
-        return $this->outline;
     }
 
     public function getSetId(): int
@@ -141,7 +128,6 @@ class Sticker extends TdObject
             'emoji'     => $this->emoji,
             'format'    => $this->format->typeSerialize(),
             'full_type' => $this->fullType->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->outline),
             'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
             'sticker'   => $this->sticker->typeSerialize(),
         ];

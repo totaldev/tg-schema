@@ -20,23 +20,23 @@ class StarTransactions extends TdObject
         /**
          * The amount of owned Telegram Stars.
          */
-        protected int    $starCount,
+        protected StarAmount $starAmount,
         /**
          * List of transactions with Telegram Stars.
          *
          * @var StarTransaction[]
          */
-        protected array  $transactions,
+        protected array      $transactions,
         /**
          * The offset for the next request. If empty, then there are no more results.
          */
-        protected string $nextOffset,
+        protected string     $nextOffset
     ) {}
 
     public static function fromArray(array $array): StarTransactions
     {
         return new static(
-            $array['star_count'],
+            TdSchemaRegistry::fromArray($array['star_amount']),
             array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['transactions']),
             $array['next_offset'],
         );
@@ -47,9 +47,9 @@ class StarTransactions extends TdObject
         return $this->nextOffset;
     }
 
-    public function getStarCount(): int
+    public function getStarAmount(): StarAmount
     {
-        return $this->starCount;
+        return $this->starAmount;
     }
 
     public function getTransactions(): array
@@ -61,7 +61,7 @@ class StarTransactions extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'star_count'  => $this->starCount,
+            'star_amount' => $this->starAmount->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->transactions),
             'next_offset' => $this->nextOffset,
         ];

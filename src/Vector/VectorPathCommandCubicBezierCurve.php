@@ -28,7 +28,7 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
         /**
          * The end point of the curve.
          */
-        protected Point $endPoint,
+        protected Point $endPoint
     ) {
         parent::__construct();
     }

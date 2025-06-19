@@ -22,9 +22,9 @@ class ChatFolderInfo extends TdObject
          */
         protected int            $id,
         /**
-         * The title of the folder; 1-12 characters without line feeds.
+         * The name of the folder.
          */
-        protected string         $title,
+        protected ChatFolderName $name,
         /**
          * The chosen or default icon for the chat folder.
          */
@@ -47,7 +47,7 @@ class ChatFolderInfo extends TdObject
     {
         return new static(
             $array['id'],
-            $array['title'],
+            TdSchemaRegistry::fromArray($array['name']),
             TdSchemaRegistry::fromArray($array['icon']),
             $array['color_id'],
             $array['is_shareable'],
@@ -80,9 +80,9 @@ class ChatFolderInfo extends TdObject
         return $this->isShareable;
     }
 
-    public function getTitle(): string
+    public function getName(): ChatFolderName
     {
-        return $this->title;
+        return $this->name;
     }
 
     public function typeSerialize(): array
@@ -90,7 +90,7 @@ class ChatFolderInfo extends TdObject
         return [
             '@type'               => static::TYPE_NAME,
             'id'                  => $this->id,
-            'title'               => $this->title,
+            'name'                => $this->name->typeSerialize(),
             'icon'                => $this->icon->typeSerialize(),
             'color_id'            => $this->colorId,
             'is_shareable'        => $this->isShareable,

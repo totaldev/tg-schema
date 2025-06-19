@@ -21,7 +21,7 @@ class UpdateChatDefaultDisableNotification extends Update
         /**
          * The new default_disable_notification value.
          */
-        protected bool $defaultDisableNotification,
+        protected bool $defaultDisableNotification
     ) {
         parent::__construct();
     }

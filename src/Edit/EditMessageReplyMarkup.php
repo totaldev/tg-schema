@@ -29,7 +29,7 @@ class EditMessageReplyMarkup extends TdFunction
         /**
          * The new message reply markup; pass null if none.
          */
-        protected ReplyMarkup $replyMarkup,
+        protected ReplyMarkup $replyMarkup
     ) {}
 
     public static function fromArray(array $array): EditMessageReplyMarkup

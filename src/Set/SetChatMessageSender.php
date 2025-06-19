@@ -25,7 +25,7 @@ class SetChatMessageSender extends TdFunction
         /**
          * New message sender for the chat.
          */
-        protected MessageSender $messageSenderId,
+        protected MessageSender $messageSenderId
     ) {}
 
     public static function fromArray(array $array): SetChatMessageSender

@@ -19,7 +19,7 @@ class GetStarWithdrawalUrl extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat.
+         * Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat.
          */
         protected MessageSender $ownerId,
         /**
@@ -29,7 +29,7 @@ class GetStarWithdrawalUrl extends TdFunction
         /**
          * The 2-step verification password of the current user.
          */
-        protected string        $password,
+        protected string        $password
     ) {}
 
     public static function fromArray(array $array): GetStarWithdrawalUrl

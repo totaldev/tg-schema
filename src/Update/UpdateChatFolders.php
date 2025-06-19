@@ -30,7 +30,7 @@ class UpdateChatFolders extends Update
         /**
          * True, if folder tags are enabled.
          */
-        protected bool  $areTagsEnabled,
+        protected bool  $areTagsEnabled
     ) {
         parent::__construct();
     }

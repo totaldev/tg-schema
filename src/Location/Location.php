@@ -27,7 +27,7 @@ class Location extends TdObject
         /**
          * The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown.
          */
-        protected float $horizontalAccuracy,
+        protected float $horizontalAccuracy
     ) {}
 
     public static function fromArray(array $array): Location

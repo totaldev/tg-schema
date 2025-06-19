@@ -25,7 +25,7 @@ class StoryAreaTypeWeather extends StoryAreaType
         /**
          * A color of the area background in the ARGB format.
          */
-        protected int    $backgroundColor,
+        protected int    $backgroundColor
     ) {
         parent::__construct();
     }

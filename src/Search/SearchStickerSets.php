@@ -25,7 +25,7 @@ class SearchStickerSets extends TdFunction
         /**
          * Query to search for.
          */
-        protected string      $query,
+        protected string      $query
     ) {}
 
     public static function fromArray(array $array): SearchStickerSets

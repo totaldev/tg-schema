@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Checks whether an in-store purchase is possible. Must be called before any in-store purchase.
+ * Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only.
  */
 class CanPurchaseFromStore extends TdFunction
 {

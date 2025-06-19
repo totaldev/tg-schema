@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a message, if it is available without sending network request. This is an offline request.
+ * Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an
+ * offline method.
  */
 class GetMessageLocally extends TdFunction
 {
@@ -23,7 +24,7 @@ class GetMessageLocally extends TdFunction
         /**
          * Identifier of the message to get.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetMessageLocally

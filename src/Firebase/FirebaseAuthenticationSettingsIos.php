@@ -21,7 +21,7 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
         /**
          * True, if App Sandbox is enabled.
          */
-        protected bool   $isAppSandbox,
+        protected bool   $isAppSandbox
     ) {
         parent::__construct();
     }

@@ -35,7 +35,7 @@ class AnswerCallbackQuery extends TdFunction
         /**
          * Time during which the result of the query can be cached, in seconds.
          */
-        protected int    $cacheTime,
+        protected int    $cacheTime
     ) {}
 
     public static function fromArray(array $array): AnswerCallbackQuery

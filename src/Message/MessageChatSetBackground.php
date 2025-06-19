@@ -28,7 +28,7 @@ class MessageChatSetBackground extends MessageContent
         /**
          * True, if the background was set only for self.
          */
-        protected bool           $onlyForSelf,
+        protected bool           $onlyForSelf
     ) {
         parent::__construct();
     }

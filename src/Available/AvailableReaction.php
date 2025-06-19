@@ -25,7 +25,7 @@ class AvailableReaction extends TdObject
         /**
          * True, if Telegram Premium is needed to send the reaction.
          */
-        protected bool         $needsPremium,
+        protected bool         $needsPremium
     ) {}
 
     public static function fromArray(array $array): AvailableReaction

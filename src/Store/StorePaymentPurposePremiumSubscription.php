@@ -21,7 +21,7 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
         /**
          * Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store.
          */
-        protected bool $isUpgrade,
+        protected bool $isUpgrade
     ) {
         parent::__construct();
     }

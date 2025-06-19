@@ -24,7 +24,7 @@ class GetPhoneNumberInfoSync extends TdFunction
         /**
          * The phone number prefix.
          */
-        protected string $phoneNumberPrefix,
+        protected string $phoneNumberPrefix
     ) {}
 
     public static function fromArray(array $array): GetPhoneNumberInfoSync

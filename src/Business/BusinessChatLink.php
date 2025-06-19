@@ -33,7 +33,7 @@ class BusinessChatLink extends TdObject
         /**
          * Number of times the link was used.
          */
-        protected int           $viewCount,
+        protected int           $viewCount
     ) {}
 
     public static function fromArray(array $array): BusinessChatLink

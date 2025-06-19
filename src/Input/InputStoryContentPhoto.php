@@ -25,7 +25,7 @@ class InputStoryContentPhoto extends InputStoryContent
          *
          * @var int[]
          */
-        protected array     $addedStickerFileIds,
+        protected array     $addedStickerFileIds
     ) {
         parent::__construct();
     }

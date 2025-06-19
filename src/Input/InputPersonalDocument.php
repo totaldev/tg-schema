@@ -28,7 +28,7 @@ class InputPersonalDocument extends TdObject
          *
          * @var InputFile[]
          */
-        protected array $translation,
+        protected array $translation
     ) {}
 
     public static function fromArray(array $array): InputPersonalDocument

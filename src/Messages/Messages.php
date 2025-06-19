@@ -27,7 +27,7 @@ class Messages extends TdObject
          *
          * @var Message[]|null
          */
-        protected ?array $messages,
+        protected ?array $messages
     ) {}
 
     public static function fromArray(array $array): Messages

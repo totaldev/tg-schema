@@ -24,7 +24,7 @@ class ToggleUsernameIsActive extends TdFunction
         /**
          * Pass true to activate the username; pass false to disable it.
          */
-        protected bool   $isActive,
+        protected bool   $isActive
     ) {}
 
     public static function fromArray(array $array): ToggleUsernameIsActive

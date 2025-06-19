@@ -24,7 +24,7 @@ class LanguagePackString extends TdObject
         /**
          * String value; pass null if the string needs to be taken from the built-in English language pack.
          */
-        protected LanguagePackStringValue $value,
+        protected LanguagePackStringValue $value
     ) {}
 
     public static function fromArray(array $array): LanguagePackString

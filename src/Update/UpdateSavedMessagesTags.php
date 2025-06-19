@@ -24,7 +24,7 @@ class UpdateSavedMessagesTags extends Update
         /**
          * The new tags.
          */
-        protected SavedMessagesTags $tags,
+        protected SavedMessagesTags $tags
     ) {
         parent::__construct();
     }

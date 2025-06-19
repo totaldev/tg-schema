@@ -27,7 +27,7 @@ class ToggleSupergroupSignMessages extends TdFunction
         /**
          * New value of show_message_sender.
          */
-        protected bool $showMessageSender,
+        protected bool $showMessageSender
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupSignMessages

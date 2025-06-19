@@ -28,7 +28,7 @@ class ChatActiveStories extends TdObject
          */
         protected ?StoryList $list,
         /**
-         * A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order.
+         * A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_poster_chat_id) in descending order.
          */
         protected int        $order,
         /**
@@ -40,7 +40,7 @@ class ChatActiveStories extends TdObject
          *
          * @var StoryInfo[]
          */
-        protected array      $stories,
+        protected array      $stories
     ) {}
 
     public static function fromArray(array $array): ChatActiveStories

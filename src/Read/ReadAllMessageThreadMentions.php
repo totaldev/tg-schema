@@ -23,7 +23,7 @@ class ReadAllMessageThreadMentions extends TdFunction
         /**
          * Message thread identifier in which mentions are marked as read.
          */
-        protected int $messageThreadId,
+        protected int $messageThreadId
     ) {}
 
     public static function fromArray(array $array): ReadAllMessageThreadMentions

@@ -31,7 +31,7 @@ class TrendingStickerSets extends TdObject
         /**
          * True, if the list contains sticker sets with premium stickers.
          */
-        protected bool  $isPremium,
+        protected bool  $isPremium
     ) {}
 
     public static function fromArray(array $array): TrendingStickerSets

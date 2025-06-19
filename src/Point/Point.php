@@ -23,7 +23,7 @@ class Point extends TdObject
         /**
          * The point's second coordinate.
          */
-        protected float $y,
+        protected float $y
     ) {}
 
     public static function fromArray(array $array): Point

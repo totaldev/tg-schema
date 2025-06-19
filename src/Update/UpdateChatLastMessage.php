@@ -31,7 +31,7 @@ class UpdateChatLastMessage extends Update
          *
          * @var ChatPosition[]
          */
-        protected array    $positions,
+        protected array    $positions
     ) {
         parent::__construct();
     }

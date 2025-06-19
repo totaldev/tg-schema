@@ -25,7 +25,7 @@ class UpdateMessageMentionRead extends Update
         /**
          * The new number of unread mention messages left in the chat.
          */
-        protected int $unreadMentionCount,
+        protected int $unreadMentionCount
     ) {
         parent::__construct();
     }

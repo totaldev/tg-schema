@@ -28,7 +28,7 @@ class UpdateSuggestedActions extends Update
          *
          * @var SuggestedAction[]
          */
-        protected array $removedActions,
+        protected array $removedActions
     ) {
         parent::__construct();
     }

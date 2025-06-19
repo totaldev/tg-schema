@@ -32,7 +32,7 @@ class InputMessageLocation extends InputMessageContent
         /**
          * For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages.
          */
-        protected int      $proximityAlertRadius,
+        protected int      $proximityAlertRadius
     ) {
         parent::__construct();
     }

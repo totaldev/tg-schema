@@ -21,7 +21,7 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
         /**
          * Identifier of the inline query result.
          */
-        protected string $resultId,
+        protected string $resultId
     ) {
         parent::__construct();
     }

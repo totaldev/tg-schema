@@ -23,7 +23,7 @@ class UnpinAllMessageThreadMessages extends TdFunction
         /**
          * Message thread identifier in which messages will be unpinned.
          */
-        protected int $messageThreadId,
+        protected int $messageThreadId
     ) {}
 
     public static function fromArray(array $array): UnpinAllMessageThreadMessages

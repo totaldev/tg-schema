@@ -26,7 +26,7 @@ class PageBlockRelatedArticles extends PageBlock
          *
          * @var PageBlockRelatedArticle[]
          */
-        protected array    $articles,
+        protected array    $articles
     ) {
         parent::__construct();
     }

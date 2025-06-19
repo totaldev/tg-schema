@@ -31,7 +31,7 @@ class BusinessBotManageBar extends TdObject
         /**
          * True, if the bot can reply.
          */
-        protected bool   $canBotReply,
+        protected bool   $canBotReply
     ) {}
 
     public static function fromArray(array $array): BusinessBotManageBar

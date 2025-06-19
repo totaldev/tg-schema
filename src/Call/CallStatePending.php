@@ -21,7 +21,7 @@ class CallStatePending extends CallState
         /**
          * True, if the call has already been received by the other party.
          */
-        protected bool $isReceived,
+        protected bool $isReceived
     ) {
         parent::__construct();
     }

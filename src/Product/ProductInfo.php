@@ -30,7 +30,7 @@ class ProductInfo extends TdObject
         /**
          * Product photo; may be null.
          */
-        protected ?Photo        $photo,
+        protected ?Photo        $photo
     ) {}
 
     public static function fromArray(array $array): ProductInfo

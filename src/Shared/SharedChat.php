@@ -33,7 +33,7 @@ class SharedChat extends TdObject
         /**
          * Photo of the chat; for bots only; may be null.
          */
-        protected ?Photo $photo,
+        protected ?Photo $photo
     ) {}
 
     public static function fromArray(array $array): SharedChat

@@ -23,7 +23,7 @@ class MessageBasicGroupChatCreate extends MessageContent
          *
          * @var int[]
          */
-        protected array  $memberUserIds,
+        protected array  $memberUserIds
     ) {
         parent::__construct();
     }

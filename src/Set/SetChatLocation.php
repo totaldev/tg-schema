@@ -26,7 +26,7 @@ class SetChatLocation extends TdFunction
         /**
          * New location for the chat; must be valid and not null.
          */
-        protected ChatLocation $location,
+        protected ChatLocation $location
     ) {}
 
     public static function fromArray(array $array): SetChatLocation

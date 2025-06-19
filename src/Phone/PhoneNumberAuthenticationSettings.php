@@ -43,11 +43,11 @@ class PhoneNumberAuthenticationSettings extends TdObject
          */
         protected FirebaseAuthenticationSettings $firebaseAuthenticationSettings,
         /**
-         * List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions.
+         * List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions; for setAuthenticationPhoneNumber only.
          *
          * @var string[]
          */
-        protected array                          $authenticationTokens = [],
+        protected array                          $authenticationTokens,
     ) {}
 
     public static function fromArray(array $array): PhoneNumberAuthenticationSettings

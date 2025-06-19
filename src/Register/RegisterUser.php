@@ -27,7 +27,7 @@ class RegisterUser extends TdFunction
         /**
          * Pass true to disable notification about the current user joining Telegram for other users that added them to contact list.
          */
-        protected bool   $disableNotification,
+        protected bool   $disableNotification
     ) {}
 
     public static function fromArray(array $array): RegisterUser

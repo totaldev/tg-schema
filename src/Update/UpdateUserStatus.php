@@ -24,7 +24,7 @@ class UpdateUserStatus extends Update
         /**
          * New status of the user.
          */
-        protected UserStatus $status,
+        protected UserStatus $status
     ) {
         parent::__construct();
     }

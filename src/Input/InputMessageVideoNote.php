@@ -18,7 +18,7 @@ class InputMessageVideoNote extends InputMessageContent
 
     public function __construct(
         /**
-         * Video note to be sent.
+         * Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle.
          */
         protected InputFile                $videoNote,
         /**

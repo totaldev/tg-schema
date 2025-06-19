@@ -25,7 +25,7 @@ class StoryStatistics extends TdObject
         /**
          * A graph containing number of story reactions.
          */
-        protected StatisticalGraph $storyReactionGraph,
+        protected StatisticalGraph $storyReactionGraph
     ) {}
 
     public static function fromArray(array $array): StoryStatistics

@@ -29,7 +29,7 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
         /**
          * Pass true to mute the user; pass false to unmute them.
          */
-        protected bool          $isMuted,
+        protected bool          $isMuted
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsMuted

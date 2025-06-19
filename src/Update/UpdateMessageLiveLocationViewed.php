@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Update;
 
 /**
- * A message with a live location was viewed. When the update is received, the application is supposed to update the live location.
+ * A message with a live location was viewed. When the update is received, the application is expected to update the live location.
  */
 class UpdateMessageLiveLocationViewed extends Update
 {
@@ -21,7 +21,7 @@ class UpdateMessageLiveLocationViewed extends Update
         /**
          * Identifier of the message with live location.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {
         parent::__construct();
     }

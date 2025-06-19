@@ -29,7 +29,7 @@ class ReorderBotMediaPreviews extends TdFunction
          *
          * @var int[]
          */
-        protected array  $fileIds,
+        protected array  $fileIds
     ) {}
 
     public static function fromArray(array $array): ReorderBotMediaPreviews

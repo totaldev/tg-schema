@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Sticker\Sticker;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -21,6 +22,10 @@ class MessagePremiumGiftCode extends MessageContent
          * Identifier of a chat or a user that created the gift code; may be null if unknown.
          */
         protected ?MessageSender $creatorId,
+        /**
+         * Message added to the gift.
+         */
+        protected FormattedText  $text,
         /**
          * True, if the gift code was created for a giveaway.
          */
@@ -65,6 +70,7 @@ class MessagePremiumGiftCode extends MessageContent
     {
         return new static(
             isset($array['creator_id']) ? TdSchemaRegistry::fromArray($array['creator_id']) : null,
+            TdSchemaRegistry::fromArray($array['text']),
             $array['is_from_giveaway'],
             $array['is_unclaimed'],
             $array['currency'],
@@ -127,11 +133,17 @@ class MessagePremiumGiftCode extends MessageContent
         return $this->sticker;
     }
 
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                 => static::TYPE_NAME,
             'creator_id'            => (isset($this->creatorId) ? $this->creatorId : null),
+            'text'                  => $this->text->typeSerialize(),
             'is_from_giveaway'      => $this->isFromGiveaway,
             'is_unclaimed'          => $this->isUnclaimed,
             'currency'              => $this->currency,

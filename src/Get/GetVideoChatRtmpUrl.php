@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns RTMP URL for streaming to the chat; requires owner privileges.
+ * Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right.
  */
 class GetVideoChatRtmpUrl extends TdFunction
 {

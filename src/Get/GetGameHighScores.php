@@ -27,7 +27,7 @@ class GetGameHighScores extends TdFunction
         /**
          * User identifier.
          */
-        protected int $userId,
+        protected int $userId
     ) {}
 
     public static function fromArray(array $array): GetGameHighScores

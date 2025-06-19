@@ -28,7 +28,7 @@ class PushMessageContentSticker extends PushMessageContent
         /**
          * True, if the message is a pinned message with the specified content.
          */
-        protected bool     $isPinned,
+        protected bool     $isPinned
     ) {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ class Sessions extends TdObject
         /**
          * Number of days of inactivity before sessions will automatically be terminated; 1-366 days.
          */
-        protected int   $inactiveSessionTtlDays,
+        protected int   $inactiveSessionTtlDays
     ) {}
 
     public static function fromArray(array $array): Sessions

@@ -23,7 +23,7 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
         /**
          * Pass true to pause screen sharing; pass false to unpause it.
          */
-        protected bool $isPaused,
+        protected bool $isPaused
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallScreenSharingIsPaused

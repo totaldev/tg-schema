@@ -37,7 +37,7 @@ class ShareUsersWithBot extends TdFunction
         /**
          * Pass true to check that the users can be shared by the button instead of actually sharing them.
          */
-        protected bool  $onlyCheck,
+        protected bool  $onlyCheck
     ) {}
 
     public static function fromArray(array $array): ShareUsersWithBot

@@ -29,7 +29,7 @@ class StorageStatisticsByFileType extends TdObject
         /**
          * Total number of files.
          */
-        protected int      $count,
+        protected int      $count
     ) {}
 
     public static function fromArray(array $array): StorageStatisticsByFileType

@@ -31,7 +31,7 @@ class ChatInviteLinkMember extends TdObject
         /**
          * User identifier of the chat administrator, approved user join request.
          */
-        protected int  $approverUserId,
+        protected int  $approverUserId
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkMember

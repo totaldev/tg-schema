@@ -24,7 +24,7 @@ class MessageSticker extends MessageContent
         /**
          * True, if premium animation of the sticker must be played.
          */
-        protected bool    $isPremium,
+        protected bool    $isPremium
     ) {
         parent::__construct();
     }

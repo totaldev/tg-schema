@@ -37,7 +37,7 @@ class SearchSecretMessages extends TdFunction
         /**
          * Additional filter for messages to search; pass null to search for all messages.
          */
-        protected SearchMessagesFilter $filter,
+        protected SearchMessagesFilter $filter
     ) {}
 
     public static function fromArray(array $array): SearchSecretMessages

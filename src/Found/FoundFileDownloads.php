@@ -32,7 +32,7 @@ class FoundFileDownloads extends TdObject
         /**
          * The offset for the next request. If empty, then there are no more results.
          */
-        protected string               $nextOffset,
+        protected string               $nextOffset
     ) {}
 
     public static function fromArray(array $array): FoundFileDownloads

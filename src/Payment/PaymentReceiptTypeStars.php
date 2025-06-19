@@ -21,7 +21,7 @@ class PaymentReceiptTypeStars extends PaymentReceiptType
         /**
          * Unique identifier of the transaction that can be used to dispute it.
          */
-        protected string $transactionId,
+        protected string $transactionId
     ) {
         parent::__construct();
     }

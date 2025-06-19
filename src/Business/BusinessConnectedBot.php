@@ -26,9 +26,9 @@ class BusinessConnectedBot extends TdObject
          */
         protected BusinessRecipients $recipients,
         /**
-         * True, if the bot can send messages to the private chats; false otherwise.
+         * Rights of the bot.
          */
-        protected bool               $canReply,
+        protected BusinessBotRights  $rights
     ) {}
 
     public static function fromArray(array $array): BusinessConnectedBot
@@ -36,7 +36,7 @@ class BusinessConnectedBot extends TdObject
         return new static(
             $array['bot_user_id'],
             TdSchemaRegistry::fromArray($array['recipients']),
-            $array['can_reply'],
+            TdSchemaRegistry::fromArray($array['rights']),
         );
     }
 
@@ -45,14 +45,14 @@ class BusinessConnectedBot extends TdObject
         return $this->botUserId;
     }
 
-    public function getCanReply(): bool
-    {
-        return $this->canReply;
-    }
-
     public function getRecipients(): BusinessRecipients
     {
         return $this->recipients;
+    }
+
+    public function getRights(): BusinessBotRights
+    {
+        return $this->rights;
     }
 
     public function typeSerialize(): array
@@ -61,7 +61,7 @@ class BusinessConnectedBot extends TdObject
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
             'recipients'  => $this->recipients->typeSerialize(),
-            'can_reply'   => $this->canReply,
+            'rights'      => $this->rights->typeSerialize(),
         ];
     }
 }

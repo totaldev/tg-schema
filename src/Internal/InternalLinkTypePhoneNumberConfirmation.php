@@ -23,7 +23,7 @@ class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
         /**
          * Phone number value from the link.
          */
-        protected string $phoneNumber,
+        protected string $phoneNumber
     ) {
         parent::__construct();
     }

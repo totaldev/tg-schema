@@ -33,7 +33,7 @@ class ChatEvent extends TdObject
         /**
          * The action.
          */
-        protected ChatEventAction $action,
+        protected ChatEventAction $action
     ) {}
 
     public static function fromArray(array $array): ChatEvent

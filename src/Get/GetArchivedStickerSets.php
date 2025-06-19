@@ -29,7 +29,7 @@ class GetArchivedStickerSets extends TdFunction
         /**
          * The maximum number of sticker sets to return; up to 100.
          */
-        protected int         $limit,
+        protected int         $limit
     ) {}
 
     public static function fromArray(array $array): GetArchivedStickerSets

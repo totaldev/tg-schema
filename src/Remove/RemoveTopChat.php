@@ -25,7 +25,7 @@ class RemoveTopChat extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int             $chatId,
+        protected int             $chatId
     ) {}
 
     public static function fromArray(array $array): RemoveTopChat

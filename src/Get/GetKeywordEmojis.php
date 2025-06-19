@@ -25,7 +25,7 @@ class GetKeywordEmojis extends TdFunction
          *
          * @var string[]
          */
-        protected array  $inputLanguageCodes,
+        protected array  $inputLanguageCodes
     ) {}
 
     public static function fromArray(array $array): GetKeywordEmojis

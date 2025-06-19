@@ -28,7 +28,7 @@ class BotMediaPreviewInfo extends TdObject
          *
          * @var string[]
          */
-        protected array $languageCodes,
+        protected array $languageCodes
     ) {}
 
     public static function fromArray(array $array): BotMediaPreviewInfo

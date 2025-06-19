@@ -25,7 +25,7 @@ class UpdateMessageIsPinned extends Update
         /**
          * True, if the message is pinned.
          */
-        protected bool $isPinned,
+        protected bool $isPinned
     ) {
         parent::__construct();
     }

@@ -24,7 +24,7 @@ class UpdateBasicGroupFullInfo extends Update
         /**
          * New full information about the group.
          */
-        protected BasicGroupFullInfo $basicGroupFullInfo,
+        protected BasicGroupFullInfo $basicGroupFullInfo
     ) {
         parent::__construct();
     }

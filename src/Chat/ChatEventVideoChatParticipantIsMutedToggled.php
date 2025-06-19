@@ -24,7 +24,7 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
         /**
          * New value of is_muted.
          */
-        protected bool          $isMuted,
+        protected bool          $isMuted
     ) {
         parent::__construct();
     }

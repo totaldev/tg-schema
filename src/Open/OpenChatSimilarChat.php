@@ -23,7 +23,7 @@ class OpenChatSimilarChat extends TdFunction
         /**
          * Identifier of the opened chat.
          */
-        protected int $openedChatId,
+        protected int $openedChatId
     ) {}
 
     public static function fromArray(array $array): OpenChatSimilarChat

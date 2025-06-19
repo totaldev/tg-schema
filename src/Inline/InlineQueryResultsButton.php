@@ -24,7 +24,7 @@ class InlineQueryResultsButton extends TdObject
         /**
          * Type of the button.
          */
-        protected InlineQueryResultsButtonType $type,
+        protected InlineQueryResultsButtonType $type
     ) {}
 
     public static function fromArray(array $array): InlineQueryResultsButton

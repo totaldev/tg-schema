@@ -29,7 +29,7 @@ class DeleteMessages extends TdFunction
         /**
          * Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats.
          */
-        protected bool  $revoke,
+        protected bool  $revoke
     ) {}
 
     public static function fromArray(array $array): DeleteMessages

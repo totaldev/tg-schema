@@ -23,7 +23,7 @@ class PaymentOption extends TdObject
         /**
          * Payment form URL to be opened in a web view.
          */
-        protected string $url,
+        protected string $url
     ) {}
 
     public static function fromArray(array $array): PaymentOption

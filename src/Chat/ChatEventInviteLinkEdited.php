@@ -23,7 +23,7 @@ class ChatEventInviteLinkEdited extends ChatEventAction
         /**
          * New information about the invite link.
          */
-        protected ChatInviteLink $newInviteLink,
+        protected ChatInviteLink $newInviteLink
     ) {
         parent::__construct();
     }

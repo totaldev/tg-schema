@@ -24,7 +24,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
          */
         protected array  $rows,
         /**
-         * True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden.
+         * True, if the keyboard is expected to always be shown when the ordinary keyboard is hidden.
          */
         protected bool   $isPersistent,
         /**

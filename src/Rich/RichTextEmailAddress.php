@@ -23,7 +23,7 @@ class RichTextEmailAddress extends RichText
         /**
          * Email address.
          */
-        protected string   $emailAddress,
+        protected string   $emailAddress
     ) {
         parent::__construct();
     }

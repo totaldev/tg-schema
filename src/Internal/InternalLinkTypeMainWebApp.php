@@ -6,12 +6,15 @@
 
 namespace Totaldev\TgSchema\Internal;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Web\WebAppOpenMode;
+
 /**
  * The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App.
  * If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu,
  * show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and
  * attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with
- * the given start parameter and open the returned URL as a Web App.
+ * the given start parameter and mode and open the returned URL as a Web App.
  */
 class InternalLinkTypeMainWebApp extends InternalLinkType
 {
@@ -21,15 +24,15 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
         /**
          * Username of the bot.
          */
-        protected string $botUsername,
+        protected string         $botUsername,
         /**
          * Start parameter to be passed to getMainWebApp.
          */
-        protected string $startParameter,
+        protected string         $startParameter,
         /**
-         * True, if the Web App must be opened in the compact mode instead of the full-size mode.
+         * The mode to be passed to getMainWebApp.
          */
-        protected bool   $isCompact,
+        protected WebAppOpenMode $mode
     ) {
         parent::__construct();
     }
@@ -39,7 +42,7 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
         return new static(
             $array['bot_username'],
             $array['start_parameter'],
-            $array['is_compact'],
+            TdSchemaRegistry::fromArray($array['mode']),
         );
     }
 
@@ -48,9 +51,9 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
         return $this->botUsername;
     }
 
-    public function getIsCompact(): bool
+    public function getMode(): WebAppOpenMode
     {
-        return $this->isCompact;
+        return $this->mode;
     }
 
     public function getStartParameter(): string
@@ -64,7 +67,7 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
             '@type'           => static::TYPE_NAME,
             'bot_username'    => $this->botUsername,
             'start_parameter' => $this->startParameter,
-            'is_compact'      => $this->isCompact,
+            'mode'            => $this->mode->typeSerialize(),
         ];
     }
 }

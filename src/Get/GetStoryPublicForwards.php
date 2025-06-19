@@ -18,9 +18,9 @@ class GetStoryPublicForwards extends TdFunction
 
     public function __construct(
         /**
-         * The identifier of the sender of the story.
+         * The identifier of the poster of the story.
          */
-        protected int    $storySenderChatId,
+        protected int    $storyPosterChatId,
         /**
          * The identifier of the story.
          */
@@ -32,13 +32,13 @@ class GetStoryPublicForwards extends TdFunction
         /**
          * The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): GetStoryPublicForwards
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
             $array['offset'],
             $array['limit'],
@@ -60,16 +60,16 @@ class GetStoryPublicForwards extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'story_sender_chat_id' => $this->storySenderChatId,
+            'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
             'offset'               => $this->offset,
             'limit'                => $this->limit,

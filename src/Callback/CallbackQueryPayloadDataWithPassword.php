@@ -21,7 +21,7 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
         /**
          * Data that was attached to the callback button.
          */
-        protected string $data,
+        protected string $data
     ) {
         parent::__construct();
     }

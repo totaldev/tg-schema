@@ -34,7 +34,7 @@ class GetSupergroupMembers extends TdFunction
         /**
          * The maximum number of users to be returned; up to 200.
          */
-        protected int                     $limit,
+        protected int                     $limit
     ) {}
 
     public static function fromArray(array $array): GetSupergroupMembers

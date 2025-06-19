@@ -24,7 +24,7 @@ class UpdateChatVideoChat extends Update
         /**
          * New value of video_chat.
          */
-        protected VideoChat $videoChat,
+        protected VideoChat $videoChat
     ) {
         parent::__construct();
     }

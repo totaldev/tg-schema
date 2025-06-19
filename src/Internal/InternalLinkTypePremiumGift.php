@@ -7,7 +7,8 @@
 namespace Totaldev\TgSchema\Internal;
 
 /**
- * The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases.
+ * The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift
+ * payments or in-store purchases.
  */
 class InternalLinkTypePremiumGift extends InternalLinkType
 {

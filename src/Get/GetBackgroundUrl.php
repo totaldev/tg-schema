@@ -25,7 +25,7 @@ class GetBackgroundUrl extends TdFunction
         /**
          * Background type; backgroundTypeChatTheme isn't supported.
          */
-        protected BackgroundType $type,
+        protected BackgroundType $type
     ) {}
 
     public static function fromArray(array $array): GetBackgroundUrl

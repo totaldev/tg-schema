@@ -32,7 +32,7 @@ class ChatFolderInviteLinkInfo extends TdObject
          *
          * @var int[]
          */
-        protected array          $addedChatIds,
+        protected array          $addedChatIds
     ) {}
 
     public static function fromArray(array $array): ChatFolderInviteLinkInfo

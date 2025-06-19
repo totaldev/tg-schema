@@ -21,7 +21,7 @@ class ChatRevenueTransactionTypeRefund extends ChatRevenueTransactionType
         /**
          * Name of the payment provider.
          */
-        protected string $provider,
+        protected string $provider
     ) {
         parent::__construct();
     }

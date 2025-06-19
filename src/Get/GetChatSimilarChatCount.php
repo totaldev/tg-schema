@@ -23,7 +23,7 @@ class GetChatSimilarChatCount extends TdFunction
         /**
          * Pass true to get the number of chats without sending network requests, or -1 if the number of chats is unknown locally.
          */
-        protected bool $returnLocal,
+        protected bool $returnLocal
     ) {}
 
     public static function fromArray(array $array): GetChatSimilarChatCount

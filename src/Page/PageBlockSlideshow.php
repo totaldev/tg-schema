@@ -25,7 +25,7 @@ class PageBlockSlideshow extends PageBlock
         /**
          * Block caption.
          */
-        protected PageBlockCaption $caption,
+        protected PageBlockCaption $caption
     ) {
         parent::__construct();
     }

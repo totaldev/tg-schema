@@ -21,7 +21,7 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
         /**
          * New value of slow_mode_delay, in seconds.
          */
-        protected int $newSlowModeDelay,
+        protected int $newSlowModeDelay
     ) {
         parent::__construct();
     }

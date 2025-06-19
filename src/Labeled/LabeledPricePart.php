@@ -23,7 +23,7 @@ class LabeledPricePart extends TdObject
         /**
          * Currency amount in the smallest units of the currency.
          */
-        protected int    $amount,
+        protected int    $amount
     ) {}
 
     public static function fromArray(array $array): LabeledPricePart

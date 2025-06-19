@@ -24,7 +24,7 @@ class UpdateChatEmojiStatus extends Update
         /**
          * The new chat emoji status; may be null.
          */
-        protected ?EmojiStatus $emojiStatus,
+        protected ?EmojiStatus $emojiStatus
     ) {
         parent::__construct();
     }

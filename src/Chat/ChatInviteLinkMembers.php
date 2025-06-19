@@ -26,7 +26,7 @@ class ChatInviteLinkMembers extends TdObject
          *
          * @var ChatInviteLinkMember[]
          */
-        protected array $members,
+        protected array $members
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkMembers

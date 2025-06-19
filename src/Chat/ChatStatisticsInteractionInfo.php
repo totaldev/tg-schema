@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains statistics about interactions with a message sent in the chat or a story sent by the chat.
+ * Contains statistics about interactions with a message sent in the chat or a story posted on behalf of the chat.
  */
 class ChatStatisticsInteractionInfo extends TdObject
 {

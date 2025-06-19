@@ -23,7 +23,7 @@ class RemoveFileFromDownloads extends TdFunction
         /**
          * Pass true to delete the file from the TDLib file cache.
          */
-        protected bool $deleteFromCache,
+        protected bool $deleteFromCache
     ) {}
 
     public static function fromArray(array $array): RemoveFileFromDownloads

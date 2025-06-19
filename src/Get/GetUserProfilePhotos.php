@@ -27,7 +27,7 @@ class GetUserProfilePhotos extends TdFunction
         /**
          * The maximum number of photos to be returned; up to 100.
          */
-        protected int $limit,
+        protected int $limit
     ) {}
 
     public static function fromArray(array $array): GetUserProfilePhotos

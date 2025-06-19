@@ -23,7 +23,7 @@ class DateRange extends TdObject
         /**
          * Point in time (Unix timestamp) at which the date range ends.
          */
-        protected int $endDate,
+        protected int $endDate
     ) {}
 
     public static function fromArray(array $array): DateRange

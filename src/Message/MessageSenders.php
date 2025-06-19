@@ -26,7 +26,7 @@ class MessageSenders extends TdObject
          *
          * @var MessageSender[]
          */
-        protected array $senders,
+        protected array $senders
     ) {}
 
     public static function fromArray(array $array): MessageSenders

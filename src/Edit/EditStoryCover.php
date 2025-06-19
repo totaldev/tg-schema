@@ -19,7 +19,7 @@ class EditStoryCover extends TdFunction
         /**
          * Identifier of the chat that posted the story.
          */
-        protected int   $storySenderChatId,
+        protected int   $storyPosterChatId,
         /**
          * Identifier of the story to edit.
          */
@@ -27,13 +27,13 @@ class EditStoryCover extends TdFunction
         /**
          * New timestamp of the frame, which will be used as video thumbnail.
          */
-        protected float $coverFrameTimestamp,
+        protected float $coverFrameTimestamp
     ) {}
 
     public static function fromArray(array $array): EditStoryCover
     {
         return new static(
-            $array['story_sender_chat_id'],
+            $array['story_poster_chat_id'],
             $array['story_id'],
             $array['cover_frame_timestamp'],
         );
@@ -49,16 +49,16 @@ class EditStoryCover extends TdFunction
         return $this->storyId;
     }
 
-    public function getStorySenderChatId(): int
+    public function getStoryPosterChatId(): int
     {
-        return $this->storySenderChatId;
+        return $this->storyPosterChatId;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'story_sender_chat_id'  => $this->storySenderChatId,
+            'story_poster_chat_id'  => $this->storyPosterChatId,
             'story_id'              => $this->storyId,
             'cover_frame_timestamp' => $this->coverFrameTimestamp,
         ];

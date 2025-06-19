@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Describes a video chat.
+ * Describes a video chat, i.e. a group call bound to a chat.
  */
 class VideoChat extends TdObject
 {
@@ -29,7 +29,7 @@ class VideoChat extends TdObject
         /**
          * Default group call participant identifier to join the video chat; may be null.
          */
-        protected ?MessageSender $defaultParticipantId,
+        protected ?MessageSender $defaultParticipantId
     ) {}
 
     public static function fromArray(array $array): VideoChat

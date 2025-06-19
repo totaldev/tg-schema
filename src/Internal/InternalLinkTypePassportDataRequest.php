@@ -34,7 +34,7 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
         /**
          * An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise.
          */
-        protected string $callbackUrl,
+        protected string $callbackUrl
     ) {
         parent::__construct();
     }

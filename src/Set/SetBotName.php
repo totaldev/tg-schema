@@ -27,7 +27,7 @@ class SetBotName extends TdFunction
         /**
          * New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty.
          */
-        protected string $name,
+        protected string $name
     ) {}
 
     public static function fromArray(array $array): SetBotName

@@ -30,7 +30,7 @@ class ToggleChatIsPinned extends TdFunction
         /**
          * Pass true to pin the chat; pass false to unpin it.
          */
-        protected bool     $isPinned,
+        protected bool     $isPinned
     ) {}
 
     public static function fromArray(array $array): ToggleChatIsPinned

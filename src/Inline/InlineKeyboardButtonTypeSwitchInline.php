@@ -24,7 +24,7 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
         /**
          * Target chat from which to send the inline query.
          */
-        protected TargetChat $targetChat,
+        protected TargetChat $targetChat
     ) {
         parent::__construct();
     }

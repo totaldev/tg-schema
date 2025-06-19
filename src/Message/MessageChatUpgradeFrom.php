@@ -21,7 +21,7 @@ class MessageChatUpgradeFrom extends MessageContent
         /**
          * The identifier of the original basic group.
          */
-        protected int    $basicGroupId,
+        protected int    $basicGroupId
     ) {
         parent::__construct();
     }

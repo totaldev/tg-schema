@@ -23,7 +23,7 @@ class ChatEventMemberJoinedByRequest extends ChatEventAction
         /**
          * Invite link used to join the chat; may be null.
          */
-        protected ?ChatInviteLink $inviteLink,
+        protected ?ChatInviteLink $inviteLink
     ) {
         parent::__construct();
     }

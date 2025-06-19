@@ -15,7 +15,7 @@ class BackgroundFillFreeformGradient extends BackgroundFill
 
     public function __construct(
         /**
-         * A list of 3 or 4 colors of the freeform gradient in the RGB24 format.
+         * A list of 3 or 4 colors of the freeform gradient in the RGB format.
          *
          * @var int[]
          */

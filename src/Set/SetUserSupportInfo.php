@@ -25,7 +25,7 @@ class SetUserSupportInfo extends TdFunction
         /**
          * New information message.
          */
-        protected FormattedText $message,
+        protected FormattedText $message
     ) {}
 
     public static function fromArray(array $array): SetUserSupportInfo

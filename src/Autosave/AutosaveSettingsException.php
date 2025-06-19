@@ -25,7 +25,7 @@ class AutosaveSettingsException extends TdObject
         /**
          * Autosave settings for the chat.
          */
-        protected ScopeAutosaveSettings $settings,
+        protected ScopeAutosaveSettings $settings
     ) {}
 
     public static function fromArray(array $array): AutosaveSettingsException

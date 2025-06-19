@@ -21,7 +21,7 @@ class UpdateChatReadOutbox extends Update
         /**
          * Identifier of last read outgoing message.
          */
-        protected int $lastReadOutboxMessageId,
+        protected int $lastReadOutboxMessageId
     ) {
         parent::__construct();
     }

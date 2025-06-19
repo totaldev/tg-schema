@@ -15,6 +15,10 @@ class PushMessageContentStory extends PushMessageContent
 
     public function __construct(
         /**
+         * True, if the user was mentioned in the story.
+         */
+        protected bool $isMention,
+        /**
          * True, if the message is a pinned message with the specified content.
          */
         protected bool $isPinned
@@ -25,8 +29,14 @@ class PushMessageContentStory extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentStory
     {
         return new static(
+            $array['is_mention'],
             $array['is_pinned'],
         );
+    }
+
+    public function getIsMention(): bool
+    {
+        return $this->isMention;
     }
 
     public function getIsPinned(): bool
@@ -37,8 +47,9 @@ class PushMessageContentStory extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
-            'is_pinned' => $this->isPinned,
+            '@type'      => static::TYPE_NAME,
+            'is_mention' => $this->isMention,
+            'is_pinned'  => $this->isPinned,
         ];
     }
 }

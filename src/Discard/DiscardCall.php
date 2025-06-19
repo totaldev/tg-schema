@@ -19,23 +19,27 @@ class DiscardCall extends TdFunction
         /**
          * Call identifier.
          */
-        protected int  $callId,
+        protected int    $callId,
         /**
          * Pass true if the user was disconnected.
          */
-        protected bool $isDisconnected,
+        protected bool   $isDisconnected,
+        /**
+         * If the call was upgraded to a group call, pass invite link to the group call.
+         */
+        protected string $inviteLink,
         /**
          * The call duration, in seconds.
          */
-        protected int  $duration,
+        protected int    $duration,
         /**
          * Pass true if the call was a video call.
          */
-        protected bool $isVideo,
+        protected bool   $isVideo,
         /**
          * Identifier of the connection used during the call.
          */
-        protected int  $connectionId,
+        protected int    $connectionId,
     ) {}
 
     public static function fromArray(array $array): DiscardCall
@@ -43,6 +47,7 @@ class DiscardCall extends TdFunction
         return new static(
             $array['call_id'],
             $array['is_disconnected'],
+            $array['invite_link'],
             $array['duration'],
             $array['is_video'],
             $array['connection_id'],
@@ -64,6 +69,11 @@ class DiscardCall extends TdFunction
         return $this->duration;
     }
 
+    public function getInviteLink(): string
+    {
+        return $this->inviteLink;
+    }
+
     public function getIsDisconnected(): bool
     {
         return $this->isDisconnected;
@@ -80,6 +90,7 @@ class DiscardCall extends TdFunction
             '@type'           => static::TYPE_NAME,
             'call_id'         => $this->callId,
             'is_disconnected' => $this->isDisconnected,
+            'invite_link'     => $this->inviteLink,
             'duration'        => $this->duration,
             'is_video'        => $this->isVideo,
             'connection_id'   => $this->connectionId,

@@ -23,7 +23,7 @@ class BusinessOpeningHoursInterval extends TdObject
         /**
          * The minute's sequence number in a week, starting on Monday, marking the end of the time interval during which the business is open; 1-8*24*60.
          */
-        protected int $endMinute,
+        protected int $endMinute
     ) {}
 
     public static function fromArray(array $array): BusinessOpeningHoursInterval

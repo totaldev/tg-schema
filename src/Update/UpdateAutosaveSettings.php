@@ -25,7 +25,7 @@ class UpdateAutosaveSettings extends Update
         /**
          * The new autosave settings; may be null if the settings are reset to default.
          */
-        protected ?ScopeAutosaveSettings $settings,
+        protected ?ScopeAutosaveSettings $settings
     ) {
         parent::__construct();
     }

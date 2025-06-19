@@ -27,7 +27,7 @@ class MessageProximityAlertTriggered extends MessageContent
         /**
          * The distance between the users.
          */
-        protected int           $distance,
+        protected int           $distance
     ) {
         parent::__construct();
     }

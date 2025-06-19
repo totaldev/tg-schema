@@ -27,7 +27,7 @@ class ChatStatisticsMessageSenderInfo extends TdObject
         /**
          * Average number of characters in sent messages; 0 if unknown.
          */
-        protected int $averageCharacterCount,
+        protected int $averageCharacterCount
     ) {}
 
     public static function fromArray(array $array): ChatStatisticsMessageSenderInfo

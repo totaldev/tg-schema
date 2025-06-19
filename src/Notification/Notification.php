@@ -32,7 +32,7 @@ class Notification extends TdObject
         /**
          * Notification type.
          */
-        protected NotificationType $type,
+        protected NotificationType $type
     ) {}
 
     public static function fromArray(array $array): Notification

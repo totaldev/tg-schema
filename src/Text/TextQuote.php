@@ -29,7 +29,7 @@ class TextQuote extends TdObject
         /**
          * True, if the quote was manually chosen by the message sender.
          */
-        protected bool          $isManual,
+        protected bool          $isManual
     ) {}
 
     public static function fromArray(array $array): TextQuote

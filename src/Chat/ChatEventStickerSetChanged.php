@@ -21,7 +21,7 @@ class ChatEventStickerSetChanged extends ChatEventAction
         /**
          * New identifier of the chat sticker set; 0 if none.
          */
-        protected int $newStickerSetId,
+        protected int $newStickerSetId
     ) {
         parent::__construct();
     }

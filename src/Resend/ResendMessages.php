@@ -34,6 +34,10 @@ class ResendMessages extends TdFunction
          * New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false.
          */
         protected InputTextQuote $quote,
+        /**
+         * The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0.
+         */
+        protected int            $paidMessageStarCount
     ) {}
 
     public static function fromArray(array $array): ResendMessages
@@ -42,6 +46,7 @@ class ResendMessages extends TdFunction
             $array['chat_id'],
             $array['message_ids'],
             TdSchemaRegistry::fromArray($array['quote']),
+            $array['paid_message_star_count'],
         );
     }
 
@@ -55,6 +60,11 @@ class ResendMessages extends TdFunction
         return $this->messageIds;
     }
 
+    public function getPaidMessageStarCount(): int
+    {
+        return $this->paidMessageStarCount;
+    }
+
     public function getQuote(): InputTextQuote
     {
         return $this->quote;
@@ -63,10 +73,11 @@ class ResendMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'chat_id'     => $this->chatId,
-            'message_ids' => $this->messageIds,
-            'quote'       => $this->quote->typeSerialize(),
+            '@type'                   => static::TYPE_NAME,
+            'chat_id'                 => $this->chatId,
+            'message_ids'             => $this->messageIds,
+            'quote'                   => $this->quote->typeSerialize(),
+            'paid_message_star_count' => $this->paidMessageStarCount,
         ];
     }
 }

@@ -26,7 +26,7 @@ class BotCommands extends TdObject
          *
          * @var BotCommand[]
          */
-        protected array $commands,
+        protected array $commands
     ) {}
 
     public static function fromArray(array $array): BotCommands

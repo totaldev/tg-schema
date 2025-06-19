@@ -23,7 +23,7 @@ class SavedCredentials extends TdObject
         /**
          * Title of the saved credentials.
          */
-        protected string $title,
+        protected string $title
     ) {}
 
     public static function fromArray(array $array): SavedCredentials

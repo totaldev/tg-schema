@@ -25,7 +25,7 @@ class SetChatPinnedStories extends TdFunction
          *
          * @var int[]
          */
-        protected array $storyIds,
+        protected array $storyIds
     ) {}
 
     public static function fromArray(array $array): SetChatPinnedStories

@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
+ * Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no
+ * instant view page.
  */
 class GetWebPageInstantView extends TdFunction
 {
@@ -21,22 +22,22 @@ class GetWebPageInstantView extends TdFunction
          */
         protected string $url,
         /**
-         * Pass true to get full instant view for the web page.
+         * Pass true to get only locally available information without sending network requests.
          */
-        protected bool   $forceFull,
+        protected bool   $onlyLocal
     ) {}
 
     public static function fromArray(array $array): GetWebPageInstantView
     {
         return new static(
             $array['url'],
-            $array['force_full'],
+            $array['only_local'],
         );
     }
 
-    public function getForceFull(): bool
+    public function getOnlyLocal(): bool
     {
-        return $this->forceFull;
+        return $this->onlyLocal;
     }
 
     public function getUrl(): string
@@ -49,7 +50,7 @@ class GetWebPageInstantView extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'url'        => $this->url,
-            'force_full' => $this->forceFull,
+            'only_local' => $this->onlyLocal,
         ];
     }
 }

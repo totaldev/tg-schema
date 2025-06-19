@@ -34,7 +34,7 @@ class ReplaceStickerInSet extends TdFunction
         /**
          * Sticker to add to the set.
          */
-        protected InputSticker $newSticker,
+        protected InputSticker $newSticker
     ) {}
 
     public static function fromArray(array $array): ReplaceStickerInSet

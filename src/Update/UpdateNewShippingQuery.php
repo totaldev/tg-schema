@@ -32,7 +32,7 @@ class UpdateNewShippingQuery extends Update
         /**
          * User shipping address.
          */
-        protected Address $shippingAddress,
+        protected Address $shippingAddress
     ) {
         parent::__construct();
     }

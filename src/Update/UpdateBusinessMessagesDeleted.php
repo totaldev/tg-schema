@@ -27,7 +27,7 @@ class UpdateBusinessMessagesDeleted extends Update
          *
          * @var int[]
          */
-        protected array  $messageIds,
+        protected array  $messageIds
     ) {
         parent::__construct();
     }

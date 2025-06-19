@@ -21,7 +21,7 @@ class UpdateChatMessageAutoDeleteTime extends Update
         /**
          * New value of message_auto_delete_time.
          */
-        protected int $messageAutoDeleteTime,
+        protected int $messageAutoDeleteTime
     ) {
         parent::__construct();
     }

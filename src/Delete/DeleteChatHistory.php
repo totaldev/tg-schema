@@ -28,7 +28,7 @@ class DeleteChatHistory extends TdFunction
         /**
          * Pass true to delete chat history for all users.
          */
-        protected bool $revoke,
+        protected bool $revoke
     ) {}
 
     public static function fromArray(array $array): DeleteChatHistory

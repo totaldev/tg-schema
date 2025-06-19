@@ -25,7 +25,7 @@ class GroupCallVideoSourceGroup extends TdObject
          *
          * @var int[]
          */
-        protected array  $sourceIds,
+        protected array  $sourceIds
     ) {}
 
     public static function fromArray(array $array): GroupCallVideoSourceGroup

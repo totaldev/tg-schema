@@ -33,7 +33,7 @@ class UpdateChatAction extends Update
         /**
          * The action.
          */
-        protected ChatAction    $action,
+        protected ChatAction    $action
     ) {
         parent::__construct();
     }

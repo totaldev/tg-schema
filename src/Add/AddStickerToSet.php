@@ -29,7 +29,7 @@ class AddStickerToSet extends TdFunction
         /**
          * Sticker to add to the set.
          */
-        protected InputSticker $sticker,
+        protected InputSticker $sticker
     ) {}
 
     public static function fromArray(array $array): AddStickerToSet

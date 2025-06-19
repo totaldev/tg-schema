@@ -24,7 +24,7 @@ class MessageEffectTypeEmojiReaction extends MessageEffectType
         /**
          * Effect animation for the effect in TGS format.
          */
-        protected Sticker $effectAnimation,
+        protected Sticker $effectAnimation
     ) {
         parent::__construct();
     }

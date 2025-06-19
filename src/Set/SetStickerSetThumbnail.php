@@ -34,7 +34,7 @@ class SetStickerSetThumbnail extends TdFunction
         /**
          * Format of the thumbnail; pass null if thumbnail is removed.
          */
-        protected StickerFormat $format,
+        protected StickerFormat $format
     ) {}
 
     public static function fromArray(array $array): SetStickerSetThumbnail

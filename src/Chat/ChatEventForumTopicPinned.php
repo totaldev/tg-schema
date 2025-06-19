@@ -24,7 +24,7 @@ class ChatEventForumTopicPinned extends ChatEventAction
         /**
          * Information about the new pinned topic; may be null.
          */
-        protected ?ForumTopicInfo $newTopicInfo,
+        protected ?ForumTopicInfo $newTopicInfo
     ) {
         parent::__construct();
     }

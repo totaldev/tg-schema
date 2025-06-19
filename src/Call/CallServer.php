@@ -36,7 +36,7 @@ class CallServer extends TdObject
         /**
          * Server type.
          */
-        protected CallServerType $type,
+        protected CallServerType $type
     ) {}
 
     public static function fromArray(array $array): CallServer

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a message.
+ * Returns information about a message. Returns a 404 error if the message doesn't exist.
  */
 class GetMessage extends TdFunction
 {
@@ -23,7 +23,7 @@ class GetMessage extends TdFunction
         /**
          * Identifier of the message to get.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {}
 
     public static function fromArray(array $array): GetMessage

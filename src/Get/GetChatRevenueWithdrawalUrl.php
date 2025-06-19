@@ -9,8 +9,9 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if
- * supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue").
+ * Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if
+ * getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with
+ * userFullInfo.bot_info.can_get_revenue_statistics == true.
  */
 class GetChatRevenueWithdrawalUrl extends TdFunction
 {
@@ -24,7 +25,7 @@ class GetChatRevenueWithdrawalUrl extends TdFunction
         /**
          * The 2-step verification password of the current user.
          */
-        protected string $password,
+        protected string $password
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueWithdrawalUrl

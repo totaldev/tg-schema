@@ -25,7 +25,7 @@ class FinishFileGeneration extends TdFunction
         /**
          * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded.
          */
-        protected Error $error,
+        protected Error $error
     ) {}
 
     public static function fromArray(array $array): FinishFileGeneration

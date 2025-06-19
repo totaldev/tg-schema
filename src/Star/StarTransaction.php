@@ -20,33 +20,33 @@ class StarTransaction extends TdObject
         /**
          * Unique identifier of the transaction.
          */
-        protected string                 $id,
+        protected string              $id,
         /**
          * The amount of added owned Telegram Stars; negative for outgoing transactions.
          */
-        protected int                    $starCount,
+        protected StarAmount          $starAmount,
         /**
          * True, if the transaction is a refund of a previous transaction.
          */
-        protected bool                   $isRefund,
+        protected bool                $isRefund,
         /**
          * Point in time (Unix timestamp) when the transaction was completed.
          */
-        protected int                    $date,
+        protected int                 $date,
         /**
-         * Source of the incoming transaction, or its recipient for outgoing transactions.
+         * Type of the transaction.
          */
-        protected StarTransactionPartner $partner,
+        protected StarTransactionType $type,
     ) {}
 
     public static function fromArray(array $array): StarTransaction
     {
         return new static(
             $array['id'],
-            $array['star_count'],
+            TdSchemaRegistry::fromArray($array['star_amount']),
             $array['is_refund'],
             $array['date'],
-            TdSchemaRegistry::fromArray($array['partner']),
+            TdSchemaRegistry::fromArray($array['type']),
         );
     }
 
@@ -65,25 +65,25 @@ class StarTransaction extends TdObject
         return $this->isRefund;
     }
 
-    public function getPartner(): StarTransactionPartner
+    public function getStarAmount(): StarAmount
     {
-        return $this->partner;
+        return $this->starAmount;
     }
 
-    public function getStarCount(): int
+    public function getType(): StarTransactionType
     {
-        return $this->starCount;
+        return $this->type;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'id'         => $this->id,
-            'star_count' => $this->starCount,
-            'is_refund'  => $this->isRefund,
-            'date'       => $this->date,
-            'partner'    => $this->partner->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'star_amount' => $this->starAmount->typeSerialize(),
+            'is_refund'   => $this->isRefund,
+            'date'        => $this->date,
+            'type'        => $this->type->typeSerialize(),
         ];
     }
 }

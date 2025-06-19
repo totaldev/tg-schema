@@ -29,7 +29,7 @@ class CreateChatFolderInviteLink extends TdFunction
          *
          * @var int[]
          */
-        protected array  $chatIds,
+        protected array  $chatIds
     ) {}
 
     public static function fromArray(array $array): CreateChatFolderInviteLink

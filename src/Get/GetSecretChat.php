@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a secret chat by its identifier. This is an offline request.
+ * Returns information about a secret chat by its identifier. This is an offline method.
  */
 class GetSecretChat extends TdFunction
 {

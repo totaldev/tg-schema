@@ -21,7 +21,7 @@ class PaymentProviderSmartGlocal extends PaymentProvider
         /**
          * URL for sending card tokenization requests.
          */
-        protected string $tokenizeUrl,
+        protected string $tokenizeUrl
     ) {
         parent::__construct();
     }

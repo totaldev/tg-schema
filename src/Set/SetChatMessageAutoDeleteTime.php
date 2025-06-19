@@ -24,7 +24,7 @@ class SetChatMessageAutoDeleteTime extends TdFunction
         /**
          * New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
          */
-        protected int $messageAutoDeleteTime,
+        protected int $messageAutoDeleteTime
     ) {}
 
     public static function fromArray(array $array): SetChatMessageAutoDeleteTime

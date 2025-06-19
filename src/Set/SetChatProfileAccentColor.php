@@ -27,7 +27,7 @@ class SetChatProfileAccentColor extends TdFunction
         /**
          * Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set.
          */
-        protected int $profileBackgroundCustomEmojiId,
+        protected int $profileBackgroundCustomEmojiId
     ) {}
 
     public static function fromArray(array $array): SetChatProfileAccentColor

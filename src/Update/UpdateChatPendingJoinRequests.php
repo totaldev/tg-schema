@@ -24,7 +24,7 @@ class UpdateChatPendingJoinRequests extends Update
         /**
          * The new data about pending join requests; may be null.
          */
-        protected ?ChatJoinRequestsInfo $pendingJoinRequests,
+        protected ?ChatJoinRequestsInfo $pendingJoinRequests
     ) {
         parent::__construct();
     }

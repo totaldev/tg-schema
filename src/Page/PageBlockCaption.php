@@ -25,7 +25,7 @@ class PageBlockCaption extends TdObject
         /**
          * Block credit (like HTML tag <cite>).
          */
-        protected RichText $credit,
+        protected RichText $credit
     ) {}
 
     public static function fromArray(array $array): PageBlockCaption

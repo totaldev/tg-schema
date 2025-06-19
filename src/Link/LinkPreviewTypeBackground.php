@@ -25,7 +25,7 @@ class LinkPreviewTypeBackground extends LinkPreviewType
         /**
          * Type of the background; may be null if unknown.
          */
-        protected ?BackgroundType $backgroundType,
+        protected ?BackgroundType $backgroundType
     ) {
         parent::__construct();
     }

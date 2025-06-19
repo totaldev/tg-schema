@@ -21,7 +21,7 @@ class UpdateMessageContentOpened extends Update
         /**
          * Message identifier.
          */
-        protected int $messageId,
+        protected int $messageId
     ) {
         parent::__construct();
     }

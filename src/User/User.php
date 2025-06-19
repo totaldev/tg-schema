@@ -11,6 +11,7 @@ use Totaldev\TgSchema\Profile\ProfilePhoto;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Usernames\Usernames;
+use Totaldev\TgSchema\Verification\VerificationStatus;
 
 /**
  * Represents a user.
@@ -23,115 +24,111 @@ class User extends TdObject
         /**
          * User identifier.
          */
-        protected int           $id,
+        protected int                 $id,
         /**
          * First name of the user.
          */
-        protected string        $firstName,
+        protected string              $firstName,
         /**
          * Last name of the user.
          */
-        protected string        $lastName,
+        protected string              $lastName,
         /**
          * Usernames of the user; may be null.
          */
-        protected ?Usernames    $usernames,
+        protected ?Usernames          $usernames,
         /**
          * Phone number of the user.
          */
-        protected string        $phoneNumber,
+        protected string              $phoneNumber,
         /**
          * Current online status of the user.
          */
-        protected UserStatus    $status,
+        protected UserStatus          $status,
         /**
          * Profile photo of the user; may be null.
          */
-        protected ?ProfilePhoto $profilePhoto,
+        protected ?ProfilePhoto       $profilePhoto,
         /**
-         * Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only.
+         * Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview.
          */
-        protected int           $accentColorId,
+        protected int                 $accentColorId,
         /**
-         * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only.
+         * Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none.
          */
-        protected int           $backgroundCustomEmojiId,
+        protected int                 $backgroundCustomEmojiId,
         /**
-         * Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only.
+         * Identifier of the accent color for the user's profile; -1 if none.
          */
-        protected int           $profileAccentColorId,
+        protected int                 $profileAccentColorId,
         /**
-         * Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none. For Telegram Premium users only.
+         * Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none.
          */
-        protected int           $profileBackgroundCustomEmojiId,
+        protected int                 $profileBackgroundCustomEmojiId,
         /**
-         * Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only.
+         * Emoji status to be shown instead of the default Telegram Premium badge; may be null.
          */
-        protected ?EmojiStatus  $emojiStatus,
+        protected ?EmojiStatus        $emojiStatus,
         /**
          * The user is a contact of the current user.
          */
-        protected bool          $isContact,
+        protected bool                $isContact,
         /**
          * The user is a contact of the current user and the current user is a contact of the user.
          */
-        protected bool          $isMutualContact,
+        protected bool                $isMutualContact,
         /**
          * The user is a close friend of the current user; implies that the user is a contact.
          */
-        protected bool          $isCloseFriend,
+        protected bool                $isCloseFriend,
         /**
-         * True, if the user is verified.
+         * Information about verification status of the user; may be null if none.
          */
-        protected bool          $isVerified,
+        protected ?VerificationStatus $verificationStatus,
         /**
          * True, if the user is a Telegram Premium user.
          */
-        protected bool          $isPremium,
+        protected bool                $isPremium,
         /**
          * True, if the user is Telegram support account.
          */
-        protected bool          $isSupport,
+        protected bool                $isSupport,
         /**
          * If non-empty, it contains a human-readable description of the reason why access to this user must be restricted.
          */
-        protected string        $restrictionReason,
-        /**
-         * True, if many users reported this user as a scam.
-         */
-        protected bool          $isScam,
-        /**
-         * True, if many users reported this user as a fake account.
-         */
-        protected bool          $isFake,
+        protected string              $restrictionReason,
         /**
          * True, if the user has non-expired stories available to the current user.
          */
-        protected bool          $hasActiveStories,
+        protected bool                $hasActiveStories,
         /**
          * True, if the user has unread non-expired stories available to the current user.
          */
-        protected bool          $hasUnreadActiveStories,
+        protected bool                $hasUnreadActiveStories,
         /**
          * True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them.
          */
-        protected bool          $restrictsNewChats,
+        protected bool                $restrictsNewChats,
+        /**
+         * Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay.
+         */
+        protected int                 $paidMessageStarCount,
         /**
          * If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method.
          */
-        protected bool          $haveAccess,
+        protected bool                $haveAccess,
         /**
          * Type of the user.
          */
-        protected UserType      $type,
+        protected UserType            $type,
         /**
          * IETF language tag of the user's language; only available to bots.
          */
-        protected string        $languageCode,
+        protected string              $languageCode,
         /**
          * True, if the user added the current bot to attachment menu; only available to bots.
          */
-        protected bool          $addedToAttachmentMenu,
+        protected bool                $addedToAttachmentMenu,
     ) {}
 
     public static function fromArray(array $array): User
@@ -152,15 +149,14 @@ class User extends TdObject
             $array['is_contact'],
             $array['is_mutual_contact'],
             $array['is_close_friend'],
-            $array['is_verified'],
+            isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
             $array['is_premium'],
             $array['is_support'],
             $array['restriction_reason'],
-            $array['is_scam'],
-            $array['is_fake'],
             $array['has_active_stories'],
             $array['has_unread_active_stories'],
             $array['restricts_new_chats'],
+            $array['paid_message_star_count'],
             $array['have_access'],
             TdSchemaRegistry::fromArray($array['type']),
             $array['language_code'],
@@ -223,11 +219,6 @@ class User extends TdObject
         return $this->isContact;
     }
 
-    public function getIsFake(): bool
-    {
-        return $this->isFake;
-    }
-
     public function getIsMutualContact(): bool
     {
         return $this->isMutualContact;
@@ -238,19 +229,9 @@ class User extends TdObject
         return $this->isPremium;
     }
 
-    public function getIsScam(): bool
-    {
-        return $this->isScam;
-    }
-
     public function getIsSupport(): bool
     {
         return $this->isSupport;
-    }
-
-    public function getIsVerified(): bool
-    {
-        return $this->isVerified;
     }
 
     public function getLanguageCode(): string
@@ -261,6 +242,11 @@ class User extends TdObject
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function getPaidMessageStarCount(): int
+    {
+        return $this->paidMessageStarCount;
     }
 
     public function getPhoneNumber(): string
@@ -308,6 +294,11 @@ class User extends TdObject
         return $this->usernames;
     }
 
+    public function getVerificationStatus(): ?VerificationStatus
+    {
+        return $this->verificationStatus;
+    }
+
     public function typeSerialize(): array
     {
         return [
@@ -327,15 +318,14 @@ class User extends TdObject
             'is_contact'                         => $this->isContact,
             'is_mutual_contact'                  => $this->isMutualContact,
             'is_close_friend'                    => $this->isCloseFriend,
-            'is_verified'                        => $this->isVerified,
+            'verification_status'                => (isset($this->verificationStatus) ? $this->verificationStatus : null),
             'is_premium'                         => $this->isPremium,
             'is_support'                         => $this->isSupport,
             'restriction_reason'                 => $this->restrictionReason,
-            'is_scam'                            => $this->isScam,
-            'is_fake'                            => $this->isFake,
             'has_active_stories'                 => $this->hasActiveStories,
             'has_unread_active_stories'          => $this->hasUnreadActiveStories,
             'restricts_new_chats'                => $this->restrictsNewChats,
+            'paid_message_star_count'            => $this->paidMessageStarCount,
             'have_access'                        => $this->haveAccess,
             'type'                               => $this->type->typeSerialize(),
             'language_code'                      => $this->languageCode,

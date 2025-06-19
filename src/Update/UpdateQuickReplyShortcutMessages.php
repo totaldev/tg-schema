@@ -26,7 +26,7 @@ class UpdateQuickReplyShortcutMessages extends Update
          *
          * @var QuickReplyMessage[]
          */
-        protected array $messages,
+        protected array $messages
     ) {
         parent::__construct();
     }

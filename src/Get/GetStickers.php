@@ -34,7 +34,7 @@ class GetStickers extends TdFunction
         /**
          * Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats.
          */
-        protected int         $chatId,
+        protected int         $chatId
     ) {}
 
     public static function fromArray(array $array): GetStickers

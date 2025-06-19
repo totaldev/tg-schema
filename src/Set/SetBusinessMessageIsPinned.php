@@ -31,7 +31,7 @@ class SetBusinessMessageIsPinned extends TdFunction
         /**
          * Pass true to pin the message, pass false to unpin it.
          */
-        protected bool   $isPinned,
+        protected bool   $isPinned
     ) {}
 
     public static function fromArray(array $array): SetBusinessMessageIsPinned

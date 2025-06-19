@@ -24,7 +24,7 @@ class ToggleSupergroupCanHaveSponsoredMessages extends TdFunction
         /**
          * The new value of can_have_sponsored_messages.
          */
-        protected bool $canHaveSponsoredMessages,
+        protected bool $canHaveSponsoredMessages
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupCanHaveSponsoredMessages

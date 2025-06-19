@@ -57,13 +57,13 @@ class ChatNotificationSettings extends TdObject
          */
         protected int  $storySoundId,
         /**
-         * If true, the value for the relevant type of chat is used instead of show_story_sender.
+         * If true, the value for the relevant type of chat is used instead of show_story_poster.
          */
-        protected bool $useDefaultShowStorySender,
+        protected bool $useDefaultShowStoryPoster,
         /**
-         * True, if the sender of stories must be displayed in notifications.
+         * True, if the chat that posted a story must be displayed in notifications.
          */
-        protected bool $showStorySender,
+        protected bool $showStoryPoster,
         /**
          * If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications.
          */
@@ -95,8 +95,8 @@ class ChatNotificationSettings extends TdObject
             $array['mute_stories'],
             $array['use_default_story_sound'],
             $array['story_sound_id'],
-            $array['use_default_show_story_sender'],
-            $array['show_story_sender'],
+            $array['use_default_show_story_poster'],
+            $array['show_story_poster'],
             $array['use_default_disable_pinned_message_notifications'],
             $array['disable_pinned_message_notifications'],
             $array['use_default_disable_mention_notifications'],
@@ -129,9 +129,9 @@ class ChatNotificationSettings extends TdObject
         return $this->showPreview;
     }
 
-    public function getShowStorySender(): bool
+    public function getShowStoryPoster(): bool
     {
-        return $this->showStorySender;
+        return $this->showStoryPoster;
     }
 
     public function getSoundId(): int
@@ -169,9 +169,9 @@ class ChatNotificationSettings extends TdObject
         return $this->useDefaultShowPreview;
     }
 
-    public function getUseDefaultShowStorySender(): bool
+    public function getUseDefaultShowStoryPoster(): bool
     {
-        return $this->useDefaultShowStorySender;
+        return $this->useDefaultShowStoryPoster;
     }
 
     public function getUseDefaultSound(): bool
@@ -198,8 +198,8 @@ class ChatNotificationSettings extends TdObject
             'mute_stories'                                     => $this->muteStories,
             'use_default_story_sound'                          => $this->useDefaultStorySound,
             'story_sound_id'                                   => $this->storySoundId,
-            'use_default_show_story_sender'                    => $this->useDefaultShowStorySender,
-            'show_story_sender'                                => $this->showStorySender,
+            'use_default_show_story_poster'                    => $this->useDefaultShowStoryPoster,
+            'show_story_poster'                                => $this->showStoryPoster,
             'use_default_disable_pinned_message_notifications' => $this->useDefaultDisablePinnedMessageNotifications,
             'disable_pinned_message_notifications'             => $this->disablePinnedMessageNotifications,
             'use_default_disable_mention_notifications'        => $this->useDefaultDisableMentionNotifications,

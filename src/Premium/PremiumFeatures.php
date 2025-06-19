@@ -33,7 +33,7 @@ class PremiumFeatures extends TdObject
         /**
          * An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available.
          */
-        protected ?InternalLinkType $paymentLink,
+        protected ?InternalLinkType $paymentLink
     ) {}
 
     public static function fromArray(array $array): PremiumFeatures

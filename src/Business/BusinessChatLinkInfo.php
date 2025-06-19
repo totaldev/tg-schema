@@ -25,7 +25,7 @@ class BusinessChatLinkInfo extends TdObject
         /**
          * Message draft text that must be added to the input field.
          */
-        protected FormattedText $text,
+        protected FormattedText $text
     ) {}
 
     public static function fromArray(array $array): BusinessChatLinkInfo

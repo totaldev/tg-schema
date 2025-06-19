@@ -41,9 +41,9 @@ class ScopeNotificationSettings extends TdObject
          */
         protected int  $storySoundId,
         /**
-         * True, if the sender of stories must be displayed in notifications.
+         * True, if the chat that posted a story must be displayed in notifications.
          */
-        protected bool $showStorySender,
+        protected bool $showStoryPoster,
         /**
          * True, if notifications for incoming pinned messages will be created as for an ordinary unread message.
          */
@@ -63,7 +63,7 @@ class ScopeNotificationSettings extends TdObject
             $array['use_default_mute_stories'],
             $array['mute_stories'],
             $array['story_sound_id'],
-            $array['show_story_sender'],
+            $array['show_story_poster'],
             $array['disable_pinned_message_notifications'],
             $array['disable_mention_notifications'],
         );
@@ -94,9 +94,9 @@ class ScopeNotificationSettings extends TdObject
         return $this->showPreview;
     }
 
-    public function getShowStorySender(): bool
+    public function getShowStoryPoster(): bool
     {
-        return $this->showStorySender;
+        return $this->showStoryPoster;
     }
 
     public function getSoundId(): int
@@ -124,7 +124,7 @@ class ScopeNotificationSettings extends TdObject
             'use_default_mute_stories'             => $this->useDefaultMuteStories,
             'mute_stories'                         => $this->muteStories,
             'story_sound_id'                       => $this->storySoundId,
-            'show_story_sender'                    => $this->showStorySender,
+            'show_story_poster'                    => $this->showStoryPoster,
             'disable_pinned_message_notifications' => $this->disablePinnedMessageNotifications,
             'disable_mention_notifications'        => $this->disableMentionNotifications,
         ];

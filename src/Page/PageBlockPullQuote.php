@@ -24,7 +24,7 @@ class PageBlockPullQuote extends PageBlock
         /**
          * Quote credit.
          */
-        protected RichText $credit,
+        protected RichText $credit
     ) {
         parent::__construct();
     }

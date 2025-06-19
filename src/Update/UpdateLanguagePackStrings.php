@@ -30,7 +30,7 @@ class UpdateLanguagePackStrings extends Update
          *
          * @var LanguagePackString[]
          */
-        protected array  $strings,
+        protected array  $strings
     ) {
         parent::__construct();
     }

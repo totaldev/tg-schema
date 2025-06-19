@@ -30,7 +30,7 @@ class GroupCallParticipantVideoInfo extends TdObject
         /**
          * True, if the video is paused. This flag needs to be ignored, if new video frames are received.
          */
-        protected bool   $isPaused,
+        protected bool   $isPaused
     ) {}
 
     public static function fromArray(array $array): GroupCallParticipantVideoInfo

@@ -7,7 +7,6 @@
 namespace Totaldev\TgSchema\Report;
 
 use Totaldev\TgSchema\TdFunction;
-use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported.
@@ -20,29 +19,29 @@ class ReportChat extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int          $chatId,
+        protected int    $chatId,
         /**
-         * Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported.
+         * Option identifier chosen by the user; leave empty for the initial request.
+         */
+        protected string $optionId,
+        /**
+         * Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported.
          *
          * @var int[]
          */
-        protected array        $messageIds,
+        protected array  $messageIds,
         /**
-         * The reason for reporting the chat.
+         * Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request.
          */
-        protected ReportReason $reason,
-        /**
-         * Additional report details; 0-1024 characters.
-         */
-        protected string       $text,
+        protected string $text
     ) {}
 
     public static function fromArray(array $array): ReportChat
     {
         return new static(
             $array['chat_id'],
+            $array['option_id'],
             $array['message_ids'],
-            TdSchemaRegistry::fromArray($array['reason']),
             $array['text'],
         );
     }
@@ -57,9 +56,9 @@ class ReportChat extends TdFunction
         return $this->messageIds;
     }
 
-    public function getReason(): ReportReason
+    public function getOptionId(): string
     {
-        return $this->reason;
+        return $this->optionId;
     }
 
     public function getText(): string
@@ -72,8 +71,8 @@ class ReportChat extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
+            'option_id'   => $this->optionId,
             'message_ids' => $this->messageIds,
-            'reason'      => $this->reason->typeSerialize(),
             'text'        => $this->text,
         ];
     }

@@ -21,7 +21,7 @@ class ChatEventLinkedChatChanged extends ChatEventAction
         /**
          * New supergroup linked chat identifier.
          */
-        protected int $newLinkedChatId,
+        protected int $newLinkedChatId
     ) {
         parent::__construct();
     }

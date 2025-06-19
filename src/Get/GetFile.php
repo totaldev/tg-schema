@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a file; this is an offline request.
+ * Returns information about a file. This is an offline method.
  */
 class GetFile extends TdFunction
 {

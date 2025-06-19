@@ -17,7 +17,7 @@ class InputStoryContentVideo extends InputStoryContent
 
     public function __construct(
         /**
-         * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second.
+         * Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with H.265 codec and key frames added each second.
          */
         protected InputFile $video,
         /**

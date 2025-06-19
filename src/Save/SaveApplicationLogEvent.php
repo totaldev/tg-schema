@@ -29,7 +29,7 @@ class SaveApplicationLogEvent extends TdFunction
         /**
          * The log event data.
          */
-        protected JsonValue $data,
+        protected JsonValue $data
     ) {}
 
     public static function fromArray(array $array): SaveApplicationLogEvent

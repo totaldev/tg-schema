@@ -27,7 +27,7 @@ class GameHighScore extends TdObject
         /**
          * User score.
          */
-        protected int $score,
+        protected int $score
     ) {}
 
     public static function fromArray(array $array): GameHighScore

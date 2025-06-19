@@ -29,7 +29,7 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
         /**
          * True, if the user must be asked for the permission to the bot to send them messages.
          */
-        protected bool   $requestWriteAccess,
+        protected bool   $requestWriteAccess
     ) {
         parent::__construct();
     }

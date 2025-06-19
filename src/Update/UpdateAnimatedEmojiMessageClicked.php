@@ -29,7 +29,7 @@ class UpdateAnimatedEmojiMessageClicked extends Update
         /**
          * The animated sticker to be played.
          */
-        protected Sticker $sticker,
+        protected Sticker $sticker
     ) {
         parent::__construct();
     }

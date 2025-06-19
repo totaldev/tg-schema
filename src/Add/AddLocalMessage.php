@@ -21,7 +21,7 @@ class AddLocalMessage extends TdFunction
 
     public function __construct(
         /**
-         * Target chat.
+         * Target chat; channel direct messages chats aren't supported.
          */
         protected int                 $chatId,
         /**

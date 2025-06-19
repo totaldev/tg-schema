@@ -24,7 +24,7 @@ class UpdateStoryListChatCount extends Update
         /**
          * Approximate total number of chats with active stories in the list.
          */
-        protected int       $chatCount,
+        protected int       $chatCount
     ) {
         parent::__construct();
     }

@@ -25,7 +25,7 @@ class SetRecoveryEmailAddress extends TdFunction
         /**
          * New recovery email address.
          */
-        protected string $newRecoveryEmailAddress,
+        protected string $newRecoveryEmailAddress
     ) {}
 
     public static function fromArray(array $array): SetRecoveryEmailAddress

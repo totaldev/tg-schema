@@ -26,7 +26,7 @@ class StickerSets extends TdObject
          *
          * @var StickerSetInfo[]
          */
-        protected array $sets,
+        protected array $sets
     ) {}
 
     public static function fromArray(array $array): StickerSets

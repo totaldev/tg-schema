@@ -24,7 +24,7 @@ class SetSupergroupUnrestrictBoostCount extends TdFunction
         /**
          * New value of the unrestrict_boost_count supergroup setting; 0-8. Use 0 to remove the setting.
          */
-        protected int $unrestrictBoostCount,
+        protected int $unrestrictBoostCount
     ) {}
 
     public static function fromArray(array $array): SetSupergroupUnrestrictBoostCount

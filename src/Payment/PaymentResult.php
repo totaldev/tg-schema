@@ -23,7 +23,7 @@ class PaymentResult extends TdObject
         /**
          * URL for additional payment credentials verification.
          */
-        protected string $verificationUrl,
+        protected string $verificationUrl
     ) {}
 
     public static function fromArray(array $array): PaymentResult

@@ -29,7 +29,7 @@ class AnimatedChatPhoto extends TdObject
         /**
          * Timestamp of the frame, used as a static chat photo.
          */
-        protected float $mainFrameTimestamp,
+        protected float $mainFrameTimestamp
     ) {}
 
     public static function fromArray(array $array): AnimatedChatPhoto

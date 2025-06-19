@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\End;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Ends recording of an active group call. Requires groupCall.can_be_managed group call flag.
+ * Ends recording of an active group call; for video chats only. Requires groupCall.can_be_managed right.
  */
 class EndGroupCallRecording extends TdFunction
 {

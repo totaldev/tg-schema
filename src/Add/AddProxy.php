@@ -33,7 +33,7 @@ class AddProxy extends TdFunction
         /**
          * Proxy type.
          */
-        protected ProxyType $type,
+        protected ProxyType $type
     ) {}
 
     public static function fromArray(array $array): AddProxy

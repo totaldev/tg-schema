@@ -19,6 +19,10 @@ class CreateInvoiceLink extends TdFunction
 
     public function __construct(
         /**
+         * Unique identifier of business connection on behalf of which to send the request.
+         */
+        protected string              $businessConnectionId,
+        /**
          * Information about the invoice of the type inputMessageInvoice.
          */
         protected InputMessageContent $invoice
@@ -27,8 +31,14 @@ class CreateInvoiceLink extends TdFunction
     public static function fromArray(array $array): CreateInvoiceLink
     {
         return new static(
+            $array['business_connection_id'],
             TdSchemaRegistry::fromArray($array['invoice']),
         );
+    }
+
+    public function getBusinessConnectionId(): string
+    {
+        return $this->businessConnectionId;
     }
 
     public function getInvoice(): InputMessageContent
@@ -39,8 +49,9 @@ class CreateInvoiceLink extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'invoice' => $this->invoice->typeSerialize(),
+            '@type'                  => static::TYPE_NAME,
+            'business_connection_id' => $this->businessConnectionId,
+            'invoice'                => $this->invoice->typeSerialize(),
         ];
     }
 }

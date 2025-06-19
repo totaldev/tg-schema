@@ -27,7 +27,7 @@ class FailedToAddMember extends TdObject
         /**
          * True, if subscription to Telegram Premium is required to send the user chat invite link.
          */
-        protected bool $premiumRequiredToSendMessages,
+        protected bool $premiumRequiredToSendMessages
     ) {}
 
     public static function fromArray(array $array): FailedToAddMember

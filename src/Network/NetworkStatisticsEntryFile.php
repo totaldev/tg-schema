@@ -32,7 +32,7 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         /**
          * Total number of bytes received.
          */
-        protected int         $receivedBytes,
+        protected int         $receivedBytes
     ) {
         parent::__construct();
     }

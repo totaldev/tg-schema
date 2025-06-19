@@ -24,7 +24,7 @@ class UpdateOption extends Update
         /**
          * The new option value.
          */
-        protected OptionValue $value,
+        protected OptionValue $value
     ) {
         parent::__construct();
     }

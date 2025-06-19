@@ -25,7 +25,7 @@ class GetChatMember extends TdFunction
         /**
          * Member identifier.
          */
-        protected MessageSender $memberId,
+        protected MessageSender $memberId
     ) {}
 
     public static function fromArray(array $array): GetChatMember

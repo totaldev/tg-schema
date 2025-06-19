@@ -23,7 +23,7 @@ class GetOwnedStickerSets extends TdFunction
         /**
          * The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int $limit,
+        protected int $limit
     ) {}
 
     public static function fromArray(array $array): GetOwnedStickerSets

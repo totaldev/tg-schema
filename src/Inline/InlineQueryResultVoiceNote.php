@@ -28,7 +28,7 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
         /**
          * Title of the voice note.
          */
-        protected string    $title,
+        protected string    $title
     ) {
         parent::__construct();
     }

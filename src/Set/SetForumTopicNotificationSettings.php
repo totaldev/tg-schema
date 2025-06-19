@@ -29,7 +29,7 @@ class SetForumTopicNotificationSettings extends TdFunction
         /**
          * New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever.
          */
-        protected ChatNotificationSettings $notificationSettings,
+        protected ChatNotificationSettings $notificationSettings
     ) {}
 
     public static function fromArray(array $array): SetForumTopicNotificationSettings

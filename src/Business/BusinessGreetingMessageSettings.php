@@ -29,7 +29,7 @@ class BusinessGreetingMessageSettings extends TdObject
         /**
          * The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28.
          */
-        protected int                $inactivityDays,
+        protected int                $inactivityDays
     ) {}
 
     public static function fromArray(array $array): BusinessGreetingMessageSettings

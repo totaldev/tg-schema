@@ -23,7 +23,7 @@ class SetLogTagVerbosityLevel extends TdFunction
         /**
          * New verbosity level; 1-1024.
          */
-        protected int    $newVerbosityLevel,
+        protected int    $newVerbosityLevel
     ) {}
 
     public static function fromArray(array $array): SetLogTagVerbosityLevel

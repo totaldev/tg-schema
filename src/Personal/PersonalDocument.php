@@ -29,7 +29,7 @@ class PersonalDocument extends TdObject
          *
          * @var DatedFile[]
          */
-        protected array $translation,
+        protected array $translation
     ) {}
 
     public static function fromArray(array $array): PersonalDocument

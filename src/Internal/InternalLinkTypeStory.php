@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Internal;
 
 /**
- * The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given
+ * The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given
  * story identifier, then show the story if received.
  */
 class InternalLinkTypeStory extends InternalLinkType
@@ -16,13 +16,13 @@ class InternalLinkTypeStory extends InternalLinkType
 
     public function __construct(
         /**
-         * Username of the sender of the story.
+         * Username of the poster of the story.
          */
-        protected string $storySenderUsername,
+        protected string $storyPosterUsername,
         /**
          * Story identifier.
          */
-        protected int    $storyId,
+        protected int    $storyId
     ) {
         parent::__construct();
     }
@@ -30,7 +30,7 @@ class InternalLinkTypeStory extends InternalLinkType
     public static function fromArray(array $array): InternalLinkTypeStory
     {
         return new static(
-            $array['story_sender_username'],
+            $array['story_poster_username'],
             $array['story_id'],
         );
     }
@@ -40,16 +40,16 @@ class InternalLinkTypeStory extends InternalLinkType
         return $this->storyId;
     }
 
-    public function getStorySenderUsername(): string
+    public function getStoryPosterUsername(): string
     {
-        return $this->storySenderUsername;
+        return $this->storyPosterUsername;
     }
 
     public function typeSerialize(): array
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'story_sender_username' => $this->storySenderUsername,
+            'story_poster_username' => $this->storyPosterUsername,
             'story_id'              => $this->storyId,
         ];
     }

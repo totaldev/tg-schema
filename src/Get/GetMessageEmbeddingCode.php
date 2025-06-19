@@ -27,7 +27,7 @@ class GetMessageEmbeddingCode extends TdFunction
         /**
          * Pass true to return an HTML code for embedding of the whole media album.
          */
-        protected bool $forAlbum,
+        protected bool $forAlbum
     ) {}
 
     public static function fromArray(array $array): GetMessageEmbeddingCode

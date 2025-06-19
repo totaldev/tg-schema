@@ -23,7 +23,7 @@ class BotCommand extends TdObject
         /**
          * Description of the bot command.
          */
-        protected string $description,
+        protected string $description
     ) {}
 
     public static function fromArray(array $array): BotCommand

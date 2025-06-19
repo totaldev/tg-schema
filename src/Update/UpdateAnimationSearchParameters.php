@@ -23,7 +23,7 @@ class UpdateAnimationSearchParameters extends Update
          *
          * @var string[]
          */
-        protected array  $emojis,
+        protected array  $emojis
     ) {
         parent::__construct();
     }

@@ -25,7 +25,7 @@ class LogStreamFile extends LogStream
         /**
          * Pass true to additionally redirect stderr to the log file. Ignored on Windows.
          */
-        protected bool   $redirectStderr,
+        protected bool   $redirectStderr
     ) {
         parent::__construct();
     }

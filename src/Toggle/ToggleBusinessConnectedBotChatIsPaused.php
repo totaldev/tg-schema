@@ -23,7 +23,7 @@ class ToggleBusinessConnectedBotChatIsPaused extends TdFunction
         /**
          * Pass true to pause the connected bot in the chat; pass false to resume the bot.
          */
-        protected bool $isPaused,
+        protected bool $isPaused
     ) {}
 
     public static function fromArray(array $array): ToggleBusinessConnectedBotChatIsPaused

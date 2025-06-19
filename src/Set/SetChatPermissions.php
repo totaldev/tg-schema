@@ -25,7 +25,7 @@ class SetChatPermissions extends TdFunction
         /**
          * New non-administrator members permissions in the chat.
          */
-        protected ChatPermissions $permissions,
+        protected ChatPermissions $permissions
     ) {}
 
     public static function fromArray(array $array): SetChatPermissions

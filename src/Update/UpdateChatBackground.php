@@ -24,7 +24,7 @@ class UpdateChatBackground extends Update
         /**
          * The new chat background; may be null if background was reset to default.
          */
-        protected ?ChatBackground $background,
+        protected ?ChatBackground $background
     ) {
         parent::__construct();
     }

@@ -37,7 +37,7 @@ class GetMessageAddedReactions extends TdFunction
         /**
          * The maximum number of reactions to be returned; must be positive and can't be greater than 100.
          */
-        protected int          $limit,
+        protected int          $limit
     ) {}
 
     public static function fromArray(array $array): GetMessageAddedReactions

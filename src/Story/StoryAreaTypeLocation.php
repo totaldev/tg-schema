@@ -25,7 +25,7 @@ class StoryAreaTypeLocation extends StoryAreaType
         /**
          * Address of the location; may be null if unknown.
          */
-        protected ?LocationAddress $address,
+        protected ?LocationAddress $address
     ) {
         parent::__construct();
     }

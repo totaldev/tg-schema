@@ -27,7 +27,7 @@ class SetFileGenerationProgress extends TdFunction
         /**
          * The number of bytes already generated.
          */
-        protected int $localPrefixSize,
+        protected int $localPrefixSize
     ) {}
 
     public static function fromArray(array $array): SetFileGenerationProgress

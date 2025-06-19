@@ -18,9 +18,9 @@ class LinkPreviewTypeWebApp extends LinkPreviewType
 
     public function __construct(
         /**
-         * Web App photo.
+         * Web App photo; may be null if none.
          */
-        protected Photo $photo
+        protected ?Photo $photo
     ) {
         parent::__construct();
     }
@@ -28,11 +28,11 @@ class LinkPreviewTypeWebApp extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeWebApp
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['photo']),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
         );
     }
 
-    public function getPhoto(): Photo
+    public function getPhoto(): ?Photo
     {
         return $this->photo;
     }
@@ -41,7 +41,7 @@ class LinkPreviewTypeWebApp extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'photo' => $this->photo->typeSerialize(),
+            'photo' => (isset($this->photo) ? $this->photo : null),
         ];
     }
 }

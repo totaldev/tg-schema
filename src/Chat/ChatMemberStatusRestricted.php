@@ -27,7 +27,7 @@ class ChatMemberStatusRestricted extends ChatMemberStatus
         /**
          * User permissions in the chat.
          */
-        protected ChatPermissions $permissions,
+        protected ChatPermissions $permissions
     ) {
         parent::__construct();
     }

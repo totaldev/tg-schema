@@ -28,7 +28,7 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
         /**
          * Paid amount, in the smallest units of the currency.
          */
-        protected int                $amount,
+        protected int                $amount
     ) {
         parent::__construct();
     }

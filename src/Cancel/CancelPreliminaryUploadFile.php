@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Cancel;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined.
+ * Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile.
  */
 class CancelPreliminaryUploadFile extends TdFunction
 {

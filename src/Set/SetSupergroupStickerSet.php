@@ -23,7 +23,7 @@ class SetSupergroupStickerSet extends TdFunction
         /**
          * New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
          */
-        protected int $stickerSetId,
+        protected int $stickerSetId
     ) {}
 
     public static function fromArray(array $array): SetSupergroupStickerSet

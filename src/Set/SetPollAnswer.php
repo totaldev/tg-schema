@@ -29,7 +29,7 @@ class SetPollAnswer extends TdFunction
          *
          * @var int[]
          */
-        protected array $optionIds,
+        protected array $optionIds
     ) {}
 
     public static function fromArray(array $array): SetPollAnswer

@@ -26,7 +26,7 @@ class LoadChats extends TdFunction
         /**
          * The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached.
          */
-        protected int      $limit,
+        protected int      $limit
     ) {}
 
     public static function fromArray(array $array): LoadChats

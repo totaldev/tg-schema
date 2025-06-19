@@ -24,7 +24,7 @@ class UpdateChatBlockList extends Update
         /**
          * Block list to which the chat is added; may be null if none.
          */
-        protected ?BlockList $blockList,
+        protected ?BlockList $blockList
     ) {
         parent::__construct();
     }

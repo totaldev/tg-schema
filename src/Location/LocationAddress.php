@@ -31,7 +31,7 @@ class LocationAddress extends TdObject
         /**
          * The address; empty if unknown.
          */
-        protected string $street,
+        protected string $street
     ) {}
 
     public static function fromArray(array $array): LocationAddress

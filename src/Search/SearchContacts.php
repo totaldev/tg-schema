@@ -23,7 +23,7 @@ class SearchContacts extends TdFunction
         /**
          * The maximum number of users to be returned.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchContacts

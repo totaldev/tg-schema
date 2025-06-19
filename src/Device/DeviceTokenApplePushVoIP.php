@@ -25,7 +25,7 @@ class DeviceTokenApplePushVoIP extends DeviceToken
         /**
          * True, if push notifications must be additionally encrypted.
          */
-        protected bool   $encrypt,
+        protected bool   $encrypt
     ) {
         parent::__construct();
     }

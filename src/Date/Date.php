@@ -27,7 +27,7 @@ class Date extends TdObject
         /**
          * Year; 1-9999.
          */
-        protected int $year,
+        protected int $year
     ) {}
 
     public static function fromArray(array $array): Date

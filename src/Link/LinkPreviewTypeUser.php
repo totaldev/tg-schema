@@ -24,7 +24,7 @@ class LinkPreviewTypeUser extends LinkPreviewType
         /**
          * True, if the user is a bot.
          */
-        protected bool       $isBot,
+        protected bool       $isBot
     ) {
         parent::__construct();
     }

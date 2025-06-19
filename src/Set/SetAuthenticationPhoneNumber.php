@@ -8,11 +8,13 @@ namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\Phone\PhoneNumberAuthenticationSettings;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is
- * authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress,
- * authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword.
+ * authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is
+ * authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode,
+ * authorizationStateWaitRegistration, or authorizationStateWaitPassword.
  */
 class SetAuthenticationPhoneNumber extends TdFunction
 {
@@ -22,18 +24,18 @@ class SetAuthenticationPhoneNumber extends TdFunction
         /**
          * The phone number of the user, in international format.
          */
-        protected string                             $phoneNumber,
+        protected string                            $phoneNumber,
         /**
          * Settings for the authentication of the user's phone number; pass null to use default settings.
          */
-        protected ?PhoneNumberAuthenticationSettings $settings = null,
+        protected PhoneNumberAuthenticationSettings $settings
     ) {}
 
     public static function fromArray(array $array): SetAuthenticationPhoneNumber
     {
         return new static(
             $array['phone_number'],
-            PhoneNumberAuthenticationSettings::fromArray($array['settings'] ?? []),
+            TdSchemaRegistry::fromArray($array['settings']),
         );
     }
 
@@ -52,7 +54,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'phone_number' => $this->phoneNumber,
-            'settings'     => $this->settings?->typeSerialize(),
+            'settings'     => $this->settings->typeSerialize(),
         ];
     }
 }

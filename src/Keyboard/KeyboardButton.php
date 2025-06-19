@@ -24,7 +24,7 @@ class KeyboardButton extends TdObject
         /**
          * Type of the button.
          */
-        protected KeyboardButtonType $type,
+        protected KeyboardButtonType $type
     ) {}
 
     public static function fromArray(array $array): KeyboardButton

@@ -27,7 +27,7 @@ class EditChatSubscriptionInviteLink extends TdFunction
         /**
          * Invite link name; 0-32 characters.
          */
-        protected string $name,
+        protected string $name
     ) {}
 
     public static function fromArray(array $array): EditChatSubscriptionInviteLink

@@ -28,7 +28,7 @@ class TextEntity extends TdObject
         /**
          * Type of the entity.
          */
-        protected TextEntityType $type,
+        protected TextEntityType $type
     ) {}
 
     public static function fromArray(array $array): TextEntity

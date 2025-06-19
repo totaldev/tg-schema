@@ -36,7 +36,7 @@ class ChatBoost extends TdObject
         /**
          * Point in time (Unix timestamp) when the boost will expire.
          */
-        protected int             $expirationDate,
+        protected int             $expirationDate
     ) {}
 
     public static function fromArray(array $array): ChatBoost

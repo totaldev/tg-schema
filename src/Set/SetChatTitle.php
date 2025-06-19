@@ -23,7 +23,7 @@ class SetChatTitle extends TdFunction
         /**
          * New title of the chat; 1-128 characters.
          */
-        protected string $title,
+        protected string $title
     ) {}
 
     public static function fromArray(array $array): SetChatTitle

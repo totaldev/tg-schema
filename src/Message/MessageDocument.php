@@ -25,7 +25,7 @@ class MessageDocument extends MessageContent
         /**
          * Document caption.
          */
-        protected FormattedText $caption,
+        protected FormattedText $caption
     ) {
         parent::__construct();
     }

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a newest pinned message in the chat.
+ * Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist.
  */
 class GetChatPinnedMessage extends TdFunction
 {

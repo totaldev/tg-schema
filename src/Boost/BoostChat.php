@@ -25,7 +25,7 @@ class BoostChat extends TdFunction
          *
          * @var int[]
          */
-        protected array $slotIds,
+        protected array $slotIds
     ) {}
 
     public static function fromArray(array $array): BoostChat

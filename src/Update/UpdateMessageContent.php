@@ -28,7 +28,7 @@ class UpdateMessageContent extends Update
         /**
          * New message content.
          */
-        protected MessageContent $newContent,
+        protected MessageContent $newContent
     ) {
         parent::__construct();
     }

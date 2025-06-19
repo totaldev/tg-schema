@@ -29,7 +29,7 @@ class ChatInviteLinkSubscriptionInfo extends TdObject
         /**
          * Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid.
          */
-        protected int                     $formId,
+        protected int                     $formId
     ) {}
 
     public static function fromArray(array $array): ChatInviteLinkSubscriptionInfo

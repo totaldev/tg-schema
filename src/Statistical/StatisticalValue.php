@@ -27,7 +27,7 @@ class StatisticalValue extends TdObject
         /**
          * The growth rate of the value, as a percentage.
          */
-        protected float $growthRatePercentage,
+        protected float $growthRatePercentage
     ) {}
 
     public static function fromArray(array $array): StatisticalValue

@@ -45,6 +45,10 @@ class CallStateReady extends CallState
          */
         protected bool         $allowP2p,
         /**
+         * True, if the other party supports upgrading of the call to a group call.
+         */
+        protected bool         $isGroupCallSupported,
+        /**
          * Custom JSON-encoded call parameters to be passed to tgcalls.
          */
         protected string       $customParameters,
@@ -61,6 +65,7 @@ class CallStateReady extends CallState
             $array['encryption_key'],
             $array['emojis'],
             $array['allow_p2p'],
+            $array['is_group_call_supported'],
             $array['custom_parameters'],
         );
     }
@@ -90,6 +95,11 @@ class CallStateReady extends CallState
         return $this->encryptionKey;
     }
 
+    public function getIsGroupCallSupported(): bool
+    {
+        return $this->isGroupCallSupported;
+    }
+
     public function getProtocol(): CallProtocol
     {
         return $this->protocol;
@@ -103,14 +113,15 @@ class CallStateReady extends CallState
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'protocol'          => $this->protocol->typeSerialize(),
+            '@type'                   => static::TYPE_NAME,
+            'protocol'                => $this->protocol->typeSerialize(),
             array_map(fn($x) => $x->typeSerialize(), $this->servers),
-            'config'            => $this->config,
-            'encryption_key'    => $this->encryptionKey,
-            'emojis'            => $this->emojis,
-            'allow_p2p'         => $this->allowP2p,
-            'custom_parameters' => $this->customParameters,
+            'config'                  => $this->config,
+            'encryption_key'          => $this->encryptionKey,
+            'emojis'                  => $this->emojis,
+            'allow_p2p'               => $this->allowP2p,
+            'is_group_call_supported' => $this->isGroupCallSupported,
+            'custom_parameters'       => $this->customParameters,
         ];
     }
 }

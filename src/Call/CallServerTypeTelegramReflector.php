@@ -21,7 +21,7 @@ class CallServerTypeTelegramReflector extends CallServerType
         /**
          * True, if the server uses TCP instead of UDP.
          */
-        protected bool   $isTcp,
+        protected bool   $isTcp
     ) {
         parent::__construct();
     }

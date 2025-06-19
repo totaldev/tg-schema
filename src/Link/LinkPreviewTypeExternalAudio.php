@@ -25,7 +25,7 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType
         /**
          * Duration of the audio, in seconds; 0 if unknown.
          */
-        protected int    $duration,
+        protected int    $duration
     ) {
         parent::__construct();
     }

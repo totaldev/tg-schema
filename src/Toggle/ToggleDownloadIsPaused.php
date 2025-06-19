@@ -23,7 +23,7 @@ class ToggleDownloadIsPaused extends TdFunction
         /**
          * Pass true if the download is paused.
          */
-        protected bool $isPaused,
+        protected bool $isPaused
     ) {}
 
     public static function fromArray(array $array): ToggleDownloadIsPaused

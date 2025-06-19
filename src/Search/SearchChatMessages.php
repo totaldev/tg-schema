@@ -7,14 +7,15 @@
 namespace Totaldev\TgSchema\Search;
 
 use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be
  * used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance,
- * the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and
- * message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation.
+ * the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and topic_id
+ * search criteria is expected to be supported, only if it is required for Telegram official application implementation.
  */
 class SearchChatMessages extends TdFunction
 {
@@ -25,6 +26,10 @@ class SearchChatMessages extends TdFunction
          * Identifier of the chat in which to search messages.
          */
         protected int                  $chatId,
+        /**
+         * Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics.
+         */
+        protected MessageTopic         $topicId,
         /**
          * Query to search for.
          */
@@ -49,28 +54,19 @@ class SearchChatMessages extends TdFunction
          * Additional filter for messages to search; pass null to search for all messages.
          */
         protected SearchMessagesFilter $filter,
-        /**
-         * If not 0, only messages in the specified thread will be returned; supergroups only.
-         */
-        protected int                  $messageThreadId,
-        /**
-         * If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages.
-         */
-        protected int                  $savedMessagesTopicId,
     ) {}
 
     public static function fromArray(array $array): SearchChatMessages
     {
         return new static(
             $array['chat_id'],
+            TdSchemaRegistry::fromArray($array['topic_id']),
             $array['query'],
             TdSchemaRegistry::fromArray($array['sender_id']),
             $array['from_message_id'],
             $array['offset'],
             $array['limit'],
             TdSchemaRegistry::fromArray($array['filter']),
-            $array['message_thread_id'],
-            $array['saved_messages_topic_id'],
         );
     }
 
@@ -94,11 +90,6 @@ class SearchChatMessages extends TdFunction
         return $this->limit;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getOffset(): int
     {
         return $this->offset;
@@ -109,29 +100,28 @@ class SearchChatMessages extends TdFunction
         return $this->query;
     }
 
-    public function getSavedMessagesTopicId(): int
-    {
-        return $this->savedMessagesTopicId;
-    }
-
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
     }
 
+    public function getTopicId(): MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'                   => static::TYPE_NAME,
-            'chat_id'                 => $this->chatId,
-            'query'                   => $this->query,
-            'sender_id'               => $this->senderId->typeSerialize(),
-            'from_message_id'         => $this->fromMessageId,
-            'offset'                  => $this->offset,
-            'limit'                   => $this->limit,
-            'filter'                  => $this->filter->typeSerialize(),
-            'message_thread_id'       => $this->messageThreadId,
-            'saved_messages_topic_id' => $this->savedMessagesTopicId,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
+            'topic_id'        => $this->topicId->typeSerialize(),
+            'query'           => $this->query,
+            'sender_id'       => $this->senderId->typeSerialize(),
+            'from_message_id' => $this->fromMessageId,
+            'offset'          => $this->offset,
+            'limit'           => $this->limit,
+            'filter'          => $this->filter->typeSerialize(),
         ];
     }
 }

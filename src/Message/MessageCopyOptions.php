@@ -20,7 +20,7 @@ class MessageCopyOptions extends TdObject
 
     public function __construct(
         /**
-         * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local.
+         * True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
          */
         protected bool          $sendCopy,
         /**
@@ -32,7 +32,7 @@ class MessageCopyOptions extends TdObject
          */
         protected FormattedText $newCaption,
         /**
-         * True, if new caption must be shown above the animation; otherwise, new caption must be shown below the animation; not supported in secret chats. Ignored if replace_caption is false.
+         * True, if new caption must be shown above the media; otherwise, new caption must be shown below the media; not supported in secret chats. Ignored if replace_caption is false.
          */
         protected bool          $newShowCaptionAboveMedia,
     ) {}

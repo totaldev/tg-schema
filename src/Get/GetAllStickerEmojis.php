@@ -33,7 +33,7 @@ class GetAllStickerEmojis extends TdFunction
         /**
          * Pass true if only main emoji for each found sticker must be included in the result.
          */
-        protected bool        $returnOnlyMainEmoji,
+        protected bool        $returnOnlyMainEmoji
     ) {}
 
     public static function fromArray(array $array): GetAllStickerEmojis

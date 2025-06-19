@@ -25,7 +25,7 @@ class GetChatNotificationSettingsExceptions extends TdFunction
         /**
          * Pass true to include in the response chats with only non-default sound.
          */
-        protected bool                      $compareSound,
+        protected bool                      $compareSound
     ) {}
 
     public static function fromArray(array $array): GetChatNotificationSettingsExceptions

@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Search;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main
+ * Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main
  * chat list.
  */
 class SearchChats extends TdFunction
@@ -24,7 +24,7 @@ class SearchChats extends TdFunction
         /**
          * The maximum number of chats to be returned.
          */
-        protected int    $limit,
+        protected int    $limit
     ) {}
 
     public static function fromArray(array $array): SearchChats

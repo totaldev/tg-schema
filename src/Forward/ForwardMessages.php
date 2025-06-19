@@ -42,7 +42,7 @@ class ForwardMessages extends TdFunction
          */
         protected MessageSendOptions $options,
         /**
-         * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
+         * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
          */
         protected bool               $sendCopy,
         /**

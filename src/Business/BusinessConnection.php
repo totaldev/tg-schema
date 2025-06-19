@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Business;
 
 use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Describes a connection of the bot with a business account.
@@ -19,27 +20,27 @@ class BusinessConnection extends TdObject
         /**
          * Unique identifier of the connection.
          */
-        protected string $id,
+        protected string             $id,
         /**
          * Identifier of the business user that created the connection.
          */
-        protected int    $userId,
+        protected int                $userId,
         /**
          * Chat identifier of the private chat with the user.
          */
-        protected int    $userChatId,
+        protected int                $userChatId,
         /**
          * Point in time (Unix timestamp) when the connection was established.
          */
-        protected int    $date,
+        protected int                $date,
         /**
-         * True, if the bot can send messages to the connected user; false otherwise.
+         * Rights of the bot; may be null if the connection was disabled.
          */
-        protected bool   $canReply,
+        protected ?BusinessBotRights $rights,
         /**
          * True, if the connection is enabled; false otherwise.
          */
-        protected bool   $isEnabled,
+        protected bool               $isEnabled,
     ) {}
 
     public static function fromArray(array $array): BusinessConnection
@@ -49,14 +50,9 @@ class BusinessConnection extends TdObject
             $array['user_id'],
             $array['user_chat_id'],
             $array['date'],
-            $array['can_reply'],
+            isset($array['rights']) ? TdSchemaRegistry::fromArray($array['rights']) : null,
             $array['is_enabled'],
         );
-    }
-
-    public function getCanReply(): bool
-    {
-        return $this->canReply;
     }
 
     public function getDate(): int
@@ -72,6 +68,11 @@ class BusinessConnection extends TdObject
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
+    }
+
+    public function getRights(): ?BusinessBotRights
+    {
+        return $this->rights;
     }
 
     public function getUserChatId(): int
@@ -92,7 +93,7 @@ class BusinessConnection extends TdObject
             'user_id'      => $this->userId,
             'user_chat_id' => $this->userChatId,
             'date'         => $this->date,
-            'can_reply'    => $this->canReply,
+            'rights'       => (isset($this->rights) ? $this->rights : null),
             'is_enabled'   => $this->isEnabled,
         ];
     }

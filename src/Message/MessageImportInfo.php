@@ -23,7 +23,7 @@ class MessageImportInfo extends TdObject
         /**
          * Point in time (Unix timestamp) when the message was originally sent.
          */
-        protected int    $date,
+        protected int    $date
     ) {}
 
     public static function fromArray(array $array): MessageImportInfo

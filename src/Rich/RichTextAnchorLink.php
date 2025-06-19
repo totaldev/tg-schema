@@ -27,7 +27,7 @@ class RichTextAnchorLink extends RichText
         /**
          * An HTTP URL, opening the anchor.
          */
-        protected string   $url,
+        protected string   $url
     ) {
         parent::__construct();
     }

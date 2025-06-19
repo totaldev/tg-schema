@@ -24,7 +24,7 @@ class UpdateSupergroupFullInfo extends Update
         /**
          * New full information about the supergroup.
          */
-        protected SupergroupFullInfo $supergroupFullInfo,
+        protected SupergroupFullInfo $supergroupFullInfo
     ) {
         parent::__construct();
     }

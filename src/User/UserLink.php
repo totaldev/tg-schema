@@ -23,7 +23,7 @@ class UserLink extends TdObject
         /**
          * Left time for which the link is valid, in seconds; 0 if the link is a public username link.
          */
-        protected int    $expiresIn,
+        protected int    $expiresIn
     ) {}
 
     public static function fromArray(array $array): UserLink

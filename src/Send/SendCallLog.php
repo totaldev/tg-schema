@@ -25,7 +25,7 @@ class SendCallLog extends TdFunction
         /**
          * Call log file. Only inputFileLocal and inputFileGenerated are supported.
          */
-        protected InputFile $logFile,
+        protected InputFile $logFile
     ) {}
 
     public static function fromArray(array $array): SendCallLog

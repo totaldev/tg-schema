@@ -27,7 +27,7 @@ class RateSpeechRecognition extends TdFunction
         /**
          * Pass true if the speech recognition is good.
          */
-        protected bool $isGood,
+        protected bool $isGood
     ) {}
 
     public static function fromArray(array $array): RateSpeechRecognition

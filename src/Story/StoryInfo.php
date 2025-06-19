@@ -17,7 +17,7 @@ class StoryInfo extends TdObject
 
     public function __construct(
         /**
-         * Unique story identifier among stories of the given sender.
+         * Unique story identifier among stories of the chat.
          */
         protected int  $storyId,
         /**
@@ -27,7 +27,7 @@ class StoryInfo extends TdObject
         /**
          * True, if the story is available only to close friends.
          */
-        protected bool $isForCloseFriends,
+        protected bool $isForCloseFriends
     ) {}
 
     public static function fromArray(array $array): StoryInfo

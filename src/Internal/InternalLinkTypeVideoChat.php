@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Internal;
 
 /**
- * The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the
+ * The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the
  * link.
  */
 class InternalLinkTypeVideoChat extends InternalLinkType
@@ -26,7 +26,7 @@ class InternalLinkTypeVideoChat extends InternalLinkType
         /**
          * True, if the video chat is expected to be a live stream in a channel or a broadcast group.
          */
-        protected bool   $isLiveStream,
+        protected bool   $isLiveStream
     ) {
         parent::__construct();
     }

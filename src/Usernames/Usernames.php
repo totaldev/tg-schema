@@ -31,7 +31,7 @@ class Usernames extends TdObject
         /**
          * The active username, which can be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo.
          */
-        protected string $editableUsername,
+        protected string $editableUsername
     ) {}
 
     public static function fromArray(array $array): Usernames

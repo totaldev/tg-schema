@@ -22,7 +22,7 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
         /**
          * Number of digits in the code, excluding the prefix.
          */
-        protected int    $length,
+        protected int    $length
     ) {
         parent::__construct();
     }

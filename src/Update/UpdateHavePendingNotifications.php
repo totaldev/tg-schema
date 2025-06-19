@@ -21,7 +21,7 @@ class UpdateHavePendingNotifications extends Update
         /**
          * True, if there can be some yet unreceived notifications, which are being fetched from the server.
          */
-        protected bool $haveUnreceivedNotifications,
+        protected bool $haveUnreceivedNotifications
     ) {
         parent::__construct();
     }

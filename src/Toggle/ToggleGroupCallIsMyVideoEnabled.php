@@ -23,7 +23,7 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
         /**
          * Pass true if the current user's video is enabled.
          */
-        protected bool $isMyVideoEnabled,
+        protected bool $isMyVideoEnabled
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallIsMyVideoEnabled

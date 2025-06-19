@@ -25,7 +25,7 @@ class SetMenuButton extends TdFunction
         /**
          * New menu button.
          */
-        protected BotMenuButton $menuButton,
+        protected BotMenuButton $menuButton
     ) {}
 
     public static function fromArray(array $array): SetMenuButton

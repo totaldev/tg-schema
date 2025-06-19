@@ -21,7 +21,7 @@ class ChatTypeSupergroup extends ChatType
         /**
          * True, if the supergroup is a channel.
          */
-        protected bool $isChannel,
+        protected bool $isChannel
     ) {
         parent::__construct();
     }

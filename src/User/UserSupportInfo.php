@@ -29,7 +29,7 @@ class UserSupportInfo extends TdObject
         /**
          * Information change date.
          */
-        protected int           $date,
+        protected int           $date
     ) {}
 
     public static function fromArray(array $array): UserSupportInfo

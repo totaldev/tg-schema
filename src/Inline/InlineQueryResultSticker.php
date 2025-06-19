@@ -24,7 +24,7 @@ class InlineQueryResultSticker extends InlineQueryResult
         /**
          * Sticker.
          */
-        protected Sticker $sticker,
+        protected Sticker $sticker
     ) {
         parent::__construct();
     }

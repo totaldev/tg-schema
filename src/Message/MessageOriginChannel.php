@@ -25,7 +25,7 @@ class MessageOriginChannel extends MessageOrigin
         /**
          * Original post author signature.
          */
-        protected string $authorSignature,
+        protected string $authorSignature
     ) {
         parent::__construct();
     }

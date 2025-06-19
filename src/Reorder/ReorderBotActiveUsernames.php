@@ -25,7 +25,7 @@ class ReorderBotActiveUsernames extends TdFunction
          *
          * @var string[]
          */
-        protected array $usernames,
+        protected array $usernames
     ) {}
 
     public static function fromArray(array $array): ReorderBotActiveUsernames

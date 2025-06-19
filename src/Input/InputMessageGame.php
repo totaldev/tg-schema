@@ -21,7 +21,7 @@ class InputMessageGame extends InputMessageContent
         /**
          * Short name of the game.
          */
-        protected string $gameShortName,
+        protected string $gameShortName
     ) {
         parent::__construct();
     }

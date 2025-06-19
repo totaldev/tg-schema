@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Message;
 
 /**
- * A payment has been completed.
+ * A payment has been sent to a bot or a business account.
  */
 class MessagePaymentSuccessful extends MessageContent
 {
@@ -31,6 +31,10 @@ class MessagePaymentSuccessful extends MessageContent
          */
         protected int    $totalAmount,
         /**
+         * Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring.
+         */
+        protected int    $subscriptionUntilDate,
+        /**
          * True, if this is a recurring payment.
          */
         protected bool   $isRecurring,
@@ -53,6 +57,7 @@ class MessagePaymentSuccessful extends MessageContent
             $array['invoice_message_id'],
             $array['currency'],
             $array['total_amount'],
+            $array['subscription_until_date'],
             $array['is_recurring'],
             $array['is_first_recurring'],
             $array['invoice_name'],
@@ -89,6 +94,11 @@ class MessagePaymentSuccessful extends MessageContent
         return $this->isRecurring;
     }
 
+    public function getSubscriptionUntilDate(): int
+    {
+        return $this->subscriptionUntilDate;
+    }
+
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
@@ -97,14 +107,15 @@ class MessagePaymentSuccessful extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
-            'invoice_chat_id'    => $this->invoiceChatId,
-            'invoice_message_id' => $this->invoiceMessageId,
-            'currency'           => $this->currency,
-            'total_amount'       => $this->totalAmount,
-            'is_recurring'       => $this->isRecurring,
-            'is_first_recurring' => $this->isFirstRecurring,
-            'invoice_name'       => $this->invoiceName,
+            '@type'                   => static::TYPE_NAME,
+            'invoice_chat_id'         => $this->invoiceChatId,
+            'invoice_message_id'      => $this->invoiceMessageId,
+            'currency'                => $this->currency,
+            'total_amount'            => $this->totalAmount,
+            'subscription_until_date' => $this->subscriptionUntilDate,
+            'is_recurring'            => $this->isRecurring,
+            'is_first_recurring'      => $this->isFirstRecurring,
+            'invoice_name'            => $this->invoiceName,
         ];
     }
 }

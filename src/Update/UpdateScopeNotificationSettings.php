@@ -25,7 +25,7 @@ class UpdateScopeNotificationSettings extends Update
         /**
          * The new notification settings.
          */
-        protected ScopeNotificationSettings $notificationSettings,
+        protected ScopeNotificationSettings $notificationSettings
     ) {
         parent::__construct();
     }

@@ -19,14 +19,24 @@ class SearchStickerSet extends TdFunction
         /**
          * Name of the sticker set.
          */
-        protected string $name
+        protected string $name,
+        /**
+         * Pass true to ignore local cache of sticker sets and always send a network request.
+         */
+        protected bool   $ignoreCache
     ) {}
 
     public static function fromArray(array $array): SearchStickerSet
     {
         return new static(
             $array['name'],
+            $array['ignore_cache'],
         );
+    }
+
+    public function getIgnoreCache(): bool
+    {
+        return $this->ignoreCache;
     }
 
     public function getName(): string
@@ -37,8 +47,9 @@ class SearchStickerSet extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
+            '@type'        => static::TYPE_NAME,
+            'name'         => $this->name,
+            'ignore_cache' => $this->ignoreCache,
         ];
     }
 }

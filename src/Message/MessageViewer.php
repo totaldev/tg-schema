@@ -23,7 +23,7 @@ class MessageViewer extends TdObject
         /**
          * Approximate point in time (Unix timestamp) when the message was viewed.
          */
-        protected int $viewDate,
+        protected int $viewDate
     ) {}
 
     public static function fromArray(array $array): MessageViewer

@@ -25,7 +25,7 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
         /**
          * If non-empty, new text of the button in forwarded messages.
          */
-        protected string $forwardText,
+        protected string $forwardText
     ) {
         parent::__construct();
     }

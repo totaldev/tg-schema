@@ -27,7 +27,7 @@ class RecoverPassword extends TdFunction
         /**
          * New password hint; may be empty.
          */
-        protected string $newHint,
+        protected string $newHint
     ) {}
 
     public static function fromArray(array $array): RecoverPassword

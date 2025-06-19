@@ -32,7 +32,7 @@ class UpdateFileDownload extends Update
         /**
          * New number of being downloaded and recently downloaded files found.
          */
-        protected DownloadedFileCounts $counts,
+        protected DownloadedFileCounts $counts
     ) {
         parent::__construct();
     }

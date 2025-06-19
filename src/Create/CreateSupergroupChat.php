@@ -23,7 +23,7 @@ class CreateSupergroupChat extends TdFunction
         /**
          * Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
          */
-        protected bool $force,
+        protected bool $force
     ) {}
 
     public static function fromArray(array $array): CreateSupergroupChat

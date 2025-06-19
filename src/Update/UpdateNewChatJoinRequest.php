@@ -33,7 +33,7 @@ class UpdateNewChatJoinRequest extends Update
         /**
          * The invite link, which was used to send join request; may be null.
          */
-        protected ?ChatInviteLink $inviteLink,
+        protected ?ChatInviteLink $inviteLink
     ) {
         parent::__construct();
     }

@@ -32,7 +32,7 @@ class InlineQueryResultVideo extends InlineQueryResult
         /**
          * Description of the video.
          */
-        protected string $description,
+        protected string $description
     ) {
         parent::__construct();
     }

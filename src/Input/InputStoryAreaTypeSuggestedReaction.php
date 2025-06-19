@@ -28,7 +28,7 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
         /**
          * True, if reaction corner is flipped.
          */
-        protected bool         $isFlipped,
+        protected bool         $isFlipped
     ) {
         parent::__construct();
     }

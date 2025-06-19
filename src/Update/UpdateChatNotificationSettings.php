@@ -24,7 +24,7 @@ class UpdateChatNotificationSettings extends Update
         /**
          * The new notification settings.
          */
-        protected ChatNotificationSettings $notificationSettings,
+        protected ChatNotificationSettings $notificationSettings
     ) {
         parent::__construct();
     }

@@ -6,6 +6,8 @@
 
 namespace Totaldev\TgSchema\Target;
 
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat needs to be chosen by the user among chats of the specified types.
  */
@@ -15,21 +17,9 @@ class TargetChatChosen extends TargetChat
 
     public function __construct(
         /**
-         * True, if private chats with ordinary users are allowed.
+         * Allowed types for the chat.
          */
-        protected bool $allowUserChats,
-        /**
-         * True, if private chats with other bots are allowed.
-         */
-        protected bool $allowBotChats,
-        /**
-         * True, if basic group and supergroup chats are allowed.
-         */
-        protected bool $allowGroupChats,
-        /**
-         * True, if channel chats are allowed.
-         */
-        protected bool $allowChannelChats,
+        protected TargetChatTypes $types
     ) {
         parent::__construct();
     }
@@ -37,41 +27,20 @@ class TargetChatChosen extends TargetChat
     public static function fromArray(array $array): TargetChatChosen
     {
         return new static(
-            $array['allow_user_chats'],
-            $array['allow_bot_chats'],
-            $array['allow_group_chats'],
-            $array['allow_channel_chats'],
+            TdSchemaRegistry::fromArray($array['types']),
         );
     }
 
-    public function getAllowBotChats(): bool
+    public function getTypes(): TargetChatTypes
     {
-        return $this->allowBotChats;
-    }
-
-    public function getAllowChannelChats(): bool
-    {
-        return $this->allowChannelChats;
-    }
-
-    public function getAllowGroupChats(): bool
-    {
-        return $this->allowGroupChats;
-    }
-
-    public function getAllowUserChats(): bool
-    {
-        return $this->allowUserChats;
+        return $this->types;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'               => static::TYPE_NAME,
-            'allow_user_chats'    => $this->allowUserChats,
-            'allow_bot_chats'     => $this->allowBotChats,
-            'allow_group_chats'   => $this->allowGroupChats,
-            'allow_channel_chats' => $this->allowChannelChats,
+            '@type' => static::TYPE_NAME,
+            'types' => $this->types->typeSerialize(),
         ];
     }
 }

@@ -24,7 +24,7 @@ class ChatEventMessageDeleted extends ChatEventAction
         /**
          * True, if the message deletion can be reported via reportSupergroupAntiSpamFalsePositive.
          */
-        protected bool    $canReportAntiSpamFalsePositive,
+        protected bool    $canReportAntiSpamFalsePositive
     ) {
         parent::__construct();
     }

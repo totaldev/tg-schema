@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Sticker;
 
-use Totaldev\TgSchema\Closed\ClosedVectorPath;
+use Totaldev\TgSchema\Outline\Outline;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Thumbnail\Thumbnail;
@@ -36,11 +36,9 @@ class StickerSetInfo extends TdObject
          */
         protected ?Thumbnail  $thumbnail,
         /**
-         * Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner.
-         *
-         * @var ClosedVectorPath[]
+         * Sticker set thumbnail's outline; may be null if unknown.
          */
-        protected array       $thumbnailOutline,
+        protected ?Outline    $thumbnailOutline,
         /**
          * True, if the sticker set is owned by the current user.
          */
@@ -92,7 +90,7 @@ class StickerSetInfo extends TdObject
             $array['title'],
             $array['name'],
             isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['thumbnail_outline']),
+            isset($array['thumbnail_outline']) ? TdSchemaRegistry::fromArray($array['thumbnail_outline']) : null,
             $array['is_owned'],
             $array['is_installed'],
             $array['is_archived'],
@@ -171,7 +169,7 @@ class StickerSetInfo extends TdObject
         return $this->thumbnail;
     }
 
-    public function getThumbnailOutline(): array
+    public function getThumbnailOutline(): ?Outline
     {
         return $this->thumbnailOutline;
     }
@@ -189,7 +187,7 @@ class StickerSetInfo extends TdObject
             'title'                           => $this->title,
             'name'                            => $this->name,
             'thumbnail'                       => (isset($this->thumbnail) ? $this->thumbnail : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->thumbnailOutline),
+            'thumbnail_outline'               => (isset($this->thumbnailOutline) ? $this->thumbnailOutline : null),
             'is_owned'                        => $this->isOwned,
             'is_installed'                    => $this->isInstalled,
             'is_archived'                     => $this->isArchived,

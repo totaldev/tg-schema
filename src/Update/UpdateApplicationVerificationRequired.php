@@ -26,7 +26,7 @@ class UpdateApplicationVerificationRequired extends Update
         /**
          * Cloud project number to pass to the Play Integrity API on Android.
          */
-        protected int    $cloudProjectNumber,
+        protected int    $cloudProjectNumber
     ) {
         parent::__construct();
     }

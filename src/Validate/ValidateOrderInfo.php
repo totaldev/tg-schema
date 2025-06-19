@@ -30,7 +30,7 @@ class ValidateOrderInfo extends TdFunction
         /**
          * Pass true to save the order information.
          */
-        protected bool         $allowSave,
+        protected bool         $allowSave
     ) {}
 
     public static function fromArray(array $array): ValidateOrderInfo

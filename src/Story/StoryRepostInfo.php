@@ -24,7 +24,7 @@ class StoryRepostInfo extends TdObject
         /**
          * True, if story content was modified during reposting; otherwise, story wasn't modified.
          */
-        protected bool        $isContentModified,
+        protected bool        $isContentModified
     ) {}
 
     public static function fromArray(array $array): StoryRepostInfo

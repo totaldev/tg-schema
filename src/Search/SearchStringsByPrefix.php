@@ -33,7 +33,7 @@ class SearchStringsByPrefix extends TdFunction
         /**
          * Pass true to receive no results for an empty query.
          */
-        protected bool   $returnNoneForEmptyQuery,
+        protected bool   $returnNoneForEmptyQuery
     ) {}
 
     public static function fromArray(array $array): SearchStringsByPrefix

@@ -25,7 +25,7 @@ class BotMediaPreview extends TdObject
         /**
          * Content of the preview.
          */
-        protected StoryContent $content,
+        protected StoryContent $content
     ) {}
 
     public static function fromArray(array $array): BotMediaPreview

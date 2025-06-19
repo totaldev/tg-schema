@@ -33,7 +33,7 @@ class PaymentReceipt extends TdObject
         /**
          * Type of the payment receipt.
          */
-        protected PaymentReceiptType $type,
+        protected PaymentReceiptType $type
     ) {}
 
     public static function fromArray(array $array): PaymentReceipt

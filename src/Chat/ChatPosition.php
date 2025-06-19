@@ -32,7 +32,7 @@ class ChatPosition extends TdObject
         /**
          * Source of the chat in the chat list; may be null.
          */
-        protected ?ChatSource $source,
+        protected ?ChatSource $source
     ) {}
 
     public static function fromArray(array $array): ChatPosition

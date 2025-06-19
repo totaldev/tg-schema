@@ -31,7 +31,7 @@ class FoundChatMessages extends TdObject
         /**
          * The offset for the next request. If 0, there are no more results.
          */
-        protected int   $nextFromMessageId,
+        protected int   $nextFromMessageId
     ) {}
 
     public static function fromArray(array $array): FoundChatMessages

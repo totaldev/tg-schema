@@ -23,7 +23,7 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
         /**
          * The new value of has_aggressive_anti_spam_enabled.
          */
-        protected bool $hasAggressiveAntiSpamEnabled,
+        protected bool $hasAggressiveAntiSpamEnabled
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasAggressiveAntiSpamEnabled

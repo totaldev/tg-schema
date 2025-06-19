@@ -31,7 +31,7 @@ class BackgroundTypePattern extends BackgroundType
         /**
          * True, if the background needs to be slightly moved when device is tilted.
          */
-        protected bool           $isMoving,
+        protected bool           $isMoving
     ) {
         parent::__construct();
     }

@@ -65,6 +65,10 @@ class ChatBoostLevelFeatures extends TdObject
          */
         protected bool $canSetCustomEmojiStickerSet,
         /**
+         * True, if automatic translation of messages can be enabled in the chat.
+         */
+        protected bool $canEnableAutomaticTranslation,
+        /**
          * True, if speech recognition can be used for video note and voice note messages by all users.
          */
         protected bool $canRecognizeSpeech,
@@ -89,6 +93,7 @@ class ChatBoostLevelFeatures extends TdObject
             $array['chat_theme_background_count'],
             $array['can_set_custom_background'],
             $array['can_set_custom_emoji_sticker_set'],
+            $array['can_enable_automatic_translation'],
             $array['can_recognize_speech'],
             $array['can_disable_sponsored_messages'],
         );
@@ -102,6 +107,11 @@ class ChatBoostLevelFeatures extends TdObject
     public function getCanDisableSponsoredMessages(): bool
     {
         return $this->canDisableSponsoredMessages;
+    }
+
+    public function getCanEnableAutomaticTranslation(): bool
+    {
+        return $this->canEnableAutomaticTranslation;
     }
 
     public function getCanRecognizeSpeech(): bool
@@ -180,6 +190,7 @@ class ChatBoostLevelFeatures extends TdObject
             'chat_theme_background_count'             => $this->chatThemeBackgroundCount,
             'can_set_custom_background'               => $this->canSetCustomBackground,
             'can_set_custom_emoji_sticker_set'        => $this->canSetCustomEmojiStickerSet,
+            'can_enable_automatic_translation'        => $this->canEnableAutomaticTranslation,
             'can_recognize_speech'                    => $this->canRecognizeSpeech,
             'can_disable_sponsored_messages'          => $this->canDisableSponsoredMessages,
         ];

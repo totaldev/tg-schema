@@ -30,7 +30,7 @@ class PassportAuthorizationForm extends TdObject
         /**
          * URL for the privacy policy of the service; may be empty.
          */
-        protected string $privacyPolicyUrl,
+        protected string $privacyPolicyUrl
     ) {}
 
     public static function fromArray(array $array): PassportAuthorizationForm

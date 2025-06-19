@@ -25,7 +25,7 @@ class UpdateChatReadInbox extends Update
         /**
          * The number of unread messages left in the chat.
          */
-        protected int $unreadCount,
+        protected int $unreadCount
     ) {
         parent::__construct();
     }

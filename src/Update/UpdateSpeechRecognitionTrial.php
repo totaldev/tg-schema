@@ -29,7 +29,7 @@ class UpdateSpeechRecognitionTrial extends Update
         /**
          * Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown.
          */
-        protected int $nextResetDate,
+        protected int $nextResetDate
     ) {
         parent::__construct();
     }

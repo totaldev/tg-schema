@@ -26,7 +26,7 @@ class ParseTextEntities extends TdFunction
         /**
          * Text parse mode.
          */
-        protected TextParseMode $parseMode,
+        protected TextParseMode $parseMode
     ) {}
 
     public static function fromArray(array $array): ParseTextEntities

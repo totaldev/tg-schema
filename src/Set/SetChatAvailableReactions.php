@@ -25,7 +25,7 @@ class SetChatAvailableReactions extends TdFunction
         /**
          * Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified.
          */
-        protected ChatAvailableReactions $availableReactions,
+        protected ChatAvailableReactions $availableReactions
     ) {}
 
     public static function fromArray(array $array): SetChatAvailableReactions

@@ -23,7 +23,7 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
         /**
          * Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail.
          */
-        protected int    $customEmojiId,
+        protected int    $customEmojiId
     ) {}
 
     public static function fromArray(array $array): SetCustomEmojiStickerSetThumbnail

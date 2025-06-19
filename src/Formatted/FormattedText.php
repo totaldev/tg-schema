@@ -27,7 +27,7 @@ class FormattedText extends TdObject
          *
          * @var TextEntity[]
          */
-        protected array  $entities = [],
+        protected array  $entities
     ) {}
 
     public static function fromArray(array $array): FormattedText

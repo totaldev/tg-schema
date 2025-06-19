@@ -23,7 +23,7 @@ class EmailAddressAuthenticationCodeInfo extends TdObject
         /**
          * Length of the code; 0 if unknown.
          */
-        protected int    $length,
+        protected int    $length
     ) {}
 
     public static function fromArray(array $array): EmailAddressAuthenticationCodeInfo

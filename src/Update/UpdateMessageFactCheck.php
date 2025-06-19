@@ -28,7 +28,7 @@ class UpdateMessageFactCheck extends Update
         /**
          * The new fact-check.
          */
-        protected FactCheck $factCheck,
+        protected FactCheck $factCheck
     ) {
         parent::__construct();
     }

@@ -28,7 +28,7 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
         /**
          * Rights of the administrator.
          */
-        protected ChatAdministratorRights $rights,
+        protected ChatAdministratorRights $rights
     ) {
         parent::__construct();
     }

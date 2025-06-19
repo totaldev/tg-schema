@@ -25,7 +25,7 @@ class SetStickerEmojis extends TdFunction
         /**
          * New string with 1-20 emoji corresponding to the sticker.
          */
-        protected string    $emojis,
+        protected string    $emojis
     ) {}
 
     public static function fromArray(array $array): SetStickerEmojis

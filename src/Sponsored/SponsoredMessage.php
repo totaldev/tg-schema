@@ -32,7 +32,7 @@ class SponsoredMessage extends TdObject
          */
         protected bool           $canBeReported,
         /**
-         * Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo.
+         * Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen.
          */
         protected MessageContent $content,
         /**

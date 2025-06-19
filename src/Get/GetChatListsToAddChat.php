@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns chat lists to which the chat can be added. This is an offline request.
+ * Returns chat lists to which the chat can be added. This is an offline method.
  */
 class GetChatListsToAddChat extends TdFunction
 {

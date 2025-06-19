@@ -25,7 +25,7 @@ class UpdateTrendingStickerSets extends Update
         /**
          * The prefix of the list of trending sticker sets with the newest trending sticker sets.
          */
-        protected TrendingStickerSets $stickerSets,
+        protected TrendingStickerSets $stickerSets
     ) {
         parent::__construct();
     }

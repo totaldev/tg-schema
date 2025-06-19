@@ -10,7 +10,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Contains a list of options for creating Telegram Star giveaway.
+ * Contains a list of options for creating of Telegram Star giveaway.
  */
 class StarGiveawayPaymentOptions extends TdObject
 {

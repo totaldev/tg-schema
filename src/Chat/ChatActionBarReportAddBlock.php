@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Account\AccountInfo;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method
  * setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an
@@ -19,11 +22,11 @@ class ChatActionBarReportAddBlock extends ChatActionBar
         /**
          * If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings.
          */
-        protected bool $canUnarchive,
+        protected bool         $canUnarchive,
         /**
-         * If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users.
+         * Basic information about the other user in the chat; may be null if unknown.
          */
-        protected int  $distance,
+        protected ?AccountInfo $accountInfo
     ) {
         parent::__construct();
     }
@@ -32,8 +35,13 @@ class ChatActionBarReportAddBlock extends ChatActionBar
     {
         return new static(
             $array['can_unarchive'],
-            $array['distance'],
+            isset($array['account_info']) ? TdSchemaRegistry::fromArray($array['account_info']) : null,
         );
+    }
+
+    public function getAccountInfo(): ?AccountInfo
+    {
+        return $this->accountInfo;
     }
 
     public function getCanUnarchive(): bool
@@ -41,17 +49,12 @@ class ChatActionBarReportAddBlock extends ChatActionBar
         return $this->canUnarchive;
     }
 
-    public function getDistance(): int
-    {
-        return $this->distance;
-    }
-
     public function typeSerialize(): array
     {
         return [
             '@type'         => static::TYPE_NAME,
             'can_unarchive' => $this->canUnarchive,
-            'distance'      => $this->distance,
+            'account_info'  => (isset($this->accountInfo) ? $this->accountInfo : null),
         ];
     }
 }

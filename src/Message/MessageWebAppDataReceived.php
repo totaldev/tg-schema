@@ -21,7 +21,7 @@ class MessageWebAppDataReceived extends MessageContent
         /**
          * The data.
          */
-        protected string $data,
+        protected string $data
     ) {
         parent::__construct();
     }

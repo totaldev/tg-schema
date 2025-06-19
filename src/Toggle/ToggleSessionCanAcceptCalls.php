@@ -23,7 +23,7 @@ class ToggleSessionCanAcceptCalls extends TdFunction
         /**
          * Pass true to allow accepting incoming calls by the session; pass false otherwise.
          */
-        protected bool $canAcceptCalls,
+        protected bool $canAcceptCalls
     ) {}
 
     public static function fromArray(array $array): ToggleSessionCanAcceptCalls
