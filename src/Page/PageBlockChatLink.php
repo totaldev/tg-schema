@@ -72,7 +72,7 @@ class PageBlockChatLink extends PageBlock
         return [
             '@type'           => static::TYPE_NAME,
             'title'           => $this->title,
-            'photo'           => (isset($this->photo) ? $this->photo : null),
+            'photo'           => $this->photo ?? null,
             'accent_color_id' => $this->accentColorId,
             'username'        => $this->username,
         ];

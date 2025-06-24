@@ -106,9 +106,9 @@ class VideoNote extends TdObject
             'duration'                  => $this->duration,
             'waveform'                  => $this->waveform,
             'length'                    => $this->length,
-            'minithumbnail'             => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail'                 => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
+            'minithumbnail'             => $this->minithumbnail ?? null,
+            'thumbnail'                 => $this->thumbnail ?? null,
+            'speech_recognition_result' => $this->speechRecognitionResult ?? null,
             'video'                     => $this->video->typeSerialize(),
         ];
     }

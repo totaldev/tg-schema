@@ -61,7 +61,7 @@ class MessageSponsor extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'url'   => $this->url,
-            'photo' => (isset($this->photo) ? $this->photo : null),
+            'photo' => $this->photo ?? null,
             'info'  => $this->info,
         ];
     }

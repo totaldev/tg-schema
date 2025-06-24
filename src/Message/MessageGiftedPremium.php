@@ -130,7 +130,7 @@ class MessageGiftedPremium extends MessageContent
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
             'month_count'           => $this->monthCount,
-            'sticker'               => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'               => $this->sticker ?? null,
         ];
     }
 }

@@ -50,7 +50,7 @@ class BusinessLocation extends TdObject
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => (isset($this->location) ? $this->location : null),
+            'location' => $this->location ?? null,
             'address'  => $this->address,
         ];
     }

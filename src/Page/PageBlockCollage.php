@@ -33,7 +33,7 @@ class PageBlockCollage extends PageBlock
     public static function fromArray(array $array): PageBlockCollage
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             TdSchemaRegistry::fromArray($array['caption']),
         );
     }
@@ -52,7 +52,7 @@ class PageBlockCollage extends PageBlock
     {
         return [
             '@type'   => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption' => $this->caption->typeSerialize(),
         ];
     }

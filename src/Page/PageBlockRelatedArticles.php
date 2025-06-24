@@ -35,7 +35,7 @@ class PageBlockRelatedArticles extends PageBlock
     {
         return new static(
             TdSchemaRegistry::fromArray($array['header']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['articles']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['articles']),
         );
     }
 
@@ -54,7 +54,7 @@ class PageBlockRelatedArticles extends PageBlock
         return [
             '@type'  => static::TYPE_NAME,
             'header' => $this->header->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->articles),
+            array_map(static fn($x) => $x->typeSerialize(), $this->articles),
         ];
     }
 }

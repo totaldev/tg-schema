@@ -50,8 +50,8 @@ class ChatEventLocationChanged extends ChatEventAction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'old_location' => (isset($this->oldLocation) ? $this->oldLocation : null),
-            'new_location' => (isset($this->newLocation) ? $this->newLocation : null),
+            'old_location' => $this->oldLocation ?? null,
+            'new_location' => $this->newLocation ?? null,
         ];
     }
 }

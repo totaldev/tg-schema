@@ -75,7 +75,7 @@ class StarTransactionTypeBotInvoiceSale extends StarTransactionType
             'user_id'         => $this->userId,
             'product_info'    => $this->productInfo->typeSerialize(),
             'invoice_payload' => $this->invoicePayload,
-            'affiliate'       => (isset($this->affiliate) ? $this->affiliate : null),
+            'affiliate'       => $this->affiliate ?? null,
         ];
     }
 }

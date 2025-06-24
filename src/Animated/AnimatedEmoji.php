@@ -81,11 +81,11 @@ class AnimatedEmoji extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'sticker'          => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'          => $this->sticker ?? null,
             'sticker_width'    => $this->stickerWidth,
             'sticker_height'   => $this->stickerHeight,
             'fitzpatrick_type' => $this->fitzpatrickType,
-            'sound'            => (isset($this->sound) ? $this->sound : null),
+            'sound'            => $this->sound ?? null,
         ];
     }
 }

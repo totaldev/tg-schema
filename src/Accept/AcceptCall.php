@@ -25,7 +25,7 @@ class AcceptCall extends TdFunction
         /**
          * The call protocols supported by the application.
          */
-        protected CallProtocol $protocol,
+        protected CallProtocol $protocol
     ) {}
 
     public static function fromArray(array $array): AcceptCall

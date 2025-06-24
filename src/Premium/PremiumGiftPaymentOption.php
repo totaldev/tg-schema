@@ -106,7 +106,7 @@ class PremiumGiftPaymentOption extends TdObject
             'discount_percentage' => $this->discountPercentage,
             'month_count'         => $this->monthCount,
             'store_product_id'    => $this->storeProductId,
-            'sticker'             => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'             => $this->sticker ?? null,
         ];
     }
 }

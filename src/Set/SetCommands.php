@@ -40,7 +40,7 @@ class SetCommands extends TdFunction
         return new static(
             TdSchemaRegistry::fromArray($array['scope']),
             $array['language_code'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
         );
     }
 
@@ -65,7 +65,7 @@ class SetCommands extends TdFunction
             '@type'         => static::TYPE_NAME,
             'scope'         => $this->scope->typeSerialize(),
             'language_code' => $this->languageCode,
-            array_map(fn($x) => $x->typeSerialize(), $this->commands),
+            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];
     }
 }

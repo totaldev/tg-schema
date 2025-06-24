@@ -85,7 +85,7 @@ class InlineQueryResultArticle extends InlineQueryResult
             'url'         => $this->url,
             'title'       => $this->title,
             'description' => $this->description,
-            'thumbnail'   => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail'   => $this->thumbnail ?? null,
         ];
     }
 }

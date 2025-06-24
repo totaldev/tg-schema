@@ -85,7 +85,7 @@ class WebApp extends TdObject
             'title'       => $this->title,
             'description' => $this->description,
             'photo'       => $this->photo->typeSerialize(),
-            'animation'   => (isset($this->animation) ? $this->animation : null),
+            'animation'   => $this->animation ?? null,
         ];
     }
 }

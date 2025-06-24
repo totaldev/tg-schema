@@ -72,7 +72,7 @@ class ChatPosition extends TdObject
             'list'      => $this->list->typeSerialize(),
             'order'     => $this->order,
             'is_pinned' => $this->isPinned,
-            'source'    => (isset($this->source) ? $this->source : null),
+            'source'    => $this->source ?? null,
         ];
     }
 }

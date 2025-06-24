@@ -33,7 +33,7 @@ class NetworkStatistics extends TdObject
     {
         return new static(
             $array['since_date'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['entries']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entries']),
         );
     }
 
@@ -52,7 +52,7 @@ class NetworkStatistics extends TdObject
         return [
             '@type'      => static::TYPE_NAME,
             'since_date' => $this->sinceDate,
-            array_map(fn($x) => $x->typeSerialize(), $this->entries),
+            array_map(static fn($x) => $x->typeSerialize(), $this->entries),
         ];
     }
 }

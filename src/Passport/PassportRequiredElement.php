@@ -28,7 +28,7 @@ class PassportRequiredElement extends TdObject
     public static function fromArray(array $array): PassportRequiredElement
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['suitable_elements']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['suitable_elements']),
         );
     }
 
@@ -41,7 +41,7 @@ class PassportRequiredElement extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->suitableElements),
+            array_map(static fn($x) => $x->typeSerialize(), $this->suitableElements),
         ];
     }
 }

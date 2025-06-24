@@ -52,7 +52,7 @@ class MessageGroupCall extends MessageContent
             $array['was_missed'],
             $array['is_video'],
             $array['duration'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['other_participant_ids']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['other_participant_ids']),
         );
     }
 
@@ -89,7 +89,7 @@ class MessageGroupCall extends MessageContent
             'was_missed' => $this->wasMissed,
             'is_video'   => $this->isVideo,
             'duration'   => $this->duration,
-            array_map(fn($x) => $x->typeSerialize(), $this->otherParticipantIds),
+            array_map(static fn($x) => $x->typeSerialize(), $this->otherParticipantIds),
         ];
     }
 }

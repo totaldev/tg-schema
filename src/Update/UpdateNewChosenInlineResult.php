@@ -82,7 +82,7 @@ class UpdateNewChosenInlineResult extends Update
         return [
             '@type'             => static::TYPE_NAME,
             'sender_user_id'    => $this->senderUserId,
-            'user_location'     => (isset($this->userLocation) ? $this->userLocation : null),
+            'user_location'     => $this->userLocation ?? null,
             'query'             => $this->query,
             'result_id'         => $this->resultId,
             'inline_message_id' => $this->inlineMessageId,

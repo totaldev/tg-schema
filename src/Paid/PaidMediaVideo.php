@@ -63,7 +63,7 @@ class PaidMediaVideo extends PaidMedia
         return [
             '@type'           => static::TYPE_NAME,
             'video'           => $this->video->typeSerialize(),
-            'cover'           => (isset($this->cover) ? $this->cover : null),
+            'cover'           => $this->cover ?? null,
             'start_timestamp' => $this->startTimestamp,
         ];
     }

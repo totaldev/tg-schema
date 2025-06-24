@@ -186,7 +186,7 @@ class ChatFolder extends TdObject
         return [
             '@type'                => static::TYPE_NAME,
             'name'                 => $this->name->typeSerialize(),
-            'icon'                 => (isset($this->icon) ? $this->icon : null),
+            'icon'                 => $this->icon ?? null,
             'color_id'             => $this->colorId,
             'is_shareable'         => $this->isShareable,
             'pinned_chat_ids'      => $this->pinnedChatIds,

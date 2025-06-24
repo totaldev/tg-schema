@@ -143,7 +143,7 @@ class ForumTopic extends TdObject
         return [
             '@type'                       => static::TYPE_NAME,
             'info'                        => $this->info->typeSerialize(),
-            'last_message'                => (isset($this->lastMessage) ? $this->lastMessage : null),
+            'last_message'                => $this->lastMessage ?? null,
             'order'                       => $this->order,
             'is_pinned'                   => $this->isPinned,
             'unread_count'                => $this->unreadCount,
@@ -152,7 +152,7 @@ class ForumTopic extends TdObject
             'unread_mention_count'        => $this->unreadMentionCount,
             'unread_reaction_count'       => $this->unreadReactionCount,
             'notification_settings'       => $this->notificationSettings->typeSerialize(),
-            'draft_message'               => (isset($this->draftMessage) ? $this->draftMessage : null),
+            'draft_message'               => $this->draftMessage ?? null,
         ];
     }
 }

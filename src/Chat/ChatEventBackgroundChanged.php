@@ -50,8 +50,8 @@ class ChatEventBackgroundChanged extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'old_background' => (isset($this->oldBackground) ? $this->oldBackground : null),
-            'new_background' => (isset($this->newBackground) ? $this->newBackground : null),
+            'old_background' => $this->oldBackground ?? null,
+            'new_background' => $this->newBackground ?? null,
         ];
     }
 }

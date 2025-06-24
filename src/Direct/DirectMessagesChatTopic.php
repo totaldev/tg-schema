@@ -151,8 +151,8 @@ class DirectMessagesChatTopic extends TdObject
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
             'unread_reaction_count'       => $this->unreadReactionCount,
-            'last_message'                => (isset($this->lastMessage) ? $this->lastMessage : null),
-            'draft_message'               => (isset($this->draftMessage) ? $this->draftMessage : null),
+            'last_message'                => $this->lastMessage ?? null,
+            'draft_message'               => $this->draftMessage ?? null,
         ];
     }
 }

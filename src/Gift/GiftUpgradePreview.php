@@ -43,9 +43,9 @@ class GiftUpgradePreview extends TdObject
     public static function fromArray(array $array): GiftUpgradePreview
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
         );
     }
 
@@ -68,9 +68,9 @@ class GiftUpgradePreview extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->models),
-            array_map(fn($x) => $x->typeSerialize(), $this->symbols),
-            array_map(fn($x) => $x->typeSerialize(), $this->backdrops),
+            array_map(static fn($x) => $x->typeSerialize(), $this->models),
+            array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
+            array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
         ];
     }
 }

@@ -64,8 +64,8 @@ class MessageText extends MessageContent
         return [
             '@type'                => static::TYPE_NAME,
             'text'                 => $this->text->typeSerialize(),
-            'link_preview'         => (isset($this->linkPreview) ? $this->linkPreview : null),
-            'link_preview_options' => (isset($this->linkPreviewOptions) ? $this->linkPreviewOptions : null),
+            'link_preview'         => $this->linkPreview ?? null,
+            'link_preview_options' => $this->linkPreviewOptions ?? null,
         ];
     }
 }

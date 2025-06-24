@@ -28,7 +28,7 @@ class BusinessMessages extends TdObject
     public static function fromArray(array $array): BusinessMessages
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
         );
     }
 
@@ -41,7 +41,7 @@ class BusinessMessages extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
         ];
     }
 }

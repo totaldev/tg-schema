@@ -52,7 +52,7 @@ class UpdateChatPhoto extends Update
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'photo'   => (isset($this->photo) ? $this->photo : null),
+            'photo'   => $this->photo ?? null,
         ];
     }
 }

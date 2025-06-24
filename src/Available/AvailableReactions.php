@@ -53,9 +53,9 @@ class AvailableReactions extends TdObject
     public static function fromArray(array $array): AvailableReactions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['popular_reactions']),
             $array['allow_custom_emoji'],
             $array['are_tags'],
             isset($array['unavailability_reason']) ? TdSchemaRegistry::fromArray($array['unavailability_reason']) : null,
@@ -96,12 +96,12 @@ class AvailableReactions extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->topReactions),
-            array_map(fn($x) => $x->typeSerialize(), $this->recentReactions),
-            array_map(fn($x) => $x->typeSerialize(), $this->popularReactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->topReactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->recentReactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->popularReactions),
             'allow_custom_emoji'    => $this->allowCustomEmoji,
             'are_tags'              => $this->areTags,
-            'unavailability_reason' => (isset($this->unavailabilityReason) ? $this->unavailabilityReason : null),
+            'unavailability_reason' => $this->unavailabilityReason ?? null,
         ];
     }
 }

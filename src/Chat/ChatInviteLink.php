@@ -176,7 +176,7 @@ class ChatInviteLink extends TdObject
             'date'                       => $this->date,
             'edit_date'                  => $this->editDate,
             'expiration_date'            => $this->expirationDate,
-            'subscription_pricing'       => (isset($this->subscriptionPricing) ? $this->subscriptionPricing : null),
+            'subscription_pricing'       => $this->subscriptionPricing ?? null,
             'member_limit'               => $this->memberLimit,
             'member_count'               => $this->memberCount,
             'expired_member_count'       => $this->expiredMemberCount,

@@ -94,8 +94,8 @@ class UpdateNewInlineQuery extends Update
             '@type'          => static::TYPE_NAME,
             'id'             => $this->id,
             'sender_user_id' => $this->senderUserId,
-            'user_location'  => (isset($this->userLocation) ? $this->userLocation : null),
-            'chat_type'      => (isset($this->chatType) ? $this->chatType : null),
+            'user_location'  => $this->userLocation ?? null,
+            'chat_type'      => $this->chatType ?? null,
             'query'          => $this->query,
             'offset'         => $this->offset,
         ];

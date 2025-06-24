@@ -115,7 +115,7 @@ class UpdateChatMember extends Update
             'chat_id'                     => $this->chatId,
             'actor_user_id'               => $this->actorUserId,
             'date'                        => $this->date,
-            'invite_link'                 => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'invite_link'                 => $this->inviteLink ?? null,
             'via_join_request'            => $this->viaJoinRequest,
             'via_chat_folder_invite_link' => $this->viaChatFolderInviteLink,
             'old_chat_member'             => $this->oldChatMember->typeSerialize(),

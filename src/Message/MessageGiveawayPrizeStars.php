@@ -96,7 +96,7 @@ class MessageGiveawayPrizeStars extends MessageContent
             'boosted_chat_id'     => $this->boostedChatId,
             'giveaway_message_id' => $this->giveawayMessageId,
             'is_unclaimed'        => $this->isUnclaimed,
-            'sticker'             => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'             => $this->sticker ?? null,
         ];
     }
 }

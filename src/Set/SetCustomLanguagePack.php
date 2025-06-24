@@ -35,7 +35,7 @@ class SetCustomLanguagePack extends TdFunction
     {
         return new static(
             TdSchemaRegistry::fromArray($array['info']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
         );
     }
 
@@ -54,7 +54,7 @@ class SetCustomLanguagePack extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'info'  => $this->info->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->strings),
+            array_map(static fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 }

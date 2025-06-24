@@ -30,7 +30,7 @@ class UpdateAttachmentMenuBots extends Update
     public static function fromArray(array $array): UpdateAttachmentMenuBots
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bots']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bots']),
         );
     }
 
@@ -43,7 +43,7 @@ class UpdateAttachmentMenuBots extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->bots),
+            array_map(static fn($x) => $x->typeSerialize(), $this->bots),
         ];
     }
 }

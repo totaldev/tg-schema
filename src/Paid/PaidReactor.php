@@ -80,7 +80,7 @@ class PaidReactor extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'sender_id'    => (isset($this->senderId) ? $this->senderId : null),
+            'sender_id'    => $this->senderId ?? null,
             'star_count'   => $this->starCount,
             'is_top'       => $this->isTop,
             'is_me'        => $this->isMe,

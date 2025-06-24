@@ -31,7 +31,7 @@ class UpdateActiveNotifications extends Update
     public static function fromArray(array $array): UpdateActiveNotifications
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['groups']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['groups']),
         );
     }
 
@@ -44,7 +44,7 @@ class UpdateActiveNotifications extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->groups),
+            array_map(static fn($x) => $x->typeSerialize(), $this->groups),
         ];
     }
 }

@@ -34,7 +34,7 @@ class ReportChatResultOptionRequired extends ReportChatResult
     {
         return new static(
             $array['title'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
         );
     }
 
@@ -53,7 +53,7 @@ class ReportChatResultOptionRequired extends ReportChatResult
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
-            array_map(fn($x) => $x->typeSerialize(), $this->options),
+            array_map(static fn($x) => $x->typeSerialize(), $this->options),
         ];
     }
 }

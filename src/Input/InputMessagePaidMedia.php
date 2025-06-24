@@ -47,7 +47,7 @@ class InputMessagePaidMedia extends InputMessageContent
     {
         return new static(
             $array['star_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_media']),
             TdSchemaRegistry::fromArray($array['caption']),
             $array['show_caption_above_media'],
             $array['payload'],
@@ -84,7 +84,7 @@ class InputMessagePaidMedia extends InputMessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'star_count'               => $this->starCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->paidMedia),
+            array_map(static fn($x) => $x->typeSerialize(), $this->paidMedia),
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
             'payload'                  => $this->payload,

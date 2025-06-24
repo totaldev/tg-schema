@@ -63,7 +63,7 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
             '@type'       => static::TYPE_NAME,
             'user_id'     => $this->userId,
             'month_count' => $this->monthCount,
-            'sticker'     => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'     => $this->sticker ?? null,
         ];
     }
 }

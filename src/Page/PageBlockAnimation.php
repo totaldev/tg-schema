@@ -61,7 +61,7 @@ class PageBlockAnimation extends PageBlock
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'animation'     => (isset($this->animation) ? $this->animation : null),
+            'animation'     => $this->animation ?? null,
             'caption'       => $this->caption->typeSerialize(),
             'need_autoplay' => $this->needAutoplay,
         ];

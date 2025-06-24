@@ -53,7 +53,7 @@ class UpdateAutosaveSettings extends Update
         return [
             '@type'    => static::TYPE_NAME,
             'scope'    => $this->scope->typeSerialize(),
-            'settings' => (isset($this->settings) ? $this->settings : null),
+            'settings' => $this->settings ?? null,
         ];
     }
 }

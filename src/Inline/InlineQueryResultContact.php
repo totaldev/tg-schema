@@ -64,7 +64,7 @@ class InlineQueryResultContact extends InlineQueryResult
             '@type'     => static::TYPE_NAME,
             'id'        => $this->id,
             'contact'   => $this->contact->typeSerialize(),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail' => $this->thumbnail ?? null,
         ];
     }
 }

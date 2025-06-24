@@ -40,7 +40,7 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
         );
     }
 
@@ -65,7 +65,7 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            array_map(fn($x) => $x->typeSerialize(), $this->media),
+            array_map(static fn($x) => $x->typeSerialize(), $this->media),
         ];
     }
 }

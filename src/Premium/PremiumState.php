@@ -47,9 +47,9 @@ class PremiumState extends TdObject
     {
         return new static(
             TdSchemaRegistry::fromArray($array['state']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['payment_options']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['business_animations']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['payment_options']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['business_animations']),
         );
     }
 
@@ -78,9 +78,9 @@ class PremiumState extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'state' => $this->state->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->paymentOptions),
-            array_map(fn($x) => $x->typeSerialize(), $this->animations),
-            array_map(fn($x) => $x->typeSerialize(), $this->businessAnimations),
+            array_map(static fn($x) => $x->typeSerialize(), $this->paymentOptions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->animations),
+            array_map(static fn($x) => $x->typeSerialize(), $this->businessAnimations),
         ];
     }
 }

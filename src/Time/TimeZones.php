@@ -28,7 +28,7 @@ class TimeZones extends TdObject
     public static function fromArray(array $array): TimeZones
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['time_zones']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['time_zones']),
         );
     }
 
@@ -41,7 +41,7 @@ class TimeZones extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->timeZones),
+            array_map(static fn($x) => $x->typeSerialize(), $this->timeZones),
         ];
     }
 }

@@ -31,7 +31,7 @@ class AutoDownloadSettingsPresets extends TdObject
         protected AutoDownloadSettings $high
     ) {}
 
-    public static function fromArray(array $array): AutoDownloadSebttingsPresets
+    public static function fromArray(array $array): AutoDownloadSettingsPresets
     {
         return new static(
             TdSchemaRegistry::fromArray($array['low']),

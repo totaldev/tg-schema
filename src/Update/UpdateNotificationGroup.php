@@ -67,7 +67,7 @@ class UpdateNotificationGroup extends Update
             $array['notification_settings_chat_id'],
             $array['notification_sound_id'],
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['added_notifications']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['added_notifications']),
             $array['removed_notification_ids'],
         );
     }
@@ -122,7 +122,7 @@ class UpdateNotificationGroup extends Update
             'notification_settings_chat_id' => $this->notificationSettingsChatId,
             'notification_sound_id'         => $this->notificationSoundId,
             'total_count'                   => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->addedNotifications),
+            array_map(static fn($x) => $x->typeSerialize(), $this->addedNotifications),
             'removed_notification_ids'      => $this->removedNotificationIds,
         ];
     }

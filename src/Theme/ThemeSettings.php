@@ -82,7 +82,7 @@ class ThemeSettings extends TdObject
         return [
             '@type'                         => static::TYPE_NAME,
             'accent_color'                  => $this->accentColor,
-            'background'                    => (isset($this->background) ? $this->background : null),
+            'background'                    => $this->background ?? null,
             'outgoing_message_fill'         => $this->outgoingMessageFill->typeSerialize(),
             'animate_outgoing_message_fill' => $this->animateOutgoingMessageFill,
             'outgoing_message_accent_color' => $this->outgoingMessageAccentColor,

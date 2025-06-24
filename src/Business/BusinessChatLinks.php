@@ -28,7 +28,7 @@ class BusinessChatLinks extends TdObject
     public static function fromArray(array $array): BusinessChatLinks
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['links']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['links']),
         );
     }
 
@@ -41,7 +41,7 @@ class BusinessChatLinks extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->links),
+            array_map(static fn($x) => $x->typeSerialize(), $this->links),
         ];
     }
 }

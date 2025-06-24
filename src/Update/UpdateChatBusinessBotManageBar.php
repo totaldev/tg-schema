@@ -52,7 +52,7 @@ class UpdateChatBusinessBotManageBar extends Update
         return [
             '@type'                   => static::TYPE_NAME,
             'chat_id'                 => $this->chatId,
-            'business_bot_manage_bar' => (isset($this->businessBotManageBar) ? $this->businessBotManageBar : null),
+            'business_bot_manage_bar' => $this->businessBotManageBar ?? null,
         ];
     }
 }

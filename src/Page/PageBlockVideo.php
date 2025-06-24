@@ -71,7 +71,7 @@ class PageBlockVideo extends PageBlock
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'video'         => (isset($this->video) ? $this->video : null),
+            'video'         => $this->video ?? null,
             'caption'       => $this->caption->typeSerialize(),
             'need_autoplay' => $this->needAutoplay,
             'is_looped'     => $this->isLooped,

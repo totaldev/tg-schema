@@ -84,8 +84,8 @@ class Document extends TdObject
             '@type'         => static::TYPE_NAME,
             'file_name'     => $this->fileName,
             'mime_type'     => $this->mimeType,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail'     => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'minithumbnail' => $this->minithumbnail ?? null,
+            'thumbnail'     => $this->thumbnail ?? null,
             'document'      => $this->document->typeSerialize(),
         ];
     }

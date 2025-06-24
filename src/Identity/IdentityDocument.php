@@ -55,7 +55,7 @@ class IdentityDocument extends TdObject
             TdSchemaRegistry::fromArray($array['front_side']),
             isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null,
             isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
         );
     }
 
@@ -94,11 +94,11 @@ class IdentityDocument extends TdObject
         return [
             '@type'           => static::TYPE_NAME,
             'number'          => $this->number,
-            'expiration_date' => (isset($this->expirationDate) ? $this->expirationDate : null),
+            'expiration_date' => $this->expirationDate ?? null,
             'front_side'      => $this->frontSide->typeSerialize(),
-            'reverse_side'    => (isset($this->reverseSide) ? $this->reverseSide : null),
-            'selfie'          => (isset($this->selfie) ? $this->selfie : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->translation),
+            'reverse_side'    => $this->reverseSide ?? null,
+            'selfie'          => $this->selfie ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }
 }

@@ -54,7 +54,7 @@ class ChatActionBarReportAddBlock extends ChatActionBar
         return [
             '@type'         => static::TYPE_NAME,
             'can_unarchive' => $this->canUnarchive,
-            'account_info'  => (isset($this->accountInfo) ? $this->accountInfo : null),
+            'account_info'  => $this->accountInfo ?? null,
         ];
     }
 }

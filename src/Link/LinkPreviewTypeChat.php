@@ -63,7 +63,7 @@ class LinkPreviewTypeChat extends LinkPreviewType
         return [
             '@type'                => static::TYPE_NAME,
             'type'                 => $this->type->typeSerialize(),
-            'photo'                => (isset($this->photo) ? $this->photo : null),
+            'photo'                => $this->photo ?? null,
             'creates_join_request' => $this->createsJoinRequest,
         ];
     }

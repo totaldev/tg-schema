@@ -73,7 +73,7 @@ class StoryInteraction extends TdObject
             '@type'            => static::TYPE_NAME,
             'actor_id'         => $this->actorId->typeSerialize(),
             'interaction_date' => $this->interactionDate,
-            'block_list'       => (isset($this->blockList) ? $this->blockList : null),
+            'block_list'       => $this->blockList ?? null,
             'type'             => $this->type->typeSerialize(),
         ];
     }

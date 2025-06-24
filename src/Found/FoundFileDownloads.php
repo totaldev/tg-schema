@@ -39,7 +39,7 @@ class FoundFileDownloads extends TdObject
     {
         return new static(
             TdSchemaRegistry::fromArray($array['total_counts']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['files']),
             $array['next_offset'],
         );
     }
@@ -64,7 +64,7 @@ class FoundFileDownloads extends TdObject
         return [
             '@type'        => static::TYPE_NAME,
             'total_counts' => $this->totalCounts->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->files),
+            array_map(static fn($x) => $x->typeSerialize(), $this->files),
             'next_offset'  => $this->nextOffset,
         ];
     }

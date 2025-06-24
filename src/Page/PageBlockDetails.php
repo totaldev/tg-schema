@@ -39,7 +39,7 @@ class PageBlockDetails extends PageBlock
     {
         return new static(
             TdSchemaRegistry::fromArray($array['header']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['page_blocks']),
             $array['is_open'],
         );
     }
@@ -64,7 +64,7 @@ class PageBlockDetails extends PageBlock
         return [
             '@type'   => static::TYPE_NAME,
             'header'  => $this->header->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'is_open' => $this->isOpen,
         ];
     }

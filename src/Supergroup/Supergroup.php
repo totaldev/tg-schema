@@ -305,7 +305,7 @@ class Supergroup extends TdObject
         return [
             '@type'                                 => static::TYPE_NAME,
             'id'                                    => $this->id,
-            'usernames'                             => (isset($this->usernames) ? $this->usernames : null),
+            'usernames'                             => $this->usernames ?? null,
             'date'                                  => $this->date,
             'status'                                => $this->status->typeSerialize(),
             'member_count'                          => $this->memberCount,
@@ -323,7 +323,7 @@ class Supergroup extends TdObject
             'is_forum'                              => $this->isForum,
             'is_direct_messages_group'              => $this->isDirectMessagesGroup,
             'is_administered_direct_messages_group' => $this->isAdministeredDirectMessagesGroup,
-            'verification_status'                   => (isset($this->verificationStatus) ? $this->verificationStatus : null),
+            'verification_status'                   => $this->verificationStatus ?? null,
             'has_direct_messages_group'             => $this->hasDirectMessagesGroup,
             'has_forum_tabs'                        => $this->hasForumTabs,
             'has_sensitive_content'                 => $this->hasSensitiveContent,

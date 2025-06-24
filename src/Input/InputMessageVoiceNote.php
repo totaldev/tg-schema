@@ -85,8 +85,8 @@ class InputMessageVoiceNote extends InputMessageContent
             'voice_note'         => $this->voiceNote->typeSerialize(),
             'duration'           => $this->duration,
             'waveform'           => $this->waveform,
-            'caption'            => (isset($this->caption) ? $this->caption : null),
-            'self_destruct_type' => (isset($this->selfDestructType) ? $this->selfDestructType : null),
+            'caption'            => $this->caption ?? null,
+            'self_destruct_type' => $this->selfDestructType ?? null,
         ];
     }
 }

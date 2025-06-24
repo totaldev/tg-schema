@@ -42,7 +42,7 @@ class InlineQueryResults extends TdObject
         return new static(
             $array['inline_query_id'],
             isset($array['button']) ? TdSchemaRegistry::fromArray($array['button']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
             $array['next_offset'],
         );
     }
@@ -72,8 +72,8 @@ class InlineQueryResults extends TdObject
         return [
             '@type'           => static::TYPE_NAME,
             'inline_query_id' => $this->inlineQueryId,
-            'button'          => (isset($this->button) ? $this->button : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->results),
+            'button'          => $this->button ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->results),
             'next_offset'     => $this->nextOffset,
         ];
     }

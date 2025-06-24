@@ -33,7 +33,7 @@ class BankCardInfo extends TdObject
     {
         return new static(
             $array['title'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['actions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['actions']),
         );
     }
 
@@ -52,7 +52,7 @@ class BankCardInfo extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'title' => $this->title,
-            array_map(fn($x) => $x->typeSerialize(), $this->actions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->actions),
         ];
     }
 }

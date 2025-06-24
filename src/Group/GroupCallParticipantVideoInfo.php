@@ -36,7 +36,7 @@ class GroupCallParticipantVideoInfo extends TdObject
     public static function fromArray(array $array): GroupCallParticipantVideoInfo
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['source_groups']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['source_groups']),
             $array['endpoint_id'],
             $array['is_paused'],
         );
@@ -61,7 +61,7 @@ class GroupCallParticipantVideoInfo extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->sourceGroups),
+            array_map(static fn($x) => $x->typeSerialize(), $this->sourceGroups),
             'endpoint_id' => $this->endpointId,
             'is_paused'   => $this->isPaused,
         ];

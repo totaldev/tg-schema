@@ -71,8 +71,8 @@ class MessageInteractionInfo extends TdObject
             '@type'         => static::TYPE_NAME,
             'view_count'    => $this->viewCount,
             'forward_count' => $this->forwardCount,
-            'reply_info'    => (isset($this->replyInfo) ? $this->replyInfo : null),
-            'reactions'     => (isset($this->reactions) ? $this->reactions : null),
+            'reply_info'    => $this->replyInfo ?? null,
+            'reactions'     => $this->reactions ?? null,
         ];
     }
 }

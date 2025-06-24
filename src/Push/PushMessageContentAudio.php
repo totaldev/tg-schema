@@ -51,7 +51,7 @@ class PushMessageContentAudio extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'audio'     => (isset($this->audio) ? $this->audio : null),
+            'audio'     => $this->audio ?? null,
             'is_pinned' => $this->isPinned,
         ];
     }

@@ -93,7 +93,7 @@ class BusinessConnection extends TdObject
             'user_id'      => $this->userId,
             'user_chat_id' => $this->userChatId,
             'date'         => $this->date,
-            'rights'       => (isset($this->rights) ? $this->rights : null),
+            'rights'       => $this->rights ?? null,
             'is_enabled'   => $this->isEnabled,
         ];
     }

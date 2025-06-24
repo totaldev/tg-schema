@@ -203,7 +203,7 @@ class ReceivedGift extends TdObject
         return [
             '@type'                      => static::TYPE_NAME,
             'received_gift_id'           => $this->receivedGiftId,
-            'sender_id'                  => (isset($this->senderId) ? $this->senderId : null),
+            'sender_id'                  => $this->senderId ?? null,
             'text'                       => $this->text->typeSerialize(),
             'is_private'                 => $this->isPrivate,
             'is_saved'                   => $this->isSaved,

@@ -128,8 +128,8 @@ class Animation extends TdObject
             'file_name'     => $this->fileName,
             'mime_type'     => $this->mimeType,
             'has_stickers'  => $this->hasStickers,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail'     => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'minithumbnail' => $this->minithumbnail ?? null,
+            'thumbnail'     => $this->thumbnail ?? null,
             'animation'     => $this->animation->typeSerialize(),
         ];
     }

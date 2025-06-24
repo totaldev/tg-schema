@@ -113,7 +113,7 @@ class PageBlockEmbedded extends PageBlock
             '@type'           => static::TYPE_NAME,
             'url'             => $this->url,
             'html'            => $this->html,
-            'poster_photo'    => (isset($this->posterPhoto) ? $this->posterPhoto : null),
+            'poster_photo'    => $this->posterPhoto ?? null,
             'width'           => $this->width,
             'height'          => $this->height,
             'caption'         => $this->caption->typeSerialize(),

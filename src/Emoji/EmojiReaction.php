@@ -138,8 +138,8 @@ class EmojiReaction extends TdObject
             'select_animation'   => $this->selectAnimation->typeSerialize(),
             'activate_animation' => $this->activateAnimation->typeSerialize(),
             'effect_animation'   => $this->effectAnimation->typeSerialize(),
-            'around_animation'   => (isset($this->aroundAnimation) ? $this->aroundAnimation : null),
-            'center_animation'   => (isset($this->centerAnimation) ? $this->centerAnimation : null),
+            'around_animation'   => $this->aroundAnimation ?? null,
+            'center_animation'   => $this->centerAnimation ?? null,
         ];
     }
 }

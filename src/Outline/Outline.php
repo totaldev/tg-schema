@@ -29,7 +29,7 @@ class Outline extends TdObject
     public static function fromArray(array $array): Outline
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['paths']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paths']),
         );
     }
 
@@ -42,7 +42,7 @@ class Outline extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->paths),
+            array_map(static fn($x) => $x->typeSerialize(), $this->paths),
         ];
     }
 }

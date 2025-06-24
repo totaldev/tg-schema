@@ -41,7 +41,7 @@ class StickerFullTypeRegular extends StickerFullType
     {
         return [
             '@type'             => static::TYPE_NAME,
-            'premium_animation' => (isset($this->premiumAnimation) ? $this->premiumAnimation : null),
+            'premium_animation' => $this->premiumAnimation ?? null,
         ];
     }
 }

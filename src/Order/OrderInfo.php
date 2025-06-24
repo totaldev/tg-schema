@@ -73,7 +73,7 @@ class OrderInfo extends TdObject
             'name'             => $this->name,
             'phone_number'     => $this->phoneNumber,
             'email_address'    => $this->emailAddress,
-            'shipping_address' => (isset($this->shippingAddress) ? $this->shippingAddress : null),
+            'shipping_address' => $this->shippingAddress ?? null,
         ];
     }
 }

@@ -75,7 +75,7 @@ class UpdateNewChatJoinRequest extends Update
             'chat_id'      => $this->chatId,
             'request'      => $this->request->typeSerialize(),
             'user_chat_id' => $this->userChatId,
-            'invite_link'  => (isset($this->inviteLink) ? $this->inviteLink : null),
+            'invite_link'  => $this->inviteLink ?? null,
         ];
     }
 }

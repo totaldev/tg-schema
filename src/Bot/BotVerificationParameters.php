@@ -72,7 +72,7 @@ class BotVerificationParameters extends TdObject
             '@type'                      => static::TYPE_NAME,
             'icon_custom_emoji_id'       => $this->iconCustomEmojiId,
             'organization_name'          => $this->organizationName,
-            'default_custom_description' => (isset($this->defaultCustomDescription) ? $this->defaultCustomDescription : null),
+            'default_custom_description' => $this->defaultCustomDescription ?? null,
             'can_set_custom_description' => $this->canSetCustomDescription,
         ];
     }

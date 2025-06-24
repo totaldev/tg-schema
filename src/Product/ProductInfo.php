@@ -63,7 +63,7 @@ class ProductInfo extends TdObject
             '@type'       => static::TYPE_NAME,
             'title'       => $this->title,
             'description' => $this->description->typeSerialize(),
-            'photo'       => (isset($this->photo) ? $this->photo : null),
+            'photo'       => $this->photo ?? null,
         ];
     }
 }

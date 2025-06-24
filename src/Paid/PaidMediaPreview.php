@@ -74,7 +74,7 @@ class PaidMediaPreview extends PaidMedia
             'width'         => $this->width,
             'height'        => $this->height,
             'duration'      => $this->duration,
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            'minithumbnail' => $this->minithumbnail ?? null,
         ];
     }
 }

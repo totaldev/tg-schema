@@ -28,7 +28,7 @@ class ConnectedWebsites extends TdObject
     public static function fromArray(array $array): ConnectedWebsites
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['websites']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['websites']),
         );
     }
 
@@ -41,7 +41,7 @@ class ConnectedWebsites extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->websites),
+            array_map(static fn($x) => $x->typeSerialize(), $this->websites),
         ];
     }
 }

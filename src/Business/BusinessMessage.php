@@ -51,7 +51,7 @@ class BusinessMessage extends TdObject
         return [
             '@type'            => static::TYPE_NAME,
             'message'          => $this->message->typeSerialize(),
-            'reply_to_message' => (isset($this->replyToMessage) ? $this->replyToMessage : null),
+            'reply_to_message' => $this->replyToMessage ?? null,
         ];
     }
 }

@@ -82,10 +82,10 @@ class InputMessageVideoNote extends InputMessageContent
         return [
             '@type'              => static::TYPE_NAME,
             'video_note'         => $this->videoNote->typeSerialize(),
-            'thumbnail'          => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail'          => $this->thumbnail ?? null,
             'duration'           => $this->duration,
             'length'             => $this->length,
-            'self_destruct_type' => (isset($this->selfDestructType) ? $this->selfDestructType : null),
+            'self_destruct_type' => $this->selfDestructType ?? null,
         ];
     }
 }

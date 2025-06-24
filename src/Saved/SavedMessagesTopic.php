@@ -95,8 +95,8 @@ class SavedMessagesTopic extends TdObject
             'type'          => $this->type->typeSerialize(),
             'is_pinned'     => $this->isPinned,
             'order'         => $this->order,
-            'last_message'  => (isset($this->lastMessage) ? $this->lastMessage : null),
-            'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
+            'last_message'  => $this->lastMessage ?? null,
+            'draft_message' => $this->draftMessage ?? null,
         ];
     }
 }

@@ -21,7 +21,7 @@ class BusinessAwayMessageScheduleCustom extends BusinessAwayMessageSchedule
         /**
          * Point in time (Unix timestamp) when the away messages will stop to be sent.
          */
-        protected int $endDate,
+        protected int $endDate
     ) {
         parent::__construct();
     }

@@ -51,7 +51,7 @@ class PushMessageContentVideoNote extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'video_note' => (isset($this->videoNote) ? $this->videoNote : null),
+            'video_note' => $this->videoNote ?? null,
             'is_pinned'  => $this->isPinned,
         ];
     }

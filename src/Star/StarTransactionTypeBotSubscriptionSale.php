@@ -86,7 +86,7 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
             'subscription_period' => $this->subscriptionPeriod,
             'product_info'        => $this->productInfo->typeSerialize(),
             'invoice_payload'     => $this->invoicePayload,
-            'affiliate'           => (isset($this->affiliate) ? $this->affiliate : null),
+            'affiliate'           => $this->affiliate ?? null,
         ];
     }
 }

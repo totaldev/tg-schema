@@ -95,7 +95,7 @@ class PremiumPaymentOption extends TdObject
             'discount_percentage' => $this->discountPercentage,
             'month_count'         => $this->monthCount,
             'store_product_id'    => $this->storeProductId,
-            'payment_link'        => (isset($this->paymentLink) ? $this->paymentLink : null),
+            'payment_link'        => $this->paymentLink ?? null,
         ];
     }
 }

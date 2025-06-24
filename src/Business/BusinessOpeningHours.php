@@ -33,7 +33,7 @@ class BusinessOpeningHours extends TdObject
     {
         return new static(
             $array['time_zone_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['opening_hours']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['opening_hours']),
         );
     }
 
@@ -52,7 +52,7 @@ class BusinessOpeningHours extends TdObject
         return [
             '@type'        => static::TYPE_NAME,
             'time_zone_id' => $this->timeZoneId,
-            array_map(fn($x) => $x->typeSerialize(), $this->openingHours),
+            array_map(static fn($x) => $x->typeSerialize(), $this->openingHours),
         ];
     }
 }

@@ -28,7 +28,7 @@ class RecommendedChatFolders extends TdObject
     public static function fromArray(array $array): RecommendedChatFolders
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
         );
     }
 
@@ -41,7 +41,7 @@ class RecommendedChatFolders extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->chatFolders),
+            array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
         ];
     }
 }

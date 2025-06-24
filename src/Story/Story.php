@@ -145,7 +145,7 @@ class Story extends TdObject
             isset($array['chosen_reaction_type']) ? TdSchemaRegistry::fromArray($array['chosen_reaction_type']) : null,
             TdSchemaRegistry::fromArray($array['privacy_settings']),
             TdSchemaRegistry::fromArray($array['content']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
             TdSchemaRegistry::fromArray($array['caption']),
         );
     }
@@ -276,7 +276,7 @@ class Story extends TdObject
             '@type'                             => static::TYPE_NAME,
             'id'                                => $this->id,
             'poster_chat_id'                    => $this->posterChatId,
-            'poster_id'                         => (isset($this->posterId) ? $this->posterId : null),
+            'poster_id'                         => $this->posterId ?? null,
             'date'                              => $this->date,
             'is_being_posted'                   => $this->isBeingPosted,
             'is_being_edited'                   => $this->isBeingEdited,
@@ -291,12 +291,12 @@ class Story extends TdObject
             'can_get_statistics'                => $this->canGetStatistics,
             'can_get_interactions'              => $this->canGetInteractions,
             'has_expired_viewers'               => $this->hasExpiredViewers,
-            'repost_info'                       => (isset($this->repostInfo) ? $this->repostInfo : null),
-            'interaction_info'                  => (isset($this->interactionInfo) ? $this->interactionInfo : null),
-            'chosen_reaction_type'              => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
+            'repost_info'                       => $this->repostInfo ?? null,
+            'interaction_info'                  => $this->interactionInfo ?? null,
+            'chosen_reaction_type'              => $this->chosenReactionType ?? null,
             'privacy_settings'                  => $this->privacySettings->typeSerialize(),
             'content'                           => $this->content->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->areas),
+            array_map(static fn($x) => $x->typeSerialize(), $this->areas),
             'caption'                           => $this->caption->typeSerialize(),
         ];
     }

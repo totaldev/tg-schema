@@ -81,7 +81,7 @@ class MessageEffect extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'id'          => $this->id,
-            'static_icon' => (isset($this->staticIcon) ? $this->staticIcon : null),
+            'static_icon' => $this->staticIcon ?? null,
             'emoji'       => $this->emoji,
             'is_premium'  => $this->isPremium,
             'type'        => $this->type->typeSerialize(),

@@ -39,7 +39,7 @@ class ShippingOption extends TdObject
         return new static(
             $array['id'],
             $array['title'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
         );
     }
 
@@ -64,7 +64,7 @@ class ShippingOption extends TdObject
             '@type' => static::TYPE_NAME,
             'id'    => $this->id,
             'title' => $this->title,
-            array_map(fn($x) => $x->typeSerialize(), $this->priceParts),
+            array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
         ];
     }
 }

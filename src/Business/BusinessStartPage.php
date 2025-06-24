@@ -62,7 +62,7 @@ class BusinessStartPage extends TdObject
             '@type'   => static::TYPE_NAME,
             'title'   => $this->title,
             'message' => $this->message,
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+            'sticker' => $this->sticker ?? null,
         ];
     }
 }

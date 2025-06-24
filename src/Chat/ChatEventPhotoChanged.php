@@ -50,8 +50,8 @@ class ChatEventPhotoChanged extends ChatEventAction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'old_photo' => (isset($this->oldPhoto) ? $this->oldPhoto : null),
-            'new_photo' => (isset($this->newPhoto) ? $this->newPhoto : null),
+            'old_photo' => $this->oldPhoto ?? null,
+            'new_photo' => $this->newPhoto ?? null,
         ];
     }
 }

@@ -35,7 +35,7 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType
     {
         return new static(
             $array['user_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
         );
     }
 
@@ -54,7 +54,7 @@ class StarTransactionTypeBotPaidMediaPurchase extends StarTransactionType
         return [
             '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            array_map(fn($x) => $x->typeSerialize(), $this->media),
+            array_map(static fn($x) => $x->typeSerialize(), $this->media),
         ];
     }
 }

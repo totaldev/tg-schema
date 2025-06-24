@@ -28,7 +28,7 @@ class ChatFolderInviteLinks extends TdObject
     public static function fromArray(array $array): ChatFolderInviteLinks
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_links']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['invite_links']),
         );
     }
 
@@ -41,7 +41,7 @@ class ChatFolderInviteLinks extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->inviteLinks),
+            array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinks),
         ];
     }
 }

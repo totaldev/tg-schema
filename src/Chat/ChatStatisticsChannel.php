@@ -137,7 +137,7 @@ class ChatStatisticsChannel extends ChatStatistics
             TdSchemaRegistry::fromArray($array['story_interaction_graph']),
             TdSchemaRegistry::fromArray($array['story_reaction_graph']),
             TdSchemaRegistry::fromArray($array['instant_view_interaction_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_interactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_interactions']),
         );
     }
 
@@ -276,7 +276,7 @@ class ChatStatisticsChannel extends ChatStatistics
             'story_interaction_graph'          => $this->storyInteractionGraph->typeSerialize(),
             'story_reaction_graph'             => $this->storyReactionGraph->typeSerialize(),
             'instant_view_interaction_graph'   => $this->instantViewInteractionGraph->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->recentInteractions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->recentInteractions),
         ];
     }
 }

@@ -90,7 +90,7 @@ class PageBlockTableCell extends TdObject
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'text'      => (isset($this->text) ? $this->text : null),
+            'text'      => $this->text ?? null,
             'is_header' => $this->isHeader,
             'colspan'   => $this->colspan,
             'rowspan'   => $this->rowspan,

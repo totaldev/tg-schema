@@ -45,7 +45,7 @@ class ForumTopics extends TdObject
     {
         return new static(
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['topics']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['topics']),
             $array['next_offset_date'],
             $array['next_offset_message_id'],
             $array['next_offset_message_thread_id'],
@@ -82,7 +82,7 @@ class ForumTopics extends TdObject
         return [
             '@type'                         => static::TYPE_NAME,
             'total_count'                   => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->topics),
+            array_map(static fn($x) => $x->typeSerialize(), $this->topics),
             'next_offset_date'              => $this->nextOffsetDate,
             'next_offset_message_id'        => $this->nextOffsetMessageId,
             'next_offset_message_thread_id' => $this->nextOffsetMessageThreadId,

@@ -52,7 +52,7 @@ class UpdateChatEmojiStatus extends Update
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'emoji_status' => (isset($this->emojiStatus) ? $this->emojiStatus : null),
+            'emoji_status' => $this->emojiStatus ?? null,
         ];
     }
 }

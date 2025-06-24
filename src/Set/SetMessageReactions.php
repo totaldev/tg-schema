@@ -43,7 +43,7 @@ class SetMessageReactions extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['reaction_types']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reaction_types']),
             $array['is_big'],
         );
     }
@@ -74,7 +74,7 @@ class SetMessageReactions extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            array_map(fn($x) => $x->typeSerialize(), $this->reactionTypes),
+            array_map(static fn($x) => $x->typeSerialize(), $this->reactionTypes),
             'is_big'     => $this->isBig,
         ];
     }

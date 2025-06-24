@@ -93,7 +93,7 @@ class PageBlockRelatedArticle extends TdObject
             'url'          => $this->url,
             'title'        => $this->title,
             'description'  => $this->description,
-            'photo'        => (isset($this->photo) ? $this->photo : null),
+            'photo'        => $this->photo ?? null,
             'author'       => $this->author,
             'publish_date' => $this->publishDate,
         ];

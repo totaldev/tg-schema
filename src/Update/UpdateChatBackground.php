@@ -52,7 +52,7 @@ class UpdateChatBackground extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'background' => (isset($this->background) ? $this->background : null),
+            'background' => $this->background ?? null,
         ];
     }
 }

@@ -92,7 +92,7 @@ class ForwardSource extends TdObject
             '@type'       => static::TYPE_NAME,
             'chat_id'     => $this->chatId,
             'message_id'  => $this->messageId,
-            'sender_id'   => (isset($this->senderId) ? $this->senderId : null),
+            'sender_id'   => $this->senderId ?? null,
             'sender_name' => $this->senderName,
             'date'        => $this->date,
             'is_outgoing' => $this->isOutgoing,

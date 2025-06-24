@@ -43,7 +43,7 @@ class PageBlockTable extends PageBlock
     {
         return new static(
             TdSchemaRegistry::fromArray($array['caption']),
-            array_map(fn($x) => array_map(fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['cells']),
+            array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['cells']),
             $array['is_bordered'],
             $array['is_striped'],
         );
@@ -74,7 +74,7 @@ class PageBlockTable extends PageBlock
         return [
             '@type'       => static::TYPE_NAME,
             'caption'     => $this->caption->typeSerialize(),
-            array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->cells),
+            array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->cells),
             'is_bordered' => $this->isBordered,
             'is_striped'  => $this->isStriped,
         ];

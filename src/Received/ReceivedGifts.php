@@ -41,7 +41,7 @@ class ReceivedGifts extends TdObject
     {
         return new static(
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['gifts']),
             $array['are_notifications_enabled'],
             $array['next_offset'],
         );
@@ -72,7 +72,7 @@ class ReceivedGifts extends TdObject
         return [
             '@type'                     => static::TYPE_NAME,
             'total_count'               => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->gifts),
+            array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
             'are_notifications_enabled' => $this->areNotificationsEnabled,
             'next_offset'               => $this->nextOffset,
         ];

@@ -40,7 +40,7 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
         return new static(
             $array['shortcut_name'],
             $array['reply_to_message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
         );
     }
 
@@ -65,7 +65,7 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
             '@type'               => static::TYPE_NAME,
             'shortcut_name'       => $this->shortcutName,
             'reply_to_message_id' => $this->replyToMessageId,
-            array_map(fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

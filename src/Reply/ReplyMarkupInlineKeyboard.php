@@ -30,7 +30,7 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup
     public static function fromArray(array $array): ReplyMarkupInlineKeyboard
     {
         return new static(
-            array_map(fn($x) => array_map(fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
+            array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
         );
     }
 
@@ -43,7 +43,7 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->rows),
+            array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->rows),
         ];
     }
 }

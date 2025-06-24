@@ -52,8 +52,8 @@ class LinkPreviewTypeBackground extends LinkPreviewType
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'document'        => (isset($this->document) ? $this->document : null),
-            'background_type' => (isset($this->backgroundType) ? $this->backgroundType : null),
+            'document'        => $this->document ?? null,
+            'background_type' => $this->backgroundType ?? null,
         ];
     }
 }

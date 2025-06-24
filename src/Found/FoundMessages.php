@@ -38,7 +38,7 @@ class FoundMessages extends TdObject
     {
         return new static(
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
             $array['next_offset'],
         );
     }
@@ -63,7 +63,7 @@ class FoundMessages extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
             'next_offset' => $this->nextOffset,
         ];
     }

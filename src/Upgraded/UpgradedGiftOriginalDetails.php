@@ -71,7 +71,7 @@ class UpgradedGiftOriginalDetails extends TdObject
     {
         return [
             '@type'       => static::TYPE_NAME,
-            'sender_id'   => (isset($this->senderId) ? $this->senderId : null),
+            'sender_id'   => $this->senderId ?? null,
             'receiver_id' => $this->receiverId->typeSerialize(),
             'text'        => $this->text->typeSerialize(),
             'date'        => $this->date,

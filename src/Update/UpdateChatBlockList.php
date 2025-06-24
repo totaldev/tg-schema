@@ -52,7 +52,7 @@ class UpdateChatBlockList extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'block_list' => (isset($this->blockList) ? $this->blockList : null),
+            'block_list' => $this->blockList ?? null,
         ];
     }
 }

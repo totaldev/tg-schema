@@ -100,7 +100,7 @@ class PremiumGiftCodeInfo extends TdObject
     {
         return [
             '@type'               => static::TYPE_NAME,
-            'creator_id'          => (isset($this->creatorId) ? $this->creatorId : null),
+            'creator_id'          => $this->creatorId ?? null,
             'creation_date'       => $this->creationDate,
             'is_from_giveaway'    => $this->isFromGiveaway,
             'giveaway_message_id' => $this->giveawayMessageId,

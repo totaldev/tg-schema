@@ -70,7 +70,7 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
             '@type'                => static::TYPE_NAME,
             'bot_username'         => $this->botUsername,
             'start_parameter'      => $this->startParameter,
-            'administrator_rights' => (isset($this->administratorRights) ? $this->administratorRights : null),
+            'administrator_rights' => $this->administratorRights ?? null,
         ];
     }
 }

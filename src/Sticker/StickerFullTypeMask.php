@@ -41,7 +41,7 @@ class StickerFullTypeMask extends StickerFullType
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'mask_position' => (isset($this->maskPosition) ? $this->maskPosition : null),
+            'mask_position' => $this->maskPosition ?? null,
         ];
     }
 }

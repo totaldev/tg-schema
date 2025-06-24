@@ -41,7 +41,7 @@ class UpdateUnconfirmedSession extends Update
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'session' => (isset($this->session) ? $this->session : null),
+            'session' => $this->session ?? null,
         ];
     }
 }

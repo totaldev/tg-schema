@@ -84,7 +84,7 @@ class SharedUser extends TdObject
             'first_name' => $this->firstName,
             'last_name'  => $this->lastName,
             'username'   => $this->username,
-            'photo'      => (isset($this->photo) ? $this->photo : null),
+            'photo'      => $this->photo ?? null,
         ];
     }
 }

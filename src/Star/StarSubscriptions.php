@@ -41,7 +41,7 @@ class StarSubscriptions extends TdObject
     {
         return new static(
             TdSchemaRegistry::fromArray($array['star_amount']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['subscriptions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['subscriptions']),
             $array['required_star_count'],
             $array['next_offset'],
         );
@@ -72,7 +72,7 @@ class StarSubscriptions extends TdObject
         return [
             '@type'               => static::TYPE_NAME,
             'star_amount'         => $this->starAmount->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->subscriptions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->subscriptions),
             'required_star_count' => $this->requiredStarCount,
             'next_offset'         => $this->nextOffset,
         ];

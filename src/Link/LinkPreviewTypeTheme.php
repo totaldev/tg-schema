@@ -35,7 +35,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeTheme
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['documents']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['documents']),
             isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
         );
     }
@@ -54,8 +54,8 @@ class LinkPreviewTypeTheme extends LinkPreviewType
     {
         return [
             '@type'    => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->documents),
-            'settings' => (isset($this->settings) ? $this->settings : null),
+            array_map(static fn($x) => $x->typeSerialize(), $this->documents),
+            'settings' => $this->settings ?? null,
         ];
     }
 }

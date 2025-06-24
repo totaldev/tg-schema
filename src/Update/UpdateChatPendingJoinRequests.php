@@ -52,7 +52,7 @@ class UpdateChatPendingJoinRequests extends Update
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'pending_join_requests' => (isset($this->pendingJoinRequests) ? $this->pendingJoinRequests : null),
+            'pending_join_requests' => $this->pendingJoinRequests ?? null,
         ];
     }
 }

@@ -109,9 +109,9 @@ class ChatStatisticsSupergroup extends ChatStatistics
             TdSchemaRegistry::fromArray($array['action_graph']),
             TdSchemaRegistry::fromArray($array['day_graph']),
             TdSchemaRegistry::fromArray($array['week_graph']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_senders']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_administrators']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['top_inviters']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_senders']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_administrators']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['top_inviters']),
         );
     }
 
@@ -212,9 +212,9 @@ class ChatStatisticsSupergroup extends ChatStatistics
             'action_graph'          => $this->actionGraph->typeSerialize(),
             'day_graph'             => $this->dayGraph->typeSerialize(),
             'week_graph'            => $this->weekGraph->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->topSenders),
-            array_map(fn($x) => $x->typeSerialize(), $this->topAdministrators),
-            array_map(fn($x) => $x->typeSerialize(), $this->topInviters),
+            array_map(static fn($x) => $x->typeSerialize(), $this->topSenders),
+            array_map(static fn($x) => $x->typeSerialize(), $this->topAdministrators),
+            array_map(static fn($x) => $x->typeSerialize(), $this->topInviters),
         ];
     }
 }

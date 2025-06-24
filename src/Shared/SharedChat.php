@@ -73,7 +73,7 @@ class SharedChat extends TdObject
             'chat_id'  => $this->chatId,
             'title'    => $this->title,
             'username' => $this->username,
-            'photo'    => (isset($this->photo) ? $this->photo : null),
+            'photo'    => $this->photo ?? null,
         ];
     }
 }

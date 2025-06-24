@@ -45,7 +45,7 @@ class UpdateMessageReactions extends Update
             $array['chat_id'],
             $array['message_id'],
             $array['date'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
         );
     }
 
@@ -76,7 +76,7 @@ class UpdateMessageReactions extends Update
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
             'date'       => $this->date,
-            array_map(fn($x) => $x->typeSerialize(), $this->reactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
         ];
     }
 }

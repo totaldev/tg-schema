@@ -51,7 +51,7 @@ class PushMessageContentVoiceNote extends PushMessageContent
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
+            'voice_note' => $this->voiceNote ?? null,
             'is_pinned'  => $this->isPinned,
         ];
     }

@@ -88,7 +88,7 @@ class Invoice extends TdObject
     {
         return new static(
             $array['currency'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['price_parts']),
             $array['subscription_period'],
             $array['max_tip_amount'],
             $array['suggested_tip_amounts'],
@@ -185,7 +185,7 @@ class Invoice extends TdObject
         return [
             '@type'                                  => static::TYPE_NAME,
             'currency'                               => $this->currency,
-            array_map(fn($x) => $x->typeSerialize(), $this->priceParts),
+            array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
             'subscription_period'                    => $this->subscriptionPeriod,
             'max_tip_amount'                         => $this->maxTipAmount,
             'suggested_tip_amounts'                  => $this->suggestedTipAmounts,

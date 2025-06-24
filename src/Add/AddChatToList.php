@@ -25,7 +25,7 @@ class AddChatToList extends TdFunction
         /**
          * The chat list. Use getChatListsToAddChat to get suitable chat lists.
          */
-        protected ChatList $chatList,
+        protected ChatList $chatList
     ) {}
 
     public static function fromArray(array $array): AddChatToList

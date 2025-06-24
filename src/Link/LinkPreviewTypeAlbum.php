@@ -33,7 +33,7 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     public static function fromArray(array $array): LinkPreviewTypeAlbum
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
             $array['caption'],
         );
     }
@@ -52,7 +52,7 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->media),
+            array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'caption' => $this->caption,
         ];
     }

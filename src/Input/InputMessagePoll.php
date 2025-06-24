@@ -57,7 +57,7 @@ class InputMessagePoll extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['question']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['options']),
             $array['is_anonymous'],
             TdSchemaRegistry::fromArray($array['type']),
             $array['open_period'],
@@ -106,7 +106,7 @@ class InputMessagePoll extends InputMessageContent
         return [
             '@type'        => static::TYPE_NAME,
             'question'     => $this->question->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->options),
+            array_map(static fn($x) => $x->typeSerialize(), $this->options),
             'is_anonymous' => $this->isAnonymous,
             'type'         => $this->type->typeSerialize(),
             'open_period'  => $this->openPeriod,

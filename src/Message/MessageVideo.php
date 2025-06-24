@@ -62,7 +62,7 @@ class MessageVideo extends MessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['video']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
             isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
             $array['start_timestamp'],
             TdSchemaRegistry::fromArray($array['caption']),
@@ -117,8 +117,8 @@ class MessageVideo extends MessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'video'                    => $this->video->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->alternativeVideos),
-            'cover'                    => (isset($this->cover) ? $this->cover : null),
+            array_map(static fn($x) => $x->typeSerialize(), $this->alternativeVideos),
+            'cover'                    => $this->cover ?? null,
             'start_timestamp'          => $this->startTimestamp,
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,

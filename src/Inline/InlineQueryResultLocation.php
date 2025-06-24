@@ -75,7 +75,7 @@ class InlineQueryResultLocation extends InlineQueryResult
             'id'        => $this->id,
             'location'  => $this->location->typeSerialize(),
             'title'     => $this->title,
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail' => $this->thumbnail ?? null,
         ];
     }
 }

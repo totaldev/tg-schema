@@ -102,8 +102,8 @@ class StickerSet extends TdObject
             $array['needs_repainting'],
             $array['is_allowed_as_chat_emoji_status'],
             $array['is_viewed'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['emojis']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stickers']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['emojis']),
         );
     }
 
@@ -189,8 +189,8 @@ class StickerSet extends TdObject
             'id'                              => $this->id,
             'title'                           => $this->title,
             'name'                            => $this->name,
-            'thumbnail'                       => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'thumbnail_outline'               => (isset($this->thumbnailOutline) ? $this->thumbnailOutline : null),
+            'thumbnail'                       => $this->thumbnail ?? null,
+            'thumbnail_outline'               => $this->thumbnailOutline ?? null,
             'is_owned'                        => $this->isOwned,
             'is_installed'                    => $this->isInstalled,
             'is_archived'                     => $this->isArchived,
@@ -199,8 +199,8 @@ class StickerSet extends TdObject
             'needs_repainting'                => $this->needsRepainting,
             'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
             'is_viewed'                       => $this->isViewed,
-            array_map(fn($x) => $x->typeSerialize(), $this->stickers),
-            array_map(fn($x) => $x->typeSerialize(), $this->emojis),
+            array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            array_map(static fn($x) => $x->typeSerialize(), $this->emojis),
         ];
     }
 }

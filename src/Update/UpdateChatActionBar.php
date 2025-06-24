@@ -52,7 +52,7 @@ class UpdateChatActionBar extends Update
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'action_bar' => (isset($this->actionBar) ? $this->actionBar : null),
+            'action_bar' => $this->actionBar ?? null,
         ];
     }
 }

@@ -84,7 +84,7 @@ class VoiceNote extends TdObject
             'duration'                  => $this->duration,
             'waveform'                  => $this->waveform,
             'mime_type'                 => $this->mimeType,
-            'speech_recognition_result' => (isset($this->speechRecognitionResult) ? $this->speechRecognitionResult : null),
+            'speech_recognition_result' => $this->speechRecognitionResult ?? null,
             'voice'                     => $this->voice->typeSerialize(),
         ];
     }

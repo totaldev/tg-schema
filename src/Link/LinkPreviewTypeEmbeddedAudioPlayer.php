@@ -82,7 +82,7 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
         return [
             '@type'     => static::TYPE_NAME,
             'url'       => $this->url,
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail' => $this->thumbnail ?? null,
             'duration'  => $this->duration,
             'width'     => $this->width,
             'height'    => $this->height,

@@ -28,7 +28,7 @@ class NotificationSounds extends TdObject
     public static function fromArray(array $array): NotificationSounds
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['notification_sounds']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['notification_sounds']),
         );
     }
 
@@ -41,7 +41,7 @@ class NotificationSounds extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->notificationSounds),
+            array_map(static fn($x) => $x->typeSerialize(), $this->notificationSounds),
         ];
     }
 }

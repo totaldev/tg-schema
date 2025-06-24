@@ -51,8 +51,8 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'old_emoji_status' => (isset($this->oldEmojiStatus) ? $this->oldEmojiStatus : null),
-            'new_emoji_status' => (isset($this->newEmojiStatus) ? $this->newEmojiStatus : null),
+            'old_emoji_status' => $this->oldEmojiStatus ?? null,
+            'new_emoji_status' => $this->newEmojiStatus ?? null,
         ];
     }
 }

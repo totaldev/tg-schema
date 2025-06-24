@@ -100,7 +100,7 @@ class StickerSetInfo extends TdObject
             $array['is_allowed_as_chat_emoji_status'],
             $array['is_viewed'],
             $array['size'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['covers']),
         );
     }
 
@@ -186,8 +186,8 @@ class StickerSetInfo extends TdObject
             'id'                              => $this->id,
             'title'                           => $this->title,
             'name'                            => $this->name,
-            'thumbnail'                       => (isset($this->thumbnail) ? $this->thumbnail : null),
-            'thumbnail_outline'               => (isset($this->thumbnailOutline) ? $this->thumbnailOutline : null),
+            'thumbnail'                       => $this->thumbnail ?? null,
+            'thumbnail_outline'               => $this->thumbnailOutline ?? null,
             'is_owned'                        => $this->isOwned,
             'is_installed'                    => $this->isInstalled,
             'is_archived'                     => $this->isArchived,
@@ -197,7 +197,7 @@ class StickerSetInfo extends TdObject
             'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
             'is_viewed'                       => $this->isViewed,
             'size'                            => $this->size,
-            array_map(fn($x) => $x->typeSerialize(), $this->covers),
+            array_map(static fn($x) => $x->typeSerialize(), $this->covers),
         ];
     }
 }

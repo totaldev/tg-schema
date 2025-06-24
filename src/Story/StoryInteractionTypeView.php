@@ -41,7 +41,7 @@ class StoryInteractionTypeView extends StoryInteractionType
     {
         return [
             '@type'                => static::TYPE_NAME,
-            'chosen_reaction_type' => (isset($this->chosenReactionType) ? $this->chosenReactionType : null),
+            'chosen_reaction_type' => $this->chosenReactionType ?? null,
         ];
     }
 }

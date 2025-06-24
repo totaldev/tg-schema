@@ -28,7 +28,7 @@ class TestCallVectorIntObject extends TdFunction
     public static function fromArray(array $array): TestCallVectorIntObject
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['x']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['x']),
         );
     }
 
@@ -41,7 +41,7 @@ class TestCallVectorIntObject extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->x),
+            array_map(static fn($x) => $x->typeSerialize(), $this->x),
         ];
     }
 }

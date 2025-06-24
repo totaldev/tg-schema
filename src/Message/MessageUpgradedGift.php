@@ -162,7 +162,7 @@ class MessageUpgradedGift extends MessageContent
         return [
             '@type'                  => static::TYPE_NAME,
             'gift'                   => $this->gift->typeSerialize(),
-            'sender_id'              => (isset($this->senderId) ? $this->senderId : null),
+            'sender_id'              => $this->senderId ?? null,
             'receiver_id'            => $this->receiverId->typeSerialize(),
             'received_gift_id'       => $this->receivedGiftId,
             'is_upgrade'             => $this->isUpgrade,

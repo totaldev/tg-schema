@@ -44,7 +44,7 @@ class MessagePaidMedia extends MessageContent
     {
         return new static(
             $array['star_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
             TdSchemaRegistry::fromArray($array['caption']),
             $array['show_caption_above_media'],
         );
@@ -75,7 +75,7 @@ class MessagePaidMedia extends MessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'star_count'               => $this->starCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->media),
+            array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];

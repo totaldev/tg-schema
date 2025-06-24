@@ -63,7 +63,7 @@ class UpdateMessageInteractionInfo extends Update
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
-            'interaction_info' => (isset($this->interactionInfo) ? $this->interactionInfo : null),
+            'interaction_info' => $this->interactionInfo ?? null,
         ];
     }
 }

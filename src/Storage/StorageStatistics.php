@@ -38,7 +38,7 @@ class StorageStatistics extends TdObject
         return new static(
             $array['size'],
             $array['count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['by_chat']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['by_chat']),
         );
     }
 
@@ -63,7 +63,7 @@ class StorageStatistics extends TdObject
             '@type' => static::TYPE_NAME,
             'size'  => $this->size,
             'count' => $this->count,
-            array_map(fn($x) => $x->typeSerialize(), $this->byChat),
+            array_map(static fn($x) => $x->typeSerialize(), $this->byChat),
         ];
     }
 }

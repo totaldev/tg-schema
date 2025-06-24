@@ -29,7 +29,7 @@ class ClosedVectorPath extends TdObject
     public static function fromArray(array $array): ClosedVectorPath
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
         );
     }
 
@@ -42,7 +42,7 @@ class ClosedVectorPath extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->commands),
+            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];
     }
 }

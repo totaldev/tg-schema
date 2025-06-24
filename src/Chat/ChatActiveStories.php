@@ -50,7 +50,7 @@ class ChatActiveStories extends TdObject
             isset($array['list']) ? TdSchemaRegistry::fromArray($array['list']) : null,
             $array['order'],
             $array['max_read_story_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['stories']),
         );
     }
 
@@ -84,10 +84,10 @@ class ChatActiveStories extends TdObject
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'list'              => (isset($this->list) ? $this->list : null),
+            'list'              => $this->list ?? null,
             'order'             => $this->order,
             'max_read_story_id' => $this->maxReadStoryId,
-            array_map(fn($x) => $x->typeSerialize(), $this->stories),
+            array_map(static fn($x) => $x->typeSerialize(), $this->stories),
         ];
     }
 }

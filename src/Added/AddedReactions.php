@@ -37,7 +37,7 @@ class AddedReactions extends TdObject
     {
         return new static(
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
             $array['next_offset'],
         );
     }
@@ -62,7 +62,7 @@ class AddedReactions extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->reactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'next_offset' => $this->nextOffset,
         ];
     }

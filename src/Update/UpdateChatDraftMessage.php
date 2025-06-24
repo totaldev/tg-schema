@@ -42,7 +42,7 @@ class UpdateChatDraftMessage extends Update
         return new static(
             $array['chat_id'],
             isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['positions']),
         );
     }
 
@@ -66,8 +66,8 @@ class UpdateChatDraftMessage extends Update
         return [
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
-            'draft_message' => (isset($this->draftMessage) ? $this->draftMessage : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->positions),
+            'draft_message' => $this->draftMessage ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->positions),
         ];
     }
 }

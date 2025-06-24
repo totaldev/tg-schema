@@ -62,7 +62,7 @@ class PushMessageContentGiveaway extends PushMessageContent
         return [
             '@type'        => static::TYPE_NAME,
             'winner_count' => $this->winnerCount,
-            'prize'        => (isset($this->prize) ? $this->prize : null),
+            'prize'        => $this->prize ?? null,
             'is_pinned'    => $this->isPinned,
         ];
     }

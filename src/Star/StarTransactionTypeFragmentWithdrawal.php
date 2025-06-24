@@ -41,7 +41,7 @@ class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'withdrawal_state' => (isset($this->withdrawalState) ? $this->withdrawalState : null),
+            'withdrawal_state' => $this->withdrawalState ?? null,
         ];
     }
 }

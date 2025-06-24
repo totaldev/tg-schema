@@ -138,7 +138,7 @@ class MessagePaymentSuccessfulBot extends MessageContent
             'is_first_recurring'         => $this->isFirstRecurring,
             'invoice_payload'            => $this->invoicePayload,
             'shipping_option_id'         => $this->shippingOptionId,
-            'order_info'                 => (isset($this->orderInfo) ? $this->orderInfo : null),
+            'order_info'                 => $this->orderInfo ?? null,
             'telegram_payment_charge_id' => $this->telegramPaymentChargeId,
             'provider_payment_charge_id' => $this->providerPaymentChargeId,
         ];

@@ -29,7 +29,7 @@ class UserPrivacySettingRules extends TdObject
     public static function fromArray(array $array): UserPrivacySettingRules
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['rules']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['rules']),
         );
     }
 
@@ -42,7 +42,7 @@ class UserPrivacySettingRules extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->rules),
+            array_map(static fn($x) => $x->typeSerialize(), $this->rules),
         ];
     }
 }

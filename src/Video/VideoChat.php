@@ -62,7 +62,7 @@ class VideoChat extends TdObject
             '@type'                  => static::TYPE_NAME,
             'group_call_id'          => $this->groupCallId,
             'has_participants'       => $this->hasParticipants,
-            'default_participant_id' => (isset($this->defaultParticipantId) ? $this->defaultParticipantId : null),
+            'default_participant_id' => $this->defaultParticipantId ?? null,
         ];
     }
 }

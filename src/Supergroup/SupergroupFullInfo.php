@@ -215,7 +215,7 @@ class SupergroupFullInfo extends TdObject
             $array['custom_emoji_sticker_set_id'],
             isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
             isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
             isset($array['bot_verification']) ? TdSchemaRegistry::fromArray($array['bot_verification']) : null,
             $array['upgraded_from_basic_group_id'],
             $array['upgraded_from_max_message_id'],
@@ -416,7 +416,7 @@ class SupergroupFullInfo extends TdObject
     {
         return [
             '@type'                            => static::TYPE_NAME,
-            'photo'                            => (isset($this->photo) ? $this->photo : null),
+            'photo'                            => $this->photo ?? null,
             'description'                      => $this->description,
             'member_count'                     => $this->memberCount,
             'administrator_count'              => $this->administratorCount,
@@ -448,10 +448,10 @@ class SupergroupFullInfo extends TdObject
             'unrestrict_boost_count'           => $this->unrestrictBoostCount,
             'sticker_set_id'                   => $this->stickerSetId,
             'custom_emoji_sticker_set_id'      => $this->customEmojiStickerSetId,
-            'location'                         => (isset($this->location) ? $this->location : null),
-            'invite_link'                      => (isset($this->inviteLink) ? $this->inviteLink : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->botCommands),
-            'bot_verification'                 => (isset($this->botVerification) ? $this->botVerification : null),
+            'location'                         => $this->location ?? null,
+            'invite_link'                      => $this->inviteLink ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
+            'bot_verification'                 => $this->botVerification ?? null,
             'upgraded_from_basic_group_id'     => $this->upgradedFromBasicGroupId,
             'upgraded_from_max_message_id'     => $this->upgradedFromMaxMessageId,
         ];

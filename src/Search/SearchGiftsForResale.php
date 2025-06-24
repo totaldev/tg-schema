@@ -48,7 +48,7 @@ class SearchGiftsForResale extends TdFunction
         return new static(
             $array['gift_id'],
             TdSchemaRegistry::fromArray($array['order']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attributes']),
             $array['offset'],
             $array['limit'],
         );
@@ -85,7 +85,7 @@ class SearchGiftsForResale extends TdFunction
             '@type'   => static::TYPE_NAME,
             'gift_id' => $this->giftId,
             'order'   => $this->order->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->attributes),
+            array_map(static fn($x) => $x->typeSerialize(), $this->attributes),
             'offset'  => $this->offset,
             'limit'   => $this->limit,
         ];

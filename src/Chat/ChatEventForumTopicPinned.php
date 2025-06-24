@@ -51,8 +51,8 @@ class ChatEventForumTopicPinned extends ChatEventAction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'old_topic_info' => (isset($this->oldTopicInfo) ? $this->oldTopicInfo : null),
-            'new_topic_info' => (isset($this->newTopicInfo) ? $this->newTopicInfo : null),
+            'old_topic_info' => $this->oldTopicInfo ?? null,
+            'new_topic_info' => $this->newTopicInfo ?? null,
         ];
     }
 }

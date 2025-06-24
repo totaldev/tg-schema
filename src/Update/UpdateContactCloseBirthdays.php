@@ -30,7 +30,7 @@ class UpdateContactCloseBirthdays extends Update
     public static function fromArray(array $array): UpdateContactCloseBirthdays
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['close_birthday_users']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['close_birthday_users']),
         );
     }
 
@@ -43,7 +43,7 @@ class UpdateContactCloseBirthdays extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->closeBirthdayUsers),
+            array_map(static fn($x) => $x->typeSerialize(), $this->closeBirthdayUsers),
         ];
     }
 }

@@ -93,10 +93,10 @@ class MessageReplyToMessage extends MessageReplyTo
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
-            'quote'            => (isset($this->quote) ? $this->quote : null),
-            'origin'           => (isset($this->origin) ? $this->origin : null),
+            'quote'            => $this->quote ?? null,
+            'origin'           => $this->origin ?? null,
             'origin_send_date' => $this->originSendDate,
-            'content'          => (isset($this->content) ? $this->content : null),
+            'content'          => $this->content ?? null,
         ];
     }
 }

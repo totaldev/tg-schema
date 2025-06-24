@@ -167,15 +167,15 @@ class ChatInviteLinkInfo extends TdObject
             'accessible_for'       => $this->accessibleFor,
             'type'                 => $this->type->typeSerialize(),
             'title'                => $this->title,
-            'photo'                => (isset($this->photo) ? $this->photo : null),
+            'photo'                => $this->photo ?? null,
             'accent_color_id'      => $this->accentColorId,
             'description'          => $this->description,
             'member_count'         => $this->memberCount,
             'member_user_ids'      => $this->memberUserIds,
-            'subscription_info'    => (isset($this->subscriptionInfo) ? $this->subscriptionInfo : null),
+            'subscription_info'    => $this->subscriptionInfo ?? null,
             'creates_join_request' => $this->createsJoinRequest,
             'is_public'            => $this->isPublic,
-            'verification_status'  => (isset($this->verificationStatus) ? $this->verificationStatus : null),
+            'verification_status'  => $this->verificationStatus ?? null,
         ];
     }
 }

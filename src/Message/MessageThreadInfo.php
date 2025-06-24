@@ -53,7 +53,7 @@ class MessageThreadInfo extends TdObject
             $array['message_thread_id'],
             isset($array['reply_info']) ? TdSchemaRegistry::fromArray($array['reply_info']) : null,
             $array['unread_message_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
             isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
     }
@@ -94,10 +94,10 @@ class MessageThreadInfo extends TdObject
             '@type'                => static::TYPE_NAME,
             'chat_id'              => $this->chatId,
             'message_thread_id'    => $this->messageThreadId,
-            'reply_info'           => (isset($this->replyInfo) ? $this->replyInfo : null),
+            'reply_info'           => $this->replyInfo ?? null,
             'unread_message_count' => $this->unreadMessageCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
-            'draft_message'        => (isset($this->draftMessage) ? $this->draftMessage : null),
+            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'draft_message'        => $this->draftMessage ?? null,
         ];
     }
 }

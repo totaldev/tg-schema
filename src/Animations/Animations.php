@@ -29,7 +29,7 @@ class Animations extends TdObject
     public static function fromArray(array $array): Animations
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['animations']),
         );
     }
 
@@ -42,7 +42,7 @@ class Animations extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->animations),
+            array_map(static fn($x) => $x->typeSerialize(), $this->animations),
         ];
     }
 }

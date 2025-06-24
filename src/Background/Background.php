@@ -94,7 +94,7 @@ class Background extends TdObject
             'is_default' => $this->isDefault,
             'is_dark'    => $this->isDark,
             'name'       => $this->name,
-            'document'   => (isset($this->document) ? $this->document : null),
+            'document'   => $this->document ?? null,
             'type'       => $this->type->typeSerialize(),
         ];
     }

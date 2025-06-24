@@ -61,7 +61,7 @@ class SendBusinessMessageAlbum extends TdFunction
             $array['disable_notification'],
             $array['protect_content'],
             $array['effect_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
         );
     }
 
@@ -110,7 +110,7 @@ class SendBusinessMessageAlbum extends TdFunction
             'disable_notification'   => $this->disableNotification,
             'protect_content'        => $this->protectContent,
             'effect_id'              => $this->effectId,
-            array_map(fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

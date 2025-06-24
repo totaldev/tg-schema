@@ -61,7 +61,7 @@ class StarGiveawayPaymentOption extends TdObject
             $array['star_count'],
             $array['store_product_id'],
             $array['yearly_boost_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['winner_options']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['winner_options']),
             $array['is_default'],
             $array['is_additional'],
         );
@@ -116,7 +116,7 @@ class StarGiveawayPaymentOption extends TdObject
             'star_count'         => $this->starCount,
             'store_product_id'   => $this->storeProductId,
             'yearly_boost_count' => $this->yearlyBoostCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->winnerOptions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->winnerOptions),
             'is_default'         => $this->isDefault,
             'is_additional'      => $this->isAdditional,
         ];

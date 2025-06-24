@@ -43,9 +43,9 @@ class MessageReactions extends TdObject
     public static function fromArray(array $array): MessageReactions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
             $array['are_tags'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_reactors']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['paid_reactors']),
             $array['can_get_added_reactions'],
         );
     }
@@ -74,9 +74,9 @@ class MessageReactions extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->reactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'are_tags'                => $this->areTags,
-            array_map(fn($x) => $x->typeSerialize(), $this->paidReactors),
+            array_map(static fn($x) => $x->typeSerialize(), $this->paidReactors),
             'can_get_added_reactions' => $this->canGetAddedReactions,
         ];
     }

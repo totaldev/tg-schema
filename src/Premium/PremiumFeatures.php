@@ -39,8 +39,8 @@ class PremiumFeatures extends TdObject
     public static function fromArray(array $array): PremiumFeatures
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['limits']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['limits']),
             isset($array['payment_link']) ? TdSchemaRegistry::fromArray($array['payment_link']) : null,
         );
     }
@@ -64,9 +64,9 @@ class PremiumFeatures extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->features),
-            array_map(fn($x) => $x->typeSerialize(), $this->limits),
-            'payment_link' => (isset($this->paymentLink) ? $this->paymentLink : null),
+            array_map(static fn($x) => $x->typeSerialize(), $this->features),
+            array_map(static fn($x) => $x->typeSerialize(), $this->limits),
+            'payment_link' => $this->paymentLink ?? null,
         ];
     }
 }

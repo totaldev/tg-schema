@@ -142,7 +142,7 @@ class MessagePremiumGiftCode extends MessageContent
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'creator_id'            => (isset($this->creatorId) ? $this->creatorId : null),
+            'creator_id'            => $this->creatorId ?? null,
             'text'                  => $this->text->typeSerialize(),
             'is_from_giveaway'      => $this->isFromGiveaway,
             'is_unclaimed'          => $this->isUnclaimed,
@@ -151,7 +151,7 @@ class MessagePremiumGiftCode extends MessageContent
             'cryptocurrency'        => $this->cryptocurrency,
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
             'month_count'           => $this->monthCount,
-            'sticker'               => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'               => $this->sticker ?? null,
             'code'                  => $this->code,
         ];
     }

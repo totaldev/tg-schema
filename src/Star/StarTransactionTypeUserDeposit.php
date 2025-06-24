@@ -52,7 +52,7 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
         return [
             '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'sticker' => (isset($this->sticker) ? $this->sticker : null),
+            'sticker' => $this->sticker ?? null,
         ];
     }
 }

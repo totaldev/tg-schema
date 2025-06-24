@@ -51,7 +51,7 @@ class PageBlockVoiceNote extends PageBlock
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'voice_note' => (isset($this->voiceNote) ? $this->voiceNote : null),
+            'voice_note' => $this->voiceNote ?? null,
             'caption'    => $this->caption->typeSerialize(),
         ];
     }

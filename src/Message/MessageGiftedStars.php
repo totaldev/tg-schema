@@ -129,7 +129,7 @@ class MessageGiftedStars extends MessageContent
             'cryptocurrency_amount' => $this->cryptocurrencyAmount,
             'star_count'            => $this->starCount,
             'transaction_id'        => $this->transactionId,
-            'sticker'               => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'               => $this->sticker ?? null,
         ];
     }
 }

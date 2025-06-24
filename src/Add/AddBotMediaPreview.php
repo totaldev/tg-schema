@@ -30,7 +30,7 @@ class AddBotMediaPreview extends TdFunction
         /**
          * Content of the added preview.
          */
-        protected InputStoryContent $content,
+        protected InputStoryContent $content
     ) {}
 
     public static function fromArray(array $array): AddBotMediaPreview

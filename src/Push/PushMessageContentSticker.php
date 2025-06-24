@@ -61,7 +61,7 @@ class PushMessageContentSticker extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'sticker'   => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'   => $this->sticker ?? null,
             'emoji'     => $this->emoji,
             'is_pinned' => $this->isPinned,
         ];

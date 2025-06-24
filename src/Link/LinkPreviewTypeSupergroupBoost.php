@@ -41,7 +41,7 @@ class LinkPreviewTypeSupergroupBoost extends LinkPreviewType
     {
         return [
             '@type' => static::TYPE_NAME,
-            'photo' => (isset($this->photo) ? $this->photo : null),
+            'photo' => $this->photo ?? null,
         ];
     }
 }

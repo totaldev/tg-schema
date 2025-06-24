@@ -61,7 +61,7 @@ class PushMessageContentAnimation extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'animation' => (isset($this->animation) ? $this->animation : null),
+            'animation' => $this->animation ?? null,
             'caption'   => $this->caption,
             'is_pinned' => $this->isPinned,
         ];

@@ -34,7 +34,7 @@ class FormattedText extends TdObject
     {
         return new static(
             $array['text'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['entities']),
         );
     }
 
@@ -53,7 +53,7 @@ class FormattedText extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'text'  => $this->text,
-            array_map(fn($x) => $x->typeSerialize(), $this->entities),
+            array_map(static fn($x) => $x->typeSerialize(), $this->entities),
         ];
     }
 }

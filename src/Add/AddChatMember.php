@@ -28,7 +28,7 @@ class AddChatMember extends TdFunction
         /**
          * The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot.
          */
-        protected int $forwardLimit,
+        protected int $forwardLimit
     ) {}
 
     public static function fromArray(array $array): AddChatMember

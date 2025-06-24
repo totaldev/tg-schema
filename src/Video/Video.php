@@ -139,8 +139,8 @@ class Video extends TdObject
             'mime_type'          => $this->mimeType,
             'has_stickers'       => $this->hasStickers,
             'supports_streaming' => $this->supportsStreaming,
-            'minithumbnail'      => (isset($this->minithumbnail) ? $this->minithumbnail : null),
-            'thumbnail'          => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'minithumbnail'      => $this->minithumbnail ?? null,
+            'thumbnail'          => $this->thumbnail ?? null,
             'video'              => $this->video->typeSerialize(),
         ];
     }

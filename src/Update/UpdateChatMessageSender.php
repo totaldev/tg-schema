@@ -52,7 +52,7 @@ class UpdateChatMessageSender extends Update
         return [
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
-            'message_sender_id' => (isset($this->messageSenderId) ? $this->messageSenderId : null),
+            'message_sender_id' => $this->messageSenderId ?? null,
         ];
     }
 }

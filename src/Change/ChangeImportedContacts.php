@@ -30,7 +30,7 @@ class ChangeImportedContacts extends TdFunction
     public static function fromArray(array $array): ChangeImportedContacts
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['contacts']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['contacts']),
         );
     }
 
@@ -43,7 +43,7 @@ class ChangeImportedContacts extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->contacts),
+            array_map(static fn($x) => $x->typeSerialize(), $this->contacts),
         ];
     }
 }

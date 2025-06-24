@@ -104,7 +104,7 @@ class PasswordState extends TdObject
             'password_hint'                    => $this->passwordHint,
             'has_recovery_email_address'       => $this->hasRecoveryEmailAddress,
             'has_passport_data'                => $this->hasPassportData,
-            'recovery_email_address_code_info' => (isset($this->recoveryEmailAddressCodeInfo) ? $this->recoveryEmailAddressCodeInfo : null),
+            'recovery_email_address_code_info' => $this->recoveryEmailAddressCodeInfo ?? null,
             'login_email_address_pattern'      => $this->loginEmailAddressPattern,
             'pending_reset_date'               => $this->pendingResetDate,
         ];

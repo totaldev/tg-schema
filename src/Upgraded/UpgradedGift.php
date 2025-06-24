@@ -186,14 +186,14 @@ class UpgradedGift extends TdObject
             'number'               => $this->number,
             'total_upgraded_count' => $this->totalUpgradedCount,
             'max_upgraded_count'   => $this->maxUpgradedCount,
-            'owner_id'             => (isset($this->ownerId) ? $this->ownerId : null),
+            'owner_id'             => $this->ownerId ?? null,
             'owner_address'        => $this->ownerAddress,
             'owner_name'           => $this->ownerName,
             'gift_address'         => $this->giftAddress,
             'model'                => $this->model->typeSerialize(),
             'symbol'               => $this->symbol->typeSerialize(),
             'backdrop'             => $this->backdrop->typeSerialize(),
-            'original_details'     => (isset($this->originalDetails) ? $this->originalDetails : null),
+            'original_details'     => $this->originalDetails ?? null,
             'resale_star_count'    => $this->resaleStarCount,
         ];
     }

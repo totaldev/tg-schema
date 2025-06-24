@@ -128,7 +128,7 @@ class Sticker extends TdObject
             'emoji'     => $this->emoji,
             'format'    => $this->format->typeSerialize(),
             'full_type' => $this->fullType->typeSerialize(),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail' => $this->thumbnail ?? null,
             'sticker'   => $this->sticker->typeSerialize(),
         ];
     }

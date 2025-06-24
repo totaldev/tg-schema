@@ -28,7 +28,7 @@ class MessageViewers extends TdObject
     public static function fromArray(array $array): MessageViewers
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['viewers']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['viewers']),
         );
     }
 
@@ -41,7 +41,7 @@ class MessageViewers extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->viewers),
+            array_map(static fn($x) => $x->typeSerialize(), $this->viewers),
         ];
     }
 }

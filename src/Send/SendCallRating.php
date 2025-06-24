@@ -44,7 +44,7 @@ class SendCallRating extends TdFunction
             $array['call_id'],
             $array['rating'],
             $array['comment'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['problems']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['problems']),
         );
     }
 
@@ -75,7 +75,7 @@ class SendCallRating extends TdFunction
             'call_id' => $this->callId,
             'rating'  => $this->rating,
             'comment' => $this->comment,
-            array_map(fn($x) => $x->typeSerialize(), $this->problems),
+            array_map(static fn($x) => $x->typeSerialize(), $this->problems),
         ];
     }
 }

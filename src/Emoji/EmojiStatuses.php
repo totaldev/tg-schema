@@ -28,7 +28,7 @@ class EmojiStatuses extends TdObject
     public static function fromArray(array $array): EmojiStatuses
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['emoji_statuses']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['emoji_statuses']),
         );
     }
 
@@ -41,7 +41,7 @@ class EmojiStatuses extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->emojiStatuses),
+            array_map(static fn($x) => $x->typeSerialize(), $this->emojiStatuses),
         ];
     }
 }

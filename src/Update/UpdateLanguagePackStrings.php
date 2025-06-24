@@ -40,7 +40,7 @@ class UpdateLanguagePackStrings extends Update
         return new static(
             $array['localization_target'],
             $array['language_pack_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['strings']),
         );
     }
 
@@ -65,7 +65,7 @@ class UpdateLanguagePackStrings extends Update
             '@type'               => static::TYPE_NAME,
             'localization_target' => $this->localizationTarget,
             'language_pack_id'    => $this->languagePackId,
-            array_map(fn($x) => $x->typeSerialize(), $this->strings),
+            array_map(static fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 }

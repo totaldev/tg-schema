@@ -65,11 +65,11 @@ class BasicGroupFullInfo extends TdObject
             isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['description'],
             $array['creator_user_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['members']),
             $array['can_hide_members'],
             $array['can_toggle_aggressive_anti_spam'],
             isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
         );
     }
 
@@ -117,14 +117,14 @@ class BasicGroupFullInfo extends TdObject
     {
         return [
             '@type'                           => static::TYPE_NAME,
-            'photo'                           => (isset($this->photo) ? $this->photo : null),
+            'photo'                           => $this->photo ?? null,
             'description'                     => $this->description,
             'creator_user_id'                 => $this->creatorUserId,
-            array_map(fn($x) => $x->typeSerialize(), $this->members),
+            array_map(static fn($x) => $x->typeSerialize(), $this->members),
             'can_hide_members'                => $this->canHideMembers,
             'can_toggle_aggressive_anti_spam' => $this->canToggleAggressiveAntiSpam,
-            'invite_link'                     => (isset($this->inviteLink) ? $this->inviteLink : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->botCommands),
+            'invite_link'                     => $this->inviteLink ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
         ];
     }
 }

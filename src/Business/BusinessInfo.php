@@ -109,14 +109,14 @@ class BusinessInfo extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'location'                  => (isset($this->location) ? $this->location : null),
-            'opening_hours'             => (isset($this->openingHours) ? $this->openingHours : null),
-            'local_opening_hours'       => (isset($this->localOpeningHours) ? $this->localOpeningHours : null),
+            'location'                  => $this->location ?? null,
+            'opening_hours'             => $this->openingHours ?? null,
+            'local_opening_hours'       => $this->localOpeningHours ?? null,
             'next_open_in'              => $this->nextOpenIn,
             'next_close_in'             => $this->nextCloseIn,
-            'greeting_message_settings' => (isset($this->greetingMessageSettings) ? $this->greetingMessageSettings : null),
-            'away_message_settings'     => (isset($this->awayMessageSettings) ? $this->awayMessageSettings : null),
-            'start_page'                => (isset($this->startPage) ? $this->startPage : null),
+            'greeting_message_settings' => $this->greetingMessageSettings ?? null,
+            'away_message_settings'     => $this->awayMessageSettings ?? null,
+            'start_page'                => $this->startPage ?? null,
         ];
     }
 }

@@ -72,7 +72,7 @@ class MessageForwardInfo extends TdObject
             '@type'                            => static::TYPE_NAME,
             'origin'                           => $this->origin->typeSerialize(),
             'date'                             => $this->date,
-            'source'                           => (isset($this->source) ? $this->source : null),
+            'source'                           => $this->source ?? null,
             'public_service_announcement_type' => $this->publicServiceAnnouncementType,
         ];
     }

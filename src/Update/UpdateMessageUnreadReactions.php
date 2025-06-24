@@ -44,7 +44,7 @@ class UpdateMessageUnreadReactions extends Update
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
             $array['unread_reaction_count'],
         );
     }
@@ -75,7 +75,7 @@ class UpdateMessageUnreadReactions extends Update
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'message_id'            => $this->messageId,
-            array_map(fn($x) => $x->typeSerialize(), $this->unreadReactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
             'unread_reaction_count' => $this->unreadReactionCount,
         ];
     }

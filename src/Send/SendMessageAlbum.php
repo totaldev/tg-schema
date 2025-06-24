@@ -52,7 +52,7 @@ class SendMessageAlbum extends TdFunction
             $array['message_thread_id'],
             TdSchemaRegistry::fromArray($array['reply_to']),
             TdSchemaRegistry::fromArray($array['options']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
         );
     }
 
@@ -89,7 +89,7 @@ class SendMessageAlbum extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'reply_to'          => $this->replyTo->typeSerialize(),
             'options'           => $this->options->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

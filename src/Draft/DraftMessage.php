@@ -71,7 +71,7 @@ class DraftMessage extends TdObject
     {
         return [
             '@type'              => static::TYPE_NAME,
-            'reply_to'           => (isset($this->replyTo) ? $this->replyTo : null),
+            'reply_to'           => $this->replyTo ?? null,
             'date'               => $this->date,
             'input_message_text' => $this->inputMessageText->typeSerialize(),
             'effect_id'          => $this->effectId,

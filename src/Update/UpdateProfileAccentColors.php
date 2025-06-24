@@ -36,7 +36,7 @@ class UpdateProfileAccentColors extends Update
     public static function fromArray(array $array): UpdateProfileAccentColors
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['colors']),
             $array['available_accent_color_ids'],
         );
     }
@@ -55,7 +55,7 @@ class UpdateProfileAccentColors extends Update
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->colors),
+            array_map(static fn($x) => $x->typeSerialize(), $this->colors),
             'available_accent_color_ids' => $this->availableAccentColorIds,
         ];
     }

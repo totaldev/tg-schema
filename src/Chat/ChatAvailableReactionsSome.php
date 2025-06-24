@@ -34,7 +34,7 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
     public static function fromArray(array $array): ChatAvailableReactionsSome
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['reactions']),
             $array['max_reaction_count'],
         );
     }
@@ -53,7 +53,7 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
     {
         return [
             '@type'              => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->reactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'max_reaction_count' => $this->maxReactionCount,
         ];
     }

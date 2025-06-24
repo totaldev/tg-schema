@@ -49,7 +49,7 @@ class MessageReaction extends TdObject
             $array['total_count'],
             $array['is_chosen'],
             isset($array['used_sender_id']) ? TdSchemaRegistry::fromArray($array['used_sender_id']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['recent_sender_ids']),
         );
     }
 
@@ -85,8 +85,8 @@ class MessageReaction extends TdObject
             'type'           => $this->type->typeSerialize(),
             'total_count'    => $this->totalCount,
             'is_chosen'      => $this->isChosen,
-            'used_sender_id' => (isset($this->usedSenderId) ? $this->usedSenderId : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->recentSenderIds),
+            'used_sender_id' => $this->usedSenderId ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->recentSenderIds),
         ];
     }
 }

@@ -277,10 +277,10 @@ class UserFullInfo extends TdObject
     {
         return [
             '@type'                                        => static::TYPE_NAME,
-            'personal_photo'                               => (isset($this->personalPhoto) ? $this->personalPhoto : null),
-            'photo'                                        => (isset($this->photo) ? $this->photo : null),
-            'public_photo'                                 => (isset($this->publicPhoto) ? $this->publicPhoto : null),
-            'block_list'                                   => (isset($this->blockList) ? $this->blockList : null),
+            'personal_photo'                               => $this->personalPhoto ?? null,
+            'photo'                                        => $this->photo ?? null,
+            'public_photo'                                 => $this->publicPhoto ?? null,
+            'block_list'                                   => $this->blockList ?? null,
             'can_be_called'                                => $this->canBeCalled,
             'supports_video_calls'                         => $this->supportsVideoCalls,
             'has_private_calls'                            => $this->hasPrivateCalls,
@@ -290,17 +290,17 @@ class UserFullInfo extends TdObject
             'has_sponsored_messages_enabled'               => $this->hasSponsoredMessagesEnabled,
             'need_phone_number_privacy_exception'          => $this->needPhoneNumberPrivacyException,
             'set_chat_background'                          => $this->setChatBackground,
-            'bio'                                          => (isset($this->bio) ? $this->bio : null),
-            'birthdate'                                    => (isset($this->birthdate) ? $this->birthdate : null),
+            'bio'                                          => $this->bio ?? null,
+            'birthdate'                                    => $this->birthdate ?? null,
             'personal_chat_id'                             => $this->personalChatId,
             'gift_count'                                   => $this->giftCount,
             'group_in_common_count'                        => $this->groupInCommonCount,
             'incoming_paid_message_star_count'             => $this->incomingPaidMessageStarCount,
             'outgoing_paid_message_star_count'             => $this->outgoingPaidMessageStarCount,
             'gift_settings'                                => $this->giftSettings->typeSerialize(),
-            'bot_verification'                             => (isset($this->botVerification) ? $this->botVerification : null),
-            'business_info'                                => (isset($this->businessInfo) ? $this->businessInfo : null),
-            'bot_info'                                     => (isset($this->botInfo) ? $this->botInfo : null),
+            'bot_verification'                             => $this->botVerification ?? null,
+            'business_info'                                => $this->businessInfo ?? null,
+            'bot_info'                                     => $this->botInfo ?? null,
         ];
     }
 }

@@ -53,7 +53,7 @@ class StoryAreaTypeLocation extends StoryAreaType
         return [
             '@type'    => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
-            'address'  => (isset($this->address) ? $this->address : null),
+            'address'  => $this->address ?? null,
         ];
     }
 }

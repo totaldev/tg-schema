@@ -64,7 +64,7 @@ class InlineQueryResultVenue extends InlineQueryResult
             '@type'     => static::TYPE_NAME,
             'id'        => $this->id,
             'venue'     => $this->venue->typeSerialize(),
-            'thumbnail' => (isset($this->thumbnail) ? $this->thumbnail : null),
+            'thumbnail' => $this->thumbnail ?? null,
         ];
     }
 }

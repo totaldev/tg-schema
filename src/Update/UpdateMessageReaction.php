@@ -57,8 +57,8 @@ class UpdateMessageReaction extends Update
             $array['message_id'],
             TdSchemaRegistry::fromArray($array['actor_id']),
             $array['date'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['old_reaction_types']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['new_reaction_types']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['old_reaction_types']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['new_reaction_types']),
         );
     }
 
@@ -100,8 +100,8 @@ class UpdateMessageReaction extends Update
             'message_id' => $this->messageId,
             'actor_id'   => $this->actorId->typeSerialize(),
             'date'       => $this->date,
-            array_map(fn($x) => $x->typeSerialize(), $this->oldReactionTypes),
-            array_map(fn($x) => $x->typeSerialize(), $this->newReactionTypes),
+            array_map(static fn($x) => $x->typeSerialize(), $this->oldReactionTypes),
+            array_map(static fn($x) => $x->typeSerialize(), $this->newReactionTypes),
         ];
     }
 }

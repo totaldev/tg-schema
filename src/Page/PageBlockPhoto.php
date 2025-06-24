@@ -61,7 +61,7 @@ class PageBlockPhoto extends PageBlock
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'photo'   => (isset($this->photo) ? $this->photo : null),
+            'photo'   => $this->photo ?? null,
             'caption' => $this->caption->typeSerialize(),
             'url'     => $this->url,
         ];

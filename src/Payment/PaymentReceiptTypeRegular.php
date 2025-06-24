@@ -95,8 +95,8 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
             '@type'                    => static::TYPE_NAME,
             'payment_provider_user_id' => $this->paymentProviderUserId,
             'invoice'                  => $this->invoice->typeSerialize(),
-            'order_info'               => (isset($this->orderInfo) ? $this->orderInfo : null),
-            'shipping_option'          => (isset($this->shippingOption) ? $this->shippingOption : null),
+            'order_info'               => $this->orderInfo ?? null,
+            'shipping_option'          => $this->shippingOption ?? null,
             'credentials_title'        => $this->credentialsTitle,
             'tip_amount'               => $this->tipAmount,
         ];

@@ -81,8 +81,8 @@ class MessageDice extends MessageContent
     {
         return [
             '@type'                          => static::TYPE_NAME,
-            'initial_state'                  => (isset($this->initialState) ? $this->initialState : null),
-            'final_state'                    => (isset($this->finalState) ? $this->finalState : null),
+            'initial_state'                  => $this->initialState ?? null,
+            'final_state'                    => $this->finalState ?? null,
             'emoji'                          => $this->emoji,
             'value'                          => $this->value,
             'success_animation_frame_number' => $this->successAnimationFrameNumber,

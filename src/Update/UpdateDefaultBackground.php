@@ -52,7 +52,7 @@ class UpdateDefaultBackground extends Update
         return [
             '@type'          => static::TYPE_NAME,
             'for_dark_theme' => $this->forDarkTheme,
-            'background'     => (isset($this->background) ? $this->background : null),
+            'background'     => $this->background ?? null,
         ];
     }
 }

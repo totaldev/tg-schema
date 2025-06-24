@@ -37,7 +37,7 @@ class PassportAuthorizationForm extends TdObject
     {
         return new static(
             $array['id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['required_elements']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['required_elements']),
             $array['privacy_policy_url'],
         );
     }
@@ -62,7 +62,7 @@ class PassportAuthorizationForm extends TdObject
         return [
             '@type'              => static::TYPE_NAME,
             'id'                 => $this->id,
-            array_map(fn($x) => $x->typeSerialize(), $this->requiredElements),
+            array_map(static fn($x) => $x->typeSerialize(), $this->requiredElements),
             'privacy_policy_url' => $this->privacyPolicyUrl,
         ];
     }

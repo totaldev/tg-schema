@@ -64,7 +64,7 @@ class ChatBoostFeatures extends TdObject
     public static function fromArray(array $array): ChatBoostFeatures
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['features']),
             $array['min_profile_background_custom_emoji_boost_level'],
             $array['min_background_custom_emoji_boost_level'],
             $array['min_emoji_status_boost_level'],
@@ -131,7 +131,7 @@ class ChatBoostFeatures extends TdObject
     {
         return [
             '@type'                                           => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->features),
+            array_map(static fn($x) => $x->typeSerialize(), $this->features),
             'min_profile_background_custom_emoji_boost_level' => $this->minProfileBackgroundCustomEmojiBoostLevel,
             'min_background_custom_emoji_boost_level'         => $this->minBackgroundCustomEmojiBoostLevel,
             'min_emoji_status_boost_level'                    => $this->minEmojiStatusBoostLevel,

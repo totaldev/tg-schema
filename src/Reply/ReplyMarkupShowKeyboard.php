@@ -50,7 +50,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     public static function fromArray(array $array): ReplyMarkupShowKeyboard
     {
         return new static(
-            array_map(fn($x) => array_map(fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
+            array_map(static fn($x) => array_map(static fn($y) => TdSchemaRegistry::fromArray($y), $x), $array['rows']),
             $array['is_persistent'],
             $array['resize_keyboard'],
             $array['one_time'],
@@ -93,7 +93,7 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            array_map(fn($x) => array_map(fn($y) => $y->typeSerialize(), $x), $this->rows),
+            array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->rows),
             'is_persistent'           => $this->isPersistent,
             'resize_keyboard'         => $this->resizeKeyboard,
             'one_time'                => $this->oneTime,

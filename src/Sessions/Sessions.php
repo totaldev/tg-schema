@@ -33,7 +33,7 @@ class Sessions extends TdObject
     public static function fromArray(array $array): Sessions
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['sessions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['sessions']),
             $array['inactive_session_ttl_days'],
         );
     }
@@ -52,7 +52,7 @@ class Sessions extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->sessions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->sessions),
             'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
         ];
     }

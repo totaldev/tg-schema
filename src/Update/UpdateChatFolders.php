@@ -38,7 +38,7 @@ class UpdateChatFolders extends Update
     public static function fromArray(array $array): UpdateChatFolders
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_folders']),
             $array['main_chat_list_position'],
             $array['are_tags_enabled'],
         );
@@ -63,7 +63,7 @@ class UpdateChatFolders extends Update
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->chatFolders),
+            array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
             'main_chat_list_position' => $this->mainChatListPosition,
             'are_tags_enabled'        => $this->areTagsEnabled,
         ];

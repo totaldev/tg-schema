@@ -60,7 +60,7 @@ class CallStateReady extends CallState
     {
         return new static(
             TdSchemaRegistry::fromArray($array['protocol']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['servers']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['servers']),
             $array['config'],
             $array['encryption_key'],
             $array['emojis'],
@@ -115,7 +115,7 @@ class CallStateReady extends CallState
         return [
             '@type'                   => static::TYPE_NAME,
             'protocol'                => $this->protocol->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->servers),
+            array_map(static fn($x) => $x->typeSerialize(), $this->servers),
             'config'                  => $this->config,
             'encryption_key'          => $this->encryptionKey,
             'emojis'                  => $this->emojis,

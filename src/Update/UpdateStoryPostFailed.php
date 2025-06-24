@@ -65,7 +65,7 @@ class UpdateStoryPostFailed extends Update
             '@type'      => static::TYPE_NAME,
             'story'      => $this->story->typeSerialize(),
             'error'      => $this->error->typeSerialize(),
-            'error_type' => (isset($this->errorType) ? $this->errorType : null),
+            'error_type' => $this->errorType ?? null,
         ];
     }
 }

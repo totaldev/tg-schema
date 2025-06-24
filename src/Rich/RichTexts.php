@@ -29,7 +29,7 @@ class RichTexts extends RichText
     public static function fromArray(array $array): RichTexts
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['texts']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['texts']),
         );
     }
 
@@ -42,7 +42,7 @@ class RichTexts extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->texts),
+            array_map(static fn($x) => $x->typeSerialize(), $this->texts),
         ];
     }
 }

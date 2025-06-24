@@ -34,7 +34,7 @@ class MessageUsersShared extends MessageContent
     public static function fromArray(array $array): MessageUsersShared
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['users']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['users']),
             $array['button_id'],
         );
     }
@@ -53,7 +53,7 @@ class MessageUsersShared extends MessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->users),
+            array_map(static fn($x) => $x->typeSerialize(), $this->users),
             'button_id' => $this->buttonId,
         ];
     }

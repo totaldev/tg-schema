@@ -83,7 +83,7 @@ class ChatPhotoInfo extends TdObject
             '@type'         => static::TYPE_NAME,
             'small'         => $this->small->typeSerialize(),
             'big'           => $this->big->typeSerialize(),
-            'minithumbnail' => (isset($this->minithumbnail) ? $this->minithumbnail : null),
+            'minithumbnail' => $this->minithumbnail ?? null,
             'has_animation' => $this->hasAnimation,
             'is_personal'   => $this->isPersonal,
         ];

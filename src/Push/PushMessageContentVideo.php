@@ -71,7 +71,7 @@ class PushMessageContentVideo extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'video'     => (isset($this->video) ? $this->video : null),
+            'video'     => $this->video ?? null,
             'caption'   => $this->caption,
             'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,

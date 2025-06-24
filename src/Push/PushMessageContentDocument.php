@@ -51,7 +51,7 @@ class PushMessageContentDocument extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'document'  => (isset($this->document) ? $this->document : null),
+            'document'  => $this->document ?? null,
             'is_pinned' => $this->isPinned,
         ];
     }

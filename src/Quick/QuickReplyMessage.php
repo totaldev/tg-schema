@@ -113,13 +113,13 @@ class QuickReplyMessage extends TdObject
         return [
             '@type'               => static::TYPE_NAME,
             'id'                  => $this->id,
-            'sending_state'       => (isset($this->sendingState) ? $this->sendingState : null),
+            'sending_state'       => $this->sendingState ?? null,
             'can_be_edited'       => $this->canBeEdited,
             'reply_to_message_id' => $this->replyToMessageId,
             'via_bot_user_id'     => $this->viaBotUserId,
             'media_album_id'      => $this->mediaAlbumId,
             'content'             => $this->content->typeSerialize(),
-            'reply_markup'        => (isset($this->replyMarkup) ? $this->replyMarkup : null),
+            'reply_markup'        => $this->replyMarkup ?? null,
         ];
     }
 }

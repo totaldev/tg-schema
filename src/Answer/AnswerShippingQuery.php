@@ -38,7 +38,7 @@ class AnswerShippingQuery extends TdFunction
     {
         return new static(
             $array['shipping_query_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['shipping_options']),
             $array['error_message'],
         );
     }
@@ -63,7 +63,7 @@ class AnswerShippingQuery extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'shipping_query_id' => $this->shippingQueryId,
-            array_map(fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
             'error_message'     => $this->errorMessage,
         ];
     }

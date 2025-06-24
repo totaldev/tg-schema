@@ -35,7 +35,7 @@ class UpdateQuickReplyShortcutMessages extends Update
     {
         return new static(
             $array['shortcut_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['messages']),
         );
     }
 
@@ -54,7 +54,7 @@ class UpdateQuickReplyShortcutMessages extends Update
         return [
             '@type'       => static::TYPE_NAME,
             'shortcut_id' => $this->shortcutId,
-            array_map(fn($x) => $x->typeSerialize(), $this->messages),
+            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
         ];
     }
 }

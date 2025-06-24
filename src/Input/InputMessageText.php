@@ -63,7 +63,7 @@ class InputMessageText extends InputMessageContent
         return [
             '@type'                => static::TYPE_NAME,
             'text'                 => $this->text->typeSerialize(),
-            'link_preview_options' => (isset($this->linkPreviewOptions) ? $this->linkPreviewOptions : null),
+            'link_preview_options' => $this->linkPreviewOptions ?? null,
             'clear_draft'          => $this->clearDraft,
         ];
     }

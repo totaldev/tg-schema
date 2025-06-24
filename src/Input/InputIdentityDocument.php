@@ -54,7 +54,7 @@ class InputIdentityDocument extends TdObject
             TdSchemaRegistry::fromArray($array['front_side']),
             TdSchemaRegistry::fromArray($array['reverse_side']),
             TdSchemaRegistry::fromArray($array['selfie']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
         );
     }
 
@@ -97,7 +97,7 @@ class InputIdentityDocument extends TdObject
             'front_side'      => $this->frontSide->typeSerialize(),
             'reverse_side'    => $this->reverseSide->typeSerialize(),
             'selfie'          => $this->selfie->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->translation),
+            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }
 }

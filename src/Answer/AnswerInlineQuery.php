@@ -53,7 +53,7 @@ class AnswerInlineQuery extends TdFunction
             $array['inline_query_id'],
             $array['is_personal'],
             TdSchemaRegistry::fromArray($array['button']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['results']),
             $array['cache_time'],
             $array['next_offset'],
         );
@@ -96,7 +96,7 @@ class AnswerInlineQuery extends TdFunction
             'inline_query_id' => $this->inlineQueryId,
             'is_personal'     => $this->isPersonal,
             'button'          => $this->button->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->results),
+            array_map(static fn($x) => $x->typeSerialize(), $this->results),
             'cache_time'      => $this->cacheTime,
             'next_offset'     => $this->nextOffset,
         ];

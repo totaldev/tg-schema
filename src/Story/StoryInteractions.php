@@ -47,7 +47,7 @@ class StoryInteractions extends TdObject
             $array['total_count'],
             $array['total_forward_count'],
             $array['total_reaction_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['interactions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['interactions']),
             $array['next_offset'],
         );
     }
@@ -84,7 +84,7 @@ class StoryInteractions extends TdObject
             'total_count'          => $this->totalCount,
             'total_forward_count'  => $this->totalForwardCount,
             'total_reaction_count' => $this->totalReactionCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->interactions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->interactions),
             'next_offset'          => $this->nextOffset,
         ];
     }

@@ -51,7 +51,7 @@ class PageBlockAudio extends PageBlock
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'audio'   => (isset($this->audio) ? $this->audio : null),
+            'audio'   => $this->audio ?? null,
             'caption' => $this->caption->typeSerialize(),
         ];
     }

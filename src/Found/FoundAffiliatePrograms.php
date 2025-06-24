@@ -37,7 +37,7 @@ class FoundAffiliatePrograms extends TdObject
     {
         return new static(
             $array['total_count'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['programs']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['programs']),
             $array['next_offset'],
         );
     }
@@ -62,7 +62,7 @@ class FoundAffiliatePrograms extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(fn($x) => $x->typeSerialize(), $this->programs),
+            array_map(static fn($x) => $x->typeSerialize(), $this->programs),
             'next_offset' => $this->nextOffset,
         ];
     }

@@ -44,7 +44,7 @@ class AutosaveSettings extends TdObject
             TdSchemaRegistry::fromArray($array['private_chat_settings']),
             TdSchemaRegistry::fromArray($array['group_settings']),
             TdSchemaRegistry::fromArray($array['channel_settings']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['exceptions']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['exceptions']),
         );
     }
 
@@ -75,7 +75,7 @@ class AutosaveSettings extends TdObject
             'private_chat_settings' => $this->privateChatSettings->typeSerialize(),
             'group_settings'        => $this->groupSettings->typeSerialize(),
             'channel_settings'      => $this->channelSettings->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->exceptions),
+            array_map(static fn($x) => $x->typeSerialize(), $this->exceptions),
         ];
     }
 }

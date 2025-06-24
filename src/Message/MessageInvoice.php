@@ -130,8 +130,8 @@ class MessageInvoice extends MessageContent
             'is_test'               => $this->isTest,
             'need_shipping_address' => $this->needShippingAddress,
             'receipt_message_id'    => $this->receiptMessageId,
-            'paid_media'            => (isset($this->paidMedia) ? $this->paidMedia : null),
-            'paid_media_caption'    => (isset($this->paidMediaCaption) ? $this->paidMediaCaption : null),
+            'paid_media'            => $this->paidMedia ?? null,
+            'paid_media_caption'    => $this->paidMediaCaption ?? null,
         ];
     }
 }

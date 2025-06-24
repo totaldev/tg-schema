@@ -75,7 +75,7 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
             'allow_apple_id'            => $this->allowAppleId,
             'allow_google_id'           => $this->allowGoogleId,
             'code_info'                 => $this->codeInfo->typeSerialize(),
-            'email_address_reset_state' => (isset($this->emailAddressResetState) ? $this->emailAddressResetState : null),
+            'email_address_reset_state' => $this->emailAddressResetState ?? null,
         ];
     }
 }

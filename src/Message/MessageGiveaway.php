@@ -76,7 +76,7 @@ class MessageGiveaway extends MessageContent
             'parameters'   => $this->parameters->typeSerialize(),
             'winner_count' => $this->winnerCount,
             'prize'        => $this->prize->typeSerialize(),
-            'sticker'      => (isset($this->sticker) ? $this->sticker : null),
+            'sticker'      => $this->sticker ?? null,
         ];
     }
 }

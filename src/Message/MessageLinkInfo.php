@@ -92,7 +92,7 @@ class MessageLinkInfo extends TdObject
             'is_public'         => $this->isPublic,
             'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'message'           => (isset($this->message) ? $this->message : null),
+            'message'           => $this->message ?? null,
             'media_timestamp'   => $this->mediaTimestamp,
             'for_album'         => $this->forAlbum,
         ];

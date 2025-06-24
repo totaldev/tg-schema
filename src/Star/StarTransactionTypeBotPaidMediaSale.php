@@ -44,7 +44,7 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
     {
         return new static(
             $array['user_id'],
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['media']),
             $array['payload'],
             isset($array['affiliate']) ? TdSchemaRegistry::fromArray($array['affiliate']) : null,
         );
@@ -75,9 +75,9 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
         return [
             '@type'     => static::TYPE_NAME,
             'user_id'   => $this->userId,
-            array_map(fn($x) => $x->typeSerialize(), $this->media),
+            array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'payload'   => $this->payload,
-            'affiliate' => (isset($this->affiliate) ? $this->affiliate : null),
+            'affiliate' => $this->affiliate ?? null,
         ];
     }
 }

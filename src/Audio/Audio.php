@@ -70,7 +70,7 @@ class Audio extends TdObject
             $array['mime_type'],
             isset($array['album_cover_minithumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_minithumbnail']) : null,
             isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null,
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['external_album_covers']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['external_album_covers']),
             TdSchemaRegistry::fromArray($array['audio']),
         );
     }
@@ -129,9 +129,9 @@ class Audio extends TdObject
             'performer'                 => $this->performer,
             'file_name'                 => $this->fileName,
             'mime_type'                 => $this->mimeType,
-            'album_cover_minithumbnail' => (isset($this->albumCoverMinithumbnail) ? $this->albumCoverMinithumbnail : null),
-            'album_cover_thumbnail'     => (isset($this->albumCoverThumbnail) ? $this->albumCoverThumbnail : null),
-            array_map(fn($x) => $x->typeSerialize(), $this->externalAlbumCovers),
+            'album_cover_minithumbnail' => $this->albumCoverMinithumbnail ?? null,
+            'album_cover_thumbnail'     => $this->albumCoverThumbnail ?? null,
+            array_map(static fn($x) => $x->typeSerialize(), $this->externalAlbumCovers),
             'audio'                     => $this->audio->typeSerialize(),
         ];
     }

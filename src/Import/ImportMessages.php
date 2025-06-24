@@ -39,7 +39,7 @@ class ImportMessages extends TdFunction
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['message_file']),
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['attached_files']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['attached_files']),
         );
     }
 
@@ -64,7 +64,7 @@ class ImportMessages extends TdFunction
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
             'message_file' => $this->messageFile->typeSerialize(),
-            array_map(fn($x) => $x->typeSerialize(), $this->attachedFiles),
+            array_map(static fn($x) => $x->typeSerialize(), $this->attachedFiles),
         ];
     }
 }

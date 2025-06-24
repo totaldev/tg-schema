@@ -70,7 +70,7 @@ class PhoneNumberInfo extends TdObject
     {
         return [
             '@type'                  => static::TYPE_NAME,
-            'country'                => (isset($this->country) ? $this->country : null),
+            'country'                => $this->country ?? null,
             'country_calling_code'   => $this->countryCallingCode,
             'formatted_phone_number' => $this->formattedPhoneNumber,
             'is_anonymous'           => $this->isAnonymous,

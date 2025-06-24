@@ -71,7 +71,7 @@ class PushMessageContentPhoto extends PushMessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'photo'     => (isset($this->photo) ? $this->photo : null),
+            'photo'     => $this->photo ?? null,
             'caption'   => $this->caption,
             'is_secret' => $this->isSecret,
             'is_pinned' => $this->isPinned,

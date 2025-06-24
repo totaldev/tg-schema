@@ -51,7 +51,7 @@ class StoryContentVideo extends StoryContent
         return [
             '@type'             => static::TYPE_NAME,
             'video'             => $this->video->typeSerialize(),
-            'alternative_video' => (isset($this->alternativeVideo) ? $this->alternativeVideo : null),
+            'alternative_video' => $this->alternativeVideo ?? null,
         ];
     }
 }

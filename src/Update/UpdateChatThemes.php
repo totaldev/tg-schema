@@ -30,7 +30,7 @@ class UpdateChatThemes extends Update
     public static function fromArray(array $array): UpdateChatThemes
     {
         return new static(
-            array_map(fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['chat_themes']),
         );
     }
 
@@ -43,7 +43,7 @@ class UpdateChatThemes extends Update
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(fn($x) => $x->typeSerialize(), $this->chatThemes),
+            array_map(static fn($x) => $x->typeSerialize(), $this->chatThemes),
         ];
     }
 }
