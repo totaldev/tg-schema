@@ -27,11 +27,11 @@ class SetEmojiStatus extends TdFunction
     public static function fromArray(array $array): SetEmojiStatus
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['emoji_status']),
+            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
         );
     }
 
-    public function getEmojiStatus(): EmojiStatus
+    public function getEmojiStatus(): ?EmojiStatus
     {
         return $this->emojiStatus;
     }
@@ -40,7 +40,7 @@ class SetEmojiStatus extends TdFunction
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'emoji_status' => $this->emojiStatus->typeSerialize(),
+            'emoji_status' => $this->emojiStatus ?? null,
         ];
     }
 }

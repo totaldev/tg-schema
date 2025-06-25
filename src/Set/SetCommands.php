@@ -38,7 +38,7 @@ class SetCommands extends TdFunction
     public static function fromArray(array $array): SetCommands
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
+            isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null,
             $array['language_code'],
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['commands']),
         );
@@ -54,7 +54,7 @@ class SetCommands extends TdFunction
         return $this->languageCode;
     }
 
-    public function getScope(): BotCommandScope
+    public function getScope(): ?BotCommandScope
     {
         return $this->scope;
     }
@@ -63,7 +63,7 @@ class SetCommands extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'scope'         => $this->scope->typeSerialize(),
+            'scope'         => $this->scope ?? null,
             'language_code' => $this->languageCode,
             array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];

@@ -27,11 +27,11 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     public static function fromArray(array $array): SetDefaultChannelAdministratorRights
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['default_channel_administrator_rights']),
+            isset($array['default_channel_administrator_rights']) ? TdSchemaRegistry::fromArray($array['default_channel_administrator_rights']) : null,
         );
     }
 
-    public function getDefaultChannelAdministratorRights(): ChatAdministratorRights
+    public function getDefaultChannelAdministratorRights(): ?ChatAdministratorRights
     {
         return $this->defaultChannelAdministratorRights;
     }
@@ -40,7 +40,7 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     {
         return [
             '@type'                                => static::TYPE_NAME,
-            'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights->typeSerialize(),
+            'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights ?? null,
         ];
     }
 }

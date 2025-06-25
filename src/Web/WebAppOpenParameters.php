@@ -35,7 +35,7 @@ class WebAppOpenParameters extends TdObject
     public static function fromArray(array $array): WebAppOpenParameters
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['theme']),
+            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
             $array['application_name'],
             TdSchemaRegistry::fromArray($array['mode']),
         );
@@ -51,7 +51,7 @@ class WebAppOpenParameters extends TdObject
         return $this->mode;
     }
 
-    public function getTheme(): ThemeParameters
+    public function getTheme(): ?ThemeParameters
     {
         return $this->theme;
     }
@@ -60,7 +60,7 @@ class WebAppOpenParameters extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            'theme'            => $this->theme->typeSerialize(),
+            'theme'            => $this->theme ?? null,
             'application_name' => $this->applicationName,
             'mode'             => $this->mode->typeSerialize(),
         ];

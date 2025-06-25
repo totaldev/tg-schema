@@ -53,7 +53,7 @@ class SendMessage extends TdFunction
             $array['chat_id'],
             $array['message_thread_id'],
             TdSchemaRegistry::fromArray($array['reply_to']),
-            TdSchemaRegistry::fromArray($array['options']),
+            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             TdSchemaRegistry::fromArray($array['reply_markup']),
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
@@ -74,7 +74,7 @@ class SendMessage extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getOptions(): MessageSendOptions
+    public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
     }
@@ -96,7 +96,7 @@ class SendMessage extends TdFunction
             'chat_id'               => $this->chatId,
             'message_thread_id'     => $this->messageThreadId,
             'reply_to'              => $this->replyTo->typeSerialize(),
-            'options'               => $this->options->typeSerialize(),
+            'options'               => $this->options ?? null,
             'reply_markup'          => $this->replyMarkup->typeSerialize(),
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];

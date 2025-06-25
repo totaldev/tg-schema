@@ -35,7 +35,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
     {
         return new static(
             $array['phone_number'],
-            TdSchemaRegistry::fromArray($array['settings']),
+            isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
         );
     }
 
@@ -44,7 +44,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
         return $this->phoneNumber;
     }
 
-    public function getSettings(): PhoneNumberAuthenticationSettings
+    public function getSettings(): ?PhoneNumberAuthenticationSettings
     {
         return $this->settings;
     }
@@ -54,7 +54,7 @@ class SetAuthenticationPhoneNumber extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'phone_number' => $this->phoneNumber,
-            'settings'     => $this->settings->typeSerialize(),
+            'settings'     => $this->settings ?? null,
         ];
     }
 }

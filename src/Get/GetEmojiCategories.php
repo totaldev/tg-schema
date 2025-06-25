@@ -27,11 +27,11 @@ class GetEmojiCategories extends TdFunction
     public static function fromArray(array $array): GetEmojiCategories
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
         );
     }
 
-    public function getType(): EmojiCategoryType
+    public function getType(): ?EmojiCategoryType
     {
         return $this->type;
     }
@@ -40,7 +40,7 @@ class GetEmojiCategories extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type ?? null,
         ];
     }
 }

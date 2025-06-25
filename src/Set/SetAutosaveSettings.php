@@ -33,7 +33,7 @@ class SetAutosaveSettings extends TdFunction
     {
         return new static(
             TdSchemaRegistry::fromArray($array['scope']),
-            TdSchemaRegistry::fromArray($array['settings']),
+            isset($array['settings']) ? TdSchemaRegistry::fromArray($array['settings']) : null,
         );
     }
 
@@ -42,7 +42,7 @@ class SetAutosaveSettings extends TdFunction
         return $this->scope;
     }
 
-    public function getSettings(): ScopeAutosaveSettings
+    public function getSettings(): ?ScopeAutosaveSettings
     {
         return $this->settings;
     }
@@ -52,7 +52,7 @@ class SetAutosaveSettings extends TdFunction
         return [
             '@type'    => static::TYPE_NAME,
             'scope'    => $this->scope->typeSerialize(),
-            'settings' => $this->settings->typeSerialize(),
+            'settings' => $this->settings ?? null,
         ];
     }
 }

@@ -47,7 +47,7 @@ class SetChatBackground extends TdFunction
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['background']),
-            TdSchemaRegistry::fromArray($array['type']),
+            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
             $array['dark_theme_dimming'],
             $array['only_for_self'],
         );
@@ -73,7 +73,7 @@ class SetChatBackground extends TdFunction
         return $this->onlyForSelf;
     }
 
-    public function getType(): BackgroundType
+    public function getType(): ?BackgroundType
     {
         return $this->type;
     }
@@ -84,7 +84,7 @@ class SetChatBackground extends TdFunction
             '@type'              => static::TYPE_NAME,
             'chat_id'            => $this->chatId,
             'background'         => $this->background->typeSerialize(),
-            'type'               => $this->type->typeSerialize(),
+            'type'               => $this->type ?? null,
             'dark_theme_dimming' => $this->darkThemeDimming,
             'only_for_self'      => $this->onlyForSelf,
         ];

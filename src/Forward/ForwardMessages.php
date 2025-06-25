@@ -58,7 +58,7 @@ class ForwardMessages extends TdFunction
             $array['message_thread_id'],
             $array['from_chat_id'],
             $array['message_ids'],
-            TdSchemaRegistry::fromArray($array['options']),
+            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             $array['send_copy'],
             $array['remove_caption'],
         );
@@ -84,7 +84,7 @@ class ForwardMessages extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getOptions(): MessageSendOptions
+    public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
     }
@@ -107,7 +107,7 @@ class ForwardMessages extends TdFunction
             'message_thread_id' => $this->messageThreadId,
             'from_chat_id'      => $this->fromChatId,
             'message_ids'       => $this->messageIds,
-            'options'           => $this->options->typeSerialize(),
+            'options'           => $this->options ?? null,
             'send_copy'         => $this->sendCopy,
             'remove_caption'    => $this->removeCaption,
         ];

@@ -32,11 +32,11 @@ class SetUserEmojiStatus extends TdFunction
     {
         return new static(
             $array['user_id'],
-            TdSchemaRegistry::fromArray($array['emoji_status']),
+            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
         );
     }
 
-    public function getEmojiStatus(): EmojiStatus
+    public function getEmojiStatus(): ?EmojiStatus
     {
         return $this->emojiStatus;
     }
@@ -51,7 +51,7 @@ class SetUserEmojiStatus extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'user_id'      => $this->userId,
-            'emoji_status' => $this->emojiStatus->typeSerialize(),
+            'emoji_status' => $this->emojiStatus ?? null,
         ];
     }
 }

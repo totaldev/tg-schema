@@ -33,11 +33,11 @@ class GetLinkPreview extends TdFunction
     {
         return new static(
             TdSchemaRegistry::fromArray($array['text']),
-            TdSchemaRegistry::fromArray($array['link_preview_options']),
+            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
         );
     }
 
-    public function getLinkPreviewOptions(): LinkPreviewOptions
+    public function getLinkPreviewOptions(): ?LinkPreviewOptions
     {
         return $this->linkPreviewOptions;
     }
@@ -52,7 +52,7 @@ class GetLinkPreview extends TdFunction
         return [
             '@type'                => static::TYPE_NAME,
             'text'                 => $this->text->typeSerialize(),
-            'link_preview_options' => $this->linkPreviewOptions->typeSerialize(),
+            'link_preview_options' => $this->linkPreviewOptions ?? null,
         ];
     }
 }

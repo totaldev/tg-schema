@@ -31,7 +31,7 @@ class GetCommands extends TdFunction
     public static function fromArray(array $array): GetCommands
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
+            isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null,
             $array['language_code'],
         );
     }
@@ -41,7 +41,7 @@ class GetCommands extends TdFunction
         return $this->languageCode;
     }
 
-    public function getScope(): BotCommandScope
+    public function getScope(): ?BotCommandScope
     {
         return $this->scope;
     }
@@ -50,7 +50,7 @@ class GetCommands extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'scope'         => $this->scope->typeSerialize(),
+            'scope'         => $this->scope ?? null,
             'language_code' => $this->languageCode,
         ];
     }

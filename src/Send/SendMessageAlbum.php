@@ -51,7 +51,7 @@ class SendMessageAlbum extends TdFunction
             $array['chat_id'],
             $array['message_thread_id'],
             TdSchemaRegistry::fromArray($array['reply_to']),
-            TdSchemaRegistry::fromArray($array['options']),
+            isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
         );
     }
@@ -71,7 +71,7 @@ class SendMessageAlbum extends TdFunction
         return $this->messageThreadId;
     }
 
-    public function getOptions(): MessageSendOptions
+    public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
     }
@@ -88,7 +88,7 @@ class SendMessageAlbum extends TdFunction
             'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
             'reply_to'          => $this->replyTo->typeSerialize(),
-            'options'           => $this->options->typeSerialize(),
+            'options'           => $this->options ?? null,
             array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }

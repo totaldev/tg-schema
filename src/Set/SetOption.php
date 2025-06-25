@@ -33,7 +33,7 @@ class SetOption extends TdFunction
     {
         return new static(
             $array['name'],
-            TdSchemaRegistry::fromArray($array['value']),
+            isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null,
         );
     }
 
@@ -42,7 +42,7 @@ class SetOption extends TdFunction
         return $this->name;
     }
 
-    public function getValue(): OptionValue
+    public function getValue(): ?OptionValue
     {
         return $this->value;
     }
@@ -52,7 +52,7 @@ class SetOption extends TdFunction
         return [
             '@type' => static::TYPE_NAME,
             'name'  => $this->name,
-            'value' => $this->value->typeSerialize(),
+            'value' => $this->value ?? null,
         ];
     }
 }
