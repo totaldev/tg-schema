@@ -24,11 +24,11 @@ class SetAuthenticationPhoneNumber extends TdFunction
         /**
          * The phone number of the user, in international format.
          */
-        protected string                            $phoneNumber,
+        protected string                             $phoneNumber,
         /**
          * Settings for the authentication of the user's phone number; pass null to use default settings.
          */
-        protected PhoneNumberAuthenticationSettings $settings
+        protected ?PhoneNumberAuthenticationSettings $settings = null
     ) {}
 
     public static function fromArray(array $array): SetAuthenticationPhoneNumber

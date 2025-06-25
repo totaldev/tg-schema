@@ -19,13 +19,13 @@ class DeleteCommands extends TdFunction
 
     public function __construct(
         /**
-         * The scope to which the commands are relevant; pass null to delete commands in the default bot command scope.
-         */
-        protected BotCommandScope $scope,
-        /**
          * A two-letter ISO 639-1 language code or an empty string.
          */
-        protected string          $languageCode
+        protected string           $languageCode,
+        /**
+         * The scope to which the commands are relevant; pass null to delete commands in the default bot command scope.
+         */
+        protected ?BotCommandScope $scope = null
     ) {}
 
     public static function fromArray(array $array): DeleteCommands

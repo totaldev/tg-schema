@@ -22,33 +22,33 @@ class ForwardMessages extends TdFunction
         /**
          * Identifier of the chat to which to forward messages.
          */
-        protected int                $chatId,
+        protected int                 $chatId,
         /**
          * If not 0, the message thread identifier in which the message will be sent; for forum threads only.
          */
-        protected int                $messageThreadId,
+        protected int                 $messageThreadId,
         /**
          * Identifier of the chat from which to forward messages.
          */
-        protected int                $fromChatId,
+        protected int                 $fromChatId,
         /**
          * Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded.
          *
          * @var int[]
          */
-        protected array              $messageIds,
-        /**
-         * Options to be used to send the messages; pass null to use default options.
-         */
-        protected MessageSendOptions $options,
+        protected array               $messageIds,
         /**
          * Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local. Use messageProperties.can_be_copied and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable.
          */
-        protected bool               $sendCopy,
+        protected bool                $sendCopy,
         /**
          * Pass true to remove media captions of message copies. Ignored if send_copy is false.
          */
-        protected bool               $removeCaption,
+        protected bool                $removeCaption,
+        /**
+         * Options to be used to send the messages; pass null to use default options.
+         */
+        protected ?MessageSendOptions $options = null,
     ) {}
 
     public static function fromArray(array $array): ForwardMessages

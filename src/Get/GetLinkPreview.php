@@ -22,11 +22,11 @@ class GetLinkPreview extends TdFunction
         /**
          * Message text with formatting.
          */
-        protected FormattedText      $text,
+        protected FormattedText       $text,
         /**
          * Options to be used for generation of the link preview; pass null to use default link preview options.
          */
-        protected LinkPreviewOptions $linkPreviewOptions
+        protected ?LinkPreviewOptions $linkPreviewOptions = null
     ) {}
 
     public static function fromArray(array $array): GetLinkPreview

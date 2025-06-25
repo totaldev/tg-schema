@@ -32,10 +32,6 @@ class SendInlineQueryResultMessage extends TdFunction
          */
         protected InputMessageReplyTo $replyTo,
         /**
-         * Options to be used to send the message; pass null to use default options.
-         */
-        protected MessageSendOptions  $options,
-        /**
          * Identifier of the inline query.
          */
         protected int                 $queryId,
@@ -47,6 +43,10 @@ class SendInlineQueryResultMessage extends TdFunction
          * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
          */
         protected bool                $hideViaBot,
+        /**
+         * Options to be used to send the message; pass null to use default options.
+         */
+        protected ?MessageSendOptions $options = null,
     ) {}
 
     public static function fromArray(array $array): SendInlineQueryResultMessage

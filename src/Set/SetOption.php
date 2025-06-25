@@ -22,11 +22,11 @@ class SetOption extends TdFunction
         /**
          * The name of the option.
          */
-        protected string      $name,
+        protected string       $name,
         /**
          * The new value of the option; pass null to reset option value to a default value.
          */
-        protected OptionValue $value
+        protected ?OptionValue $value = null
     ) {}
 
     public static function fromArray(array $array): SetOption

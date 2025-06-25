@@ -21,7 +21,7 @@ class SetDefaultChannelAdministratorRights extends TdFunction
         /**
          * Default administrator rights for adding the bot to channels; pass null to remove default rights.
          */
-        protected ChatAdministratorRights $defaultChannelAdministratorRights
+        protected ?ChatAdministratorRights $defaultChannelAdministratorRights = null
     ) {}
 
     public static function fromArray(array $array): SetDefaultChannelAdministratorRights

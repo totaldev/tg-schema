@@ -21,7 +21,7 @@ class SetDefaultGroupAdministratorRights extends TdFunction
         /**
          * Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights.
          */
-        protected ChatAdministratorRights $defaultGroupAdministratorRights
+        protected ?ChatAdministratorRights $defaultGroupAdministratorRights = null
     ) {}
 
     public static function fromArray(array $array): SetDefaultGroupAdministratorRights

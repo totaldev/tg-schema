@@ -21,7 +21,7 @@ class GetEmojiCategories extends TdFunction
         /**
          * Type of emoji categories to return; pass null to get default emoji categories.
          */
-        protected EmojiCategoryType $type
+        protected ?EmojiCategoryType $type = null
     ) {}
 
     public static function fromArray(array $array): GetEmojiCategories

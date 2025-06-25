@@ -22,11 +22,11 @@ class SetAutosaveSettings extends TdFunction
         /**
          * Autosave settings scope.
          */
-        protected AutosaveSettingsScope $scope,
+        protected AutosaveSettingsScope  $scope,
         /**
          * New autosave settings for the scope; pass null to set autosave settings to default.
          */
-        protected ScopeAutosaveSettings $settings
+        protected ?ScopeAutosaveSettings $settings = null
     ) {}
 
     public static function fromArray(array $array): SetAutosaveSettings

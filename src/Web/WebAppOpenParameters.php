@@ -19,17 +19,17 @@ class WebAppOpenParameters extends TdObject
 
     public function __construct(
         /**
-         * Preferred Web App theme; pass null to use the default theme.
-         */
-        protected ThemeParameters $theme,
-        /**
          * Short name of the current application; 0-64 English letters, digits, and underscores.
          */
-        protected string          $applicationName,
+        protected string           $applicationName,
         /**
          * The mode in which the Web App is opened; pass null to open in webAppOpenModeFullSize.
          */
-        protected WebAppOpenMode  $mode
+        protected WebAppOpenMode   $mode,
+        /**
+         * Preferred Web App theme; pass null to use the default theme.
+         */
+        protected ?ThemeParameters $theme = null
     ) {}
 
     public static function fromArray(array $array): WebAppOpenParameters

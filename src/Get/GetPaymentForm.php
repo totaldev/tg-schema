@@ -23,11 +23,11 @@ class GetPaymentForm extends TdFunction
         /**
          * The invoice.
          */
-        protected InputInvoice    $inputInvoice,
+        protected InputInvoice     $inputInvoice,
         /**
          * Preferred payment form theme; pass null to use the default theme.
          */
-        protected ThemeParameters $theme
+        protected ?ThemeParameters $theme = null
     ) {}
 
     public static function fromArray(array $array): GetPaymentForm

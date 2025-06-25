@@ -34,10 +34,6 @@ class SendMessage extends TdFunction
          */
         protected InputMessageReplyTo $replyTo,
         /**
-         * Options to be used to send the message; pass null to use default options.
-         */
-        protected MessageSendOptions  $options,
-        /**
          * Markup for replying to the message; pass null if none; for bots only.
          */
         protected ReplyMarkup         $replyMarkup,
@@ -45,6 +41,10 @@ class SendMessage extends TdFunction
          * The content of the message to be sent.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * Options to be used to send the message; pass null to use default options.
+         */
+        protected ?MessageSendOptions $options = null,
     ) {}
 
     public static function fromArray(array $array): SendMessage

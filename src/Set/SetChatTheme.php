@@ -23,7 +23,7 @@ class SetChatTheme extends TdFunction
         /**
          * Name of the new chat theme; pass an empty string to return the default theme.
          */
-        protected string $themeName
+        protected string $themeName = ''
     ) {}
 
     public static function fromArray(array $array): SetChatTheme

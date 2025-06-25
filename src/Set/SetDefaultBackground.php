@@ -24,13 +24,13 @@ class SetDefaultBackground extends TdFunction
          */
         protected InputBackground $background,
         /**
-         * Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported.
-         */
-        protected BackgroundType  $type,
-        /**
          * Pass true if the background is set for a dark theme.
          */
-        protected bool            $forDarkTheme
+        protected bool            $forDarkTheme,
+        /**
+         * Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported.
+         */
+        protected ?BackgroundType $type = null
     ) {}
 
     public static function fromArray(array $array): SetDefaultBackground

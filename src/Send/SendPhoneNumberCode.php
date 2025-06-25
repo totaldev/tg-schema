@@ -22,15 +22,15 @@ class SendPhoneNumberCode extends TdFunction
         /**
          * The phone number, in international format.
          */
-        protected string                            $phoneNumber,
-        /**
-         * Settings for the authentication of the user's phone number; pass null to use default settings.
-         */
-        protected PhoneNumberAuthenticationSettings $settings,
+        protected string                             $phoneNumber,
         /**
          * Type of the request for which the code is sent.
          */
-        protected PhoneNumberCodeType               $type,
+        protected PhoneNumberCodeType                $type,
+        /**
+         * Settings for the authentication of the user's phone number; pass null to use default settings.
+         */
+        protected ?PhoneNumberAuthenticationSettings $settings = null,
     ) {}
 
     public static function fromArray(array $array): SendPhoneNumberCode

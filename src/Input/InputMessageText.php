@@ -23,13 +23,13 @@ class InputMessageText extends InputMessageContent
          */
         protected FormattedText       $text,
         /**
-         * Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options.
-         */
-        protected ?LinkPreviewOptions $linkPreviewOptions,
-        /**
          * True, if a chat message draft must be deleted.
          */
-        protected bool                $clearDraft
+        protected bool                $clearDraft,
+        /**
+         * Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options.
+         */
+        protected ?LinkPreviewOptions $linkPreviewOptions = null
     ) {
         parent::__construct();
     }
