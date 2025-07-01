@@ -74,7 +74,7 @@ class PageBlockTable extends PageBlock
         return [
             '@type'       => static::TYPE_NAME,
             'caption'     => $this->caption->typeSerialize(),
-            array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->cells),
+            'cells'       => array_map(static fn($x) => array_map(static fn($y) => $y->typeSerialize(), $x), $this->cells),
             'is_bordered' => $this->isBordered,
             'is_striped'  => $this->isStriped,
         ];

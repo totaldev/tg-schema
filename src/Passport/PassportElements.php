@@ -40,8 +40,8 @@ class PassportElements extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->elements),
+            '@type'    => static::TYPE_NAME,
+            'elements' => array_map(static fn($x) => $x->typeSerialize(), $this->elements),
         ];
     }
 }

@@ -120,11 +120,11 @@ class BasicGroupFullInfo extends TdObject
             'photo'                           => $this->photo ?? null,
             'description'                     => $this->description,
             'creator_user_id'                 => $this->creatorUserId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->members),
+            'members'                         => array_map(static fn($x) => $x->typeSerialize(), $this->members),
             'can_hide_members'                => $this->canHideMembers,
             'can_toggle_aggressive_anti_spam' => $this->canToggleAggressiveAntiSpam,
             'invite_link'                     => $this->inviteLink ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
+            'bot_commands'                    => array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
         ];
     }
 }

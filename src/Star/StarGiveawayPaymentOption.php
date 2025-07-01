@@ -116,7 +116,7 @@ class StarGiveawayPaymentOption extends TdObject
             'star_count'         => $this->starCount,
             'store_product_id'   => $this->storeProductId,
             'yearly_boost_count' => $this->yearlyBoostCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->winnerOptions),
+            'winner_options'     => array_map(static fn($x) => $x->typeSerialize(), $this->winnerOptions),
             'is_default'         => $this->isDefault,
             'is_additional'      => $this->isAdditional,
         ];

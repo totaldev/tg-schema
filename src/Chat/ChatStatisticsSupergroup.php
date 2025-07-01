@@ -212,9 +212,9 @@ class ChatStatisticsSupergroup extends ChatStatistics
             'action_graph'          => $this->actionGraph->typeSerialize(),
             'day_graph'             => $this->dayGraph->typeSerialize(),
             'week_graph'            => $this->weekGraph->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->topSenders),
-            array_map(static fn($x) => $x->typeSerialize(), $this->topAdministrators),
-            array_map(static fn($x) => $x->typeSerialize(), $this->topInviters),
+            'top_senders'           => array_map(static fn($x) => $x->typeSerialize(), $this->topSenders),
+            'top_administrators'    => array_map(static fn($x) => $x->typeSerialize(), $this->topAdministrators),
+            'top_inviters'          => array_map(static fn($x) => $x->typeSerialize(), $this->topInviters),
         ];
     }
 }

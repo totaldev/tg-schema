@@ -52,7 +52,7 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     {
         return [
             '@type'   => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'media'   => array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'caption' => $this->caption,
         ];
     }

@@ -52,7 +52,7 @@ class BotCommands extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
+            'commands'    => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];
     }
 }

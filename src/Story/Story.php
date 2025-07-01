@@ -296,7 +296,7 @@ class Story extends TdObject
             'chosen_reaction_type'              => $this->chosenReactionType ?? null,
             'privacy_settings'                  => $this->privacySettings->typeSerialize(),
             'content'                           => $this->content->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->areas),
+            'areas'                             => array_map(static fn($x) => $x->typeSerialize(), $this->areas),
             'caption'                           => $this->caption->typeSerialize(),
         ];
     }

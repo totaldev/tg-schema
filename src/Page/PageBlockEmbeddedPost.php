@@ -97,7 +97,7 @@ class PageBlockEmbeddedPost extends PageBlock
             'author'       => $this->author,
             'author_photo' => $this->authorPhoto ?? null,
             'date'         => $this->date,
-            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'page_blocks'  => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'caption'      => $this->caption->typeSerialize(),
         ];
     }

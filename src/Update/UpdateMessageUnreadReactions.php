@@ -75,7 +75,7 @@ class UpdateMessageUnreadReactions extends Update
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'message_id'            => $this->messageId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
+            'unread_reactions'      => array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
             'unread_reaction_count' => $this->unreadReactionCount,
         ];
     }

@@ -40,8 +40,8 @@ class FailedToAddMembers extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->failedToAddMembers),
+            '@type'                 => static::TYPE_NAME,
+            'failed_to_add_members' => array_map(static fn($x) => $x->typeSerialize(), $this->failedToAddMembers),
         ];
     }
 }

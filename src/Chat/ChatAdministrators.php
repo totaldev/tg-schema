@@ -40,8 +40,8 @@ class ChatAdministrators extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->administrators),
+            '@type'          => static::TYPE_NAME,
+            'administrators' => array_map(static fn($x) => $x->typeSerialize(), $this->administrators),
         ];
     }
 }

@@ -131,7 +131,7 @@ class Audio extends TdObject
             'mime_type'                 => $this->mimeType,
             'album_cover_minithumbnail' => $this->albumCoverMinithumbnail ?? null,
             'album_cover_thumbnail'     => $this->albumCoverThumbnail ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->externalAlbumCovers),
+            'external_album_covers'     => array_map(static fn($x) => $x->typeSerialize(), $this->externalAlbumCovers),
             'audio'                     => $this->audio->typeSerialize(),
         ];
     }

@@ -108,7 +108,7 @@ class CreateNewStickerSet extends TdFunction
             'name'             => $this->name,
             'sticker_type'     => $this->stickerType->typeSerialize(),
             'needs_repainting' => $this->needsRepainting,
-            array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            'stickers'         => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
             'source'           => $this->source,
         ];
     }

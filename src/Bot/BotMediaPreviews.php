@@ -40,8 +40,8 @@ class BotMediaPreviews extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->previews),
+            '@type'    => static::TYPE_NAME,
+            'previews' => array_map(static fn($x) => $x->typeSerialize(), $this->previews),
         ];
     }
 }

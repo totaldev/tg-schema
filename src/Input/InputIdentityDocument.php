@@ -97,7 +97,7 @@ class InputIdentityDocument extends TdObject
             'front_side'      => $this->frontSide->typeSerialize(),
             'reverse_side'    => $this->reverseSide->typeSerialize(),
             'selfie'          => $this->selfie->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            'translation'     => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }
 }

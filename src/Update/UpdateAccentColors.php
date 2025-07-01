@@ -55,7 +55,7 @@ class UpdateAccentColors extends Update
     {
         return [
             '@type'                      => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->colors),
+            'colors'                     => array_map(static fn($x) => $x->typeSerialize(), $this->colors),
             'available_accent_color_ids' => $this->availableAccentColorIds,
         ];
     }

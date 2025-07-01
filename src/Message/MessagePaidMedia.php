@@ -75,7 +75,7 @@ class MessagePaidMedia extends MessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'star_count'               => $this->starCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'media'                    => array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];

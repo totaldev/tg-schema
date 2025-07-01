@@ -54,7 +54,7 @@ class SendPassportAuthorizationForm extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'authorization_form_id' => $this->authorizationFormId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->types),
+            'types'                 => array_map(static fn($x) => $x->typeSerialize(), $this->types),
         ];
     }
 }

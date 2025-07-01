@@ -73,7 +73,7 @@ class InlineQueryResults extends TdObject
             '@type'           => static::TYPE_NAME,
             'inline_query_id' => $this->inlineQueryId,
             'button'          => $this->button ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->results),
+            'results'         => array_map(static fn($x) => $x->typeSerialize(), $this->results),
             'next_offset'     => $this->nextOffset,
         ];
     }

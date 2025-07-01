@@ -40,8 +40,8 @@ class StarPaymentOptions extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->options),
+            '@type'   => static::TYPE_NAME,
+            'options' => array_map(static fn($x) => $x->typeSerialize(), $this->options),
         ];
     }
 }

@@ -84,7 +84,7 @@ class StoryInteractions extends TdObject
             'total_count'          => $this->totalCount,
             'total_forward_count'  => $this->totalForwardCount,
             'total_reaction_count' => $this->totalReactionCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->interactions),
+            'interactions'         => array_map(static fn($x) => $x->typeSerialize(), $this->interactions),
             'next_offset'          => $this->nextOffset,
         ];
     }

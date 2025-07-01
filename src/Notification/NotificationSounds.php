@@ -40,8 +40,8 @@ class NotificationSounds extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->notificationSounds),
+            '@type'               => static::TYPE_NAME,
+            'notification_sounds' => array_map(static fn($x) => $x->typeSerialize(), $this->notificationSounds),
         ];
     }
 }

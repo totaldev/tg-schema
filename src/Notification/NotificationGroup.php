@@ -80,12 +80,12 @@ class NotificationGroup extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'id'          => $this->id,
-            'type'        => $this->type->typeSerialize(),
-            'chat_id'     => $this->chatId,
-            'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->notifications),
+            '@type'         => static::TYPE_NAME,
+            'id'            => $this->id,
+            'type'          => $this->type->typeSerialize(),
+            'chat_id'       => $this->chatId,
+            'total_count'   => $this->totalCount,
+            'notifications' => array_map(static fn($x) => $x->typeSerialize(), $this->notifications),
         ];
     }
 }

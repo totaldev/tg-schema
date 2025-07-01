@@ -42,8 +42,8 @@ class LinkPreviewTypeStickerSet extends LinkPreviewType
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            '@type'    => static::TYPE_NAME,
+            'stickers' => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
         ];
     }
 }

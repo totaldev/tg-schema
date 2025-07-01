@@ -40,8 +40,8 @@ class RecommendedChatFolders extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
+            '@type'        => static::TYPE_NAME,
+            'chat_folders' => array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
         ];
     }
 }

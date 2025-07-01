@@ -40,8 +40,8 @@ class GameHighScores extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->scores),
+            '@type'  => static::TYPE_NAME,
+            'scores' => array_map(static fn($x) => $x->typeSerialize(), $this->scores),
         ];
     }
 }

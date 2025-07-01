@@ -82,7 +82,7 @@ class ForumTopics extends TdObject
         return [
             '@type'                         => static::TYPE_NAME,
             'total_count'                   => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->topics),
+            'topics'                        => array_map(static fn($x) => $x->typeSerialize(), $this->topics),
             'next_offset_date'              => $this->nextOffsetDate,
             'next_offset_message_id'        => $this->nextOffsetMessageId,
             'next_offset_message_thread_id' => $this->nextOffsetMessageThreadId,

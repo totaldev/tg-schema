@@ -96,7 +96,7 @@ class AnswerInlineQuery extends TdFunction
             'inline_query_id' => $this->inlineQueryId,
             'is_personal'     => $this->isPersonal,
             'button'          => $this->button->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->results),
+            'results'         => array_map(static fn($x) => $x->typeSerialize(), $this->results),
             'cache_time'      => $this->cacheTime,
             'next_offset'     => $this->nextOffset,
         ];

@@ -62,7 +62,7 @@ class PassportAuthorizationForm extends TdObject
         return [
             '@type'              => static::TYPE_NAME,
             'id'                 => $this->id,
-            array_map(static fn($x) => $x->typeSerialize(), $this->requiredElements),
+            'required_elements'  => array_map(static fn($x) => $x->typeSerialize(), $this->requiredElements),
             'privacy_policy_url' => $this->privacyPolicyUrl,
         ];
     }

@@ -63,7 +63,7 @@ class FoundMessages extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'    => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
             'next_offset' => $this->nextOffset,
         ];
     }

@@ -67,7 +67,7 @@ class UpdateChatDraftMessage extends Update
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
             'draft_message' => $this->draftMessage ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->positions),
+            'positions'     => array_map(static fn($x) => $x->typeSerialize(), $this->positions),
         ];
     }
 }

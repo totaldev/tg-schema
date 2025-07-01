@@ -52,7 +52,7 @@ class NetworkStatistics extends TdObject
         return [
             '@type'      => static::TYPE_NAME,
             'since_date' => $this->sinceDate,
-            array_map(static fn($x) => $x->typeSerialize(), $this->entries),
+            'entries'    => array_map(static fn($x) => $x->typeSerialize(), $this->entries),
         ];
     }
 }

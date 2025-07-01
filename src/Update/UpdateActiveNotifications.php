@@ -43,8 +43,8 @@ class UpdateActiveNotifications extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->groups),
+            '@type'  => static::TYPE_NAME,
+            'groups' => array_map(static fn($x) => $x->typeSerialize(), $this->groups),
         ];
     }
 }

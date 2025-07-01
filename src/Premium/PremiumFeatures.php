@@ -64,8 +64,8 @@ class PremiumFeatures extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->features),
-            array_map(static fn($x) => $x->typeSerialize(), $this->limits),
+            'features'     => array_map(static fn($x) => $x->typeSerialize(), $this->features),
+            'limits'       => array_map(static fn($x) => $x->typeSerialize(), $this->limits),
             'payment_link' => $this->paymentLink ?? null,
         ];
     }

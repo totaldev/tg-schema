@@ -197,7 +197,7 @@ class StickerSetInfo extends TdObject
             'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
             'is_viewed'                       => $this->isViewed,
             'size'                            => $this->size,
-            array_map(static fn($x) => $x->typeSerialize(), $this->covers),
+            'covers'                          => array_map(static fn($x) => $x->typeSerialize(), $this->covers),
         ];
     }
 }

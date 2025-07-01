@@ -81,12 +81,12 @@ class MessageReaction extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
-            'type'           => $this->type->typeSerialize(),
-            'total_count'    => $this->totalCount,
-            'is_chosen'      => $this->isChosen,
-            'used_sender_id' => $this->usedSenderId ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->recentSenderIds),
+            '@type'             => static::TYPE_NAME,
+            'type'              => $this->type->typeSerialize(),
+            'total_count'       => $this->totalCount,
+            'is_chosen'         => $this->isChosen,
+            'used_sender_id'    => $this->usedSenderId ?? null,
+            'recent_sender_ids' => array_map(static fn($x) => $x->typeSerialize(), $this->recentSenderIds),
         ];
     }
 }

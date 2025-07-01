@@ -40,8 +40,8 @@ class ChatLists extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->chatLists),
+            '@type'      => static::TYPE_NAME,
+            'chat_lists' => array_map(static fn($x) => $x->typeSerialize(), $this->chatLists),
         ];
     }
 }

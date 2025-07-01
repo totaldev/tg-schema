@@ -41,7 +41,7 @@ class BusinessChatLinks extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->links),
+            'links' => array_map(static fn($x) => $x->typeSerialize(), $this->links),
         ];
     }
 }

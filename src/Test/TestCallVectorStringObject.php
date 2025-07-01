@@ -41,7 +41,7 @@ class TestCallVectorStringObject extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->x),
+            'x'     => array_map(static fn($x) => $x->typeSerialize(), $this->x),
         ];
     }
 }

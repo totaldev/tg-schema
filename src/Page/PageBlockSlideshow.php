@@ -51,9 +51,9 @@ class PageBlockSlideshow extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
-            'caption' => $this->caption->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'caption'     => $this->caption->typeSerialize(),
         ];
     }
 }

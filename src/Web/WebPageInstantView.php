@@ -93,7 +93,7 @@ class WebPageInstantView extends TdObject
     {
         return [
             '@type'         => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'page_blocks'   => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
             'view_count'    => $this->viewCount,
             'version'       => $this->version,
             'is_rtl'        => $this->isRtl,

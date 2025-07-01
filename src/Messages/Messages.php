@@ -53,7 +53,7 @@ class Messages extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null,
+            'messages'    => (isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null),
         ];
     }
 }

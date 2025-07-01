@@ -40,8 +40,8 @@ class LanguagePackStrings extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->strings),
+            '@type'   => static::TYPE_NAME,
+            'strings' => array_map(static fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 }

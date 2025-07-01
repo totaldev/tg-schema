@@ -41,8 +41,8 @@ class Updates extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->updates),
+            '@type'   => static::TYPE_NAME,
+            'updates' => array_map(static fn($x) => $x->typeSerialize(), $this->updates),
         ];
     }
 }

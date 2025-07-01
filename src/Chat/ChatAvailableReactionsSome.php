@@ -53,7 +53,7 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
     {
         return [
             '@type'              => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
+            'reactions'          => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'max_reaction_count' => $this->maxReactionCount,
         ];
     }

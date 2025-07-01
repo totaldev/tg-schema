@@ -50,9 +50,9 @@ class BankCardInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            array_map(static fn($x) => $x->typeSerialize(), $this->actions),
+            '@type'   => static::TYPE_NAME,
+            'title'   => $this->title,
+            'actions' => array_map(static fn($x) => $x->typeSerialize(), $this->actions),
         ];
     }
 }

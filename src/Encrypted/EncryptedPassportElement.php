@@ -130,8 +130,8 @@ class EncryptedPassportElement extends TdObject
             'front_side'   => $this->frontSide->typeSerialize(),
             'reverse_side' => $this->reverseSide ?? null,
             'selfie'       => $this->selfie ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
-            array_map(static fn($x) => $x->typeSerialize(), $this->files),
+            'translation'  => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            'files'        => array_map(static fn($x) => $x->typeSerialize(), $this->files),
             'value'        => $this->value,
             'hash'         => $this->hash,
         ];

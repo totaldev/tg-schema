@@ -50,9 +50,9 @@ class ChatRevenueTransactions extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
+            '@type'        => static::TYPE_NAME,
+            'total_count'  => $this->totalCount,
+            'transactions' => array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
         ];
     }
 }

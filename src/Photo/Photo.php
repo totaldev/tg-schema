@@ -64,7 +64,7 @@ class Photo extends TdObject
             '@type'         => static::TYPE_NAME,
             'has_stickers'  => $this->hasStickers,
             'minithumbnail' => $this->minithumbnail ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
+            'sizes'         => array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
         ];
     }
 }

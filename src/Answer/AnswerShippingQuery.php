@@ -63,7 +63,7 @@ class AnswerShippingQuery extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'shipping_query_id' => $this->shippingQueryId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            'shipping_options'  => array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
             'error_message'     => $this->errorMessage,
         ];
     }

@@ -50,9 +50,9 @@ class PageBlockListItem extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'label' => $this->label,
-            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            '@type'       => static::TYPE_NAME,
+            'label'       => $this->label,
+            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
         ];
     }
 }

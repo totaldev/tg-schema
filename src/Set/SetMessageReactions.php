@@ -71,11 +71,11 @@ class SetMessageReactions extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->reactionTypes),
-            'is_big'     => $this->isBig,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'message_id'     => $this->messageId,
+            'reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->reactionTypes),
+            'is_big'         => $this->isBig,
         ];
     }
 }

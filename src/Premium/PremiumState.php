@@ -76,11 +76,11 @@ class PremiumState extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'state' => $this->state->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->paymentOptions),
-            array_map(static fn($x) => $x->typeSerialize(), $this->animations),
-            array_map(static fn($x) => $x->typeSerialize(), $this->businessAnimations),
+            '@type'               => static::TYPE_NAME,
+            'state'               => $this->state->typeSerialize(),
+            'payment_options'     => array_map(static fn($x) => $x->typeSerialize(), $this->paymentOptions),
+            'animations'          => array_map(static fn($x) => $x->typeSerialize(), $this->animations),
+            'business_animations' => array_map(static fn($x) => $x->typeSerialize(), $this->businessAnimations),
         ];
     }
 }

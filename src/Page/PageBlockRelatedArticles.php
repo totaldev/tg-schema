@@ -52,9 +52,9 @@ class PageBlockRelatedArticles extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type'  => static::TYPE_NAME,
-            'header' => $this->header->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->articles),
+            '@type'    => static::TYPE_NAME,
+            'header'   => $this->header->typeSerialize(),
+            'articles' => array_map(static fn($x) => $x->typeSerialize(), $this->articles),
         ];
     }
 }

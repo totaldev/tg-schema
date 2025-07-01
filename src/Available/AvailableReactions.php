@@ -96,9 +96,9 @@ class AvailableReactions extends TdObject
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->topReactions),
-            array_map(static fn($x) => $x->typeSerialize(), $this->recentReactions),
-            array_map(static fn($x) => $x->typeSerialize(), $this->popularReactions),
+            'top_reactions'         => array_map(static fn($x) => $x->typeSerialize(), $this->topReactions),
+            'recent_reactions'      => array_map(static fn($x) => $x->typeSerialize(), $this->recentReactions),
+            'popular_reactions'     => array_map(static fn($x) => $x->typeSerialize(), $this->popularReactions),
             'allow_custom_emoji'    => $this->allowCustomEmoji,
             'are_tags'              => $this->areTags,
             'unavailability_reason' => $this->unavailabilityReason ?? null,

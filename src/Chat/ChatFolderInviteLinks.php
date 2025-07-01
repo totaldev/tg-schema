@@ -40,8 +40,8 @@ class ChatFolderInviteLinks extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinks),
+            '@type'        => static::TYPE_NAME,
+            'invite_links' => array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinks),
         ];
     }
 }

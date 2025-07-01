@@ -185,7 +185,7 @@ class Invoice extends TdObject
         return [
             '@type'                                  => static::TYPE_NAME,
             'currency'                               => $this->currency,
-            array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
+            'price_parts'                            => array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
             'subscription_period'                    => $this->subscriptionPeriod,
             'max_tip_amount'                         => $this->maxTipAmount,
             'suggested_tip_amounts'                  => $this->suggestedTipAmounts,

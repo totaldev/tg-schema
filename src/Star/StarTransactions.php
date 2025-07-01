@@ -60,10 +60,10 @@ class StarTransactions extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'star_amount' => $this->starAmount->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
-            'next_offset' => $this->nextOffset,
+            '@type'        => static::TYPE_NAME,
+            'star_amount'  => $this->starAmount->typeSerialize(),
+            'transactions' => array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
+            'next_offset'  => $this->nextOffset,
         ];
     }
 }

@@ -54,9 +54,9 @@ class UpdateSuggestedActions extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->addedActions),
-            array_map(static fn($x) => $x->typeSerialize(), $this->removedActions),
+            '@type'           => static::TYPE_NAME,
+            'added_actions'   => array_map(static fn($x) => $x->typeSerialize(), $this->addedActions),
+            'removed_actions' => array_map(static fn($x) => $x->typeSerialize(), $this->removedActions),
         ];
     }
 }

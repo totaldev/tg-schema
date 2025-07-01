@@ -41,7 +41,7 @@ class TMeUrls extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->urls),
+            'urls'  => array_map(static fn($x) => $x->typeSerialize(), $this->urls),
         ];
     }
 }

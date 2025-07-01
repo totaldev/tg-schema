@@ -41,7 +41,7 @@ class SavedMessagesTags extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->tags),
+            'tags'  => array_map(static fn($x) => $x->typeSerialize(), $this->tags),
         ];
     }
 }

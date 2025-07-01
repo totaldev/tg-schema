@@ -84,12 +84,12 @@ class MessageGroupCall extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'is_active'  => $this->isActive,
-            'was_missed' => $this->wasMissed,
-            'is_video'   => $this->isVideo,
-            'duration'   => $this->duration,
-            array_map(static fn($x) => $x->typeSerialize(), $this->otherParticipantIds),
+            '@type'                 => static::TYPE_NAME,
+            'is_active'             => $this->isActive,
+            'was_missed'            => $this->wasMissed,
+            'is_video'              => $this->isVideo,
+            'duration'              => $this->duration,
+            'other_participant_ids' => array_map(static fn($x) => $x->typeSerialize(), $this->otherParticipantIds),
         ];
     }
 }

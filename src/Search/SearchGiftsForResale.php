@@ -82,12 +82,12 @@ class SearchGiftsForResale extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'gift_id' => $this->giftId,
-            'order'   => $this->order->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->attributes),
-            'offset'  => $this->offset,
-            'limit'   => $this->limit,
+            '@type'      => static::TYPE_NAME,
+            'gift_id'    => $this->giftId,
+            'order'      => $this->order->typeSerialize(),
+            'attributes' => array_map(static fn($x) => $x->typeSerialize(), $this->attributes),
+            'offset'     => $this->offset,
+            'limit'      => $this->limit,
         ];
     }
 }

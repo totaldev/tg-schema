@@ -84,7 +84,7 @@ class InputMessagePaidMedia extends InputMessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'star_count'               => $this->starCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->paidMedia),
+            'paid_media'               => array_map(static fn($x) => $x->typeSerialize(), $this->paidMedia),
             'caption'                  => $this->caption->typeSerialize(),
             'show_caption_above_media' => $this->showCaptionAboveMedia,
             'payload'                  => $this->payload,

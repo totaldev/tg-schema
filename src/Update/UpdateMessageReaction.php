@@ -95,13 +95,13 @@ class UpdateMessageReaction extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'message_id' => $this->messageId,
-            'actor_id'   => $this->actorId->typeSerialize(),
-            'date'       => $this->date,
-            array_map(static fn($x) => $x->typeSerialize(), $this->oldReactionTypes),
-            array_map(static fn($x) => $x->typeSerialize(), $this->newReactionTypes),
+            '@type'              => static::TYPE_NAME,
+            'chat_id'            => $this->chatId,
+            'message_id'         => $this->messageId,
+            'actor_id'           => $this->actorId->typeSerialize(),
+            'date'               => $this->date,
+            'old_reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->oldReactionTypes),
+            'new_reaction_types' => array_map(static fn($x) => $x->typeSerialize(), $this->newReactionTypes),
         ];
     }
 }

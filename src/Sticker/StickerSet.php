@@ -199,8 +199,8 @@ class StickerSet extends TdObject
             'needs_repainting'                => $this->needsRepainting,
             'is_allowed_as_chat_emoji_status' => $this->isAllowedAsChatEmojiStatus,
             'is_viewed'                       => $this->isViewed,
-            array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
-            array_map(static fn($x) => $x->typeSerialize(), $this->emojis),
+            'stickers'                        => array_map(static fn($x) => $x->typeSerialize(), $this->stickers),
+            'emojis'                          => array_map(static fn($x) => $x->typeSerialize(), $this->emojis),
         ];
     }
 }

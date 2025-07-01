@@ -61,10 +61,10 @@ class ShippingOption extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'id'    => $this->id,
-            'title' => $this->title,
-            array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
+            '@type'       => static::TYPE_NAME,
+            'id'          => $this->id,
+            'title'       => $this->title,
+            'price_parts' => array_map(static fn($x) => $x->typeSerialize(), $this->priceParts),
         ];
     }
 }

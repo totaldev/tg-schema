@@ -143,7 +143,7 @@ class ChatBoostStatus extends TdObject
             'next_level_boost_count'    => $this->nextLevelBoostCount,
             'premium_member_count'      => $this->premiumMemberCount,
             'premium_member_percentage' => $this->premiumMemberPercentage,
-            array_map(static fn($x) => $x->typeSerialize(), $this->prepaidGiveaways),
+            'prepaid_giveaways'         => array_map(static fn($x) => $x->typeSerialize(), $this->prepaidGiveaways),
         ];
     }
 }

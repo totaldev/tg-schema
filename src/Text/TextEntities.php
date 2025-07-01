@@ -40,8 +40,8 @@ class TextEntities extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->entities),
+            '@type'    => static::TYPE_NAME,
+            'entities' => array_map(static fn($x) => $x->typeSerialize(), $this->entities),
         ];
     }
 }

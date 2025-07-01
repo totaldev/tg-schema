@@ -63,7 +63,7 @@ class FoundStories extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->stories),
+            'stories'     => array_map(static fn($x) => $x->typeSerialize(), $this->stories),
             'next_offset' => $this->nextOffset,
         ];
     }

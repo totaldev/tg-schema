@@ -42,7 +42,7 @@ class PageBlockList extends PageBlock
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->items),
+            'items' => array_map(static fn($x) => $x->typeSerialize(), $this->items),
         ];
     }
 }

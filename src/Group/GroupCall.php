@@ -286,7 +286,7 @@ class GroupCall extends TdObject
             'participant_count'                => $this->participantCount,
             'has_hidden_listeners'             => $this->hasHiddenListeners,
             'loaded_all_participants'          => $this->loadedAllParticipants,
-            array_map(static fn($x) => $x->typeSerialize(), $this->recentSpeakers),
+            'recent_speakers'                  => array_map(static fn($x) => $x->typeSerialize(), $this->recentSpeakers),
             'is_my_video_enabled'              => $this->isMyVideoEnabled,
             'is_my_video_paused'               => $this->isMyVideoPaused,
             'can_enable_video'                 => $this->canEnableVideo,

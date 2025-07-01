@@ -42,7 +42,7 @@ class RichTexts extends RichText
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->texts),
+            'texts' => array_map(static fn($x) => $x->typeSerialize(), $this->texts),
         ];
     }
 }

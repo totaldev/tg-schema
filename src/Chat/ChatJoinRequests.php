@@ -52,7 +52,7 @@ class ChatJoinRequests extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->requests),
+            'requests'    => array_map(static fn($x) => $x->typeSerialize(), $this->requests),
         ];
     }
 }

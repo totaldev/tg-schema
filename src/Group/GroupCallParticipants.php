@@ -51,9 +51,9 @@ class GroupCallParticipants extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->participantIds),
+            '@type'           => static::TYPE_NAME,
+            'total_count'     => $this->totalCount,
+            'participant_ids' => array_map(static fn($x) => $x->typeSerialize(), $this->participantIds),
         ];
     }
 }

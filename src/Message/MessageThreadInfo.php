@@ -96,7 +96,7 @@ class MessageThreadInfo extends TdObject
             'message_thread_id'    => $this->messageThreadId,
             'reply_info'           => $this->replyInfo ?? null,
             'unread_message_count' => $this->unreadMessageCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'             => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
             'draft_message'        => $this->draftMessage ?? null,
         ];
     }

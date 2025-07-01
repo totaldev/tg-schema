@@ -60,10 +60,10 @@ class StorageStatistics extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'size'  => $this->size,
-            'count' => $this->count,
-            array_map(static fn($x) => $x->typeSerialize(), $this->byChat),
+            '@type'   => static::TYPE_NAME,
+            'size'    => $this->size,
+            'count'   => $this->count,
+            'by_chat' => array_map(static fn($x) => $x->typeSerialize(), $this->byChat),
         ];
     }
 }

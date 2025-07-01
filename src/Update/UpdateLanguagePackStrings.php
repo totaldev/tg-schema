@@ -65,7 +65,7 @@ class UpdateLanguagePackStrings extends Update
             '@type'               => static::TYPE_NAME,
             'localization_target' => $this->localizationTarget,
             'language_pack_id'    => $this->languagePackId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->strings),
+            'strings'             => array_map(static fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 }

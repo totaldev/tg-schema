@@ -76,7 +76,7 @@ class UpdateMessageReactions extends Update
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
             'date'       => $this->date,
-            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
+            'reactions'  => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
         ];
     }
 }

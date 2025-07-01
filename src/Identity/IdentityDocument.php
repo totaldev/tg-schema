@@ -98,7 +98,7 @@ class IdentityDocument extends TdObject
             'front_side'      => $this->frontSide->typeSerialize(),
             'reverse_side'    => $this->reverseSide ?? null,
             'selfie'          => $this->selfie ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            'translation'     => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }
 }

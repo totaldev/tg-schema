@@ -40,8 +40,8 @@ class EmojiCategories extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->categories),
+            '@type'      => static::TYPE_NAME,
+            'categories' => array_map(static fn($x) => $x->typeSerialize(), $this->categories),
         ];
     }
 }

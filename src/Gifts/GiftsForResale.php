@@ -102,10 +102,10 @@ class GiftsForResale extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
-            array_map(static fn($x) => $x->typeSerialize(), $this->models),
-            array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
-            array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
+            'gifts'       => array_map(static fn($x) => $x->typeSerialize(), $this->gifts),
+            'models'      => array_map(static fn($x) => $x->typeSerialize(), $this->models),
+            'symbols'     => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
+            'backdrops'   => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
             'next_offset' => $this->nextOffset,
         ];
     }

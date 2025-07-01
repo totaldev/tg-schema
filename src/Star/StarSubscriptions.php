@@ -72,7 +72,7 @@ class StarSubscriptions extends TdObject
         return [
             '@type'               => static::TYPE_NAME,
             'star_amount'         => $this->starAmount->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->subscriptions),
+            'subscriptions'       => array_map(static fn($x) => $x->typeSerialize(), $this->subscriptions),
             'required_star_count' => $this->requiredStarCount,
             'next_offset'         => $this->nextOffset,
         ];

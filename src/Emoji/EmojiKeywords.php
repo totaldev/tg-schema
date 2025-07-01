@@ -40,8 +40,8 @@ class EmojiKeywords extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->emojiKeywords),
+            '@type'          => static::TYPE_NAME,
+            'emoji_keywords' => array_map(static fn($x) => $x->typeSerialize(), $this->emojiKeywords),
         ];
     }
 }

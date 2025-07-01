@@ -42,7 +42,7 @@ class UserPrivacySettingRules extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->rules),
+            'rules' => array_map(static fn($x) => $x->typeSerialize(), $this->rules),
         ];
     }
 }

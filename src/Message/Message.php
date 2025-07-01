@@ -411,7 +411,7 @@ class Message extends TdObject
             'forward_info'                => $this->forwardInfo ?? null,
             'import_info'                 => $this->importInfo ?? null,
             'interaction_info'            => $this->interactionInfo ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
+            'unread_reactions'            => array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
             'fact_check'                  => $this->factCheck ?? null,
             'reply_to'                    => $this->replyTo ?? null,
             'message_thread_id'           => $this->messageThreadId,

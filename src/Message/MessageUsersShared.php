@@ -53,7 +53,7 @@ class MessageUsersShared extends MessageContent
     {
         return [
             '@type'     => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->users),
+            'users'     => array_map(static fn($x) => $x->typeSerialize(), $this->users),
             'button_id' => $this->buttonId,
         ];
     }

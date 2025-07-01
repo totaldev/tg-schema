@@ -70,11 +70,11 @@ class StorageStatisticsByChat extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'chat_id' => $this->chatId,
-            'size'    => $this->size,
-            'count'   => $this->count,
-            array_map(static fn($x) => $x->typeSerialize(), $this->byFileType),
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'size'         => $this->size,
+            'count'        => $this->count,
+            'by_file_type' => array_map(static fn($x) => $x->typeSerialize(), $this->byFileType),
         ];
     }
 }

@@ -41,8 +41,8 @@ class ImportContacts extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->contacts),
+            '@type'    => static::TYPE_NAME,
+            'contacts' => array_map(static fn($x) => $x->typeSerialize(), $this->contacts),
         ];
     }
 }

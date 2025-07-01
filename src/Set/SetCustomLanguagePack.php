@@ -52,9 +52,9 @@ class SetCustomLanguagePack extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'info'  => $this->info->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->strings),
+            '@type'   => static::TYPE_NAME,
+            'info'    => $this->info->typeSerialize(),
+            'strings' => array_map(static fn($x) => $x->typeSerialize(), $this->strings),
         ];
     }
 }

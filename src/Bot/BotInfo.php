@@ -261,7 +261,7 @@ class BotInfo extends TdObject
             'photo'                                => $this->photo ?? null,
             'animation'                            => $this->animation ?? null,
             'menu_button'                          => $this->menuButton ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
+            'commands'                             => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
             'privacy_policy_url'                   => $this->privacyPolicyUrl,
             'default_group_administrator_rights'   => $this->defaultGroupAdministratorRights ?? null,
             'default_channel_administrator_rights' => $this->defaultChannelAdministratorRights ?? null,

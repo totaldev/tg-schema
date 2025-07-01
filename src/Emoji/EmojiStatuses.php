@@ -40,8 +40,8 @@ class EmojiStatuses extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->emojiStatuses),
+            '@type'          => static::TYPE_NAME,
+            'emoji_statuses' => array_map(static fn($x) => $x->typeSerialize(), $this->emojiStatuses),
         ];
     }
 }

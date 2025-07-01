@@ -62,7 +62,7 @@ class ConnectedAffiliatePrograms extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->programs),
+            'programs'    => array_map(static fn($x) => $x->typeSerialize(), $this->programs),
             'next_offset' => $this->nextOffset,
         ];
     }

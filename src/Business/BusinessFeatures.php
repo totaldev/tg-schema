@@ -40,8 +40,8 @@ class BusinessFeatures extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->features),
+            '@type'    => static::TYPE_NAME,
+            'features' => array_map(static fn($x) => $x->typeSerialize(), $this->features),
         ];
     }
 }

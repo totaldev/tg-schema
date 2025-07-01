@@ -110,7 +110,7 @@ class SendBusinessMessageAlbum extends TdFunction
             'disable_notification'   => $this->disableNotification,
             'protect_content'        => $this->protectContent,
             'effect_id'              => $this->effectId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

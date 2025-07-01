@@ -130,7 +130,7 @@ class OptimizeStorage extends TdFunction
             'ttl'                            => $this->ttl,
             'count'                          => $this->count,
             'immunity_delay'                 => $this->immunityDelay,
-            array_map(static fn($x) => $x->typeSerialize(), $this->fileTypes),
+            'file_types'                     => array_map(static fn($x) => $x->typeSerialize(), $this->fileTypes),
             'chat_ids'                       => $this->chatIds,
             'exclude_chat_ids'               => $this->excludeChatIds,
             'return_deleted_file_statistics' => $this->returnDeletedFileStatistics,

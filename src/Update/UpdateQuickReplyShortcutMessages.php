@@ -54,7 +54,7 @@ class UpdateQuickReplyShortcutMessages extends Update
         return [
             '@type'       => static::TYPE_NAME,
             'shortcut_id' => $this->shortcutId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'    => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
         ];
     }
 }

@@ -40,8 +40,8 @@ class VideoChatStreams extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->streams),
+            '@type'   => static::TYPE_NAME,
+            'streams' => array_map(static fn($x) => $x->typeSerialize(), $this->streams),
         ];
     }
 }

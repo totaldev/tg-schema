@@ -75,7 +75,7 @@ class AutosaveSettings extends TdObject
             'private_chat_settings' => $this->privateChatSettings->typeSerialize(),
             'group_settings'        => $this->groupSettings->typeSerialize(),
             'channel_settings'      => $this->channelSettings->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->exceptions),
+            'exceptions'            => array_map(static fn($x) => $x->typeSerialize(), $this->exceptions),
         ];
     }
 }

@@ -61,10 +61,10 @@ class ImportMessages extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'chat_id'      => $this->chatId,
-            'message_file' => $this->messageFile->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->attachedFiles),
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'message_file'   => $this->messageFile->typeSerialize(),
+            'attached_files' => array_map(static fn($x) => $x->typeSerialize(), $this->attachedFiles),
         ];
     }
 }

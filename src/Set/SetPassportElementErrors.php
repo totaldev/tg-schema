@@ -54,7 +54,7 @@ class SetPassportElementErrors extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->errors),
+            'errors'  => array_map(static fn($x) => $x->typeSerialize(), $this->errors),
         ];
     }
 }

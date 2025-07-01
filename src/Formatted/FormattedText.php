@@ -51,9 +51,9 @@ class FormattedText extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'text'  => $this->text,
-            array_map(static fn($x) => $x->typeSerialize(), $this->entities),
+            '@type'    => static::TYPE_NAME,
+            'text'     => $this->text,
+            'entities' => array_map(static fn($x) => $x->typeSerialize(), $this->entities),
         ];
     }
 }

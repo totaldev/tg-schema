@@ -50,9 +50,9 @@ class BusinessOpeningHours extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'        => static::TYPE_NAME,
-            'time_zone_id' => $this->timeZoneId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->openingHours),
+            '@type'         => static::TYPE_NAME,
+            'time_zone_id'  => $this->timeZoneId,
+            'opening_hours' => array_map(static fn($x) => $x->typeSerialize(), $this->openingHours),
         ];
     }
 }

@@ -53,9 +53,9 @@ class LinkPreviewTypeTheme extends LinkPreviewType
     public function typeSerialize(): array
     {
         return [
-            '@type'    => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->documents),
-            'settings' => $this->settings ?? null,
+            '@type'     => static::TYPE_NAME,
+            'documents' => array_map(static fn($x) => $x->typeSerialize(), $this->documents),
+            'settings'  => $this->settings ?? null,
         ];
     }
 }

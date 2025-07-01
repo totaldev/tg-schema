@@ -43,7 +43,7 @@ class MessagePassportDataSent extends MessageContent
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->types),
+            'types' => array_map(static fn($x) => $x->typeSerialize(), $this->types),
         ];
     }
 }

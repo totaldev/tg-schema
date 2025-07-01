@@ -115,7 +115,7 @@ class CallStateReady extends CallState
         return [
             '@type'                   => static::TYPE_NAME,
             'protocol'                => $this->protocol->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->servers),
+            'servers'                 => array_map(static fn($x) => $x->typeSerialize(), $this->servers),
             'config'                  => $this->config,
             'encryption_key'          => $this->encryptionKey,
             'emojis'                  => $this->emojis,

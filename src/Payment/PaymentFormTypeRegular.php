@@ -116,15 +116,15 @@ class PaymentFormTypeRegular extends PaymentFormType
     public function typeSerialize(): array
     {
         return [
-            '@type'                    => static::TYPE_NAME,
-            'invoice'                  => $this->invoice->typeSerialize(),
-            'payment_provider_user_id' => $this->paymentProviderUserId,
-            'payment_provider'         => $this->paymentProvider->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->additionalPaymentOptions),
-            'saved_order_info'         => $this->savedOrderInfo ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->savedCredentials),
-            'can_save_credentials'     => $this->canSaveCredentials,
-            'need_password'            => $this->needPassword,
+            '@type'                      => static::TYPE_NAME,
+            'invoice'                    => $this->invoice->typeSerialize(),
+            'payment_provider_user_id'   => $this->paymentProviderUserId,
+            'payment_provider'           => $this->paymentProvider->typeSerialize(),
+            'additional_payment_options' => array_map(static fn($x) => $x->typeSerialize(), $this->additionalPaymentOptions),
+            'saved_order_info'           => $this->savedOrderInfo ?? null,
+            'saved_credentials'          => array_map(static fn($x) => $x->typeSerialize(), $this->savedCredentials),
+            'can_save_credentials'       => $this->canSaveCredentials,
+            'need_password'              => $this->needPassword,
         ];
     }
 }

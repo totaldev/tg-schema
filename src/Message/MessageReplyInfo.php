@@ -82,7 +82,7 @@ class MessageReplyInfo extends TdObject
         return [
             '@type'                       => static::TYPE_NAME,
             'reply_count'                 => $this->replyCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->recentReplierIds),
+            'recent_replier_ids'          => array_map(static fn($x) => $x->typeSerialize(), $this->recentReplierIds),
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,
             'last_message_id'             => $this->lastMessageId,

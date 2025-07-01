@@ -41,8 +41,8 @@ class LocalizationTargetInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->languagePacks),
+            '@type'          => static::TYPE_NAME,
+            'language_packs' => array_map(static fn($x) => $x->typeSerialize(), $this->languagePacks),
         ];
     }
 }

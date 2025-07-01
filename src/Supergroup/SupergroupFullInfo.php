@@ -450,7 +450,7 @@ class SupergroupFullInfo extends TdObject
             'custom_emoji_sticker_set_id'      => $this->customEmojiStickerSetId,
             'location'                         => $this->location ?? null,
             'invite_link'                      => $this->inviteLink ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
+            'bot_commands'                     => array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
             'bot_verification'                 => $this->botVerification ?? null,
             'upgraded_from_basic_group_id'     => $this->upgradedFromBasicGroupId,
             'upgraded_from_max_message_id'     => $this->upgradedFromMaxMessageId,

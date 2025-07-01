@@ -53,9 +53,9 @@ class PersonalDocument extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->files),
-            array_map(static fn($x) => $x->typeSerialize(), $this->translation),
+            '@type'       => static::TYPE_NAME,
+            'files'       => array_map(static fn($x) => $x->typeSerialize(), $this->files),
+            'translation' => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }
 }

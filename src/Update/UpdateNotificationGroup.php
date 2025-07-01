@@ -122,7 +122,7 @@ class UpdateNotificationGroup extends Update
             'notification_settings_chat_id' => $this->notificationSettingsChatId,
             'notification_sound_id'         => $this->notificationSoundId,
             'total_count'                   => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->addedNotifications),
+            'added_notifications'           => array_map(static fn($x) => $x->typeSerialize(), $this->addedNotifications),
             'removed_notification_ids'      => $this->removedNotificationIds,
         ];
     }

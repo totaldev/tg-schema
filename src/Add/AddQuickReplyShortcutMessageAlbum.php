@@ -62,10 +62,10 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'               => static::TYPE_NAME,
-            'shortcut_name'       => $this->shortcutName,
-            'reply_to_message_id' => $this->replyToMessageId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            '@type'                  => static::TYPE_NAME,
+            'shortcut_name'          => $this->shortcutName,
+            'reply_to_message_id'    => $this->replyToMessageId,
+            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

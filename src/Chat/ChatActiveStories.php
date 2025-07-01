@@ -87,7 +87,7 @@ class ChatActiveStories extends TdObject
             'list'              => $this->list ?? null,
             'order'             => $this->order,
             'max_read_story_id' => $this->maxReadStoryId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->stories),
+            'stories'           => array_map(static fn($x) => $x->typeSerialize(), $this->stories),
         ];
     }
 }

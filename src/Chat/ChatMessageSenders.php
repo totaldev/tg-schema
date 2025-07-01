@@ -40,8 +40,8 @@ class ChatMessageSenders extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->senders),
+            '@type'   => static::TYPE_NAME,
+            'senders' => array_map(static fn($x) => $x->typeSerialize(), $this->senders),
         ];
     }
 }

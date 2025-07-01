@@ -65,7 +65,7 @@ class SetCommands extends TdFunction
             '@type'         => static::TYPE_NAME,
             'scope'         => $this->scope ?? null,
             'language_code' => $this->languageCode,
-            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
+            'commands'      => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];
     }
 }

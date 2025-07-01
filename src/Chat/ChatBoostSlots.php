@@ -41,7 +41,7 @@ class ChatBoostSlots extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->slots),
+            'slots' => array_map(static fn($x) => $x->typeSerialize(), $this->slots),
         ];
     }
 }

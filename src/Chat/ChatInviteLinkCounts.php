@@ -40,8 +40,8 @@ class ChatInviteLinkCounts extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinkCounts),
+            '@type'              => static::TYPE_NAME,
+            'invite_link_counts' => array_map(static fn($x) => $x->typeSerialize(), $this->inviteLinkCounts),
         ];
     }
 }

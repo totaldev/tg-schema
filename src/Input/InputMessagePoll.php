@@ -106,7 +106,7 @@ class InputMessagePoll extends InputMessageContent
         return [
             '@type'        => static::TYPE_NAME,
             'question'     => $this->question->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->options),
+            'options'      => array_map(static fn($x) => $x->typeSerialize(), $this->options),
             'is_anonymous' => $this->isAnonymous,
             'type'         => $this->type->typeSerialize(),
             'open_period'  => $this->openPeriod,

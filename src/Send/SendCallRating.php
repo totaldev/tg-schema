@@ -71,11 +71,11 @@ class SendCallRating extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'call_id' => $this->callId,
-            'rating'  => $this->rating,
-            'comment' => $this->comment,
-            array_map(static fn($x) => $x->typeSerialize(), $this->problems),
+            '@type'    => static::TYPE_NAME,
+            'call_id'  => $this->callId,
+            'rating'   => $this->rating,
+            'comment'  => $this->comment,
+            'problems' => array_map(static fn($x) => $x->typeSerialize(), $this->problems),
         ];
     }
 }

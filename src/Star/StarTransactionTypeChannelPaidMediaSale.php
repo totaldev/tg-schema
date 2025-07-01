@@ -65,7 +65,7 @@ class StarTransactionTypeChannelPaidMediaSale extends StarTransactionType
             '@type'      => static::TYPE_NAME,
             'user_id'    => $this->userId,
             'message_id' => $this->messageId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'media'      => array_map(static fn($x) => $x->typeSerialize(), $this->media),
         ];
     }
 }

@@ -40,8 +40,8 @@ class PassportRequiredElement extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->suitableElements),
+            '@type'             => static::TYPE_NAME,
+            'suitable_elements' => array_map(static fn($x) => $x->typeSerialize(), $this->suitableElements),
         ];
     }
 }

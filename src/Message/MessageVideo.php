@@ -117,7 +117,7 @@ class MessageVideo extends MessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'video'                    => $this->video->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->alternativeVideos),
+            'alternative_videos'       => array_map(static fn($x) => $x->typeSerialize(), $this->alternativeVideos),
             'cover'                    => $this->cover ?? null,
             'start_timestamp'          => $this->startTimestamp,
             'caption'                  => $this->caption->typeSerialize(),

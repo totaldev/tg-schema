@@ -62,10 +62,10 @@ class PageBlockDetails extends PageBlock
     public function typeSerialize(): array
     {
         return [
-            '@type'   => static::TYPE_NAME,
-            'header'  => $this->header->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
-            'is_open' => $this->isOpen,
+            '@type'       => static::TYPE_NAME,
+            'header'      => $this->header->typeSerialize(),
+            'page_blocks' => array_map(static fn($x) => $x->typeSerialize(), $this->pageBlocks),
+            'is_open'     => $this->isOpen,
         ];
     }
 }

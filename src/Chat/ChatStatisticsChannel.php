@@ -276,7 +276,7 @@ class ChatStatisticsChannel extends ChatStatistics
             'story_interaction_graph'          => $this->storyInteractionGraph->typeSerialize(),
             'story_reaction_graph'             => $this->storyReactionGraph->typeSerialize(),
             'instant_view_interaction_graph'   => $this->instantViewInteractionGraph->typeSerialize(),
-            array_map(static fn($x) => $x->typeSerialize(), $this->recentInteractions),
+            'recent_interactions'              => array_map(static fn($x) => $x->typeSerialize(), $this->recentInteractions),
         ];
     }
 }

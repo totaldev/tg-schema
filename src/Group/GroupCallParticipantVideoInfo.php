@@ -60,10 +60,10 @@ class GroupCallParticipantVideoInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'       => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->sourceGroups),
-            'endpoint_id' => $this->endpointId,
-            'is_paused'   => $this->isPaused,
+            '@type'         => static::TYPE_NAME,
+            'source_groups' => array_map(static fn($x) => $x->typeSerialize(), $this->sourceGroups),
+            'endpoint_id'   => $this->endpointId,
+            'is_paused'     => $this->isPaused,
         ];
     }
 }

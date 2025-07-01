@@ -41,8 +41,8 @@ class ClosedVectorPath extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->commands),
+            '@type'    => static::TYPE_NAME,
+            'commands' => array_map(static fn($x) => $x->typeSerialize(), $this->commands),
         ];
     }
 }

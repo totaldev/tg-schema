@@ -51,7 +51,7 @@ class SponsoredMessages extends TdObject
     {
         return [
             '@type'            => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->messages),
+            'messages'         => array_map(static fn($x) => $x->typeSerialize(), $this->messages),
             'messages_between' => $this->messagesBetween,
         ];
     }

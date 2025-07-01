@@ -42,8 +42,8 @@ class UpdateChatThemes extends Update
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->chatThemes),
+            '@type'       => static::TYPE_NAME,
+            'chat_themes' => array_map(static fn($x) => $x->typeSerialize(), $this->chatThemes),
         ];
     }
 }

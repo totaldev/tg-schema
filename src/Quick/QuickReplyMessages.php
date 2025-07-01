@@ -40,8 +40,8 @@ class QuickReplyMessages extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null,
+            '@type'    => static::TYPE_NAME,
+            'messages' => (isset($this->messages) ? array_map(static fn($x) => $x->typeSerialize(), $this->messages) : null),
         ];
     }
 }

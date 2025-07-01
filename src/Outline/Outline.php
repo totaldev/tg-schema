@@ -42,7 +42,7 @@ class Outline extends TdObject
     {
         return [
             '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->paths),
+            'paths' => array_map(static fn($x) => $x->typeSerialize(), $this->paths),
         ];
     }
 }

@@ -62,7 +62,7 @@ class AddedReactions extends TdObject
         return [
             '@type'       => static::TYPE_NAME,
             'total_count' => $this->totalCount,
-            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
+            'reactions'   => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'next_offset' => $this->nextOffset,
         ];
     }

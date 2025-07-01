@@ -63,7 +63,7 @@ class UpdateChatFolders extends Update
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
+            'chat_folders'            => array_map(static fn($x) => $x->typeSerialize(), $this->chatFolders),
             'main_chat_list_position' => $this->mainChatListPosition,
             'are_tags_enabled'        => $this->areTagsEnabled,
         ];

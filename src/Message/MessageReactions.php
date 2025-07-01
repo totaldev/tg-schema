@@ -74,9 +74,9 @@ class MessageReactions extends TdObject
     {
         return [
             '@type'                   => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
+            'reactions'               => array_map(static fn($x) => $x->typeSerialize(), $this->reactions),
             'are_tags'                => $this->areTags,
-            array_map(static fn($x) => $x->typeSerialize(), $this->paidReactors),
+            'paid_reactors'           => array_map(static fn($x) => $x->typeSerialize(), $this->paidReactors),
             'can_get_added_reactions' => $this->canGetAddedReactions,
         ];
     }

@@ -40,8 +40,8 @@ class MessageViewers extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->viewers),
+            '@type'   => static::TYPE_NAME,
+            'viewers' => array_map(static fn($x) => $x->typeSerialize(), $this->viewers),
         ];
     }
 }

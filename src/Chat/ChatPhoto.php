@@ -107,7 +107,7 @@ class ChatPhoto extends TdObject
             'id'              => $this->id,
             'added_date'      => $this->addedDate,
             'minithumbnail'   => $this->minithumbnail ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
+            'sizes'           => array_map(static fn($x) => $x->typeSerialize(), $this->sizes),
             'animation'       => $this->animation ?? null,
             'small_animation' => $this->smallAnimation ?? null,
             'sticker'         => $this->sticker ?? null,

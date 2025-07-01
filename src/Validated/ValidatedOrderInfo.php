@@ -51,9 +51,9 @@ class ValidatedOrderInfo extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'         => static::TYPE_NAME,
-            'order_info_id' => $this->orderInfoId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
+            '@type'            => static::TYPE_NAME,
+            'order_info_id'    => $this->orderInfoId,
+            'shipping_options' => array_map(static fn($x) => $x->typeSerialize(), $this->shippingOptions),
         ];
     }
 }

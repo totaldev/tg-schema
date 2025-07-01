@@ -84,12 +84,12 @@ class SendMessageAlbum extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'reply_to'          => $this->replyTo->typeSerialize(),
-            'options'           => $this->options ?? null,
-            array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
+            '@type'                  => static::TYPE_NAME,
+            'chat_id'                => $this->chatId,
+            'message_thread_id'      => $this->messageThreadId,
+            'reply_to'               => $this->replyTo->typeSerialize(),
+            'options'                => $this->options ?? null,
+            'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),
         ];
     }
 }

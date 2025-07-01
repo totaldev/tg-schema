@@ -51,9 +51,9 @@ class ReportChatResultOptionRequired extends ReportChatResult
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'title' => $this->title,
-            array_map(static fn($x) => $x->typeSerialize(), $this->options),
+            '@type'   => static::TYPE_NAME,
+            'title'   => $this->title,
+            'options' => array_map(static fn($x) => $x->typeSerialize(), $this->options),
         ];
     }
 }

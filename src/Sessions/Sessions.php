@@ -52,7 +52,7 @@ class Sessions extends TdObject
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->sessions),
+            'sessions'                  => array_map(static fn($x) => $x->typeSerialize(), $this->sessions),
             'inactive_session_ttl_days' => $this->inactiveSessionTtlDays,
         ];
     }

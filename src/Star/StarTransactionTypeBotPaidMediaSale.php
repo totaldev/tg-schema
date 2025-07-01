@@ -75,7 +75,7 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
         return [
             '@type'     => static::TYPE_NAME,
             'user_id'   => $this->userId,
-            array_map(static fn($x) => $x->typeSerialize(), $this->media),
+            'media'     => array_map(static fn($x) => $x->typeSerialize(), $this->media),
             'payload'   => $this->payload,
             'affiliate' => $this->affiliate ?? null,
         ];

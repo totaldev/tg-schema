@@ -40,8 +40,8 @@ class ConnectedWebsites extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->websites),
+            '@type'    => static::TYPE_NAME,
+            'websites' => array_map(static fn($x) => $x->typeSerialize(), $this->websites),
         ];
     }
 }

@@ -67,10 +67,10 @@ class GiftUpgradePreview extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            array_map(static fn($x) => $x->typeSerialize(), $this->models),
-            array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
-            array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
+            '@type'     => static::TYPE_NAME,
+            'models'    => array_map(static fn($x) => $x->typeSerialize(), $this->models),
+            'symbols'   => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
+            'backdrops' => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
         ];
     }
 }
