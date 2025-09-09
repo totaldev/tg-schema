@@ -22,10 +22,6 @@ class InputMessageVideoNote extends InputMessageContent
          */
         protected InputFile                $videoNote,
         /**
-         * Video thumbnail; may be null if empty; pass null to skip thumbnail uploading.
-         */
-        protected ?InputThumbnail          $thumbnail,
-        /**
          * Duration of the video, in seconds; 0-60.
          */
         protected int                      $duration,
@@ -34,9 +30,13 @@ class InputMessageVideoNote extends InputMessageContent
          */
         protected int                      $length,
         /**
+         * Video thumbnail; may be null if empty; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail          $thumbnail = null,
+        /**
          * Video note self-destruct type; may be null if none; pass null if none; private chats only.
          */
-        protected ?MessageSelfDestructType $selfDestructType,
+        protected ?MessageSelfDestructType $selfDestructType = null,
     ) {
         parent::__construct();
     }

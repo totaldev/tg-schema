@@ -11,6 +11,7 @@ use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Photo\Photo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Video\Video;
+use Totaldev\TgSchema\Video\VideoStoryboard;
 
 /**
  * A video message.
@@ -30,6 +31,12 @@ class MessageVideo extends MessageContent
          * @var AlternativeVideo[]
          */
         protected array         $alternativeVideos,
+        /**
+         * Available storyboards for the video.
+         *
+         * @var VideoStoryboard[]
+         */
+        protected array         $storyboards,
         /**
          * Cover of the video; may be null if none.
          */
@@ -63,6 +70,7 @@ class MessageVideo extends MessageContent
         return new static(
             TdSchemaRegistry::fromArray($array['video']),
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['alternative_videos']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['storyboards']),
             isset($array['cover']) ? TdSchemaRegistry::fromArray($array['cover']) : null,
             $array['start_timestamp'],
             TdSchemaRegistry::fromArray($array['caption']),
@@ -107,6 +115,11 @@ class MessageVideo extends MessageContent
         return $this->startTimestamp;
     }
 
+    public function getStoryboards(): array
+    {
+        return $this->storyboards;
+    }
+
     public function getVideo(): Video
     {
         return $this->video;
@@ -118,6 +131,7 @@ class MessageVideo extends MessageContent
             '@type'                    => static::TYPE_NAME,
             'video'                    => $this->video->typeSerialize(),
             'alternative_videos'       => array_map(static fn($x) => $x->typeSerialize(), $this->alternativeVideos),
+            'storyboards'              => array_map(static fn($x) => $x->typeSerialize(), $this->storyboards),
             'cover'                    => $this->cover ?? null,
             'start_timestamp'          => $this->startTimestamp,
             'caption'                  => $this->caption->typeSerialize(),

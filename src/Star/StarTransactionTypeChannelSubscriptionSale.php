@@ -21,7 +21,7 @@ class StarTransactionTypeChannelSubscriptionSale extends StarTransactionType
         /**
          * The number of seconds between consecutive Telegram Star debitings.
          */
-        protected int $subscriptionPeriod
+        protected int $subscriptionPeriod,
     ) {
         parent::__construct();
     }

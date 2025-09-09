@@ -25,7 +25,7 @@ class FoundAffiliateProgram extends TdObject
         /**
          * Information about the affiliate program.
          */
-        protected AffiliateProgramInfo $info
+        protected AffiliateProgramInfo $info,
     ) {}
 
     public static function fromArray(array $array): FoundAffiliateProgram

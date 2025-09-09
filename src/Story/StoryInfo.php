@@ -27,7 +27,7 @@ class StoryInfo extends TdObject
         /**
          * True, if the story is available only to close friends.
          */
-        protected bool $isForCloseFriends
+        protected bool $isForCloseFriends,
     ) {}
 
     public static function fromArray(array $array): StoryInfo

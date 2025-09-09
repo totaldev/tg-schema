@@ -26,7 +26,7 @@ class InternalLinkTypeVideoChat extends InternalLinkType
         /**
          * True, if the video chat is expected to be a live stream in a channel or a broadcast group.
          */
-        protected bool   $isLiveStream
+        protected bool   $isLiveStream,
     ) {
         parent::__construct();
     }

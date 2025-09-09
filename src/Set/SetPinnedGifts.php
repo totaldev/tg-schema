@@ -27,7 +27,7 @@ class SetPinnedGifts extends TdFunction
          *
          * @var string[]
          */
-        protected array         $receivedGiftIds
+        protected array         $receivedGiftIds,
     ) {}
 
     public static function fromArray(array $array): SetPinnedGifts

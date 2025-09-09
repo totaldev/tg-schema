@@ -33,11 +33,11 @@ class InputMessageVoiceNote extends InputMessageContent
         /**
          * Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
-        protected ?FormattedText           $caption,
+        protected ?FormattedText           $caption = null,
         /**
          * Voice note self-destruct type; may be null if none; pass null if none; private chats only.
          */
-        protected ?MessageSelfDestructType $selfDestructType,
+        protected ?MessageSelfDestructType $selfDestructType = null,
     ) {
         parent::__construct();
     }

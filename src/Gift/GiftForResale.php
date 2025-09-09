@@ -25,7 +25,7 @@ class GiftForResale extends TdObject
         /**
          * Unique identifier of the received gift for the current user; only for the gifts owned by the current user.
          */
-        protected string       $receivedGiftId
+        protected string       $receivedGiftId,
     ) {}
 
     public static function fromArray(array $array): GiftForResale

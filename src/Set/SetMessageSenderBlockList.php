@@ -26,18 +26,18 @@ class SetMessageSenderBlockList extends TdFunction
         /**
          * New block list for the message sender; pass null to unblock the message sender.
          */
-        protected BlockList     $blockList
+        protected ?BlockList    $blockList = null,
     ) {}
 
     public static function fromArray(array $array): SetMessageSenderBlockList
     {
         return new static(
             TdSchemaRegistry::fromArray($array['sender_id']),
-            TdSchemaRegistry::fromArray($array['block_list']),
+            isset($array['block_list']) ? TdSchemaRegistry::fromArray($array['block_list']) : null,
         );
     }
 
-    public function getBlockList(): BlockList
+    public function getBlockList(): ?BlockList
     {
         return $this->blockList;
     }
@@ -52,7 +52,7 @@ class SetMessageSenderBlockList extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'sender_id'  => $this->senderId->typeSerialize(),
-            'block_list' => $this->blockList->typeSerialize(),
+            'block_list' => $this->blockList ?? null,
         ];
     }
 }

@@ -20,41 +20,41 @@ class InputMessageAnimation extends InputMessageContent
         /**
          * Animation file to be sent.
          */
-        protected InputFile      $animation,
-        /**
-         * Animation thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail $thumbnail,
+        protected InputFile       $animation,
         /**
          * File identifiers of the stickers added to the animation, if applicable.
          *
          * @var int[]
          */
-        protected array          $addedStickerFileIds,
+        protected array           $addedStickerFileIds,
         /**
          * Duration of the animation, in seconds.
          */
-        protected int            $duration,
+        protected int             $duration,
         /**
          * Width of the animation; may be replaced by the server.
          */
-        protected int            $width,
+        protected int             $width,
         /**
          * Height of the animation; may be replaced by the server.
          */
-        protected int            $height,
-        /**
-         * Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
-         */
-        protected FormattedText  $caption,
+        protected int             $height,
         /**
          * True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation; not supported in secret chats.
          */
-        protected bool           $showCaptionAboveMedia,
+        protected bool            $showCaptionAboveMedia,
         /**
          * True, if the animation preview must be covered by a spoiler animation; not supported in secret chats.
          */
-        protected bool           $hasSpoiler,
+        protected bool            $hasSpoiler,
+        /**
+         * Animation thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $thumbnail = null,
+        /**
+         * Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
+         */
+        protected ?FormattedText  $caption = null,
     ) {
         parent::__construct();
     }
@@ -63,12 +63,12 @@ class InputMessageAnimation extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['animation']),
-            TdSchemaRegistry::fromArray($array['thumbnail']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             $array['added_sticker_file_ids'],
             $array['duration'],
             $array['width'],
             $array['height'],
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
             $array['show_caption_above_media'],
             $array['has_spoiler'],
         );
@@ -84,7 +84,7 @@ class InputMessageAnimation extends InputMessageContent
         return $this->animation;
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -109,7 +109,7 @@ class InputMessageAnimation extends InputMessageContent
         return $this->showCaptionAboveMedia;
     }
 
-    public function getThumbnail(): InputThumbnail
+    public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
     }
@@ -124,12 +124,12 @@ class InputMessageAnimation extends InputMessageContent
         return [
             '@type'                    => static::TYPE_NAME,
             'animation'                => $this->animation->typeSerialize(),
-            'thumbnail'                => $this->thumbnail->typeSerialize(),
+            'thumbnail'                => $this->thumbnail ?? null,
             'added_sticker_file_ids'   => $this->addedStickerFileIds,
             'duration'                 => $this->duration,
             'width'                    => $this->width,
             'height'                   => $this->height,
-            'caption'                  => $this->caption->typeSerialize(),
+            'caption'                  => $this->caption ?? null,
             'show_caption_above_media' => $this->showCaptionAboveMedia,
             'has_spoiler'              => $this->hasSpoiler,
         ];

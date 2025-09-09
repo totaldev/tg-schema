@@ -23,7 +23,7 @@ class ToggleGiftIsSaved extends TdFunction
         /**
          * Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page.
          */
-        protected bool   $isSaved
+        protected bool   $isSaved,
     ) {}
 
     public static function fromArray(array $array): ToggleGiftIsSaved

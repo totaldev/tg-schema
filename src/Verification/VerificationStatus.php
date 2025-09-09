@@ -31,7 +31,7 @@ class VerificationStatus extends TdObject
         /**
          * Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none.
          */
-        protected int  $botVerificationIconCustomEmojiId
+        protected int  $botVerificationIconCustomEmojiId,
     ) {}
 
     public static function fromArray(array $array): VerificationStatus

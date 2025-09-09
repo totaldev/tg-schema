@@ -21,7 +21,7 @@ class InputMessageReplyToStory extends InputMessageReplyTo
         /**
          * The identifier of the story.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {
         parent::__construct();
     }

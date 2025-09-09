@@ -20,7 +20,7 @@ class PremiumSourceBusinessFeature extends PremiumSource
         /**
          * The used feature; pass null if none specific feature was used.
          */
-        protected BusinessFeature $feature
+        protected ?BusinessFeature $feature = null
     ) {
         parent::__construct();
     }
@@ -28,11 +28,11 @@ class PremiumSourceBusinessFeature extends PremiumSource
     public static function fromArray(array $array): PremiumSourceBusinessFeature
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['feature']),
+            isset($array['feature']) ? TdSchemaRegistry::fromArray($array['feature']) : null,
         );
     }
 
-    public function getFeature(): BusinessFeature
+    public function getFeature(): ?BusinessFeature
     {
         return $this->feature;
     }
@@ -41,7 +41,7 @@ class PremiumSourceBusinessFeature extends PremiumSource
     {
         return [
             '@type'   => static::TYPE_NAME,
-            'feature' => $this->feature->typeSerialize(),
+            'feature' => $this->feature ?? null,
         ];
     }
 }

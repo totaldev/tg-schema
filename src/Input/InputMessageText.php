@@ -29,7 +29,7 @@ class InputMessageText extends InputMessageContent
         /**
          * Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options.
          */
-        protected ?LinkPreviewOptions $linkPreviewOptions = null
+        protected ?LinkPreviewOptions $linkPreviewOptions = null,
     ) {
         parent::__construct();
     }

@@ -21,23 +21,23 @@ class GetInlineQueryResults extends TdFunction
         /**
          * Identifier of the target bot.
          */
-        protected int      $botUserId,
+        protected int       $botUserId,
         /**
          * Identifier of the chat where the query was sent.
          */
-        protected int      $chatId,
-        /**
-         * Location of the user; pass null if unknown or the bot doesn't need user's location.
-         */
-        protected Location $userLocation,
+        protected int       $chatId,
         /**
          * Text of the query.
          */
-        protected string   $query,
+        protected string    $query,
         /**
          * Offset of the first entry to return; use empty string to get the first chunk of results.
          */
-        protected string   $offset
+        protected string    $offset,
+        /**
+         * Location of the user; pass null if unknown or the bot doesn't need user's location.
+         */
+        protected ?Location $userLocation = null,
     ) {}
 
     public static function fromArray(array $array): GetInlineQueryResults
@@ -45,7 +45,7 @@ class GetInlineQueryResults extends TdFunction
         return new static(
             $array['bot_user_id'],
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['user_location']),
+            isset($array['user_location']) ? TdSchemaRegistry::fromArray($array['user_location']) : null,
             $array['query'],
             $array['offset'],
         );
@@ -71,7 +71,7 @@ class GetInlineQueryResults extends TdFunction
         return $this->query;
     }
 
-    public function getUserLocation(): Location
+    public function getUserLocation(): ?Location
     {
         return $this->userLocation;
     }
@@ -82,7 +82,7 @@ class GetInlineQueryResults extends TdFunction
             '@type'         => static::TYPE_NAME,
             'bot_user_id'   => $this->botUserId,
             'chat_id'       => $this->chatId,
-            'user_location' => $this->userLocation->typeSerialize(),
+            'user_location' => $this->userLocation ?? null,
             'query'         => $this->query,
             'offset'        => $this->offset,
         ];

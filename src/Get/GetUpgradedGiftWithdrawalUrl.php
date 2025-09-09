@@ -23,7 +23,7 @@ class GetUpgradedGiftWithdrawalUrl extends TdFunction
         /**
          * The 2-step verification password of the current user.
          */
-        protected string $password
+        protected string $password,
     ) {}
 
     public static function fromArray(array $array): GetUpgradedGiftWithdrawalUrl

@@ -25,7 +25,7 @@ class CreateInvoiceLink extends TdFunction
         /**
          * Information about the invoice of the type inputMessageInvoice.
          */
-        protected InputMessageContent $invoice
+        protected InputMessageContent $invoice,
     ) {}
 
     public static function fromArray(array $array): CreateInvoiceLink

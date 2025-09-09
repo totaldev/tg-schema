@@ -22,29 +22,29 @@ class GetChatEventLog extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int                 $chatId,
+        protected int                  $chatId,
         /**
          * Search query by which to filter events.
          */
-        protected string              $query,
+        protected string               $query,
         /**
          * Identifier of an event from which to return results. Use 0 to get results from the latest events.
          */
-        protected int                 $fromEventId,
+        protected int                  $fromEventId,
         /**
          * The maximum number of events to return; up to 100.
          */
-        protected int                 $limit,
-        /**
-         * The types of events to return; pass null to get chat events of all types.
-         */
-        protected ChatEventLogFilters $filters,
+        protected int                  $limit,
         /**
          * User identifiers by which to filter events. By default, events relating to all users will be returned.
          *
          * @var int[]
          */
-        protected array               $userIds,
+        protected array                $userIds,
+        /**
+         * The types of events to return; pass null to get chat events of all types.
+         */
+        protected ?ChatEventLogFilters $filters = null,
     ) {}
 
     public static function fromArray(array $array): GetChatEventLog
@@ -54,7 +54,7 @@ class GetChatEventLog extends TdFunction
             $array['query'],
             $array['from_event_id'],
             $array['limit'],
-            TdSchemaRegistry::fromArray($array['filters']),
+            isset($array['filters']) ? TdSchemaRegistry::fromArray($array['filters']) : null,
             $array['user_ids'],
         );
     }
@@ -64,7 +64,7 @@ class GetChatEventLog extends TdFunction
         return $this->chatId;
     }
 
-    public function getFilters(): ChatEventLogFilters
+    public function getFilters(): ?ChatEventLogFilters
     {
         return $this->filters;
     }
@@ -97,7 +97,7 @@ class GetChatEventLog extends TdFunction
             'query'         => $this->query,
             'from_event_id' => $this->fromEventId,
             'limit'         => $this->limit,
-            'filters'       => $this->filters->typeSerialize(),
+            'filters'       => $this->filters ?? null,
             'user_ids'      => $this->userIds,
         ];
     }

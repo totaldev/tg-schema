@@ -21,18 +21,18 @@ class EditInlineMessageReplyMarkup extends TdFunction
         /**
          * Inline message identifier.
          */
-        protected string      $inlineMessageId,
+        protected string       $inlineMessageId,
         /**
          * The new message reply markup; pass null if none.
          */
-        protected ReplyMarkup $replyMarkup
+        protected ?ReplyMarkup $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditInlineMessageReplyMarkup
     {
         return new static(
             $array['inline_message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
     }
 
@@ -41,7 +41,7 @@ class EditInlineMessageReplyMarkup extends TdFunction
         return $this->inlineMessageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -51,7 +51,7 @@ class EditInlineMessageReplyMarkup extends TdFunction
         return [
             '@type'             => static::TYPE_NAME,
             'inline_message_id' => $this->inlineMessageId,
-            'reply_markup'      => $this->replyMarkup->typeSerialize(),
+            'reply_markup'      => $this->replyMarkup ?? null,
         ];
     }
 }

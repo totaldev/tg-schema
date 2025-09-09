@@ -23,7 +23,7 @@ class GetVideoChatInviteLink extends TdFunction
         /**
          * Pass true if the invite link needs to contain an invite hash, passing which to joinVideoChat would allow the invited user to unmute themselves. Requires groupCall.can_be_managed right.
          */
-        protected bool $canSelfUnmute
+        protected bool $canSelfUnmute,
     ) {}
 
     public static function fromArray(array $array): GetVideoChatInviteLink

@@ -21,18 +21,18 @@ class SetBotProfilePhoto extends TdFunction
         /**
          * Identifier of the target bot.
          */
-        protected int            $botUserId,
+        protected int             $botUserId,
         /**
          * Profile photo to set; pass null to delete the chat photo.
          */
-        protected InputChatPhoto $photo
+        protected ?InputChatPhoto $photo = null,
     ) {}
 
     public static function fromArray(array $array): SetBotProfilePhoto
     {
         return new static(
             $array['bot_user_id'],
-            TdSchemaRegistry::fromArray($array['photo']),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
         );
     }
 
@@ -41,7 +41,7 @@ class SetBotProfilePhoto extends TdFunction
         return $this->botUserId;
     }
 
-    public function getPhoto(): InputChatPhoto
+    public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
     }
@@ -51,7 +51,7 @@ class SetBotProfilePhoto extends TdFunction
         return [
             '@type'       => static::TYPE_NAME,
             'bot_user_id' => $this->botUserId,
-            'photo'       => $this->photo->typeSerialize(),
+            'photo'       => $this->photo ?? null,
         ];
     }
 }

@@ -21,27 +21,27 @@ class GetChatStoryInteractions extends TdFunction
         /**
          * The identifier of the poster of the story.
          */
-        protected int          $storyPosterChatId,
+        protected int           $storyPosterChatId,
         /**
          * Story identifier.
          */
-        protected int          $storyId,
-        /**
-         * Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported.
-         */
-        protected ReactionType $reactionType,
+        protected int           $storyId,
         /**
          * Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date.
          */
-        protected bool         $preferForwards,
+        protected bool          $preferForwards,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected string       $offset,
+        protected string        $offset,
         /**
          * The maximum number of story interactions to return.
          */
-        protected int          $limit,
+        protected int           $limit,
+        /**
+         * Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported.
+         */
+        protected ?ReactionType $reactionType = null,
     ) {}
 
     public static function fromArray(array $array): GetChatStoryInteractions
@@ -49,7 +49,7 @@ class GetChatStoryInteractions extends TdFunction
         return new static(
             $array['story_poster_chat_id'],
             $array['story_id'],
-            TdSchemaRegistry::fromArray($array['reaction_type']),
+            isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null,
             $array['prefer_forwards'],
             $array['offset'],
             $array['limit'],
@@ -71,7 +71,7 @@ class GetChatStoryInteractions extends TdFunction
         return $this->preferForwards;
     }
 
-    public function getReactionType(): ReactionType
+    public function getReactionType(): ?ReactionType
     {
         return $this->reactionType;
     }
@@ -92,7 +92,7 @@ class GetChatStoryInteractions extends TdFunction
             '@type'                => static::TYPE_NAME,
             'story_poster_chat_id' => $this->storyPosterChatId,
             'story_id'             => $this->storyId,
-            'reaction_type'        => $this->reactionType->typeSerialize(),
+            'reaction_type'        => $this->reactionType ?? null,
             'prefer_forwards'      => $this->preferForwards,
             'offset'               => $this->offset,
             'limit'                => $this->limit,

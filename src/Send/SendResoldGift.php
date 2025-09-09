@@ -30,7 +30,7 @@ class SendResoldGift extends TdFunction
         /**
          * The amount of Telegram Stars required to pay for the gift.
          */
-        protected int           $starCount
+        protected int           $starCount,
     ) {}
 
     public static function fromArray(array $array): SendResoldGift

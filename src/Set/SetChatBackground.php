@@ -23,37 +23,37 @@ class SetChatBackground extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int             $chatId,
-        /**
-         * The input background to use; pass null to create a new filled or chat theme background.
-         */
-        protected InputBackground $background,
+        protected int              $chatId,
         /**
          * Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background.
          */
-        protected int             $darkThemeDimming,
+        protected int              $darkThemeDimming,
         /**
          * Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious.
          */
-        protected bool            $onlyForSelf,
+        protected bool             $onlyForSelf,
+        /**
+         * The input background to use; pass null to create a new filled or chat theme background.
+         */
+        protected ?InputBackground $background = null,
         /**
          * Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat.
          */
-        protected ?BackgroundType $type = null,
+        protected ?BackgroundType  $type = null,
     ) {}
 
     public static function fromArray(array $array): SetChatBackground
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['background']),
+            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
             isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
             $array['dark_theme_dimming'],
             $array['only_for_self'],
         );
     }
 
-    public function getBackground(): InputBackground
+    public function getBackground(): ?InputBackground
     {
         return $this->background;
     }
@@ -83,7 +83,7 @@ class SetChatBackground extends TdFunction
         return [
             '@type'              => static::TYPE_NAME,
             'chat_id'            => $this->chatId,
-            'background'         => $this->background->typeSerialize(),
+            'background'         => $this->background ?? null,
             'type'               => $this->type ?? null,
             'dark_theme_dimming' => $this->darkThemeDimming,
             'only_for_self'      => $this->onlyForSelf,

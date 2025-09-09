@@ -23,7 +23,7 @@ class SearchChatAffiliateProgram extends TdFunction
         /**
          * The referrer from an internalLinkTypeChatAffiliateProgram link.
          */
-        protected string $referrer
+        protected string $referrer,
     ) {}
 
     public static function fromArray(array $array): SearchChatAffiliateProgram

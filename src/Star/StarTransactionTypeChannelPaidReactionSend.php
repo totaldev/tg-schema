@@ -21,7 +21,7 @@ class StarTransactionTypeChannelPaidReactionSend extends StarTransactionType
         /**
          * Identifier of the reacted message; can be 0 or an identifier of a deleted message.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {
         parent::__construct();
     }

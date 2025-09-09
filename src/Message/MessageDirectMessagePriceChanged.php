@@ -21,7 +21,7 @@ class MessageDirectMessagePriceChanged extends MessageContent
         /**
          * The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free.
          */
-        protected int  $paidMessageStarCount
+        protected int  $paidMessageStarCount,
     ) {
         parent::__construct();
     }

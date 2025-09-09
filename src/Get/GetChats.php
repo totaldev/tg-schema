@@ -20,24 +20,24 @@ class GetChats extends TdFunction
 
     public function __construct(
         /**
-         * The chat list in which to return chats; pass null to get chats from the main chat list.
-         */
-        protected ChatList $chatList,
-        /**
          * The maximum number of chats to be returned.
          */
-        protected int      $limit
+        protected int       $limit,
+        /**
+         * The chat list in which to return chats; pass null to get chats from the main chat list.
+         */
+        protected ?ChatList $chatList = null,
     ) {}
 
     public static function fromArray(array $array): GetChats
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null,
             $array['limit'],
         );
     }
 
-    public function getChatList(): ChatList
+    public function getChatList(): ?ChatList
     {
         return $this->chatList;
     }
@@ -51,7 +51,7 @@ class GetChats extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList ?? null,
             'limit'     => $this->limit,
         ];
     }

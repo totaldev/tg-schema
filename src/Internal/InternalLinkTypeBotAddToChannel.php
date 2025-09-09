@@ -28,7 +28,7 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
         /**
          * Expected administrator rights for the bot.
          */
-        protected ChatAdministratorRights $administratorRights
+        protected ChatAdministratorRights $administratorRights,
     ) {
         parent::__construct();
     }

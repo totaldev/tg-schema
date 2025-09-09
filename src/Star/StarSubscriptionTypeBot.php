@@ -32,7 +32,7 @@ class StarSubscriptionTypeBot extends StarSubscriptionType
         /**
          * The link to the subscription invoice.
          */
-        protected string $invoiceLink
+        protected string $invoiceLink,
     ) {
         parent::__construct();
     }

@@ -22,23 +22,23 @@ class GetStarTransactions extends TdFunction
         /**
          * Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true.
          */
-        protected MessageSender            $ownerId,
+        protected MessageSender             $ownerId,
         /**
          * If non-empty, only transactions related to the Star Subscription will be returned.
          */
-        protected string                   $subscriptionId,
-        /**
-         * Direction of the transactions to receive; pass null to get all transactions.
-         */
-        protected StarTransactionDirection $direction,
+        protected string                    $subscriptionId,
         /**
          * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected string                   $offset,
+        protected string                    $offset,
         /**
          * The maximum number of transactions to return.
          */
-        protected int                      $limit,
+        protected int                       $limit,
+        /**
+         * Direction of the transactions to receive; pass null to get all transactions.
+         */
+        protected ?StarTransactionDirection $direction = null,
     ) {}
 
     public static function fromArray(array $array): GetStarTransactions
@@ -46,13 +46,13 @@ class GetStarTransactions extends TdFunction
         return new static(
             TdSchemaRegistry::fromArray($array['owner_id']),
             $array['subscription_id'],
-            TdSchemaRegistry::fromArray($array['direction']),
+            isset($array['direction']) ? TdSchemaRegistry::fromArray($array['direction']) : null,
             $array['offset'],
             $array['limit'],
         );
     }
 
-    public function getDirection(): StarTransactionDirection
+    public function getDirection(): ?StarTransactionDirection
     {
         return $this->direction;
     }
@@ -83,7 +83,7 @@ class GetStarTransactions extends TdFunction
             '@type'           => static::TYPE_NAME,
             'owner_id'        => $this->ownerId->typeSerialize(),
             'subscription_id' => $this->subscriptionId,
-            'direction'       => $this->direction->typeSerialize(),
+            'direction'       => $this->direction ?? null,
             'offset'          => $this->offset,
             'limit'           => $this->limit,
         ];

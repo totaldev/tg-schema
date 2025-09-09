@@ -21,22 +21,22 @@ class SetBusinessAccountProfilePhoto extends TdFunction
         /**
          * Unique identifier of business connection.
          */
-        protected string         $businessConnectionId,
+        protected string          $businessConnectionId,
+        /**
+         * Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings.
+         */
+        protected bool            $isPublic,
         /**
          * Profile photo to set; pass null to remove the photo.
          */
-        protected InputChatPhoto $photo,
-        /**
-         * Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings.
-         */
-        protected bool           $isPublic
+        protected ?InputChatPhoto $photo = null,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountProfilePhoto
     {
         return new static(
             $array['business_connection_id'],
-            TdSchemaRegistry::fromArray($array['photo']),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['is_public'],
         );
     }
@@ -51,7 +51,7 @@ class SetBusinessAccountProfilePhoto extends TdFunction
         return $this->isPublic;
     }
 
-    public function getPhoto(): InputChatPhoto
+    public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
     }
@@ -61,7 +61,7 @@ class SetBusinessAccountProfilePhoto extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
-            'photo'                  => $this->photo->typeSerialize(),
+            'photo'                  => $this->photo ?? null,
             'is_public'              => $this->isPublic,
         ];
     }

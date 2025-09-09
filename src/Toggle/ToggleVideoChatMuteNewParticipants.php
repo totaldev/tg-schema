@@ -24,7 +24,7 @@ class ToggleVideoChatMuteNewParticipants extends TdFunction
         /**
          * New value of the mute_new_participants setting.
          */
-        protected bool $muteNewParticipants
+        protected bool $muteNewParticipants,
     ) {}
 
     public static function fromArray(array $array): ToggleVideoChatMuteNewParticipants

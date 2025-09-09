@@ -23,7 +23,7 @@ class GetPreparedInlineMessage extends TdFunction
         /**
          * Identifier of the prepared message.
          */
-        protected string $preparedMessageId
+        protected string $preparedMessageId,
     ) {}
 
     public static function fromArray(array $array): GetPreparedInlineMessage

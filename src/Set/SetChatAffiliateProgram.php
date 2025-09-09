@@ -21,18 +21,18 @@ class SetChatAffiliateProgram extends TdFunction
         /**
          * Identifier of the chat with an owned bot for which affiliate program is changed.
          */
-        protected int                        $chatId,
+        protected int                         $chatId,
         /**
          * Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased. If the active program is scheduled to be closed, then it can't be changed anymore.
          */
-        protected AffiliateProgramParameters $parameters
+        protected ?AffiliateProgramParameters $parameters = null,
     ) {}
 
     public static function fromArray(array $array): SetChatAffiliateProgram
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['parameters']),
+            isset($array['parameters']) ? TdSchemaRegistry::fromArray($array['parameters']) : null,
         );
     }
 
@@ -41,7 +41,7 @@ class SetChatAffiliateProgram extends TdFunction
         return $this->chatId;
     }
 
-    public function getParameters(): AffiliateProgramParameters
+    public function getParameters(): ?AffiliateProgramParameters
     {
         return $this->parameters;
     }
@@ -51,7 +51,7 @@ class SetChatAffiliateProgram extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'parameters' => $this->parameters->typeSerialize(),
+            'parameters' => $this->parameters ?? null,
         ];
     }
 }

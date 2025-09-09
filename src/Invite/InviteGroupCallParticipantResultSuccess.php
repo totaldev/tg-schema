@@ -21,7 +21,7 @@ class InviteGroupCallParticipantResultSuccess extends InviteGroupCallParticipant
         /**
          * Identifier of the message.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {
         parent::__construct();
     }

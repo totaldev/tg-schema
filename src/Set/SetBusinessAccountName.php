@@ -27,7 +27,7 @@ class SetBusinessAccountName extends TdFunction
         /**
          * The new value of the optional last name for the business account; 0-64 characters.
          */
-        protected string $lastName
+        protected string $lastName,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountName

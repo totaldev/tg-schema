@@ -32,7 +32,7 @@ class CreateVideoChat extends TdFunction
         /**
          * Pass true to create an RTMP stream instead of an ordinary video chat.
          */
-        protected bool   $isRtmpStream
+        protected bool   $isRtmpStream,
     ) {}
 
     public static function fromArray(array $array): CreateVideoChat

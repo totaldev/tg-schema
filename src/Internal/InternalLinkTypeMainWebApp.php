@@ -32,7 +32,7 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
         /**
          * The mode to be passed to getMainWebApp.
          */
-        protected WebAppOpenMode $mode
+        protected WebAppOpenMode $mode,
     ) {
         parent::__construct();
     }

@@ -26,20 +26,20 @@ class PreliminaryUploadFile extends TdFunction
          */
         protected InputFile $file,
         /**
-         * File type; pass null if unknown.
-         */
-        protected FileType  $fileType,
-        /**
          * Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first.
          */
-        protected int       $priority
+        protected int       $priority,
+        /**
+         * File type; pass null if unknown.
+         */
+        protected ?FileType $fileType = null,
     ) {}
 
     public static function fromArray(array $array): PreliminaryUploadFile
     {
         return new static(
             TdSchemaRegistry::fromArray($array['file']),
-            TdSchemaRegistry::fromArray($array['file_type']),
+            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
             $array['priority'],
         );
     }
@@ -49,7 +49,7 @@ class PreliminaryUploadFile extends TdFunction
         return $this->file;
     }
 
-    public function getFileType(): FileType
+    public function getFileType(): ?FileType
     {
         return $this->fileType;
     }
@@ -64,7 +64,7 @@ class PreliminaryUploadFile extends TdFunction
         return [
             '@type'     => static::TYPE_NAME,
             'file'      => $this->file->typeSerialize(),
-            'file_type' => $this->fileType->typeSerialize(),
+            'file_type' => $this->fileType ?? null,
             'priority'  => $this->priority,
         ];
     }

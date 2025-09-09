@@ -21,17 +21,17 @@ class SetBusinessStartPage extends TdFunction
         /**
          * The new start page of the business; pass null to remove custom start page.
          */
-        protected InputBusinessStartPage $startPage
+        protected ?InputBusinessStartPage $startPage = null
     ) {}
 
     public static function fromArray(array $array): SetBusinessStartPage
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['start_page']),
+            isset($array['start_page']) ? TdSchemaRegistry::fromArray($array['start_page']) : null,
         );
     }
 
-    public function getStartPage(): InputBusinessStartPage
+    public function getStartPage(): ?InputBusinessStartPage
     {
         return $this->startPage;
     }
@@ -40,7 +40,7 @@ class SetBusinessStartPage extends TdFunction
     {
         return [
             '@type'      => static::TYPE_NAME,
-            'start_page' => $this->startPage->typeSerialize(),
+            'start_page' => $this->startPage ?? null,
         ];
     }
 }

@@ -33,7 +33,7 @@ class GetMainWebApp extends TdFunction
         /**
          * Parameters to use to open the Web App.
          */
-        protected WebAppOpenParameters $parameters
+        protected WebAppOpenParameters $parameters,
     ) {}
 
     public static function fromArray(array $array): GetMainWebApp

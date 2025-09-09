@@ -31,7 +31,7 @@ class GroupCallJoinParameters extends TdObject
         /**
          * Pass true if the user's video is enabled.
          */
-        protected bool   $isMyVideoEnabled
+        protected bool   $isMyVideoEnabled,
     ) {}
 
     public static function fromArray(array $array): GroupCallJoinParameters

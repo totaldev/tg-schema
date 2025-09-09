@@ -32,13 +32,13 @@ class EditBusinessMessageText extends TdFunction
          */
         protected int                 $messageId,
         /**
-         * The new message reply markup; pass null if none.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
          * New text content of the message. Must be of type inputMessageText.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ?ReplyMarkup        $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditBusinessMessageText
@@ -47,7 +47,7 @@ class EditBusinessMessageText extends TdFunction
             $array['business_connection_id'],
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -72,7 +72,7 @@ class EditBusinessMessageText extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -84,7 +84,7 @@ class EditBusinessMessageText extends TdFunction
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup->typeSerialize(),
+            'reply_markup'           => $this->replyMarkup ?? null,
             'input_message_content'  => $this->inputMessageContent->typeSerialize(),
         ];
     }

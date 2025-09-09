@@ -21,19 +21,19 @@ class AddPendingPaidMessageReaction extends TdFunction
         /**
          * Identifier of the chat to which the message belongs.
          */
-        protected int              $chatId,
+        protected int               $chatId,
         /**
          * Identifier of the message.
          */
-        protected int              $messageId,
+        protected int               $messageId,
         /**
          * Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max").
          */
-        protected int              $starCount,
+        protected int               $starCount,
         /**
          * Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble.
          */
-        protected PaidReactionType $type
+        protected ?PaidReactionType $type = null,
     ) {}
 
     public static function fromArray(array $array): AddPendingPaidMessageReaction
@@ -42,7 +42,7 @@ class AddPendingPaidMessageReaction extends TdFunction
             $array['chat_id'],
             $array['message_id'],
             $array['star_count'],
-            TdSchemaRegistry::fromArray($array['type']),
+            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
         );
     }
 
@@ -61,7 +61,7 @@ class AddPendingPaidMessageReaction extends TdFunction
         return $this->starCount;
     }
 
-    public function getType(): PaidReactionType
+    public function getType(): ?PaidReactionType
     {
         return $this->type;
     }
@@ -73,7 +73,7 @@ class AddPendingPaidMessageReaction extends TdFunction
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
             'star_count' => $this->starCount,
-            'type'       => $this->type->typeSerialize(),
+            'type'       => $this->type ?? null,
         ];
     }
 }

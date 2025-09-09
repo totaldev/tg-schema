@@ -24,7 +24,7 @@ class UpdateStoryPostSucceeded extends Update
         /**
          * The previous temporary story identifier.
          */
-        protected int   $oldStoryId
+        protected int   $oldStoryId,
     ) {
         parent::__construct();
     }

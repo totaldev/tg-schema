@@ -37,7 +37,7 @@ class GiftUpgradePreview extends TdObject
          *
          * @var UpgradedGiftBackdrop[]
          */
-        protected array $backdrops
+        protected array $backdrops,
     ) {}
 
     public static function fromArray(array $array): GiftUpgradePreview

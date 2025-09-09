@@ -41,13 +41,13 @@ class OpenWebApp extends TdFunction
          */
         protected int                  $directMessagesChatTopicId,
         /**
-         * Information about the message or story to be replied in the message sent by the Web App; pass null if none.
-         */
-        protected InputMessageReplyTo  $replyTo,
-        /**
          * Parameters to use to open the Web App.
          */
         protected WebAppOpenParameters $parameters,
+        /**
+         * Information about the message or story to be replied in the message sent by the Web App; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
     ) {}
 
     public static function fromArray(array $array): OpenWebApp
@@ -58,7 +58,7 @@ class OpenWebApp extends TdFunction
             $array['url'],
             $array['message_thread_id'],
             $array['direct_messages_chat_topic_id'],
-            TdSchemaRegistry::fromArray($array['reply_to']),
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             TdSchemaRegistry::fromArray($array['parameters']),
         );
     }
@@ -88,7 +88,7 @@ class OpenWebApp extends TdFunction
         return $this->parameters;
     }
 
-    public function getReplyTo(): InputMessageReplyTo
+    public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -107,7 +107,7 @@ class OpenWebApp extends TdFunction
             'url'                           => $this->url,
             'message_thread_id'             => $this->messageThreadId,
             'direct_messages_chat_topic_id' => $this->directMessagesChatTopicId,
-            'reply_to'                      => $this->replyTo->typeSerialize(),
+            'reply_to'                      => $this->replyTo ?? null,
             'parameters'                    => $this->parameters->typeSerialize(),
         ];
     }

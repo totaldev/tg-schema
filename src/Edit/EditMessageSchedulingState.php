@@ -22,15 +22,15 @@ class EditMessageSchedulingState extends TdFunction
         /**
          * The chat the message belongs to.
          */
-        protected int                    $chatId,
+        protected int                     $chatId,
         /**
          * Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable.
          */
-        protected int                    $messageId,
+        protected int                     $messageId,
         /**
          * The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed.
          */
-        protected MessageSchedulingState $schedulingState
+        protected ?MessageSchedulingState $schedulingState = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageSchedulingState
@@ -38,7 +38,7 @@ class EditMessageSchedulingState extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['scheduling_state']),
+            isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null,
         );
     }
 
@@ -52,7 +52,7 @@ class EditMessageSchedulingState extends TdFunction
         return $this->messageId;
     }
 
-    public function getSchedulingState(): MessageSchedulingState
+    public function getSchedulingState(): ?MessageSchedulingState
     {
         return $this->schedulingState;
     }
@@ -63,7 +63,7 @@ class EditMessageSchedulingState extends TdFunction
             '@type'            => static::TYPE_NAME,
             'chat_id'          => $this->chatId,
             'message_id'       => $this->messageId,
-            'scheduling_state' => $this->schedulingState->typeSerialize(),
+            'scheduling_state' => $this->schedulingState ?? null,
         ];
     }
 }

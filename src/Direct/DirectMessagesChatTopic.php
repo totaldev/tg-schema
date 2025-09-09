@@ -37,6 +37,10 @@ class DirectMessagesChatTopic extends TdObject
          */
         protected int           $order,
         /**
+         * True, if the other party can send unpaid messages even if the chat has paid messages enabled.
+         */
+        protected bool          $canSendUnpaidMessages,
+        /**
          * True, if the forum topic is marked as unread.
          */
         protected bool          $isMarkedAsUnread,
@@ -73,6 +77,7 @@ class DirectMessagesChatTopic extends TdObject
             $array['id'],
             TdSchemaRegistry::fromArray($array['sender_id']),
             $array['order'],
+            $array['can_send_unpaid_messages'],
             $array['is_marked_as_unread'],
             $array['unread_count'],
             $array['last_read_inbox_message_id'],
@@ -81,6 +86,11 @@ class DirectMessagesChatTopic extends TdObject
             isset($array['last_message']) ? TdSchemaRegistry::fromArray($array['last_message']) : null,
             isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
+    }
+
+    public function getCanSendUnpaidMessages(): bool
+    {
+        return $this->canSendUnpaidMessages;
     }
 
     public function getChatId(): int
@@ -146,6 +156,7 @@ class DirectMessagesChatTopic extends TdObject
             'id'                          => $this->id,
             'sender_id'                   => $this->senderId->typeSerialize(),
             'order'                       => $this->order,
+            'can_send_unpaid_messages'    => $this->canSendUnpaidMessages,
             'is_marked_as_unread'         => $this->isMarkedAsUnread,
             'unread_count'                => $this->unreadCount,
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,

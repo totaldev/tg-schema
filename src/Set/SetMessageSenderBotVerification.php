@@ -29,7 +29,7 @@ class SetMessageSenderBotVerification extends TdFunction
         /**
          * Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description.
          */
-        protected string        $customDescription
+        protected string        $customDescription,
     ) {}
 
     public static function fromArray(array $array): SetMessageSenderBotVerification

@@ -28,7 +28,7 @@ class UpdateTopicMessageCount extends Update
         /**
          * Approximate number of messages in the topics.
          */
-        protected int          $messageCount
+        protected int          $messageCount,
     ) {
         parent::__construct();
     }

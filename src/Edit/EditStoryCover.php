@@ -27,7 +27,7 @@ class EditStoryCover extends TdFunction
         /**
          * New timestamp of the frame, which will be used as video thumbnail.
          */
-        protected float $coverFrameTimestamp
+        protected float $coverFrameTimestamp,
     ) {}
 
     public static function fromArray(array $array): EditStoryCover

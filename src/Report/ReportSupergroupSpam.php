@@ -25,7 +25,7 @@ class ReportSupergroupSpam extends TdFunction
          *
          * @var int[]
          */
-        protected array $messageIds
+        protected array $messageIds,
     ) {}
 
     public static function fromArray(array $array): ReportSupergroupSpam

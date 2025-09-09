@@ -24,7 +24,7 @@ class EmojiStatus extends TdObject
         /**
          * Point in time (Unix timestamp) when the status will expire; 0 if never.
          */
-        protected int             $expirationDate
+        protected int             $expirationDate,
     ) {}
 
     public static function fromArray(array $array): EmojiStatus

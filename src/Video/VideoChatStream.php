@@ -27,7 +27,7 @@ class VideoChatStream extends TdObject
         /**
          * Point in time when the stream currently ends; Unix timestamp in milliseconds.
          */
-        protected int $timeOffset
+        protected int $timeOffset,
     ) {}
 
     public static function fromArray(array $array): VideoChatStream

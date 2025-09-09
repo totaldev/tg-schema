@@ -27,7 +27,7 @@ class GroupCallParticipants extends TdObject
          *
          * @var MessageSender[]
          */
-        protected array $participantIds
+        protected array $participantIds,
     ) {}
 
     public static function fromArray(array $array): GroupCallParticipants

@@ -143,6 +143,10 @@ class SupergroupFullInfo extends TdObject
          */
         protected int              $unrestrictBoostCount,
         /**
+         * Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup.
+         */
+        protected int              $outgoingPaidMessageStarCount,
+        /**
          * Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none.
          */
         protected int              $stickerSetId,
@@ -211,6 +215,7 @@ class SupergroupFullInfo extends TdObject
             $array['gift_count'],
             $array['my_boost_count'],
             $array['unrestrict_boost_count'],
+            $array['outgoing_paid_message_star_count'],
             $array['sticker_set_id'],
             $array['custom_emoji_sticker_set_id'],
             isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
@@ -372,6 +377,11 @@ class SupergroupFullInfo extends TdObject
         return $this->myBoostCount;
     }
 
+    public function getOutgoingPaidMessageStarCount(): int
+    {
+        return $this->outgoingPaidMessageStarCount;
+    }
+
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
@@ -446,6 +456,7 @@ class SupergroupFullInfo extends TdObject
             'gift_count'                       => $this->giftCount,
             'my_boost_count'                   => $this->myBoostCount,
             'unrestrict_boost_count'           => $this->unrestrictBoostCount,
+            'outgoing_paid_message_star_count' => $this->outgoingPaidMessageStarCount,
             'sticker_set_id'                   => $this->stickerSetId,
             'custom_emoji_sticker_set_id'      => $this->customEmojiStickerSetId,
             'location'                         => $this->location ?? null,

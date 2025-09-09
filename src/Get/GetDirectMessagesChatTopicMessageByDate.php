@@ -27,7 +27,7 @@ class GetDirectMessagesChatTopicMessageByDate extends TdFunction
         /**
          * Point in time (Unix timestamp) relative to which to search for messages.
          */
-        protected int $date
+        protected int $date,
     ) {}
 
     public static function fromArray(array $array): GetDirectMessagesChatTopicMessageByDate

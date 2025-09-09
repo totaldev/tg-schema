@@ -25,7 +25,7 @@ class DeleteChatMessagesBySender extends TdFunction
         /**
          * Identifier of the sender of messages to delete.
          */
-        protected MessageSender $senderId
+        protected MessageSender $senderId,
     ) {}
 
     public static function fromArray(array $array): DeleteChatMessagesBySender

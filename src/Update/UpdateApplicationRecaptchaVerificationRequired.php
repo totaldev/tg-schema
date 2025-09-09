@@ -26,7 +26,7 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
         /**
          * Identifier of the reCAPTCHA key.
          */
-        protected string $recaptchaKeyId
+        protected string $recaptchaKeyId,
     ) {
         parent::__construct();
     }

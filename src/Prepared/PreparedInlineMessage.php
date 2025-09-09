@@ -30,7 +30,7 @@ class PreparedInlineMessage extends TdObject
         /**
          * Types of the chats to which the message can be sent.
          */
-        protected TargetChatTypes   $chatTypes
+        protected TargetChatTypes   $chatTypes,
     ) {}
 
     public static function fromArray(array $array): PreparedInlineMessage

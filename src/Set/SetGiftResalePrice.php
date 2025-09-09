@@ -23,7 +23,7 @@ class SetGiftResalePrice extends TdFunction
         /**
          * The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift.
          */
-        protected int    $resaleStarCount
+        protected int    $resaleStarCount,
     ) {}
 
     public static function fromArray(array $array): SetGiftResalePrice

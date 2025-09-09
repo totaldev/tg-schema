@@ -24,27 +24,27 @@ class SendMessage extends TdFunction
         /**
          * Target chat.
          */
-        protected int                 $chatId,
+        protected int                  $chatId,
         /**
          * If not 0, the message thread identifier in which the message will be sent.
          */
-        protected int                 $messageThreadId,
-        /**
-         * Information about the message or story to be replied; pass null if none.
-         */
-        protected InputMessageReplyTo $replyTo,
-        /**
-         * Markup for replying to the message; pass null if none; for bots only.
-         */
-        protected ReplyMarkup         $replyMarkup,
+        protected int                  $messageThreadId,
         /**
          * The content of the message to be sent.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected InputMessageContent  $inputMessageContent,
+        /**
+         * Information about the message or story to be replied; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
         /**
          * Options to be used to send the message; pass null to use default options.
          */
-        protected ?MessageSendOptions $options = null,
+        protected ?MessageSendOptions  $options = null,
+        /**
+         * Markup for replying to the message; pass null if none; for bots only.
+         */
+        protected ?ReplyMarkup         $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): SendMessage
@@ -52,9 +52,9 @@ class SendMessage extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_thread_id'],
-            TdSchemaRegistry::fromArray($array['reply_to']),
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -79,12 +79,12 @@ class SendMessage extends TdFunction
         return $this->options;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
 
-    public function getReplyTo(): InputMessageReplyTo
+    public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -95,9 +95,9 @@ class SendMessage extends TdFunction
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'message_thread_id'     => $this->messageThreadId,
-            'reply_to'              => $this->replyTo->typeSerialize(),
+            'reply_to'              => $this->replyTo ?? null,
             'options'               => $this->options ?? null,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup ?? null,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

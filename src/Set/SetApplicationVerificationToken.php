@@ -23,7 +23,7 @@ class SetApplicationVerificationToken extends TdFunction
         /**
          * Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive the error "VERIFICATION_FAILED" for the request.
          */
-        protected string $token
+        protected string $token,
     ) {}
 
     public static function fromArray(array $array): SetApplicationVerificationToken

@@ -24,7 +24,7 @@ class ToggleSupergroupHasAutomaticTranslation extends TdFunction
         /**
          * The new value of has_automatic_translation.
          */
-        protected bool $hasAutomaticTranslation
+        protected bool $hasAutomaticTranslation,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupHasAutomaticTranslation

@@ -23,33 +23,33 @@ class SendBusinessMessageAlbum extends TdFunction
         /**
          * Unique identifier of business connection on behalf of which to send the request.
          */
-        protected string              $businessConnectionId,
+        protected string               $businessConnectionId,
         /**
          * Target chat.
          */
-        protected int                 $chatId,
-        /**
-         * Information about the message to be replied; pass null if none.
-         */
-        protected InputMessageReplyTo $replyTo,
+        protected int                  $chatId,
         /**
          * Pass true to disable notification for the message.
          */
-        protected bool                $disableNotification,
+        protected bool                 $disableNotification,
         /**
          * Pass true if the content of the message must be protected from forwarding and saving.
          */
-        protected bool                $protectContent,
+        protected bool                 $protectContent,
         /**
          * Identifier of the effect to apply to the message.
          */
-        protected int                 $effectId,
+        protected int                  $effectId,
         /**
          * Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media.
          *
          * @var InputMessageContent[]
          */
-        protected array               $inputMessageContents,
+        protected array                $inputMessageContents,
+        /**
+         * Information about the message to be replied; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
     ) {}
 
     public static function fromArray(array $array): SendBusinessMessageAlbum
@@ -57,7 +57,7 @@ class SendBusinessMessageAlbum extends TdFunction
         return new static(
             $array['business_connection_id'],
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['reply_to']),
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             $array['disable_notification'],
             $array['protect_content'],
             $array['effect_id'],
@@ -95,7 +95,7 @@ class SendBusinessMessageAlbum extends TdFunction
         return $this->protectContent;
     }
 
-    public function getReplyTo(): InputMessageReplyTo
+    public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -106,7 +106,7 @@ class SendBusinessMessageAlbum extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
-            'reply_to'               => $this->replyTo->typeSerialize(),
+            'reply_to'               => $this->replyTo ?? null,
             'disable_notification'   => $this->disableNotification,
             'protect_content'        => $this->protectContent,
             'effect_id'              => $this->effectId,

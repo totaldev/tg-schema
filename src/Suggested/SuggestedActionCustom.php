@@ -32,7 +32,7 @@ class SuggestedActionCustom extends SuggestedAction
         /**
          * The link to open when the suggestion is clicked.
          */
-        protected string        $url
+        protected string        $url,
     ) {
         parent::__construct();
     }

@@ -25,7 +25,7 @@ class ChatFolderName extends TdObject
         /**
          * True, if custom emoji in the name must be animated.
          */
-        protected bool          $animateCustomEmoji
+        protected bool          $animateCustomEmoji,
     ) {}
 
     public static function fromArray(array $array): ChatFolderName

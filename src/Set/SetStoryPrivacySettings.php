@@ -25,7 +25,7 @@ class SetStoryPrivacySettings extends TdFunction
         /**
          * The new privacy settings for the story.
          */
-        protected StoryPrivacySettings $privacySettings
+        protected StoryPrivacySettings $privacySettings,
     ) {}
 
     public static function fromArray(array $array): SetStoryPrivacySettings

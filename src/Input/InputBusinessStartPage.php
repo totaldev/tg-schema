@@ -20,15 +20,15 @@ class InputBusinessStartPage extends TdObject
         /**
          * Title text of the start page; 0-getOption("business_start_page_title_length_max") characters.
          */
-        protected string    $title,
+        protected string     $title,
         /**
          * Message text of the start page; 0-getOption("business_start_page_message_length_max") characters.
          */
-        protected string    $message,
+        protected string     $message,
         /**
          * Greeting sticker of the start page; pass null if none. The sticker must belong to a sticker set and must not be a custom emoji.
          */
-        protected InputFile $sticker
+        protected ?InputFile $sticker = null,
     ) {}
 
     public static function fromArray(array $array): InputBusinessStartPage
@@ -36,7 +36,7 @@ class InputBusinessStartPage extends TdObject
         return new static(
             $array['title'],
             $array['message'],
-            TdSchemaRegistry::fromArray($array['sticker']),
+            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
         );
     }
 
@@ -45,7 +45,7 @@ class InputBusinessStartPage extends TdObject
         return $this->message;
     }
 
-    public function getSticker(): InputFile
+    public function getSticker(): ?InputFile
     {
         return $this->sticker;
     }
@@ -61,7 +61,7 @@ class InputBusinessStartPage extends TdObject
             '@type'   => static::TYPE_NAME,
             'title'   => $this->title,
             'message' => $this->message,
-            'sticker' => $this->sticker->typeSerialize(),
+            'sticker' => $this->sticker ?? null,
         ];
     }
 }

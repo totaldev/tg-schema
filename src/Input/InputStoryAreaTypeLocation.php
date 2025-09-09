@@ -21,11 +21,11 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
         /**
          * The location.
          */
-        protected Location        $location,
+        protected Location         $location,
         /**
          * Address of the location; pass null if unknown.
          */
-        protected LocationAddress $address
+        protected ?LocationAddress $address = null,
     ) {
         parent::__construct();
     }
@@ -34,11 +34,11 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
     {
         return new static(
             TdSchemaRegistry::fromArray($array['location']),
-            TdSchemaRegistry::fromArray($array['address']),
+            isset($array['address']) ? TdSchemaRegistry::fromArray($array['address']) : null,
         );
     }
 
-    public function getAddress(): LocationAddress
+    public function getAddress(): ?LocationAddress
     {
         return $this->address;
     }
@@ -53,7 +53,7 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
         return [
             '@type'    => static::TYPE_NAME,
             'location' => $this->location->typeSerialize(),
-            'address'  => $this->address->typeSerialize(),
+            'address'  => $this->address ?? null,
         ];
     }
 }

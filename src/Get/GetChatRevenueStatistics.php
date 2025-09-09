@@ -24,7 +24,7 @@ class GetChatRevenueStatistics extends TdFunction
         /**
          * Pass true if a dark theme is used by the application.
          */
-        protected bool $isDark
+        protected bool $isDark,
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueStatistics

@@ -27,7 +27,7 @@ class SetDirectMessagesChatTopicIsMarkedAsUnread extends TdFunction
         /**
          * New value of is_marked_as_unread.
          */
-        protected bool $isMarkedAsUnread
+        protected bool $isMarkedAsUnread,
     ) {}
 
     public static function fromArray(array $array): SetDirectMessagesChatTopicIsMarkedAsUnread

@@ -24,7 +24,7 @@ class UpdateMessageSendSucceeded extends Update
         /**
          * The previous temporary message identifier.
          */
-        protected int     $oldMessageId
+        protected int     $oldMessageId,
     ) {
         parent::__construct();
     }

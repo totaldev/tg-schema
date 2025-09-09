@@ -21,17 +21,17 @@ class SetBusinessGreetingMessageSettings extends TdFunction
         /**
          * The new settings for the greeting message of the business; pass null to disable the greeting message.
          */
-        protected BusinessGreetingMessageSettings $greetingMessageSettings
+        protected ?BusinessGreetingMessageSettings $greetingMessageSettings = null
     ) {}
 
     public static function fromArray(array $array): SetBusinessGreetingMessageSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['greeting_message_settings']),
+            isset($array['greeting_message_settings']) ? TdSchemaRegistry::fromArray($array['greeting_message_settings']) : null,
         );
     }
 
-    public function getGreetingMessageSettings(): BusinessGreetingMessageSettings
+    public function getGreetingMessageSettings(): ?BusinessGreetingMessageSettings
     {
         return $this->greetingMessageSettings;
     }
@@ -40,7 +40,7 @@ class SetBusinessGreetingMessageSettings extends TdFunction
     {
         return [
             '@type'                     => static::TYPE_NAME,
-            'greeting_message_settings' => $this->greetingMessageSettings->typeSerialize(),
+            'greeting_message_settings' => $this->greetingMessageSettings ?? null,
         ];
     }
 }

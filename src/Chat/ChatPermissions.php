@@ -45,7 +45,7 @@ class ChatPermissions extends TdObject
          */
         protected bool $canSendVoiceNotes,
         /**
-         * True, if the user can send polls.
+         * True, if the user can send polls and checklists.
          */
         protected bool $canSendPolls,
         /**

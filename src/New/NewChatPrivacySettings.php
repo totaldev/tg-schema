@@ -23,7 +23,7 @@ class NewChatPrivacySettings extends TdObject
         /**
          * Number of Telegram Stars that must be paid for every incoming private message by non-contacts; 0-getOption("paid_message_star_count_max"). If positive, then allow_new_chats_from_unknown_users must be true. The current user will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending. Can be positive, only if getOption("can_enable_paid_messages") is true.
          */
-        protected int  $incomingPaidMessageStarCount
+        protected int  $incomingPaidMessageStarCount,
     ) {}
 
     public static function fromArray(array $array): NewChatPrivacySettings

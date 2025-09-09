@@ -6,8 +6,8 @@
 
 namespace Totaldev\TgSchema\Sponsored;
 
+use Totaldev\TgSchema\Advertisement\AdvertisementSponsor;
 use Totaldev\TgSchema\Message\MessageContent;
-use Totaldev\TgSchema\Message\MessageSponsor;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -22,43 +22,43 @@ class SponsoredMessage extends TdObject
         /**
          * Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages.
          */
-        protected int            $messageId,
+        protected int                  $messageId,
         /**
          * True, if the message needs to be labeled as "recommended" instead of "sponsored".
          */
-        protected bool           $isRecommended,
+        protected bool                 $isRecommended,
         /**
          * True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage.
          */
-        protected bool           $canBeReported,
+        protected bool                 $canBeReported,
         /**
          * Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen.
          */
-        protected MessageContent $content,
+        protected MessageContent       $content,
         /**
          * Information about the sponsor of the message.
          */
-        protected MessageSponsor $sponsor,
+        protected AdvertisementSponsor $sponsor,
         /**
          * Title of the sponsored message.
          */
-        protected string         $title,
+        protected string               $title,
         /**
          * Text for the message action button.
          */
-        protected string         $buttonText,
+        protected string               $buttonText,
         /**
          * Identifier of the accent color for title, button text and message background.
          */
-        protected int            $accentColorId,
+        protected int                  $accentColorId,
         /**
          * Identifier of a custom emoji to be shown on the message background; 0 if none.
          */
-        protected int            $backgroundCustomEmojiId,
+        protected int                  $backgroundCustomEmojiId,
         /**
          * If non-empty, additional information about the sponsored message to be shown along with the message.
          */
-        protected string         $additionalInfo,
+        protected string               $additionalInfo,
     ) {}
 
     public static function fromArray(array $array): SponsoredMessage
@@ -117,7 +117,7 @@ class SponsoredMessage extends TdObject
         return $this->messageId;
     }
 
-    public function getSponsor(): MessageSponsor
+    public function getSponsor(): AdvertisementSponsor
     {
         return $this->sponsor;
     }

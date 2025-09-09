@@ -23,7 +23,7 @@ class ReadAllDirectMessagesChatTopicReactions extends TdFunction
         /**
          * Topic identifier.
          */
-        protected int $topicId
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): ReadAllDirectMessagesChatTopicReactions

@@ -19,23 +19,23 @@ class InputMessageSticker extends InputMessageContent
         /**
          * Sticker to be sent.
          */
-        protected InputFile      $sticker,
-        /**
-         * Sticker thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail $thumbnail,
+        protected InputFile       $sticker,
         /**
          * Sticker width.
          */
-        protected int            $width,
+        protected int             $width,
         /**
          * Sticker height.
          */
-        protected int            $height,
+        protected int             $height,
         /**
          * Emoji used to choose the sticker.
          */
-        protected string         $emoji
+        protected string          $emoji,
+        /**
+         * Sticker thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $thumbnail = null,
     ) {
         parent::__construct();
     }
@@ -44,7 +44,7 @@ class InputMessageSticker extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['sticker']),
-            TdSchemaRegistry::fromArray($array['thumbnail']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             $array['width'],
             $array['height'],
             $array['emoji'],
@@ -66,7 +66,7 @@ class InputMessageSticker extends InputMessageContent
         return $this->sticker;
     }
 
-    public function getThumbnail(): InputThumbnail
+    public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
     }
@@ -81,7 +81,7 @@ class InputMessageSticker extends InputMessageContent
         return [
             '@type'     => static::TYPE_NAME,
             'sticker'   => $this->sticker->typeSerialize(),
-            'thumbnail' => $this->thumbnail->typeSerialize(),
+            'thumbnail' => $this->thumbnail ?? null,
             'width'     => $this->width,
             'height'    => $this->height,
             'emoji'     => $this->emoji,

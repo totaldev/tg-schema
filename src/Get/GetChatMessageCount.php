@@ -24,24 +24,24 @@ class GetChatMessageCount extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics.
-         */
-        protected MessageTopic         $topicId,
-        /**
          * Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
          * Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally.
          */
-        protected bool                 $returnLocal
+        protected bool                 $returnLocal,
+        /**
+         * Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics.
+         */
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): GetChatMessageCount
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             TdSchemaRegistry::fromArray($array['filter']),
             $array['return_local'],
         );
@@ -62,7 +62,7 @@ class GetChatMessageCount extends TdFunction
         return $this->returnLocal;
     }
 
-    public function getTopicId(): MessageTopic
+    public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
     }
@@ -72,7 +72,7 @@ class GetChatMessageCount extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'topic_id'     => $this->topicId->typeSerialize(),
+            'topic_id'     => $this->topicId ?? null,
             'filter'       => $this->filter->typeSerialize(),
             'return_local' => $this->returnLocal,
         ];

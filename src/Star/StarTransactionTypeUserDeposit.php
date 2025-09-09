@@ -24,7 +24,7 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
         /**
          * The sticker to be shown in the transaction information; may be null if unknown.
          */
-        protected ?Sticker $sticker
+        protected ?Sticker $sticker,
     ) {
         parent::__construct();
     }

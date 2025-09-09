@@ -31,7 +31,7 @@ class StartGroupCallRecording extends TdFunction
         /**
          * Pass true to use portrait orientation for video instead of landscape one.
          */
-        protected bool   $usePortraitOrientation
+        protected bool   $usePortraitOrientation,
     ) {}
 
     public static function fromArray(array $array): StartGroupCallRecording

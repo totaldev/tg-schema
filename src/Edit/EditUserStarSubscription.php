@@ -27,7 +27,7 @@ class EditUserStarSubscription extends TdFunction
         /**
          * Pass true to cancel the subscription; pass false to allow the user to enable it.
          */
-        protected bool   $isCanceled
+        protected bool   $isCanceled,
     ) {}
 
     public static function fromArray(array $array): EditUserStarSubscription

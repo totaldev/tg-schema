@@ -35,7 +35,7 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
         /**
          * Information about the affiliate which received commission from the transaction; may be null if none.
          */
-        protected ?AffiliateInfo $affiliate
+        protected ?AffiliateInfo $affiliate,
     ) {
         parent::__construct();
     }

@@ -22,18 +22,18 @@ class SetChatEmojiStatus extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
          * New emoji status; pass null to remove emoji status.
          */
-        protected EmojiStatus $emojiStatus
+        protected ?EmojiStatus $emojiStatus = null,
     ) {}
 
     public static function fromArray(array $array): SetChatEmojiStatus
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['emoji_status']),
+            isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
         );
     }
 
@@ -42,7 +42,7 @@ class SetChatEmojiStatus extends TdFunction
         return $this->chatId;
     }
 
-    public function getEmojiStatus(): EmojiStatus
+    public function getEmojiStatus(): ?EmojiStatus
     {
         return $this->emojiStatus;
     }
@@ -52,7 +52,7 @@ class SetChatEmojiStatus extends TdFunction
         return [
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
-            'emoji_status' => $this->emojiStatus->typeSerialize(),
+            'emoji_status' => $this->emojiStatus ?? null,
         ];
     }
 }

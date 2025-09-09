@@ -21,23 +21,23 @@ class GetVideoChatStreamSegment extends TdFunction
         /**
          * Group call identifier.
          */
-        protected int                   $groupCallId,
+        protected int                    $groupCallId,
         /**
          * Point in time when the stream segment begins; Unix timestamp in milliseconds.
          */
-        protected int                   $timeOffset,
+        protected int                    $timeOffset,
         /**
          * Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds.
          */
-        protected int                   $scale,
+        protected int                    $scale,
         /**
          * Identifier of an audio/video channel to get as received from tgcalls.
          */
-        protected int                   $channelId,
+        protected int                    $channelId,
         /**
          * Video quality as received from tgcalls; pass null to get the worst available quality.
          */
-        protected GroupCallVideoQuality $videoQuality,
+        protected ?GroupCallVideoQuality $videoQuality = null,
     ) {}
 
     public static function fromArray(array $array): GetVideoChatStreamSegment
@@ -47,7 +47,7 @@ class GetVideoChatStreamSegment extends TdFunction
             $array['time_offset'],
             $array['scale'],
             $array['channel_id'],
-            TdSchemaRegistry::fromArray($array['video_quality']),
+            isset($array['video_quality']) ? TdSchemaRegistry::fromArray($array['video_quality']) : null,
         );
     }
 
@@ -71,7 +71,7 @@ class GetVideoChatStreamSegment extends TdFunction
         return $this->timeOffset;
     }
 
-    public function getVideoQuality(): GroupCallVideoQuality
+    public function getVideoQuality(): ?GroupCallVideoQuality
     {
         return $this->videoQuality;
     }
@@ -84,7 +84,7 @@ class GetVideoChatStreamSegment extends TdFunction
             'time_offset'   => $this->timeOffset,
             'scale'         => $this->scale,
             'channel_id'    => $this->channelId,
-            'video_quality' => $this->videoQuality->typeSerialize(),
+            'video_quality' => $this->videoQuality ?? null,
         ];
     }
 }

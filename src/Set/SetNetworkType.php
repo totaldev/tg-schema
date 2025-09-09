@@ -23,17 +23,17 @@ class SetNetworkType extends TdFunction
         /**
          * The new network type; pass null to set network type to networkTypeOther.
          */
-        protected NetworkType $type
+        protected ?NetworkType $type = null
     ) {}
 
     public static function fromArray(array $array): SetNetworkType
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['type']),
+            isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
         );
     }
 
-    public function getType(): NetworkType
+    public function getType(): ?NetworkType
     {
         return $this->type;
     }
@@ -42,7 +42,7 @@ class SetNetworkType extends TdFunction
     {
         return [
             '@type' => static::TYPE_NAME,
-            'type'  => $this->type->typeSerialize(),
+            'type'  => $this->type ?? null,
         ];
     }
 }

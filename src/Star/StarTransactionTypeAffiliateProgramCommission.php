@@ -21,7 +21,7 @@ class StarTransactionTypeAffiliateProgramCommission extends StarTransactionType
         /**
          * The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner.
          */
-        protected int $commissionPerMille
+        protected int $commissionPerMille,
     ) {
         parent::__construct();
     }

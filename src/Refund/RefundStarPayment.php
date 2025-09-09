@@ -23,7 +23,7 @@ class RefundStarPayment extends TdFunction
         /**
          * Telegram payment identifier.
          */
-        protected string $telegramPaymentChargeId
+        protected string $telegramPaymentChargeId,
     ) {}
 
     public static function fromArray(array $array): RefundStarPayment

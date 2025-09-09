@@ -21,15 +21,15 @@ class SetChatDraftMessage extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int          $chatId,
+        protected int           $chatId,
         /**
          * If not 0, the message thread identifier in which the draft was changed.
          */
-        protected int          $messageThreadId,
+        protected int           $messageThreadId,
         /**
          * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
          */
-        protected DraftMessage $draftMessage
+        protected ?DraftMessage $draftMessage = null,
     ) {}
 
     public static function fromArray(array $array): SetChatDraftMessage
@@ -37,7 +37,7 @@ class SetChatDraftMessage extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_thread_id'],
-            TdSchemaRegistry::fromArray($array['draft_message']),
+            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
     }
 
@@ -46,7 +46,7 @@ class SetChatDraftMessage extends TdFunction
         return $this->chatId;
     }
 
-    public function getDraftMessage(): DraftMessage
+    public function getDraftMessage(): ?DraftMessage
     {
         return $this->draftMessage;
     }
@@ -62,7 +62,7 @@ class SetChatDraftMessage extends TdFunction
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'draft_message'     => $this->draftMessage->typeSerialize(),
+            'draft_message'     => $this->draftMessage ?? null,
         ];
     }
 }

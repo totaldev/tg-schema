@@ -32,7 +32,7 @@ class ClickChatSponsoredMessage extends TdFunction
         /**
          * Pass true if the user expanded the video from the sponsored message fullscreen before the click.
          */
-        protected bool $fromFullscreen
+        protected bool $fromFullscreen,
     ) {}
 
     public static function fromArray(array $array): ClickChatSponsoredMessage

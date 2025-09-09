@@ -21,55 +21,55 @@ class InputMessageInvoice extends InputMessageContent
         /**
          * Invoice.
          */
-        protected Invoice        $invoice,
+        protected Invoice         $invoice,
         /**
          * Product title; 1-32 characters.
          */
-        protected string         $title,
+        protected string          $title,
         /**
          * Product description; 0-255 characters.
          */
-        protected string         $description,
+        protected string          $description,
         /**
          * Product photo URL; optional.
          */
-        protected string         $photoUrl,
+        protected string          $photoUrl,
         /**
          * Product photo size.
          */
-        protected int            $photoSize,
+        protected int             $photoSize,
         /**
          * Product photo width.
          */
-        protected int            $photoWidth,
+        protected int             $photoWidth,
         /**
          * Product photo height.
          */
-        protected int            $photoHeight,
+        protected int             $photoHeight,
         /**
          * The invoice payload.
          */
-        protected string         $payload,
+        protected string          $payload,
         /**
          * Payment provider token; may be empty for payments in Telegram Stars.
          */
-        protected string         $providerToken,
+        protected string          $providerToken,
         /**
          * JSON-encoded data about the invoice, which will be shared with the payment provider.
          */
-        protected string         $providerData,
+        protected string          $providerData,
         /**
          * Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message.
          */
-        protected string         $startParameter,
+        protected string          $startParameter,
         /**
          * The content of paid media attached to the invoice; pass null if none.
          */
-        protected InputPaidMedia $paidMedia,
+        protected ?InputPaidMedia $paidMedia = null,
         /**
          * Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
-        protected FormattedText  $paidMediaCaption,
+        protected ?FormattedText  $paidMediaCaption = null,
     ) {
         parent::__construct();
     }
@@ -88,8 +88,8 @@ class InputMessageInvoice extends InputMessageContent
             $array['provider_token'],
             $array['provider_data'],
             $array['start_parameter'],
-            TdSchemaRegistry::fromArray($array['paid_media']),
-            TdSchemaRegistry::fromArray($array['paid_media_caption']),
+            isset($array['paid_media']) ? TdSchemaRegistry::fromArray($array['paid_media']) : null,
+            isset($array['paid_media_caption']) ? TdSchemaRegistry::fromArray($array['paid_media_caption']) : null,
         );
     }
 
@@ -103,12 +103,12 @@ class InputMessageInvoice extends InputMessageContent
         return $this->invoice;
     }
 
-    public function getPaidMedia(): InputPaidMedia
+    public function getPaidMedia(): ?InputPaidMedia
     {
         return $this->paidMedia;
     }
 
-    public function getPaidMediaCaption(): FormattedText
+    public function getPaidMediaCaption(): ?FormattedText
     {
         return $this->paidMediaCaption;
     }
@@ -173,8 +173,8 @@ class InputMessageInvoice extends InputMessageContent
             'provider_token'     => $this->providerToken,
             'provider_data'      => $this->providerData,
             'start_parameter'    => $this->startParameter,
-            'paid_media'         => $this->paidMedia->typeSerialize(),
-            'paid_media_caption' => $this->paidMediaCaption->typeSerialize(),
+            'paid_media'         => $this->paidMedia ?? null,
+            'paid_media_caption' => $this->paidMediaCaption ?? null,
         ];
     }
 }

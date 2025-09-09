@@ -32,7 +32,7 @@ class MessageRefundedUpgradedGift extends MessageContent
         /**
          * True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift.
          */
-        protected bool          $isUpgrade
+        protected bool          $isUpgrade,
     ) {
         parent::__construct();
     }

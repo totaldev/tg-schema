@@ -21,7 +21,7 @@ class MessagePaidMessagesRefunded extends MessageContent
         /**
          * The number of refunded Telegram Stars.
          */
-        protected int $starCount
+        protected int $starCount,
     ) {
         parent::__construct();
     }

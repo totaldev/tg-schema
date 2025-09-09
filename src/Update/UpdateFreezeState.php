@@ -29,7 +29,7 @@ class UpdateFreezeState extends Update
         /**
          * The link to open to send an appeal to unfreeze the account.
          */
-        protected string $appealLink
+        protected string $appealLink,
     ) {
         parent::__construct();
     }

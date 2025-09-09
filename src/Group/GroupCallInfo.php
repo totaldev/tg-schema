@@ -23,7 +23,7 @@ class GroupCallInfo extends TdObject
         /**
          * Join response payload for tgcalls; empty if the call isn't joined.
          */
-        protected string $joinPayload
+        protected string $joinPayload,
     ) {}
 
     public static function fromArray(array $array): GroupCallInfo

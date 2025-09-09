@@ -23,34 +23,34 @@ class SearchSavedMessages extends TdFunction
         /**
          * If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages.
          */
-        protected int          $savedMessagesTopicId,
-        /**
-         * Tag to search for; pass null to return all suitable messages.
-         */
-        protected ReactionType $tag,
+        protected int           $savedMessagesTopicId,
         /**
          * Query to search for.
          */
-        protected string       $query,
+        protected string        $query,
         /**
          * Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message.
          */
-        protected int          $fromMessageId,
+        protected int           $fromMessageId,
         /**
          * Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages.
          */
-        protected int          $offset,
+        protected int           $offset,
         /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int          $limit,
+        protected int           $limit,
+        /**
+         * Tag to search for; pass null to return all suitable messages.
+         */
+        protected ?ReactionType $tag = null,
     ) {}
 
     public static function fromArray(array $array): SearchSavedMessages
     {
         return new static(
             $array['saved_messages_topic_id'],
-            TdSchemaRegistry::fromArray($array['tag']),
+            isset($array['tag']) ? TdSchemaRegistry::fromArray($array['tag']) : null,
             $array['query'],
             $array['from_message_id'],
             $array['offset'],
@@ -83,7 +83,7 @@ class SearchSavedMessages extends TdFunction
         return $this->savedMessagesTopicId;
     }
 
-    public function getTag(): ReactionType
+    public function getTag(): ?ReactionType
     {
         return $this->tag;
     }
@@ -93,7 +93,7 @@ class SearchSavedMessages extends TdFunction
         return [
             '@type'                   => static::TYPE_NAME,
             'saved_messages_topic_id' => $this->savedMessagesTopicId,
-            'tag'                     => $this->tag->typeSerialize(),
+            'tag'                     => $this->tag ?? null,
             'query'                   => $this->query,
             'from_message_id'         => $this->fromMessageId,
             'offset'                  => $this->offset,

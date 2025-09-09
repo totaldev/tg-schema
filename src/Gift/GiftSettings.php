@@ -25,7 +25,7 @@ class GiftSettings extends TdObject
         /**
          * Types of gifts accepted by the user; for Telegram Premium users only.
          */
-        protected AcceptedGiftTypes $acceptedGiftTypes
+        protected AcceptedGiftTypes $acceptedGiftTypes,
     ) {}
 
     public static function fromArray(array $array): GiftSettings

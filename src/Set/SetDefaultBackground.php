@@ -20,29 +20,29 @@ class SetDefaultBackground extends TdFunction
 
     public function __construct(
         /**
-         * The input background to use; pass null to create a new filled background.
-         */
-        protected InputBackground $background,
-        /**
          * Pass true if the background is set for a dark theme.
          */
-        protected bool            $forDarkTheme,
+        protected bool             $forDarkTheme,
+        /**
+         * The input background to use; pass null to create a new filled background.
+         */
+        protected ?InputBackground $background = null,
         /**
          * Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported.
          */
-        protected ?BackgroundType $type = null
+        protected ?BackgroundType  $type = null,
     ) {}
 
     public static function fromArray(array $array): SetDefaultBackground
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['background']),
+            isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
             isset($array['type']) ? TdSchemaRegistry::fromArray($array['type']) : null,
             $array['for_dark_theme'],
         );
     }
 
-    public function getBackground(): InputBackground
+    public function getBackground(): ?InputBackground
     {
         return $this->background;
     }
@@ -61,7 +61,7 @@ class SetDefaultBackground extends TdFunction
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'background'     => $this->background->typeSerialize(),
+            'background'     => $this->background ?? null,
             'type'           => $this->type ?? null,
             'for_dark_theme' => $this->forDarkTheme,
         ];

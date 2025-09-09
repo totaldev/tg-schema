@@ -21,7 +21,7 @@ class StoryOriginPublicStory extends StoryOrigin
         /**
          * Story identifier of the original story.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {
         parent::__construct();
     }

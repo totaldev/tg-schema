@@ -24,7 +24,7 @@ class SearchChats extends TdFunction
         /**
          * The maximum number of chats to be returned.
          */
-        protected int    $limit
+        protected int    $limit,
     ) {}
 
     public static function fromArray(array $array): SearchChats

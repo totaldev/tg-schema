@@ -18,10 +18,6 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
 
     public function __construct(
         /**
-         * Type of the file the data is part of; pass null if the data isn't related to files.
-         */
-        protected FileType    $fileType,
-        /**
          * Type of the network the data was sent through. Call setNetworkType to maintain the actual network type.
          */
         protected NetworkType $networkType,
@@ -32,7 +28,11 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
         /**
          * Total number of bytes received.
          */
-        protected int         $receivedBytes
+        protected int         $receivedBytes,
+        /**
+         * Type of the file the data is part of; pass null if the data isn't related to files.
+         */
+        protected ?FileType   $fileType = null,
     ) {
         parent::__construct();
     }
@@ -40,14 +40,14 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     public static function fromArray(array $array): NetworkStatisticsEntryFile
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['file_type']),
+            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
             TdSchemaRegistry::fromArray($array['network_type']),
             $array['sent_bytes'],
             $array['received_bytes'],
         );
     }
 
-    public function getFileType(): FileType
+    public function getFileType(): ?FileType
     {
         return $this->fileType;
     }
@@ -71,7 +71,7 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     {
         return [
             '@type'          => static::TYPE_NAME,
-            'file_type'      => $this->fileType->typeSerialize(),
+            'file_type'      => $this->fileType ?? null,
             'network_type'   => $this->networkType->typeSerialize(),
             'sent_bytes'     => $this->sentBytes,
             'received_bytes' => $this->receivedBytes,

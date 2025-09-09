@@ -28,7 +28,7 @@ class StarTransactionTypeBotSubscriptionPurchase extends StarTransactionType
         /**
          * Information about the bought subscription.
          */
-        protected ProductInfo $productInfo
+        protected ProductInfo $productInfo,
     ) {
         parent::__construct();
     }

@@ -19,19 +19,19 @@ class GetChatNotificationSettingsExceptions extends TdFunction
 
     public function __construct(
         /**
-         * If specified, only chats from the scope will be returned; pass null to return chats from all scopes.
-         */
-        protected NotificationSettingsScope $scope,
-        /**
          * Pass true to include in the response chats with only non-default sound.
          */
-        protected bool                      $compareSound
+        protected bool                       $compareSound,
+        /**
+         * If specified, only chats from the scope will be returned; pass null to return chats from all scopes.
+         */
+        protected ?NotificationSettingsScope $scope = null,
     ) {}
 
     public static function fromArray(array $array): GetChatNotificationSettingsExceptions
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['scope']),
+            isset($array['scope']) ? TdSchemaRegistry::fromArray($array['scope']) : null,
             $array['compare_sound'],
         );
     }
@@ -41,7 +41,7 @@ class GetChatNotificationSettingsExceptions extends TdFunction
         return $this->compareSound;
     }
 
-    public function getScope(): NotificationSettingsScope
+    public function getScope(): ?NotificationSettingsScope
     {
         return $this->scope;
     }
@@ -50,7 +50,7 @@ class GetChatNotificationSettingsExceptions extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'scope'         => $this->scope->typeSerialize(),
+            'scope'         => $this->scope ?? null,
             'compare_sound' => $this->compareSound,
         ];
     }

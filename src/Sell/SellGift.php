@@ -23,7 +23,7 @@ class SellGift extends TdFunction
         /**
          * Identifier of the gift.
          */
-        protected string $receivedGiftId
+        protected string $receivedGiftId,
     ) {}
 
     public static function fromArray(array $array): SellGift

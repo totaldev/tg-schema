@@ -23,7 +23,7 @@ class DeleteDirectMessagesChatTopicHistory extends TdFunction
         /**
          * Identifier of the topic which messages will be deleted.
          */
-        protected int $topicId
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): DeleteDirectMessagesChatTopicHistory

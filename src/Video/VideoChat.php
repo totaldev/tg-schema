@@ -29,7 +29,7 @@ class VideoChat extends TdObject
         /**
          * Default group call participant identifier to join the video chat; may be null.
          */
-        protected ?MessageSender $defaultParticipantId
+        protected ?MessageSender $defaultParticipantId,
     ) {}
 
     public static function fromArray(array $array): VideoChat

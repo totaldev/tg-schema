@@ -21,44 +21,44 @@ class InputIdentityDocument extends TdObject
         /**
          * Document number; 1-24 characters.
          */
-        protected string    $number,
-        /**
-         * Document expiration date; pass null if not applicable.
-         */
-        protected Date      $expirationDate,
+        protected string     $number,
         /**
          * Front side of the document.
          */
-        protected InputFile $frontSide,
-        /**
-         * Reverse side of the document; only for driver license and identity card; pass null otherwise.
-         */
-        protected InputFile $reverseSide,
-        /**
-         * Selfie with the document; pass null if unavailable.
-         */
-        protected InputFile $selfie,
+        protected InputFile  $frontSide,
         /**
          * List of files containing a certified English translation of the document.
          *
          * @var InputFile[]
          */
-        protected array     $translation,
+        protected array      $translation,
+        /**
+         * Document expiration date; pass null if not applicable.
+         */
+        protected ?Date      $expirationDate = null,
+        /**
+         * Reverse side of the document; only for driver license and identity card; pass null otherwise.
+         */
+        protected ?InputFile $reverseSide = null,
+        /**
+         * Selfie with the document; pass null if unavailable.
+         */
+        protected ?InputFile $selfie = null,
     ) {}
 
     public static function fromArray(array $array): InputIdentityDocument
     {
         return new static(
             $array['number'],
-            TdSchemaRegistry::fromArray($array['expiration_date']),
+            isset($array['expiration_date']) ? TdSchemaRegistry::fromArray($array['expiration_date']) : null,
             TdSchemaRegistry::fromArray($array['front_side']),
-            TdSchemaRegistry::fromArray($array['reverse_side']),
-            TdSchemaRegistry::fromArray($array['selfie']),
+            isset($array['reverse_side']) ? TdSchemaRegistry::fromArray($array['reverse_side']) : null,
+            isset($array['selfie']) ? TdSchemaRegistry::fromArray($array['selfie']) : null,
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['translation']),
         );
     }
 
-    public function getExpirationDate(): Date
+    public function getExpirationDate(): ?Date
     {
         return $this->expirationDate;
     }
@@ -73,12 +73,12 @@ class InputIdentityDocument extends TdObject
         return $this->number;
     }
 
-    public function getReverseSide(): InputFile
+    public function getReverseSide(): ?InputFile
     {
         return $this->reverseSide;
     }
 
-    public function getSelfie(): InputFile
+    public function getSelfie(): ?InputFile
     {
         return $this->selfie;
     }
@@ -93,10 +93,10 @@ class InputIdentityDocument extends TdObject
         return [
             '@type'           => static::TYPE_NAME,
             'number'          => $this->number,
-            'expiration_date' => $this->expirationDate->typeSerialize(),
+            'expiration_date' => $this->expirationDate ?? null,
             'front_side'      => $this->frontSide->typeSerialize(),
-            'reverse_side'    => $this->reverseSide->typeSerialize(),
-            'selfie'          => $this->selfie->typeSerialize(),
+            'reverse_side'    => $this->reverseSide ?? null,
+            'selfie'          => $this->selfie ?? null,
             'translation'     => array_map(static fn($x) => $x->typeSerialize(), $this->translation),
         ];
     }

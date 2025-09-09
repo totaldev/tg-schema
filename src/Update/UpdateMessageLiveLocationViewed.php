@@ -21,7 +21,7 @@ class UpdateMessageLiveLocationViewed extends Update
         /**
          * Identifier of the message with live location.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {
         parent::__construct();
     }

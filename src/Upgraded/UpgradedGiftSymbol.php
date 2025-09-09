@@ -29,7 +29,7 @@ class UpgradedGiftSymbol extends TdObject
         /**
          * The number of upgraded gifts that receive this symbol for each 1000 gifts upgraded.
          */
-        protected int     $rarityPerMille
+        protected int     $rarityPerMille,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftSymbol

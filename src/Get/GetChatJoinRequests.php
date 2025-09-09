@@ -21,23 +21,23 @@ class GetChatJoinRequests extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int             $chatId,
+        protected int              $chatId,
         /**
          * Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
          */
-        protected string          $inviteLink,
+        protected string           $inviteLink,
         /**
          * A query to search for in the first names, last names and usernames of the users to return.
          */
-        protected string          $query,
-        /**
-         * A chat join request from which to return next requests; pass null to get results from the beginning.
-         */
-        protected ChatJoinRequest $offsetRequest,
+        protected string           $query,
         /**
          * The maximum number of requests to join the chat to return.
          */
-        protected int             $limit,
+        protected int              $limit,
+        /**
+         * A chat join request from which to return next requests; pass null to get results from the beginning.
+         */
+        protected ?ChatJoinRequest $offsetRequest = null,
     ) {}
 
     public static function fromArray(array $array): GetChatJoinRequests
@@ -46,7 +46,7 @@ class GetChatJoinRequests extends TdFunction
             $array['chat_id'],
             $array['invite_link'],
             $array['query'],
-            TdSchemaRegistry::fromArray($array['offset_request']),
+            isset($array['offset_request']) ? TdSchemaRegistry::fromArray($array['offset_request']) : null,
             $array['limit'],
         );
     }
@@ -66,7 +66,7 @@ class GetChatJoinRequests extends TdFunction
         return $this->limit;
     }
 
-    public function getOffsetRequest(): ChatJoinRequest
+    public function getOffsetRequest(): ?ChatJoinRequest
     {
         return $this->offsetRequest;
     }
@@ -83,7 +83,7 @@ class GetChatJoinRequests extends TdFunction
             'chat_id'        => $this->chatId,
             'invite_link'    => $this->inviteLink,
             'query'          => $this->query,
-            'offset_request' => $this->offsetRequest->typeSerialize(),
+            'offset_request' => $this->offsetRequest ?? null,
             'limit'          => $this->limit,
         ];
     }

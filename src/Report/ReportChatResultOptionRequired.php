@@ -25,7 +25,7 @@ class ReportChatResultOptionRequired extends ReportChatResult
          *
          * @var ReportOption[]
          */
-        protected array  $options
+        protected array  $options,
     ) {
         parent::__construct();
     }

@@ -21,17 +21,17 @@ class SetBusinessOpeningHours extends TdFunction
         /**
          * The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified.
          */
-        protected BusinessOpeningHours $openingHours
+        protected ?BusinessOpeningHours $openingHours = null
     ) {}
 
     public static function fromArray(array $array): SetBusinessOpeningHours
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['opening_hours']),
+            isset($array['opening_hours']) ? TdSchemaRegistry::fromArray($array['opening_hours']) : null,
         );
     }
 
-    public function getOpeningHours(): BusinessOpeningHours
+    public function getOpeningHours(): ?BusinessOpeningHours
     {
         return $this->openingHours;
     }
@@ -40,7 +40,7 @@ class SetBusinessOpeningHours extends TdFunction
     {
         return [
             '@type'         => static::TYPE_NAME,
-            'opening_hours' => $this->openingHours->typeSerialize(),
+            'opening_hours' => $this->openingHours ?? null,
         ];
     }
 }

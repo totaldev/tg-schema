@@ -29,7 +29,7 @@ class UpdateFileGenerationStart extends Update
         /**
          * If the conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application. Otherwise, this is the conversion specified by the application in inputFileGenerated.
          */
-        protected string $conversion
+        protected string $conversion,
     ) {
         parent::__construct();
     }

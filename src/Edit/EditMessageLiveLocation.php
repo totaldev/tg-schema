@@ -23,31 +23,31 @@ class EditMessageLiveLocation extends TdFunction
         /**
          * The chat the message belongs to.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
          * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
          */
-        protected int         $messageId,
-        /**
-         * The new message reply markup; pass null if none; for bots only.
-         */
-        protected ReplyMarkup $replyMarkup,
-        /**
-         * New location content of the message; pass null to stop sharing the live location.
-         */
-        protected Location    $location,
+        protected int          $messageId,
         /**
          * New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period.
          */
-        protected int         $livePeriod,
+        protected int          $livePeriod,
         /**
          * The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
          */
-        protected int         $heading,
+        protected int          $heading,
         /**
          * The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled.
          */
-        protected int         $proximityAlertRadius,
+        protected int          $proximityAlertRadius,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ?ReplyMarkup $replyMarkup = null,
+        /**
+         * New location content of the message; pass null to stop sharing the live location.
+         */
+        protected ?Location    $location = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageLiveLocation
@@ -55,8 +55,8 @@ class EditMessageLiveLocation extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
-            TdSchemaRegistry::fromArray($array['location']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
             $array['live_period'],
             $array['heading'],
             $array['proximity_alert_radius'],
@@ -78,7 +78,7 @@ class EditMessageLiveLocation extends TdFunction
         return $this->livePeriod;
     }
 
-    public function getLocation(): Location
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
@@ -93,7 +93,7 @@ class EditMessageLiveLocation extends TdFunction
         return $this->proximityAlertRadius;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -104,8 +104,8 @@ class EditMessageLiveLocation extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup->typeSerialize(),
-            'location'               => $this->location->typeSerialize(),
+            'reply_markup'           => $this->replyMarkup ?? null,
+            'location'               => $this->location ?? null,
             'live_period'            => $this->livePeriod,
             'heading'                => $this->heading,
             'proximity_alert_radius' => $this->proximityAlertRadius,

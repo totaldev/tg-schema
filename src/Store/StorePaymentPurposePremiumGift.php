@@ -32,7 +32,7 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose
         /**
          * Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed.
          */
-        protected FormattedText $text
+        protected FormattedText $text,
     ) {
         parent::__construct();
     }

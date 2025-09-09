@@ -23,7 +23,7 @@ class OpenStory extends TdFunction
         /**
          * The identifier of the story.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {}
 
     public static function fromArray(array $array): OpenStory

@@ -30,7 +30,7 @@ class UpdateStoryPostFailed extends Update
         /**
          * Type of the error; may be null if unknown.
          */
-        protected ?CanPostStoryResult $errorType
+        protected ?CanPostStoryResult $errorType,
     ) {
         parent::__construct();
     }

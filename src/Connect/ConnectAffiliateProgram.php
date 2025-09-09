@@ -25,7 +25,7 @@ class ConnectAffiliateProgram extends TdFunction
         /**
          * Identifier of the bot, which affiliate program is connected.
          */
-        protected int           $botUserId
+        protected int           $botUserId,
     ) {}
 
     public static function fromArray(array $array): ConnectAffiliateProgram

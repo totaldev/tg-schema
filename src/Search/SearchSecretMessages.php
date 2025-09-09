@@ -21,23 +21,23 @@ class SearchSecretMessages extends TdFunction
         /**
          * Identifier of the chat in which to search. Specify 0 to search in all secret chats.
          */
-        protected int                  $chatId,
+        protected int                   $chatId,
         /**
          * Query to search for. If empty, searchChatMessages must be used instead.
          */
-        protected string               $query,
+        protected string                $query,
         /**
          * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected string               $offset,
+        protected string                $offset,
         /**
          * The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int                  $limit,
+        protected int                   $limit,
         /**
          * Additional filter for messages to search; pass null to search for all messages.
          */
-        protected SearchMessagesFilter $filter
+        protected ?SearchMessagesFilter $filter = null,
     ) {}
 
     public static function fromArray(array $array): SearchSecretMessages
@@ -47,7 +47,7 @@ class SearchSecretMessages extends TdFunction
             $array['query'],
             $array['offset'],
             $array['limit'],
-            TdSchemaRegistry::fromArray($array['filter']),
+            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
         );
     }
 
@@ -56,7 +56,7 @@ class SearchSecretMessages extends TdFunction
         return $this->chatId;
     }
 
-    public function getFilter(): SearchMessagesFilter
+    public function getFilter(): ?SearchMessagesFilter
     {
         return $this->filter;
     }
@@ -84,7 +84,7 @@ class SearchSecretMessages extends TdFunction
             'query'   => $this->query,
             'offset'  => $this->offset,
             'limit'   => $this->limit,
-            'filter'  => $this->filter->typeSerialize(),
+            'filter'  => $this->filter ?? null,
         ];
     }
 }

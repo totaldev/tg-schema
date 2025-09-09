@@ -23,7 +23,7 @@ class GetSuggestedFileName extends TdFunction
         /**
          * Directory in which the file is expected to be saved.
          */
-        protected string $directory
+        protected string $directory,
     ) {}
 
     public static function fromArray(array $array): GetSuggestedFileName

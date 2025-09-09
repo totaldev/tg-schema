@@ -25,7 +25,7 @@ class SuggestUserProfilePhoto extends TdFunction
         /**
          * Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function.
          */
-        protected InputChatPhoto $photo
+        protected InputChatPhoto $photo,
     ) {}
 
     public static function fromArray(array $array): SuggestUserProfilePhoto

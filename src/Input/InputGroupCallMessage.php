@@ -21,7 +21,7 @@ class InputGroupCallMessage extends InputGroupCall
         /**
          * Identifier of the message of the type messageGroupCall.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {
         parent::__construct();
     }

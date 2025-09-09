@@ -23,21 +23,21 @@ class ResendMessages extends TdFunction
         /**
          * Identifier of the chat to send messages.
          */
-        protected int            $chatId,
+        protected int             $chatId,
         /**
          * Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order.
          *
          * @var int[]
          */
-        protected array          $messageIds,
-        /**
-         * New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false.
-         */
-        protected InputTextQuote $quote,
+        protected array           $messageIds,
         /**
          * The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0.
          */
-        protected int            $paidMessageStarCount
+        protected int             $paidMessageStarCount,
+        /**
+         * New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false.
+         */
+        protected ?InputTextQuote $quote = null,
     ) {}
 
     public static function fromArray(array $array): ResendMessages
@@ -45,7 +45,7 @@ class ResendMessages extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_ids'],
-            TdSchemaRegistry::fromArray($array['quote']),
+            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
             $array['paid_message_star_count'],
         );
     }
@@ -65,7 +65,7 @@ class ResendMessages extends TdFunction
         return $this->paidMessageStarCount;
     }
 
-    public function getQuote(): InputTextQuote
+    public function getQuote(): ?InputTextQuote
     {
         return $this->quote;
     }
@@ -76,7 +76,7 @@ class ResendMessages extends TdFunction
             '@type'                   => static::TYPE_NAME,
             'chat_id'                 => $this->chatId,
             'message_ids'             => $this->messageIds,
-            'quote'                   => $this->quote->typeSerialize(),
+            'quote'                   => $this->quote ?? null,
             'paid_message_star_count' => $this->paidMessageStarCount,
         ];
     }

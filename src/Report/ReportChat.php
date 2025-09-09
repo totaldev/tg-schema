@@ -33,7 +33,7 @@ class ReportChat extends TdFunction
         /**
          * Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request.
          */
-        protected string $text
+        protected string $text,
     ) {}
 
     public static function fromArray(array $array): ReportChat

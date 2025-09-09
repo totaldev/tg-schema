@@ -24,7 +24,7 @@ class UpgradedGiftSymbolCount extends TdObject
         /**
          * Total number of gifts with the symbol.
          */
-        protected int                $totalCount
+        protected int                $totalCount,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftSymbolCount

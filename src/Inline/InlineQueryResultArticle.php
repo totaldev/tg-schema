@@ -36,7 +36,7 @@ class InlineQueryResultArticle extends InlineQueryResult
         /**
          * Result thumbnail in JPEG format; may be null.
          */
-        protected ?Thumbnail $thumbnail
+        protected ?Thumbnail $thumbnail,
     ) {
         parent::__construct();
     }

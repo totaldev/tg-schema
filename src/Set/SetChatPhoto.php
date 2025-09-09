@@ -21,18 +21,18 @@ class SetChatPhoto extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int            $chatId,
+        protected int             $chatId,
         /**
          * New chat photo; pass null to delete the chat photo.
          */
-        protected InputChatPhoto $photo
+        protected ?InputChatPhoto $photo = null,
     ) {}
 
     public static function fromArray(array $array): SetChatPhoto
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['photo']),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
         );
     }
 
@@ -41,7 +41,7 @@ class SetChatPhoto extends TdFunction
         return $this->chatId;
     }
 
-    public function getPhoto(): InputChatPhoto
+    public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
     }
@@ -51,7 +51,7 @@ class SetChatPhoto extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'chat_id' => $this->chatId,
-            'photo'   => $this->photo->typeSerialize(),
+            'photo'   => $this->photo ?? null,
         ];
     }
 }

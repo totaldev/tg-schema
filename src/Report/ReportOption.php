@@ -23,7 +23,7 @@ class ReportOption extends TdObject
         /**
          * Text of the option.
          */
-        protected string $text
+        protected string $text,
     ) {}
 
     public static function fromArray(array $array): ReportOption

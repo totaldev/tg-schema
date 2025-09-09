@@ -21,17 +21,17 @@ class GetBusinessFeatures extends TdFunction
         /**
          * Source of the request; pass null if the method is called from settings or some non-standard source.
          */
-        protected BusinessFeature $source
+        protected ?BusinessFeature $source = null
     ) {}
 
     public static function fromArray(array $array): GetBusinessFeatures
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['source']),
+            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
         );
     }
 
-    public function getSource(): BusinessFeature
+    public function getSource(): ?BusinessFeature
     {
         return $this->source;
     }
@@ -40,7 +40,7 @@ class GetBusinessFeatures extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'source' => $this->source->typeSerialize(),
+            'source' => $this->source ?? null,
         ];
     }
 }

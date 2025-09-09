@@ -26,10 +26,6 @@ class InputPaidMedia extends TdObject
          */
         protected InputFile          $media,
         /**
-         * Media thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail     $thumbnail,
-        /**
          * File identifiers of the stickers added to the media, if applicable.
          *
          * @var int[]
@@ -43,6 +39,10 @@ class InputPaidMedia extends TdObject
          * Media height.
          */
         protected int                $height,
+        /**
+         * Media thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail    $thumbnail = null,
     ) {}
 
     public static function fromArray(array $array): InputPaidMedia
@@ -50,7 +50,7 @@ class InputPaidMedia extends TdObject
         return new static(
             TdSchemaRegistry::fromArray($array['type']),
             TdSchemaRegistry::fromArray($array['media']),
-            TdSchemaRegistry::fromArray($array['thumbnail']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             $array['added_sticker_file_ids'],
             $array['width'],
             $array['height'],
@@ -72,7 +72,7 @@ class InputPaidMedia extends TdObject
         return $this->media;
     }
 
-    public function getThumbnail(): InputThumbnail
+    public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
     }
@@ -93,7 +93,7 @@ class InputPaidMedia extends TdObject
             '@type'                  => static::TYPE_NAME,
             'type'                   => $this->type->typeSerialize(),
             'media'                  => $this->media->typeSerialize(),
-            'thumbnail'              => $this->thumbnail->typeSerialize(),
+            'thumbnail'              => $this->thumbnail ?? null,
             'added_sticker_file_ids' => $this->addedStickerFileIds,
             'width'                  => $this->width,
             'height'                 => $this->height,

@@ -27,7 +27,7 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
         /**
          * Pass true if the user is speaking.
          */
-        protected bool $isSpeaking
+        protected bool $isSpeaking,
     ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantIsSpeaking

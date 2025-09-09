@@ -25,7 +25,7 @@ class InviteVideoChatParticipants extends TdFunction
          *
          * @var int[]
          */
-        protected array $userIds
+        protected array $userIds,
     ) {}
 
     public static function fromArray(array $array): InviteVideoChatParticipants

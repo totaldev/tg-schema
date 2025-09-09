@@ -22,19 +22,19 @@ class SearchChatMembers extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int               $chatId,
+        protected int                $chatId,
         /**
          * Query to search for.
          */
-        protected string            $query,
+        protected string             $query,
         /**
          * The maximum number of users to be returned; up to 200.
          */
-        protected int               $limit,
+        protected int                $limit,
         /**
          * The type of users to search for; pass null to search among all chat members.
          */
-        protected ChatMembersFilter $filter
+        protected ?ChatMembersFilter $filter = null,
     ) {}
 
     public static function fromArray(array $array): SearchChatMembers
@@ -43,7 +43,7 @@ class SearchChatMembers extends TdFunction
             $array['chat_id'],
             $array['query'],
             $array['limit'],
-            TdSchemaRegistry::fromArray($array['filter']),
+            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
         );
     }
 
@@ -52,7 +52,7 @@ class SearchChatMembers extends TdFunction
         return $this->chatId;
     }
 
-    public function getFilter(): ChatMembersFilter
+    public function getFilter(): ?ChatMembersFilter
     {
         return $this->filter;
     }
@@ -74,7 +74,7 @@ class SearchChatMembers extends TdFunction
             'chat_id' => $this->chatId,
             'query'   => $this->query,
             'limit'   => $this->limit,
-            'filter'  => $this->filter->typeSerialize(),
+            'filter'  => $this->filter ?? null,
         ];
     }
 }

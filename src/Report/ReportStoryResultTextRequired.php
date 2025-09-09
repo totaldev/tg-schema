@@ -21,7 +21,7 @@ class ReportStoryResultTextRequired extends ReportStoryResult
         /**
          * True, if the user can skip text adding.
          */
-        protected bool   $isOptional
+        protected bool   $isOptional,
     ) {
         parent::__construct();
     }

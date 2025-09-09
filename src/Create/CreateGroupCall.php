@@ -21,17 +21,17 @@ class CreateGroupCall extends TdFunction
         /**
          * Parameters to join the call; pass null to only create call link without joining the call.
          */
-        protected GroupCallJoinParameters $joinParameters
+        protected ?GroupCallJoinParameters $joinParameters = null
     ) {}
 
     public static function fromArray(array $array): CreateGroupCall
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['join_parameters']),
+            isset($array['join_parameters']) ? TdSchemaRegistry::fromArray($array['join_parameters']) : null,
         );
     }
 
-    public function getJoinParameters(): GroupCallJoinParameters
+    public function getJoinParameters(): ?GroupCallJoinParameters
     {
         return $this->joinParameters;
     }
@@ -40,7 +40,7 @@ class CreateGroupCall extends TdFunction
     {
         return [
             '@type'           => static::TYPE_NAME,
-            'join_parameters' => $this->joinParameters->typeSerialize(),
+            'join_parameters' => $this->joinParameters ?? null,
         ];
     }
 }

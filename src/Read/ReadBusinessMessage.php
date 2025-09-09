@@ -27,7 +27,7 @@ class ReadBusinessMessage extends TdFunction
         /**
          * Identifier of the message.
          */
-        protected int    $messageId
+        protected int    $messageId,
     ) {}
 
     public static function fromArray(array $array): ReadBusinessMessage

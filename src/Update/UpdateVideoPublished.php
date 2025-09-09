@@ -21,7 +21,7 @@ class UpdateVideoPublished extends Update
         /**
          * Identifier of the sent message.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {
         parent::__construct();
     }

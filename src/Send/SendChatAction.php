@@ -21,19 +21,19 @@ class SendChatAction extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int        $chatId,
+        protected int         $chatId,
         /**
          * If not 0, the message thread identifier in which the action was performed.
          */
-        protected int        $messageThreadId,
+        protected int         $messageThreadId,
         /**
          * Unique identifier of business connection on behalf of which to send the request; for bots only.
          */
-        protected string     $businessConnectionId,
+        protected string      $businessConnectionId,
         /**
          * The action description; pass null to cancel the currently active action.
          */
-        protected ChatAction $action
+        protected ?ChatAction $action = null,
     ) {}
 
     public static function fromArray(array $array): SendChatAction
@@ -42,11 +42,11 @@ class SendChatAction extends TdFunction
             $array['chat_id'],
             $array['message_thread_id'],
             $array['business_connection_id'],
-            TdSchemaRegistry::fromArray($array['action']),
+            isset($array['action']) ? TdSchemaRegistry::fromArray($array['action']) : null,
         );
     }
 
-    public function getAction(): ChatAction
+    public function getAction(): ?ChatAction
     {
         return $this->action;
     }
@@ -73,7 +73,7 @@ class SendChatAction extends TdFunction
             'chat_id'                => $this->chatId,
             'message_thread_id'      => $this->messageThreadId,
             'business_connection_id' => $this->businessConnectionId,
-            'action'                 => $this->action->typeSerialize(),
+            'action'                 => $this->action ?? null,
         ];
     }
 }

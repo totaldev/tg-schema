@@ -29,7 +29,7 @@ class PaidMediaVideo extends PaidMedia
         /**
          * Timestamp from which the video playing must start, in seconds.
          */
-        protected int    $startTimestamp
+        protected int    $startTimestamp,
     ) {
         parent::__construct();
     }

@@ -24,10 +24,6 @@ class JoinVideoChat extends TdFunction
          */
         protected int                     $groupCallId,
         /**
-         * Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only.
-         */
-        protected MessageSender           $participantId,
-        /**
          * Parameters to join the call.
          */
         protected GroupCallJoinParameters $joinParameters,
@@ -35,13 +31,17 @@ class JoinVideoChat extends TdFunction
          * Invite hash as received from internalLinkTypeVideoChat.
          */
         protected string                  $inviteHash,
+        /**
+         * Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only.
+         */
+        protected ?MessageSender          $participantId = null,
     ) {}
 
     public static function fromArray(array $array): JoinVideoChat
     {
         return new static(
             $array['group_call_id'],
-            TdSchemaRegistry::fromArray($array['participant_id']),
+            isset($array['participant_id']) ? TdSchemaRegistry::fromArray($array['participant_id']) : null,
             TdSchemaRegistry::fromArray($array['join_parameters']),
             $array['invite_hash'],
         );
@@ -62,7 +62,7 @@ class JoinVideoChat extends TdFunction
         return $this->joinParameters;
     }
 
-    public function getParticipantId(): MessageSender
+    public function getParticipantId(): ?MessageSender
     {
         return $this->participantId;
     }
@@ -72,7 +72,7 @@ class JoinVideoChat extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'group_call_id'   => $this->groupCallId,
-            'participant_id'  => $this->participantId->typeSerialize(),
+            'participant_id'  => $this->participantId ?? null,
             'join_parameters' => $this->joinParameters->typeSerialize(),
             'invite_hash'     => $this->inviteHash,
         ];

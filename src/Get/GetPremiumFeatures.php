@@ -21,17 +21,17 @@ class GetPremiumFeatures extends TdFunction
         /**
          * Source of the request; pass null if the method is called from some non-standard source.
          */
-        protected PremiumSource $source
+        protected ?PremiumSource $source = null
     ) {}
 
     public static function fromArray(array $array): GetPremiumFeatures
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['source']),
+            isset($array['source']) ? TdSchemaRegistry::fromArray($array['source']) : null,
         );
     }
 
-    public function getSource(): PremiumSource
+    public function getSource(): ?PremiumSource
     {
         return $this->source;
     }
@@ -40,7 +40,7 @@ class GetPremiumFeatures extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'source' => $this->source->typeSerialize(),
+            'source' => $this->source ?? null,
         ];
     }
 }

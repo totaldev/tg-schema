@@ -21,19 +21,19 @@ class SetStoryReaction extends TdFunction
         /**
          * The identifier of the poster of the story.
          */
-        protected int          $storyPosterChatId,
+        protected int           $storyPosterChatId,
         /**
          * The identifier of the story.
          */
-        protected int          $storyId,
-        /**
-         * Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set.
-         */
-        protected ReactionType $reactionType,
+        protected int           $storyId,
         /**
          * Pass true if the reaction needs to be added to recent reactions.
          */
-        protected bool         $updateRecentReactions,
+        protected bool          $updateRecentReactions,
+        /**
+         * Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set.
+         */
+        protected ?ReactionType $reactionType = null,
     ) {}
 
     public static function fromArray(array $array): SetStoryReaction
@@ -41,12 +41,12 @@ class SetStoryReaction extends TdFunction
         return new static(
             $array['story_poster_chat_id'],
             $array['story_id'],
-            TdSchemaRegistry::fromArray($array['reaction_type']),
+            isset($array['reaction_type']) ? TdSchemaRegistry::fromArray($array['reaction_type']) : null,
             $array['update_recent_reactions'],
         );
     }
 
-    public function getReactionType(): ReactionType
+    public function getReactionType(): ?ReactionType
     {
         return $this->reactionType;
     }
@@ -72,7 +72,7 @@ class SetStoryReaction extends TdFunction
             '@type'                   => static::TYPE_NAME,
             'story_poster_chat_id'    => $this->storyPosterChatId,
             'story_id'                => $this->storyId,
-            'reaction_type'           => $this->reactionType->typeSerialize(),
+            'reaction_type'           => $this->reactionType ?? null,
             'update_recent_reactions' => $this->updateRecentReactions,
         ];
     }

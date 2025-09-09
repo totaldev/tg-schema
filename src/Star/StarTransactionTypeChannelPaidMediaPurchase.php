@@ -30,7 +30,7 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
          *
          * @var PaidMedia[]
          */
-        protected array $media
+        protected array $media,
     ) {
         parent::__construct();
     }

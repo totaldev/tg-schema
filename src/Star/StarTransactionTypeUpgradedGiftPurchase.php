@@ -24,7 +24,7 @@ class StarTransactionTypeUpgradedGiftPurchase extends StarTransactionType
         /**
          * The gift.
          */
-        protected UpgradedGift $gift
+        protected UpgradedGift $gift,
     ) {
         parent::__construct();
     }

@@ -21,7 +21,7 @@ class StarTransactionTypeGiveawayDeposit extends StarTransactionType
         /**
          * Identifier of the message with the giveaway; can be 0 or an identifier of a deleted message.
          */
-        protected int $giveawayMessageId
+        protected int $giveawayMessageId,
     ) {
         parent::__construct();
     }

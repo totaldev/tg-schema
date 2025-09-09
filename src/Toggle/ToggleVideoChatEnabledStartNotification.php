@@ -23,7 +23,7 @@ class ToggleVideoChatEnabledStartNotification extends TdFunction
         /**
          * New value of the enabled_start_notification setting.
          */
-        protected bool $enabledStartNotification
+        protected bool $enabledStartNotification,
     ) {}
 
     public static function fromArray(array $array): ToggleVideoChatEnabledStartNotification

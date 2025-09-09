@@ -23,7 +23,7 @@ class DeleteStory extends TdFunction
         /**
          * Identifier of the story to delete.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {}
 
     public static function fromArray(array $array): DeleteStory

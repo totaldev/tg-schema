@@ -34,7 +34,7 @@ class UpgradedGiftOriginalDetails extends TdObject
         /**
          * Point in time (Unix timestamp) when the gift was sent.
          */
-        protected int            $date
+        protected int            $date,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftOriginalDetails

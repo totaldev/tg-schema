@@ -12,8 +12,8 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited.
- * Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a
- * video or vice versa.
+ * Media message can be edited only to a media message. Checklist messages can be edited only to a checklist message. The type of message content in an album
+ * can't be changed with exception of replacing a photo with a video or vice versa.
  */
 class EditQuickReplyMessage extends TdFunction
 {
@@ -29,9 +29,9 @@ class EditQuickReplyMessage extends TdFunction
          */
         protected int                 $messageId,
         /**
-         * New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo.
+         * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo.
          */
-        protected InputMessageContent $inputMessageContent
+        protected InputMessageContent $inputMessageContent,
     ) {}
 
     public static function fromArray(array $array): EditQuickReplyMessage

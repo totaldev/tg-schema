@@ -20,27 +20,27 @@ class InputMessageAudio extends InputMessageContent
         /**
          * Audio file to be sent.
          */
-        protected InputFile      $audio,
-        /**
-         * Thumbnail of the cover for the album; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail $albumCoverThumbnail,
+        protected InputFile       $audio,
         /**
          * Duration of the audio, in seconds; may be replaced by the server.
          */
-        protected int            $duration,
+        protected int             $duration,
         /**
          * Title of the audio; 0-64 characters; may be replaced by the server.
          */
-        protected string         $title,
+        protected string          $title,
         /**
          * Performer of the audio; 0-64 characters, may be replaced by the server.
          */
-        protected string         $performer,
+        protected string          $performer,
+        /**
+         * Thumbnail of the cover for the album; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $albumCoverThumbnail = null,
         /**
          * Audio caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
-        protected FormattedText  $caption,
+        protected ?FormattedText  $caption = null,
     ) {
         parent::__construct();
     }
@@ -49,15 +49,15 @@ class InputMessageAudio extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['audio']),
-            TdSchemaRegistry::fromArray($array['album_cover_thumbnail']),
+            isset($array['album_cover_thumbnail']) ? TdSchemaRegistry::fromArray($array['album_cover_thumbnail']) : null,
             $array['duration'],
             $array['title'],
             $array['performer'],
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
         );
     }
 
-    public function getAlbumCoverThumbnail(): InputThumbnail
+    public function getAlbumCoverThumbnail(): ?InputThumbnail
     {
         return $this->albumCoverThumbnail;
     }
@@ -67,7 +67,7 @@ class InputMessageAudio extends InputMessageContent
         return $this->audio;
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -92,11 +92,11 @@ class InputMessageAudio extends InputMessageContent
         return [
             '@type'                 => static::TYPE_NAME,
             'audio'                 => $this->audio->typeSerialize(),
-            'album_cover_thumbnail' => $this->albumCoverThumbnail->typeSerialize(),
+            'album_cover_thumbnail' => $this->albumCoverThumbnail ?? null,
             'duration'              => $this->duration,
             'title'                 => $this->title,
             'performer'             => $this->performer,
-            'caption'               => $this->caption->typeSerialize(),
+            'caption'               => $this->caption ?? null,
         ];
     }
 }

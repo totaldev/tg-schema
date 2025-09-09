@@ -23,7 +23,7 @@ class SetVideoChatTitle extends TdFunction
         /**
          * New group call title; 1-64 characters.
          */
-        protected string $title
+        protected string $title,
     ) {}
 
     public static function fromArray(array $array): SetVideoChatTitle

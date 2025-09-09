@@ -21,19 +21,19 @@ class StopBusinessPoll extends TdFunction
         /**
          * Unique identifier of business connection on behalf of which the message with the poll was sent.
          */
-        protected string      $businessConnectionId,
+        protected string       $businessConnectionId,
         /**
          * The chat the message belongs to.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
          * Identifier of the message containing the poll.
          */
-        protected int         $messageId,
+        protected int          $messageId,
         /**
          * The new message reply markup; pass null if none.
          */
-        protected ReplyMarkup $replyMarkup
+        protected ?ReplyMarkup $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): StopBusinessPoll
@@ -42,7 +42,7 @@ class StopBusinessPoll extends TdFunction
             $array['business_connection_id'],
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
     }
 
@@ -61,7 +61,7 @@ class StopBusinessPoll extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -73,7 +73,7 @@ class StopBusinessPoll extends TdFunction
             'business_connection_id' => $this->businessConnectionId,
             'chat_id'                => $this->chatId,
             'message_id'             => $this->messageId,
-            'reply_markup'           => $this->replyMarkup->typeSerialize(),
+            'reply_markup'           => $this->replyMarkup ?? null,
         ];
     }
 }

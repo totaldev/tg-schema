@@ -22,23 +22,23 @@ class GetChatInviteLinkMembers extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int                  $chatId,
+        protected int                   $chatId,
         /**
          * Invite link for which to return chat members.
          */
-        protected string               $inviteLink,
+        protected string                $inviteLink,
         /**
          * Pass true if the link is a subscription link and only members with expired subscription must be returned.
          */
-        protected bool                 $onlyWithExpiredSubscription,
-        /**
-         * A chat member from which to return next chat members; pass null to get results from the beginning.
-         */
-        protected ChatInviteLinkMember $offsetMember,
+        protected bool                  $onlyWithExpiredSubscription,
         /**
          * The maximum number of chat members to return; up to 100.
          */
-        protected int                  $limit,
+        protected int                   $limit,
+        /**
+         * A chat member from which to return next chat members; pass null to get results from the beginning.
+         */
+        protected ?ChatInviteLinkMember $offsetMember = null,
     ) {}
 
     public static function fromArray(array $array): GetChatInviteLinkMembers
@@ -47,7 +47,7 @@ class GetChatInviteLinkMembers extends TdFunction
             $array['chat_id'],
             $array['invite_link'],
             $array['only_with_expired_subscription'],
-            TdSchemaRegistry::fromArray($array['offset_member']),
+            isset($array['offset_member']) ? TdSchemaRegistry::fromArray($array['offset_member']) : null,
             $array['limit'],
         );
     }
@@ -67,7 +67,7 @@ class GetChatInviteLinkMembers extends TdFunction
         return $this->limit;
     }
 
-    public function getOffsetMember(): ChatInviteLinkMember
+    public function getOffsetMember(): ?ChatInviteLinkMember
     {
         return $this->offsetMember;
     }
@@ -84,7 +84,7 @@ class GetChatInviteLinkMembers extends TdFunction
             'chat_id'                        => $this->chatId,
             'invite_link'                    => $this->inviteLink,
             'only_with_expired_subscription' => $this->onlyWithExpiredSubscription,
-            'offset_member'                  => $this->offsetMember->typeSerialize(),
+            'offset_member'                  => $this->offsetMember ?? null,
             'limit'                          => $this->limit,
         ];
     }

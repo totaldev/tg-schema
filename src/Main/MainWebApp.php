@@ -25,7 +25,7 @@ class MainWebApp extends TdObject
         /**
          * The mode in which the Web App must be opened.
          */
-        protected WebAppOpenMode $mode
+        protected WebAppOpenMode $mode,
     ) {}
 
     public static function fromArray(array $array): MainWebApp

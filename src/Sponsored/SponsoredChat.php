@@ -31,7 +31,7 @@ class SponsoredChat extends TdObject
         /**
          * If non-empty, additional information about the sponsored chat to be shown along with the chat.
          */
-        protected string $additionalInfo
+        protected string $additionalInfo,
     ) {}
 
     public static function fromArray(array $array): SponsoredChat

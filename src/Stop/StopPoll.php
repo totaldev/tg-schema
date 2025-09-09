@@ -21,15 +21,15 @@ class StopPoll extends TdFunction
         /**
          * Identifier of the chat to which the poll belongs.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
          * Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped.
          */
-        protected int         $messageId,
+        protected int          $messageId,
         /**
          * The new message reply markup; pass null if none; for bots only.
          */
-        protected ReplyMarkup $replyMarkup
+        protected ?ReplyMarkup $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): StopPoll
@@ -37,7 +37,7 @@ class StopPoll extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
     }
 
@@ -51,7 +51,7 @@ class StopPoll extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -62,7 +62,7 @@ class StopPoll extends TdFunction
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
             'message_id'   => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'reply_markup' => $this->replyMarkup ?? null,
         ];
     }
 }

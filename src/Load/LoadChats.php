@@ -20,24 +20,24 @@ class LoadChats extends TdFunction
 
     public function __construct(
         /**
-         * The chat list in which to load chats; pass null to load chats from the main chat list.
-         */
-        protected ChatList $chatList,
-        /**
          * The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached.
          */
-        protected int      $limit
+        protected int       $limit,
+        /**
+         * The chat list in which to load chats; pass null to load chats from the main chat list.
+         */
+        protected ?ChatList $chatList = null,
     ) {}
 
     public static function fromArray(array $array): LoadChats
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['chat_list']),
+            isset($array['chat_list']) ? TdSchemaRegistry::fromArray($array['chat_list']) : null,
             $array['limit'],
         );
     }
 
-    public function getChatList(): ChatList
+    public function getChatList(): ?ChatList
     {
         return $this->chatList;
     }
@@ -51,7 +51,7 @@ class LoadChats extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'chat_list' => $this->chatList->typeSerialize(),
+            'chat_list' => $this->chatList ?? null,
             'limit'     => $this->limit,
         ];
     }

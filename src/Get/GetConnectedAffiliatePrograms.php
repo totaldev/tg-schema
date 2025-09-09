@@ -29,7 +29,7 @@ class GetConnectedAffiliatePrograms extends TdFunction
         /**
          * The maximum number of affiliate programs to return.
          */
-        protected int           $limit
+        protected int           $limit,
     ) {}
 
     public static function fromArray(array $array): GetConnectedAffiliatePrograms

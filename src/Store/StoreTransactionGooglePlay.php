@@ -25,7 +25,7 @@ class StoreTransactionGooglePlay extends StoreTransaction
         /**
          * Google Play purchase token.
          */
-        protected string $purchaseToken
+        protected string $purchaseToken,
     ) {
         parent::__construct();
     }

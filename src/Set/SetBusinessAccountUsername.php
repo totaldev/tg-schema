@@ -23,7 +23,7 @@ class SetBusinessAccountUsername extends TdFunction
         /**
          * The new value of the username.
          */
-        protected string $username
+        protected string $username,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountUsername

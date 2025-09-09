@@ -28,7 +28,7 @@ class SearchCallMessages extends TdFunction
         /**
          * Pass true to search only for messages with missed/declined calls.
          */
-        protected bool   $onlyMissed
+        protected bool   $onlyMissed,
     ) {}
 
     public static function fromArray(array $array): SearchCallMessages

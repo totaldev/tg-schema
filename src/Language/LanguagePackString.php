@@ -20,18 +20,18 @@ class LanguagePackString extends TdObject
         /**
          * String key.
          */
-        protected string                  $key,
+        protected string                   $key,
         /**
          * String value; pass null if the string needs to be taken from the built-in English language pack.
          */
-        protected LanguagePackStringValue $value
+        protected ?LanguagePackStringValue $value = null,
     ) {}
 
     public static function fromArray(array $array): LanguagePackString
     {
         return new static(
             $array['key'],
-            TdSchemaRegistry::fromArray($array['value']),
+            isset($array['value']) ? TdSchemaRegistry::fromArray($array['value']) : null,
         );
     }
 
@@ -40,7 +40,7 @@ class LanguagePackString extends TdObject
         return $this->key;
     }
 
-    public function getValue(): LanguagePackStringValue
+    public function getValue(): ?LanguagePackStringValue
     {
         return $this->value;
     }
@@ -50,7 +50,7 @@ class LanguagePackString extends TdObject
         return [
             '@type' => static::TYPE_NAME,
             'key'   => $this->key,
-            'value' => $this->value->typeSerialize(),
+            'value' => $this->value ?? null,
         ];
     }
 }

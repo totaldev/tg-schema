@@ -17,6 +17,10 @@ class MessageProperties extends TdObject
 
     public function __construct(
         /**
+         * True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription.
+         */
+        protected bool $canAddTasks,
+        /**
          * True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options.
          */
         protected bool $canBeCopied,
@@ -33,7 +37,7 @@ class MessageProperties extends TdObject
          */
         protected bool $canBeDeletedForAllUsers,
         /**
-         * True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message.
+         * True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message.
          */
         protected bool $canBeEdited,
         /**
@@ -101,9 +105,17 @@ class MessageProperties extends TdObject
          */
         protected bool $canGetStatistics,
         /**
+         * True, if advertisements for video of the message can be received though getVideoMessageAdvertisements.
+         */
+        protected bool $canGetVideoAdvertisements,
+        /**
          * True, if chat members already viewed the message can be received through getMessageViewers.
          */
         protected bool $canGetViewers,
+        /**
+         * True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription.
+         */
+        protected bool $canMarkTasksAsDone,
         /**
          * True, if speech can be recognized for the message through recognizeSpeech.
          */
@@ -133,6 +145,7 @@ class MessageProperties extends TdObject
     public static function fromArray(array $array): MessageProperties
     {
         return new static(
+            $array['can_add_tasks'],
             $array['can_be_copied'],
             $array['can_be_copied_to_secret_chat'],
             $array['can_be_deleted_only_for_self'],
@@ -154,7 +167,9 @@ class MessageProperties extends TdObject
             $array['can_get_message_thread'],
             $array['can_get_read_date'],
             $array['can_get_statistics'],
+            $array['can_get_video_advertisements'],
             $array['can_get_viewers'],
+            $array['can_mark_tasks_as_done'],
             $array['can_recognize_speech'],
             $array['can_report_chat'],
             $array['can_report_reactions'],
@@ -162,6 +177,11 @@ class MessageProperties extends TdObject
             $array['can_set_fact_check'],
             $array['need_show_statistics'],
         );
+    }
+
+    public function getCanAddTasks(): bool
+    {
+        return $this->canAddTasks;
     }
 
     public function getCanBeCopied(): bool
@@ -269,9 +289,19 @@ class MessageProperties extends TdObject
         return $this->canGetStatistics;
     }
 
+    public function getCanGetVideoAdvertisements(): bool
+    {
+        return $this->canGetVideoAdvertisements;
+    }
+
     public function getCanGetViewers(): bool
     {
         return $this->canGetViewers;
+    }
+
+    public function getCanMarkTasksAsDone(): bool
+    {
+        return $this->canMarkTasksAsDone;
     }
 
     public function getCanRecognizeSpeech(): bool
@@ -308,6 +338,7 @@ class MessageProperties extends TdObject
     {
         return [
             '@type'                          => static::TYPE_NAME,
+            'can_add_tasks'                  => $this->canAddTasks,
             'can_be_copied'                  => $this->canBeCopied,
             'can_be_copied_to_secret_chat'   => $this->canBeCopiedToSecretChat,
             'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
@@ -329,7 +360,9 @@ class MessageProperties extends TdObject
             'can_get_message_thread'         => $this->canGetMessageThread,
             'can_get_read_date'              => $this->canGetReadDate,
             'can_get_statistics'             => $this->canGetStatistics,
+            'can_get_video_advertisements'   => $this->canGetVideoAdvertisements,
             'can_get_viewers'                => $this->canGetViewers,
+            'can_mark_tasks_as_done'         => $this->canMarkTasksAsDone,
             'can_recognize_speech'           => $this->canRecognizeSpeech,
             'can_report_chat'                => $this->canReportChat,
             'can_report_reactions'           => $this->canReportReactions,

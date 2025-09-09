@@ -25,7 +25,7 @@ class ReportSponsoredResultOptionRequired extends ReportSponsoredResult
          *
          * @var ReportOption[]
          */
-        protected array  $options
+        protected array  $options,
     ) {
         parent::__construct();
     }

@@ -35,7 +35,7 @@ class SetMessageReactions extends TdFunction
         /**
          * Pass true if the reactions are added with a big animation.
          */
-        protected bool  $isBig
+        protected bool  $isBig,
     ) {}
 
     public static function fromArray(array $array): SetMessageReactions

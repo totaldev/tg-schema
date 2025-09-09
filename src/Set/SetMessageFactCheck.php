@@ -21,15 +21,15 @@ class SetMessageFactCheck extends TdFunction
         /**
          * The channel chat the message belongs to.
          */
-        protected int           $chatId,
+        protected int            $chatId,
         /**
          * Identifier of the message.
          */
-        protected int           $messageId,
+        protected int            $messageId,
         /**
          * New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported.
          */
-        protected FormattedText $text
+        protected ?FormattedText $text = null,
     ) {}
 
     public static function fromArray(array $array): SetMessageFactCheck
@@ -37,7 +37,7 @@ class SetMessageFactCheck extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['text']),
+            isset($array['text']) ? TdSchemaRegistry::fromArray($array['text']) : null,
         );
     }
 
@@ -51,7 +51,7 @@ class SetMessageFactCheck extends TdFunction
         return $this->messageId;
     }
 
-    public function getText(): FormattedText
+    public function getText(): ?FormattedText
     {
         return $this->text;
     }
@@ -62,7 +62,7 @@ class SetMessageFactCheck extends TdFunction
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'text'       => $this->text->typeSerialize(),
+            'text'       => $this->text ?? null,
         ];
     }
 }

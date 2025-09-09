@@ -27,7 +27,7 @@ class SendQuickReplyShortcutMessages extends TdFunction
         /**
          * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates.
          */
-        protected int $sendingId
+        protected int $sendingId,
     ) {}
 
     public static function fromArray(array $array): SendQuickReplyShortcutMessages

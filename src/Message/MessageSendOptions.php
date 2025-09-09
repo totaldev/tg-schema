@@ -20,47 +20,47 @@ class MessageSendOptions extends TdObject
         /**
          * Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user.
          */
-        protected int                    $directMessagesChatTopicId,
+        protected int                     $directMessagesChatTopicId,
         /**
          * Pass true to disable notification for the message.
          */
-        protected bool                   $disableNotification,
+        protected bool                    $disableNotification,
         /**
          * Pass true if the message is sent from the background.
          */
-        protected bool                   $fromBackground,
+        protected bool                    $fromBackground,
         /**
          * Pass true if the content of the message must be protected from forwarding and saving; for bots only.
          */
-        protected bool                   $protectContent,
+        protected bool                    $protectContent,
         /**
          * Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only.
          */
-        protected bool                   $allowPaidBroadcast,
+        protected bool                    $allowPaidBroadcast,
         /**
          * The number of Telegram Stars the user agreed to pay to send the messages.
          */
-        protected int                    $paidMessageStarCount,
+        protected int                     $paidMessageStarCount,
         /**
          * Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum.
          */
-        protected bool                   $updateOrderOfInstalledStickerSets,
-        /**
-         * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled.
-         */
-        protected MessageSchedulingState $schedulingState,
+        protected bool                    $updateOrderOfInstalledStickerSets,
         /**
          * Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats.
          */
-        protected int                    $effectId,
+        protected int                     $effectId,
         /**
          * Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates.
          */
-        protected int                    $sendingId,
+        protected int                     $sendingId,
         /**
          * Pass true to get a fake message instead of actually sending them.
          */
-        protected bool                   $onlyPreview,
+        protected bool                    $onlyPreview,
+        /**
+         * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled.
+         */
+        protected ?MessageSchedulingState $schedulingState = null,
     ) {}
 
     public static function fromArray(array $array): MessageSendOptions
@@ -73,7 +73,7 @@ class MessageSendOptions extends TdObject
             $array['allow_paid_broadcast'],
             $array['paid_message_star_count'],
             $array['update_order_of_installed_sticker_sets'],
-            TdSchemaRegistry::fromArray($array['scheduling_state']),
+            isset($array['scheduling_state']) ? TdSchemaRegistry::fromArray($array['scheduling_state']) : null,
             $array['effect_id'],
             $array['sending_id'],
             $array['only_preview'],
@@ -120,7 +120,7 @@ class MessageSendOptions extends TdObject
         return $this->protectContent;
     }
 
-    public function getSchedulingState(): MessageSchedulingState
+    public function getSchedulingState(): ?MessageSchedulingState
     {
         return $this->schedulingState;
     }
@@ -146,7 +146,7 @@ class MessageSendOptions extends TdObject
             'allow_paid_broadcast'                   => $this->allowPaidBroadcast,
             'paid_message_star_count'                => $this->paidMessageStarCount,
             'update_order_of_installed_sticker_sets' => $this->updateOrderOfInstalledStickerSets,
-            'scheduling_state'                       => $this->schedulingState->typeSerialize(),
+            'scheduling_state'                       => $this->schedulingState ?? null,
             'effect_id'                              => $this->effectId,
             'sending_id'                             => $this->sendingId,
             'only_preview'                           => $this->onlyPreview,

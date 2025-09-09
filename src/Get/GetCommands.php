@@ -25,7 +25,7 @@ class GetCommands extends TdFunction
         /**
          * The scope to which the commands are relevant; pass null to get commands in the default bot command scope.
          */
-        protected ?BotCommandScope $scope = null
+        protected ?BotCommandScope $scope = null,
     ) {}
 
     public static function fromArray(array $array): GetCommands

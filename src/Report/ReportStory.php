@@ -31,7 +31,7 @@ class ReportStory extends TdFunction
         /**
          * Additional report details; 0-1024 characters; leave empty for the initial request.
          */
-        protected string $text
+        protected string $text,
     ) {}
 
     public static function fromArray(array $array): ReportStory

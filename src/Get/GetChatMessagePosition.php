@@ -25,24 +25,24 @@ class GetChatMessagePosition extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages.
-         */
-        protected MessageTopic         $topicId,
-        /**
          * Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
          * Message identifier.
          */
-        protected int                  $messageId
+        protected int                  $messageId,
+        /**
+         * Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages.
+         */
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): GetChatMessagePosition
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             TdSchemaRegistry::fromArray($array['filter']),
             $array['message_id'],
         );
@@ -63,7 +63,7 @@ class GetChatMessagePosition extends TdFunction
         return $this->messageId;
     }
 
-    public function getTopicId(): MessageTopic
+    public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
     }
@@ -73,7 +73,7 @@ class GetChatMessagePosition extends TdFunction
         return [
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
-            'topic_id'   => $this->topicId->typeSerialize(),
+            'topic_id'   => $this->topicId ?? null,
             'filter'     => $this->filter->typeSerialize(),
             'message_id' => $this->messageId,
         ];

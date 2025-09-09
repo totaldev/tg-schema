@@ -25,24 +25,24 @@ class GetChatMessageCalendar extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported.
-         */
-        protected MessageTopic         $topicId,
-        /**
          * Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
          */
         protected SearchMessagesFilter $filter,
         /**
          * The message identifier from which to return information about messages; use 0 to get results from the last message.
          */
-        protected int                  $fromMessageId
+        protected int                  $fromMessageId,
+        /**
+         * Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported.
+         */
+        protected ?MessageTopic        $topicId = null,
     ) {}
 
     public static function fromArray(array $array): GetChatMessageCalendar
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             TdSchemaRegistry::fromArray($array['filter']),
             $array['from_message_id'],
         );
@@ -63,7 +63,7 @@ class GetChatMessageCalendar extends TdFunction
         return $this->fromMessageId;
     }
 
-    public function getTopicId(): MessageTopic
+    public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
     }
@@ -73,7 +73,7 @@ class GetChatMessageCalendar extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'topic_id'        => $this->topicId->typeSerialize(),
+            'topic_id'        => $this->topicId ?? null,
             'filter'          => $this->filter->typeSerialize(),
             'from_message_id' => $this->fromMessageId,
         ];

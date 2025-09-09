@@ -23,7 +23,7 @@ class GetBotSimilarBotCount extends TdFunction
         /**
          * Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally.
          */
-        protected bool $returnLocal
+        protected bool $returnLocal,
     ) {}
 
     public static function fromArray(array $array): GetBotSimilarBotCount

@@ -22,19 +22,19 @@ class SetStickerSetThumbnail extends TdFunction
         /**
          * Sticker set owner; ignored for regular users.
          */
-        protected int           $userId,
+        protected int            $userId,
         /**
          * Sticker set name. The sticker set must be owned by the current user.
          */
-        protected string        $name,
+        protected string         $name,
         /**
          * Thumbnail to set; pass null to remove the sticker set thumbnail.
          */
-        protected InputFile     $thumbnail,
+        protected ?InputFile     $thumbnail = null,
         /**
          * Format of the thumbnail; pass null if thumbnail is removed.
          */
-        protected StickerFormat $format
+        protected ?StickerFormat $format = null,
     ) {}
 
     public static function fromArray(array $array): SetStickerSetThumbnail
@@ -42,12 +42,12 @@ class SetStickerSetThumbnail extends TdFunction
         return new static(
             $array['user_id'],
             $array['name'],
-            TdSchemaRegistry::fromArray($array['thumbnail']),
-            TdSchemaRegistry::fromArray($array['format']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
+            isset($array['format']) ? TdSchemaRegistry::fromArray($array['format']) : null,
         );
     }
 
-    public function getFormat(): StickerFormat
+    public function getFormat(): ?StickerFormat
     {
         return $this->format;
     }
@@ -57,7 +57,7 @@ class SetStickerSetThumbnail extends TdFunction
         return $this->name;
     }
 
-    public function getThumbnail(): InputFile
+    public function getThumbnail(): ?InputFile
     {
         return $this->thumbnail;
     }
@@ -73,8 +73,8 @@ class SetStickerSetThumbnail extends TdFunction
             '@type'     => static::TYPE_NAME,
             'user_id'   => $this->userId,
             'name'      => $this->name,
-            'thumbnail' => $this->thumbnail->typeSerialize(),
-            'format'    => $this->format->typeSerialize(),
+            'thumbnail' => $this->thumbnail ?? null,
+            'format'    => $this->format ?? null,
         ];
     }
 }

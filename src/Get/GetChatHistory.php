@@ -36,7 +36,7 @@ class GetChatHistory extends TdFunction
         /**
          * Pass true to get only messages that are available without sending network requests.
          */
-        protected bool $onlyLocal
+        protected bool $onlyLocal,
     ) {}
 
     public static function fromArray(array $array): GetChatHistory

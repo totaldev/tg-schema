@@ -25,7 +25,7 @@ class SetUserEmojiStatus extends TdFunction
         /**
          * New emoji status; pass null to switch to the default badge.
          */
-        protected ?EmojiStatus $emojiStatus = null
+        protected ?EmojiStatus $emojiStatus = null,
     ) {}
 
     public static function fromArray(array $array): SetUserEmojiStatus

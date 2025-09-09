@@ -25,7 +25,7 @@ class ReportStoryResultOptionRequired extends ReportStoryResult
          *
          * @var ReportOption[]
          */
-        protected array  $options
+        protected array  $options,
     ) {
         parent::__construct();
     }

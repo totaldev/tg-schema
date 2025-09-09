@@ -21,31 +21,31 @@ class CreateNewSupergroupChat extends TdFunction
         /**
          * Title of the new chat; 1-128 characters.
          */
-        protected string       $title,
+        protected string        $title,
         /**
          * Pass true to create a forum supergroup chat.
          */
-        protected bool         $isForum,
+        protected bool          $isForum,
         /**
          * Pass true to create a channel chat; ignored if a forum is created.
          */
-        protected bool         $isChannel,
+        protected bool          $isChannel,
         /**
          * Chat description; 0-255 characters.
          */
-        protected string       $description,
-        /**
-         * Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat.
-         */
-        protected ChatLocation $location,
+        protected string        $description,
         /**
          * Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
          */
-        protected int          $messageAutoDeleteTime,
+        protected int           $messageAutoDeleteTime,
         /**
          * Pass true to create a supergroup for importing messages using importMessages.
          */
-        protected bool         $forImport,
+        protected bool          $forImport,
+        /**
+         * Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat.
+         */
+        protected ?ChatLocation $location = null,
     ) {}
 
     public static function fromArray(array $array): CreateNewSupergroupChat
@@ -55,7 +55,7 @@ class CreateNewSupergroupChat extends TdFunction
             $array['is_forum'],
             $array['is_channel'],
             $array['description'],
-            TdSchemaRegistry::fromArray($array['location']),
+            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
             $array['message_auto_delete_time'],
             $array['for_import'],
         );
@@ -81,7 +81,7 @@ class CreateNewSupergroupChat extends TdFunction
         return $this->isForum;
     }
 
-    public function getLocation(): ChatLocation
+    public function getLocation(): ?ChatLocation
     {
         return $this->location;
     }
@@ -104,7 +104,7 @@ class CreateNewSupergroupChat extends TdFunction
             'is_forum'                 => $this->isForum,
             'is_channel'               => $this->isChannel,
             'description'              => $this->description,
-            'location'                 => $this->location->typeSerialize(),
+            'location'                 => $this->location ?? null,
             'message_auto_delete_time' => $this->messageAutoDeleteTime,
             'for_import'               => $this->forImport,
         ];

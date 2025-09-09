@@ -37,7 +37,7 @@ class PaidReactor extends TdObject
         /**
          * True, if the reactor is anonymous.
          */
-        protected bool           $isAnonymous
+        protected bool           $isAnonymous,
     ) {}
 
     public static function fromArray(array $array): PaidReactor

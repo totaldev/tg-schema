@@ -26,7 +26,7 @@ class DisconnectAffiliateProgram extends TdFunction
         /**
          * The referral link of the affiliate program.
          */
-        protected string        $url
+        protected string        $url,
     ) {}
 
     public static function fromArray(array $array): DisconnectAffiliateProgram

@@ -21,17 +21,17 @@ class SetBusinessAwayMessageSettings extends TdFunction
         /**
          * The new settings for the away message of the business; pass null to disable the away message.
          */
-        protected BusinessAwayMessageSettings $awayMessageSettings
+        protected ?BusinessAwayMessageSettings $awayMessageSettings = null
     ) {}
 
     public static function fromArray(array $array): SetBusinessAwayMessageSettings
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['away_message_settings']),
+            isset($array['away_message_settings']) ? TdSchemaRegistry::fromArray($array['away_message_settings']) : null,
         );
     }
 
-    public function getAwayMessageSettings(): BusinessAwayMessageSettings
+    public function getAwayMessageSettings(): ?BusinessAwayMessageSettings
     {
         return $this->awayMessageSettings;
     }
@@ -40,7 +40,7 @@ class SetBusinessAwayMessageSettings extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
-            'away_message_settings' => $this->awayMessageSettings->typeSerialize(),
+            'away_message_settings' => $this->awayMessageSettings ?? null,
         ];
     }
 }

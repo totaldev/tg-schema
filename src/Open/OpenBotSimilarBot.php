@@ -23,7 +23,7 @@ class OpenBotSimilarBot extends TdFunction
         /**
          * Identifier of the opened bot.
          */
-        protected int $openedBotUserId
+        protected int $openedBotUserId,
     ) {}
 
     public static function fromArray(array $array): OpenBotSimilarBot

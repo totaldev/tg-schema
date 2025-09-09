@@ -25,7 +25,7 @@ class RemoveMessageSenderBotVerification extends TdFunction
         /**
          * Identifier of the user or the supergroup or channel chat, which verification is removed.
          */
-        protected MessageSender $verifiedId
+        protected MessageSender $verifiedId,
     ) {}
 
     public static function fromArray(array $array): RemoveMessageSenderBotVerification

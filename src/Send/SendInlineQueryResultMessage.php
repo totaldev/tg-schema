@@ -22,31 +22,31 @@ class SendInlineQueryResultMessage extends TdFunction
         /**
          * Target chat.
          */
-        protected int                 $chatId,
+        protected int                  $chatId,
         /**
          * If not 0, the message thread identifier in which the message will be sent.
          */
-        protected int                 $messageThreadId,
-        /**
-         * Information about the message or story to be replied; pass null if none.
-         */
-        protected InputMessageReplyTo $replyTo,
+        protected int                  $messageThreadId,
         /**
          * Identifier of the inline query.
          */
-        protected int                 $queryId,
+        protected int                  $queryId,
         /**
          * Identifier of the inline query result.
          */
-        protected string              $resultId,
+        protected string               $resultId,
         /**
          * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
          */
-        protected bool                $hideViaBot,
+        protected bool                 $hideViaBot,
+        /**
+         * Information about the message or story to be replied; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
         /**
          * Options to be used to send the message; pass null to use default options.
          */
-        protected ?MessageSendOptions $options = null,
+        protected ?MessageSendOptions  $options = null,
     ) {}
 
     public static function fromArray(array $array): SendInlineQueryResultMessage
@@ -54,7 +54,7 @@ class SendInlineQueryResultMessage extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_thread_id'],
-            TdSchemaRegistry::fromArray($array['reply_to']),
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             $array['query_id'],
             $array['result_id'],
@@ -87,7 +87,7 @@ class SendInlineQueryResultMessage extends TdFunction
         return $this->queryId;
     }
 
-    public function getReplyTo(): InputMessageReplyTo
+    public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -103,7 +103,7 @@ class SendInlineQueryResultMessage extends TdFunction
             '@type'             => static::TYPE_NAME,
             'chat_id'           => $this->chatId,
             'message_thread_id' => $this->messageThreadId,
-            'reply_to'          => $this->replyTo->typeSerialize(),
+            'reply_to'          => $this->replyTo ?? null,
             'options'           => $this->options ?? null,
             'query_id'          => $this->queryId,
             'result_id'         => $this->resultId,

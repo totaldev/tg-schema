@@ -23,7 +23,7 @@ class SetBusinessAccountBio extends TdFunction
         /**
          * The new value of the bio; 0-getOption("bio_length_max") characters without line feeds.
          */
-        protected string $bio
+        protected string $bio,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountBio

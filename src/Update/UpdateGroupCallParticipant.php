@@ -25,7 +25,7 @@ class UpdateGroupCallParticipant extends Update
         /**
          * New data about the participant.
          */
-        protected GroupCallParticipant $participant
+        protected GroupCallParticipant $participant,
     ) {
         parent::__construct();
     }

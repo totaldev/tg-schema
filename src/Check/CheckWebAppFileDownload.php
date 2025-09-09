@@ -27,7 +27,7 @@ class CheckWebAppFileDownload extends TdFunction
         /**
          * URL of the file.
          */
-        protected string $url
+        protected string $url,
     ) {}
 
     public static function fromArray(array $array): CheckWebAppFileDownload

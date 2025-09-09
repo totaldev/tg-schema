@@ -23,7 +23,7 @@ class GetChatBoostLevelFeatures extends TdFunction
         /**
          * Chat boost level.
          */
-        protected int  $level
+        protected int  $level,
     ) {}
 
     public static function fromArray(array $array): GetChatBoostLevelFeatures

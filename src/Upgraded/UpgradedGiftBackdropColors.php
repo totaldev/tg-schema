@@ -31,7 +31,7 @@ class UpgradedGiftBackdropColors extends TdObject
         /**
          * A color for the text on the backdrop in the RGB format.
          */
-        protected int $textColor
+        protected int $textColor,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftBackdropColors

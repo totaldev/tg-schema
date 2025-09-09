@@ -25,7 +25,7 @@ class GetGroupCallParticipants extends TdFunction
         /**
          * The maximum number of participants to return; must be positive.
          */
-        protected int            $limit
+        protected int            $limit,
     ) {}
 
     public static function fromArray(array $array): GetGroupCallParticipants

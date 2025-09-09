@@ -20,19 +20,19 @@ class InputMessageDocument extends InputMessageContent
         /**
          * Document to be sent.
          */
-        protected InputFile      $document,
-        /**
-         * Document thumbnail; pass null to skip thumbnail uploading.
-         */
-        protected InputThumbnail $thumbnail,
+        protected InputFile       $document,
         /**
          * Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats.
          */
-        protected bool           $disableContentTypeDetection,
+        protected bool            $disableContentTypeDetection,
+        /**
+         * Document thumbnail; pass null to skip thumbnail uploading.
+         */
+        protected ?InputThumbnail $thumbnail = null,
         /**
          * Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters.
          */
-        protected FormattedText  $caption,
+        protected ?FormattedText  $caption = null,
     ) {
         parent::__construct();
     }
@@ -41,13 +41,13 @@ class InputMessageDocument extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['document']),
-            TdSchemaRegistry::fromArray($array['thumbnail']),
+            isset($array['thumbnail']) ? TdSchemaRegistry::fromArray($array['thumbnail']) : null,
             $array['disable_content_type_detection'],
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
         );
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -62,7 +62,7 @@ class InputMessageDocument extends InputMessageContent
         return $this->document;
     }
 
-    public function getThumbnail(): InputThumbnail
+    public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
     }
@@ -72,9 +72,9 @@ class InputMessageDocument extends InputMessageContent
         return [
             '@type'                          => static::TYPE_NAME,
             'document'                       => $this->document->typeSerialize(),
-            'thumbnail'                      => $this->thumbnail->typeSerialize(),
+            'thumbnail'                      => $this->thumbnail ?? null,
             'disable_content_type_detection' => $this->disableContentTypeDetection,
-            'caption'                        => $this->caption->typeSerialize(),
+            'caption'                        => $this->caption ?? null,
         ];
     }
 }

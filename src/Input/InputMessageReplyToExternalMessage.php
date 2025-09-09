@@ -19,15 +19,15 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         /**
          * The identifier of the chat to which the message to be replied belongs.
          */
-        protected int            $chatId,
+        protected int             $chatId,
         /**
          * The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat.
          */
-        protected int            $messageId,
+        protected int             $messageId,
         /**
          * Quote from the message to be replied; pass null if none.
          */
-        protected InputTextQuote $quote
+        protected ?InputTextQuote $quote = null,
     ) {
         parent::__construct();
     }
@@ -37,7 +37,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['quote']),
+            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
         );
     }
 
@@ -51,7 +51,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
         return $this->messageId;
     }
 
-    public function getQuote(): InputTextQuote
+    public function getQuote(): ?InputTextQuote
     {
         return $this->quote;
     }
@@ -62,7 +62,7 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
             '@type'      => static::TYPE_NAME,
             'chat_id'    => $this->chatId,
             'message_id' => $this->messageId,
-            'quote'      => $this->quote->typeSerialize(),
+            'quote'      => $this->quote ?? null,
         ];
     }
 }

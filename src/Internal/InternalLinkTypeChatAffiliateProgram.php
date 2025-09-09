@@ -21,7 +21,7 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
         /**
          * Referrer to be passed to searchChatAffiliateProgram.
          */
-        protected string $referrer
+        protected string $referrer,
     ) {
         parent::__construct();
     }

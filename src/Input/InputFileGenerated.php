@@ -26,7 +26,7 @@ class InputFileGenerated extends InputFile
         /**
          * Expected size of the generated file, in bytes; pass 0 if unknown.
          */
-        protected int    $expectedSize
+        protected int    $expectedSize,
     ) {
         parent::__construct();
     }

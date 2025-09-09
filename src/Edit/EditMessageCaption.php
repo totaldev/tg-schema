@@ -22,23 +22,23 @@ class EditMessageCaption extends TdFunction
         /**
          * The chat the message belongs to.
          */
-        protected int           $chatId,
+        protected int            $chatId,
         /**
          * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
          */
-        protected int           $messageId,
-        /**
-         * The new message reply markup; pass null if none; for bots only.
-         */
-        protected ReplyMarkup   $replyMarkup,
-        /**
-         * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption.
-         */
-        protected FormattedText $caption,
+        protected int            $messageId,
         /**
          * Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages.
          */
-        protected bool          $showCaptionAboveMedia,
+        protected bool           $showCaptionAboveMedia,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ?ReplyMarkup   $replyMarkup = null,
+        /**
+         * New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption.
+         */
+        protected ?FormattedText $caption = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageCaption
@@ -46,13 +46,13 @@ class EditMessageCaption extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
             $array['show_caption_above_media'],
         );
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -67,7 +67,7 @@ class EditMessageCaption extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -83,8 +83,8 @@ class EditMessageCaption extends TdFunction
             '@type'                    => static::TYPE_NAME,
             'chat_id'                  => $this->chatId,
             'message_id'               => $this->messageId,
-            'reply_markup'             => $this->replyMarkup->typeSerialize(),
-            'caption'                  => $this->caption->typeSerialize(),
+            'reply_markup'             => $this->replyMarkup ?? null,
+            'caption'                  => $this->caption ?? null,
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }

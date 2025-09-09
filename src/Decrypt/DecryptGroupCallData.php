@@ -22,19 +22,19 @@ class DecryptGroupCallData extends TdFunction
         /**
          * Group call identifier. The call must not be a video chat.
          */
-        protected int                  $groupCallId,
+        protected int                   $groupCallId,
         /**
          * Identifier of the group call participant, which sent the data.
          */
-        protected MessageSender        $participantId,
-        /**
-         * Data channel for which data was encrypted; pass null if unknown.
-         */
-        protected GroupCallDataChannel $dataChannel,
+        protected MessageSender         $participantId,
         /**
          * Data to decrypt.
          */
-        protected string               $data,
+        protected string                $data,
+        /**
+         * Data channel for which data was encrypted; pass null if unknown.
+         */
+        protected ?GroupCallDataChannel $dataChannel = null,
     ) {}
 
     public static function fromArray(array $array): DecryptGroupCallData
@@ -42,7 +42,7 @@ class DecryptGroupCallData extends TdFunction
         return new static(
             $array['group_call_id'],
             TdSchemaRegistry::fromArray($array['participant_id']),
-            TdSchemaRegistry::fromArray($array['data_channel']),
+            isset($array['data_channel']) ? TdSchemaRegistry::fromArray($array['data_channel']) : null,
             $array['data'],
         );
     }
@@ -52,7 +52,7 @@ class DecryptGroupCallData extends TdFunction
         return $this->data;
     }
 
-    public function getDataChannel(): GroupCallDataChannel
+    public function getDataChannel(): ?GroupCallDataChannel
     {
         return $this->dataChannel;
     }
@@ -73,7 +73,7 @@ class DecryptGroupCallData extends TdFunction
             '@type'          => static::TYPE_NAME,
             'group_call_id'  => $this->groupCallId,
             'participant_id' => $this->participantId->typeSerialize(),
-            'data_channel'   => $this->dataChannel->typeSerialize(),
+            'data_channel'   => $this->dataChannel ?? null,
             'data'           => $this->data,
         ];
     }

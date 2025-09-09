@@ -23,7 +23,7 @@ class ToggleBotCanManageEmojiStatus extends TdFunction
         /**
          * Pass true if the bot is allowed to change emoji status of the user; pass false otherwise.
          */
-        protected bool $canManageEmojiStatus
+        protected bool $canManageEmojiStatus,
     ) {}
 
     public static function fromArray(array $array): ToggleBotCanManageEmojiStatus

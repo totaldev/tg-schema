@@ -21,7 +21,7 @@ class UpdateStoryDeleted extends Update
         /**
          * Story identifier.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {
         parent::__construct();
     }

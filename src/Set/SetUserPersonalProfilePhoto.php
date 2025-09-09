@@ -21,22 +21,22 @@ class SetUserPersonalProfilePhoto extends TdFunction
         /**
          * User identifier.
          */
-        protected int            $userId,
+        protected int             $userId,
         /**
          * Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function.
          */
-        protected InputChatPhoto $photo
+        protected ?InputChatPhoto $photo = null,
     ) {}
 
     public static function fromArray(array $array): SetUserPersonalProfilePhoto
     {
         return new static(
             $array['user_id'],
-            TdSchemaRegistry::fromArray($array['photo']),
+            isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
         );
     }
 
-    public function getPhoto(): InputChatPhoto
+    public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
     }
@@ -51,7 +51,7 @@ class SetUserPersonalProfilePhoto extends TdFunction
         return [
             '@type'   => static::TYPE_NAME,
             'user_id' => $this->userId,
-            'photo'   => $this->photo->typeSerialize(),
+            'photo'   => $this->photo ?? null,
         ];
     }
 }

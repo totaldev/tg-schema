@@ -21,15 +21,15 @@ class SetDirectMessagesChatTopicDraftMessage extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int          $chatId,
+        protected int           $chatId,
         /**
          * Topic identifier.
          */
-        protected int          $topicId,
+        protected int           $topicId,
         /**
          * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
          */
-        protected DraftMessage $draftMessage
+        protected ?DraftMessage $draftMessage = null,
     ) {}
 
     public static function fromArray(array $array): SetDirectMessagesChatTopicDraftMessage
@@ -37,7 +37,7 @@ class SetDirectMessagesChatTopicDraftMessage extends TdFunction
         return new static(
             $array['chat_id'],
             $array['topic_id'],
-            TdSchemaRegistry::fromArray($array['draft_message']),
+            isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
     }
 
@@ -46,7 +46,7 @@ class SetDirectMessagesChatTopicDraftMessage extends TdFunction
         return $this->chatId;
     }
 
-    public function getDraftMessage(): DraftMessage
+    public function getDraftMessage(): ?DraftMessage
     {
         return $this->draftMessage;
     }
@@ -62,7 +62,7 @@ class SetDirectMessagesChatTopicDraftMessage extends TdFunction
             '@type'         => static::TYPE_NAME,
             'chat_id'       => $this->chatId,
             'topic_id'      => $this->topicId,
-            'draft_message' => $this->draftMessage->typeSerialize(),
+            'draft_message' => $this->draftMessage ?? null,
         ];
     }
 }

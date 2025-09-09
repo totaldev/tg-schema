@@ -24,7 +24,7 @@ class LoadDirectMessagesChatTopics extends TdFunction
         /**
          * The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached.
          */
-        protected int $limit
+        protected int $limit,
     ) {}
 
     public static function fromArray(array $array): LoadDirectMessagesChatTopics

@@ -20,27 +20,27 @@ class InputMessageForwarded extends InputMessageContent
         /**
          * Identifier for the chat this forwarded message came from.
          */
-        protected int                $fromChatId,
+        protected int                 $fromChatId,
         /**
          * Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded.
          */
-        protected int                $messageId,
+        protected int                 $messageId,
         /**
          * Pass true if a game message is being shared from a launched game; applies only to game messages.
          */
-        protected bool               $inGameShare,
+        protected bool                $inGameShare,
         /**
          * Pass true to replace video start timestamp in the forwarded message.
          */
-        protected bool               $replaceVideoStartTimestamp,
+        protected bool                $replaceVideoStartTimestamp,
         /**
          * The new video start timestamp; ignored if replace_video_start_timestamp == false.
          */
-        protected int                $newVideoStartTimestamp,
+        protected int                 $newVideoStartTimestamp,
         /**
          * Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual.
          */
-        protected MessageCopyOptions $copyOptions,
+        protected ?MessageCopyOptions $copyOptions = null,
     ) {
         parent::__construct();
     }
@@ -53,11 +53,11 @@ class InputMessageForwarded extends InputMessageContent
             $array['in_game_share'],
             $array['replace_video_start_timestamp'],
             $array['new_video_start_timestamp'],
-            TdSchemaRegistry::fromArray($array['copy_options']),
+            isset($array['copy_options']) ? TdSchemaRegistry::fromArray($array['copy_options']) : null,
         );
     }
 
-    public function getCopyOptions(): MessageCopyOptions
+    public function getCopyOptions(): ?MessageCopyOptions
     {
         return $this->copyOptions;
     }
@@ -96,7 +96,7 @@ class InputMessageForwarded extends InputMessageContent
             'in_game_share'                 => $this->inGameShare,
             'replace_video_start_timestamp' => $this->replaceVideoStartTimestamp,
             'new_video_start_timestamp'     => $this->newVideoStartTimestamp,
-            'copy_options'                  => $this->copyOptions->typeSerialize(),
+            'copy_options'                  => $this->copyOptions ?? null,
         ];
     }
 }

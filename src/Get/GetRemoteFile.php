@@ -24,22 +24,22 @@ class GetRemoteFile extends TdFunction
         /**
          * Remote identifier of the file to get.
          */
-        protected string   $remoteFileId,
+        protected string    $remoteFileId,
         /**
          * File type; pass null if unknown.
          */
-        protected FileType $fileType
+        protected ?FileType $fileType = null,
     ) {}
 
     public static function fromArray(array $array): GetRemoteFile
     {
         return new static(
             $array['remote_file_id'],
-            TdSchemaRegistry::fromArray($array['file_type']),
+            isset($array['file_type']) ? TdSchemaRegistry::fromArray($array['file_type']) : null,
         );
     }
 
-    public function getFileType(): FileType
+    public function getFileType(): ?FileType
     {
         return $this->fileType;
     }
@@ -54,7 +54,7 @@ class GetRemoteFile extends TdFunction
         return [
             '@type'          => static::TYPE_NAME,
             'remote_file_id' => $this->remoteFileId,
-            'file_type'      => $this->fileType->typeSerialize(),
+            'file_type'      => $this->fileType ?? null,
         ];
     }
 }

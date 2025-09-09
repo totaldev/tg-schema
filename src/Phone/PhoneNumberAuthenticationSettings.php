@@ -21,33 +21,33 @@ class PhoneNumberAuthenticationSettings extends TdObject
         /**
          * Pass true if the authentication code may be sent via a flash call to the specified phone number.
          */
-        protected bool                           $allowFlashCall,
+        protected bool                            $allowFlashCall,
         /**
          * Pass true if the authentication code may be sent via a missed call to the specified phone number.
          */
-        protected bool                           $allowMissedCall,
+        protected bool                            $allowMissedCall,
         /**
          * Pass true if the authenticated phone number is used on the current device.
          */
-        protected bool                           $isCurrentPhoneNumber,
+        protected bool                            $isCurrentPhoneNumber,
         /**
          * Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches.
          */
-        protected bool                           $hasUnknownPhoneNumber,
+        protected bool                            $hasUnknownPhoneNumber,
         /**
          * For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details.
          */
-        protected bool                           $allowSmsRetrieverApi,
-        /**
-         * For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication.
-         */
-        protected FirebaseAuthenticationSettings $firebaseAuthenticationSettings,
+        protected bool                            $allowSmsRetrieverApi,
         /**
          * List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions; for setAuthenticationPhoneNumber only.
          *
          * @var string[]
          */
-        protected array                          $authenticationTokens,
+        protected array                           $authenticationTokens,
+        /**
+         * For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication.
+         */
+        protected ?FirebaseAuthenticationSettings $firebaseAuthenticationSettings = null,
     ) {}
 
     public static function fromArray(array $array): PhoneNumberAuthenticationSettings
@@ -58,7 +58,7 @@ class PhoneNumberAuthenticationSettings extends TdObject
             $array['is_current_phone_number'],
             $array['has_unknown_phone_number'],
             $array['allow_sms_retriever_api'],
-            TdSchemaRegistry::fromArray($array['firebase_authentication_settings']),
+            isset($array['firebase_authentication_settings']) ? TdSchemaRegistry::fromArray($array['firebase_authentication_settings']) : null,
             $array['authentication_tokens'],
         );
     }
@@ -83,7 +83,7 @@ class PhoneNumberAuthenticationSettings extends TdObject
         return $this->authenticationTokens;
     }
 
-    public function getFirebaseAuthenticationSettings(): FirebaseAuthenticationSettings
+    public function getFirebaseAuthenticationSettings(): ?FirebaseAuthenticationSettings
     {
         return $this->firebaseAuthenticationSettings;
     }
@@ -107,7 +107,7 @@ class PhoneNumberAuthenticationSettings extends TdObject
             'is_current_phone_number'          => $this->isCurrentPhoneNumber,
             'has_unknown_phone_number'         => $this->hasUnknownPhoneNumber,
             'allow_sms_retriever_api'          => $this->allowSmsRetrieverApi,
-            'firebase_authentication_settings' => $this->firebaseAuthenticationSettings->typeSerialize(),
+            'firebase_authentication_settings' => $this->firebaseAuthenticationSettings ?? null,
             'authentication_tokens'            => $this->authenticationTokens,
         ];
     }

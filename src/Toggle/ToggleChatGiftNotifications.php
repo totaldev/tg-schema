@@ -24,7 +24,7 @@ class ToggleChatGiftNotifications extends TdFunction
         /**
          * Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications.
          */
-        protected bool $areEnabled
+        protected bool $areEnabled,
     ) {}
 
     public static function fromArray(array $array): ToggleChatGiftNotifications

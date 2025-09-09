@@ -23,7 +23,7 @@ class StoryContentVideo extends StoryContent
         /**
          * Alternative version of the video in MPEG4 format, encoded with H.264 codec; may be null.
          */
-        protected ?StoryVideo $alternativeVideo
+        protected ?StoryVideo $alternativeVideo,
     ) {
         parent::__construct();
     }

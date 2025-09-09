@@ -27,7 +27,7 @@ class GetStickerOutline extends TdFunction
         /**
          * Pass true to get the outline scaled for clicked animated emoji message.
          */
-        protected bool $forClickedAnimatedEmojiMessage
+        protected bool $forClickedAnimatedEmojiMessage,
     ) {}
 
     public static function fromArray(array $array): GetStickerOutline

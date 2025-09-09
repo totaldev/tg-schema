@@ -23,13 +23,13 @@ class WebAppOpenParameters extends TdObject
          */
         protected string           $applicationName,
         /**
-         * The mode in which the Web App is opened; pass null to open in webAppOpenModeFullSize.
-         */
-        protected WebAppOpenMode   $mode,
-        /**
          * Preferred Web App theme; pass null to use the default theme.
          */
-        protected ?ThemeParameters $theme = null
+        protected ?ThemeParameters $theme = null,
+        /**
+         * The mode in which the Web App is opened; pass null to open in webAppOpenModeFullSize.
+         */
+        protected ?WebAppOpenMode  $mode = null,
     ) {}
 
     public static function fromArray(array $array): WebAppOpenParameters
@@ -37,7 +37,7 @@ class WebAppOpenParameters extends TdObject
         return new static(
             isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
             $array['application_name'],
-            TdSchemaRegistry::fromArray($array['mode']),
+            isset($array['mode']) ? TdSchemaRegistry::fromArray($array['mode']) : null,
         );
     }
 
@@ -46,7 +46,7 @@ class WebAppOpenParameters extends TdObject
         return $this->applicationName;
     }
 
-    public function getMode(): WebAppOpenMode
+    public function getMode(): ?WebAppOpenMode
     {
         return $this->mode;
     }
@@ -62,7 +62,7 @@ class WebAppOpenParameters extends TdObject
             '@type'            => static::TYPE_NAME,
             'theme'            => $this->theme ?? null,
             'application_name' => $this->applicationName,
-            'mode'             => $this->mode->typeSerialize(),
+            'mode'             => $this->mode ?? null,
         ];
     }
 }

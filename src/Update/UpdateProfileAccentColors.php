@@ -28,7 +28,7 @@ class UpdateProfileAccentColors extends Update
          *
          * @var int[]
          */
-        protected array $availableAccentColorIds
+        protected array $availableAccentColorIds,
     ) {
         parent::__construct();
     }

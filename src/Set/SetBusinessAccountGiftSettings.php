@@ -25,7 +25,7 @@ class SetBusinessAccountGiftSettings extends TdFunction
         /**
          * The new settings.
          */
-        protected GiftSettings $settings
+        protected GiftSettings $settings,
     ) {}
 
     public static function fromArray(array $array): SetBusinessAccountGiftSettings

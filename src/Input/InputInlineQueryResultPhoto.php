@@ -46,13 +46,13 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
          */
         protected int                 $photoHeight,
         /**
-         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
          * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ?ReplyMarkup        $replyMarkup = null,
     ) {
         parent::__construct();
     }
@@ -67,7 +67,7 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
             $array['photo_url'],
             $array['photo_width'],
             $array['photo_height'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -102,7 +102,7 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
         return $this->photoWidth;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -128,7 +128,7 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
             'photo_url'             => $this->photoUrl,
             'photo_width'           => $this->photoWidth,
             'photo_height'          => $this->photoHeight,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup ?? null,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

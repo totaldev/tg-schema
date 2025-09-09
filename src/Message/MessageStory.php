@@ -25,7 +25,7 @@ class MessageStory extends MessageContent
         /**
          * True, if the story was automatically forwarded because of a mention of the user.
          */
-        protected bool $viaMention
+        protected bool $viaMention,
     ) {
         parent::__construct();
     }

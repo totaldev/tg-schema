@@ -27,7 +27,7 @@ class ToggleStoryIsPostedToChatPage extends TdFunction
         /**
          * Pass true to make the story accessible after expiration; pass false to make it private.
          */
-        protected bool $isPostedToChatPage
+        protected bool $isPostedToChatPage,
     ) {}
 
     public static function fromArray(array $array): ToggleStoryIsPostedToChatPage

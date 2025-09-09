@@ -23,7 +23,7 @@ class EditStarSubscription extends TdFunction
         /**
          * New value of is_canceled.
          */
-        protected bool   $isCanceled
+        protected bool   $isCanceled,
     ) {}
 
     public static function fromArray(array $array): EditStarSubscription

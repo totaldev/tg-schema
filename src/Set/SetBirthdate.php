@@ -21,17 +21,17 @@ class SetBirthdate extends TdFunction
         /**
          * The new value of the current user's birthdate; pass null to remove the birthdate.
          */
-        protected Birthdate $birthdate
+        protected ?Birthdate $birthdate = null
     ) {}
 
     public static function fromArray(array $array): SetBirthdate
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['birthdate']),
+            isset($array['birthdate']) ? TdSchemaRegistry::fromArray($array['birthdate']) : null,
         );
     }
 
-    public function getBirthdate(): Birthdate
+    public function getBirthdate(): ?Birthdate
     {
         return $this->birthdate;
     }
@@ -40,7 +40,7 @@ class SetBirthdate extends TdFunction
     {
         return [
             '@type'     => static::TYPE_NAME,
-            'birthdate' => $this->birthdate->typeSerialize(),
+            'birthdate' => $this->birthdate ?? null,
         ];
     }
 }

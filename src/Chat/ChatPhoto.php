@@ -43,7 +43,7 @@ class ChatPhoto extends TdObject
          */
         protected ?AnimatedChatPhoto $animation,
         /**
-         * A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available.
+         * A small (160x160) animated variant of the photo in MPEG4 format; may be null even if the big animation is available.
          */
         protected ?AnimatedChatPhoto $smallAnimation,
         /**

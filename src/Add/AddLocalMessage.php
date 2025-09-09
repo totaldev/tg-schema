@@ -23,23 +23,23 @@ class AddLocalMessage extends TdFunction
         /**
          * Target chat; channel direct messages chats aren't supported.
          */
-        protected int                 $chatId,
+        protected int                  $chatId,
         /**
          * Identifier of the sender of the message.
          */
-        protected MessageSender       $senderId,
-        /**
-         * Information about the message or story to be replied; pass null if none.
-         */
-        protected InputMessageReplyTo $replyTo,
+        protected MessageSender        $senderId,
         /**
          * Pass true to disable notification for the message.
          */
-        protected bool                $disableNotification,
+        protected bool                 $disableNotification,
         /**
          * The content of the message to be added.
          */
-        protected InputMessageContent $inputMessageContent,
+        protected InputMessageContent  $inputMessageContent,
+        /**
+         * Information about the message or story to be replied; pass null if none.
+         */
+        protected ?InputMessageReplyTo $replyTo = null,
     ) {}
 
     public static function fromArray(array $array): AddLocalMessage
@@ -47,7 +47,7 @@ class AddLocalMessage extends TdFunction
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['sender_id']),
-            TdSchemaRegistry::fromArray($array['reply_to']),
+            isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             $array['disable_notification'],
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
@@ -68,7 +68,7 @@ class AddLocalMessage extends TdFunction
         return $this->inputMessageContent;
     }
 
-    public function getReplyTo(): InputMessageReplyTo
+    public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
     }
@@ -84,7 +84,7 @@ class AddLocalMessage extends TdFunction
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'sender_id'             => $this->senderId->typeSerialize(),
-            'reply_to'              => $this->replyTo->typeSerialize(),
+            'reply_to'              => $this->replyTo ?? null,
             'disable_notification'  => $this->disableNotification,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];

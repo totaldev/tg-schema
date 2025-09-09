@@ -24,7 +24,7 @@ class CheckAuthenticationPremiumPurchase extends TdFunction
         /**
          * Paid amount, in the smallest units of the currency.
          */
-        protected int    $amount
+        protected int    $amount,
     ) {}
 
     public static function fromArray(array $array): CheckAuthenticationPremiumPurchase

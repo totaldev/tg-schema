@@ -24,7 +24,7 @@ class SetChatPaidMessageStarCount extends TdFunction
         /**
          * The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending.
          */
-        protected int $paidMessageStarCount
+        protected int $paidMessageStarCount,
     ) {}
 
     public static function fromArray(array $array): SetChatPaidMessageStarCount

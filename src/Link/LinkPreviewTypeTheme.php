@@ -27,7 +27,7 @@ class LinkPreviewTypeTheme extends LinkPreviewType
         /**
          * Settings for the cloud theme; may be null if unknown.
          */
-        protected ?ThemeSettings $settings
+        protected ?ThemeSettings $settings,
     ) {
         parent::__construct();
     }

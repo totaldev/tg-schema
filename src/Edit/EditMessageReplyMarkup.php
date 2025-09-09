@@ -21,15 +21,15 @@ class EditMessageReplyMarkup extends TdFunction
         /**
          * The chat the message belongs to.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
          * Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited.
          */
-        protected int         $messageId,
+        protected int          $messageId,
         /**
          * The new message reply markup; pass null if none.
          */
-        protected ReplyMarkup $replyMarkup
+        protected ?ReplyMarkup $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageReplyMarkup
@@ -37,7 +37,7 @@ class EditMessageReplyMarkup extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
     }
 
@@ -51,7 +51,7 @@ class EditMessageReplyMarkup extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -62,7 +62,7 @@ class EditMessageReplyMarkup extends TdFunction
             '@type'        => static::TYPE_NAME,
             'chat_id'      => $this->chatId,
             'message_id'   => $this->messageId,
-            'reply_markup' => $this->replyMarkup->typeSerialize(),
+            'reply_markup' => $this->replyMarkup ?? null,
         ];
     }
 }

@@ -25,48 +25,48 @@ class SearchChatMessages extends TdFunction
         /**
          * Identifier of the chat in which to search messages.
          */
-        protected int                  $chatId,
-        /**
-         * Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics.
-         */
-        protected MessageTopic         $topicId,
+        protected int                   $chatId,
         /**
          * Query to search for.
          */
-        protected string               $query,
-        /**
-         * Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats.
-         */
-        protected MessageSender        $senderId,
+        protected string                $query,
         /**
          * Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
          */
-        protected int                  $fromMessageId,
+        protected int                   $fromMessageId,
         /**
          * Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages.
          */
-        protected int                  $offset,
+        protected int                   $offset,
         /**
          * The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
          */
-        protected int                  $limit,
+        protected int                   $limit,
+        /**
+         * Pass topic identifier to search messages only in specific topic; pass null to search for messages in all topics.
+         */
+        protected ?MessageTopic         $topicId = null,
+        /**
+         * Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats.
+         */
+        protected ?MessageSender        $senderId = null,
         /**
          * Additional filter for messages to search; pass null to search for all messages.
          */
-        protected SearchMessagesFilter $filter,
+        protected ?SearchMessagesFilter $filter = null,
     ) {}
 
     public static function fromArray(array $array): SearchChatMessages
     {
         return new static(
             $array['chat_id'],
-            TdSchemaRegistry::fromArray($array['topic_id']),
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             $array['query'],
-            TdSchemaRegistry::fromArray($array['sender_id']),
+            isset($array['sender_id']) ? TdSchemaRegistry::fromArray($array['sender_id']) : null,
             $array['from_message_id'],
             $array['offset'],
             $array['limit'],
-            TdSchemaRegistry::fromArray($array['filter']),
+            isset($array['filter']) ? TdSchemaRegistry::fromArray($array['filter']) : null,
         );
     }
 
@@ -75,7 +75,7 @@ class SearchChatMessages extends TdFunction
         return $this->chatId;
     }
 
-    public function getFilter(): SearchMessagesFilter
+    public function getFilter(): ?SearchMessagesFilter
     {
         return $this->filter;
     }
@@ -100,12 +100,12 @@ class SearchChatMessages extends TdFunction
         return $this->query;
     }
 
-    public function getSenderId(): MessageSender
+    public function getSenderId(): ?MessageSender
     {
         return $this->senderId;
     }
 
-    public function getTopicId(): MessageTopic
+    public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
     }
@@ -115,13 +115,13 @@ class SearchChatMessages extends TdFunction
         return [
             '@type'           => static::TYPE_NAME,
             'chat_id'         => $this->chatId,
-            'topic_id'        => $this->topicId->typeSerialize(),
+            'topic_id'        => $this->topicId ?? null,
             'query'           => $this->query,
-            'sender_id'       => $this->senderId->typeSerialize(),
+            'sender_id'       => $this->senderId ?? null,
             'from_message_id' => $this->fromMessageId,
             'offset'          => $this->offset,
             'limit'           => $this->limit,
-            'filter'          => $this->filter->typeSerialize(),
+            'filter'          => $this->filter ?? null,
         ];
     }
 }

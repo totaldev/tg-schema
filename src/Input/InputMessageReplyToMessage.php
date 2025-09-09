@@ -19,11 +19,11 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
         /**
          * The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied.
          */
-        protected int            $messageId,
+        protected int             $messageId,
         /**
          * Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats.
          */
-        protected InputTextQuote $quote
+        protected ?InputTextQuote $quote = null,
     ) {
         parent::__construct();
     }
@@ -32,7 +32,7 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
     {
         return new static(
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['quote']),
+            isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
         );
     }
 
@@ -41,7 +41,7 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
         return $this->messageId;
     }
 
-    public function getQuote(): InputTextQuote
+    public function getQuote(): ?InputTextQuote
     {
         return $this->quote;
     }
@@ -51,7 +51,7 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
         return [
             '@type'      => static::TYPE_NAME,
             'message_id' => $this->messageId,
-            'quote'      => $this->quote->typeSerialize(),
+            'quote'      => $this->quote ?? null,
         ];
     }
 }

@@ -24,7 +24,7 @@ class UpgradedGiftModelCount extends TdObject
         /**
          * Total number of gifts with the model.
          */
-        protected int               $totalCount
+        protected int               $totalCount,
     ) {}
 
     public static function fromArray(array $array): UpgradedGiftModelCount

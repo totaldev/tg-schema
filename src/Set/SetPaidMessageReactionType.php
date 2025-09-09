@@ -29,7 +29,7 @@ class SetPaidMessageReactionType extends TdFunction
         /**
          * New type of the paid reaction.
          */
-        protected PaidReactionType $type
+        protected PaidReactionType $type,
     ) {}
 
     public static function fromArray(array $array): SetPaidMessageReactionType

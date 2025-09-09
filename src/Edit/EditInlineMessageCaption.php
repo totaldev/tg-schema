@@ -22,32 +22,32 @@ class EditInlineMessageCaption extends TdFunction
         /**
          * Inline message identifier.
          */
-        protected string        $inlineMessageId,
-        /**
-         * The new message reply markup; pass null if none.
-         */
-        protected ReplyMarkup   $replyMarkup,
-        /**
-         * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters.
-         */
-        protected FormattedText $caption,
+        protected string         $inlineMessageId,
         /**
          * Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages.
          */
-        protected bool          $showCaptionAboveMedia,
+        protected bool           $showCaptionAboveMedia,
+        /**
+         * The new message reply markup; pass null if none.
+         */
+        protected ?ReplyMarkup   $replyMarkup = null,
+        /**
+         * New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters.
+         */
+        protected ?FormattedText $caption = null,
     ) {}
 
     public static function fromArray(array $array): EditInlineMessageCaption
     {
         return new static(
             $array['inline_message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
             $array['show_caption_above_media'],
         );
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -57,7 +57,7 @@ class EditInlineMessageCaption extends TdFunction
         return $this->inlineMessageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -72,8 +72,8 @@ class EditInlineMessageCaption extends TdFunction
         return [
             '@type'                    => static::TYPE_NAME,
             'inline_message_id'        => $this->inlineMessageId,
-            'reply_markup'             => $this->replyMarkup->typeSerialize(),
-            'caption'                  => $this->caption->typeSerialize(),
+            'reply_markup'             => $this->replyMarkup ?? null,
+            'caption'                  => $this->caption ?? null,
             'show_caption_above_media' => $this->showCaptionAboveMedia,
         ];
     }

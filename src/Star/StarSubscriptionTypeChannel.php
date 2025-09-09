@@ -21,7 +21,7 @@ class StarSubscriptionTypeChannel extends StarSubscriptionType
         /**
          * The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore.
          */
-        protected string $inviteLink
+        protected string $inviteLink,
     ) {
         parent::__construct();
     }

@@ -29,7 +29,7 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
         /**
          * Information about commission received by Telegram from the transaction.
          */
-        protected AffiliateInfo $affiliate
+        protected AffiliateInfo $affiliate,
     ) {
         parent::__construct();
     }

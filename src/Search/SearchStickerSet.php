@@ -23,7 +23,7 @@ class SearchStickerSet extends TdFunction
         /**
          * Pass true to ignore local cache of sticker sets and always send a network request.
          */
-        protected bool   $ignoreCache
+        protected bool   $ignoreCache,
     ) {}
 
     public static function fromArray(array $array): SearchStickerSet

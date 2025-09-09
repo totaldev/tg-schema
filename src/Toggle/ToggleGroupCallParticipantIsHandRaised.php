@@ -29,7 +29,7 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
         /**
          * Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed right to lower other's hand.
          */
-        protected bool          $isHandRaised
+        protected bool          $isHandRaised,
     ) {}
 
     public static function fromArray(array $array): ToggleGroupCallParticipantIsHandRaised

@@ -28,7 +28,7 @@ class GetChatRevenueTransactions extends TdFunction
         /**
          * The maximum number of transactions to be returned; up to 200.
          */
-        protected int $limit
+        protected int $limit,
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueTransactions

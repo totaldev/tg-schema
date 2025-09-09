@@ -32,15 +32,15 @@ class InputSticker extends TdObject
          */
         protected string        $emojis,
         /**
-         * Position where the mask is placed; pass null if not specified.
-         */
-        protected MaskPosition  $maskPosition,
-        /**
          * List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker.
          *
          * @var string[]
          */
         protected array         $keywords,
+        /**
+         * Position where the mask is placed; pass null if not specified.
+         */
+        protected ?MaskPosition $maskPosition = null,
     ) {}
 
     public static function fromArray(array $array): InputSticker
@@ -49,7 +49,7 @@ class InputSticker extends TdObject
             TdSchemaRegistry::fromArray($array['sticker']),
             TdSchemaRegistry::fromArray($array['format']),
             $array['emojis'],
-            TdSchemaRegistry::fromArray($array['mask_position']),
+            isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null,
             $array['keywords'],
         );
     }
@@ -69,7 +69,7 @@ class InputSticker extends TdObject
         return $this->keywords;
     }
 
-    public function getMaskPosition(): MaskPosition
+    public function getMaskPosition(): ?MaskPosition
     {
         return $this->maskPosition;
     }
@@ -86,7 +86,7 @@ class InputSticker extends TdObject
             'sticker'       => $this->sticker->typeSerialize(),
             'format'        => $this->format->typeSerialize(),
             'emojis'        => $this->emojis,
-            'mask_position' => $this->maskPosition->typeSerialize(),
+            'mask_position' => $this->maskPosition ?? null,
             'keywords'      => $this->keywords,
         ];
     }

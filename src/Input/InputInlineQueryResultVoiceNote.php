@@ -34,13 +34,13 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
          */
         protected int                 $voiceNoteDuration,
         /**
-         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
          * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ?ReplyMarkup        $replyMarkup = null,
     ) {
         parent::__construct();
     }
@@ -52,7 +52,7 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
             $array['title'],
             $array['voice_note_url'],
             $array['voice_note_duration'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -67,7 +67,7 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
         return $this->inputMessageContent;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -95,7 +95,7 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
             'title'                 => $this->title,
             'voice_note_url'        => $this->voiceNoteUrl,
             'voice_note_duration'   => $this->voiceNoteDuration,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup ?? null,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

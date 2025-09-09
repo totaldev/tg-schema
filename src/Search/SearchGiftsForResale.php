@@ -40,7 +40,7 @@ class SearchGiftsForResale extends TdFunction
         /**
          * The maximum number of gifts to return.
          */
-        protected int                $limit
+        protected int                $limit,
     ) {}
 
     public static function fromArray(array $array): SearchGiftsForResale

@@ -23,7 +23,7 @@ class GetDirectMessagesChatTopic extends TdFunction
         /**
          * Identifier of the topic to get.
          */
-        protected int $topicId
+        protected int $topicId,
     ) {}
 
     public static function fromArray(array $array): GetDirectMessagesChatTopic

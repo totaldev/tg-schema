@@ -19,11 +19,11 @@ class UpdateGroupCallParticipants extends Update
          */
         protected int   $groupCallId,
         /**
-         * New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even there is no information about them.
+         * New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even if there is no information about them.
          *
          * @var int[]
          */
-        protected array $participantUserIds
+        protected array $participantUserIds,
     ) {
         parent::__construct();
     }

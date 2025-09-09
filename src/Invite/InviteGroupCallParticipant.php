@@ -28,7 +28,7 @@ class InviteGroupCallParticipant extends TdFunction
         /**
          * Pass true if the group call is a video call.
          */
-        protected bool $isVideo
+        protected bool $isVideo,
     ) {}
 
     public static function fromArray(array $array): InviteGroupCallParticipant

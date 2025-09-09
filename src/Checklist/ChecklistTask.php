@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+namespace Totaldev\TgSchema\Checklist;
+
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdObject;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
+/**
+ * Describes a task in a checklist.
+ */
+class ChecklistTask extends TdObject
+{
+    public const TYPE_NAME = 'checklistTask';
+
+    public function __construct(
+        /**
+         * Unique identifier of the task.
+         */
+        protected int           $id,
+        /**
+         * Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Url, EmailAddress, Mention, Hashtag, Cashtag and PhoneNumber entities.
+         */
+        protected FormattedText $text,
+        /**
+         * Identifier of the user that completed the task; 0 if the task isn't completed.
+         */
+        protected int           $completedByUserId,
+        /**
+         * Point in time (Unix timestamp) when the task was completed; 0 if the task isn't completed.
+         */
+        protected int           $completionDate,
+    ) {}
+
+    public static function fromArray(array $array): ChecklistTask
+    {
+        return new static(
+            $array['id'],
+            TdSchemaRegistry::fromArray($array['text']),
+            $array['completed_by_user_id'],
+            $array['completion_date'],
+        );
+    }
+
+    public function getCompletedByUserId(): int
+    {
+        return $this->completedByUserId;
+    }
+
+    public function getCompletionDate(): int
+    {
+        return $this->completionDate;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'                => static::TYPE_NAME,
+            'id'                   => $this->id,
+            'text'                 => $this->text->typeSerialize(),
+            'completed_by_user_id' => $this->completedByUserId,
+            'completion_date'      => $this->completionDate,
+        ];
+    }
+}

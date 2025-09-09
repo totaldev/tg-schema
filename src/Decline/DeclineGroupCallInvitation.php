@@ -23,7 +23,7 @@ class DeclineGroupCallInvitation extends TdFunction
         /**
          * Identifier of the message of the type messageGroupCall.
          */
-        protected int $messageId
+        protected int $messageId,
     ) {}
 
     public static function fromArray(array $array): DeclineGroupCallInvitation

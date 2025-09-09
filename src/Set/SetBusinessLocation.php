@@ -21,17 +21,17 @@ class SetBusinessLocation extends TdFunction
         /**
          * The new location of the business; pass null to remove the location.
          */
-        protected BusinessLocation $location
+        protected ?BusinessLocation $location = null
     ) {}
 
     public static function fromArray(array $array): SetBusinessLocation
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['location']),
+            isset($array['location']) ? TdSchemaRegistry::fromArray($array['location']) : null,
         );
     }
 
-    public function getLocation(): BusinessLocation
+    public function getLocation(): ?BusinessLocation
     {
         return $this->location;
     }
@@ -40,7 +40,7 @@ class SetBusinessLocation extends TdFunction
     {
         return [
             '@type'    => static::TYPE_NAME,
-            'location' => $this->location->typeSerialize(),
+            'location' => $this->location ?? null,
         ];
     }
 }

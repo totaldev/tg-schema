@@ -71,7 +71,7 @@ class Chat extends TdObject
          */
         protected array                    $positions,
         /**
-         * Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list.
+         * Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list.
          *
          * @var ChatList[]
          */

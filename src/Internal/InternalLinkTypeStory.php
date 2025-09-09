@@ -22,7 +22,7 @@ class InternalLinkTypeStory extends InternalLinkType
         /**
          * Story identifier.
          */
-        protected int    $storyId
+        protected int    $storyId,
     ) {
         parent::__construct();
     }

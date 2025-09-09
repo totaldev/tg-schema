@@ -54,13 +54,13 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult
          */
         protected int                 $videoHeight,
         /**
-         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
          * The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null.
+         */
+        protected ?ReplyMarkup        $replyMarkup = null,
     ) {
         parent::__construct();
     }
@@ -77,7 +77,7 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult
             $array['video_duration'],
             $array['video_width'],
             $array['video_height'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -92,7 +92,7 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult
         return $this->inputMessageContent;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -150,7 +150,7 @@ class InputInlineQueryResultAnimation extends InputInlineQueryResult
             'video_duration'        => $this->videoDuration,
             'video_width'           => $this->videoWidth,
             'video_height'          => $this->videoHeight,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup ?? null,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

@@ -23,7 +23,7 @@ class TransferBusinessAccountStars extends TdFunction
         /**
          * Number of Telegram Stars to transfer.
          */
-        protected int    $starCount
+        protected int    $starCount,
     ) {}
 
     public static function fromArray(array $array): TransferBusinessAccountStars

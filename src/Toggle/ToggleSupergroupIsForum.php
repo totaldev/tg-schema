@@ -27,7 +27,7 @@ class ToggleSupergroupIsForum extends TdFunction
         /**
          * New value of has_forum_tabs; ignored if is_forum is false.
          */
-        protected bool $hasForumTabs
+        protected bool $hasForumTabs,
     ) {}
 
     public static function fromArray(array $array): ToggleSupergroupIsForum

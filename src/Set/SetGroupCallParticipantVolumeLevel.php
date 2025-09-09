@@ -30,7 +30,7 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
         /**
          * New participant's volume level; 1-20000 in hundreds of percents.
          */
-        protected int           $volumeLevel
+        protected int           $volumeLevel,
     ) {}
 
     public static function fromArray(array $array): SetGroupCallParticipantVolumeLevel

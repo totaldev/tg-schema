@@ -22,22 +22,22 @@ class SetStickerMaskPosition extends TdFunction
         /**
          * Sticker.
          */
-        protected InputFile    $sticker,
+        protected InputFile     $sticker,
         /**
          * Position where the mask is placed; pass null to remove mask position.
          */
-        protected MaskPosition $maskPosition
+        protected ?MaskPosition $maskPosition = null,
     ) {}
 
     public static function fromArray(array $array): SetStickerMaskPosition
     {
         return new static(
             TdSchemaRegistry::fromArray($array['sticker']),
-            TdSchemaRegistry::fromArray($array['mask_position']),
+            isset($array['mask_position']) ? TdSchemaRegistry::fromArray($array['mask_position']) : null,
         );
     }
 
-    public function getMaskPosition(): MaskPosition
+    public function getMaskPosition(): ?MaskPosition
     {
         return $this->maskPosition;
     }
@@ -52,7 +52,7 @@ class SetStickerMaskPosition extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'sticker'       => $this->sticker->typeSerialize(),
-            'mask_position' => $this->maskPosition->typeSerialize(),
+            'mask_position' => $this->maskPosition ?? null,
         ];
     }
 }

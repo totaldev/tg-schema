@@ -21,17 +21,17 @@ class ResendAuthenticationCode extends TdFunction
         /**
          * Reason of code resending; pass null if unknown.
          */
-        protected ResendCodeReason $reason
+        protected ?ResendCodeReason $reason = null
     ) {}
 
     public static function fromArray(array $array): ResendAuthenticationCode
     {
         return new static(
-            TdSchemaRegistry::fromArray($array['reason']),
+            isset($array['reason']) ? TdSchemaRegistry::fromArray($array['reason']) : null,
         );
     }
 
-    public function getReason(): ResendCodeReason
+    public function getReason(): ?ResendCodeReason
     {
         return $this->reason;
     }
@@ -40,7 +40,7 @@ class ResendAuthenticationCode extends TdFunction
     {
         return [
             '@type'  => static::TYPE_NAME,
-            'reason' => $this->reason->typeSerialize(),
+            'reason' => $this->reason ?? null,
         ];
     }
 }

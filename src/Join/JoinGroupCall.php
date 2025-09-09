@@ -26,7 +26,7 @@ class JoinGroupCall extends TdFunction
         /**
          * Parameters to join the call.
          */
-        protected GroupCallJoinParameters $joinParameters
+        protected GroupCallJoinParameters $joinParameters,
     ) {}
 
     public static function fromArray(array $array): JoinGroupCall

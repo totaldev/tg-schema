@@ -30,13 +30,13 @@ class EditMessageMedia extends TdFunction
          */
         protected int                 $messageId,
         /**
-         * The new message reply markup; pass null if none; for bots only.
-         */
-        protected ReplyMarkup         $replyMarkup,
-        /**
          * New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo.
          */
         protected InputMessageContent $inputMessageContent,
+        /**
+         * The new message reply markup; pass null if none; for bots only.
+         */
+        protected ?ReplyMarkup        $replyMarkup = null,
     ) {}
 
     public static function fromArray(array $array): EditMessageMedia
@@ -44,7 +44,7 @@ class EditMessageMedia extends TdFunction
         return new static(
             $array['chat_id'],
             $array['message_id'],
-            TdSchemaRegistry::fromArray($array['reply_markup']),
+            isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
             TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
@@ -64,7 +64,7 @@ class EditMessageMedia extends TdFunction
         return $this->messageId;
     }
 
-    public function getReplyMarkup(): ReplyMarkup
+    public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
     }
@@ -75,7 +75,7 @@ class EditMessageMedia extends TdFunction
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
             'message_id'            => $this->messageId,
-            'reply_markup'          => $this->replyMarkup->typeSerialize(),
+            'reply_markup'          => $this->replyMarkup ?? null,
             'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }

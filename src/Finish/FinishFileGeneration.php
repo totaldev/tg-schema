@@ -21,22 +21,22 @@ class FinishFileGeneration extends TdFunction
         /**
          * The identifier of the generation process.
          */
-        protected int   $generationId,
+        protected int    $generationId,
         /**
          * If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded.
          */
-        protected Error $error
+        protected ?Error $error = null,
     ) {}
 
     public static function fromArray(array $array): FinishFileGeneration
     {
         return new static(
             $array['generation_id'],
-            TdSchemaRegistry::fromArray($array['error']),
+            isset($array['error']) ? TdSchemaRegistry::fromArray($array['error']) : null,
         );
     }
 
-    public function getError(): Error
+    public function getError(): ?Error
     {
         return $this->error;
     }
@@ -51,7 +51,7 @@ class FinishFileGeneration extends TdFunction
         return [
             '@type'         => static::TYPE_NAME,
             'generation_id' => $this->generationId,
-            'error'         => $this->error->typeSerialize(),
+            'error'         => $this->error ?? null,
         ];
     }
 }

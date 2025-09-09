@@ -23,7 +23,7 @@ class StoryFullId extends TdObject
         /**
          * Unique story identifier among stories of the chat.
          */
-        protected int $storyId
+        protected int $storyId,
     ) {}
 
     public static function fromArray(array $array): StoryFullId

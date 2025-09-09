@@ -31,14 +31,6 @@ class PostStory extends TdFunction
          */
         protected InputStoryContent    $content,
         /**
-         * Clickable rectangle areas to be shown on the story media; pass null if none.
-         */
-        protected InputStoryAreas      $areas,
-        /**
-         * Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption").
-         */
-        protected FormattedText        $caption,
-        /**
          * The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats.
          */
         protected StoryPrivacySettings $privacySettings,
@@ -47,10 +39,6 @@ class PostStory extends TdFunction
          */
         protected int                  $activePeriod,
         /**
-         * Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story.
-         */
-        protected StoryFullId          $fromStoryFullId,
-        /**
          * Pass true to keep the story accessible after expiration.
          */
         protected bool                 $isPostedToChatPage,
@@ -58,6 +46,18 @@ class PostStory extends TdFunction
          * Pass true if the content of the story must be protected from forwarding and screenshotting.
          */
         protected bool                 $protectContent,
+        /**
+         * Clickable rectangle areas to be shown on the story media; pass null if none.
+         */
+        protected ?InputStoryAreas     $areas = null,
+        /**
+         * Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption").
+         */
+        protected ?FormattedText       $caption = null,
+        /**
+         * Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story.
+         */
+        protected ?StoryFullId         $fromStoryFullId = null,
     ) {}
 
     public static function fromArray(array $array): PostStory
@@ -65,11 +65,11 @@ class PostStory extends TdFunction
         return new static(
             $array['chat_id'],
             TdSchemaRegistry::fromArray($array['content']),
-            TdSchemaRegistry::fromArray($array['areas']),
-            TdSchemaRegistry::fromArray($array['caption']),
+            isset($array['areas']) ? TdSchemaRegistry::fromArray($array['areas']) : null,
+            isset($array['caption']) ? TdSchemaRegistry::fromArray($array['caption']) : null,
             TdSchemaRegistry::fromArray($array['privacy_settings']),
             $array['active_period'],
-            TdSchemaRegistry::fromArray($array['from_story_full_id']),
+            isset($array['from_story_full_id']) ? TdSchemaRegistry::fromArray($array['from_story_full_id']) : null,
             $array['is_posted_to_chat_page'],
             $array['protect_content'],
         );
@@ -80,12 +80,12 @@ class PostStory extends TdFunction
         return $this->activePeriod;
     }
 
-    public function getAreas(): InputStoryAreas
+    public function getAreas(): ?InputStoryAreas
     {
         return $this->areas;
     }
 
-    public function getCaption(): FormattedText
+    public function getCaption(): ?FormattedText
     {
         return $this->caption;
     }
@@ -100,7 +100,7 @@ class PostStory extends TdFunction
         return $this->content;
     }
 
-    public function getFromStoryFullId(): StoryFullId
+    public function getFromStoryFullId(): ?StoryFullId
     {
         return $this->fromStoryFullId;
     }
@@ -126,11 +126,11 @@ class PostStory extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
             'content'                => $this->content->typeSerialize(),
-            'areas'                  => $this->areas->typeSerialize(),
-            'caption'                => $this->caption->typeSerialize(),
+            'areas'                  => $this->areas ?? null,
+            'caption'                => $this->caption ?? null,
             'privacy_settings'       => $this->privacySettings->typeSerialize(),
             'active_period'          => $this->activePeriod,
-            'from_story_full_id'     => $this->fromStoryFullId->typeSerialize(),
+            'from_story_full_id'     => $this->fromStoryFullId ?? null,
             'is_posted_to_chat_page' => $this->isPostedToChatPage,
             'protect_content'        => $this->protectContent,
         ];

@@ -21,7 +21,7 @@ class StarTransactionTypePaidMessageSend extends StarTransactionType
         /**
          * Number of sent paid messages.
          */
-        protected int $messageCount
+        protected int $messageCount,
     ) {
         parent::__construct();
     }
