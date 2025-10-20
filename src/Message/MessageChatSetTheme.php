@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Chat\ChatTheme;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * A theme in the chat has been changed.
  */
@@ -15,9 +18,9 @@ class MessageChatSetTheme extends MessageContent
 
     public function __construct(
         /**
-         * If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one.
+         * New theme for the chat; may be null if chat theme was reset to the default one.
          */
-        protected string $themeName
+        protected ?ChatTheme $theme
     ) {
         parent::__construct();
     }
@@ -25,20 +28,20 @@ class MessageChatSetTheme extends MessageContent
     public static function fromArray(array $array): MessageChatSetTheme
     {
         return new static(
-            $array['theme_name'],
+            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
         );
     }
 
-    public function getThemeName(): string
+    public function getTheme(): ?ChatTheme
     {
-        return $this->themeName;
+        return $this->theme;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'theme_name' => $this->themeName,
+            '@type' => static::TYPE_NAME,
+            'theme' => $this->theme ?? null,
         ];
     }
 }

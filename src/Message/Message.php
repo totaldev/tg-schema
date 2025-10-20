@@ -8,6 +8,8 @@ namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\Fact\FactCheck;
 use Totaldev\TgSchema\Reply\ReplyMarkup;
+use Totaldev\TgSchema\Restriction\RestrictionInfo;
+use Totaldev\TgSchema\Suggested\SuggestedPostInfo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Unread\UnreadReaction;
@@ -65,6 +67,14 @@ class Message extends TdObject
          */
         protected bool                     $isChannelPost,
         /**
+         * True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending.
+         */
+        protected bool                     $isPaidStarSuggestedPost,
+        /**
+         * True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending.
+         */
+        protected bool                     $isPaidTonSuggestedPost,
+        /**
          * True, if the message contains an unread mention for the current user.
          */
         protected bool                     $containsUnreadMention,
@@ -99,13 +109,13 @@ class Message extends TdObject
          */
         protected ?FactCheck               $factCheck,
         /**
+         * Information about the suggested post; may be null if the message isn't a suggested post.
+         */
+        protected ?SuggestedPostInfo       $suggestedPostInfo,
+        /**
          * Information about the message or the story this message is replying to; may be null if none.
          */
         protected ?MessageReplyTo          $replyTo,
-        /**
-         * If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs.
-         */
-        protected int                      $messageThreadId,
         /**
          * Identifier of the topic within the chat to which the message belongs; may be null if none.
          */
@@ -151,13 +161,9 @@ class Message extends TdObject
          */
         protected int                      $effectId,
         /**
-         * True, if media content of the message must be hidden with 18+ spoiler.
+         * Information about the restrictions that must be applied to the message content; may be null if none.
          */
-        protected bool                     $hasSensitiveContent,
-        /**
-         * If non-empty, contains a human-readable description of the reason why access to this message must be restricted.
-         */
-        protected string                   $restrictionReason,
+        protected ?RestrictionInfo         $restrictionInfo,
         /**
          * Content of the message.
          */
@@ -182,6 +188,8 @@ class Message extends TdObject
             $array['can_be_saved'],
             $array['has_timestamped_media'],
             $array['is_channel_post'],
+            $array['is_paid_star_suggested_post'],
+            $array['is_paid_ton_suggested_post'],
             $array['contains_unread_mention'],
             $array['date'],
             $array['edit_date'],
@@ -190,8 +198,8 @@ class Message extends TdObject
             isset($array['interaction_info']) ? TdSchemaRegistry::fromArray($array['interaction_info']) : null,
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['unread_reactions']),
             isset($array['fact_check']) ? TdSchemaRegistry::fromArray($array['fact_check']) : null,
+            isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
-            $array['message_thread_id'],
             isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['self_destruct_type']) ? TdSchemaRegistry::fromArray($array['self_destruct_type']) : null,
             $array['self_destruct_in'],
@@ -203,8 +211,7 @@ class Message extends TdObject
             $array['author_signature'],
             $array['media_album_id'],
             $array['effect_id'],
-            $array['has_sensitive_content'],
-            $array['restriction_reason'],
+            isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null,
             TdSchemaRegistry::fromArray($array['content']),
             isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
         );
@@ -265,11 +272,6 @@ class Message extends TdObject
         return $this->forwardInfo;
     }
 
-    public function getHasSensitiveContent(): bool
-    {
-        return $this->hasSensitiveContent;
-    }
-
     public function getHasTimestampedMedia(): bool
     {
         return $this->hasTimestampedMedia;
@@ -305,6 +307,16 @@ class Message extends TdObject
         return $this->isOutgoing;
     }
 
+    public function getIsPaidStarSuggestedPost(): bool
+    {
+        return $this->isPaidStarSuggestedPost;
+    }
+
+    public function getIsPaidTonSuggestedPost(): bool
+    {
+        return $this->isPaidTonSuggestedPost;
+    }
+
     public function getIsPinned(): bool
     {
         return $this->isPinned;
@@ -313,11 +325,6 @@ class Message extends TdObject
     public function getMediaAlbumId(): int
     {
         return $this->mediaAlbumId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 
     public function getPaidMessageStarCount(): int
@@ -335,9 +342,9 @@ class Message extends TdObject
         return $this->replyTo;
     }
 
-    public function getRestrictionReason(): string
+    public function getRestrictionInfo(): ?RestrictionInfo
     {
-        return $this->restrictionReason;
+        return $this->restrictionInfo;
     }
 
     public function getSchedulingState(): ?MessageSchedulingState
@@ -375,6 +382,11 @@ class Message extends TdObject
         return $this->sendingState;
     }
 
+    public function getSuggestedPostInfo(): ?SuggestedPostInfo
+    {
+        return $this->suggestedPostInfo;
+    }
+
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
@@ -405,6 +417,8 @@ class Message extends TdObject
             'can_be_saved'                => $this->canBeSaved,
             'has_timestamped_media'       => $this->hasTimestampedMedia,
             'is_channel_post'             => $this->isChannelPost,
+            'is_paid_star_suggested_post' => $this->isPaidStarSuggestedPost,
+            'is_paid_ton_suggested_post'  => $this->isPaidTonSuggestedPost,
             'contains_unread_mention'     => $this->containsUnreadMention,
             'date'                        => $this->date,
             'edit_date'                   => $this->editDate,
@@ -413,8 +427,8 @@ class Message extends TdObject
             'interaction_info'            => $this->interactionInfo ?? null,
             'unread_reactions'            => array_map(static fn($x) => $x->typeSerialize(), $this->unreadReactions),
             'fact_check'                  => $this->factCheck ?? null,
+            'suggested_post_info'         => $this->suggestedPostInfo ?? null,
             'reply_to'                    => $this->replyTo ?? null,
-            'message_thread_id'           => $this->messageThreadId,
             'topic_id'                    => $this->topicId ?? null,
             'self_destruct_type'          => $this->selfDestructType ?? null,
             'self_destruct_in'            => $this->selfDestructIn,
@@ -426,8 +440,7 @@ class Message extends TdObject
             'author_signature'            => $this->authorSignature,
             'media_album_id'              => $this->mediaAlbumId,
             'effect_id'                   => $this->effectId,
-            'has_sensitive_content'       => $this->hasSensitiveContent,
-            'restriction_reason'          => $this->restrictionReason,
+            'restriction_info'            => $this->restrictionInfo ?? null,
             'content'                     => $this->content->typeSerialize(),
             'reply_markup'                => $this->replyMarkup ?? null,
         ];

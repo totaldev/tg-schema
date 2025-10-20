@@ -41,7 +41,7 @@ class AlternativeVideo extends TdObject
         /**
          * File containing the video.
          */
-        protected File   $video
+        protected File   $video,
     ) {}
 
     public static function fromArray(array $array): AlternativeVideo

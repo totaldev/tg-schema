@@ -25,7 +25,7 @@ class ChatAdministratorRights extends TdObject
          */
         protected bool $canChangeInfo,
         /**
-         * True, if the administrator can create channel posts, answer to channel direct messages, or view channel statistics; applicable to channels only.
+         * True, if the administrator can create channel posts, approve suggested channel posts, or view channel statistics; applicable to channels only.
          */
         protected bool $canPostMessages,
         /**
@@ -73,6 +73,10 @@ class ChatAdministratorRights extends TdObject
          */
         protected bool $canDeleteStories,
         /**
+         * True, if the administrator can answer to channel direct messages; applicable to channels only.
+         */
+        protected bool $canManageDirectMessages,
+        /**
          * True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only.
          */
         protected bool $isAnonymous,
@@ -95,6 +99,7 @@ class ChatAdministratorRights extends TdObject
             $array['can_post_stories'],
             $array['can_edit_stories'],
             $array['can_delete_stories'],
+            $array['can_manage_direct_messages'],
             $array['is_anonymous'],
         );
     }
@@ -132,6 +137,11 @@ class ChatAdministratorRights extends TdObject
     public function getCanManageChat(): bool
     {
         return $this->canManageChat;
+    }
+
+    public function getCanManageDirectMessages(): bool
+    {
+        return $this->canManageDirectMessages;
     }
 
     public function getCanManageTopics(): bool
@@ -177,22 +187,23 @@ class ChatAdministratorRights extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                  => static::TYPE_NAME,
-            'can_manage_chat'        => $this->canManageChat,
-            'can_change_info'        => $this->canChangeInfo,
-            'can_post_messages'      => $this->canPostMessages,
-            'can_edit_messages'      => $this->canEditMessages,
-            'can_delete_messages'    => $this->canDeleteMessages,
-            'can_invite_users'       => $this->canInviteUsers,
-            'can_restrict_members'   => $this->canRestrictMembers,
-            'can_pin_messages'       => $this->canPinMessages,
-            'can_manage_topics'      => $this->canManageTopics,
-            'can_promote_members'    => $this->canPromoteMembers,
-            'can_manage_video_chats' => $this->canManageVideoChats,
-            'can_post_stories'       => $this->canPostStories,
-            'can_edit_stories'       => $this->canEditStories,
-            'can_delete_stories'     => $this->canDeleteStories,
-            'is_anonymous'           => $this->isAnonymous,
+            '@type'                      => static::TYPE_NAME,
+            'can_manage_chat'            => $this->canManageChat,
+            'can_change_info'            => $this->canChangeInfo,
+            'can_post_messages'          => $this->canPostMessages,
+            'can_edit_messages'          => $this->canEditMessages,
+            'can_delete_messages'        => $this->canDeleteMessages,
+            'can_invite_users'           => $this->canInviteUsers,
+            'can_restrict_members'       => $this->canRestrictMembers,
+            'can_pin_messages'           => $this->canPinMessages,
+            'can_manage_topics'          => $this->canManageTopics,
+            'can_promote_members'        => $this->canPromoteMembers,
+            'can_manage_video_chats'     => $this->canManageVideoChats,
+            'can_post_stories'           => $this->canPostStories,
+            'can_edit_stories'           => $this->canEditStories,
+            'can_delete_stories'         => $this->canDeleteStories,
+            'can_manage_direct_messages' => $this->canManageDirectMessages,
+            'is_anonymous'               => $this->isAnonymous,
         ];
     }
 }

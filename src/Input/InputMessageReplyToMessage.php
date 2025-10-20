@@ -21,6 +21,10 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
          */
         protected int             $messageId,
         /**
+         * Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message.
+         */
+        protected int             $checklistTaskId,
+        /**
          * Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats.
          */
         protected ?InputTextQuote $quote = null,
@@ -33,7 +37,13 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
         return new static(
             $array['message_id'],
             isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
+            $array['checklist_task_id'],
         );
+    }
+
+    public function getChecklistTaskId(): int
+    {
+        return $this->checklistTaskId;
     }
 
     public function getMessageId(): int
@@ -49,9 +59,10 @@ class InputMessageReplyToMessage extends InputMessageReplyTo
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'message_id' => $this->messageId,
-            'quote'      => $this->quote ?? null,
+            '@type'             => static::TYPE_NAME,
+            'message_id'        => $this->messageId,
+            'quote'             => $this->quote ?? null,
+            'checklist_task_id' => $this->checklistTaskId,
         ];
     }
 }

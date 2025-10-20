@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Toggle;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup.
+ * Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup.
  */
 class ToggleGeneralForumTopicIsHidden extends TdFunction
 {

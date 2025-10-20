@@ -23,7 +23,7 @@ class AttachmentMenuBotColor extends TdObject
         /**
          * Color in the RGB format for dark themes.
          */
-        protected int $darkColor
+        protected int $darkColor,
     ) {}
 
     public static function fromArray(array $array): AttachmentMenuBotColor

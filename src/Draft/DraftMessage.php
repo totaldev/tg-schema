@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Draft;
 
 use Totaldev\TgSchema\Input\InputMessageContent;
 use Totaldev\TgSchema\Input\InputMessageReplyTo;
+use Totaldev\TgSchema\Input\InputSuggestedPostInfo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -20,21 +21,25 @@ class DraftMessage extends TdObject
 
     public function __construct(
         /**
-         * Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none.
+         * Information about the message to be replied; inputMessageReplyToStory is unsupported; may be null if none.
          */
-        protected ?InputMessageReplyTo $replyTo,
+        protected ?InputMessageReplyTo    $replyTo,
         /**
          * Point in time (Unix timestamp) when the draft was created.
          */
-        protected int                  $date,
+        protected int                     $date,
         /**
          * Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote.
          */
-        protected InputMessageContent  $inputMessageText,
+        protected InputMessageContent     $inputMessageText,
         /**
          * Identifier of the effect to apply to the message when it is sent; 0 if none.
          */
-        protected int                  $effectId,
+        protected int                     $effectId,
+        /**
+         * Information about the suggested post; may be null if none.
+         */
+        protected ?InputSuggestedPostInfo $suggestedPostInfo,
     ) {}
 
     public static function fromArray(array $array): DraftMessage
@@ -44,6 +49,7 @@ class DraftMessage extends TdObject
             $array['date'],
             TdSchemaRegistry::fromArray($array['input_message_text']),
             $array['effect_id'],
+            isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null,
         );
     }
 
@@ -67,14 +73,20 @@ class DraftMessage extends TdObject
         return $this->replyTo;
     }
 
+    public function getSuggestedPostInfo(): ?InputSuggestedPostInfo
+    {
+        return $this->suggestedPostInfo;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
-            'reply_to'           => $this->replyTo ?? null,
-            'date'               => $this->date,
-            'input_message_text' => $this->inputMessageText->typeSerialize(),
-            'effect_id'          => $this->effectId,
+            '@type'               => static::TYPE_NAME,
+            'reply_to'            => $this->replyTo ?? null,
+            'date'                => $this->date,
+            'input_message_text'  => $this->inputMessageText->typeSerialize(),
+            'effect_id'           => $this->effectId,
+            'suggested_post_info' => $this->suggestedPostInfo ?? null,
         ];
     }
 }

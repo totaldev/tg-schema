@@ -17,9 +17,17 @@ class MessageProperties extends TdObject
 
     public function __construct(
         /**
+         * True, if an offer can be added to the message using addOffer.
+         */
+        protected bool $canAddOffer,
+        /**
          * True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription.
          */
         protected bool $canAddTasks,
+        /**
+         * True, if the message is a suggested post that can be approved by the user using approveSuggestedPost.
+         */
+        protected bool $canBeApproved,
         /**
          * True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options.
          */
@@ -28,6 +36,10 @@ class MessageProperties extends TdObject
          * True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options.
          */
         protected bool $canBeCopiedToSecretChat,
+        /**
+         * True, if the message is a suggested post that can be declined by the user using declineSuggestedPost.
+         */
+        protected bool $canBeDeclined,
         /**
          * True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false.
          */
@@ -76,6 +88,10 @@ class MessageProperties extends TdObject
          * True, if scheduling state of the message can be edited.
          */
         protected bool $canEditSchedulingState,
+        /**
+         * True, if another price or post send time can be suggested using addOffer.
+         */
+        protected bool $canEditSuggestedPostInfo,
         /**
          * True, if author of the message sent on behalf of a chat can be received through getMessageAuthor.
          */
@@ -145,9 +161,12 @@ class MessageProperties extends TdObject
     public static function fromArray(array $array): MessageProperties
     {
         return new static(
+            $array['can_add_offer'],
             $array['can_add_tasks'],
+            $array['can_be_approved'],
             $array['can_be_copied'],
             $array['can_be_copied_to_secret_chat'],
+            $array['can_be_declined'],
             $array['can_be_deleted_only_for_self'],
             $array['can_be_deleted_for_all_users'],
             $array['can_be_edited'],
@@ -160,6 +179,7 @@ class MessageProperties extends TdObject
             $array['can_be_shared_in_story'],
             $array['can_edit_media'],
             $array['can_edit_scheduling_state'],
+            $array['can_edit_suggested_post_info'],
             $array['can_get_author'],
             $array['can_get_embedding_code'],
             $array['can_get_link'],
@@ -179,9 +199,19 @@ class MessageProperties extends TdObject
         );
     }
 
+    public function getCanAddOffer(): bool
+    {
+        return $this->canAddOffer;
+    }
+
     public function getCanAddTasks(): bool
     {
         return $this->canAddTasks;
+    }
+
+    public function getCanBeApproved(): bool
+    {
+        return $this->canBeApproved;
     }
 
     public function getCanBeCopied(): bool
@@ -192,6 +222,11 @@ class MessageProperties extends TdObject
     public function getCanBeCopiedToSecretChat(): bool
     {
         return $this->canBeCopiedToSecretChat;
+    }
+
+    public function getCanBeDeclined(): bool
+    {
+        return $this->canBeDeclined;
     }
 
     public function getCanBeDeletedForAllUsers(): bool
@@ -252,6 +287,11 @@ class MessageProperties extends TdObject
     public function getCanEditSchedulingState(): bool
     {
         return $this->canEditSchedulingState;
+    }
+
+    public function getCanEditSuggestedPostInfo(): bool
+    {
+        return $this->canEditSuggestedPostInfo;
     }
 
     public function getCanGetAuthor(): bool
@@ -338,9 +378,12 @@ class MessageProperties extends TdObject
     {
         return [
             '@type'                          => static::TYPE_NAME,
+            'can_add_offer'                  => $this->canAddOffer,
             'can_add_tasks'                  => $this->canAddTasks,
+            'can_be_approved'                => $this->canBeApproved,
             'can_be_copied'                  => $this->canBeCopied,
             'can_be_copied_to_secret_chat'   => $this->canBeCopiedToSecretChat,
+            'can_be_declined'                => $this->canBeDeclined,
             'can_be_deleted_only_for_self'   => $this->canBeDeletedOnlyForSelf,
             'can_be_deleted_for_all_users'   => $this->canBeDeletedForAllUsers,
             'can_be_edited'                  => $this->canBeEdited,
@@ -353,6 +396,7 @@ class MessageProperties extends TdObject
             'can_be_shared_in_story'         => $this->canBeSharedInStory,
             'can_edit_media'                 => $this->canEditMedia,
             'can_edit_scheduling_state'      => $this->canEditSchedulingState,
+            'can_edit_suggested_post_info'   => $this->canEditSuggestedPostInfo,
             'can_get_author'                 => $this->canGetAuthor,
             'can_get_embedding_code'         => $this->canGetEmbeddingCode,
             'can_get_link'                   => $this->canGetLink,

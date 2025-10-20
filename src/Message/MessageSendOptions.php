@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Message;
 
+use Totaldev\TgSchema\Input\InputSuggestedPostInfo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -17,10 +18,6 @@ class MessageSendOptions extends TdObject
     public const TYPE_NAME = 'messageSendOptions';
 
     public function __construct(
-        /**
-         * Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user.
-         */
-        protected int                     $directMessagesChatTopicId,
         /**
          * Pass true to disable notification for the message.
          */
@@ -58,6 +55,10 @@ class MessageSendOptions extends TdObject
          */
         protected bool                    $onlyPreview,
         /**
+         * Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer.
+         */
+        protected ?InputSuggestedPostInfo $suggestedPostInfo = null,
+        /**
          * Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled.
          */
         protected ?MessageSchedulingState $schedulingState = null,
@@ -66,7 +67,7 @@ class MessageSendOptions extends TdObject
     public static function fromArray(array $array): MessageSendOptions
     {
         return new static(
-            $array['direct_messages_chat_topic_id'],
+            isset($array['suggested_post_info']) ? TdSchemaRegistry::fromArray($array['suggested_post_info']) : null,
             $array['disable_notification'],
             $array['from_background'],
             $array['protect_content'],
@@ -83,11 +84,6 @@ class MessageSendOptions extends TdObject
     public function getAllowPaidBroadcast(): bool
     {
         return $this->allowPaidBroadcast;
-    }
-
-    public function getDirectMessagesChatTopicId(): int
-    {
-        return $this->directMessagesChatTopicId;
     }
 
     public function getDisableNotification(): bool
@@ -130,6 +126,11 @@ class MessageSendOptions extends TdObject
         return $this->sendingId;
     }
 
+    public function getSuggestedPostInfo(): ?InputSuggestedPostInfo
+    {
+        return $this->suggestedPostInfo;
+    }
+
     public function getUpdateOrderOfInstalledStickerSets(): bool
     {
         return $this->updateOrderOfInstalledStickerSets;
@@ -139,7 +140,7 @@ class MessageSendOptions extends TdObject
     {
         return [
             '@type'                                  => static::TYPE_NAME,
-            'direct_messages_chat_topic_id'          => $this->directMessagesChatTopicId,
+            'suggested_post_info'                    => $this->suggestedPostInfo ?? null,
             'disable_notification'                   => $this->disableNotification,
             'from_background'                        => $this->fromBackground,
             'protect_content'                        => $this->protectContent,

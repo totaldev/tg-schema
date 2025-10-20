@@ -26,7 +26,7 @@ class AssignStoreTransaction extends TdFunction
         /**
          * Transaction purpose.
          */
-        protected StorePaymentPurpose $purpose
+        protected StorePaymentPurpose $purpose,
     ) {}
 
     public static function fromArray(array $array): AssignStoreTransaction

@@ -65,6 +65,12 @@ class ReceivedGift extends TdObject
          */
         protected SentGift       $gift,
         /**
+         * Identifiers of collections to which the gift is added; only for the receiver of the gift.
+         *
+         * @var int[]
+         */
+        protected array          $collectionIds,
+        /**
          * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user.
          */
         protected int            $sellStarCount,
@@ -73,21 +79,33 @@ class ReceivedGift extends TdObject
          */
         protected int            $prepaidUpgradeStarCount,
         /**
+         * True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost.
+         */
+        protected bool           $isUpgradeSeparate,
+        /**
          * Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift.
          */
         protected int            $transferStarCount,
         /**
-         * Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
+         * Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift.
+         */
+        protected int            $dropOriginalDetailsStarCount,
+        /**
+         * Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift.
          */
         protected int            $nextTransferDate,
         /**
-         * Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift.
+         * Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift.
          */
         protected int            $nextResaleDate,
         /**
-         * Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift.
+         * Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift.
          */
         protected int            $exportDate,
+        /**
+         * If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade.
+         */
+        protected string         $prepaidUpgradeHash,
     ) {}
 
     public static function fromArray(array $array): ReceivedGift
@@ -104,12 +122,16 @@ class ReceivedGift extends TdObject
             $array['was_refunded'],
             $array['date'],
             TdSchemaRegistry::fromArray($array['gift']),
+            $array['collection_ids'],
             $array['sell_star_count'],
             $array['prepaid_upgrade_star_count'],
+            $array['is_upgrade_separate'],
             $array['transfer_star_count'],
+            $array['drop_original_details_star_count'],
             $array['next_transfer_date'],
             $array['next_resale_date'],
             $array['export_date'],
+            $array['prepaid_upgrade_hash'],
         );
     }
 
@@ -123,9 +145,19 @@ class ReceivedGift extends TdObject
         return $this->canBeUpgraded;
     }
 
+    public function getCollectionIds(): array
+    {
+        return $this->collectionIds;
+    }
+
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function getDropOriginalDetailsStarCount(): int
+    {
+        return $this->dropOriginalDetailsStarCount;
     }
 
     public function getExportDate(): int
@@ -153,6 +185,11 @@ class ReceivedGift extends TdObject
         return $this->isSaved;
     }
 
+    public function getIsUpgradeSeparate(): bool
+    {
+        return $this->isUpgradeSeparate;
+    }
+
     public function getNextResaleDate(): int
     {
         return $this->nextResaleDate;
@@ -161,6 +198,11 @@ class ReceivedGift extends TdObject
     public function getNextTransferDate(): int
     {
         return $this->nextTransferDate;
+    }
+
+    public function getPrepaidUpgradeHash(): string
+    {
+        return $this->prepaidUpgradeHash;
     }
 
     public function getPrepaidUpgradeStarCount(): int
@@ -201,24 +243,28 @@ class ReceivedGift extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                      => static::TYPE_NAME,
-            'received_gift_id'           => $this->receivedGiftId,
-            'sender_id'                  => $this->senderId ?? null,
-            'text'                       => $this->text->typeSerialize(),
-            'is_private'                 => $this->isPrivate,
-            'is_saved'                   => $this->isSaved,
-            'is_pinned'                  => $this->isPinned,
-            'can_be_upgraded'            => $this->canBeUpgraded,
-            'can_be_transferred'         => $this->canBeTransferred,
-            'was_refunded'               => $this->wasRefunded,
-            'date'                       => $this->date,
-            'gift'                       => $this->gift->typeSerialize(),
-            'sell_star_count'            => $this->sellStarCount,
-            'prepaid_upgrade_star_count' => $this->prepaidUpgradeStarCount,
-            'transfer_star_count'        => $this->transferStarCount,
-            'next_transfer_date'         => $this->nextTransferDate,
-            'next_resale_date'           => $this->nextResaleDate,
-            'export_date'                => $this->exportDate,
+            '@type'                            => static::TYPE_NAME,
+            'received_gift_id'                 => $this->receivedGiftId,
+            'sender_id'                        => $this->senderId ?? null,
+            'text'                             => $this->text->typeSerialize(),
+            'is_private'                       => $this->isPrivate,
+            'is_saved'                         => $this->isSaved,
+            'is_pinned'                        => $this->isPinned,
+            'can_be_upgraded'                  => $this->canBeUpgraded,
+            'can_be_transferred'               => $this->canBeTransferred,
+            'was_refunded'                     => $this->wasRefunded,
+            'date'                             => $this->date,
+            'gift'                             => $this->gift->typeSerialize(),
+            'collection_ids'                   => $this->collectionIds,
+            'sell_star_count'                  => $this->sellStarCount,
+            'prepaid_upgrade_star_count'       => $this->prepaidUpgradeStarCount,
+            'is_upgrade_separate'              => $this->isUpgradeSeparate,
+            'transfer_star_count'              => $this->transferStarCount,
+            'drop_original_details_star_count' => $this->dropOriginalDetailsStarCount,
+            'next_transfer_date'               => $this->nextTransferDate,
+            'next_resale_date'                 => $this->nextResaleDate,
+            'export_date'                      => $this->exportDate,
+            'prepaid_upgrade_hash'             => $this->prepaidUpgradeHash,
         ];
     }
 }

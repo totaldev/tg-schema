@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat.
+ * Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat.
  */
 class SetChatPinnedStories extends TdFunction
 {

@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Background;
 
 /**
- * A background from a chat theme; can be used only as a chat background in channels.
+ * A background from a chat theme based on an emoji; can be used only as a chat background in channels.
  */
 class BackgroundTypeChatTheme extends BackgroundType
 {
@@ -15,7 +15,7 @@ class BackgroundTypeChatTheme extends BackgroundType
 
     public function __construct(
         /**
-         * Name of the chat theme.
+         * Name of the emoji chat theme.
          */
         protected string $themeName
     ) {

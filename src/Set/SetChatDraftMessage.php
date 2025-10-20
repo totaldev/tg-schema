@@ -7,11 +7,12 @@
 namespace Totaldev\TgSchema\Set;
 
 use Totaldev\TgSchema\Draft\DraftMessage;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the draft message in a chat.
+ * Changes the draft message in a chat or a topic.
  */
 class SetChatDraftMessage extends TdFunction
 {
@@ -23,9 +24,9 @@ class SetChatDraftMessage extends TdFunction
          */
         protected int           $chatId,
         /**
-         * If not 0, the message thread identifier in which the draft was changed.
+         * Topic in which the draft will be changed; pass null to change the draft for the chat itself.
          */
-        protected int           $messageThreadId,
+        protected ?MessageTopic $topicId = null,
         /**
          * New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored.
          */
@@ -36,7 +37,7 @@ class SetChatDraftMessage extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['draft_message']) ? TdSchemaRegistry::fromArray($array['draft_message']) : null,
         );
     }
@@ -51,18 +52,18 @@ class SetChatDraftMessage extends TdFunction
         return $this->draftMessage;
     }
 
-    public function getMessageThreadId(): int
+    public function getTopicId(): ?MessageTopic
     {
-        return $this->messageThreadId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'draft_message'     => $this->draftMessage ?? null,
+            '@type'         => static::TYPE_NAME,
+            'chat_id'       => $this->chatId,
+            'topic_id'      => $this->topicId ?? null,
+            'draft_message' => $this->draftMessage ?? null,
         ];
     }
 }

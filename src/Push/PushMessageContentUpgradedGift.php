@@ -15,9 +15,13 @@ class PushMessageContentUpgradedGift extends PushMessageContent
 
     public function __construct(
         /**
-         * True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift.
+         * True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift.
          */
-        protected bool $isUpgrade
+        protected bool $isUpgrade,
+        /**
+         * True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift.
+         */
+        protected bool $isPrepaidUpgrade,
     ) {
         parent::__construct();
     }
@@ -26,7 +30,13 @@ class PushMessageContentUpgradedGift extends PushMessageContent
     {
         return new static(
             $array['is_upgrade'],
+            $array['is_prepaid_upgrade'],
         );
+    }
+
+    public function getIsPrepaidUpgrade(): bool
+    {
+        return $this->isPrepaidUpgrade;
     }
 
     public function getIsUpgrade(): bool
@@ -37,8 +47,9 @@ class PushMessageContentUpgradedGift extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'is_upgrade' => $this->isUpgrade,
+            '@type'              => static::TYPE_NAME,
+            'is_upgrade'         => $this->isUpgrade,
+            'is_prepaid_upgrade' => $this->isPrepaidUpgrade,
         ];
     }
 }

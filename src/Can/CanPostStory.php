@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Can;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats.
+ * Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats.
  */
 class CanPostStory extends TdFunction
 {

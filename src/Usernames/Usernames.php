@@ -29,7 +29,7 @@ class Usernames extends TdObject
          */
         protected array  $disabledUsernames,
         /**
-         * The active username, which can be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo.
+         * Active or disabled username, which may be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo.
          */
         protected string $editableUsername,
     ) {}

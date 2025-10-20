@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Sell;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Sells a gift for Telegram Stars.
+ * Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat.
  */
 class SellGift extends TdFunction
 {

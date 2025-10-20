@@ -18,7 +18,15 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
         /**
          * Identifier of the store product that must be bought.
          */
-        protected string $storeProductId
+        protected string $storeProductId,
+        /**
+         * Email address to use for support if the user has issues with Telegram Premium purchase.
+         */
+        protected string $supportEmailAddress,
+        /**
+         * Subject for the email sent to the support email address.
+         */
+        protected string $supportEmailSubject,
     ) {
         parent::__construct();
     }
@@ -27,6 +35,8 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
     {
         return new static(
             $array['store_product_id'],
+            $array['support_email_address'],
+            $array['support_email_subject'],
         );
     }
 
@@ -35,11 +45,23 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
         return $this->storeProductId;
     }
 
+    public function getSupportEmailAddress(): string
+    {
+        return $this->supportEmailAddress;
+    }
+
+    public function getSupportEmailSubject(): string
+    {
+        return $this->supportEmailSubject;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'store_product_id' => $this->storeProductId,
+            '@type'                 => static::TYPE_NAME,
+            'store_product_id'      => $this->storeProductId,
+            'support_email_address' => $this->supportEmailAddress,
+            'support_email_subject' => $this->supportEmailSubject,
         ];
     }
 }

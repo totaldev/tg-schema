@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Add;
 
-use Totaldev\TgSchema\Contact\Contact;
+use Totaldev\TgSchema\Imported\ImportedContact;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -19,24 +19,29 @@ class AddContact extends TdFunction
 
     public function __construct(
         /**
-         * The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored.
+         * Identifier of the user.
          */
-        protected Contact $contact,
+        protected int             $userId,
+        /**
+         * The contact to add or edit; phone number may be empty and needs to be specified only if known.
+         */
+        protected ImportedContact $contact,
         /**
          * Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number.
          */
-        protected bool    $sharePhoneNumber
+        protected bool            $sharePhoneNumber,
     ) {}
 
     public static function fromArray(array $array): AddContact
     {
         return new static(
+            $array['user_id'],
             TdSchemaRegistry::fromArray($array['contact']),
             $array['share_phone_number'],
         );
     }
 
-    public function getContact(): Contact
+    public function getContact(): ImportedContact
     {
         return $this->contact;
     }
@@ -46,10 +51,16 @@ class AddContact extends TdFunction
         return $this->sharePhoneNumber;
     }
 
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'              => static::TYPE_NAME,
+            'user_id'            => $this->userId,
             'contact'            => $this->contact->typeSerialize(),
             'share_phone_number' => $this->sharePhoneNumber,
         ];

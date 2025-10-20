@@ -22,6 +22,10 @@ class MessageForumTopicCreated extends MessageContent
          */
         protected string         $name,
         /**
+         * True, if the name of the topic wasn't added explicitly.
+         */
+        protected bool           $isNameImplicit,
+        /**
          * Icon of the topic.
          */
         protected ForumTopicIcon $icon,
@@ -33,6 +37,7 @@ class MessageForumTopicCreated extends MessageContent
     {
         return new static(
             $array['name'],
+            $array['is_name_implicit'],
             TdSchemaRegistry::fromArray($array['icon']),
         );
     }
@@ -40,6 +45,11 @@ class MessageForumTopicCreated extends MessageContent
     public function getIcon(): ForumTopicIcon
     {
         return $this->icon;
+    }
+
+    public function getIsNameImplicit(): bool
+    {
+        return $this->isNameImplicit;
     }
 
     public function getName(): string
@@ -50,9 +60,10 @@ class MessageForumTopicCreated extends MessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type' => static::TYPE_NAME,
-            'name'  => $this->name,
-            'icon'  => $this->icon->typeSerialize(),
+            '@type'            => static::TYPE_NAME,
+            'name'             => $this->name,
+            'is_name_implicit' => $this->isNameImplicit,
+            'icon'             => $this->icon->typeSerialize(),
         ];
     }
 }

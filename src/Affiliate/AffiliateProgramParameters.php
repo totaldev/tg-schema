@@ -23,7 +23,7 @@ class AffiliateProgramParameters extends TdObject
         /**
          * Number of months the program will be active; 0-36. If 0, then the program is eternal.
          */
-        protected int $monthCount
+        protected int $monthCount,
     ) {}
 
     public static function fromArray(array $array): AffiliateProgramParameters

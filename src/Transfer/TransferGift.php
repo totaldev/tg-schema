@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Sends an upgraded gift to another user or a channel chat.
+ * Sends an upgraded gift to another user or channel chat.
  */
 class TransferGift extends TdFunction
 {

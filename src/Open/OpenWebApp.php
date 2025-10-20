@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Open;
 
 use Totaldev\TgSchema\Input\InputMessageReplyTo;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Web\WebAppOpenParameters;
@@ -33,17 +34,13 @@ class OpenWebApp extends TdFunction
          */
         protected string               $url,
         /**
-         * If not 0, the message thread identifier to which the message will be sent.
-         */
-        protected int                  $messageThreadId,
-        /**
-         * If not 0, unique identifier of the topic of channel direct messages chat to which the message will be sent.
-         */
-        protected int                  $directMessagesChatTopicId,
-        /**
          * Parameters to use to open the Web App.
          */
         protected WebAppOpenParameters $parameters,
+        /**
+         * Topic in which the message will be sent; pass null if none.
+         */
+        protected ?MessageTopic        $topicId = null,
         /**
          * Information about the message or story to be replied in the message sent by the Web App; pass null if none.
          */
@@ -56,8 +53,7 @@ class OpenWebApp extends TdFunction
             $array['chat_id'],
             $array['bot_user_id'],
             $array['url'],
-            $array['message_thread_id'],
-            $array['direct_messages_chat_topic_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             TdSchemaRegistry::fromArray($array['parameters']),
         );
@@ -73,16 +69,6 @@ class OpenWebApp extends TdFunction
         return $this->chatId;
     }
 
-    public function getDirectMessagesChatTopicId(): int
-    {
-        return $this->directMessagesChatTopicId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getParameters(): WebAppOpenParameters
     {
         return $this->parameters;
@@ -93,6 +79,11 @@ class OpenWebApp extends TdFunction
         return $this->replyTo;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function getUrl(): string
     {
         return $this->url;
@@ -101,14 +92,13 @@ class OpenWebApp extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                         => static::TYPE_NAME,
-            'chat_id'                       => $this->chatId,
-            'bot_user_id'                   => $this->botUserId,
-            'url'                           => $this->url,
-            'message_thread_id'             => $this->messageThreadId,
-            'direct_messages_chat_topic_id' => $this->directMessagesChatTopicId,
-            'reply_to'                      => $this->replyTo ?? null,
-            'parameters'                    => $this->parameters->typeSerialize(),
+            '@type'       => static::TYPE_NAME,
+            'chat_id'     => $this->chatId,
+            'bot_user_id' => $this->botUserId,
+            'url'         => $this->url,
+            'topic_id'    => $this->topicId ?? null,
+            'reply_to'    => $this->replyTo ?? null,
+            'parameters'  => $this->parameters->typeSerialize(),
         ];
     }
 }

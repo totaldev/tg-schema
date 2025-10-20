@@ -31,6 +31,10 @@ class UserTypeBot extends UserType
          */
         protected bool   $hasMainWebApp,
         /**
+         * True, if the bot has topics.
+         */
+        protected bool   $hasTopics,
+        /**
          * True, if the bot supports inline queries.
          */
         protected bool   $isInline,
@@ -65,6 +69,7 @@ class UserTypeBot extends UserType
             $array['can_join_groups'],
             $array['can_read_all_group_messages'],
             $array['has_main_web_app'],
+            $array['has_topics'],
             $array['is_inline'],
             $array['inline_query_placeholder'],
             $array['need_location'],
@@ -109,6 +114,11 @@ class UserTypeBot extends UserType
         return $this->hasMainWebApp;
     }
 
+    public function getHasTopics(): bool
+    {
+        return $this->hasTopics;
+    }
+
     public function getInlineQueryPlaceholder(): string
     {
         return $this->inlineQueryPlaceholder;
@@ -132,6 +142,7 @@ class UserTypeBot extends UserType
             'can_join_groups'                 => $this->canJoinGroups,
             'can_read_all_group_messages'     => $this->canReadAllGroupMessages,
             'has_main_web_app'                => $this->hasMainWebApp,
+            'has_topics'                      => $this->hasTopics,
             'is_inline'                       => $this->isInline,
             'inline_query_placeholder'        => $this->inlineQueryPlaceholder,
             'need_location'                   => $this->needLocation,

@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Supergroup;
 
+use Totaldev\TgSchema\Message\MessageTopic;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns users which can be mentioned in the supergroup.
  */
@@ -17,11 +20,11 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         /**
          * Query to search for.
          */
-        protected string $query,
+        protected string        $query,
         /**
-         * If non-zero, the identifier of the current message thread.
+         * Identifier of the topic in which the users will be mentioned; pass null if none.
          */
-        protected int    $messageThreadId,
+        protected ?MessageTopic $topicId = null,
     ) {
         parent::__construct();
     }
@@ -30,13 +33,8 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
     {
         return new static(
             $array['query'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
         );
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 
     public function getQuery(): string
@@ -44,12 +42,17 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
         return $this->query;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'query'             => $this->query,
-            'message_thread_id' => $this->messageThreadId,
+            '@type'    => static::TYPE_NAME,
+            'query'    => $this->query,
+            'topic_id' => $this->topicId ?? null,
         ];
     }
 }

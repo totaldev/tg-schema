@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Message;
 
 use Totaldev\TgSchema\Gift\Gift;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Upgraded\UpgradedGiftOrigin;
 
 /**
  * A gift which purchase, upgrade or transfer were refunded.
@@ -20,19 +21,19 @@ class MessageRefundedUpgradedGift extends MessageContent
         /**
          * The gift.
          */
-        protected Gift          $gift,
+        protected Gift               $gift,
         /**
          * Sender of the gift.
          */
-        protected MessageSender $senderId,
+        protected MessageSender      $senderId,
         /**
          * Receiver of the gift.
          */
-        protected MessageSender $receiverId,
+        protected MessageSender      $receiverId,
         /**
-         * True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift.
+         * Origin of the upgraded gift.
          */
-        protected bool          $isUpgrade,
+        protected UpgradedGiftOrigin $origin,
     ) {
         parent::__construct();
     }
@@ -43,7 +44,7 @@ class MessageRefundedUpgradedGift extends MessageContent
             TdSchemaRegistry::fromArray($array['gift']),
             TdSchemaRegistry::fromArray($array['sender_id']),
             TdSchemaRegistry::fromArray($array['receiver_id']),
-            $array['is_upgrade'],
+            TdSchemaRegistry::fromArray($array['origin']),
         );
     }
 
@@ -52,9 +53,9 @@ class MessageRefundedUpgradedGift extends MessageContent
         return $this->gift;
     }
 
-    public function getIsUpgrade(): bool
+    public function getOrigin(): UpgradedGiftOrigin
     {
-        return $this->isUpgrade;
+        return $this->origin;
     }
 
     public function getReceiverId(): MessageSender
@@ -74,7 +75,7 @@ class MessageRefundedUpgradedGift extends MessageContent
             'gift'        => $this->gift->typeSerialize(),
             'sender_id'   => $this->senderId->typeSerialize(),
             'receiver_id' => $this->receiverId->typeSerialize(),
-            'is_upgrade'  => $this->isUpgrade,
+            'origin'      => $this->origin->typeSerialize(),
         ];
     }
 }

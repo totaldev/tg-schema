@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Update;
 
+use Totaldev\TgSchema\Chat\ChatTheme;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * The chat theme was changed.
  */
@@ -17,11 +20,11 @@ class UpdateChatTheme extends Update
         /**
          * Chat identifier.
          */
-        protected int    $chatId,
+        protected int        $chatId,
         /**
-         * The new name of the chat theme; may be empty if theme was reset to default.
+         * The new theme of the chat; may be null if theme was reset to default.
          */
-        protected string $themeName,
+        protected ?ChatTheme $theme,
     ) {
         parent::__construct();
     }
@@ -30,7 +33,7 @@ class UpdateChatTheme extends Update
     {
         return new static(
             $array['chat_id'],
-            $array['theme_name'],
+            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
         );
     }
 
@@ -39,17 +42,17 @@ class UpdateChatTheme extends Update
         return $this->chatId;
     }
 
-    public function getThemeName(): string
+    public function getTheme(): ?ChatTheme
     {
-        return $this->themeName;
+        return $this->theme;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'theme_name' => $this->themeName,
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'theme'   => $this->theme ?? null,
         ];
     }
 }

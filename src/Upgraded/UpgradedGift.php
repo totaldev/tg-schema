@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Upgraded;
 
+use Totaldev\TgSchema\Gift\GiftResaleParameters;
 use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -22,6 +23,14 @@ class UpgradedGift extends TdObject
          * Unique identifier of the gift.
          */
         protected int                          $id,
+        /**
+         * Unique identifier of the regular gift from which the gift was upgraded; may be 0 for short period of time for old gifts from database.
+         */
+        protected int                          $regularGiftId,
+        /**
+         * Identifier of the chat that published the gift; 0 if none.
+         */
+        protected int                          $publisherChatId,
         /**
          * The title of the upgraded gift.
          */
@@ -42,6 +51,22 @@ class UpgradedGift extends TdObject
          * The maximum number of gifts that can be upgraded from the same gift.
          */
         protected int                          $maxUpgradedCount,
+        /**
+         * True, if the original gift could have been bought only by Telegram Premium subscribers.
+         */
+        protected bool                         $isPremium,
+        /**
+         * True, if the gift can be used to set a theme in a chat.
+         */
+        protected bool                         $isThemeAvailable,
+        /**
+         * Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user.
+         */
+        protected int                          $usedThemeChatId,
+        /**
+         * Identifier of the user or the chat to which the upgraded gift was assigned from blockchain; may be null if none or unknown.
+         */
+        protected ?MessageSender               $hostId,
         /**
          * Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown.
          */
@@ -75,20 +100,38 @@ class UpgradedGift extends TdObject
          */
         protected ?UpgradedGiftOriginalDetails $originalDetails,
         /**
-         * Number of Telegram Stars that must be paid to buy the gift and send it to someone else; 0 if resale isn't possible.
+         * Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none.
          */
-        protected int                          $resaleStarCount,
+        protected ?UpgradedGiftColors          $colors,
+        /**
+         * Resale parameters of the gift; may be null if resale isn't possible.
+         */
+        protected ?GiftResaleParameters        $resaleParameters,
+        /**
+         * ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable.
+         */
+        protected string                       $valueCurrency,
+        /**
+         * Estimated value of the gift; in the smallest units of the currency; 0 if unavailable.
+         */
+        protected int                          $valueAmount,
     ) {}
 
     public static function fromArray(array $array): UpgradedGift
     {
         return new static(
             $array['id'],
+            $array['regular_gift_id'],
+            $array['publisher_chat_id'],
             $array['title'],
             $array['name'],
             $array['number'],
             $array['total_upgraded_count'],
             $array['max_upgraded_count'],
+            $array['is_premium'],
+            $array['is_theme_available'],
+            $array['used_theme_chat_id'],
+            isset($array['host_id']) ? TdSchemaRegistry::fromArray($array['host_id']) : null,
             isset($array['owner_id']) ? TdSchemaRegistry::fromArray($array['owner_id']) : null,
             $array['owner_address'],
             $array['owner_name'],
@@ -97,7 +140,10 @@ class UpgradedGift extends TdObject
             TdSchemaRegistry::fromArray($array['symbol']),
             TdSchemaRegistry::fromArray($array['backdrop']),
             isset($array['original_details']) ? TdSchemaRegistry::fromArray($array['original_details']) : null,
-            $array['resale_star_count'],
+            isset($array['colors']) ? TdSchemaRegistry::fromArray($array['colors']) : null,
+            isset($array['resale_parameters']) ? TdSchemaRegistry::fromArray($array['resale_parameters']) : null,
+            $array['value_currency'],
+            $array['value_amount'],
         );
     }
 
@@ -106,14 +152,34 @@ class UpgradedGift extends TdObject
         return $this->backdrop;
     }
 
+    public function getColors(): ?UpgradedGiftColors
+    {
+        return $this->colors;
+    }
+
     public function getGiftAddress(): string
     {
         return $this->giftAddress;
     }
 
+    public function getHostId(): ?MessageSender
+    {
+        return $this->hostId;
+    }
+
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getIsPremium(): bool
+    {
+        return $this->isPremium;
+    }
+
+    public function getIsThemeAvailable(): bool
+    {
+        return $this->isThemeAvailable;
     }
 
     public function getMaxUpgradedCount(): int
@@ -156,9 +222,19 @@ class UpgradedGift extends TdObject
         return $this->ownerName;
     }
 
-    public function getResaleStarCount(): int
+    public function getPublisherChatId(): int
     {
-        return $this->resaleStarCount;
+        return $this->publisherChatId;
+    }
+
+    public function getRegularGiftId(): int
+    {
+        return $this->regularGiftId;
+    }
+
+    public function getResaleParameters(): ?GiftResaleParameters
+    {
+        return $this->resaleParameters;
     }
 
     public function getSymbol(): UpgradedGiftSymbol
@@ -176,16 +252,37 @@ class UpgradedGift extends TdObject
         return $this->totalUpgradedCount;
     }
 
+    public function getUsedThemeChatId(): int
+    {
+        return $this->usedThemeChatId;
+    }
+
+    public function getValueAmount(): int
+    {
+        return $this->valueAmount;
+    }
+
+    public function getValueCurrency(): string
+    {
+        return $this->valueCurrency;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                => static::TYPE_NAME,
             'id'                   => $this->id,
+            'regular_gift_id'      => $this->regularGiftId,
+            'publisher_chat_id'    => $this->publisherChatId,
             'title'                => $this->title,
             'name'                 => $this->name,
             'number'               => $this->number,
             'total_upgraded_count' => $this->totalUpgradedCount,
             'max_upgraded_count'   => $this->maxUpgradedCount,
+            'is_premium'           => $this->isPremium,
+            'is_theme_available'   => $this->isThemeAvailable,
+            'used_theme_chat_id'   => $this->usedThemeChatId,
+            'host_id'              => $this->hostId ?? null,
             'owner_id'             => $this->ownerId ?? null,
             'owner_address'        => $this->ownerAddress,
             'owner_name'           => $this->ownerName,
@@ -194,7 +291,10 @@ class UpgradedGift extends TdObject
             'symbol'               => $this->symbol->typeSerialize(),
             'backdrop'             => $this->backdrop->typeSerialize(),
             'original_details'     => $this->originalDetails ?? null,
-            'resale_star_count'    => $this->resaleStarCount,
+            'colors'               => $this->colors ?? null,
+            'resale_parameters'    => $this->resaleParameters ?? null,
+            'value_currency'       => $this->valueCurrency,
+            'value_amount'         => $this->valueAmount,
         ];
     }
 }

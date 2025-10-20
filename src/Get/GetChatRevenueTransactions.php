@@ -20,15 +20,15 @@ class GetChatRevenueTransactions extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int $chatId,
+        protected int    $chatId,
         /**
-         * Number of transactions to skip.
+         * Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results.
          */
-        protected int $offset,
+        protected string $offset,
         /**
-         * The maximum number of transactions to be returned; up to 200.
+         * The maximum number of transactions to be returned; up to 100.
          */
-        protected int $limit,
+        protected int    $limit,
     ) {}
 
     public static function fromArray(array $array): GetChatRevenueTransactions
@@ -50,7 +50,7 @@ class GetChatRevenueTransactions extends TdFunction
         return $this->limit;
     }
 
-    public function getOffset(): int
+    public function getOffset(): string
     {
         return $this->offset;
     }

@@ -27,6 +27,10 @@ class GetReceivedGifts extends TdFunction
          */
         protected MessageSender $ownerId,
         /**
+         * Pass collection identifier to get gifts only from the specified collection; pass 0 to get gifts regardless of collections.
+         */
+        protected int           $collectionId,
+        /**
          * Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right.
          */
         protected bool          $excludeUnsaved,
@@ -39,13 +43,25 @@ class GetReceivedGifts extends TdFunction
          */
         protected bool          $excludeUnlimited,
         /**
-         * Pass true to exclude gifts that can be purchased limited number of times.
+         * Pass true to exclude gifts that can be purchased limited number of times and can be upgraded.
          */
-        protected bool          $excludeLimited,
+        protected bool          $excludeUpgradable,
+        /**
+         * Pass true to exclude gifts that can be purchased limited number of times and can't be upgraded.
+         */
+        protected bool          $excludeNonUpgradable,
         /**
          * Pass true to exclude upgraded gifts.
          */
         protected bool          $excludeUpgraded,
+        /**
+         * Pass true to exclude gifts that can't be used in setUpgradedGiftColors.
+         */
+        protected bool          $excludeWithoutColors,
+        /**
+         * Pass true to exclude gifts that are just hosted and are not owned by the owner.
+         */
+        protected bool          $excludeHosted,
         /**
          * Pass true to sort results by gift price instead of send date.
          */
@@ -65,11 +81,15 @@ class GetReceivedGifts extends TdFunction
         return new static(
             $array['business_connection_id'],
             TdSchemaRegistry::fromArray($array['owner_id']),
+            $array['collection_id'],
             $array['exclude_unsaved'],
             $array['exclude_saved'],
             $array['exclude_unlimited'],
-            $array['exclude_limited'],
+            $array['exclude_upgradable'],
+            $array['exclude_non_upgradable'],
             $array['exclude_upgraded'],
+            $array['exclude_without_colors'],
+            $array['exclude_hosted'],
             $array['sort_by_price'],
             $array['offset'],
             $array['limit'],
@@ -81,9 +101,19 @@ class GetReceivedGifts extends TdFunction
         return $this->businessConnectionId;
     }
 
-    public function getExcludeLimited(): bool
+    public function getCollectionId(): int
     {
-        return $this->excludeLimited;
+        return $this->collectionId;
+    }
+
+    public function getExcludeHosted(): bool
+    {
+        return $this->excludeHosted;
+    }
+
+    public function getExcludeNonUpgradable(): bool
+    {
+        return $this->excludeNonUpgradable;
     }
 
     public function getExcludeSaved(): bool
@@ -101,9 +131,19 @@ class GetReceivedGifts extends TdFunction
         return $this->excludeUnsaved;
     }
 
+    public function getExcludeUpgradable(): bool
+    {
+        return $this->excludeUpgradable;
+    }
+
     public function getExcludeUpgraded(): bool
     {
         return $this->excludeUpgraded;
+    }
+
+    public function getExcludeWithoutColors(): bool
+    {
+        return $this->excludeWithoutColors;
     }
 
     public function getLimit(): int
@@ -132,11 +172,15 @@ class GetReceivedGifts extends TdFunction
             '@type'                  => static::TYPE_NAME,
             'business_connection_id' => $this->businessConnectionId,
             'owner_id'               => $this->ownerId->typeSerialize(),
+            'collection_id'          => $this->collectionId,
             'exclude_unsaved'        => $this->excludeUnsaved,
             'exclude_saved'          => $this->excludeSaved,
             'exclude_unlimited'      => $this->excludeUnlimited,
-            'exclude_limited'        => $this->excludeLimited,
+            'exclude_upgradable'     => $this->excludeUpgradable,
+            'exclude_non_upgradable' => $this->excludeNonUpgradable,
             'exclude_upgraded'       => $this->excludeUpgraded,
+            'exclude_without_colors' => $this->excludeWithoutColors,
+            'exclude_hosted'         => $this->excludeHosted,
             'sort_by_price'          => $this->sortByPrice,
             'offset'                 => $this->offset,
             'limit'                  => $this->limit,

@@ -6,7 +6,6 @@
 
 namespace Totaldev\TgSchema\Star;
 
-use Totaldev\TgSchema\Affiliate\AffiliateInfo;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGift;
 
@@ -21,15 +20,19 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
         /**
          * Identifier of the user that bought the gift.
          */
-        protected int           $userId,
+        protected int          $userId,
         /**
          * The gift.
          */
-        protected UpgradedGift  $gift,
+        protected UpgradedGift $gift,
         /**
-         * Information about commission received by Telegram from the transaction.
+         * The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift.
          */
-        protected AffiliateInfo $affiliate,
+        protected int          $commissionPerMille,
+        /**
+         * The amount of Telegram Stars that were received by Telegram; can be negative for refunds.
+         */
+        protected StarAmount   $commissionStarAmount,
     ) {
         parent::__construct();
     }
@@ -39,13 +42,19 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
         return new static(
             $array['user_id'],
             TdSchemaRegistry::fromArray($array['gift']),
-            TdSchemaRegistry::fromArray($array['affiliate']),
+            $array['commission_per_mille'],
+            TdSchemaRegistry::fromArray($array['commission_star_amount']),
         );
     }
 
-    public function getAffiliate(): AffiliateInfo
+    public function getCommissionPerMille(): int
     {
-        return $this->affiliate;
+        return $this->commissionPerMille;
+    }
+
+    public function getCommissionStarAmount(): StarAmount
+    {
+        return $this->commissionStarAmount;
     }
 
     public function getGift(): UpgradedGift
@@ -61,10 +70,11 @@ class StarTransactionTypeUpgradedGiftSale extends StarTransactionType
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
-            'user_id'   => $this->userId,
-            'gift'      => $this->gift->typeSerialize(),
-            'affiliate' => $this->affiliate->typeSerialize(),
+            '@type'                  => static::TYPE_NAME,
+            'user_id'                => $this->userId,
+            'gift'                   => $this->gift->typeSerialize(),
+            'commission_per_mille'   => $this->commissionPerMille,
+            'commission_star_amount' => $this->commissionStarAmount->typeSerialize(),
         ];
     }
 }

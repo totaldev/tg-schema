@@ -17,7 +17,11 @@ class PushMessageContentGift extends PushMessageContent
         /**
          * Number of Telegram Stars that sender paid for the gift.
          */
-        protected int $starCount
+        protected int  $starCount,
+        /**
+         * True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift.
+         */
+        protected bool $isPrepaidUpgrade,
     ) {
         parent::__construct();
     }
@@ -26,7 +30,13 @@ class PushMessageContentGift extends PushMessageContent
     {
         return new static(
             $array['star_count'],
+            $array['is_prepaid_upgrade'],
         );
+    }
+
+    public function getIsPrepaidUpgrade(): bool
+    {
+        return $this->isPrepaidUpgrade;
     }
 
     public function getStarCount(): int
@@ -37,8 +47,9 @@ class PushMessageContentGift extends PushMessageContent
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'star_count' => $this->starCount,
+            '@type'              => static::TYPE_NAME,
+            'star_count'         => $this->starCount,
+            'is_prepaid_upgrade' => $this->isPrepaidUpgrade,
         ];
     }
 }

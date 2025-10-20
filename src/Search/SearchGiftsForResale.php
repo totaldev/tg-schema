@@ -12,7 +12,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Upgraded\UpgradedGiftAttributeId;
 
 /**
- * Returns upgraded gifts that can be bought from other owners.
+ * Returns upgraded gifts that can be bought from other owners using sendResoldGift.
  */
 class SearchGiftsForResale extends TdFunction
 {

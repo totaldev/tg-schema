@@ -15,9 +15,9 @@ class PushMessageContentChatSetTheme extends PushMessageContent
 
     public function __construct(
         /**
-         * If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one.
+         * If non-empty, human-readable name of the new theme. Otherwise, the chat theme was reset to the default one.
          */
-        protected string $themeName
+        protected string $name
     ) {
         parent::__construct();
     }
@@ -25,20 +25,20 @@ class PushMessageContentChatSetTheme extends PushMessageContent
     public static function fromArray(array $array): PushMessageContentChatSetTheme
     {
         return new static(
-            $array['theme_name'],
+            $array['name'],
         );
     }
 
-    public function getThemeName(): string
+    public function getName(): string
     {
-        return $this->themeName;
+        return $this->name;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'theme_name' => $this->themeName,
+            '@type' => static::TYPE_NAME,
+            'name'  => $this->name,
         ];
     }
 }

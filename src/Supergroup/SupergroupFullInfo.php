@@ -11,6 +11,7 @@ use Totaldev\TgSchema\Bot\BotVerification;
 use Totaldev\TgSchema\Chat\ChatInviteLink;
 use Totaldev\TgSchema\Chat\ChatLocation;
 use Totaldev\TgSchema\Chat\ChatPhoto;
+use Totaldev\TgSchema\Profile\ProfileTab;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -173,6 +174,10 @@ class SupergroupFullInfo extends TdObject
          */
         protected ?BotVerification $botVerification,
         /**
+         * The main tab chosen by the administrators of the channel; may be null if not chosen manually.
+         */
+        protected ?ProfileTab      $mainProfileTab,
+        /**
          * Identifier of the basic group from which supergroup was upgraded; 0 if none.
          */
         protected int              $upgradedFromBasicGroupId,
@@ -222,6 +227,7 @@ class SupergroupFullInfo extends TdObject
             isset($array['invite_link']) ? TdSchemaRegistry::fromArray($array['invite_link']) : null,
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['bot_commands']),
             isset($array['bot_verification']) ? TdSchemaRegistry::fromArray($array['bot_verification']) : null,
+            isset($array['main_profile_tab']) ? TdSchemaRegistry::fromArray($array['main_profile_tab']) : null,
             $array['upgraded_from_basic_group_id'],
             $array['upgraded_from_max_message_id'],
         );
@@ -367,6 +373,11 @@ class SupergroupFullInfo extends TdObject
         return $this->location;
     }
 
+    public function getMainProfileTab(): ?ProfileTab
+    {
+        return $this->mainProfileTab;
+    }
+
     public function getMemberCount(): int
     {
         return $this->memberCount;
@@ -463,6 +474,7 @@ class SupergroupFullInfo extends TdObject
             'invite_link'                      => $this->inviteLink ?? null,
             'bot_commands'                     => array_map(static fn($x) => $x->typeSerialize(), $this->botCommands),
             'bot_verification'                 => $this->botVerification ?? null,
+            'main_profile_tab'                 => $this->mainProfileTab ?? null,
             'upgraded_from_basic_group_id'     => $this->upgradedFromBasicGroupId,
             'upgraded_from_max_message_id'     => $this->upgradedFromMaxMessageId,
         ];

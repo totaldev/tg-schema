@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Read;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Marks all reactions in a chat or a forum topic as read.
+ * Marks all reactions in a chat as read.
  */
 class ReadAllChatReactions extends TdFunction
 {

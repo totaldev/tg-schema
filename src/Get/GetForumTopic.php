@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns information about a forum topic.
+ * Returns information about a topic in a forum supergroup chat or a chat with a bot with topics.
  */
 class GetForumTopic extends TdFunction
 {
@@ -21,16 +21,16 @@ class GetForumTopic extends TdFunction
          */
         protected int $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int $messageThreadId,
+        protected int $forumTopicId,
     ) {}
 
     public static function fromArray(array $array): GetForumTopic
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
         );
     }
 
@@ -39,17 +39,17 @@ class GetForumTopic extends TdFunction
         return $this->chatId;
     }
 
-    public function getMessageThreadId(): int
+    public function getForumTopicId(): int
     {
-        return $this->messageThreadId;
+        return $this->forumTopicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'forum_topic_id' => $this->forumTopicId,
         ];
     }
 }

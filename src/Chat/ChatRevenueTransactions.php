@@ -18,28 +18,38 @@ class ChatRevenueTransactions extends TdObject
 
     public function __construct(
         /**
-         * Total number of transactions.
+         * The amount of owned Toncoins; in the smallest units of the cryptocurrency.
          */
-        protected int   $totalCount,
+        protected int    $tonAmount,
         /**
          * List of transactions.
          *
          * @var ChatRevenueTransaction[]
          */
-        protected array $transactions,
+        protected array  $transactions,
+        /**
+         * The offset for the next request. If empty, then there are no more results.
+         */
+        protected string $nextOffset,
     ) {}
 
     public static function fromArray(array $array): ChatRevenueTransactions
     {
         return new static(
-            $array['total_count'],
+            $array['ton_amount'],
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['transactions']),
+            $array['next_offset'],
         );
     }
 
-    public function getTotalCount(): int
+    public function getNextOffset(): string
     {
-        return $this->totalCount;
+        return $this->nextOffset;
+    }
+
+    public function getTonAmount(): int
+    {
+        return $this->tonAmount;
     }
 
     public function getTransactions(): array
@@ -51,8 +61,9 @@ class ChatRevenueTransactions extends TdObject
     {
         return [
             '@type'        => static::TYPE_NAME,
-            'total_count'  => $this->totalCount,
+            'ton_amount'   => $this->tonAmount,
             'transactions' => array_map(static fn($x) => $x->typeSerialize(), $this->transactions),
+            'next_offset'  => $this->nextOffset,
         ];
     }
 }

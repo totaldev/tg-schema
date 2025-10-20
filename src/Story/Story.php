@@ -57,6 +57,10 @@ class Story extends TdObject
          */
         protected bool                  $isVisibleOnlyForSelf,
         /**
+         * True, if the story can be added to an album.
+         */
+        protected bool                  $canBeAddedToAlbum,
+        /**
          * True, if the story can be deleted.
          */
         protected bool                  $canBeDeleted,
@@ -65,7 +69,7 @@ class Story extends TdObject
          */
         protected bool                  $canBeEdited,
         /**
-         * True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden.
+         * True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden.
          */
         protected bool                  $canBeForwarded,
         /**
@@ -118,6 +122,12 @@ class Story extends TdObject
          * Caption of the story.
          */
         protected FormattedText         $caption,
+        /**
+         * Identifiers of story albums to which the story is added; only for manageable stories.
+         *
+         * @var int[]
+         */
+        protected array                 $albumIds,
     ) {}
 
     public static function fromArray(array $array): Story
@@ -132,6 +142,7 @@ class Story extends TdObject
             $array['is_edited'],
             $array['is_posted_to_chat_page'],
             $array['is_visible_only_for_self'],
+            $array['can_be_added_to_album'],
             $array['can_be_deleted'],
             $array['can_be_edited'],
             $array['can_be_forwarded'],
@@ -147,12 +158,23 @@ class Story extends TdObject
             TdSchemaRegistry::fromArray($array['content']),
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['areas']),
             TdSchemaRegistry::fromArray($array['caption']),
+            $array['album_ids'],
         );
+    }
+
+    public function getAlbumIds(): array
+    {
+        return $this->albumIds;
     }
 
     public function getAreas(): array
     {
         return $this->areas;
+    }
+
+    public function getCanBeAddedToAlbum(): bool
+    {
+        return $this->canBeAddedToAlbum;
     }
 
     public function getCanBeDeleted(): bool
@@ -283,6 +305,7 @@ class Story extends TdObject
             'is_edited'                         => $this->isEdited,
             'is_posted_to_chat_page'            => $this->isPostedToChatPage,
             'is_visible_only_for_self'          => $this->isVisibleOnlyForSelf,
+            'can_be_added_to_album'             => $this->canBeAddedToAlbum,
             'can_be_deleted'                    => $this->canBeDeleted,
             'can_be_edited'                     => $this->canBeEdited,
             'can_be_forwarded'                  => $this->canBeForwarded,
@@ -298,6 +321,7 @@ class Story extends TdObject
             'content'                           => $this->content->typeSerialize(),
             'areas'                             => array_map(static fn($x) => $x->typeSerialize(), $this->areas),
             'caption'                           => $this->caption->typeSerialize(),
+            'album_ids'                         => $this->albumIds,
         ];
     }
 }

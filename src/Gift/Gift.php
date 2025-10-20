@@ -21,56 +21,76 @@ class Gift extends TdObject
         /**
          * Unique identifier of the gift.
          */
-        protected int     $id,
+        protected int                 $id,
+        /**
+         * Identifier of the chat that published the gift; 0 if none.
+         */
+        protected int                 $publisherChatId,
         /**
          * The sticker representing the gift.
          */
-        protected Sticker $sticker,
+        protected Sticker             $sticker,
         /**
          * Number of Telegram Stars that must be paid for the gift.
          */
-        protected int     $starCount,
+        protected int                 $starCount,
         /**
          * Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed.
          */
-        protected int     $defaultSellStarCount,
+        protected int                 $defaultSellStarCount,
         /**
          * Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible.
          */
-        protected int     $upgradeStarCount,
+        protected int                 $upgradeStarCount,
+        /**
+         * True, if the gift can be used to customize the user's name, and backgrounds of profile photo, reply header, and link preview.
+         */
+        protected bool                $hasColors,
         /**
          * True, if the gift is a birthday gift.
          */
-        protected bool    $isForBirthday,
+        protected bool                $isForBirthday,
         /**
-         * Number of remaining times the gift can be purchased; 0 if not limited or the gift was sold out.
+         * True, if the gift can be bought only by Telegram Premium subscribers.
          */
-        protected int     $remainingCount,
+        protected bool                $isPremium,
         /**
-         * Number of total times the gift can be purchased; 0 if not limited.
+         * Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now.
          */
-        protected int     $totalCount,
+        protected int                 $nextSendDate,
+        /**
+         * Number of times the gift can be purchased by the current user; may be null if not limited.
+         */
+        protected ?GiftPurchaseLimits $userLimits,
+        /**
+         * Number of times the gift can be purchased all users; may be null if not limited.
+         */
+        protected ?GiftPurchaseLimits $overallLimits,
         /**
          * Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only.
          */
-        protected int     $firstSendDate,
+        protected int                 $firstSendDate,
         /**
          * Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only.
          */
-        protected int     $lastSendDate,
+        protected int                 $lastSendDate,
     ) {}
 
     public static function fromArray(array $array): Gift
     {
         return new static(
             $array['id'],
+            $array['publisher_chat_id'],
             TdSchemaRegistry::fromArray($array['sticker']),
             $array['star_count'],
             $array['default_sell_star_count'],
             $array['upgrade_star_count'],
+            $array['has_colors'],
             $array['is_for_birthday'],
-            $array['remaining_count'],
-            $array['total_count'],
+            $array['is_premium'],
+            $array['next_send_date'],
+            isset($array['user_limits']) ? TdSchemaRegistry::fromArray($array['user_limits']) : null,
+            isset($array['overall_limits']) ? TdSchemaRegistry::fromArray($array['overall_limits']) : null,
             $array['first_send_date'],
             $array['last_send_date'],
         );
@@ -86,6 +106,11 @@ class Gift extends TdObject
         return $this->firstSendDate;
     }
 
+    public function getHasColors(): bool
+    {
+        return $this->hasColors;
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -96,14 +121,29 @@ class Gift extends TdObject
         return $this->isForBirthday;
     }
 
+    public function getIsPremium(): bool
+    {
+        return $this->isPremium;
+    }
+
     public function getLastSendDate(): int
     {
         return $this->lastSendDate;
     }
 
-    public function getRemainingCount(): int
+    public function getNextSendDate(): int
     {
-        return $this->remainingCount;
+        return $this->nextSendDate;
+    }
+
+    public function getOverallLimits(): ?GiftPurchaseLimits
+    {
+        return $this->overallLimits;
+    }
+
+    public function getPublisherChatId(): int
+    {
+        return $this->publisherChatId;
     }
 
     public function getStarCount(): int
@@ -116,14 +156,14 @@ class Gift extends TdObject
         return $this->sticker;
     }
 
-    public function getTotalCount(): int
-    {
-        return $this->totalCount;
-    }
-
     public function getUpgradeStarCount(): int
     {
         return $this->upgradeStarCount;
+    }
+
+    public function getUserLimits(): ?GiftPurchaseLimits
+    {
+        return $this->userLimits;
     }
 
     public function typeSerialize(): array
@@ -131,13 +171,17 @@ class Gift extends TdObject
         return [
             '@type'                   => static::TYPE_NAME,
             'id'                      => $this->id,
+            'publisher_chat_id'       => $this->publisherChatId,
             'sticker'                 => $this->sticker->typeSerialize(),
             'star_count'              => $this->starCount,
             'default_sell_star_count' => $this->defaultSellStarCount,
             'upgrade_star_count'      => $this->upgradeStarCount,
+            'has_colors'              => $this->hasColors,
             'is_for_birthday'         => $this->isForBirthday,
-            'remaining_count'         => $this->remainingCount,
-            'total_count'             => $this->totalCount,
+            'is_premium'              => $this->isPremium,
+            'next_send_date'          => $this->nextSendDate,
+            'user_limits'             => $this->userLimits ?? null,
+            'overall_limits'          => $this->overallLimits ?? null,
             'first_send_date'         => $this->firstSendDate,
             'last_send_date'          => $this->lastSendDate,
         ];

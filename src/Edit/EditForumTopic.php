@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Edit;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic.
+ * Edits title and icon of a topic in a forum supergroup chat or a chat with a bot with topics; for supergroup chats requires can_manage_topics administrator
+ * right unless the user is creator of the topic.
  */
 class EditForumTopic extends TdFunction
 {
@@ -21,9 +22,9 @@ class EditForumTopic extends TdFunction
          */
         protected int    $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int    $messageThreadId,
+        protected int    $forumTopicId,
         /**
          * New name of the topic; 0-128 characters. If empty, the previous topic name is kept.
          */
@@ -42,7 +43,7 @@ class EditForumTopic extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
             $array['name'],
             $array['edit_icon_custom_emoji'],
             $array['icon_custom_emoji_id'],
@@ -59,14 +60,14 @@ class EditForumTopic extends TdFunction
         return $this->editIconCustomEmoji;
     }
 
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
+    }
+
     public function getIconCustomEmojiId(): int
     {
         return $this->iconCustomEmojiId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 
     public function getName(): string
@@ -79,7 +80,7 @@ class EditForumTopic extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'message_thread_id'      => $this->messageThreadId,
+            'forum_topic_id'         => $this->forumTopicId,
             'name'                   => $this->name,
             'edit_icon_custom_emoji' => $this->editIconCustomEmoji,
             'icon_custom_emoji_id'   => $this->iconCustomEmojiId,

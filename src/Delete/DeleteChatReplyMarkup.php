@@ -9,8 +9,7 @@ namespace Totaldev\TgSchema\Delete;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An
- * updateChatReplyMarkup update will be sent if the reply markup is changed.
+ * Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used or dismissed.
  */
 class DeleteChatReplyMarkup extends TdFunction
 {

@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\Chat\ChatAction;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -21,26 +22,26 @@ class SendChatAction extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int         $chatId,
+        protected int          $chatId,
         /**
-         * If not 0, the message thread identifier in which the action was performed.
+         * Identifier of the topic in which the action is performed.
          */
-        protected int         $messageThreadId,
+        protected MessageTopic $topicId,
         /**
          * Unique identifier of business connection on behalf of which to send the request; for bots only.
          */
-        protected string      $businessConnectionId,
+        protected string       $businessConnectionId,
         /**
          * The action description; pass null to cancel the currently active action.
          */
-        protected ?ChatAction $action = null,
+        protected ?ChatAction  $action = null,
     ) {}
 
     public static function fromArray(array $array): SendChatAction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            TdSchemaRegistry::fromArray($array['topic_id']),
             $array['business_connection_id'],
             isset($array['action']) ? TdSchemaRegistry::fromArray($array['action']) : null,
         );
@@ -61,9 +62,9 @@ class SendChatAction extends TdFunction
         return $this->chatId;
     }
 
-    public function getMessageThreadId(): int
+    public function getTopicId(): MessageTopic
     {
-        return $this->messageThreadId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
@@ -71,7 +72,7 @@ class SendChatAction extends TdFunction
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'message_thread_id'      => $this->messageThreadId,
+            'topic_id'               => $this->topicId->typeSerialize(),
             'business_connection_id' => $this->businessConnectionId,
             'action'                 => $this->action ?? null,
         ];

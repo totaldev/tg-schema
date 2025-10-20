@@ -9,6 +9,7 @@ namespace Totaldev\TgSchema\Send;
 use Totaldev\TgSchema\Input\InputMessageContent;
 use Totaldev\TgSchema\Input\InputMessageReplyTo;
 use Totaldev\TgSchema\Message\MessageSendOptions;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\Reply\ReplyMarkup;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -26,13 +27,13 @@ class SendMessage extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * If not 0, the message thread identifier in which the message will be sent.
-         */
-        protected int                  $messageThreadId,
-        /**
          * The content of the message to be sent.
          */
         protected InputMessageContent  $inputMessageContent,
+        /**
+         * Topic in which the message will be sent; pass null if none.
+         */
+        protected ?MessageTopic        $topicId = null,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
@@ -51,7 +52,7 @@ class SendMessage extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
@@ -69,11 +70,6 @@ class SendMessage extends TdFunction
         return $this->inputMessageContent;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
@@ -89,12 +85,17 @@ class SendMessage extends TdFunction
         return $this->replyTo;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'message_thread_id'     => $this->messageThreadId,
+            'topic_id'              => $this->topicId ?? null,
             'reply_to'              => $this->replyTo ?? null,
             'options'               => $this->options ?? null,
             'reply_markup'          => $this->replyMarkup ?? null,

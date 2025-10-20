@@ -6,7 +6,9 @@
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Input\InputChatTheme;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes the chat theme. Supported only in private and secret chats.
@@ -19,18 +21,18 @@ class SetChatTheme extends TdFunction
         /**
          * Chat identifier.
          */
-        protected int    $chatId,
+        protected int             $chatId,
         /**
-         * Name of the new chat theme; pass an empty string to return the default theme.
+         * New chat theme; pass null to return the default theme.
          */
-        protected string $themeName = '',
+        protected ?InputChatTheme $theme = null,
     ) {}
 
     public static function fromArray(array $array): SetChatTheme
     {
         return new static(
             $array['chat_id'],
-            $array['theme_name'],
+            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
         );
     }
 
@@ -39,17 +41,17 @@ class SetChatTheme extends TdFunction
         return $this->chatId;
     }
 
-    public function getThemeName(): string
+    public function getTheme(): ?InputChatTheme
     {
-        return $this->themeName;
+        return $this->theme;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'chat_id'    => $this->chatId,
-            'theme_name' => $this->themeName,
+            '@type'   => static::TYPE_NAME,
+            'chat_id' => $this->chatId,
+            'theme'   => $this->theme ?? null,
         ];
     }
 }

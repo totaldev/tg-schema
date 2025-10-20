@@ -8,8 +8,10 @@ namespace Totaldev\TgSchema\User;
 
 use Totaldev\TgSchema\Emoji\EmojiStatus;
 use Totaldev\TgSchema\Profile\ProfilePhoto;
+use Totaldev\TgSchema\Restriction\RestrictionInfo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Upgraded\UpgradedGiftColors;
 use Totaldev\TgSchema\Usernames\Usernames;
 use Totaldev\TgSchema\Verification\VerificationStatus;
 
@@ -58,6 +60,10 @@ class User extends TdObject
          */
         protected int                 $backgroundCustomEmojiId,
         /**
+         * Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         */
+        protected ?UpgradedGiftColors $upgradedGiftColors,
+        /**
          * Identifier of the accent color for the user's profile; -1 if none.
          */
         protected int                 $profileAccentColorId,
@@ -94,9 +100,9 @@ class User extends TdObject
          */
         protected bool                $isSupport,
         /**
-         * If non-empty, it contains a human-readable description of the reason why access to this user must be restricted.
+         * Information about restrictions that must be applied to the corresponding private chat; may be null if none.
          */
-        protected string              $restrictionReason,
+        protected ?RestrictionInfo    $restrictionInfo,
         /**
          * True, if the user has non-expired stories available to the current user.
          */
@@ -143,6 +149,7 @@ class User extends TdObject
             isset($array['profile_photo']) ? TdSchemaRegistry::fromArray($array['profile_photo']) : null,
             $array['accent_color_id'],
             $array['background_custom_emoji_id'],
+            isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null,
             $array['profile_accent_color_id'],
             $array['profile_background_custom_emoji_id'],
             isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
@@ -152,7 +159,7 @@ class User extends TdObject
             isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
             $array['is_premium'],
             $array['is_support'],
-            $array['restriction_reason'],
+            isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null,
             $array['has_active_stories'],
             $array['has_unread_active_stories'],
             $array['restricts_new_chats'],
@@ -269,9 +276,9 @@ class User extends TdObject
         return $this->profilePhoto;
     }
 
-    public function getRestrictionReason(): string
+    public function getRestrictionInfo(): ?RestrictionInfo
     {
-        return $this->restrictionReason;
+        return $this->restrictionInfo;
     }
 
     public function getRestrictsNewChats(): bool
@@ -287,6 +294,11 @@ class User extends TdObject
     public function getType(): UserType
     {
         return $this->type;
+    }
+
+    public function getUpgradedGiftColors(): ?UpgradedGiftColors
+    {
+        return $this->upgradedGiftColors;
     }
 
     public function getUsernames(): ?Usernames
@@ -312,6 +324,7 @@ class User extends TdObject
             'profile_photo'                      => $this->profilePhoto ?? null,
             'accent_color_id'                    => $this->accentColorId,
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
+            'upgraded_gift_colors'               => $this->upgradedGiftColors ?? null,
             'profile_accent_color_id'            => $this->profileAccentColorId,
             'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
             'emoji_status'                       => $this->emojiStatus ?? null,
@@ -321,7 +334,7 @@ class User extends TdObject
             'verification_status'                => $this->verificationStatus ?? null,
             'is_premium'                         => $this->isPremium,
             'is_support'                         => $this->isSupport,
-            'restriction_reason'                 => $this->restrictionReason,
+            'restriction_info'                   => $this->restrictionInfo ?? null,
             'has_active_stories'                 => $this->hasActiveStories,
             'has_unread_active_stories'          => $this->hasUnreadActiveStories,
             'restricts_new_chats'                => $this->restrictsNewChats,

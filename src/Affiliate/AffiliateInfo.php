@@ -29,7 +29,7 @@ class AffiliateInfo extends TdObject
         /**
          * The amount of Telegram Stars that were received by the affiliate; can be negative for refunds.
          */
-        protected StarAmount $starAmount
+        protected StarAmount $starAmount,
     ) {}
 
     public static function fromArray(array $array): AffiliateInfo

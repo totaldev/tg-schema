@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Toggle;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max")
- * pinned forum topics.
+ * Changes the pinned state of a topic in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the
+ * supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics.
  */
 class ToggleForumTopicIsPinned extends TdFunction
 {
@@ -22,9 +22,9 @@ class ToggleForumTopicIsPinned extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int  $messageThreadId,
+        protected int  $forumTopicId,
         /**
          * Pass true to pin the topic; pass false to unpin it.
          */
@@ -35,7 +35,7 @@ class ToggleForumTopicIsPinned extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
             $array['is_pinned'],
         );
     }
@@ -45,23 +45,23 @@ class ToggleForumTopicIsPinned extends TdFunction
         return $this->chatId;
     }
 
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
+    }
+
     public function getIsPinned(): bool
     {
         return $this->isPinned;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'is_pinned'         => $this->isPinned,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'forum_topic_id' => $this->forumTopicId,
+            'is_pinned'      => $this->isPinned,
         ];
     }
 }

@@ -6,7 +6,7 @@
 
 namespace Totaldev\TgSchema\Change;
 
-use Totaldev\TgSchema\Contact\Contact;
+use Totaldev\TgSchema\Imported\ImportedContact;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -20,9 +20,9 @@ class ChangeImportedContacts extends TdFunction
 
     public function __construct(
         /**
-         * The new list of contacts, contact's vCard are ignored and are not imported.
+         * The new list of contacts to import.
          *
-         * @var Contact[]
+         * @var ImportedContact[]
          */
         protected array $contacts
     ) {}

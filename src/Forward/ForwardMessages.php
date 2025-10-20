@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Forward;
 
 use Totaldev\TgSchema\Message\MessageSendOptions;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -23,10 +24,6 @@ class ForwardMessages extends TdFunction
          * Identifier of the chat to which to forward messages.
          */
         protected int                 $chatId,
-        /**
-         * If not 0, the message thread identifier in which the message will be sent; for forum threads only.
-         */
-        protected int                 $messageThreadId,
         /**
          * Identifier of the chat from which to forward messages.
          */
@@ -46,6 +43,10 @@ class ForwardMessages extends TdFunction
          */
         protected bool                $removeCaption,
         /**
+         * Topic in which the messages will be forwarded; message threads aren't supported; pass null if none.
+         */
+        protected ?MessageTopic       $topicId = null,
+        /**
          * Options to be used to send the messages; pass null to use default options.
          */
         protected ?MessageSendOptions $options = null,
@@ -55,7 +56,7 @@ class ForwardMessages extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             $array['from_chat_id'],
             $array['message_ids'],
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
@@ -79,11 +80,6 @@ class ForwardMessages extends TdFunction
         return $this->messageIds;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
@@ -99,17 +95,22 @@ class ForwardMessages extends TdFunction
         return $this->sendCopy;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'from_chat_id'      => $this->fromChatId,
-            'message_ids'       => $this->messageIds,
-            'options'           => $this->options ?? null,
-            'send_copy'         => $this->sendCopy,
-            'remove_caption'    => $this->removeCaption,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'topic_id'       => $this->topicId ?? null,
+            'from_chat_id'   => $this->fromChatId,
+            'message_ids'    => $this->messageIds,
+            'options'        => $this->options ?? null,
+            'send_copy'      => $this->sendCopy,
+            'remove_caption' => $this->removeCaption,
         ];
     }
 }

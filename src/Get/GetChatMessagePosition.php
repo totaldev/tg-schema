@@ -33,7 +33,7 @@ class GetChatMessagePosition extends TdFunction
          */
         protected int                  $messageId,
         /**
-         * Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages.
+         * Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported.
          */
         protected ?MessageTopic        $topicId = null,
     ) {}

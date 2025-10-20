@@ -9,6 +9,7 @@ namespace Totaldev\TgSchema\Send;
 use Totaldev\TgSchema\Input\InputMessageContent;
 use Totaldev\TgSchema\Input\InputMessageReplyTo;
 use Totaldev\TgSchema\Message\MessageSendOptions;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -26,15 +27,15 @@ class SendMessageAlbum extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * If not 0, the message thread identifier in which the messages will be sent.
-         */
-        protected int                  $messageThreadId,
-        /**
          * Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media.
          *
          * @var InputMessageContent[]
          */
         protected array                $inputMessageContents,
+        /**
+         * Topic in which the messages will be sent; pass null if none.
+         */
+        protected ?MessageTopic        $topicId = null,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
@@ -49,7 +50,7 @@ class SendMessageAlbum extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['input_message_contents']),
@@ -66,11 +67,6 @@ class SendMessageAlbum extends TdFunction
         return $this->inputMessageContents;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getOptions(): ?MessageSendOptions
     {
         return $this->options;
@@ -81,12 +77,17 @@ class SendMessageAlbum extends TdFunction
         return $this->replyTo;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
             '@type'                  => static::TYPE_NAME,
             'chat_id'                => $this->chatId,
-            'message_thread_id'      => $this->messageThreadId,
+            'topic_id'               => $this->topicId ?? null,
             'reply_to'               => $this->replyTo ?? null,
             'options'                => $this->options ?? null,
             'input_message_contents' => array_map(static fn($x) => $x->typeSerialize(), $this->inputMessageContents),

@@ -23,7 +23,7 @@ class GetStarWithdrawalUrl extends TdFunction
          */
         protected MessageSender $ownerId,
         /**
-         * The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min").
+         * The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max").
          */
         protected int           $starCount,
         /**

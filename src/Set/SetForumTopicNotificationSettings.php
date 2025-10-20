@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * Changes the notification settings of a forum topic.
+ * Changes the notification settings of a forum topic in a forum supergroup chat or a chat with a bot with topics.
  */
 class SetForumTopicNotificationSettings extends TdFunction
 {
@@ -23,9 +23,9 @@ class SetForumTopicNotificationSettings extends TdFunction
          */
         protected int                      $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int                      $messageThreadId,
+        protected int                      $forumTopicId,
         /**
          * New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever.
          */
@@ -36,7 +36,7 @@ class SetForumTopicNotificationSettings extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
             TdSchemaRegistry::fromArray($array['notification_settings']),
         );
     }
@@ -46,9 +46,9 @@ class SetForumTopicNotificationSettings extends TdFunction
         return $this->chatId;
     }
 
-    public function getMessageThreadId(): int
+    public function getForumTopicId(): int
     {
-        return $this->messageThreadId;
+        return $this->forumTopicId;
     }
 
     public function getNotificationSettings(): ChatNotificationSettings
@@ -61,7 +61,7 @@ class SetForumTopicNotificationSettings extends TdFunction
         return [
             '@type'                 => static::TYPE_NAME,
             'chat_id'               => $this->chatId,
-            'message_thread_id'     => $this->messageThreadId,
+            'forum_topic_id'        => $this->forumTopicId,
             'notification_settings' => $this->notificationSettings->typeSerialize(),
         ];
     }

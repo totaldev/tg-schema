@@ -14,6 +14,7 @@ use Totaldev\TgSchema\Message\Message;
 use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
+use Totaldev\TgSchema\Upgraded\UpgradedGiftColors;
 use Totaldev\TgSchema\Video\VideoChat;
 
 /**
@@ -48,6 +49,10 @@ class Chat extends TdObject
          * Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none.
          */
         protected int                      $backgroundCustomEmojiId,
+        /**
+         * Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none.
+         */
+        protected ?UpgradedGiftColors      $upgradedGiftColors,
         /**
          * Identifier of the profile accent color for the chat's profile; -1 if none.
          */
@@ -161,9 +166,9 @@ class Chat extends TdObject
          */
         protected ?ChatBackground          $background,
         /**
-         * If non-empty, name of a theme, set for the chat.
+         * Theme set for the chat; may be null if none.
          */
-        protected string                   $themeName,
+        protected ?ChatTheme               $theme,
         /**
          * Information about actions which must be possible to do through the chat action bar; may be null if none.
          */
@@ -203,6 +208,7 @@ class Chat extends TdObject
             isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['accent_color_id'],
             $array['background_custom_emoji_id'],
+            isset($array['upgraded_gift_colors']) ? TdSchemaRegistry::fromArray($array['upgraded_gift_colors']) : null,
             $array['profile_accent_color_id'],
             $array['profile_background_custom_emoji_id'],
             TdSchemaRegistry::fromArray($array['permissions']),
@@ -230,7 +236,7 @@ class Chat extends TdObject
             $array['message_auto_delete_time'],
             isset($array['emoji_status']) ? TdSchemaRegistry::fromArray($array['emoji_status']) : null,
             isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
-            $array['theme_name'],
+            isset($array['theme']) ? TdSchemaRegistry::fromArray($array['theme']) : null,
             isset($array['action_bar']) ? TdSchemaRegistry::fromArray($array['action_bar']) : null,
             isset($array['business_bot_manage_bar']) ? TdSchemaRegistry::fromArray($array['business_bot_manage_bar']) : null,
             TdSchemaRegistry::fromArray($array['video_chat']),
@@ -406,9 +412,9 @@ class Chat extends TdObject
         return $this->replyMarkupMessageId;
     }
 
-    public function getThemeName(): string
+    public function getTheme(): ?ChatTheme
     {
-        return $this->themeName;
+        return $this->theme;
     }
 
     public function getTitle(): string
@@ -436,6 +442,11 @@ class Chat extends TdObject
         return $this->unreadReactionCount;
     }
 
+    public function getUpgradedGiftColors(): ?UpgradedGiftColors
+    {
+        return $this->upgradedGiftColors;
+    }
+
     public function getVideoChat(): VideoChat
     {
         return $this->videoChat;
@@ -456,6 +467,7 @@ class Chat extends TdObject
             'photo'                              => $this->photo ?? null,
             'accent_color_id'                    => $this->accentColorId,
             'background_custom_emoji_id'         => $this->backgroundCustomEmojiId,
+            'upgraded_gift_colors'               => $this->upgradedGiftColors ?? null,
             'profile_accent_color_id'            => $this->profileAccentColorId,
             'profile_background_custom_emoji_id' => $this->profileBackgroundCustomEmojiId,
             'permissions'                        => $this->permissions->typeSerialize(),
@@ -483,7 +495,7 @@ class Chat extends TdObject
             'message_auto_delete_time'           => $this->messageAutoDeleteTime,
             'emoji_status'                       => $this->emojiStatus ?? null,
             'background'                         => $this->background ?? null,
-            'theme_name'                         => $this->themeName,
+            'theme'                              => $this->theme ?? null,
             'action_bar'                         => $this->actionBar ?? null,
             'business_bot_manage_bar'            => $this->businessBotManageBar ?? null,
             'video_chat'                         => $this->videoChat->typeSerialize(),

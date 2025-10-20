@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+namespace Totaldev\TgSchema\Send;
+
+use Totaldev\TgSchema\Formatted\FormattedText;
+use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
+/**
+ * Sends a draft for a being generated text message; for bots only.
+ */
+class SendTextMessageDraft extends TdFunction
+{
+    public const TYPE_NAME = 'sendTextMessageDraft';
+
+    public function __construct(
+        /**
+         * Chat identifier.
+         */
+        protected int           $chatId,
+        /**
+         * The forum topic identifier in which the message will be sent; pass 0 if none.
+         */
+        protected int           $forumTopicId,
+        /**
+         * Unique identifier of the draft.
+         */
+        protected int           $draftId,
+        /**
+         * Draft text of the message.
+         */
+        protected FormattedText $text,
+    ) {}
+
+    public static function fromArray(array $array): SendTextMessageDraft
+    {
+        return new static(
+            $array['chat_id'],
+            $array['forum_topic_id'],
+            $array['draft_id'],
+            TdSchemaRegistry::fromArray($array['text']),
+        );
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
+    }
+
+    public function getDraftId(): int
+    {
+        return $this->draftId;
+    }
+
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
+    }
+
+    public function getText(): FormattedText
+    {
+        return $this->text;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'forum_topic_id' => $this->forumTopicId,
+            'draft_id'       => $this->draftId,
+            'text'           => $this->text->typeSerialize(),
+        ];
+    }
+}

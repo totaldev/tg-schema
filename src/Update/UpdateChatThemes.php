@@ -22,7 +22,7 @@ class UpdateChatThemes extends Update
          *
          * @var ChatTheme[]
          */
-        protected array $chatThemes
+        protected array $chatThemes,
     ) {
         parent::__construct();
     }

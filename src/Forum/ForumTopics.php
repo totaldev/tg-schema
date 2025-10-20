@@ -36,9 +36,9 @@ class ForumTopics extends TdObject
          */
         protected int   $nextOffsetMessageId,
         /**
-         * Offset message thread identifier for the next getForumTopics request.
+         * Offset forum topic identifier for the next getForumTopics request.
          */
-        protected int   $nextOffsetMessageThreadId,
+        protected int   $nextOffsetForumTopicId,
     ) {}
 
     public static function fromArray(array $array): ForumTopics
@@ -48,7 +48,7 @@ class ForumTopics extends TdObject
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['topics']),
             $array['next_offset_date'],
             $array['next_offset_message_id'],
-            $array['next_offset_message_thread_id'],
+            $array['next_offset_forum_topic_id'],
         );
     }
 
@@ -57,14 +57,14 @@ class ForumTopics extends TdObject
         return $this->nextOffsetDate;
     }
 
+    public function getNextOffsetForumTopicId(): int
+    {
+        return $this->nextOffsetForumTopicId;
+    }
+
     public function getNextOffsetMessageId(): int
     {
         return $this->nextOffsetMessageId;
-    }
-
-    public function getNextOffsetMessageThreadId(): int
-    {
-        return $this->nextOffsetMessageThreadId;
     }
 
     public function getTopics(): array
@@ -80,12 +80,12 @@ class ForumTopics extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'                         => static::TYPE_NAME,
-            'total_count'                   => $this->totalCount,
-            'topics'                        => array_map(static fn($x) => $x->typeSerialize(), $this->topics),
-            'next_offset_date'              => $this->nextOffsetDate,
-            'next_offset_message_id'        => $this->nextOffsetMessageId,
-            'next_offset_message_thread_id' => $this->nextOffsetMessageThreadId,
+            '@type'                      => static::TYPE_NAME,
+            'total_count'                => $this->totalCount,
+            'topics'                     => array_map(static fn($x) => $x->typeSerialize(), $this->topics),
+            'next_offset_date'           => $this->nextOffsetDate,
+            'next_offset_message_id'     => $this->nextOffsetMessageId,
+            'next_offset_forum_topic_id' => $this->nextOffsetForumTopicId,
         ];
     }
 }

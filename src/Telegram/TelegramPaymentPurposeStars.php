@@ -26,6 +26,10 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose
          * Number of bought Telegram Stars.
          */
         protected int    $starCount,
+        /**
+         * Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none.
+         */
+        protected int    $chatId,
     ) {
         parent::__construct();
     }
@@ -36,12 +40,18 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose
             $array['currency'],
             $array['amount'],
             $array['star_count'],
+            $array['chat_id'],
         );
     }
 
     public function getAmount(): int
     {
         return $this->amount;
+    }
+
+    public function getChatId(): int
+    {
+        return $this->chatId;
     }
 
     public function getCurrency(): string
@@ -61,6 +71,7 @@ class TelegramPaymentPurposeStars extends TelegramPaymentPurpose
             'currency'   => $this->currency,
             'amount'     => $this->amount,
             'star_count' => $this->starCount,
+            'chat_id'    => $this->chatId,
         ];
     }
 }

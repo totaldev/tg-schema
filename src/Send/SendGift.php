@@ -24,7 +24,7 @@ class SendGift extends TdFunction
          */
         protected int           $giftId,
         /**
-         * Identifier of the user or the channel chat that will receive the gift.
+         * Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats.
          */
         protected MessageSender $ownerId,
         /**

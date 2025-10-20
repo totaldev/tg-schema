@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Get;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server.
+ * Returns found forum topics in a forum supergroup chat or a chat with a bot with topics. This is a temporary method for getting information about topic list
+ * from the server.
  */
 class GetForumTopics extends TdFunction
 {
@@ -17,7 +18,7 @@ class GetForumTopics extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the forum chat.
+         * Identifier of the chat.
          */
         protected int    $chatId,
         /**
@@ -33,9 +34,9 @@ class GetForumTopics extends TdFunction
          */
         protected int    $offsetMessageId,
         /**
-         * The message thread identifier of the last found topic, or 0 for the first request.
+         * The forum topic identifier of the last found topic, or 0 for the first request.
          */
-        protected int    $offsetMessageThreadId,
+        protected int    $offsetForumTopicId,
         /**
          * The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit.
          */
@@ -49,7 +50,7 @@ class GetForumTopics extends TdFunction
             $array['query'],
             $array['offset_date'],
             $array['offset_message_id'],
-            $array['offset_message_thread_id'],
+            $array['offset_forum_topic_id'],
             $array['limit'],
         );
     }
@@ -69,14 +70,14 @@ class GetForumTopics extends TdFunction
         return $this->offsetDate;
     }
 
+    public function getOffsetForumTopicId(): int
+    {
+        return $this->offsetForumTopicId;
+    }
+
     public function getOffsetMessageId(): int
     {
         return $this->offsetMessageId;
-    }
-
-    public function getOffsetMessageThreadId(): int
-    {
-        return $this->offsetMessageThreadId;
     }
 
     public function getQuery(): string
@@ -87,13 +88,13 @@ class GetForumTopics extends TdFunction
     public function typeSerialize(): array
     {
         return [
-            '@type'                    => static::TYPE_NAME,
-            'chat_id'                  => $this->chatId,
-            'query'                    => $this->query,
-            'offset_date'              => $this->offsetDate,
-            'offset_message_id'        => $this->offsetMessageId,
-            'offset_message_thread_id' => $this->offsetMessageThreadId,
-            'limit'                    => $this->limit,
+            '@type'                 => static::TYPE_NAME,
+            'chat_id'               => $this->chatId,
+            'query'                 => $this->query,
+            'offset_date'           => $this->offsetDate,
+            'offset_message_id'     => $this->offsetMessageId,
+            'offset_forum_topic_id' => $this->offsetForumTopicId,
+            'limit'                 => $this->limit,
         ];
     }
 }

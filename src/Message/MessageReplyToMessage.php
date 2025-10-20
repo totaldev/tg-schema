@@ -30,6 +30,10 @@ class MessageReplyToMessage extends MessageReplyTo
          */
         protected ?TextQuote      $quote,
         /**
+         * Identifier of the checklist task in the original message that was replied; 0 if none.
+         */
+        protected int             $checklistTaskId,
+        /**
          * Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat.
          */
         protected ?MessageOrigin  $origin,
@@ -51,6 +55,7 @@ class MessageReplyToMessage extends MessageReplyTo
             $array['chat_id'],
             $array['message_id'],
             isset($array['quote']) ? TdSchemaRegistry::fromArray($array['quote']) : null,
+            $array['checklist_task_id'],
             isset($array['origin']) ? TdSchemaRegistry::fromArray($array['origin']) : null,
             $array['origin_send_date'],
             isset($array['content']) ? TdSchemaRegistry::fromArray($array['content']) : null,
@@ -60,6 +65,11 @@ class MessageReplyToMessage extends MessageReplyTo
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getChecklistTaskId(): int
+    {
+        return $this->checklistTaskId;
     }
 
     public function getContent(): ?MessageContent
@@ -90,13 +100,14 @@ class MessageReplyToMessage extends MessageReplyTo
     public function typeSerialize(): array
     {
         return [
-            '@type'            => static::TYPE_NAME,
-            'chat_id'          => $this->chatId,
-            'message_id'       => $this->messageId,
-            'quote'            => $this->quote ?? null,
-            'origin'           => $this->origin ?? null,
-            'origin_send_date' => $this->originSendDate,
-            'content'          => $this->content ?? null,
+            '@type'             => static::TYPE_NAME,
+            'chat_id'           => $this->chatId,
+            'message_id'        => $this->messageId,
+            'quote'             => $this->quote ?? null,
+            'checklist_task_id' => $this->checklistTaskId,
+            'origin'            => $this->origin ?? null,
+            'origin_send_date'  => $this->originSendDate,
+            'content'           => $this->content ?? null,
         ];
     }
 }

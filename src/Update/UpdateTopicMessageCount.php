@@ -26,7 +26,7 @@ class UpdateTopicMessageCount extends Update
          */
         protected MessageTopic $topicId,
         /**
-         * Approximate number of messages in the topics.
+         * Approximate number of messages in the topic.
          */
         protected int          $messageCount,
     ) {

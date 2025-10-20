@@ -11,7 +11,7 @@ use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
- * A detailed statistics about Telegram Stars earned by a bot or a chat.
+ * A detailed statistics about Telegram Stars earned by a user or a chat.
  */
 class StarRevenueStatistics extends TdObject
 {

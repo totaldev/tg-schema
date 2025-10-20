@@ -33,7 +33,7 @@ class GetChatMessageCalendar extends TdFunction
          */
         protected int                  $fromMessageId,
         /**
-         * Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported.
+         * Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported.
          */
         protected ?MessageTopic        $topicId = null,
     ) {}

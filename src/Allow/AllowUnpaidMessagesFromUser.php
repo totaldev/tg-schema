@@ -23,7 +23,7 @@ class AllowUnpaidMessagesFromUser extends TdFunction
         /**
          * Pass true to refund the user previously paid messages.
          */
-        protected bool $refundPayments
+        protected bool $refundPayments,
     ) {}
 
     public static function fromArray(array $array): AllowUnpaidMessagesFromUser

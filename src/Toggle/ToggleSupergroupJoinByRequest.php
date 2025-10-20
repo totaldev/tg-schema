@@ -18,7 +18,7 @@ class ToggleSupergroupJoinByRequest extends TdFunction
 
     public function __construct(
         /**
-         * Identifier of the supergroup that isn't a broadcast group.
+         * Identifier of the supergroup that isn't a broadcast group and isn't a channel direct message group.
          */
         protected int  $supergroupId,
         /**

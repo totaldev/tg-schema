@@ -104,6 +104,14 @@ class GroupCall extends TdObject
          */
         protected bool   $canToggleMuteNewParticipants,
         /**
+         * True, if users can send messages to the group call.
+         */
+        protected bool   $canSendMessages,
+        /**
+         * True, if the current user can enable or disable sending messages in the group call.
+         */
+        protected bool   $canToggleCanSendMessages,
+        /**
          * Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on.
          */
         protected int    $recordDuration,
@@ -141,6 +149,8 @@ class GroupCall extends TdObject
             $array['can_enable_video'],
             $array['mute_new_participants'],
             $array['can_toggle_mute_new_participants'],
+            $array['can_send_messages'],
+            $array['can_toggle_can_send_messages'],
             $array['record_duration'],
             $array['is_video_recorded'],
             $array['duration'],
@@ -155,6 +165,16 @@ class GroupCall extends TdObject
     public function getCanEnableVideo(): bool
     {
         return $this->canEnableVideo;
+    }
+
+    public function getCanSendMessages(): bool
+    {
+        return $this->canSendMessages;
+    }
+
+    public function getCanToggleCanSendMessages(): bool
+    {
+        return $this->canToggleCanSendMessages;
     }
 
     public function getCanToggleMuteNewParticipants(): bool
@@ -292,6 +312,8 @@ class GroupCall extends TdObject
             'can_enable_video'                 => $this->canEnableVideo,
             'mute_new_participants'            => $this->muteNewParticipants,
             'can_toggle_mute_new_participants' => $this->canToggleMuteNewParticipants,
+            'can_send_messages'                => $this->canSendMessages,
+            'can_toggle_can_send_messages'     => $this->canToggleCanSendMessages,
             'record_duration'                  => $this->recordDuration,
             'is_video_recorded'                => $this->isVideoRecorded,
             'duration'                         => $this->duration,

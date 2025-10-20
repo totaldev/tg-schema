@@ -7,6 +7,7 @@
 namespace Totaldev\TgSchema\Supergroup;
 
 use Totaldev\TgSchema\Chat\ChatMemberStatus;
+use Totaldev\TgSchema\Restriction\RestrictionInfo;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 use Totaldev\TgSchema\Usernames\Usernames;
@@ -67,11 +68,11 @@ class Supergroup extends TdObject
          */
         protected bool                $showMessageSender,
         /**
-         * True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups.
+         * True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups.
          */
         protected bool                $joinToSendMessages,
         /**
-         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat.
+         * True, if all users directly joining the supergroup need to be approved by supergroup administrators. Can be true only for non-broadcast supergroups with username, location, or a linked chat.
          */
         protected bool                $joinByRequest,
         /**
@@ -111,13 +112,9 @@ class Supergroup extends TdObject
          */
         protected bool                $hasForumTabs,
         /**
-         * True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler.
+         * Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none.
          */
-        protected bool                $hasSensitiveContent,
-        /**
-         * If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted.
-         */
-        protected string              $restrictionReason,
+        protected ?RestrictionInfo    $restrictionInfo,
         /**
          * Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message.
          */
@@ -157,8 +154,7 @@ class Supergroup extends TdObject
             isset($array['verification_status']) ? TdSchemaRegistry::fromArray($array['verification_status']) : null,
             $array['has_direct_messages_group'],
             $array['has_forum_tabs'],
-            $array['has_sensitive_content'],
-            $array['restriction_reason'],
+            isset($array['restriction_info']) ? TdSchemaRegistry::fromArray($array['restriction_info']) : null,
             $array['paid_message_star_count'],
             $array['has_active_stories'],
             $array['has_unread_active_stories'],
@@ -203,11 +199,6 @@ class Supergroup extends TdObject
     public function getHasLocation(): bool
     {
         return $this->hasLocation;
-    }
-
-    public function getHasSensitiveContent(): bool
-    {
-        return $this->hasSensitiveContent;
     }
 
     public function getHasUnreadActiveStories(): bool
@@ -270,9 +261,9 @@ class Supergroup extends TdObject
         return $this->paidMessageStarCount;
     }
 
-    public function getRestrictionReason(): string
+    public function getRestrictionInfo(): ?RestrictionInfo
     {
-        return $this->restrictionReason;
+        return $this->restrictionInfo;
     }
 
     public function getShowMessageSender(): bool
@@ -326,8 +317,7 @@ class Supergroup extends TdObject
             'verification_status'                   => $this->verificationStatus ?? null,
             'has_direct_messages_group'             => $this->hasDirectMessagesGroup,
             'has_forum_tabs'                        => $this->hasForumTabs,
-            'has_sensitive_content'                 => $this->hasSensitiveContent,
-            'restriction_reason'                    => $this->restrictionReason,
+            'restriction_info'                      => $this->restrictionInfo ?? null,
             'paid_message_star_count'               => $this->paidMessageStarCount,
             'has_active_stories'                    => $this->hasActiveStories,
             'has_unread_active_stories'             => $this->hasUnreadActiveStories,

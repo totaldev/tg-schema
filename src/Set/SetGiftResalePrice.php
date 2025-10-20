@@ -6,7 +6,9 @@
 
 namespace Totaldev\TgSchema\Set;
 
+use Totaldev\TgSchema\Gift\GiftResalePrice;
 use Totaldev\TgSchema\TdFunction;
+use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
  * Changes resale price of a unique gift owned by the current user.
@@ -19,19 +21,24 @@ class SetGiftResalePrice extends TdFunction
         /**
          * Identifier of the unique gift.
          */
-        protected string $receivedGiftId,
+        protected string           $receivedGiftId,
         /**
-         * The new price for the unique gift; 0 or getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max"). Pass 0 to disallow gift resale. The current user will receive getOption("gift_resale_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift.
+         * The new price for the unique gift; pass null to disallow gift resale. The current user will receive getOption("gift_resale_star_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for the gift if the gift price is in Telegram Stars or getOption("gift_resale_ton_earnings_per_mille") Toncoins for each 1000 Toncoins paid for the gift if the gift price is in Toncoins.
          */
-        protected int    $resaleStarCount,
+        protected ?GiftResalePrice $price = null,
     ) {}
 
     public static function fromArray(array $array): SetGiftResalePrice
     {
         return new static(
             $array['received_gift_id'],
-            $array['resale_star_count'],
+            isset($array['price']) ? TdSchemaRegistry::fromArray($array['price']) : null,
         );
+    }
+
+    public function getPrice(): ?GiftResalePrice
+    {
+        return $this->price;
     }
 
     public function getReceivedGiftId(): string
@@ -39,17 +46,12 @@ class SetGiftResalePrice extends TdFunction
         return $this->receivedGiftId;
     }
 
-    public function getResaleStarCount(): int
-    {
-        return $this->resaleStarCount;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'received_gift_id'  => $this->receivedGiftId,
-            'resale_star_count' => $this->resaleStarCount,
+            '@type'            => static::TYPE_NAME,
+            'received_gift_id' => $this->receivedGiftId,
+            'price'            => $this->price ?? null,
         ];
     }
 }

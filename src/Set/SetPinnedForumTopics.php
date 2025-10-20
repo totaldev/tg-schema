@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Set;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup.
+ * Changes the order of pinned topics in a forum supergroup chat or a chat with a bot with topics; requires can_manage_topics administrator right in the
+ * supergroup.
  */
 class SetPinnedForumTopics extends TdFunction
 {
@@ -21,18 +22,18 @@ class SetPinnedForumTopics extends TdFunction
          */
         protected int   $chatId,
         /**
-         * The new list of pinned forum topics.
+         * The new list of identifiers of the pinned forum topics.
          *
          * @var int[]
          */
-        protected array $messageThreadIds,
+        protected array $forumTopicIds,
     ) {}
 
     public static function fromArray(array $array): SetPinnedForumTopics
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_ids'],
+            $array['forum_topic_ids'],
         );
     }
 
@@ -41,17 +42,17 @@ class SetPinnedForumTopics extends TdFunction
         return $this->chatId;
     }
 
-    public function getMessageThreadIds(): array
+    public function getForumTopicIds(): array
     {
-        return $this->messageThreadIds;
+        return $this->forumTopicIds;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'              => static::TYPE_NAME,
-            'chat_id'            => $this->chatId,
-            'message_thread_ids' => $this->messageThreadIds,
+            '@type'           => static::TYPE_NAME,
+            'chat_id'         => $this->chatId,
+            'forum_topic_ids' => $this->forumTopicIds,
         ];
     }
 }

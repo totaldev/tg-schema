@@ -9,7 +9,7 @@ namespace Totaldev\TgSchema\Contact;
 use Totaldev\TgSchema\TdObject;
 
 /**
- * Describes a user contact.
+ * Describes a contact of a user.
  */
 class Contact extends TdObject
 {
@@ -21,11 +21,11 @@ class Contact extends TdObject
          */
         protected string $phoneNumber,
         /**
-         * First name of the user; 1-255 characters in length.
+         * First name of the user; 1-64 characters.
          */
         protected string $firstName,
         /**
-         * Last name of the user.
+         * Last name of the user; 0-64 characters.
          */
         protected string $lastName,
         /**

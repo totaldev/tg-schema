@@ -26,7 +26,7 @@ class ChatActionBarReportAddBlock extends ChatActionBar
         /**
          * Basic information about the other user in the chat; may be null if unknown.
          */
-        protected ?AccountInfo $accountInfo
+        protected ?AccountInfo $accountInfo,
     ) {
         parent::__construct();
     }

@@ -28,7 +28,7 @@ class AutoDownloadSettingsPresets extends TdObject
         /**
          * Preset with highest settings; expected to be used by default when connected on Wi-Fi.
          */
-        protected AutoDownloadSettings $high
+        protected AutoDownloadSettings $high,
     ) {}
 
     public static function fromArray(array $array): AutoDownloadSettingsPresets

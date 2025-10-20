@@ -38,6 +38,18 @@ class GiftUpgradePreview extends TdObject
          * @var UpgradedGiftBackdrop[]
          */
         protected array $backdrops,
+        /**
+         * Examples of price for gift upgrade from the maximum price to the minimum price.
+         *
+         * @var GiftUpgradePrice[]
+         */
+        protected array $prices,
+        /**
+         * Next changes for the price for gift upgrade with more granularity than in prices.
+         *
+         * @var GiftUpgradePrice[]
+         */
+        protected array $nextPrices,
     ) {}
 
     public static function fromArray(array $array): GiftUpgradePreview
@@ -46,6 +58,8 @@ class GiftUpgradePreview extends TdObject
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['models']),
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['symbols']),
             array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['backdrops']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['prices']),
+            array_map(static fn($x) => TdSchemaRegistry::fromArray($x), $array['next_prices']),
         );
     }
 
@@ -59,6 +73,16 @@ class GiftUpgradePreview extends TdObject
         return $this->models;
     }
 
+    public function getNextPrices(): array
+    {
+        return $this->nextPrices;
+    }
+
+    public function getPrices(): array
+    {
+        return $this->prices;
+    }
+
     public function getSymbols(): array
     {
         return $this->symbols;
@@ -67,10 +91,12 @@ class GiftUpgradePreview extends TdObject
     public function typeSerialize(): array
     {
         return [
-            '@type'     => static::TYPE_NAME,
-            'models'    => array_map(static fn($x) => $x->typeSerialize(), $this->models),
-            'symbols'   => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
-            'backdrops' => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
+            '@type'       => static::TYPE_NAME,
+            'models'      => array_map(static fn($x) => $x->typeSerialize(), $this->models),
+            'symbols'     => array_map(static fn($x) => $x->typeSerialize(), $this->symbols),
+            'backdrops'   => array_map(static fn($x) => $x->typeSerialize(), $this->backdrops),
+            'prices'      => array_map(static fn($x) => $x->typeSerialize(), $this->prices),
+            'next_prices' => array_map(static fn($x) => $x->typeSerialize(), $this->nextPrices),
         ];
     }
 }

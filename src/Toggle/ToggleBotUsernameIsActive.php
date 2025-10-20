@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Toggle;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the
- * maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true.
+ * Changes active state for a username of a bot. The editable username can be disabled only if there are other active usernames. May return an error with a
+ * message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true.
  */
 class ToggleBotUsernameIsActive extends TdFunction
 {

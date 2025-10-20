@@ -9,7 +9,8 @@ namespace Totaldev\TgSchema\Toggle;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic.
+ * Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of
+ * the topic.
  */
 class ToggleForumTopicIsClosed extends TdFunction
 {
@@ -21,9 +22,9 @@ class ToggleForumTopicIsClosed extends TdFunction
          */
         protected int  $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int  $messageThreadId,
+        protected int  $forumTopicId,
         /**
          * Pass true to close the topic; pass false to reopen it.
          */
@@ -34,7 +35,7 @@ class ToggleForumTopicIsClosed extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
             $array['is_closed'],
         );
     }
@@ -44,23 +45,23 @@ class ToggleForumTopicIsClosed extends TdFunction
         return $this->chatId;
     }
 
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
+    }
+
     public function getIsClosed(): bool
     {
         return $this->isClosed;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'is_closed'         => $this->isClosed,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'forum_topic_id' => $this->forumTopicId,
+            'is_closed'      => $this->isClosed,
         ];
     }
 }

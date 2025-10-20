@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Theme;
 
 use Totaldev\TgSchema\Background\Background;
 use Totaldev\TgSchema\Background\BackgroundFill;
+use Totaldev\TgSchema\Built\BuiltInTheme;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -20,33 +21,38 @@ class ThemeSettings extends TdObject
 
     public function __construct(
         /**
+         * Base theme for this theme.
+         */
+        protected BuiltInTheme    $baseTheme,
+        /**
          * Theme accent color in ARGB format.
          */
-        protected int            $accentColor,
+        protected int             $accentColor,
         /**
          * The background to be used in chats; may be null.
          */
-        protected ?Background    $background,
+        protected ?Background     $background,
         /**
-         * The fill to be used as a background for outgoing messages.
+         * The fill to be used as a background for outgoing messages; may be null if the fill from the base theme must be used instead.
          */
-        protected BackgroundFill $outgoingMessageFill,
+        protected ?BackgroundFill $outgoingMessageFill,
         /**
          * If true, the freeform gradient fill needs to be animated on every sent message.
          */
-        protected bool           $animateOutgoingMessageFill,
+        protected bool            $animateOutgoingMessageFill,
         /**
          * Accent color of outgoing messages in ARGB format.
          */
-        protected int            $outgoingMessageAccentColor,
+        protected int             $outgoingMessageAccentColor,
     ) {}
 
     public static function fromArray(array $array): ThemeSettings
     {
         return new static(
+            TdSchemaRegistry::fromArray($array['base_theme']),
             $array['accent_color'],
             isset($array['background']) ? TdSchemaRegistry::fromArray($array['background']) : null,
-            TdSchemaRegistry::fromArray($array['outgoing_message_fill']),
+            isset($array['outgoing_message_fill']) ? TdSchemaRegistry::fromArray($array['outgoing_message_fill']) : null,
             $array['animate_outgoing_message_fill'],
             $array['outgoing_message_accent_color'],
         );
@@ -67,12 +73,17 @@ class ThemeSettings extends TdObject
         return $this->background;
     }
 
+    public function getBaseTheme(): BuiltInTheme
+    {
+        return $this->baseTheme;
+    }
+
     public function getOutgoingMessageAccentColor(): int
     {
         return $this->outgoingMessageAccentColor;
     }
 
-    public function getOutgoingMessageFill(): BackgroundFill
+    public function getOutgoingMessageFill(): ?BackgroundFill
     {
         return $this->outgoingMessageFill;
     }
@@ -81,9 +92,10 @@ class ThemeSettings extends TdObject
     {
         return [
             '@type'                         => static::TYPE_NAME,
+            'base_theme'                    => $this->baseTheme->typeSerialize(),
             'accent_color'                  => $this->accentColor,
             'background'                    => $this->background ?? null,
-            'outgoing_message_fill'         => $this->outgoingMessageFill->typeSerialize(),
+            'outgoing_message_fill'         => $this->outgoingMessageFill ?? null,
             'animate_outgoing_message_fill' => $this->animateOutgoingMessageFill,
             'outgoing_message_accent_color' => $this->outgoingMessageAccentColor,
         ];

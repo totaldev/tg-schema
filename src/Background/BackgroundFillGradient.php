@@ -25,7 +25,7 @@ class BackgroundFillGradient extends BackgroundFill
         /**
          * Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45.
          */
-        protected int $rotationAngle
+        protected int $rotationAngle,
     ) {
         parent::__construct();
     }

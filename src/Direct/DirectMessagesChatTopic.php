@@ -41,7 +41,7 @@ class DirectMessagesChatTopic extends TdObject
          */
         protected bool          $canSendUnpaidMessages,
         /**
-         * True, if the forum topic is marked as unread.
+         * True, if the topic is marked as unread.
          */
         protected bool          $isMarkedAsUnread,
         /**

@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * This phpFile is auto-generated.
+ */
+
+namespace Totaldev\TgSchema\Message;
+
+use Totaldev\TgSchema\Sticker\Sticker;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
+/**
+ * Toncoins were gifted to a user.
+ */
+class MessageGiftedTon extends MessageContent
+{
+    public const TYPE_NAME = 'messageGiftedTon';
+
+    public function __construct(
+        /**
+         * The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing.
+         */
+        protected int      $gifterUserId,
+        /**
+         * The identifier of a user that received Toncoins; 0 if the gift is incoming.
+         */
+        protected int      $receiverUserId,
+        /**
+         * The received amount of Toncoins, in the smallest units of the cryptocurrency.
+         */
+        protected int      $tonAmount,
+        /**
+         * Identifier of the transaction for Toncoin credit; for receiver only.
+         */
+        protected string   $transactionId,
+        /**
+         * A sticker to be shown in the message; may be null if unknown.
+         */
+        protected ?Sticker $sticker,
+    ) {
+        parent::__construct();
+    }
+
+    public static function fromArray(array $array): MessageGiftedTon
+    {
+        return new static(
+            $array['gifter_user_id'],
+            $array['receiver_user_id'],
+            $array['ton_amount'],
+            $array['transaction_id'],
+            isset($array['sticker']) ? TdSchemaRegistry::fromArray($array['sticker']) : null,
+        );
+    }
+
+    public function getGifterUserId(): int
+    {
+        return $this->gifterUserId;
+    }
+
+    public function getReceiverUserId(): int
+    {
+        return $this->receiverUserId;
+    }
+
+    public function getSticker(): ?Sticker
+    {
+        return $this->sticker;
+    }
+
+    public function getTonAmount(): int
+    {
+        return $this->tonAmount;
+    }
+
+    public function getTransactionId(): string
+    {
+        return $this->transactionId;
+    }
+
+    public function typeSerialize(): array
+    {
+        return [
+            '@type'            => static::TYPE_NAME,
+            'gifter_user_id'   => $this->gifterUserId,
+            'receiver_user_id' => $this->receiverUserId,
+            'ton_amount'       => $this->tonAmount,
+            'transaction_id'   => $this->transactionId,
+            'sticker'          => $this->sticker ?? null,
+        ];
+    }
+}

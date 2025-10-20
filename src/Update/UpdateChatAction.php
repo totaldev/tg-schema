@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Update;
 
 use Totaldev\TgSchema\Chat\ChatAction;
 use Totaldev\TgSchema\Message\MessageSender;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
 /**
@@ -23,9 +24,9 @@ class UpdateChatAction extends Update
          */
         protected int           $chatId,
         /**
-         * If not 0, the message thread identifier in which the action was performed.
+         * Identifier of the specific topic in which the action was performed; may be null if none.
          */
-        protected int           $messageThreadId,
+        protected ?MessageTopic $topicId,
         /**
          * Identifier of a message sender performing the action.
          */
@@ -42,7 +43,7 @@ class UpdateChatAction extends Update
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             TdSchemaRegistry::fromArray($array['sender_id']),
             TdSchemaRegistry::fromArray($array['action']),
         );
@@ -58,24 +59,24 @@ class UpdateChatAction extends Update
         return $this->chatId;
     }
 
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
-    }
-
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'sender_id'         => $this->senderId->typeSerialize(),
-            'action'            => $this->action->typeSerialize(),
+            '@type'     => static::TYPE_NAME,
+            'chat_id'   => $this->chatId,
+            'topic_id'  => $this->topicId ?? null,
+            'sender_id' => $this->senderId->typeSerialize(),
+            'action'    => $this->action->typeSerialize(),
         ];
     }
 }

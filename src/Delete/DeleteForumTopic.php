@@ -9,8 +9,8 @@ namespace Totaldev\TgSchema\Delete;
 use Totaldev\TgSchema\TdFunction;
 
 /**
- * Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic
- * has no messages from other users and has at most 11 messages.
+ * Deletes all messages from a topic in a forum supergroup chat or a chat with a bot with topics; requires can_delete_messages administrator right in the
+ * supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages.
  */
 class DeleteForumTopic extends TdFunction
 {
@@ -22,16 +22,16 @@ class DeleteForumTopic extends TdFunction
          */
         protected int $chatId,
         /**
-         * Message thread identifier of the forum topic.
+         * Forum topic identifier.
          */
-        protected int $messageThreadId,
+        protected int $forumTopicId,
     ) {}
 
     public static function fromArray(array $array): DeleteForumTopic
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
         );
     }
 
@@ -40,17 +40,17 @@ class DeleteForumTopic extends TdFunction
         return $this->chatId;
     }
 
-    public function getMessageThreadId(): int
+    public function getForumTopicId(): int
     {
-        return $this->messageThreadId;
+        return $this->forumTopicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
+            '@type'          => static::TYPE_NAME,
+            'chat_id'        => $this->chatId,
+            'forum_topic_id' => $this->forumTopicId,
         ];
     }
 }

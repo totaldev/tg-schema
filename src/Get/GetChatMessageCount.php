@@ -32,7 +32,7 @@ class GetChatMessageCount extends TdFunction
          */
         protected bool                 $returnLocal,
         /**
-         * Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics.
+         * Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported.
          */
         protected ?MessageTopic        $topicId = null,
     ) {}

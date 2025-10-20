@@ -25,6 +25,10 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
          * True, if the video chat is expected to be a live stream in a channel or a broadcast group.
          */
         protected bool       $isLiveStream,
+        /**
+         * True, if the user can use the link to join the video chat without being muted by administrators.
+         */
+        protected bool       $joinsAsSpeaker,
     ) {
         parent::__construct();
     }
@@ -34,12 +38,18 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
         return new static(
             isset($array['photo']) ? TdSchemaRegistry::fromArray($array['photo']) : null,
             $array['is_live_stream'],
+            $array['joins_as_speaker'],
         );
     }
 
     public function getIsLiveStream(): bool
     {
         return $this->isLiveStream;
+    }
+
+    public function getJoinsAsSpeaker(): bool
+    {
+        return $this->joinsAsSpeaker;
     }
 
     public function getPhoto(): ?ChatPhoto
@@ -50,9 +60,10 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
     public function typeSerialize(): array
     {
         return [
-            '@type'          => static::TYPE_NAME,
-            'photo'          => $this->photo ?? null,
-            'is_live_stream' => $this->isLiveStream,
+            '@type'            => static::TYPE_NAME,
+            'photo'            => $this->photo ?? null,
+            'is_live_stream'   => $this->isLiveStream,
+            'joins_as_speaker' => $this->joinsAsSpeaker,
         ];
     }
 }

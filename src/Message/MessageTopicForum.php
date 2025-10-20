@@ -7,7 +7,7 @@
 namespace Totaldev\TgSchema\Message;
 
 /**
- * A topic in a forum supergroup chat.
+ * A topic in a forum supergroup chat or a chat with a bot.
  */
 class MessageTopicForum extends MessageTopic
 {
@@ -15,7 +15,7 @@ class MessageTopicForum extends MessageTopic
 
     public function __construct(
         /**
-         * Unique identifier of the forum topic; all messages in a non-forum supergroup chats belongs to the General topic.
+         * Unique identifier of the forum topic.
          */
         protected int $forumTopicId
     ) {

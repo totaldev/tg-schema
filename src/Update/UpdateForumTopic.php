@@ -22,9 +22,9 @@ class UpdateForumTopic extends Update
          */
         protected int                      $chatId,
         /**
-         * Message thread identifier of the topic.
+         * Forum topic identifier of the topic.
          */
-        protected int                      $messageThreadId,
+        protected int                      $forumTopicId,
         /**
          * True, if the topic is pinned in the topic list.
          */
@@ -57,7 +57,7 @@ class UpdateForumTopic extends Update
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            $array['forum_topic_id'],
             $array['is_pinned'],
             $array['last_read_inbox_message_id'],
             $array['last_read_outbox_message_id'],
@@ -70,6 +70,11 @@ class UpdateForumTopic extends Update
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function getForumTopicId(): int
+    {
+        return $this->forumTopicId;
     }
 
     public function getIsPinned(): bool
@@ -85,11 +90,6 @@ class UpdateForumTopic extends Update
     public function getLastReadOutboxMessageId(): int
     {
         return $this->lastReadOutboxMessageId;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 
     public function getNotificationSettings(): ChatNotificationSettings
@@ -112,7 +112,7 @@ class UpdateForumTopic extends Update
         return [
             '@type'                       => static::TYPE_NAME,
             'chat_id'                     => $this->chatId,
-            'message_thread_id'           => $this->messageThreadId,
+            'forum_topic_id'              => $this->forumTopicId,
             'is_pinned'                   => $this->isPinned,
             'last_read_inbox_message_id'  => $this->lastReadInboxMessageId,
             'last_read_outbox_message_id' => $this->lastReadOutboxMessageId,

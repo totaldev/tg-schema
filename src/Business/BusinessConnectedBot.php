@@ -28,7 +28,7 @@ class BusinessConnectedBot extends TdObject
         /**
          * Rights of the bot.
          */
-        protected BusinessBotRights  $rights
+        protected BusinessBotRights  $rights,
     ) {}
 
     public static function fromArray(array $array): BusinessConnectedBot

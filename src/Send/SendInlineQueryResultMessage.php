@@ -8,6 +8,7 @@ namespace Totaldev\TgSchema\Send;
 
 use Totaldev\TgSchema\Input\InputMessageReplyTo;
 use Totaldev\TgSchema\Message\MessageSendOptions;
+use Totaldev\TgSchema\Message\MessageTopic;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -24,10 +25,6 @@ class SendInlineQueryResultMessage extends TdFunction
          */
         protected int                  $chatId,
         /**
-         * If not 0, the message thread identifier in which the message will be sent.
-         */
-        protected int                  $messageThreadId,
-        /**
          * Identifier of the inline query.
          */
         protected int                  $queryId,
@@ -39,6 +36,10 @@ class SendInlineQueryResultMessage extends TdFunction
          * Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
          */
         protected bool                 $hideViaBot,
+        /**
+         * Topic in which the message will be sent; pass null if none.
+         */
+        protected ?MessageTopic        $topicId = null,
         /**
          * Information about the message or story to be replied; pass null if none.
          */
@@ -53,7 +54,7 @@ class SendInlineQueryResultMessage extends TdFunction
     {
         return new static(
             $array['chat_id'],
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             $array['query_id'],
@@ -70,11 +71,6 @@ class SendInlineQueryResultMessage extends TdFunction
     public function getHideViaBot(): bool
     {
         return $this->hideViaBot;
-    }
-
-    public function getMessageThreadId(): int
-    {
-        return $this->messageThreadId;
     }
 
     public function getOptions(): ?MessageSendOptions
@@ -97,17 +93,22 @@ class SendInlineQueryResultMessage extends TdFunction
         return $this->resultId;
     }
 
+    public function getTopicId(): ?MessageTopic
+    {
+        return $this->topicId;
+    }
+
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'chat_id'           => $this->chatId,
-            'message_thread_id' => $this->messageThreadId,
-            'reply_to'          => $this->replyTo ?? null,
-            'options'           => $this->options ?? null,
-            'query_id'          => $this->queryId,
-            'result_id'         => $this->resultId,
-            'hide_via_bot'      => $this->hideViaBot,
+            '@type'        => static::TYPE_NAME,
+            'chat_id'      => $this->chatId,
+            'topic_id'     => $this->topicId ?? null,
+            'reply_to'     => $this->replyTo ?? null,
+            'options'      => $this->options ?? null,
+            'query_id'     => $this->queryId,
+            'result_id'    => $this->resultId,
+            'hide_via_bot' => $this->hideViaBot,
         ];
     }
 }

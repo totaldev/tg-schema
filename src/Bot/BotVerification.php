@@ -29,7 +29,7 @@ class BotVerification extends TdObject
         /**
          * Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities.
          */
-        protected FormattedText $customDescription
+        protected FormattedText $customDescription,
     ) {}
 
     public static function fromArray(array $array): BotVerification

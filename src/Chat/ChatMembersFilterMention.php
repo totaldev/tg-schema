@@ -6,6 +6,9 @@
 
 namespace Totaldev\TgSchema\Chat;
 
+use Totaldev\TgSchema\Message\MessageTopic;
+use Totaldev\TgSchema\TdSchemaRegistry;
+
 /**
  * Returns users which can be mentioned in the chat.
  */
@@ -15,9 +18,9 @@ class ChatMembersFilterMention extends ChatMembersFilter
 
     public function __construct(
         /**
-         * If non-zero, the identifier of the current message thread.
+         * Identifier of the topic in which the users will be mentioned; pass null if none.
          */
-        protected int $messageThreadId
+        protected ?MessageTopic $topicId = null
     ) {
         parent::__construct();
     }
@@ -25,20 +28,20 @@ class ChatMembersFilterMention extends ChatMembersFilter
     public static function fromArray(array $array): ChatMembersFilterMention
     {
         return new static(
-            $array['message_thread_id'],
+            isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
         );
     }
 
-    public function getMessageThreadId(): int
+    public function getTopicId(): ?MessageTopic
     {
-        return $this->messageThreadId;
+        return $this->topicId;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'             => static::TYPE_NAME,
-            'message_thread_id' => $this->messageThreadId,
+            '@type'    => static::TYPE_NAME,
+            'topic_id' => $this->topicId ?? null,
         ];
     }
 }

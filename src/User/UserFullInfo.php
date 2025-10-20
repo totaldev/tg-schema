@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\User;
 
+use Totaldev\TgSchema\Audio\Audio;
 use Totaldev\TgSchema\Birthdate\Birthdate;
 use Totaldev\TgSchema\Block\BlockList;
 use Totaldev\TgSchema\Bot\BotInfo;
@@ -14,6 +15,7 @@ use Totaldev\TgSchema\Business\BusinessInfo;
 use Totaldev\TgSchema\Chat\ChatPhoto;
 use Totaldev\TgSchema\Formatted\FormattedText;
 use Totaldev\TgSchema\Gift\GiftSettings;
+use Totaldev\TgSchema\Profile\ProfileTab;
 use Totaldev\TgSchema\TdObject;
 use Totaldev\TgSchema\TdSchemaRegistry;
 
@@ -114,6 +116,30 @@ class UserFullInfo extends TdObject
          */
         protected ?BotVerification $botVerification,
         /**
+         * The main tab chosen by the user; may be null if not chosen manually.
+         */
+        protected ?ProfileTab      $mainProfileTab,
+        /**
+         * The first audio file added to the user's profile; may be null if none.
+         */
+        protected ?Audio           $firstProfileAudio,
+        /**
+         * The current rating of the user; may be null if none.
+         */
+        protected ?UserRating      $rating,
+        /**
+         * The rating of the user after the next change; may be null if the user isn't the current user or there are no pending rating changes.
+         */
+        protected ?UserRating      $pendingRating,
+        /**
+         * Unix timestamp when rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes.
+         */
+        protected int              $pendingRatingDate,
+        /**
+         * Note added to the user's contact; may be null if none.
+         */
+        protected ?FormattedText   $note,
+        /**
          * Information about business settings for Telegram Business accounts; may be null if none.
          */
         protected ?BusinessInfo    $businessInfo,
@@ -148,6 +174,12 @@ class UserFullInfo extends TdObject
             $array['outgoing_paid_message_star_count'],
             TdSchemaRegistry::fromArray($array['gift_settings']),
             isset($array['bot_verification']) ? TdSchemaRegistry::fromArray($array['bot_verification']) : null,
+            isset($array['main_profile_tab']) ? TdSchemaRegistry::fromArray($array['main_profile_tab']) : null,
+            isset($array['first_profile_audio']) ? TdSchemaRegistry::fromArray($array['first_profile_audio']) : null,
+            isset($array['rating']) ? TdSchemaRegistry::fromArray($array['rating']) : null,
+            isset($array['pending_rating']) ? TdSchemaRegistry::fromArray($array['pending_rating']) : null,
+            $array['pending_rating_date'],
+            isset($array['note']) ? TdSchemaRegistry::fromArray($array['note']) : null,
             isset($array['business_info']) ? TdSchemaRegistry::fromArray($array['business_info']) : null,
             isset($array['bot_info']) ? TdSchemaRegistry::fromArray($array['bot_info']) : null,
         );
@@ -186,6 +218,11 @@ class UserFullInfo extends TdObject
     public function getCanBeCalled(): bool
     {
         return $this->canBeCalled;
+    }
+
+    public function getFirstProfileAudio(): ?Audio
+    {
+        return $this->firstProfileAudio;
     }
 
     public function getGiftCount(): int
@@ -233,14 +270,34 @@ class UserFullInfo extends TdObject
         return $this->incomingPaidMessageStarCount;
     }
 
+    public function getMainProfileTab(): ?ProfileTab
+    {
+        return $this->mainProfileTab;
+    }
+
     public function getNeedPhoneNumberPrivacyException(): bool
     {
         return $this->needPhoneNumberPrivacyException;
     }
 
+    public function getNote(): ?FormattedText
+    {
+        return $this->note;
+    }
+
     public function getOutgoingPaidMessageStarCount(): int
     {
         return $this->outgoingPaidMessageStarCount;
+    }
+
+    public function getPendingRating(): ?UserRating
+    {
+        return $this->pendingRating;
+    }
+
+    public function getPendingRatingDate(): int
+    {
+        return $this->pendingRatingDate;
     }
 
     public function getPersonalChatId(): int
@@ -261,6 +318,11 @@ class UserFullInfo extends TdObject
     public function getPublicPhoto(): ?ChatPhoto
     {
         return $this->publicPhoto;
+    }
+
+    public function getRating(): ?UserRating
+    {
+        return $this->rating;
     }
 
     public function getSetChatBackground(): bool
@@ -299,6 +361,12 @@ class UserFullInfo extends TdObject
             'outgoing_paid_message_star_count'             => $this->outgoingPaidMessageStarCount,
             'gift_settings'                                => $this->giftSettings->typeSerialize(),
             'bot_verification'                             => $this->botVerification ?? null,
+            'main_profile_tab'                             => $this->mainProfileTab ?? null,
+            'first_profile_audio'                          => $this->firstProfileAudio ?? null,
+            'rating'                                       => $this->rating ?? null,
+            'pending_rating'                               => $this->pendingRating ?? null,
+            'pending_rating_date'                          => $this->pendingRatingDate,
+            'note'                                         => $this->note ?? null,
             'business_info'                                => $this->businessInfo ?? null,
             'bot_info'                                     => $this->botInfo ?? null,
         ];

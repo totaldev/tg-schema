@@ -6,6 +6,7 @@
 
 namespace Totaldev\TgSchema\Send;
 
+use Totaldev\TgSchema\Gift\GiftResalePrice;
 use Totaldev\TgSchema\Message\MessageSender;
 use Totaldev\TgSchema\TdFunction;
 use Totaldev\TgSchema\TdSchemaRegistry;
@@ -22,15 +23,15 @@ class SendResoldGift extends TdFunction
         /**
          * Name of the upgraded gift to send.
          */
-        protected string        $giftName,
+        protected string          $giftName,
         /**
          * Identifier of the user or the channel chat that will receive the gift.
          */
-        protected MessageSender $ownerId,
+        protected MessageSender   $ownerId,
         /**
-         * The amount of Telegram Stars required to pay for the gift.
+         * The price that the user agreed to pay for the gift.
          */
-        protected int           $starCount,
+        protected GiftResalePrice $price,
     ) {}
 
     public static function fromArray(array $array): SendResoldGift
@@ -38,7 +39,7 @@ class SendResoldGift extends TdFunction
         return new static(
             $array['gift_name'],
             TdSchemaRegistry::fromArray($array['owner_id']),
-            $array['star_count'],
+            TdSchemaRegistry::fromArray($array['price']),
         );
     }
 
@@ -52,18 +53,18 @@ class SendResoldGift extends TdFunction
         return $this->ownerId;
     }
 
-    public function getStarCount(): int
+    public function getPrice(): GiftResalePrice
     {
-        return $this->starCount;
+        return $this->price;
     }
 
     public function typeSerialize(): array
     {
         return [
-            '@type'      => static::TYPE_NAME,
-            'gift_name'  => $this->giftName,
-            'owner_id'   => $this->ownerId->typeSerialize(),
-            'star_count' => $this->starCount,
+            '@type'     => static::TYPE_NAME,
+            'gift_name' => $this->giftName,
+            'owner_id'  => $this->ownerId->typeSerialize(),
+            'price'     => $this->price->typeSerialize(),
         ];
     }
 }
