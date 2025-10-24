@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSuitableDiscussionChats extends TdFunction
 {
-    public const TYPE_NAME = 'getSuitableDiscussionChats';
+    public const string TYPE_NAME = 'getSuitableDiscussionChats';
 
     public function __construct() {}
 

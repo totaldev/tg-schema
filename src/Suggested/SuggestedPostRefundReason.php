@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SuggestedPostRefundReason extends TdObject
 {
-    public const TYPE_NAME = 'SuggestedPostRefundReason';
+    public const string TYPE_NAME = 'SuggestedPostRefundReason';
 
     public function __construct() {}
 

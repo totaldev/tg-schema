@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatMembersFilter extends TdObject
 {
-    public const TYPE_NAME = 'ChatMembersFilter';
+    public const string TYPE_NAME = 'ChatMembersFilter';
 
     public function __construct() {}
 

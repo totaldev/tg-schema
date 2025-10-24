@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CancelPreliminaryUploadFile extends TdFunction
 {
-    public const TYPE_NAME = 'cancelPreliminaryUploadFile';
+    public const string TYPE_NAME = 'cancelPreliminaryUploadFile';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CancelPreliminaryUploadFile extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

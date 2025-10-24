@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedPostRefundReasonPostDeleted extends SuggestedPostRefundReason
 {
-    public const TYPE_NAME = 'suggestedPostRefundReasonPostDeleted';
+    public const string TYPE_NAME = 'suggestedPostRefundReasonPostDeleted';
 
     public function __construct()
     {

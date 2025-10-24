@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditBusinessMessageText extends TdFunction
 {
-    public const TYPE_NAME = 'editBusinessMessageText';
+    public const string TYPE_NAME = 'editBusinessMessageText';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class EditBusinessMessageText extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Revenue;
  */
 class RevenueWithdrawalStateSucceeded extends RevenueWithdrawalState
 {
-    public const TYPE_NAME = 'revenueWithdrawalStateSucceeded';
+    public const string TYPE_NAME = 'revenueWithdrawalStateSucceeded';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RevenueWithdrawalStateSucceeded extends RevenueWithdrawalState
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

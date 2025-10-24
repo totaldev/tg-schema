@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Collectible;
  */
 class CollectibleItemTypePhoneNumber extends CollectibleItemType
 {
-    public const TYPE_NAME = 'collectibleItemTypePhoneNumber';
+    public const string TYPE_NAME = 'collectibleItemTypePhoneNumber';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CollectibleItemTypePhoneNumber extends CollectibleItemType
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

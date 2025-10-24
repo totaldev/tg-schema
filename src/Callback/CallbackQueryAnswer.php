@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallbackQueryAnswer extends TdObject
 {
-    public const TYPE_NAME = 'callbackQueryAnswer';
+    public const string TYPE_NAME = 'callbackQueryAnswer';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class CallbackQueryAnswer extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setShowAlert(bool $value): static
+    {
+        $this->showAlert = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AutosaveSettingsScope extends TdObject
 {
-    public const TYPE_NAME = 'AutosaveSettingsScope';
+    public const string TYPE_NAME = 'AutosaveSettingsScope';
 
     public function __construct() {}
 

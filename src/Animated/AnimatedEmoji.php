@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AnimatedEmoji extends TdObject
 {
-    public const TYPE_NAME = 'animatedEmoji';
+    public const string TYPE_NAME = 'animatedEmoji';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class AnimatedEmoji extends TdObject
     public function getStickerWidth(): int
     {
         return $this->stickerWidth;
+    }
+
+    public function setFitzpatrickType(int $value): static
+    {
+        $this->fitzpatrickType = $value;
+
+        return $this;
+    }
+
+    public function setSound(?File $value): static
+    {
+        $this->sound = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setStickerHeight(int $value): static
+    {
+        $this->stickerHeight = $value;
+
+        return $this;
+    }
+
+    public function setStickerWidth(int $value): static
+    {
+        $this->stickerWidth = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

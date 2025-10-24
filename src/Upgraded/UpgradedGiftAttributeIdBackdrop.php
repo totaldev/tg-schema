@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftAttributeIdBackdrop extends UpgradedGiftAttributeId
 {
-    public const TYPE_NAME = 'upgradedGiftAttributeIdBackdrop';
+    public const string TYPE_NAME = 'upgradedGiftAttributeIdBackdrop';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpgradedGiftAttributeIdBackdrop extends UpgradedGiftAttributeId
     public function getBackdropId(): int
     {
         return $this->backdropId;
+    }
+
+    public function setBackdropId(int $value): static
+    {
+        $this->backdropId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

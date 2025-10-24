@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmojiKeyword extends TdObject
 {
-    public const TYPE_NAME = 'emojiKeyword';
+    public const string TYPE_NAME = 'emojiKeyword';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class EmojiKeyword extends TdObject
     public function getKeyword(): string
     {
         return $this->keyword;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setKeyword(string $value): static
+    {
+        $this->keyword = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

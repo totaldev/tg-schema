@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextParseModeMarkdown extends TextParseMode
 {
-    public const TYPE_NAME = 'textParseModeMarkdown';
+    public const string TYPE_NAME = 'textParseModeMarkdown';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextParseModeMarkdown extends TextParseMode
     public function getVersion(): int
     {
         return $this->version;
+    }
+
+    public function setVersion(int $value): static
+    {
+        $this->version = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

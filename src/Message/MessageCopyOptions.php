@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageCopyOptions extends TdObject
 {
-    public const TYPE_NAME = 'messageCopyOptions';
+    public const string TYPE_NAME = 'messageCopyOptions';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class MessageCopyOptions extends TdObject
     public function getSendCopy(): bool
     {
         return $this->sendCopy;
+    }
+
+    public function setNewCaption(?FormattedText $value): static
+    {
+        $this->newCaption = $value;
+
+        return $this;
+    }
+
+    public function setNewShowCaptionAboveMedia(bool $value): static
+    {
+        $this->newShowCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setReplaceCaption(bool $value): static
+    {
+        $this->replaceCaption = $value;
+
+        return $this;
+    }
+
+    public function setSendCopy(bool $value): static
+    {
+        $this->sendCopy = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

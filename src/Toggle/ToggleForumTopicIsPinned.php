@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleForumTopicIsPinned extends TdFunction
 {
-    public const TYPE_NAME = 'toggleForumTopicIsPinned';
+    public const string TYPE_NAME = 'toggleForumTopicIsPinned';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class ToggleForumTopicIsPinned extends TdFunction
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

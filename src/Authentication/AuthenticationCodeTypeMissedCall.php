@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeMissedCall';
+    public const string TYPE_NAME = 'authenticationCodeTypeMissedCall';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class AuthenticationCodeTypeMissedCall extends AuthenticationCodeType
     public function getPhoneNumberPrefix(): string
     {
         return $this->phoneNumberPrefix;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumberPrefix(string $value): static
+    {
+        $this->phoneNumberPrefix = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

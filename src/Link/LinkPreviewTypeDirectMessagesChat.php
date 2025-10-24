@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeDirectMessagesChat extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeDirectMessagesChat';
+    public const string TYPE_NAME = 'linkPreviewTypeDirectMessagesChat';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeDirectMessagesChat extends LinkPreviewType
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

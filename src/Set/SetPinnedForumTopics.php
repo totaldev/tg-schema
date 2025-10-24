@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetPinnedForumTopics extends TdFunction
 {
-    public const TYPE_NAME = 'setPinnedForumTopics';
+    public const string TYPE_NAME = 'setPinnedForumTopics';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetPinnedForumTopics extends TdFunction
     public function getForumTopicIds(): array
     {
         return $this->forumTopicIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicIds(array $value): static
+    {
+        $this->forumTopicIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

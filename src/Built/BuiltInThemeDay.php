@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Built;
  */
 class BuiltInThemeDay extends BuiltInTheme
 {
-    public const TYPE_NAME = 'builtInThemeDay';
+    public const string TYPE_NAME = 'builtInThemeDay';
 
     public function __construct()
     {

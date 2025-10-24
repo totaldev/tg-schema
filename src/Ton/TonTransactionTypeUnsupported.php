@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Ton;
  */
 class TonTransactionTypeUnsupported extends TonTransactionType
 {
-    public const TYPE_NAME = 'tonTransactionTypeUnsupported';
+    public const string TYPE_NAME = 'tonTransactionTypeUnsupported';
 
     public function __construct()
     {

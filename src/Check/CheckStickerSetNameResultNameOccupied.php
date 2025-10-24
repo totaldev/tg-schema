@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckStickerSetNameResultNameOccupied extends CheckStickerSetNameResult
 {
-    public const TYPE_NAME = 'checkStickerSetNameResultNameOccupied';
+    public const string TYPE_NAME = 'checkStickerSetNameResultNameOccupied';
 
     public function __construct()
     {

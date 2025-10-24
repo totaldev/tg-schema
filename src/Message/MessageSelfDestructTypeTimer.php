@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSelfDestructTypeTimer extends MessageSelfDestructType
 {
-    public const TYPE_NAME = 'messageSelfDestructTypeTimer';
+    public const string TYPE_NAME = 'messageSelfDestructTypeTimer';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageSelfDestructTypeTimer extends MessageSelfDestructType
     public function getSelfDestructTime(): int
     {
         return $this->selfDestructTime;
+    }
+
+    public function setSelfDestructTime(int $value): static
+    {
+        $this->selfDestructTime = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

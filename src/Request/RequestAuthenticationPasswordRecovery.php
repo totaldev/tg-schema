@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RequestAuthenticationPasswordRecovery extends TdFunction
 {
-    public const TYPE_NAME = 'requestAuthenticationPasswordRecovery';
+    public const string TYPE_NAME = 'requestAuthenticationPasswordRecovery';
 
     public function __construct() {}
 

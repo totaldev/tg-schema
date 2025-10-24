@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallStateHangingUp extends CallState
 {
-    public const TYPE_NAME = 'callStateHangingUp';
+    public const string TYPE_NAME = 'callStateHangingUp';
 
     public function __construct()
     {

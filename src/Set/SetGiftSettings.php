@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetGiftSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setGiftSettings';
+    public const string TYPE_NAME = 'setGiftSettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetGiftSettings extends TdFunction
     public function getSettings(): GiftSettings
     {
         return $this->settings;
+    }
+
+    public function setSettings(GiftSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Speech;
  */
 class SpeechRecognitionResultPending extends SpeechRecognitionResult
 {
-    public const TYPE_NAME = 'speechRecognitionResultPending';
+    public const string TYPE_NAME = 'speechRecognitionResultPending';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SpeechRecognitionResultPending extends SpeechRecognitionResult
     public function getPartialText(): string
     {
         return $this->partialText;
+    }
+
+    public function setPartialText(string $value): static
+    {
+        $this->partialText = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

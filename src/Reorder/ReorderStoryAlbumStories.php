@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReorderStoryAlbumStories extends TdFunction
 {
-    public const TYPE_NAME = 'reorderStoryAlbumStories';
+    public const string TYPE_NAME = 'reorderStoryAlbumStories';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ReorderStoryAlbumStories extends TdFunction
     public function getStoryIds(): array
     {
         return $this->storyIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setStoryAlbumId(int $value): static
+    {
+        $this->storyAlbumId = $value;
+
+        return $this;
+    }
+
+    public function setStoryIds(array $value): static
+    {
+        $this->storyIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageReadDateMyPrivacyRestricted extends MessageReadDate
 {
-    public const TYPE_NAME = 'messageReadDateMyPrivacyRestricted';
+    public const string TYPE_NAME = 'messageReadDateMyPrivacyRestricted';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InlineQueryResult extends TdObject
 {
-    public const TYPE_NAME = 'InlineQueryResult';
+    public const string TYPE_NAME = 'InlineQueryResult';
 
     public function __construct() {}
 

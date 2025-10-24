@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayPrizeStars extends GiveawayPrize
 {
-    public const TYPE_NAME = 'giveawayPrizeStars';
+    public const string TYPE_NAME = 'giveawayPrizeStars';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiveawayPrizeStars extends GiveawayPrize
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

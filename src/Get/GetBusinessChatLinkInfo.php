@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBusinessChatLinkInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getBusinessChatLinkInfo';
+    public const string TYPE_NAME = 'getBusinessChatLinkInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetBusinessChatLinkInfo extends TdFunction
     public function getLinkName(): string
     {
         return $this->linkName;
+    }
+
+    public function setLinkName(string $value): static
+    {
+        $this->linkName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

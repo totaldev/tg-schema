@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SupergroupMembersFilter extends TdObject
 {
-    public const TYPE_NAME = 'SupergroupMembersFilter';
+    public const string TYPE_NAME = 'SupergroupMembersFilter';
 
     public function __construct() {}
 

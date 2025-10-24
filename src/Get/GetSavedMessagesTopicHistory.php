@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedMessagesTopicHistory extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedMessagesTopicHistory';
+    public const string TYPE_NAME = 'getSavedMessagesTopicHistory';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class GetSavedMessagesTopicHistory extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setFromMessageId(int $value): static
+    {
+        $this->fromMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

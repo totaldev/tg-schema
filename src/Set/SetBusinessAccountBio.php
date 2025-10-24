@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBusinessAccountBio extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessAccountBio';
+    public const string TYPE_NAME = 'setBusinessAccountBio';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetBusinessAccountBio extends TdFunction
     public function getBusinessConnectionId(): string
     {
         return $this->businessConnectionId;
+    }
+
+    public function setBio(string $value): static
+    {
+        $this->bio = $value;
+
+        return $this;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

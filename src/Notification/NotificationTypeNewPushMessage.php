@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NotificationTypeNewPushMessage extends NotificationType
 {
-    public const TYPE_NAME = 'notificationTypeNewPushMessage';
+    public const string TYPE_NAME = 'notificationTypeNewPushMessage';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class NotificationTypeNewPushMessage extends NotificationType
     public function getSenderName(): string
     {
         return $this->senderName;
+    }
+
+    public function setContent(PushMessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setSenderName(string $value): static
+    {
+        $this->senderName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

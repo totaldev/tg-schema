@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction
 {
-    public const TYPE_NAME = 'addQuickReplyShortcutInlineQueryResultMessage';
+    public const string TYPE_NAME = 'addQuickReplyShortcutInlineQueryResultMessage';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class AddQuickReplyShortcutInlineQueryResultMessage extends TdFunction
     public function getShortcutName(): string
     {
         return $this->shortcutName;
+    }
+
+    public function setHideViaBot(bool $value): static
+    {
+        $this->hideViaBot = $value;
+
+        return $this;
+    }
+
+    public function setQueryId(int $value): static
+    {
+        $this->queryId = $value;
+
+        return $this;
+    }
+
+    public function setReplyToMessageId(int $value): static
+    {
+        $this->replyToMessageId = $value;
+
+        return $this;
+    }
+
+    public function setResultId(string $value): static
+    {
+        $this->resultId = $value;
+
+        return $this;
+    }
+
+    public function setShortcutName(string $value): static
+    {
+        $this->shortcutName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

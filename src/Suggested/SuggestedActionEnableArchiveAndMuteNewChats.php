@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionEnableArchiveAndMuteNewChats extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionEnableArchiveAndMuteNewChats';
+    public const string TYPE_NAME = 'suggestedActionEnableArchiveAndMuteNewChats';
 
     public function __construct()
     {

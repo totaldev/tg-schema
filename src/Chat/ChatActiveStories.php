@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatActiveStories extends TdObject
 {
-    public const TYPE_NAME = 'chatActiveStories';
+    public const string TYPE_NAME = 'chatActiveStories';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class ChatActiveStories extends TdObject
     public function getStories(): array
     {
         return $this->stories;
+    }
+
+    public function setCanBeArchived(bool $value): static
+    {
+        $this->canBeArchived = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setList(?StoryList $value): static
+    {
+        $this->list = $value;
+
+        return $this;
+    }
+
+    public function setMaxReadStoryId(int $value): static
+    {
+        $this->maxReadStoryId = $value;
+
+        return $this;
+    }
+
+    public function setOrder(int $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setStories(array $value): static
+    {
+        $this->stories = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

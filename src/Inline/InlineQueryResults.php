@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResults extends TdObject
 {
-    public const TYPE_NAME = 'inlineQueryResults';
+    public const string TYPE_NAME = 'inlineQueryResults';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class InlineQueryResults extends TdObject
     public function getResults(): array
     {
         return $this->results;
+    }
+
+    public function setButton(?InlineQueryResultsButton $value): static
+    {
+        $this->button = $value;
+
+        return $this;
+    }
+
+    public function setInlineQueryId(int $value): static
+    {
+        $this->inlineQueryId = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setResults(array $value): static
+    {
+        $this->results = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckAuthenticationBotToken extends TdFunction
 {
-    public const TYPE_NAME = 'checkAuthenticationBotToken';
+    public const string TYPE_NAME = 'checkAuthenticationBotToken';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class CheckAuthenticationBotToken extends TdFunction
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

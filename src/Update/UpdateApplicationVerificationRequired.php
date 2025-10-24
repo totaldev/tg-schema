@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateApplicationVerificationRequired extends Update
 {
-    public const TYPE_NAME = 'updateApplicationVerificationRequired';
+    public const string TYPE_NAME = 'updateApplicationVerificationRequired';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class UpdateApplicationVerificationRequired extends Update
     public function getVerificationId(): int
     {
         return $this->verificationId;
+    }
+
+    public function setCloudProjectNumber(int $value): static
+    {
+        $this->cloudProjectNumber = $value;
+
+        return $this;
+    }
+
+    public function setNonce(string $value): static
+    {
+        $this->nonce = $value;
+
+        return $this;
+    }
+
+    public function setVerificationId(int $value): static
+    {
+        $this->verificationId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

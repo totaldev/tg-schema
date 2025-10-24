@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayInfoCompleted extends GiveawayInfo
 {
-    public const TYPE_NAME = 'giveawayInfoCompleted';
+    public const string TYPE_NAME = 'giveawayInfoCompleted';
 
     public function __construct(
         /**
@@ -102,6 +102,62 @@ class GiveawayInfoCompleted extends GiveawayInfo
     public function getWonStarCount(): int
     {
         return $this->wonStarCount;
+    }
+
+    public function setActivationCount(int $value): static
+    {
+        $this->activationCount = $value;
+
+        return $this;
+    }
+
+    public function setActualWinnersSelectionDate(int $value): static
+    {
+        $this->actualWinnersSelectionDate = $value;
+
+        return $this;
+    }
+
+    public function setCreationDate(int $value): static
+    {
+        $this->creationDate = $value;
+
+        return $this;
+    }
+
+    public function setGiftCode(string $value): static
+    {
+        $this->giftCode = $value;
+
+        return $this;
+    }
+
+    public function setIsWinner(bool $value): static
+    {
+        $this->isWinner = $value;
+
+        return $this;
+    }
+
+    public function setWasRefunded(bool $value): static
+    {
+        $this->wasRefunded = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
+    }
+
+    public function setWonStarCount(int $value): static
+    {
+        $this->wonStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

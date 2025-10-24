@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LanguagePackInfo extends TdObject
 {
-    public const TYPE_NAME = 'languagePackInfo';
+    public const string TYPE_NAME = 'languagePackInfo';
 
     public function __construct(
         /**
@@ -152,6 +152,97 @@ class LanguagePackInfo extends TdObject
     public function getTranslationUrl(): string
     {
         return $this->translationUrl;
+    }
+
+    public function setBaseLanguagePackId(string $value): static
+    {
+        $this->baseLanguagePackId = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsBeta(bool $value): static
+    {
+        $this->isBeta = $value;
+
+        return $this;
+    }
+
+    public function setIsInstalled(bool $value): static
+    {
+        $this->isInstalled = $value;
+
+        return $this;
+    }
+
+    public function setIsOfficial(bool $value): static
+    {
+        $this->isOfficial = $value;
+
+        return $this;
+    }
+
+    public function setIsRtl(bool $value): static
+    {
+        $this->isRtl = $value;
+
+        return $this;
+    }
+
+    public function setLocalStringCount(int $value): static
+    {
+        $this->localStringCount = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setNativeName(string $value): static
+    {
+        $this->nativeName = $value;
+
+        return $this;
+    }
+
+    public function setPluralCode(string $value): static
+    {
+        $this->pluralCode = $value;
+
+        return $this;
+    }
+
+    public function setTotalStringCount(int $value): static
+    {
+        $this->totalStringCount = $value;
+
+        return $this;
+    }
+
+    public function setTranslatedStringCount(int $value): static
+    {
+        $this->translatedStringCount = $value;
+
+        return $this;
+    }
+
+    public function setTranslationUrl(string $value): static
+    {
+        $this->translationUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

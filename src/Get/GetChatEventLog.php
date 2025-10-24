@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatEventLog extends TdFunction
 {
-    public const TYPE_NAME = 'getChatEventLog';
+    public const string TYPE_NAME = 'getChatEventLog';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class GetChatEventLog extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilters(?ChatEventLogFilters $value): static
+    {
+        $this->filters = $value;
+
+        return $this;
+    }
+
+    public function setFromEventId(int $value): static
+    {
+        $this->fromEventId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

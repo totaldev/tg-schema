@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckQuickReplyShortcutName extends TdFunction
 {
-    public const TYPE_NAME = 'checkQuickReplyShortcutName';
+    public const string TYPE_NAME = 'checkQuickReplyShortcutName';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CheckQuickReplyShortcutName extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

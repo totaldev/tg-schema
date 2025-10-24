@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetName extends TdFunction
 {
-    public const TYPE_NAME = 'setName';
+    public const string TYPE_NAME = 'setName';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetName extends TdFunction
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Firebase;
  */
 class FirebaseDeviceVerificationParametersSafetyNet extends FirebaseDeviceVerificationParameters
 {
-    public const TYPE_NAME = 'firebaseDeviceVerificationParametersSafetyNet';
+    public const string TYPE_NAME = 'firebaseDeviceVerificationParametersSafetyNet';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class FirebaseDeviceVerificationParametersSafetyNet extends FirebaseDeviceVerifi
     public function getNonce(): string
     {
         return $this->nonce;
+    }
+
+    public function setNonce(string $value): static
+    {
+        $this->nonce = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Page;
  */
 class PageBlockDivider extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockDivider';
+    public const string TYPE_NAME = 'pageBlockDivider';
 
     public function __construct()
     {

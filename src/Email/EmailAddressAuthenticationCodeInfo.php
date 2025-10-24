@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmailAddressAuthenticationCodeInfo extends TdObject
 {
-    public const TYPE_NAME = 'emailAddressAuthenticationCodeInfo';
+    public const string TYPE_NAME = 'emailAddressAuthenticationCodeInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class EmailAddressAuthenticationCodeInfo extends TdObject
     public function getLength(): int
     {
         return $this->length;
+    }
+
+    public function setEmailAddressPattern(string $value): static
+    {
+        $this->emailAddressPattern = $value;
+
+        return $this;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TransferBusinessAccountStars extends TdFunction
 {
-    public const TYPE_NAME = 'transferBusinessAccountStars';
+    public const string TYPE_NAME = 'transferBusinessAccountStars';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class TransferBusinessAccountStars extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

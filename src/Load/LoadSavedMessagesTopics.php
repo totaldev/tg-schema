@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class LoadSavedMessagesTopics extends TdFunction
 {
-    public const TYPE_NAME = 'loadSavedMessagesTopics';
+    public const string TYPE_NAME = 'loadSavedMessagesTopics';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class LoadSavedMessagesTopics extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

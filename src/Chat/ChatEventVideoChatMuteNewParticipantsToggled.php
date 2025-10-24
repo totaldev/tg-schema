@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventVideoChatMuteNewParticipantsToggled';
+    public const string TYPE_NAME = 'chatEventVideoChatMuteNewParticipantsToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventVideoChatMuteNewParticipantsToggled extends ChatEventAction
     public function getMuteNewParticipants(): bool
     {
         return $this->muteNewParticipants;
+    }
+
+    public function setMuteNewParticipants(bool $value): static
+    {
+        $this->muteNewParticipants = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

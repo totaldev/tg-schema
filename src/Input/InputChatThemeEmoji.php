@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputChatThemeEmoji extends InputChatTheme
 {
-    public const TYPE_NAME = 'inputChatThemeEmoji';
+    public const string TYPE_NAME = 'inputChatThemeEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputChatThemeEmoji extends InputChatTheme
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

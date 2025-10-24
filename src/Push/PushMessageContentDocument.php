@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentDocument extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentDocument';
+    public const string TYPE_NAME = 'pushMessageContentDocument';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PushMessageContentDocument extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setDocument(?Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

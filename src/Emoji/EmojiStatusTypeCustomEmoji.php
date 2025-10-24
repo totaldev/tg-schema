@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiStatusTypeCustomEmoji extends EmojiStatusType
 {
-    public const TYPE_NAME = 'emojiStatusTypeCustomEmoji';
+    public const string TYPE_NAME = 'emojiStatusTypeCustomEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class EmojiStatusTypeCustomEmoji extends EmojiStatusType
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

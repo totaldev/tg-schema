@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StickerFullTypeRegular extends StickerFullType
 {
-    public const TYPE_NAME = 'stickerFullTypeRegular';
+    public const string TYPE_NAME = 'stickerFullTypeRegular';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StickerFullTypeRegular extends StickerFullType
     public function getPremiumAnimation(): ?File
     {
         return $this->premiumAnimation;
+    }
+
+    public function setPremiumAnimation(?File $value): static
+    {
+        $this->premiumAnimation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

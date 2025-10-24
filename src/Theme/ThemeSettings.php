@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ThemeSettings extends TdObject
 {
-    public const TYPE_NAME = 'themeSettings';
+    public const string TYPE_NAME = 'themeSettings';
 
     public function __construct(
         /**
@@ -86,6 +86,48 @@ class ThemeSettings extends TdObject
     public function getOutgoingMessageFill(): ?BackgroundFill
     {
         return $this->outgoingMessageFill;
+    }
+
+    public function setAccentColor(int $value): static
+    {
+        $this->accentColor = $value;
+
+        return $this;
+    }
+
+    public function setAnimateOutgoingMessageFill(bool $value): static
+    {
+        $this->animateOutgoingMessageFill = $value;
+
+        return $this;
+    }
+
+    public function setBackground(?Background $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setBaseTheme(BuiltInTheme $value): static
+    {
+        $this->baseTheme = $value;
+
+        return $this;
+    }
+
+    public function setOutgoingMessageAccentColor(int $value): static
+    {
+        $this->outgoingMessageAccentColor = $value;
+
+        return $this;
+    }
+
+    public function setOutgoingMessageFill(?BackgroundFill $value): static
+    {
+        $this->outgoingMessageFill = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

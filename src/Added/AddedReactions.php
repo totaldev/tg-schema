@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddedReactions extends TdObject
 {
-    public const TYPE_NAME = 'addedReactions';
+    public const string TYPE_NAME = 'addedReactions';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class AddedReactions extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setReactions(array $value): static
+    {
+        $this->reactions = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

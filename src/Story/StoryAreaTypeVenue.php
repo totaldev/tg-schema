@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Venue\Venue;
  */
 class StoryAreaTypeVenue extends StoryAreaType
 {
-    public const TYPE_NAME = 'storyAreaTypeVenue';
+    public const string TYPE_NAME = 'storyAreaTypeVenue';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StoryAreaTypeVenue extends StoryAreaType
     public function getVenue(): Venue
     {
         return $this->venue;
+    }
+
+    public function setVenue(Venue $value): static
+    {
+        $this->venue = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageExpiredVideoNote extends MessageContent
 {
-    public const TYPE_NAME = 'messageExpiredVideoNote';
+    public const string TYPE_NAME = 'messageExpiredVideoNote';
 
     public function __construct()
     {

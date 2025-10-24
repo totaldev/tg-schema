@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BusinessAwayMessageSchedule extends TdObject
 {
-    public const TYPE_NAME = 'BusinessAwayMessageSchedule';
+    public const string TYPE_NAME = 'BusinessAwayMessageSchedule';
 
     public function __construct() {}
 

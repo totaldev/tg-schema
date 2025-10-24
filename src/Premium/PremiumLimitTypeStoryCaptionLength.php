@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeStoryCaptionLength extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeStoryCaptionLength';
+    public const string TYPE_NAME = 'premiumLimitTypeStoryCaptionLength';
 
     public function __construct()
     {

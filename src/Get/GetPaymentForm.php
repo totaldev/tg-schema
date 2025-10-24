@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Theme\ThemeParameters;
  */
 class GetPaymentForm extends TdFunction
 {
-    public const TYPE_NAME = 'getPaymentForm';
+    public const string TYPE_NAME = 'getPaymentForm';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class GetPaymentForm extends TdFunction
     public function getTheme(): ?ThemeParameters
     {
         return $this->theme;
+    }
+
+    public function setInputInvoice(InputInvoice $value): static
+    {
+        $this->inputInvoice = $value;
+
+        return $this;
+    }
+
+    public function setTheme(?ThemeParameters $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

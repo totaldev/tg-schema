@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextFixed extends RichText
 {
-    public const TYPE_NAME = 'richTextFixed';
+    public const string TYPE_NAME = 'richTextFixed';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class RichTextFixed extends RichText
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

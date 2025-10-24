@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeChangePhoneNumber extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeChangePhoneNumber';
+    public const string TYPE_NAME = 'internalLinkTypeChangePhoneNumber';
 
     public function __construct()
     {

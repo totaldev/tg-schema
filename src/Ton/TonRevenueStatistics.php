@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TonRevenueStatistics extends TdObject
 {
-    public const TYPE_NAME = 'tonRevenueStatistics';
+    public const string TYPE_NAME = 'tonRevenueStatistics';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class TonRevenueStatistics extends TdObject
     public function getUsdRate(): float
     {
         return $this->usdRate;
+    }
+
+    public function setRevenueByDayGraph(StatisticalGraph $value): static
+    {
+        $this->revenueByDayGraph = $value;
+
+        return $this;
+    }
+
+    public function setStatus(TonRevenueStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setUsdRate(float $value): static
+    {
+        $this->usdRate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

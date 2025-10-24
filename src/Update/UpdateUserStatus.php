@@ -14,7 +14,7 @@ use Totaldev\TgSchema\User\UserStatus;
  */
 class UpdateUserStatus extends Update
 {
-    public const TYPE_NAME = 'updateUserStatus';
+    public const string TYPE_NAME = 'updateUserStatus';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateUserStatus extends Update
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setStatus(UserStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

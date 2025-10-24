@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FactCheck extends TdObject
 {
-    public const TYPE_NAME = 'factCheck';
+    public const string TYPE_NAME = 'factCheck';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class FactCheck extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

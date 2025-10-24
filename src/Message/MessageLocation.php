@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageLocation extends MessageContent
 {
-    public const TYPE_NAME = 'messageLocation';
+    public const string TYPE_NAME = 'messageLocation';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class MessageLocation extends MessageContent
     public function getProximityAlertRadius(): int
     {
         return $this->proximityAlertRadius;
+    }
+
+    public function setExpiresIn(int $value): static
+    {
+        $this->expiresIn = $value;
+
+        return $this;
+    }
+
+    public function setHeading(int $value): static
+    {
+        $this->heading = $value;
+
+        return $this;
+    }
+
+    public function setLivePeriod(int $value): static
+    {
+        $this->livePeriod = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setProximityAlertRadius(int $value): static
+    {
+        $this->proximityAlertRadius = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

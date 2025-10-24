@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PublicForwards extends TdObject
 {
-    public const TYPE_NAME = 'publicForwards';
+    public const string TYPE_NAME = 'publicForwards';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PublicForwards extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setForwards(array $value): static
+    {
+        $this->forwards = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

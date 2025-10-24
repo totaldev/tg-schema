@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetJsonValue extends TdFunction
 {
-    public const TYPE_NAME = 'getJsonValue';
+    public const string TYPE_NAME = 'getJsonValue';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetJsonValue extends TdFunction
     public function getJson(): string
     {
         return $this->json;
+    }
+
+    public function setJson(string $value): static
+    {
+        $this->json = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

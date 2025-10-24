@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateSavedAnimations extends Update
 {
-    public const TYPE_NAME = 'updateSavedAnimations';
+    public const string TYPE_NAME = 'updateSavedAnimations';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateSavedAnimations extends Update
     public function getAnimationIds(): array
     {
         return $this->animationIds;
+    }
+
+    public function setAnimationIds(array $value): static
+    {
+        $this->animationIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

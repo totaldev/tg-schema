@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeExternalAudio extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeExternalAudio';
+    public const string TYPE_NAME = 'linkPreviewTypeExternalAudio';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class LinkPreviewTypeExternalAudio extends LinkPreviewType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

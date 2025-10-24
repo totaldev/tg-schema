@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetPassword extends TdFunction
 {
-    public const TYPE_NAME = 'setPassword';
+    public const string TYPE_NAME = 'setPassword';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class SetPassword extends TdFunction
     public function getSetRecoveryEmailAddress(): bool
     {
         return $this->setRecoveryEmailAddress;
+    }
+
+    public function setNewHint(string $value): static
+    {
+        $this->newHint = $value;
+
+        return $this;
+    }
+
+    public function setNewPassword(string $value): static
+    {
+        $this->newPassword = $value;
+
+        return $this;
+    }
+
+    public function setNewRecoveryEmailAddress(string $value): static
+    {
+        $this->newRecoveryEmailAddress = $value;
+
+        return $this;
+    }
+
+    public function setOldPassword(string $value): static
+    {
+        $this->oldPassword = $value;
+
+        return $this;
+    }
+
+    public function setSetRecoveryEmailAddress(bool $value): static
+    {
+        $this->setRecoveryEmailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

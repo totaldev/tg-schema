@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NotificationGroup extends TdObject
 {
-    public const TYPE_NAME = 'notificationGroup';
+    public const string TYPE_NAME = 'notificationGroup';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class NotificationGroup extends TdObject
     public function getType(): NotificationGroupType
     {
         return $this->type;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setNotifications(array $value): static
+    {
+        $this->notifications = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
+    }
+
+    public function setType(NotificationGroupType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

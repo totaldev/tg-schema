@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserStatusEmpty extends UserStatus
 {
-    public const TYPE_NAME = 'userStatusEmpty';
+    public const string TYPE_NAME = 'userStatusEmpty';
 
     public function __construct()
     {

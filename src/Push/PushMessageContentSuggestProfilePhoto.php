@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentSuggestProfilePhoto extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentSuggestProfilePhoto';
+    public const string TYPE_NAME = 'pushMessageContentSuggestProfilePhoto';
 
     public function __construct()
     {

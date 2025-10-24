@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Top;
  */
 class TopChatCategoryBots extends TopChatCategory
 {
-    public const TYPE_NAME = 'topChatCategoryBots';
+    public const string TYPE_NAME = 'topChatCategoryBots';
 
     public function __construct()
     {

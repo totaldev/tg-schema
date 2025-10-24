@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddLocalMessage extends TdFunction
 {
-    public const TYPE_NAME = 'addLocalMessage';
+    public const string TYPE_NAME = 'addLocalMessage';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class AddLocalMessage extends TdFunction
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDisableNotification(bool $value): static
+    {
+        $this->disableNotification = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

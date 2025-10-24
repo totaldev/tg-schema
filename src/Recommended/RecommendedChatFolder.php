@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RecommendedChatFolder extends TdObject
 {
-    public const TYPE_NAME = 'recommendedChatFolder';
+    public const string TYPE_NAME = 'recommendedChatFolder';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RecommendedChatFolder extends TdObject
     public function getFolder(): ChatFolder
     {
         return $this->folder;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setFolder(ChatFolder $value): static
+    {
+        $this->folder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

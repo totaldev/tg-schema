@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageReadDate extends TdObject
 {
-    public const TYPE_NAME = 'MessageReadDate';
+    public const string TYPE_NAME = 'MessageReadDate';
 
     public function __construct() {}
 

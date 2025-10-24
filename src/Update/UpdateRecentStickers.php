@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateRecentStickers extends Update
 {
-    public const TYPE_NAME = 'updateRecentStickers';
+    public const string TYPE_NAME = 'updateRecentStickers';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class UpdateRecentStickers extends Update
     public function getStickerIds(): array
     {
         return $this->stickerIds;
+    }
+
+    public function setIsAttached(bool $value): static
+    {
+        $this->isAttached = $value;
+
+        return $this;
+    }
+
+    public function setStickerIds(array $value): static
+    {
+        $this->stickerIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

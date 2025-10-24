@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SavedMessagesTag extends TdObject
 {
-    public const TYPE_NAME = 'savedMessagesTag';
+    public const string TYPE_NAME = 'savedMessagesTag';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SavedMessagesTag extends TdObject
     public function getTag(): ReactionType
     {
         return $this->tag;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
+    }
+
+    public function setLabel(string $value): static
+    {
+        $this->label = $value;
+
+        return $this;
+    }
+
+    public function setTag(ReactionType $value): static
+    {
+        $this->tag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DeleteCommands extends TdFunction
 {
-    public const TYPE_NAME = 'deleteCommands';
+    public const string TYPE_NAME = 'deleteCommands';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DeleteCommands extends TdFunction
     public function getScope(): ?BotCommandScope
     {
         return $this->scope;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
+    }
+
+    public function setScope(?BotCommandScope $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

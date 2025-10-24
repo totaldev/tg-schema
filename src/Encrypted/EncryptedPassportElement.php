@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EncryptedPassportElement extends TdObject
 {
-    public const TYPE_NAME = 'encryptedPassportElement';
+    public const string TYPE_NAME = 'encryptedPassportElement';
 
     public function __construct(
         /**
@@ -119,6 +119,69 @@ class EncryptedPassportElement extends TdObject
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setFiles(array $value): static
+    {
+        $this->files = $value;
+
+        return $this;
+    }
+
+    public function setFrontSide(DatedFile $value): static
+    {
+        $this->frontSide = $value;
+
+        return $this;
+    }
+
+    public function setHash(string $value): static
+    {
+        $this->hash = $value;
+
+        return $this;
+    }
+
+    public function setReverseSide(?DatedFile $value): static
+    {
+        $this->reverseSide = $value;
+
+        return $this;
+    }
+
+    public function setSelfie(?DatedFile $value): static
+    {
+        $this->selfie = $value;
+
+        return $this;
+    }
+
+    public function setTranslation(array $value): static
+    {
+        $this->translation = $value;
+
+        return $this;
+    }
+
+    public function setType(PassportElementType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

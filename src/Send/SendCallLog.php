@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendCallLog extends TdFunction
 {
-    public const TYPE_NAME = 'sendCallLog';
+    public const string TYPE_NAME = 'sendCallLog';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SendCallLog extends TdFunction
     public function getLogFile(): InputFile
     {
         return $this->logFile;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setLogFile(InputFile $value): static
+    {
+        $this->logFile = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

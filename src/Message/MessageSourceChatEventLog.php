@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSourceChatEventLog extends MessageSource
 {
-    public const TYPE_NAME = 'messageSourceChatEventLog';
+    public const string TYPE_NAME = 'messageSourceChatEventLog';
 
     public function __construct()
     {

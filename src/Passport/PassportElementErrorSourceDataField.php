@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementErrorSourceDataField extends PassportElementErrorSource
 {
-    public const TYPE_NAME = 'passportElementErrorSourceDataField';
+    public const string TYPE_NAME = 'passportElementErrorSourceDataField';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PassportElementErrorSourceDataField extends PassportElementErrorSource
     public function getFieldName(): string
     {
         return $this->fieldName;
+    }
+
+    public function setFieldName(string $value): static
+    {
+        $this->fieldName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

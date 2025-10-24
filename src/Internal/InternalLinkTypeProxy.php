@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InternalLinkTypeProxy extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeProxy';
+    public const string TYPE_NAME = 'internalLinkTypeProxy';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class InternalLinkTypeProxy extends InternalLinkType
     public function getType(): ProxyType
     {
         return $this->type;
+    }
+
+    public function setPort(int $value): static
+    {
+        $this->port = $value;
+
+        return $this;
+    }
+
+    public function setServer(string $value): static
+    {
+        $this->server = $value;
+
+        return $this;
+    }
+
+    public function setType(ProxyType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Voice\VoiceNote;
  */
 class PageBlockVoiceNote extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockVoiceNote';
+    public const string TYPE_NAME = 'pageBlockVoiceNote';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PageBlockVoiceNote extends PageBlock
     public function getVoiceNote(): ?VoiceNote
     {
         return $this->voiceNote;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNote(?VoiceNote $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CheckStickerSetNameResult extends TdObject
 {
-    public const TYPE_NAME = 'CheckStickerSetNameResult';
+    public const string TYPE_NAME = 'CheckStickerSetNameResult';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatRevenueTransactionTypeSuggestedPostEarnings extends ChatRevenueTransactionType
 {
-    public const TYPE_NAME = 'chatRevenueTransactionTypeSuggestedPostEarnings';
+    public const string TYPE_NAME = 'chatRevenueTransactionTypeSuggestedPostEarnings';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatRevenueTransactionTypeSuggestedPostEarnings extends ChatRevenueTransac
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

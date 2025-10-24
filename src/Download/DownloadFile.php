@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DownloadFile extends TdFunction
 {
-    public const TYPE_NAME = 'downloadFile';
+    public const string TYPE_NAME = 'downloadFile';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class DownloadFile extends TdFunction
     public function getSynchronous(): bool
     {
         return $this->synchronous;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setPriority(int $value): static
+    {
+        $this->priority = $value;
+
+        return $this;
+    }
+
+    public function setSynchronous(bool $value): static
+    {
+        $this->synchronous = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

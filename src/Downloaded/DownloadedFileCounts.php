@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class DownloadedFileCounts extends TdObject
 {
-    public const TYPE_NAME = 'downloadedFileCounts';
+    public const string TYPE_NAME = 'downloadedFileCounts';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class DownloadedFileCounts extends TdObject
     public function getPausedCount(): int
     {
         return $this->pausedCount;
+    }
+
+    public function setActiveCount(int $value): static
+    {
+        $this->activeCount = $value;
+
+        return $this;
+    }
+
+    public function setCompletedCount(int $value): static
+    {
+        $this->completedCount = $value;
+
+        return $this;
+    }
+
+    public function setPausedCount(int $value): static
+    {
+        $this->pausedCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

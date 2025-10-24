@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatFolder extends TdObject
 {
-    public const TYPE_NAME = 'chatFolder';
+    public const string TYPE_NAME = 'chatFolder';
 
     public function __construct(
         /**
@@ -179,6 +179,111 @@ class ChatFolder extends TdObject
     public function getPinnedChatIds(): array
     {
         return $this->pinnedChatIds;
+    }
+
+    public function setColorId(int $value): static
+    {
+        $this->colorId = $value;
+
+        return $this;
+    }
+
+    public function setExcludeArchived(bool $value): static
+    {
+        $this->excludeArchived = $value;
+
+        return $this;
+    }
+
+    public function setExcludeMuted(bool $value): static
+    {
+        $this->excludeMuted = $value;
+
+        return $this;
+    }
+
+    public function setExcludeRead(bool $value): static
+    {
+        $this->excludeRead = $value;
+
+        return $this;
+    }
+
+    public function setExcludedChatIds(array $value): static
+    {
+        $this->excludedChatIds = $value;
+
+        return $this;
+    }
+
+    public function setIcon(?ChatFolderIcon $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setIncludeBots(bool $value): static
+    {
+        $this->includeBots = $value;
+
+        return $this;
+    }
+
+    public function setIncludeChannels(bool $value): static
+    {
+        $this->includeChannels = $value;
+
+        return $this;
+    }
+
+    public function setIncludeContacts(bool $value): static
+    {
+        $this->includeContacts = $value;
+
+        return $this;
+    }
+
+    public function setIncludeGroups(bool $value): static
+    {
+        $this->includeGroups = $value;
+
+        return $this;
+    }
+
+    public function setIncludeNonContacts(bool $value): static
+    {
+        $this->includeNonContacts = $value;
+
+        return $this;
+    }
+
+    public function setIncludedChatIds(array $value): static
+    {
+        $this->includedChatIds = $value;
+
+        return $this;
+    }
+
+    public function setIsShareable(bool $value): static
+    {
+        $this->isShareable = $value;
+
+        return $this;
+    }
+
+    public function setName(ChatFolderName $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setPinnedChatIds(array $value): static
+    {
+        $this->pinnedChatIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

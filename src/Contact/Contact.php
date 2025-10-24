@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Contact extends TdObject
 {
-    public const TYPE_NAME = 'contact';
+    public const string TYPE_NAME = 'contact';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class Contact extends TdObject
     public function getVcard(): string
     {
         return $this->vcard;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
+    }
+
+    public function setVcard(string $value): static
+    {
+        $this->vcard = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

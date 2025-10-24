@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendPhoneNumberCode extends TdFunction
 {
-    public const TYPE_NAME = 'sendPhoneNumberCode';
+    public const string TYPE_NAME = 'sendPhoneNumberCode';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class SendPhoneNumberCode extends TdFunction
     public function getType(): PhoneNumberCodeType
     {
         return $this->type;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setSettings(?PhoneNumberAuthenticationSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
+    }
+
+    public function setType(PhoneNumberCodeType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

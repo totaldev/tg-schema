@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeTheme extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeTheme';
+    public const string TYPE_NAME = 'internalLinkTypeTheme';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InternalLinkTypeTheme extends InternalLinkType
     public function getThemeName(): string
     {
         return $this->themeName;
+    }
+
+    public function setThemeName(string $value): static
+    {
+        $this->themeName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

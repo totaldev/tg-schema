@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class DiceStickers extends TdObject
 {
-    public const TYPE_NAME = 'DiceStickers';
+    public const string TYPE_NAME = 'DiceStickers';
 
     public function __construct() {}
 

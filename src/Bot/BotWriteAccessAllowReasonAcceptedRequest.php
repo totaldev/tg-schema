@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotWriteAccessAllowReasonAcceptedRequest extends BotWriteAccessAllowReason
 {
-    public const TYPE_NAME = 'botWriteAccessAllowReasonAcceptedRequest';
+    public const string TYPE_NAME = 'botWriteAccessAllowReasonAcceptedRequest';
 
     public function __construct()
     {

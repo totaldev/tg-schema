@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultVoiceNote';
+    public const string TYPE_NAME = 'inputInlineQueryResultVoiceNote';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class InputInlineQueryResultVoiceNote extends InputInlineQueryResult
     public function getVoiceNoteUrl(): string
     {
         return $this->voiceNoteUrl;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNoteDuration(int $value): static
+    {
+        $this->voiceNoteDuration = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNoteUrl(string $value): static
+    {
+        $this->voiceNoteUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

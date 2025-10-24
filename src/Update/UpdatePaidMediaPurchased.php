@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdatePaidMediaPurchased extends Update
 {
-    public const TYPE_NAME = 'updatePaidMediaPurchased';
+    public const string TYPE_NAME = 'updatePaidMediaPurchased';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdatePaidMediaPurchased extends Update
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

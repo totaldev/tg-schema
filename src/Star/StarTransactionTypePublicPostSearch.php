@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypePublicPostSearch extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypePublicPostSearch';
+    public const string TYPE_NAME = 'starTransactionTypePublicPostSearch';
 
     public function __construct()
     {

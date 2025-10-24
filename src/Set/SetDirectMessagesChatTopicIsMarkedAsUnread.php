@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetDirectMessagesChatTopicIsMarkedAsUnread extends TdFunction
 {
-    public const TYPE_NAME = 'setDirectMessagesChatTopicIsMarkedAsUnread';
+    public const string TYPE_NAME = 'setDirectMessagesChatTopicIsMarkedAsUnread';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetDirectMessagesChatTopicIsMarkedAsUnread extends TdFunction
     public function getTopicId(): int
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsMarkedAsUnread(bool $value): static
+    {
+        $this->isMarkedAsUnread = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(int $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

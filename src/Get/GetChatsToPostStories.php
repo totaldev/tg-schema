@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatsToPostStories extends TdFunction
 {
-    public const TYPE_NAME = 'getChatsToPostStories';
+    public const string TYPE_NAME = 'getChatsToPostStories';
 
     public function __construct() {}
 

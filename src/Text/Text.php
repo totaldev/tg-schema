@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Text extends TdObject
 {
-    public const TYPE_NAME = 'text';
+    public const string TYPE_NAME = 'text';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class Text extends TdObject
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

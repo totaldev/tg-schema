@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RevokeGroupCallInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'revokeGroupCallInviteLink';
+    public const string TYPE_NAME = 'revokeGroupCallInviteLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RevokeGroupCallInviteLink extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

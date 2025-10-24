@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReorderSupergroupActiveUsernames extends TdFunction
 {
-    public const TYPE_NAME = 'reorderSupergroupActiveUsernames';
+    public const string TYPE_NAME = 'reorderSupergroupActiveUsernames';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ReorderSupergroupActiveUsernames extends TdFunction
     public function getUsernames(): array
     {
         return $this->usernames;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
+    }
+
+    public function setUsernames(array $value): static
+    {
+        $this->usernames = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

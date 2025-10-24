@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageScreenshotTaken extends MessageContent
 {
-    public const TYPE_NAME = 'messageScreenshotTaken';
+    public const string TYPE_NAME = 'messageScreenshotTaken';
 
     public function __construct()
     {

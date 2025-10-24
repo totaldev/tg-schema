@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetFileDownloadedPrefixSize extends TdFunction
 {
-    public const TYPE_NAME = 'getFileDownloadedPrefixSize';
+    public const string TYPE_NAME = 'getFileDownloadedPrefixSize';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetFileDownloadedPrefixSize extends TdFunction
     public function getOffset(): int
     {
         return $this->offset;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

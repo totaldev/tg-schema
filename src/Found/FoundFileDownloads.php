@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundFileDownloads extends TdObject
 {
-    public const TYPE_NAME = 'foundFileDownloads';
+    public const string TYPE_NAME = 'foundFileDownloads';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class FoundFileDownloads extends TdObject
     public function getTotalCounts(): DownloadedFileCounts
     {
         return $this->totalCounts;
+    }
+
+    public function setFiles(array $value): static
+    {
+        $this->files = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTotalCounts(DownloadedFileCounts $value): static
+    {
+        $this->totalCounts = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

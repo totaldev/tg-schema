@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLanguagePackInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getLanguagePackInfo';
+    public const string TYPE_NAME = 'getLanguagePackInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetLanguagePackInfo extends TdFunction
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReadBusinessMessage extends TdFunction
 {
-    public const TYPE_NAME = 'readBusinessMessage';
+    public const string TYPE_NAME = 'readBusinessMessage';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ReadBusinessMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

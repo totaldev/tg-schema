@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AvailableReaction extends TdObject
 {
-    public const TYPE_NAME = 'availableReaction';
+    public const string TYPE_NAME = 'availableReaction';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class AvailableReaction extends TdObject
     public function getType(): ReactionType
     {
         return $this->type;
+    }
+
+    public function setNeedsPremium(bool $value): static
+    {
+        $this->needsPremium = $value;
+
+        return $this;
+    }
+
+    public function setType(ReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

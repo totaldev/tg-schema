@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AvailableGifts extends TdObject
 {
-    public const TYPE_NAME = 'availableGifts';
+    public const string TYPE_NAME = 'availableGifts';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class AvailableGifts extends TdObject
     public function getGifts(): array
     {
         return $this->gifts;
+    }
+
+    public function setGifts(array $value): static
+    {
+        $this->gifts = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

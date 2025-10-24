@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AffiliateProgramSortOrder extends TdObject
 {
-    public const TYPE_NAME = 'AffiliateProgramSortOrder';
+    public const string TYPE_NAME = 'AffiliateProgramSortOrder';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Point extends TdObject
 {
-    public const TYPE_NAME = 'point';
+    public const string TYPE_NAME = 'point';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class Point extends TdObject
     public function getY(): float
     {
         return $this->y;
+    }
+
+    public function setX(float $value): static
+    {
+        $this->x = $value;
+
+        return $this;
+    }
+
+    public function setY(float $value): static
+    {
+        $this->y = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

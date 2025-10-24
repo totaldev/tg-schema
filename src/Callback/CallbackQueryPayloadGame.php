@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Callback;
  */
 class CallbackQueryPayloadGame extends CallbackQueryPayload
 {
-    public const TYPE_NAME = 'callbackQueryPayloadGame';
+    public const string TYPE_NAME = 'callbackQueryPayloadGame';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CallbackQueryPayloadGame extends CallbackQueryPayload
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function setGameShortName(string $value): static
+    {
+        $this->gameShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

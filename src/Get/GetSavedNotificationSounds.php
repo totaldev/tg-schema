@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedNotificationSounds extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedNotificationSounds';
+    public const string TYPE_NAME = 'getSavedNotificationSounds';
 
     public function __construct() {}
 

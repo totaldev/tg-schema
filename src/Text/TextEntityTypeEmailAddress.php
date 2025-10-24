@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeEmailAddress extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeEmailAddress';
+    public const string TYPE_NAME = 'textEntityTypeEmailAddress';
 
     public function __construct()
     {

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\User\UserPrivacySettingRules;
  */
 class SetUserPrivacySettingRules extends TdFunction
 {
-    public const TYPE_NAME = 'setUserPrivacySettingRules';
+    public const string TYPE_NAME = 'setUserPrivacySettingRules';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetUserPrivacySettingRules extends TdFunction
     public function getSetting(): UserPrivacySetting
     {
         return $this->setting;
+    }
+
+    public function setRules(UserPrivacySettingRules $value): static
+    {
+        $this->rules = $value;
+
+        return $this;
+    }
+
+    public function setSetting(UserPrivacySetting $value): static
+    {
+        $this->setting = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

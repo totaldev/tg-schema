@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessagePoll extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessagePoll';
+    public const string TYPE_NAME = 'inputMessagePoll';
 
     public function __construct(
         /**
@@ -99,6 +99,55 @@ class InputMessagePoll extends InputMessageContent
     public function getType(): PollType
     {
         return $this->type;
+    }
+
+    public function setCloseDate(int $value): static
+    {
+        $this->closeDate = $value;
+
+        return $this;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
+    }
+
+    public function setIsClosed(bool $value): static
+    {
+        $this->isClosed = $value;
+
+        return $this;
+    }
+
+    public function setOpenPeriod(int $value): static
+    {
+        $this->openPeriod = $value;
+
+        return $this;
+    }
+
+    public function setOptions(array $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setQuestion(FormattedText $value): static
+    {
+        $this->question = $value;
+
+        return $this;
+    }
+
+    public function setType(PollType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

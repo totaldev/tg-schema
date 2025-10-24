@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDisallowedChatEmojiStatuses extends TdFunction
 {
-    public const TYPE_NAME = 'getDisallowedChatEmojiStatuses';
+    public const string TYPE_NAME = 'getDisallowedChatEmojiStatuses';
 
     public function __construct() {}
 

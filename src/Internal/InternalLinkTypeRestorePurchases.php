@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeRestorePurchases extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeRestorePurchases';
+    public const string TYPE_NAME = 'internalLinkTypeRestorePurchases';
 
     public function __construct()
     {

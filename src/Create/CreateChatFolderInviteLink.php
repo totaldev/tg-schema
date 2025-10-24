@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateChatFolderInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'createChatFolderInviteLink';
+    public const string TYPE_NAME = 'createChatFolderInviteLink';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class CreateChatFolderInviteLink extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
 {
-    public const TYPE_NAME = 'telegramPaymentPurposePremiumGiftCodes';
+    public const string TYPE_NAME = 'telegramPaymentPurposePremiumGiftCodes';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class TelegramPaymentPurposePremiumGiftCodes extends TelegramPaymentPurpose
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setBoostedChatId(int $value): static
+    {
+        $this->boostedChatId = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

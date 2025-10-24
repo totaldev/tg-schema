@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MaskPosition extends TdObject
 {
-    public const TYPE_NAME = 'maskPosition';
+    public const string TYPE_NAME = 'maskPosition';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class MaskPosition extends TdObject
     public function getYShift(): float
     {
         return $this->yShift;
+    }
+
+    public function setPoint(MaskPoint $value): static
+    {
+        $this->point = $value;
+
+        return $this;
+    }
+
+    public function setScale(float $value): static
+    {
+        $this->scale = $value;
+
+        return $this;
+    }
+
+    public function setXShift(float $value): static
+    {
+        $this->xShift = $value;
+
+        return $this;
+    }
+
+    public function setYShift(float $value): static
+    {
+        $this->yShift = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

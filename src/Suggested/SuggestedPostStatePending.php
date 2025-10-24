@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedPostStatePending extends SuggestedPostState
 {
-    public const TYPE_NAME = 'suggestedPostStatePending';
+    public const string TYPE_NAME = 'suggestedPostStatePending';
 
     public function __construct()
     {

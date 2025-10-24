@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateDirectMessagesChatTopic extends Update
 {
-    public const TYPE_NAME = 'updateDirectMessagesChatTopic';
+    public const string TYPE_NAME = 'updateDirectMessagesChatTopic';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class UpdateDirectMessagesChatTopic extends Update
     public function getTopic(): DirectMessagesChatTopic
     {
         return $this->topic;
+    }
+
+    public function setTopic(DirectMessagesChatTopic $value): static
+    {
+        $this->topic = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

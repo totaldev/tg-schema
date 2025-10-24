@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Page;
  */
 class PageBlockAnchor extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockAnchor';
+    public const string TYPE_NAME = 'pageBlockAnchor';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PageBlockAnchor extends PageBlock
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

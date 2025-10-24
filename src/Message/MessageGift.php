@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGift extends MessageContent
 {
-    public const TYPE_NAME = 'messageGift';
+    public const string TYPE_NAME = 'messageGift';
 
     public function __construct(
         /**
@@ -196,6 +196,125 @@ class MessageGift extends MessageContent
     public function getWasUpgraded(): bool
     {
         return $this->wasUpgraded;
+    }
+
+    public function setCanBeUpgraded(bool $value): static
+    {
+        $this->canBeUpgraded = $value;
+
+        return $this;
+    }
+
+    public function setGift(Gift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setIsPrepaidUpgrade(bool $value): static
+    {
+        $this->isPrepaidUpgrade = $value;
+
+        return $this;
+    }
+
+    public function setIsPrivate(bool $value): static
+    {
+        $this->isPrivate = $value;
+
+        return $this;
+    }
+
+    public function setIsSaved(bool $value): static
+    {
+        $this->isSaved = $value;
+
+        return $this;
+    }
+
+    public function setIsUpgradeSeparate(bool $value): static
+    {
+        $this->isUpgradeSeparate = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidUpgradeHash(string $value): static
+    {
+        $this->prepaidUpgradeHash = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidUpgradeStarCount(int $value): static
+    {
+        $this->prepaidUpgradeStarCount = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setReceiverId(MessageSender $value): static
+    {
+        $this->receiverId = $value;
+
+        return $this;
+    }
+
+    public function setSellStarCount(int $value): static
+    {
+        $this->sellStarCount = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedReceivedGiftId(string $value): static
+    {
+        $this->upgradedReceivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setWasConverted(bool $value): static
+    {
+        $this->wasConverted = $value;
+
+        return $this;
+    }
+
+    public function setWasRefunded(bool $value): static
+    {
+        $this->wasRefunded = $value;
+
+        return $this;
+    }
+
+    public function setWasUpgraded(bool $value): static
+    {
+        $this->wasUpgraded = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

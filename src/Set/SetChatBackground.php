@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatBackground extends TdFunction
 {
-    public const TYPE_NAME = 'setChatBackground';
+    public const string TYPE_NAME = 'setChatBackground';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class SetChatBackground extends TdFunction
     public function getType(): ?BackgroundType
     {
         return $this->type;
+    }
+
+    public function setBackground(?InputBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDarkThemeDimming(int $value): static
+    {
+        $this->darkThemeDimming = $value;
+
+        return $this;
+    }
+
+    public function setOnlyForSelf(bool $value): static
+    {
+        $this->onlyForSelf = $value;
+
+        return $this;
+    }
+
+    public function setType(?BackgroundType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

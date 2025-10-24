@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetInstalledStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'getInstalledStickerSets';
+    public const string TYPE_NAME = 'getInstalledStickerSets';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetInstalledStickerSets extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

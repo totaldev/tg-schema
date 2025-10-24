@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class InviteVideoChatParticipants extends TdFunction
 {
-    public const TYPE_NAME = 'inviteVideoChatParticipants';
+    public const string TYPE_NAME = 'inviteVideoChatParticipants';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InviteVideoChatParticipants extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

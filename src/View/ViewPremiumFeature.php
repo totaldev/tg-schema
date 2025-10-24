@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ViewPremiumFeature extends TdFunction
 {
-    public const TYPE_NAME = 'viewPremiumFeature';
+    public const string TYPE_NAME = 'viewPremiumFeature';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ViewPremiumFeature extends TdFunction
     public function getFeature(): PremiumFeature
     {
         return $this->feature;
+    }
+
+    public function setFeature(PremiumFeature $value): static
+    {
+        $this->feature = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteAccount extends TdFunction
 {
-    public const TYPE_NAME = 'deleteAccount';
+    public const string TYPE_NAME = 'deleteAccount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class DeleteAccount extends TdFunction
     public function getReason(): string
     {
         return $this->reason;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setReason(string $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

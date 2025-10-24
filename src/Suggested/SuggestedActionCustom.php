@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SuggestedActionCustom extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionCustom';
+    public const string TYPE_NAME = 'suggestedActionCustom';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SuggestedActionCustom extends SuggestedAction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setDescription(FormattedText $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setTitle(FormattedText $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

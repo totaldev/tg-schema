@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftOriginPrepaidUpgrade extends UpgradedGiftOrigin
 {
-    public const TYPE_NAME = 'upgradedGiftOriginPrepaidUpgrade';
+    public const string TYPE_NAME = 'upgradedGiftOriginPrepaidUpgrade';
 
     public function __construct()
     {

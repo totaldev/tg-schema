@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendBotStartMessage extends TdFunction
 {
-    public const TYPE_NAME = 'sendBotStartMessage';
+    public const string TYPE_NAME = 'sendBotStartMessage';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SendBotStartMessage extends TdFunction
     public function getParameter(): string
     {
         return $this->parameter;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setParameter(string $value): static
+    {
+        $this->parameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

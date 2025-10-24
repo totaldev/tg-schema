@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BuiltInTheme extends TdObject
 {
-    public const TYPE_NAME = 'BuiltInTheme';
+    public const string TYPE_NAME = 'BuiltInTheme';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputChatPhotoAnimation extends InputChatPhoto
 {
-    public const TYPE_NAME = 'inputChatPhotoAnimation';
+    public const string TYPE_NAME = 'inputChatPhotoAnimation';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InputChatPhotoAnimation extends InputChatPhoto
     public function getMainFrameTimestamp(): float
     {
         return $this->mainFrameTimestamp;
+    }
+
+    public function setAnimation(InputFile $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setMainFrameTimestamp(float $value): static
+    {
+        $this->mainFrameTimestamp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

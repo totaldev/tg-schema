@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarSubscriptionTypeChannel extends StarSubscriptionType
 {
-    public const TYPE_NAME = 'starSubscriptionTypeChannel';
+    public const string TYPE_NAME = 'starSubscriptionTypeChannel';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarSubscriptionTypeChannel extends StarSubscriptionType
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setCanReuse(bool $value): static
+    {
+        $this->canReuse = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Venue\Venue;
  */
 class MessageVenue extends MessageContent
 {
-    public const TYPE_NAME = 'messageVenue';
+    public const string TYPE_NAME = 'messageVenue';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageVenue extends MessageContent
     public function getVenue(): Venue
     {
         return $this->venue;
+    }
+
+    public function setVenue(Venue $value): static
+    {
+        $this->venue = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

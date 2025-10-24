@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetRemoteFile extends TdFunction
 {
-    public const TYPE_NAME = 'getRemoteFile';
+    public const string TYPE_NAME = 'getRemoteFile';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class GetRemoteFile extends TdFunction
     public function getRemoteFileId(): string
     {
         return $this->remoteFileId;
+    }
+
+    public function setFileType(?FileType $value): static
+    {
+        $this->fileType = $value;
+
+        return $this;
+    }
+
+    public function setRemoteFileId(string $value): static
+    {
+        $this->remoteFileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

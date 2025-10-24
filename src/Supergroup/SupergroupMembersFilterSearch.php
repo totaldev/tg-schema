@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Supergroup;
  */
 class SupergroupMembersFilterSearch extends SupergroupMembersFilter
 {
-    public const TYPE_NAME = 'supergroupMembersFilterSearch';
+    public const string TYPE_NAME = 'supergroupMembersFilterSearch';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SupergroupMembersFilterSearch extends SupergroupMembersFilter
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

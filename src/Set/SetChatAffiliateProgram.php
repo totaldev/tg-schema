@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatAffiliateProgram extends TdFunction
 {
-    public const TYPE_NAME = 'setChatAffiliateProgram';
+    public const string TYPE_NAME = 'setChatAffiliateProgram';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatAffiliateProgram extends TdFunction
     public function getParameters(): ?AffiliateProgramParameters
     {
         return $this->parameters;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setParameters(?AffiliateProgramParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class KeyboardButtonType extends TdObject
 {
-    public const TYPE_NAME = 'KeyboardButtonType';
+    public const string TYPE_NAME = 'KeyboardButtonType';
 
     public function __construct() {}
 

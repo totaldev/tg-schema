@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetSupergroupMainProfileTab extends TdFunction
 {
-    public const TYPE_NAME = 'setSupergroupMainProfileTab';
+    public const string TYPE_NAME = 'setSupergroupMainProfileTab';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetSupergroupMainProfileTab extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setMainProfileTab(ProfileTab $value): static
+    {
+        $this->mainProfileTab = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetUserSupportInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getUserSupportInfo';
+    public const string TYPE_NAME = 'getUserSupportInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetUserSupportInfo extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

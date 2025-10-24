@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Store;
  */
 class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
 {
-    public const TYPE_NAME = 'storePaymentPurposePremiumSubscription';
+    public const string TYPE_NAME = 'storePaymentPurposePremiumSubscription';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StorePaymentPurposePremiumSubscription extends StorePaymentPurpose
     public function getIsUpgrade(): bool
     {
         return $this->isUpgrade;
+    }
+
+    public function setIsRestore(bool $value): static
+    {
+        $this->isRestore = $value;
+
+        return $this;
+    }
+
+    public function setIsUpgrade(bool $value): static
+    {
+        $this->isUpgrade = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

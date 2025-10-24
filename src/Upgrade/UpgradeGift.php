@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class UpgradeGift extends TdFunction
 {
-    public const TYPE_NAME = 'upgradeGift';
+    public const string TYPE_NAME = 'upgradeGift';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UpgradeGift extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setKeepOriginalDetails(bool $value): static
+    {
+        $this->keepOriginalDetails = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

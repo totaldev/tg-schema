@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStoryAvailableReactions extends TdFunction
 {
-    public const TYPE_NAME = 'getStoryAvailableReactions';
+    public const string TYPE_NAME = 'getStoryAvailableReactions';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetStoryAvailableReactions extends TdFunction
     public function getRowSize(): int
     {
         return $this->rowSize;
+    }
+
+    public function setRowSize(int $value): static
+    {
+        $this->rowSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

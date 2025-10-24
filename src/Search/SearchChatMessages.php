@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchChatMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchChatMessages';
+    public const string TYPE_NAME = 'searchChatMessages';
 
     public function __construct(
         /**
@@ -108,6 +108,62 @@ class SearchChatMessages extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilter(?SearchMessagesFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setFromMessageId(int $value): static
+    {
+        $this->fromMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

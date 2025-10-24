@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAutoDownloadSettingsPresets extends TdFunction
 {
-    public const TYPE_NAME = 'getAutoDownloadSettingsPresets';
+    public const string TYPE_NAME = 'getAutoDownloadSettingsPresets';
 
     public function __construct() {}
 

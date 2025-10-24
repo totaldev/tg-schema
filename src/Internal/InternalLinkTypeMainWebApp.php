@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Web\WebAppOpenMode;
  */
 class InternalLinkTypeMainWebApp extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeMainWebApp';
+    public const string TYPE_NAME = 'internalLinkTypeMainWebApp';
 
     public function __construct(
         /**
@@ -59,6 +59,27 @@ class InternalLinkTypeMainWebApp extends InternalLinkType
     public function getStartParameter(): string
     {
         return $this->startParameter;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setMode(WebAppOpenMode $value): static
+    {
+        $this->mode = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

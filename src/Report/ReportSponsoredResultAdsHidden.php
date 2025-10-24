@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportSponsoredResultAdsHidden extends ReportSponsoredResult
 {
-    public const TYPE_NAME = 'reportSponsoredResultAdsHidden';
+    public const string TYPE_NAME = 'reportSponsoredResultAdsHidden';
 
     public function __construct()
     {

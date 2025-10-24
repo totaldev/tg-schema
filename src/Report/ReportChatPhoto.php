@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReportChatPhoto extends TdFunction
 {
-    public const TYPE_NAME = 'reportChatPhoto';
+    public const string TYPE_NAME = 'reportChatPhoto';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class ReportChatPhoto extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setReason(ReportReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SupergroupMembersFilterMention extends SupergroupMembersFilter
 {
-    public const TYPE_NAME = 'supergroupMembersFilterMention';
+    public const string TYPE_NAME = 'supergroupMembersFilterMention';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SupergroupMembersFilterMention extends SupergroupMembersFilter
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

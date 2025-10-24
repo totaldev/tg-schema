@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RegisterDevice extends TdFunction
 {
-    public const TYPE_NAME = 'registerDevice';
+    public const string TYPE_NAME = 'registerDevice';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class RegisterDevice extends TdFunction
     public function getOtherUserIds(): array
     {
         return $this->otherUserIds;
+    }
+
+    public function setDeviceToken(DeviceToken $value): static
+    {
+        $this->deviceToken = $value;
+
+        return $this;
+    }
+
+    public function setOtherUserIds(array $value): static
+    {
+        $this->otherUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

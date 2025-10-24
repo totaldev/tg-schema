@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageSticker extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageSticker';
+    public const string TYPE_NAME = 'inputMessageSticker';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class InputMessageSticker extends InputMessageContent
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

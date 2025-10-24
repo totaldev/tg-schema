@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditBusinessStory extends TdFunction
 {
-    public const TYPE_NAME = 'editBusinessStory';
+    public const string TYPE_NAME = 'editBusinessStory';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class EditBusinessStory extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setAreas(InputStoryAreas $value): static
+    {
+        $this->areas = $value;
+
+        return $this;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setContent(InputStoryContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setPrivacySettings(StoryPrivacySettings $value): static
+    {
+        $this->privacySettings = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

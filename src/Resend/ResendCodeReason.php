@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ResendCodeReason extends TdObject
 {
-    public const TYPE_NAME = 'ResendCodeReason';
+    public const string TYPE_NAME = 'ResendCodeReason';
 
     public function __construct() {}
 

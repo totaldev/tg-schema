@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventMemberJoinedByInviteLink extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMemberJoinedByInviteLink';
+    public const string TYPE_NAME = 'chatEventMemberJoinedByInviteLink';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventMemberJoinedByInviteLink extends ChatEventAction
     public function getViaChatFolderInviteLink(): bool
     {
         return $this->viaChatFolderInviteLink;
+    }
+
+    public function setInviteLink(ChatInviteLink $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setViaChatFolderInviteLink(bool $value): static
+    {
+        $this->viaChatFolderInviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

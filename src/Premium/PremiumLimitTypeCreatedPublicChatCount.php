@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeCreatedPublicChatCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeCreatedPublicChatCount';
+    public const string TYPE_NAME = 'premiumLimitTypeCreatedPublicChatCount';
 
     public function __construct()
     {

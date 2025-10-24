@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AnswerShippingQuery extends TdFunction
 {
-    public const TYPE_NAME = 'answerShippingQuery';
+    public const string TYPE_NAME = 'answerShippingQuery';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class AnswerShippingQuery extends TdFunction
     public function getShippingQueryId(): int
     {
         return $this->shippingQueryId;
+    }
+
+    public function setErrorMessage(string $value): static
+    {
+        $this->errorMessage = $value;
+
+        return $this;
+    }
+
+    public function setShippingOptions(array $value): static
+    {
+        $this->shippingOptions = $value;
+
+        return $this;
+    }
+
+    public function setShippingQueryId(int $value): static
+    {
+        $this->shippingQueryId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

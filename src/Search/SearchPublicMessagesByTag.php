@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchPublicMessagesByTag extends TdFunction
 {
-    public const TYPE_NAME = 'searchPublicMessagesByTag';
+    public const string TYPE_NAME = 'searchPublicMessagesByTag';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class SearchPublicMessagesByTag extends TdFunction
     public function getTag(): string
     {
         return $this->tag;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setTag(string $value): static
+    {
+        $this->tag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

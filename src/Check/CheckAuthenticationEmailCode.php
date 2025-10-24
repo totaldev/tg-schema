@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CheckAuthenticationEmailCode extends TdFunction
 {
-    public const TYPE_NAME = 'checkAuthenticationEmailCode';
+    public const string TYPE_NAME = 'checkAuthenticationEmailCode';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class CheckAuthenticationEmailCode extends TdFunction
     public function getCode(): EmailAddressAuthentication
     {
         return $this->code;
+    }
+
+    public function setCode(EmailAddressAuthentication $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

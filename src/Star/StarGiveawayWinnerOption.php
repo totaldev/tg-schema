@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StarGiveawayWinnerOption extends TdObject
 {
-    public const TYPE_NAME = 'starGiveawayWinnerOption';
+    public const string TYPE_NAME = 'starGiveawayWinnerOption';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class StarGiveawayWinnerOption extends TdObject
     public function getWonStarCount(): int
     {
         return $this->wonStarCount;
+    }
+
+    public function setIsDefault(bool $value): static
+    {
+        $this->isDefault = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
+    }
+
+    public function setWonStarCount(int $value): static
+    {
+        $this->wonStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Statistical;
  */
 class StatisticalGraphData extends StatisticalGraph
 {
-    public const TYPE_NAME = 'statisticalGraphData';
+    public const string TYPE_NAME = 'statisticalGraphData';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StatisticalGraphData extends StatisticalGraph
     public function getZoomToken(): string
     {
         return $this->zoomToken;
+    }
+
+    public function setJsonData(string $value): static
+    {
+        $this->jsonData = $value;
+
+        return $this;
+    }
+
+    public function setZoomToken(string $value): static
+    {
+        $this->zoomToken = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

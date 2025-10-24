@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSourceMessageThreadHistory extends MessageSource
 {
-    public const TYPE_NAME = 'messageSourceMessageThreadHistory';
+    public const string TYPE_NAME = 'messageSourceMessageThreadHistory';
 
     public function __construct()
     {

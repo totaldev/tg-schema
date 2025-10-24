@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CanTransferOwnershipResult extends TdObject
 {
-    public const TYPE_NAME = 'CanTransferOwnershipResult';
+    public const string TYPE_NAME = 'CanTransferOwnershipResult';
 
     public function __construct() {}
 

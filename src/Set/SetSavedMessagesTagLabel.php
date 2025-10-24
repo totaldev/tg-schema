@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetSavedMessagesTagLabel extends TdFunction
 {
-    public const TYPE_NAME = 'setSavedMessagesTagLabel';
+    public const string TYPE_NAME = 'setSavedMessagesTagLabel';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetSavedMessagesTagLabel extends TdFunction
     public function getTag(): ReactionType
     {
         return $this->tag;
+    }
+
+    public function setLabel(string $value): static
+    {
+        $this->label = $value;
+
+        return $this;
+    }
+
+    public function setTag(ReactionType $value): static
+    {
+        $this->tag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageContent extends Update
 {
-    public const TYPE_NAME = 'updateMessageContent';
+    public const string TYPE_NAME = 'updateMessageContent';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UpdateMessageContent extends Update
     public function getNewContent(): MessageContent
     {
         return $this->newContent;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setNewContent(MessageContent $value): static
+    {
+        $this->newContent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

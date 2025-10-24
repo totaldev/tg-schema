@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Option;
  */
 class OptionValueString extends OptionValue
 {
-    public const TYPE_NAME = 'optionValueString';
+    public const string TYPE_NAME = 'optionValueString';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class OptionValueString extends OptionValue
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

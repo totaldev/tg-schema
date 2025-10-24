@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportRequiredElement extends TdObject
 {
-    public const TYPE_NAME = 'passportRequiredElement';
+    public const string TYPE_NAME = 'passportRequiredElement';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportRequiredElement extends TdObject
     public function getSuitableElements(): array
     {
         return $this->suitableElements;
+    }
+
+    public function setSuitableElements(array $value): static
+    {
+        $this->suitableElements = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

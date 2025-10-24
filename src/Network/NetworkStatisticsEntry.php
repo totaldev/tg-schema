@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class NetworkStatisticsEntry extends TdObject
 {
-    public const TYPE_NAME = 'NetworkStatisticsEntry';
+    public const string TYPE_NAME = 'NetworkStatisticsEntry';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UserRating extends TdObject
 {
-    public const TYPE_NAME = 'userRating';
+    public const string TYPE_NAME = 'userRating';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class UserRating extends TdObject
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function setCurrentLevelRating(int $value): static
+    {
+        $this->currentLevelRating = $value;
+
+        return $this;
+    }
+
+    public function setIsMaximumLevelReached(bool $value): static
+    {
+        $this->isMaximumLevelReached = $value;
+
+        return $this;
+    }
+
+    public function setLevel(int $value): static
+    {
+        $this->level = $value;
+
+        return $this;
+    }
+
+    public function setNextLevelRating(int $value): static
+    {
+        $this->nextLevelRating = $value;
+
+        return $this;
+    }
+
+    public function setRating(int $value): static
+    {
+        $this->rating = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

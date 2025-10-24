@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleBotIsAddedToAttachmentMenu extends TdFunction
 {
-    public const TYPE_NAME = 'toggleBotIsAddedToAttachmentMenu';
+    public const string TYPE_NAME = 'toggleBotIsAddedToAttachmentMenu';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ToggleBotIsAddedToAttachmentMenu extends TdFunction
     public function getIsAdded(): bool
     {
         return $this->isAdded;
+    }
+
+    public function setAllowWriteAccess(bool $value): static
+    {
+        $this->allowWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setIsAdded(bool $value): static
+    {
+        $this->isAdded = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

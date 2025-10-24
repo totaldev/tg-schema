@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AutosaveSettings extends TdObject
 {
-    public const TYPE_NAME = 'autosaveSettings';
+    public const string TYPE_NAME = 'autosaveSettings';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class AutosaveSettings extends TdObject
     public function getPrivateChatSettings(): ScopeAutosaveSettings
     {
         return $this->privateChatSettings;
+    }
+
+    public function setChannelSettings(ScopeAutosaveSettings $value): static
+    {
+        $this->channelSettings = $value;
+
+        return $this;
+    }
+
+    public function setExceptions(array $value): static
+    {
+        $this->exceptions = $value;
+
+        return $this;
+    }
+
+    public function setGroupSettings(ScopeAutosaveSettings $value): static
+    {
+        $this->groupSettings = $value;
+
+        return $this;
+    }
+
+    public function setPrivateChatSettings(ScopeAutosaveSettings $value): static
+    {
+        $this->privateChatSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

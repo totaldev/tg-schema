@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumState extends TdObject
 {
-    public const TYPE_NAME = 'premiumState';
+    public const string TYPE_NAME = 'premiumState';
 
     public function __construct(
         /**
@@ -71,6 +71,34 @@ class PremiumState extends TdObject
     public function getState(): FormattedText
     {
         return $this->state;
+    }
+
+    public function setAnimations(array $value): static
+    {
+        $this->animations = $value;
+
+        return $this;
+    }
+
+    public function setBusinessAnimations(array $value): static
+    {
+        $this->businessAnimations = $value;
+
+        return $this;
+    }
+
+    public function setPaymentOptions(array $value): static
+    {
+        $this->paymentOptions = $value;
+
+        return $this;
+    }
+
+    public function setState(FormattedText $value): static
+    {
+        $this->state = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

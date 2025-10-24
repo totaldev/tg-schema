@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class PingProxy extends TdFunction
 {
-    public const TYPE_NAME = 'pingProxy';
+    public const string TYPE_NAME = 'pingProxy';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PingProxy extends TdFunction
     public function getProxyId(): int
     {
         return $this->proxyId;
+    }
+
+    public function setProxyId(int $value): static
+    {
+        $this->proxyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

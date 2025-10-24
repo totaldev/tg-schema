@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatFolderTags extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatFolderTags';
+    public const string TYPE_NAME = 'toggleChatFolderTags';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ToggleChatFolderTags extends TdFunction
     public function getAreTagsEnabled(): bool
     {
         return $this->areTagsEnabled;
+    }
+
+    public function setAreTagsEnabled(bool $value): static
+    {
+        $this->areTagsEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowContacts extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowContacts';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowContacts';
 
     public function __construct()
     {

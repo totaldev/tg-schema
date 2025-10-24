@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetCommands extends TdFunction
 {
-    public const TYPE_NAME = 'setCommands';
+    public const string TYPE_NAME = 'setCommands';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class SetCommands extends TdFunction
     public function getScope(): ?BotCommandScope
     {
         return $this->scope;
+    }
+
+    public function setCommands(array $value): static
+    {
+        $this->commands = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
+    }
+
+    public function setScope(?BotCommandScope $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

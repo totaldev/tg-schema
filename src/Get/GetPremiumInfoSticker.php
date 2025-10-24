@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPremiumInfoSticker extends TdFunction
 {
-    public const TYPE_NAME = 'getPremiumInfoSticker';
+    public const string TYPE_NAME = 'getPremiumInfoSticker';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetPremiumInfoSticker extends TdFunction
     public function getMonthCount(): int
     {
         return $this->monthCount;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

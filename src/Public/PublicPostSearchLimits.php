@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PublicPostSearchLimits extends TdObject
 {
-    public const TYPE_NAME = 'publicPostSearchLimits';
+    public const string TYPE_NAME = 'publicPostSearchLimits';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class PublicPostSearchLimits extends TdObject
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setDailyFreeQueryCount(int $value): static
+    {
+        $this->dailyFreeQueryCount = $value;
+
+        return $this;
+    }
+
+    public function setIsCurrentQueryFree(bool $value): static
+    {
+        $this->isCurrentQueryFree = $value;
+
+        return $this;
+    }
+
+    public function setNextFreeQueryIn(int $value): static
+    {
+        $this->nextFreeQueryIn = $value;
+
+        return $this;
+    }
+
+    public function setRemainingFreeQueryCount(int $value): static
+    {
+        $this->remainingFreeQueryCount = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

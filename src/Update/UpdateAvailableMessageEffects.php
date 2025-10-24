@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateAvailableMessageEffects extends Update
 {
-    public const TYPE_NAME = 'updateAvailableMessageEffects';
+    public const string TYPE_NAME = 'updateAvailableMessageEffects';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateAvailableMessageEffects extends Update
     public function getStickerEffectIds(): array
     {
         return $this->stickerEffectIds;
+    }
+
+    public function setReactionEffectIds(array $value): static
+    {
+        $this->reactionEffectIds = $value;
+
+        return $this;
+    }
+
+    public function setStickerEffectIds(array $value): static
+    {
+        $this->stickerEffectIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

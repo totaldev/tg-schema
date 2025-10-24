@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanTransferOwnershipResultSessionTooFresh extends CanTransferOwnershipResult
 {
-    public const TYPE_NAME = 'canTransferOwnershipResultSessionTooFresh';
+    public const string TYPE_NAME = 'canTransferOwnershipResultSessionTooFresh';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CanTransferOwnershipResultSessionTooFresh extends CanTransferOwnershipResu
     public function getRetryAfter(): int
     {
         return $this->retryAfter;
+    }
+
+    public function setRetryAfter(int $value): static
+    {
+        $this->retryAfter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

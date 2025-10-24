@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AddRecentlyFoundChat extends TdFunction
 {
-    public const TYPE_NAME = 'addRecentlyFoundChat';
+    public const string TYPE_NAME = 'addRecentlyFoundChat';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class AddRecentlyFoundChat extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

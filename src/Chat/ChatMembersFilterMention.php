@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatMembersFilterMention extends ChatMembersFilter
 {
-    public const TYPE_NAME = 'chatMembersFilterMention';
+    public const string TYPE_NAME = 'chatMembersFilterMention';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatMembersFilterMention extends ChatMembersFilter
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

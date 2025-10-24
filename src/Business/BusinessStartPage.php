@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessStartPage extends TdObject
 {
-    public const TYPE_NAME = 'businessStartPage';
+    public const string TYPE_NAME = 'businessStartPage';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class BusinessStartPage extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setMessage(string $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

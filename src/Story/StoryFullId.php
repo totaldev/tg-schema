@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryFullId extends TdObject
 {
-    public const TYPE_NAME = 'storyFullId';
+    public const string TYPE_NAME = 'storyFullId';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StoryFullId extends TdObject
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setPosterChatId(int $value): static
+    {
+        $this->posterChatId = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

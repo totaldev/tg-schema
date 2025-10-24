@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPremiumGiftPaymentOptions extends TdFunction
 {
-    public const TYPE_NAME = 'getPremiumGiftPaymentOptions';
+    public const string TYPE_NAME = 'getPremiumGiftPaymentOptions';
 
     public function __construct() {}
 

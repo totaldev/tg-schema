@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetGameScore extends TdFunction
 {
-    public const TYPE_NAME = 'setGameScore';
+    public const string TYPE_NAME = 'setGameScore';
 
     public function __construct(
         /**
@@ -82,6 +82,48 @@ class SetGameScore extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setEditMessage(bool $value): static
+    {
+        $this->editMessage = $value;
+
+        return $this;
+    }
+
+    public function setForce(bool $value): static
+    {
+        $this->force = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setScore(int $value): static
+    {
+        $this->score = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

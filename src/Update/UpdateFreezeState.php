@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateFreezeState extends Update
 {
-    public const TYPE_NAME = 'updateFreezeState';
+    public const string TYPE_NAME = 'updateFreezeState';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UpdateFreezeState extends Update
     public function getIsFrozen(): bool
     {
         return $this->isFrozen;
+    }
+
+    public function setAppealLink(string $value): static
+    {
+        $this->appealLink = $value;
+
+        return $this;
+    }
+
+    public function setDeletionDate(int $value): static
+    {
+        $this->deletionDate = $value;
+
+        return $this;
+    }
+
+    public function setFreezingDate(int $value): static
+    {
+        $this->freezingDate = $value;
+
+        return $this;
+    }
+
+    public function setIsFrozen(bool $value): static
+    {
+        $this->isFrozen = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

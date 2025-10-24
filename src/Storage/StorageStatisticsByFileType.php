@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StorageStatisticsByFileType extends TdObject
 {
-    public const TYPE_NAME = 'storageStatisticsByFileType';
+    public const string TYPE_NAME = 'storageStatisticsByFileType';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class StorageStatisticsByFileType extends TdObject
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
+    }
+
+    public function setFileType(FileType $value): static
+    {
+        $this->fileType = $value;
+
+        return $this;
+    }
+
+    public function setSize(int $value): static
+    {
+        $this->size = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

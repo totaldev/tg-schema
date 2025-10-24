@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeCallbackGame extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeCallbackGame';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeCallbackGame';
 
     public function __construct()
     {

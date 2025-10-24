@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SessionType extends TdObject
 {
-    public const TYPE_NAME = 'SessionType';
+    public const string TYPE_NAME = 'SessionType';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryPrivacySettings extends TdObject
 {
-    public const TYPE_NAME = 'StoryPrivacySettings';
+    public const string TYPE_NAME = 'StoryPrivacySettings';
 
     public function __construct() {}
 

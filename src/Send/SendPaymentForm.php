@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendPaymentForm extends TdFunction
 {
-    public const TYPE_NAME = 'sendPaymentForm';
+    public const string TYPE_NAME = 'sendPaymentForm';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class SendPaymentForm extends TdFunction
     public function getTipAmount(): int
     {
         return $this->tipAmount;
+    }
+
+    public function setCredentials(?InputCredentials $value): static
+    {
+        $this->credentials = $value;
+
+        return $this;
+    }
+
+    public function setInputInvoice(InputInvoice $value): static
+    {
+        $this->inputInvoice = $value;
+
+        return $this;
+    }
+
+    public function setOrderInfoId(string $value): static
+    {
+        $this->orderInfoId = $value;
+
+        return $this;
+    }
+
+    public function setPaymentFormId(int $value): static
+    {
+        $this->paymentFormId = $value;
+
+        return $this;
+    }
+
+    public function setShippingOptionId(string $value): static
+    {
+        $this->shippingOptionId = $value;
+
+        return $this;
+    }
+
+    public function setTipAmount(int $value): static
+    {
+        $this->tipAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

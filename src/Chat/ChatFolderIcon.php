@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatFolderIcon extends TdObject
 {
-    public const TYPE_NAME = 'chatFolderIcon';
+    public const string TYPE_NAME = 'chatFolderIcon';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatFolderIcon extends TdObject
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

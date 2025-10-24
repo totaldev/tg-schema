@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchStickers extends TdFunction
 {
-    public const TYPE_NAME = 'searchStickers';
+    public const string TYPE_NAME = 'searchStickers';
 
     public function __construct(
         /**
@@ -86,6 +86,48 @@ class SearchStickers extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setEmojis(string $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setInputLanguageCodes(array $value): static
+    {
+        $this->inputLanguageCodes = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

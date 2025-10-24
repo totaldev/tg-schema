@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLogStream extends TdFunction
 {
-    public const TYPE_NAME = 'getLogStream';
+    public const string TYPE_NAME = 'getLogStream';
 
     public function __construct() {}
 

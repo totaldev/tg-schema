@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeBotCommand extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeBotCommand';
+    public const string TYPE_NAME = 'textEntityTypeBotCommand';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedPostPriceStar extends SuggestedPostPrice
 {
-    public const TYPE_NAME = 'suggestedPostPriceStar';
+    public const string TYPE_NAME = 'suggestedPostPriceStar';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SuggestedPostPriceStar extends SuggestedPostPrice
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

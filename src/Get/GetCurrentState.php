@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCurrentState extends TdFunction
 {
-    public const TYPE_NAME = 'getCurrentState';
+    public const string TYPE_NAME = 'getCurrentState';
 
     public function __construct() {}
 

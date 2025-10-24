@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventMemberRestricted extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMemberRestricted';
+    public const string TYPE_NAME = 'chatEventMemberRestricted';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ChatEventMemberRestricted extends ChatEventAction
     public function getOldStatus(): ChatMemberStatus
     {
         return $this->oldStatus;
+    }
+
+    public function setMemberId(MessageSender $value): static
+    {
+        $this->memberId = $value;
+
+        return $this;
+    }
+
+    public function setNewStatus(ChatMemberStatus $value): static
+    {
+        $this->newStatus = $value;
+
+        return $this;
+    }
+
+    public function setOldStatus(ChatMemberStatus $value): static
+    {
+        $this->oldStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

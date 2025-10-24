@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SearchMessagesFilter extends TdObject
 {
-    public const TYPE_NAME = 'SearchMessagesFilter';
+    public const string TYPE_NAME = 'SearchMessagesFilter';
 
     public function __construct() {}
 

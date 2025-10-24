@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockEmbeddedPost extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockEmbeddedPost';
+    public const string TYPE_NAME = 'pageBlockEmbeddedPost';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class PageBlockEmbeddedPost extends PageBlock
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAuthor(string $value): static
+    {
+        $this->author = $value;
+
+        return $this;
+    }
+
+    public function setAuthorPhoto(?Photo $value): static
+    {
+        $this->authorPhoto = $value;
+
+        return $this;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setPageBlocks(array $value): static
+    {
+        $this->pageBlocks = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

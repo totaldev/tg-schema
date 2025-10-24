@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LogVerbosityLevel extends TdObject
 {
-    public const TYPE_NAME = 'logVerbosityLevel';
+    public const string TYPE_NAME = 'logVerbosityLevel';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class LogVerbosityLevel extends TdObject
     public function getVerbosityLevel(): int
     {
         return $this->verbosityLevel;
+    }
+
+    public function setVerbosityLevel(int $value): static
+    {
+        $this->verbosityLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

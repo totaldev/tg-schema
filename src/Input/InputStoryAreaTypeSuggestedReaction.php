@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeSuggestedReaction';
+    public const string TYPE_NAME = 'inputStoryAreaTypeSuggestedReaction';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType
     public function getReactionType(): ReactionType
     {
         return $this->reactionType;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
+    }
+
+    public function setIsFlipped(bool $value): static
+    {
+        $this->isFlipped = $value;
+
+        return $this;
+    }
+
+    public function setReactionType(ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PremiumLimitType extends TdObject
 {
-    public const TYPE_NAME = 'PremiumLimitType';
+    public const string TYPE_NAME = 'PremiumLimitType';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DeepLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'deepLinkInfo';
+    public const string TYPE_NAME = 'deepLinkInfo';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DeepLinkInfo extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setNeedUpdateApplication(bool $value): static
+    {
+        $this->needUpdateApplication = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

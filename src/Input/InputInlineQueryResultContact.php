@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultContact extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultContact';
+    public const string TYPE_NAME = 'inputInlineQueryResultContact';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class InputInlineQueryResultContact extends InputInlineQueryResult
     public function getThumbnailWidth(): int
     {
         return $this->thumbnailWidth;
+    }
+
+    public function setContact(Contact $value): static
+    {
+        $this->contact = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailHeight(int $value): static
+    {
+        $this->thumbnailHeight = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailWidth(int $value): static
+    {
+        $this->thumbnailWidth = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

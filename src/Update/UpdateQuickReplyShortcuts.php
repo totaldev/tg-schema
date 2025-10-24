@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateQuickReplyShortcuts extends Update
 {
-    public const TYPE_NAME = 'updateQuickReplyShortcuts';
+    public const string TYPE_NAME = 'updateQuickReplyShortcuts';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateQuickReplyShortcuts extends Update
     public function getShortcutIds(): array
     {
         return $this->shortcutIds;
+    }
+
+    public function setShortcutIds(array $value): static
+    {
+        $this->shortcutIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

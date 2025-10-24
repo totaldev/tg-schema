@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReportChatResultOptionRequired extends ReportChatResult
 {
-    public const TYPE_NAME = 'reportChatResultOptionRequired';
+    public const string TYPE_NAME = 'reportChatResultOptionRequired';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ReportChatResultOptionRequired extends ReportChatResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setOptions(array $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

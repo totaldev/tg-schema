@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportChatResultMessagesRequired extends ReportChatResult
 {
-    public const TYPE_NAME = 'reportChatResultMessagesRequired';
+    public const string TYPE_NAME = 'reportChatResultMessagesRequired';
 
     public function __construct()
     {

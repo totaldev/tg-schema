@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeItalic extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeItalic';
+    public const string TYPE_NAME = 'textEntityTypeItalic';
 
     public function __construct()
     {

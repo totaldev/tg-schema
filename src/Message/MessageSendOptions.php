@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSendOptions extends TdObject
 {
-    public const TYPE_NAME = 'messageSendOptions';
+    public const string TYPE_NAME = 'messageSendOptions';
 
     public function __construct(
         /**
@@ -134,6 +134,83 @@ class MessageSendOptions extends TdObject
     public function getUpdateOrderOfInstalledStickerSets(): bool
     {
         return $this->updateOrderOfInstalledStickerSets;
+    }
+
+    public function setAllowPaidBroadcast(bool $value): static
+    {
+        $this->allowPaidBroadcast = $value;
+
+        return $this;
+    }
+
+    public function setDisableNotification(bool $value): static
+    {
+        $this->disableNotification = $value;
+
+        return $this;
+    }
+
+    public function setEffectId(int $value): static
+    {
+        $this->effectId = $value;
+
+        return $this;
+    }
+
+    public function setFromBackground(bool $value): static
+    {
+        $this->fromBackground = $value;
+
+        return $this;
+    }
+
+    public function setOnlyPreview(bool $value): static
+    {
+        $this->onlyPreview = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setProtectContent(bool $value): static
+    {
+        $this->protectContent = $value;
+
+        return $this;
+    }
+
+    public function setSchedulingState(?MessageSchedulingState $value): static
+    {
+        $this->schedulingState = $value;
+
+        return $this;
+    }
+
+    public function setSendingId(int $value): static
+    {
+        $this->sendingId = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostInfo(?InputSuggestedPostInfo $value): static
+    {
+        $this->suggestedPostInfo = $value;
+
+        return $this;
+    }
+
+    public function setUpdateOrderOfInstalledStickerSets(bool $value): static
+    {
+        $this->updateOrderOfInstalledStickerSets = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

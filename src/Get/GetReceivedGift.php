@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetReceivedGift extends TdFunction
 {
-    public const TYPE_NAME = 'getReceivedGift';
+    public const string TYPE_NAME = 'getReceivedGift';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetReceivedGift extends TdFunction
     public function getReceivedGiftId(): string
     {
         return $this->receivedGiftId;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

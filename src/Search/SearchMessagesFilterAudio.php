@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterAudio extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterAudio';
+    public const string TYPE_NAME = 'searchMessagesFilterAudio';
 
     public function __construct()
     {

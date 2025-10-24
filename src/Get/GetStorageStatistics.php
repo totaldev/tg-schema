@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStorageStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getStorageStatistics';
+    public const string TYPE_NAME = 'getStorageStatistics';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetStorageStatistics extends TdFunction
     public function getChatLimit(): int
     {
         return $this->chatLimit;
+    }
+
+    public function setChatLimit(int $value): static
+    {
+        $this->chatLimit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

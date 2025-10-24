@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeUbuntu extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeUbuntu';
+    public const string TYPE_NAME = 'sessionTypeUbuntu';
 
     public function __construct()
     {

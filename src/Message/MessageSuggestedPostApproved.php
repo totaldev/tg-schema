@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestedPostApproved extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestedPostApproved';
+    public const string TYPE_NAME = 'messageSuggestedPostApproved';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class MessageSuggestedPostApproved extends MessageContent
     public function getSuggestedPostMessageId(): int
     {
         return $this->suggestedPostMessageId;
+    }
+
+    public function setPrice(?SuggestedPostPrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
+    }
+
+    public function setSendDate(int $value): static
+    {
+        $this->sendDate = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostMessageId(int $value): static
+    {
+        $this->suggestedPostMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

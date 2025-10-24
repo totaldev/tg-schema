@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatTypePrivate extends ChatType
 {
-    public const TYPE_NAME = 'chatTypePrivate';
+    public const string TYPE_NAME = 'chatTypePrivate';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatTypePrivate extends ChatType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

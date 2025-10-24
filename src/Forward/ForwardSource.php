@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ForwardSource extends TdObject
 {
-    public const TYPE_NAME = 'forwardSource';
+    public const string TYPE_NAME = 'forwardSource';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class ForwardSource extends TdObject
     public function getSenderName(): string
     {
         return $this->senderName;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setSenderName(string $value): static
+    {
+        $this->senderName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

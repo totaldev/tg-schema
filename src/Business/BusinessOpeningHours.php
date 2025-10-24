@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessOpeningHours extends TdObject
 {
-    public const TYPE_NAME = 'businessOpeningHours';
+    public const string TYPE_NAME = 'businessOpeningHours';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class BusinessOpeningHours extends TdObject
     public function getTimeZoneId(): string
     {
         return $this->timeZoneId;
+    }
+
+    public function setOpeningHours(array $value): static
+    {
+        $this->openingHours = $value;
+
+        return $this;
+    }
+
+    public function setTimeZoneId(string $value): static
+    {
+        $this->timeZoneId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

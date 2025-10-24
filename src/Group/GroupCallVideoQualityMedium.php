@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Group;
  */
 class GroupCallVideoQualityMedium extends GroupCallVideoQuality
 {
-    public const TYPE_NAME = 'groupCallVideoQualityMedium';
+    public const string TYPE_NAME = 'groupCallVideoQualityMedium';
 
     public function __construct()
     {

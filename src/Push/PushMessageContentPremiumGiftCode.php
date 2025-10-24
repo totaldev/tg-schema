@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentPremiumGiftCode extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentPremiumGiftCode';
+    public const string TYPE_NAME = 'pushMessageContentPremiumGiftCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentPremiumGiftCode extends PushMessageContent
     public function getMonthCount(): int
     {
         return $this->monthCount;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

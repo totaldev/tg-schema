@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCountryCode extends TdFunction
 {
-    public const TYPE_NAME = 'getCountryCode';
+    public const string TYPE_NAME = 'getCountryCode';
 
     public function __construct() {}
 

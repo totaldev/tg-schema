@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendAuthenticationFirebaseSms extends TdFunction
 {
-    public const TYPE_NAME = 'sendAuthenticationFirebaseSms';
+    public const string TYPE_NAME = 'sendAuthenticationFirebaseSms';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class SendAuthenticationFirebaseSms extends TdFunction
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

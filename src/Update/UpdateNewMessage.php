@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewMessage extends Update
 {
-    public const TYPE_NAME = 'updateNewMessage';
+    public const string TYPE_NAME = 'updateNewMessage';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateNewMessage extends Update
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

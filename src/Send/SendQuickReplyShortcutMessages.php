@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendQuickReplyShortcutMessages extends TdFunction
 {
-    public const TYPE_NAME = 'sendQuickReplyShortcutMessages';
+    public const string TYPE_NAME = 'sendQuickReplyShortcutMessages';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SendQuickReplyShortcutMessages extends TdFunction
     public function getShortcutId(): int
     {
         return $this->shortcutId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSendingId(int $value): static
+    {
+        $this->sendingId = $value;
+
+        return $this;
+    }
+
+    public function setShortcutId(int $value): static
+    {
+        $this->shortcutId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

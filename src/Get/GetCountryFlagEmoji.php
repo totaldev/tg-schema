@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCountryFlagEmoji extends TdFunction
 {
-    public const TYPE_NAME = 'getCountryFlagEmoji';
+    public const string TYPE_NAME = 'getCountryFlagEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetCountryFlagEmoji extends TdFunction
     public function getCountryCode(): string
     {
         return $this->countryCode;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

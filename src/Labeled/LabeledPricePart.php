@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LabeledPricePart extends TdObject
 {
-    public const TYPE_NAME = 'labeledPricePart';
+    public const string TYPE_NAME = 'labeledPricePart';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class LabeledPricePart extends TdObject
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setLabel(string $value): static
+    {
+        $this->label = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

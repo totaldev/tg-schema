@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EmojiStatuses extends TdObject
 {
-    public const TYPE_NAME = 'emojiStatuses';
+    public const string TYPE_NAME = 'emojiStatuses';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class EmojiStatuses extends TdObject
     public function getEmojiStatuses(): array
     {
         return $this->emojiStatuses;
+    }
+
+    public function setEmojiStatuses(array $value): static
+    {
+        $this->emojiStatuses = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class InlineQueryResultContact extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultContact';
+    public const string TYPE_NAME = 'inlineQueryResultContact';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class InlineQueryResultContact extends InlineQueryResult
     public function getThumbnail(): ?Thumbnail
     {
         return $this->thumbnail;
+    }
+
+    public function setContact(Contact $value): static
+    {
+        $this->contact = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

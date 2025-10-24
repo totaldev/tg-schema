@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiveawayInfoOngoing extends GiveawayInfo
 {
-    public const TYPE_NAME = 'giveawayInfoOngoing';
+    public const string TYPE_NAME = 'giveawayInfoOngoing';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GiveawayInfoOngoing extends GiveawayInfo
     public function getStatus(): GiveawayParticipantStatus
     {
         return $this->status;
+    }
+
+    public function setCreationDate(int $value): static
+    {
+        $this->creationDate = $value;
+
+        return $this;
+    }
+
+    public function setIsEnded(bool $value): static
+    {
+        $this->isEnded = $value;
+
+        return $this;
+    }
+
+    public function setStatus(GiveawayParticipantStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

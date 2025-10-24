@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetUserSupportInfo extends TdFunction
 {
-    public const TYPE_NAME = 'setUserSupportInfo';
+    public const string TYPE_NAME = 'setUserSupportInfo';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetUserSupportInfo extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setMessage(FormattedText $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

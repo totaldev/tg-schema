@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChecklistTasksDone extends MessageContent
 {
-    public const TYPE_NAME = 'messageChecklistTasksDone';
+    public const string TYPE_NAME = 'messageChecklistTasksDone';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class MessageChecklistTasksDone extends MessageContent
     public function getMarkedAsNotDoneTaskIds(): array
     {
         return $this->markedAsNotDoneTaskIds;
+    }
+
+    public function setChecklistMessageId(int $value): static
+    {
+        $this->checklistMessageId = $value;
+
+        return $this;
+    }
+
+    public function setMarkedAsDoneTaskIds(array $value): static
+    {
+        $this->markedAsDoneTaskIds = $value;
+
+        return $this;
+    }
+
+    public function setMarkedAsNotDoneTaskIds(array $value): static
+    {
+        $this->markedAsNotDoneTaskIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ProcessChatFolderNewChats extends TdFunction
 {
-    public const TYPE_NAME = 'processChatFolderNewChats';
+    public const string TYPE_NAME = 'processChatFolderNewChats';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ProcessChatFolderNewChats extends TdFunction
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
+    }
+
+    public function setAddedChatIds(array $value): static
+    {
+        $this->addedChatIds = $value;
+
+        return $this;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

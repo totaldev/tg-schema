@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiCategorySourcePremium extends EmojiCategorySource
 {
-    public const TYPE_NAME = 'emojiCategorySourcePremium';
+    public const string TYPE_NAME = 'emojiCategorySourcePremium';
 
     public function __construct()
     {

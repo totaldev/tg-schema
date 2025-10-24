@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageLocation extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageLocation';
+    public const string TYPE_NAME = 'inputMessageLocation';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class InputMessageLocation extends InputMessageContent
     public function getProximityAlertRadius(): int
     {
         return $this->proximityAlertRadius;
+    }
+
+    public function setHeading(int $value): static
+    {
+        $this->heading = $value;
+
+        return $this;
+    }
+
+    public function setLivePeriod(int $value): static
+    {
+        $this->livePeriod = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setProximityAlertRadius(int $value): static
+    {
+        $this->proximityAlertRadius = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

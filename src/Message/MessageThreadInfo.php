@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageThreadInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageThreadInfo';
+    public const string TYPE_NAME = 'messageThreadInfo';
 
     public function __construct(
         /**
@@ -86,6 +86,48 @@ class MessageThreadInfo extends TdObject
     public function getUnreadMessageCount(): int
     {
         return $this->unreadMessageCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setMessageThreadId(int $value): static
+    {
+        $this->messageThreadId = $value;
+
+        return $this;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setReplyInfo(?MessageReplyInfo $value): static
+    {
+        $this->replyInfo = $value;
+
+        return $this;
+    }
+
+    public function setUnreadMessageCount(int $value): static
+    {
+        $this->unreadMessageCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

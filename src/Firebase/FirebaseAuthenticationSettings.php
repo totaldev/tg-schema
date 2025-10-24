@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FirebaseAuthenticationSettings extends TdObject
 {
-    public const TYPE_NAME = 'FirebaseAuthenticationSettings';
+    public const string TYPE_NAME = 'FirebaseAuthenticationSettings';
 
     public function __construct() {}
 

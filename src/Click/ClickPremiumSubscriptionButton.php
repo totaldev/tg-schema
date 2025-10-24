@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClickPremiumSubscriptionButton extends TdFunction
 {
-    public const TYPE_NAME = 'clickPremiumSubscriptionButton';
+    public const string TYPE_NAME = 'clickPremiumSubscriptionButton';
 
     public function __construct() {}
 

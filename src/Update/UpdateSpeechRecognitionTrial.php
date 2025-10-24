@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateSpeechRecognitionTrial extends Update
 {
-    public const TYPE_NAME = 'updateSpeechRecognitionTrial';
+    public const string TYPE_NAME = 'updateSpeechRecognitionTrial';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UpdateSpeechRecognitionTrial extends Update
     public function getWeeklyCount(): int
     {
         return $this->weeklyCount;
+    }
+
+    public function setLeftCount(int $value): static
+    {
+        $this->leftCount = $value;
+
+        return $this;
+    }
+
+    public function setMaxMediaDuration(int $value): static
+    {
+        $this->maxMediaDuration = $value;
+
+        return $this;
+    }
+
+    public function setNextResetDate(int $value): static
+    {
+        $this->nextResetDate = $value;
+
+        return $this;
+    }
+
+    public function setWeeklyCount(int $value): static
+    {
+        $this->weeklyCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

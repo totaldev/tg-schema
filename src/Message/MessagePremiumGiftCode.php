@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePremiumGiftCode extends MessageContent
 {
-    public const TYPE_NAME = 'messagePremiumGiftCode';
+    public const string TYPE_NAME = 'messagePremiumGiftCode';
 
     public function __construct(
         /**
@@ -136,6 +136,83 @@ class MessagePremiumGiftCode extends MessageContent
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
+    }
+
+    public function setCreatorId(?MessageSender $value): static
+    {
+        $this->creatorId = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrencyAmount(int $value): static
+    {
+        $this->cryptocurrencyAmount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsFromGiveaway(bool $value): static
+    {
+        $this->isFromGiveaway = $value;
+
+        return $this;
+    }
+
+    public function setIsUnclaimed(bool $value): static
+    {
+        $this->isUnclaimed = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

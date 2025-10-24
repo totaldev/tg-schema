@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSupergroup extends TdFunction
 {
-    public const TYPE_NAME = 'getSupergroup';
+    public const string TYPE_NAME = 'getSupergroup';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetSupergroup extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupJoinByRequest extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupJoinByRequest';
+    public const string TYPE_NAME = 'toggleSupergroupJoinByRequest';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleSupergroupJoinByRequest extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setJoinByRequest(bool $value): static
+    {
+        $this->joinByRequest = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

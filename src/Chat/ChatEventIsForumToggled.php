@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventIsForumToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventIsForumToggled';
+    public const string TYPE_NAME = 'chatEventIsForumToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventIsForumToggled extends ChatEventAction
     public function getIsForum(): bool
     {
         return $this->isForum;
+    }
+
+    public function setIsForum(bool $value): static
+    {
+        $this->isForum = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

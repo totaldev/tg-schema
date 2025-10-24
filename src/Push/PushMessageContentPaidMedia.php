@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentPaidMedia extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentPaidMedia';
+    public const string TYPE_NAME = 'pushMessageContentPaidMedia';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentPaidMedia extends PushMessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonSpam extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonSpam';
+    public const string TYPE_NAME = 'reportReasonSpam';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeChannelPaidReactionReceive extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeChannelPaidReactionReceive';
+    public const string TYPE_NAME = 'starTransactionTypeChannelPaidReactionReceive';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarTransactionTypeChannelPaidReactionReceive extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

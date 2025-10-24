@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLanguagePackString extends TdFunction
 {
-    public const TYPE_NAME = 'getLanguagePackString';
+    public const string TYPE_NAME = 'getLanguagePackString';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class GetLanguagePackString extends TdFunction
     public function getLocalizationTarget(): string
     {
         return $this->localizationTarget;
+    }
+
+    public function setKey(string $value): static
+    {
+        $this->key = $value;
+
+        return $this;
+    }
+
+    public function setLanguagePackDatabasePath(string $value): static
+    {
+        $this->languagePackDatabasePath = $value;
+
+        return $this;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
+    }
+
+    public function setLocalizationTarget(string $value): static
+    {
+        $this->localizationTarget = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

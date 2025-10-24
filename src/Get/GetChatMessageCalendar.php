@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatMessageCalendar extends TdFunction
 {
-    public const TYPE_NAME = 'getChatMessageCalendar';
+    public const string TYPE_NAME = 'getChatMessageCalendar';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class GetChatMessageCalendar extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilter(SearchMessagesFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setFromMessageId(int $value): static
+    {
+        $this->fromMessageId = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

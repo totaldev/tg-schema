@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Invite;
  */
 class InviteGroupCallParticipantResultUserPrivacyRestricted extends InviteGroupCallParticipantResult
 {
-    public const TYPE_NAME = 'inviteGroupCallParticipantResultUserPrivacyRestricted';
+    public const string TYPE_NAME = 'inviteGroupCallParticipantResultUserPrivacyRestricted';
 
     public function __construct()
     {

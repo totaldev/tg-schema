@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessGreetingMessageSettings extends TdObject
 {
-    public const TYPE_NAME = 'businessGreetingMessageSettings';
+    public const string TYPE_NAME = 'businessGreetingMessageSettings';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class BusinessGreetingMessageSettings extends TdObject
     public function getShortcutId(): int
     {
         return $this->shortcutId;
+    }
+
+    public function setInactivityDays(int $value): static
+    {
+        $this->inactivityDays = $value;
+
+        return $this;
+    }
+
+    public function setRecipients(BusinessRecipients $value): static
+    {
+        $this->recipients = $value;
+
+        return $this;
+    }
+
+    public function setShortcutId(int $value): static
+    {
+        $this->shortcutId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

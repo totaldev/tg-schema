@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPassportAuthorizationForm extends TdFunction
 {
-    public const TYPE_NAME = 'getPassportAuthorizationForm';
+    public const string TYPE_NAME = 'getPassportAuthorizationForm';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class GetPassportAuthorizationForm extends TdFunction
     public function getScope(): string
     {
         return $this->scope;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setNonce(string $value): static
+    {
+        $this->nonce = $value;
+
+        return $this;
+    }
+
+    public function setPublicKey(string $value): static
+    {
+        $this->publicKey = $value;
+
+        return $this;
+    }
+
+    public function setScope(string $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

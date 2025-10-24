@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SuggestUserBirthdate extends TdFunction
 {
-    public const TYPE_NAME = 'suggestUserBirthdate';
+    public const string TYPE_NAME = 'suggestUserBirthdate';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SuggestUserBirthdate extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setBirthdate(Birthdate $value): static
+    {
+        $this->birthdate = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

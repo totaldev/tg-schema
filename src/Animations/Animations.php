@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Animations extends TdObject
 {
-    public const TYPE_NAME = 'animations';
+    public const string TYPE_NAME = 'animations';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Animations extends TdObject
     public function getAnimations(): array
     {
         return $this->animations;
+    }
+
+    public function setAnimations(array $value): static
+    {
+        $this->animations = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

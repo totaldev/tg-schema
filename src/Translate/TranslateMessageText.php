@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TranslateMessageText extends TdFunction
 {
-    public const TYPE_NAME = 'translateMessageText';
+    public const string TYPE_NAME = 'translateMessageText';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class TranslateMessageText extends TdFunction
     public function getToLanguageCode(): string
     {
         return $this->toLanguageCode;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setToLanguageCode(string $value): static
+    {
+        $this->toLanguageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

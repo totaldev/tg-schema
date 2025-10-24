@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecentlyOpenedChats extends TdFunction
 {
-    public const TYPE_NAME = 'getRecentlyOpenedChats';
+    public const string TYPE_NAME = 'getRecentlyOpenedChats';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetRecentlyOpenedChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

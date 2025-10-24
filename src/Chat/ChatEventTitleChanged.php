@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventTitleChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventTitleChanged';
+    public const string TYPE_NAME = 'chatEventTitleChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventTitleChanged extends ChatEventAction
     public function getOldTitle(): string
     {
         return $this->oldTitle;
+    }
+
+    public function setNewTitle(string $value): static
+    {
+        $this->newTitle = $value;
+
+        return $this;
+    }
+
+    public function setOldTitle(string $value): static
+    {
+        $this->oldTitle = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatNotificationSettings extends Update
 {
-    public const TYPE_NAME = 'updateChatNotificationSettings';
+    public const string TYPE_NAME = 'updateChatNotificationSettings';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatNotificationSettings extends Update
     public function getNotificationSettings(): ChatNotificationSettings
     {
         return $this->notificationSettings;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setNotificationSettings(ChatNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageGiveawayCreated extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiveawayCreated';
+    public const string TYPE_NAME = 'messageGiveawayCreated';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class MessageGiveawayCreated extends MessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AffiliateProgramParameters extends TdObject
 {
-    public const TYPE_NAME = 'affiliateProgramParameters';
+    public const string TYPE_NAME = 'affiliateProgramParameters';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AffiliateProgramParameters extends TdObject
     public function getMonthCount(): int
     {
         return $this->monthCount;
+    }
+
+    public function setCommissionPerMille(int $value): static
+    {
+        $this->commissionPerMille = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

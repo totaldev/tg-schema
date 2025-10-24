@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultPhoto extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultPhoto';
+    public const string TYPE_NAME = 'inputInlineQueryResultPhoto';
 
     public function __construct(
         /**
@@ -115,6 +115,69 @@ class InputInlineQueryResultPhoto extends InputInlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setPhotoHeight(int $value): static
+    {
+        $this->photoHeight = $value;
+
+        return $this;
+    }
+
+    public function setPhotoUrl(string $value): static
+    {
+        $this->photoUrl = $value;
+
+        return $this;
+    }
+
+    public function setPhotoWidth(int $value): static
+    {
+        $this->photoWidth = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

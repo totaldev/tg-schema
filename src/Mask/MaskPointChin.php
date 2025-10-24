@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Mask;
  */
 class MaskPointChin extends MaskPoint
 {
-    public const TYPE_NAME = 'maskPointChin';
+    public const string TYPE_NAME = 'maskPointChin';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AffiliateType extends TdObject
 {
-    public const TYPE_NAME = 'AffiliateType';
+    public const string TYPE_NAME = 'AffiliateType';
 
     public function __construct() {}
 

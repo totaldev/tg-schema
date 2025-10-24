@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeDefaultMessageAutoDeleteTimerSettings extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeDefaultMessageAutoDeleteTimerSettings';
+    public const string TYPE_NAME = 'internalLinkTypeDefaultMessageAutoDeleteTimerSettings';
 
     public function __construct()
     {

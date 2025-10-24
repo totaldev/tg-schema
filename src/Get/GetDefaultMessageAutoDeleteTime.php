@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDefaultMessageAutoDeleteTime extends TdFunction
 {
-    public const TYPE_NAME = 'getDefaultMessageAutoDeleteTime';
+    public const string TYPE_NAME = 'getDefaultMessageAutoDeleteTime';
 
     public function __construct() {}
 

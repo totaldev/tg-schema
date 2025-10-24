@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionWatchingAnimations extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionWatchingAnimations';
+    public const string TYPE_NAME = 'chatActionWatchingAnimations';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatActionWatchingAnimations extends ChatAction
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatFolders extends Update
 {
-    public const TYPE_NAME = 'updateChatFolders';
+    public const string TYPE_NAME = 'updateChatFolders';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class UpdateChatFolders extends Update
     public function getMainChatListPosition(): int
     {
         return $this->mainChatListPosition;
+    }
+
+    public function setAreTagsEnabled(bool $value): static
+    {
+        $this->areTagsEnabled = $value;
+
+        return $this;
+    }
+
+    public function setChatFolders(array $value): static
+    {
+        $this->chatFolders = $value;
+
+        return $this;
+    }
+
+    public function setMainChatListPosition(int $value): static
+    {
+        $this->mainChatListPosition = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

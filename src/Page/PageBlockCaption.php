@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockCaption extends TdObject
 {
-    public const TYPE_NAME = 'pageBlockCaption';
+    public const string TYPE_NAME = 'pageBlockCaption';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class PageBlockCaption extends TdObject
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setCredit(RichText $value): static
+    {
+        $this->credit = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

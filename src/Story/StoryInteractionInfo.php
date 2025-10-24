@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryInteractionInfo extends TdObject
 {
-    public const TYPE_NAME = 'storyInteractionInfo';
+    public const string TYPE_NAME = 'storyInteractionInfo';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class StoryInteractionInfo extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function setForwardCount(int $value): static
+    {
+        $this->forwardCount = $value;
+
+        return $this;
+    }
+
+    public function setReactionCount(int $value): static
+    {
+        $this->reactionCount = $value;
+
+        return $this;
+    }
+
+    public function setRecentViewerUserIds(array $value): static
+    {
+        $this->recentViewerUserIds = $value;
+
+        return $this;
+    }
+
+    public function setViewCount(int $value): static
+    {
+        $this->viewCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

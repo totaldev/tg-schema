@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StarCount extends TdObject
 {
-    public const TYPE_NAME = 'starCount';
+    public const string TYPE_NAME = 'starCount';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StarCount extends TdObject
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

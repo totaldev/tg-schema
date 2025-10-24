@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitPassword extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitPassword';
+    public const string TYPE_NAME = 'authorizationStateWaitPassword';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class AuthorizationStateWaitPassword extends AuthorizationState
     public function getRecoveryEmailAddressPattern(): string
     {
         return $this->recoveryEmailAddressPattern;
+    }
+
+    public function setHasPassportData(bool $value): static
+    {
+        $this->hasPassportData = $value;
+
+        return $this;
+    }
+
+    public function setHasRecoveryEmailAddress(bool $value): static
+    {
+        $this->hasRecoveryEmailAddress = $value;
+
+        return $this;
+    }
+
+    public function setPasswordHint(string $value): static
+    {
+        $this->passwordHint = $value;
+
+        return $this;
+    }
+
+    public function setRecoveryEmailAddressPattern(string $value): static
+    {
+        $this->recoveryEmailAddressPattern = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementTypeTemporaryRegistration extends PassportElementType
 {
-    public const TYPE_NAME = 'passportElementTypeTemporaryRegistration';
+    public const string TYPE_NAME = 'passportElementTypeTemporaryRegistration';
 
     public function __construct()
     {

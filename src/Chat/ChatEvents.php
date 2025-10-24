@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEvents extends TdObject
 {
-    public const TYPE_NAME = 'chatEvents';
+    public const string TYPE_NAME = 'chatEvents';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatEvents extends TdObject
     public function getEvents(): array
     {
         return $this->events;
+    }
+
+    public function setEvents(array $value): static
+    {
+        $this->events = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

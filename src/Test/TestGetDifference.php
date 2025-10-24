@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TestGetDifference extends TdFunction
 {
-    public const TYPE_NAME = 'testGetDifference';
+    public const string TYPE_NAME = 'testGetDifference';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditMessageReplyMarkup extends TdFunction
 {
-    public const TYPE_NAME = 'editMessageReplyMarkup';
+    public const string TYPE_NAME = 'editMessageReplyMarkup';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class EditMessageReplyMarkup extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

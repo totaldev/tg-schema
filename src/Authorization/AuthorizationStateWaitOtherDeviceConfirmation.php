@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitOtherDeviceConfirmation';
+    public const string TYPE_NAME = 'authorizationStateWaitOtherDeviceConfirmation';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AuthorizationStateWaitOtherDeviceConfirmation extends AuthorizationState
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

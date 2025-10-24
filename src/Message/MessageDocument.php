@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageDocument extends MessageContent
 {
-    public const TYPE_NAME = 'messageDocument';
+    public const string TYPE_NAME = 'messageDocument';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class MessageDocument extends MessageContent
     public function getDocument(): Document
     {
         return $this->document;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDocument(Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

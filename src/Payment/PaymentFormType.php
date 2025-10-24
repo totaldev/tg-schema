@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaymentFormType extends TdObject
 {
-    public const TYPE_NAME = 'PaymentFormType';
+    public const string TYPE_NAME = 'PaymentFormType';
 
     public function __construct() {}
 

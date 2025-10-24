@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatPendingJoinRequests extends Update
 {
-    public const TYPE_NAME = 'updateChatPendingJoinRequests';
+    public const string TYPE_NAME = 'updateChatPendingJoinRequests';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatPendingJoinRequests extends Update
     public function getPendingJoinRequests(): ?ChatJoinRequestsInfo
     {
         return $this->pendingJoinRequests;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPendingJoinRequests(?ChatJoinRequestsInfo $value): static
+    {
+        $this->pendingJoinRequests = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

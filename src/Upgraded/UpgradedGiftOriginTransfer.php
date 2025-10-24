@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftOriginTransfer extends UpgradedGiftOrigin
 {
-    public const TYPE_NAME = 'upgradedGiftOriginTransfer';
+    public const string TYPE_NAME = 'upgradedGiftOriginTransfer';
 
     public function __construct()
     {

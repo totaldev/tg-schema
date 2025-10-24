@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBusinessChatLinks extends TdFunction
 {
-    public const TYPE_NAME = 'getBusinessChatLinks';
+    public const string TYPE_NAME = 'getBusinessChatLinks';
 
     public function __construct() {}
 

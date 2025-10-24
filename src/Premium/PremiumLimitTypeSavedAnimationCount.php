@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeSavedAnimationCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeSavedAnimationCount';
+    public const string TYPE_NAME = 'premiumLimitTypeSavedAnimationCount';
 
     public function __construct()
     {

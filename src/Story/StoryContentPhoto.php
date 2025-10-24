@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryContentPhoto extends StoryContent
 {
-    public const TYPE_NAME = 'storyContentPhoto';
+    public const string TYPE_NAME = 'storyContentPhoto';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StoryContentPhoto extends StoryContent
     public function getPhoto(): Photo
     {
         return $this->photo;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

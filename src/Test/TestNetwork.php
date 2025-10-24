@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TestNetwork extends TdFunction
 {
-    public const TYPE_NAME = 'testNetwork';
+    public const string TYPE_NAME = 'testNetwork';
 
     public function __construct() {}
 

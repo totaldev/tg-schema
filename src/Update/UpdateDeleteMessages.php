@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateDeleteMessages extends Update
 {
-    public const TYPE_NAME = 'updateDeleteMessages';
+    public const string TYPE_NAME = 'updateDeleteMessages';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class UpdateDeleteMessages extends Update
     public function getMessageIds(): array
     {
         return $this->messageIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFromCache(bool $value): static
+    {
+        $this->fromCache = $value;
+
+        return $this;
+    }
+
+    public function setIsPermanent(bool $value): static
+    {
+        $this->isPermanent = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

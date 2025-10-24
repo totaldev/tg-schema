@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureAdvancedChatManagement extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureAdvancedChatManagement';
+    public const string TYPE_NAME = 'premiumFeatureAdvancedChatManagement';
 
     public function __construct()
     {

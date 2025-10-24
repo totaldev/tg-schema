@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessAccountProfilePhoto extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessAccountProfilePhoto';
+    public const string TYPE_NAME = 'setBusinessAccountProfilePhoto';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SetBusinessAccountProfilePhoto extends TdFunction
     public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setIsPublic(bool $value): static
+    {
+        $this->isPublic = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?InputChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

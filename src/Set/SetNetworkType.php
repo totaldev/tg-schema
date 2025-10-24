@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetNetworkType extends TdFunction
 {
-    public const TYPE_NAME = 'setNetworkType';
+    public const string TYPE_NAME = 'setNetworkType';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class SetNetworkType extends TdFunction
     public function getType(): ?NetworkType
     {
         return $this->type;
+    }
+
+    public function setType(?NetworkType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

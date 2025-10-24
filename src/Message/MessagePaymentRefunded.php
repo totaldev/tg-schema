@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePaymentRefunded extends MessageContent
 {
-    public const TYPE_NAME = 'messagePaymentRefunded';
+    public const string TYPE_NAME = 'messagePaymentRefunded';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class MessagePaymentRefunded extends MessageContent
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setInvoicePayload(string $value): static
+    {
+        $this->invoicePayload = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setProviderPaymentChargeId(string $value): static
+    {
+        $this->providerPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setTelegramPaymentChargeId(string $value): static
+    {
+        $this->telegramPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

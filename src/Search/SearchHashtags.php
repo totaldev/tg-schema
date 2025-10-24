@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchHashtags extends TdFunction
 {
-    public const TYPE_NAME = 'searchHashtags';
+    public const string TYPE_NAME = 'searchHashtags';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchHashtags extends TdFunction
     public function getPrefix(): string
     {
         return $this->prefix;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setPrefix(string $value): static
+    {
+        $this->prefix = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

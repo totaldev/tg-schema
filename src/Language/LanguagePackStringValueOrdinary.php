@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Language;
  */
 class LanguagePackStringValueOrdinary extends LanguagePackStringValue
 {
-    public const TYPE_NAME = 'languagePackStringValueOrdinary';
+    public const string TYPE_NAME = 'languagePackStringValueOrdinary';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class LanguagePackStringValueOrdinary extends LanguagePackStringValue
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

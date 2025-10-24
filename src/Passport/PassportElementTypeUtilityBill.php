@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementTypeUtilityBill extends PassportElementType
 {
-    public const TYPE_NAME = 'passportElementTypeUtilityBill';
+    public const string TYPE_NAME = 'passportElementTypeUtilityBill';
 
     public function __construct()
     {

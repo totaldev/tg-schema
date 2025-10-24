@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundStories extends TdObject
 {
-    public const TYPE_NAME = 'foundStories';
+    public const string TYPE_NAME = 'foundStories';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class FoundStories extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setStories(array $value): static
+    {
+        $this->stories = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

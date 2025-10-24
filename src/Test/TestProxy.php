@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TestProxy extends TdFunction
 {
-    public const TYPE_NAME = 'testProxy';
+    public const string TYPE_NAME = 'testProxy';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class TestProxy extends TdFunction
     public function getType(): ProxyType
     {
         return $this->type;
+    }
+
+    public function setDcId(int $value): static
+    {
+        $this->dcId = $value;
+
+        return $this;
+    }
+
+    public function setPort(int $value): static
+    {
+        $this->port = $value;
+
+        return $this;
+    }
+
+    public function setServer(string $value): static
+    {
+        $this->server = $value;
+
+        return $this;
+    }
+
+    public function setTimeout(float $value): static
+    {
+        $this->timeout = $value;
+
+        return $this;
+    }
+
+    public function setType(ProxyType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

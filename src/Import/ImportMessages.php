@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ImportMessages extends TdFunction
 {
-    public const TYPE_NAME = 'importMessages';
+    public const string TYPE_NAME = 'importMessages';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class ImportMessages extends TdFunction
     public function getMessageFile(): InputFile
     {
         return $this->messageFile;
+    }
+
+    public function setAttachedFiles(array $value): static
+    {
+        $this->attachedFiles = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageFile(InputFile $value): static
+    {
+        $this->messageFile = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

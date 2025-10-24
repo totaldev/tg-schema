@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureEmojiStatus extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureEmojiStatus';
+    public const string TYPE_NAME = 'premiumFeatureEmojiStatus';
 
     public function __construct()
     {

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetPinnedGifts extends TdFunction
 {
-    public const TYPE_NAME = 'setPinnedGifts';
+    public const string TYPE_NAME = 'setPinnedGifts';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class SetPinnedGifts extends TdFunction
     public function getReceivedGiftIds(): array
     {
         return $this->receivedGiftIds;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftIds(array $value): static
+    {
+        $this->receivedGiftIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventMemberInvited extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMemberInvited';
+    public const string TYPE_NAME = 'chatEventMemberInvited';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventMemberInvited extends ChatEventAction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setStatus(ChatMemberStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

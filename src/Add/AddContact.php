@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddContact extends TdFunction
 {
-    public const TYPE_NAME = 'addContact';
+    public const string TYPE_NAME = 'addContact';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AddContact extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setContact(ImportedContact $value): static
+    {
+        $this->contact = $value;
+
+        return $this;
+    }
+
+    public function setSharePhoneNumber(bool $value): static
+    {
+        $this->sharePhoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

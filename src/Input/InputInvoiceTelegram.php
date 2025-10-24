@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Telegram\TelegramPaymentPurpose;
  */
 class InputInvoiceTelegram extends InputInvoice
 {
-    public const TYPE_NAME = 'inputInvoiceTelegram';
+    public const string TYPE_NAME = 'inputInvoiceTelegram';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class InputInvoiceTelegram extends InputInvoice
     public function getPurpose(): TelegramPaymentPurpose
     {
         return $this->purpose;
+    }
+
+    public function setPurpose(TelegramPaymentPurpose $value): static
+    {
+        $this->purpose = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

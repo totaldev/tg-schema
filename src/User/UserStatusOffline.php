@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserStatusOffline extends UserStatus
 {
-    public const TYPE_NAME = 'userStatusOffline';
+    public const string TYPE_NAME = 'userStatusOffline';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UserStatusOffline extends UserStatus
     public function getWasOnline(): int
     {
         return $this->wasOnline;
+    }
+
+    public function setWasOnline(int $value): static
+    {
+        $this->wasOnline = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

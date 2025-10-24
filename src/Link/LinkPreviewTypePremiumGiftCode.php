@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypePremiumGiftCode extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypePremiumGiftCode';
+    public const string TYPE_NAME = 'linkPreviewTypePremiumGiftCode';
 
     public function __construct()
     {

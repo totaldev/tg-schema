@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatJoinRequest extends TdObject
 {
-    public const TYPE_NAME = 'chatJoinRequest';
+    public const string TYPE_NAME = 'chatJoinRequest';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ChatJoinRequest extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setBio(string $value): static
+    {
+        $this->bio = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

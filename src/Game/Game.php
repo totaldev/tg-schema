@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Game extends TdObject
 {
-    public const TYPE_NAME = 'game';
+    public const string TYPE_NAME = 'game';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class Game extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setShortName(string $value): static
+    {
+        $this->shortName = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

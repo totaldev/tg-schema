@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AnswerCustomQuery extends TdFunction
 {
-    public const TYPE_NAME = 'answerCustomQuery';
+    public const string TYPE_NAME = 'answerCustomQuery';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AnswerCustomQuery extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setCustomQueryId(int $value): static
+    {
+        $this->customQueryId = $value;
+
+        return $this;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

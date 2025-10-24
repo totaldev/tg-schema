@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeAudio extends FileType
 {
-    public const TYPE_NAME = 'fileTypeAudio';
+    public const string TYPE_NAME = 'fileTypeAudio';
 
     public function __construct()
     {

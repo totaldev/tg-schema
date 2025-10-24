@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeGame extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeGame';
+    public const string TYPE_NAME = 'internalLinkTypeGame';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeGame extends InternalLinkType
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setGameShortName(string $value): static
+    {
+        $this->gameShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

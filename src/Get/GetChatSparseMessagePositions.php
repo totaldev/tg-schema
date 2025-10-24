@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatSparseMessagePositions extends TdFunction
 {
-    public const TYPE_NAME = 'getChatSparseMessagePositions';
+    public const string TYPE_NAME = 'getChatSparseMessagePositions';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class GetChatSparseMessagePositions extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilter(SearchMessagesFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setFromMessageId(int $value): static
+    {
+        $this->fromMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypePaidMessageSend extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypePaidMessageSend';
+    public const string TYPE_NAME = 'starTransactionTypePaidMessageSend';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarTransactionTypePaidMessageSend extends StarTransactionType
     public function getMessageCount(): int
     {
         return $this->messageCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageCount(int $value): static
+    {
+        $this->messageCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

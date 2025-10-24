@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageOriginUser extends MessageOrigin
 {
-    public const TYPE_NAME = 'messageOriginUser';
+    public const string TYPE_NAME = 'messageOriginUser';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageOriginUser extends MessageOrigin
     public function getSenderUserId(): int
     {
         return $this->senderUserId;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

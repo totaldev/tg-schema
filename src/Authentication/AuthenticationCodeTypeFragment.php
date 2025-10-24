@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeFragment extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeFragment';
+    public const string TYPE_NAME = 'authenticationCodeTypeFragment';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AuthenticationCodeTypeFragment extends AuthenticationCodeType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

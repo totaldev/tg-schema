@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowChatInvites extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowChatInvites';
+    public const string TYPE_NAME = 'userPrivacySettingAllowChatInvites';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureChatBoost extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureChatBoost';
+    public const string TYPE_NAME = 'premiumFeatureChatBoost';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeBankCardNumber extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeBankCardNumber';
+    public const string TYPE_NAME = 'textEntityTypeBankCardNumber';
 
     public function __construct()
     {

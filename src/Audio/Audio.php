@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class Audio extends TdObject
 {
-    public const TYPE_NAME = 'audio';
+    public const string TYPE_NAME = 'audio';
 
     public function __construct(
         /**
@@ -118,6 +118,69 @@ class Audio extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAlbumCoverMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->albumCoverMinithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setAlbumCoverThumbnail(?Thumbnail $value): static
+    {
+        $this->albumCoverThumbnail = $value;
+
+        return $this;
+    }
+
+    public function setAudio(File $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setExternalAlbumCovers(array $value): static
+    {
+        $this->externalAlbumCovers = $value;
+
+        return $this;
+    }
+
+    public function setFileName(string $value): static
+    {
+        $this->fileName = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setPerformer(string $value): static
+    {
+        $this->performer = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

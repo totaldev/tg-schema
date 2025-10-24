@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeUnsupported extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeUnsupported';
+    public const string TYPE_NAME = 'starTransactionTypeUnsupported';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Telegram;
  */
 class TelegramPaymentPurposeJoinChat extends TelegramPaymentPurpose
 {
-    public const TYPE_NAME = 'telegramPaymentPurposeJoinChat';
+    public const string TYPE_NAME = 'telegramPaymentPurposeJoinChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TelegramPaymentPurposeJoinChat extends TelegramPaymentPurpose
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageLinkInfo';
+    public const string TYPE_NAME = 'messageLinkInfo';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class MessageLinkInfo extends TdObject
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForAlbum(bool $value): static
+    {
+        $this->forAlbum = $value;
+
+        return $this;
+    }
+
+    public function setIsPublic(bool $value): static
+    {
+        $this->isPublic = $value;
+
+        return $this;
+    }
+
+    public function setMediaTimestamp(int $value): static
+    {
+        $this->mediaTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setMessage(?Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputBusinessStartPage extends TdObject
 {
-    public const TYPE_NAME = 'inputBusinessStartPage';
+    public const string TYPE_NAME = 'inputBusinessStartPage';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InputBusinessStartPage extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setMessage(string $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

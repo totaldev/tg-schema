@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchChatAffiliateProgram extends TdFunction
 {
-    public const TYPE_NAME = 'searchChatAffiliateProgram';
+    public const string TYPE_NAME = 'searchChatAffiliateProgram';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchChatAffiliateProgram extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setReferrer(string $value): static
+    {
+        $this->referrer = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

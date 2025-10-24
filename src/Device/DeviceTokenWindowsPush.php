@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenWindowsPush extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenWindowsPush';
+    public const string TYPE_NAME = 'deviceTokenWindowsPush';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeviceTokenWindowsPush extends DeviceToken
     public function getAccessToken(): string
     {
         return $this->accessToken;
+    }
+
+    public function setAccessToken(string $value): static
+    {
+        $this->accessToken = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

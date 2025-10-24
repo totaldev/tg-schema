@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewShippingQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewShippingQuery';
+    public const string TYPE_NAME = 'updateNewShippingQuery';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class UpdateNewShippingQuery extends Update
     public function getShippingAddress(): Address
     {
         return $this->shippingAddress;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInvoicePayload(string $value): static
+    {
+        $this->invoicePayload = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
+    }
+
+    public function setShippingAddress(Address $value): static
+    {
+        $this->shippingAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

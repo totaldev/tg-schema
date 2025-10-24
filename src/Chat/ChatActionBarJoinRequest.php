@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionBarJoinRequest extends ChatActionBar
 {
-    public const TYPE_NAME = 'chatActionBarJoinRequest';
+    public const string TYPE_NAME = 'chatActionBarJoinRequest';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ChatActionBarJoinRequest extends ChatActionBar
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setIsChannel(bool $value): static
+    {
+        $this->isChannel = $value;
+
+        return $this;
+    }
+
+    public function setRequestDate(int $value): static
+    {
+        $this->requestDate = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReplyMarkupInlineKeyboard extends ReplyMarkup
 {
-    public const TYPE_NAME = 'replyMarkupInlineKeyboard';
+    public const string TYPE_NAME = 'replyMarkupInlineKeyboard';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class ReplyMarkupInlineKeyboard extends ReplyMarkup
     public function getRows(): array
     {
         return $this->rows;
+    }
+
+    public function setRows(array $value): static
+    {
+        $this->rows = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

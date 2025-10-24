@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeAnimation extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeAnimation';
+    public const string TYPE_NAME = 'linkPreviewTypeAnimation';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeAnimation extends LinkPreviewType
     public function getAnimation(): Animation
     {
         return $this->animation;
+    }
+
+    public function setAnimation(Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

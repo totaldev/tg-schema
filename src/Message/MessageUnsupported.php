@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageUnsupported extends MessageContent
 {
-    public const TYPE_NAME = 'messageUnsupported';
+    public const string TYPE_NAME = 'messageUnsupported';
 
     public function __construct()
     {

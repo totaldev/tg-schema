@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Background;
  */
 class BackgroundTypeChatTheme extends BackgroundType
 {
-    public const TYPE_NAME = 'backgroundTypeChatTheme';
+    public const string TYPE_NAME = 'backgroundTypeChatTheme';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class BackgroundTypeChatTheme extends BackgroundType
     public function getThemeName(): string
     {
         return $this->themeName;
+    }
+
+    public function setThemeName(string $value): static
+    {
+        $this->themeName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

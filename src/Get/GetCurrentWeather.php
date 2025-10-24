@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetCurrentWeather extends TdFunction
 {
-    public const TYPE_NAME = 'getCurrentWeather';
+    public const string TYPE_NAME = 'getCurrentWeather';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetCurrentWeather extends TdFunction
     public function getLocation(): Location
     {
         return $this->location;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

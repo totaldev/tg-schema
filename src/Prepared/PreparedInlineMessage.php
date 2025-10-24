@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PreparedInlineMessage extends TdObject
 {
-    public const TYPE_NAME = 'preparedInlineMessage';
+    public const string TYPE_NAME = 'preparedInlineMessage';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PreparedInlineMessage extends TdObject
     public function getResult(): InlineQueryResult
     {
         return $this->result;
+    }
+
+    public function setChatTypes(TargetChatTypes $value): static
+    {
+        $this->chatTypes = $value;
+
+        return $this;
+    }
+
+    public function setInlineQueryId(int $value): static
+    {
+        $this->inlineQueryId = $value;
+
+        return $this;
+    }
+
+    public function setResult(InlineQueryResult $value): static
+    {
+        $this->result = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

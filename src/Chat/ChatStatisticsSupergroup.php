@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatStatisticsSupergroup extends ChatStatistics
 {
-    public const TYPE_NAME = 'chatStatisticsSupergroup';
+    public const string TYPE_NAME = 'chatStatisticsSupergroup';
 
     public function __construct(
         /**
@@ -193,6 +193,118 @@ class ChatStatisticsSupergroup extends ChatStatistics
     public function getWeekGraph(): StatisticalGraph
     {
         return $this->weekGraph;
+    }
+
+    public function setActionGraph(StatisticalGraph $value): static
+    {
+        $this->actionGraph = $value;
+
+        return $this;
+    }
+
+    public function setDayGraph(StatisticalGraph $value): static
+    {
+        $this->dayGraph = $value;
+
+        return $this;
+    }
+
+    public function setJoinBySourceGraph(StatisticalGraph $value): static
+    {
+        $this->joinBySourceGraph = $value;
+
+        return $this;
+    }
+
+    public function setJoinGraph(StatisticalGraph $value): static
+    {
+        $this->joinGraph = $value;
+
+        return $this;
+    }
+
+    public function setLanguageGraph(StatisticalGraph $value): static
+    {
+        $this->languageGraph = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(StatisticalValue $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setMemberCountGraph(StatisticalGraph $value): static
+    {
+        $this->memberCountGraph = $value;
+
+        return $this;
+    }
+
+    public function setMessageContentGraph(StatisticalGraph $value): static
+    {
+        $this->messageContentGraph = $value;
+
+        return $this;
+    }
+
+    public function setMessageCount(StatisticalValue $value): static
+    {
+        $this->messageCount = $value;
+
+        return $this;
+    }
+
+    public function setPeriod(DateRange $value): static
+    {
+        $this->period = $value;
+
+        return $this;
+    }
+
+    public function setSenderCount(StatisticalValue $value): static
+    {
+        $this->senderCount = $value;
+
+        return $this;
+    }
+
+    public function setTopAdministrators(array $value): static
+    {
+        $this->topAdministrators = $value;
+
+        return $this;
+    }
+
+    public function setTopInviters(array $value): static
+    {
+        $this->topInviters = $value;
+
+        return $this;
+    }
+
+    public function setTopSenders(array $value): static
+    {
+        $this->topSenders = $value;
+
+        return $this;
+    }
+
+    public function setViewerCount(StatisticalValue $value): static
+    {
+        $this->viewerCount = $value;
+
+        return $this;
+    }
+
+    public function setWeekGraph(StatisticalGraph $value): static
+    {
+        $this->weekGraph = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

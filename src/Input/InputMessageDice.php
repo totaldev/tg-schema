@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputMessageDice extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageDice';
+    public const string TYPE_NAME = 'inputMessageDice';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputMessageDice extends InputMessageContent
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setClearDraft(bool $value): static
+    {
+        $this->clearDraft = $value;
+
+        return $this;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

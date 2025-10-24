@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageTopic extends TdObject
 {
-    public const TYPE_NAME = 'MessageTopic';
+    public const string TYPE_NAME = 'MessageTopic';
 
     public function __construct() {}
 

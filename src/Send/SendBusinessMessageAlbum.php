@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendBusinessMessageAlbum extends TdFunction
 {
-    public const TYPE_NAME = 'sendBusinessMessageAlbum';
+    public const string TYPE_NAME = 'sendBusinessMessageAlbum';
 
     public function __construct(
         /**
@@ -98,6 +98,55 @@ class SendBusinessMessageAlbum extends TdFunction
     public function getReplyTo(): ?InputMessageReplyTo
     {
         return $this->replyTo;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDisableNotification(bool $value): static
+    {
+        $this->disableNotification = $value;
+
+        return $this;
+    }
+
+    public function setEffectId(int $value): static
+    {
+        $this->effectId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContents(array $value): static
+    {
+        $this->inputMessageContents = $value;
+
+        return $this;
+    }
+
+    public function setProtectContent(bool $value): static
+    {
+        $this->protectContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

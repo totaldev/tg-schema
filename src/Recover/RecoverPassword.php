@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RecoverPassword extends TdFunction
 {
-    public const TYPE_NAME = 'recoverPassword';
+    public const string TYPE_NAME = 'recoverPassword';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class RecoverPassword extends TdFunction
     public function getRecoveryCode(): string
     {
         return $this->recoveryCode;
+    }
+
+    public function setNewHint(string $value): static
+    {
+        $this->newHint = $value;
+
+        return $this;
+    }
+
+    public function setNewPassword(string $value): static
+    {
+        $this->newPassword = $value;
+
+        return $this;
+    }
+
+    public function setRecoveryCode(string $value): static
+    {
+        $this->recoveryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

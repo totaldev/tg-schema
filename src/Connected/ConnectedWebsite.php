@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ConnectedWebsite extends TdObject
 {
-    public const TYPE_NAME = 'connectedWebsite';
+    public const string TYPE_NAME = 'connectedWebsite';
 
     public function __construct(
         /**
@@ -112,6 +112,69 @@ class ConnectedWebsite extends TdObject
     public function getPlatform(): string
     {
         return $this->platform;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setBrowser(string $value): static
+    {
+        $this->browser = $value;
+
+        return $this;
+    }
+
+    public function setDomainName(string $value): static
+    {
+        $this->domainName = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIpAddress(string $value): static
+    {
+        $this->ipAddress = $value;
+
+        return $this;
+    }
+
+    public function setLastActiveDate(int $value): static
+    {
+        $this->lastActiveDate = $value;
+
+        return $this;
+    }
+
+    public function setLocation(string $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setLogInDate(int $value): static
+    {
+        $this->logInDate = $value;
+
+        return $this;
+    }
+
+    public function setPlatform(string $value): static
+    {
+        $this->platform = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

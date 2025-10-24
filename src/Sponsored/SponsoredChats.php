@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SponsoredChats extends TdObject
 {
-    public const TYPE_NAME = 'sponsoredChats';
+    public const string TYPE_NAME = 'sponsoredChats';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class SponsoredChats extends TdObject
     public function getChats(): array
     {
         return $this->chats;
+    }
+
+    public function setChats(array $value): static
+    {
+        $this->chats = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterUnreadReaction extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterUnreadReaction';
+    public const string TYPE_NAME = 'searchMessagesFilterUnreadReaction';
 
     public function __construct()
     {

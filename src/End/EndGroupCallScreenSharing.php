@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class EndGroupCallScreenSharing extends TdFunction
 {
-    public const TYPE_NAME = 'endGroupCallScreenSharing';
+    public const string TYPE_NAME = 'endGroupCallScreenSharing';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class EndGroupCallScreenSharing extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

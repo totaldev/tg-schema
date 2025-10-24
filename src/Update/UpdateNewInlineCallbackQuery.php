@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewInlineCallbackQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewInlineCallbackQuery';
+    public const string TYPE_NAME = 'updateNewInlineCallbackQuery';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class UpdateNewInlineCallbackQuery extends Update
     public function getSenderUserId(): int
     {
         return $this->senderUserId;
+    }
+
+    public function setChatInstance(int $value): static
+    {
+        $this->chatInstance = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setPayload(CallbackQueryPayload $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

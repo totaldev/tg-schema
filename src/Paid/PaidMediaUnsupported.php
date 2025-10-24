@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Paid;
  */
 class PaidMediaUnsupported extends PaidMedia
 {
-    public const TYPE_NAME = 'paidMediaUnsupported';
+    public const string TYPE_NAME = 'paidMediaUnsupported';
 
     public function __construct()
     {

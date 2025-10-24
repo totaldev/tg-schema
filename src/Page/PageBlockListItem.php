@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockListItem extends TdObject
 {
-    public const TYPE_NAME = 'pageBlockListItem';
+    public const string TYPE_NAME = 'pageBlockListItem';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PageBlockListItem extends TdObject
     public function getPageBlocks(): array
     {
         return $this->pageBlocks;
+    }
+
+    public function setLabel(string $value): static
+    {
+        $this->label = $value;
+
+        return $this;
+    }
+
+    public function setPageBlocks(array $value): static
+    {
+        $this->pageBlocks = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

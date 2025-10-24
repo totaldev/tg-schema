@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatArchivedStories extends TdFunction
 {
-    public const TYPE_NAME = 'getChatArchivedStories';
+    public const string TYPE_NAME = 'getChatArchivedStories';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class GetChatArchivedStories extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFromStoryId(int $value): static
+    {
+        $this->fromStoryId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

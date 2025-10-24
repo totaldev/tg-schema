@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageReadDateUnread extends MessageReadDate
 {
-    public const TYPE_NAME = 'messageReadDateUnread';
+    public const string TYPE_NAME = 'messageReadDateUnread';
 
     public function __construct()
     {

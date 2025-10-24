@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeatureVideoQuality extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeatureVideoQuality';
+    public const string TYPE_NAME = 'premiumStoryFeatureVideoQuality';
 
     public function __construct()
     {

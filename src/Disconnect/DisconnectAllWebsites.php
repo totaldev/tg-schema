@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DisconnectAllWebsites extends TdFunction
 {
-    public const TYPE_NAME = 'disconnectAllWebsites';
+    public const string TYPE_NAME = 'disconnectAllWebsites';
 
     public function __construct() {}
 

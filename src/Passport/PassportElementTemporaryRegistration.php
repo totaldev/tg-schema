@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementTemporaryRegistration extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementTemporaryRegistration';
+    public const string TYPE_NAME = 'passportElementTemporaryRegistration';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementTemporaryRegistration extends PassportElement
     public function getTemporaryRegistration(): PersonalDocument
     {
         return $this->temporaryRegistration;
+    }
+
+    public function setTemporaryRegistration(PersonalDocument $value): static
+    {
+        $this->temporaryRegistration = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

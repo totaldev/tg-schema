@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSuggestedFileName extends TdFunction
 {
-    public const TYPE_NAME = 'getSuggestedFileName';
+    public const string TYPE_NAME = 'getSuggestedFileName';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetSuggestedFileName extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setDirectory(string $value): static
+    {
+        $this->directory = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

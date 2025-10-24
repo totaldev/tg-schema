@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetSupergroupCustomEmojiStickerSet extends TdFunction
 {
-    public const TYPE_NAME = 'setSupergroupCustomEmojiStickerSet';
+    public const string TYPE_NAME = 'setSupergroupCustomEmojiStickerSet';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class SetSupergroupCustomEmojiStickerSet extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setCustomEmojiStickerSetId(int $value): static
+    {
+        $this->customEmojiStickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

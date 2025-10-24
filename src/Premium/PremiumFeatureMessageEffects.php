@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureMessageEffects extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureMessageEffects';
+    public const string TYPE_NAME = 'premiumFeatureMessageEffects';
 
     public function __construct()
     {

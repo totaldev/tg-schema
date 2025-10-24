@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Connection;
  */
 class ConnectionStateUpdating extends ConnectionState
 {
-    public const TYPE_NAME = 'connectionStateUpdating';
+    public const string TYPE_NAME = 'connectionStateUpdating';
 
     public function __construct()
     {

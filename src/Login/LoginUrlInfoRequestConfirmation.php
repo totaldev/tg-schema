@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Login;
  */
 class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
 {
-    public const TYPE_NAME = 'loginUrlInfoRequestConfirmation';
+    public const string TYPE_NAME = 'loginUrlInfoRequestConfirmation';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class LoginUrlInfoRequestConfirmation extends LoginUrlInfo
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setDomain(string $value): static
+    {
+        $this->domain = $value;
+
+        return $this;
+    }
+
+    public function setRequestWriteAccess(bool $value): static
+    {
+        $this->requestWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

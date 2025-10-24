@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Connection;
  */
 class ConnectionStateWaitingForNetwork extends ConnectionState
 {
-    public const TYPE_NAME = 'connectionStateWaitingForNetwork';
+    public const string TYPE_NAME = 'connectionStateWaitingForNetwork';
 
     public function __construct()
     {

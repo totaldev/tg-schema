@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class KeyboardButtonTypeRequestChat extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeRequestChat';
+    public const string TYPE_NAME = 'keyboardButtonTypeRequestChat';
 
     public function __construct(
         /**
@@ -155,6 +155,97 @@ class KeyboardButtonTypeRequestChat extends KeyboardButtonType
     public function getUserAdministratorRights(): ?ChatAdministratorRights
     {
         return $this->userAdministratorRights;
+    }
+
+    public function setBotAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->botAdministratorRights = $value;
+
+        return $this;
+    }
+
+    public function setBotIsMember(bool $value): static
+    {
+        $this->botIsMember = $value;
+
+        return $this;
+    }
+
+    public function setChatHasUsername(bool $value): static
+    {
+        $this->chatHasUsername = $value;
+
+        return $this;
+    }
+
+    public function setChatIsChannel(bool $value): static
+    {
+        $this->chatIsChannel = $value;
+
+        return $this;
+    }
+
+    public function setChatIsCreated(bool $value): static
+    {
+        $this->chatIsCreated = $value;
+
+        return $this;
+    }
+
+    public function setChatIsForum(bool $value): static
+    {
+        $this->chatIsForum = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setRequestPhoto(bool $value): static
+    {
+        $this->requestPhoto = $value;
+
+        return $this;
+    }
+
+    public function setRequestTitle(bool $value): static
+    {
+        $this->requestTitle = $value;
+
+        return $this;
+    }
+
+    public function setRequestUsername(bool $value): static
+    {
+        $this->requestUsername = $value;
+
+        return $this;
+    }
+
+    public function setRestrictChatHasUsername(bool $value): static
+    {
+        $this->restrictChatHasUsername = $value;
+
+        return $this;
+    }
+
+    public function setRestrictChatIsForum(bool $value): static
+    {
+        $this->restrictChatIsForum = $value;
+
+        return $this;
+    }
+
+    public function setUserAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->userAdministratorRights = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

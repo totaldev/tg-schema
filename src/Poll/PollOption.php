@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PollOption extends TdObject
 {
-    public const TYPE_NAME = 'pollOption';
+    public const string TYPE_NAME = 'pollOption';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class PollOption extends TdObject
     public function getVoterCount(): int
     {
         return $this->voterCount;
+    }
+
+    public function setIsBeingChosen(bool $value): static
+    {
+        $this->isBeingChosen = $value;
+
+        return $this;
+    }
+
+    public function setIsChosen(bool $value): static
+    {
+        $this->isChosen = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setVotePercentage(int $value): static
+    {
+        $this->votePercentage = $value;
+
+        return $this;
+    }
+
+    public function setVoterCount(int $value): static
+    {
+        $this->voterCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

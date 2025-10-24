@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddSavedAnimation extends TdFunction
 {
-    public const TYPE_NAME = 'addSavedAnimation';
+    public const string TYPE_NAME = 'addSavedAnimation';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class AddSavedAnimation extends TdFunction
     public function getAnimation(): InputFile
     {
         return $this->animation;
+    }
+
+    public function setAnimation(InputFile $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

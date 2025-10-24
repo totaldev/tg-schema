@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetAccountTtl extends TdFunction
 {
-    public const TYPE_NAME = 'setAccountTtl';
+    public const string TYPE_NAME = 'setAccountTtl';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetAccountTtl extends TdFunction
     public function getTtl(): AccountTtl
     {
         return $this->ttl;
+    }
+
+    public function setTtl(AccountTtl $value): static
+    {
+        $this->ttl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

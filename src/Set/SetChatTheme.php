@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatTheme extends TdFunction
 {
-    public const TYPE_NAME = 'setChatTheme';
+    public const string TYPE_NAME = 'setChatTheme';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatTheme extends TdFunction
     public function getTheme(): ?InputChatTheme
     {
         return $this->theme;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTheme(?InputChatTheme $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

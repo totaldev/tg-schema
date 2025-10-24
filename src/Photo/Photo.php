@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Photo extends TdObject
 {
-    public const TYPE_NAME = 'photo';
+    public const string TYPE_NAME = 'photo';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class Photo extends TdObject
     public function getSizes(): array
     {
         return $this->sizes;
+    }
+
+    public function setHasStickers(bool $value): static
+    {
+        $this->hasStickers = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSizes(array $value): static
+    {
+        $this->sizes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ProductInfo extends TdObject
 {
-    public const TYPE_NAME = 'productInfo';
+    public const string TYPE_NAME = 'productInfo';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ProductInfo extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(FormattedText $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

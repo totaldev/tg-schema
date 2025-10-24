@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSendingStateFailed extends MessageSendingState
 {
-    public const TYPE_NAME = 'messageSendingStateFailed';
+    public const string TYPE_NAME = 'messageSendingStateFailed';
 
     public function __construct(
         /**
@@ -95,6 +95,55 @@ class MessageSendingStateFailed extends MessageSendingState
     public function getRetryAfter(): float
     {
         return $this->retryAfter;
+    }
+
+    public function setCanRetry(bool $value): static
+    {
+        $this->canRetry = $value;
+
+        return $this;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
+    }
+
+    public function setNeedAnotherReplyQuote(bool $value): static
+    {
+        $this->needAnotherReplyQuote = $value;
+
+        return $this;
+    }
+
+    public function setNeedAnotherSender(bool $value): static
+    {
+        $this->needAnotherSender = $value;
+
+        return $this;
+    }
+
+    public function setNeedDropReply(bool $value): static
+    {
+        $this->needDropReply = $value;
+
+        return $this;
+    }
+
+    public function setRequiredPaidMessageStarCount(int $value): static
+    {
+        $this->requiredPaidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setRetryAfter(float $value): static
+    {
+        $this->retryAfter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

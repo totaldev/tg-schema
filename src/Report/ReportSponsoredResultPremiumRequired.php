@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportSponsoredResultPremiumRequired extends ReportSponsoredResult
 {
-    public const TYPE_NAME = 'reportSponsoredResultPremiumRequired';
+    public const string TYPE_NAME = 'reportSponsoredResultPremiumRequired';
 
     public function __construct()
     {

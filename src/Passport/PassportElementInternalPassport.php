@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementInternalPassport extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementInternalPassport';
+    public const string TYPE_NAME = 'passportElementInternalPassport';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementInternalPassport extends PassportElement
     public function getInternalPassport(): IdentityDocument
     {
         return $this->internalPassport;
+    }
+
+    public function setInternalPassport(IdentityDocument $value): static
+    {
+        $this->internalPassport = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

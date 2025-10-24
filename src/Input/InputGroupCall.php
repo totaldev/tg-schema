@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputGroupCall extends TdObject
 {
-    public const TYPE_NAME = 'InputGroupCall';
+    public const string TYPE_NAME = 'InputGroupCall';
 
     public function __construct() {}
 

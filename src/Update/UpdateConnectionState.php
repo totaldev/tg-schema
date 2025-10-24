@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateConnectionState extends Update
 {
-    public const TYPE_NAME = 'updateConnectionState';
+    public const string TYPE_NAME = 'updateConnectionState';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateConnectionState extends Update
     public function getState(): ConnectionState
     {
         return $this->state;
+    }
+
+    public function setState(ConnectionState $value): static
+    {
+        $this->state = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

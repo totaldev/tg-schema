@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Stickers extends TdObject
 {
-    public const TYPE_NAME = 'stickers';
+    public const string TYPE_NAME = 'stickers';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Stickers extends TdObject
     public function getStickers(): array
     {
         return $this->stickers;
+    }
+
+    public function setStickers(array $value): static
+    {
+        $this->stickers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

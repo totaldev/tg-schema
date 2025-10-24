@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BuyGiftUpgrade extends TdFunction
 {
-    public const TYPE_NAME = 'buyGiftUpgrade';
+    public const string TYPE_NAME = 'buyGiftUpgrade';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class BuyGiftUpgrade extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidUpgradeHash(string $value): static
+    {
+        $this->prepaidUpgradeHash = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

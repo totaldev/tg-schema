@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetTonWithdrawalUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getTonWithdrawalUrl';
+    public const string TYPE_NAME = 'getTonWithdrawalUrl';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetTonWithdrawalUrl extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

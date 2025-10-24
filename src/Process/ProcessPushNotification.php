@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ProcessPushNotification extends TdFunction
 {
-    public const TYPE_NAME = 'processPushNotification';
+    public const string TYPE_NAME = 'processPushNotification';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ProcessPushNotification extends TdFunction
     public function getPayload(): string
     {
         return $this->payload;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

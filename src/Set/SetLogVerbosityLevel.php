@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetLogVerbosityLevel extends TdFunction
 {
-    public const TYPE_NAME = 'setLogVerbosityLevel';
+    public const string TYPE_NAME = 'setLogVerbosityLevel';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SetLogVerbosityLevel extends TdFunction
     public function getNewVerbosityLevel(): int
     {
         return $this->newVerbosityLevel;
+    }
+
+    public function setNewVerbosityLevel(int $value): static
+    {
+        $this->newVerbosityLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

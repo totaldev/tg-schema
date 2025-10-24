@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages';
+    public const string TYPE_NAME = 'userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages';
 
     public function __construct()
     {

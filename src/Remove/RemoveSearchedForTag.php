@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveSearchedForTag extends TdFunction
 {
-    public const TYPE_NAME = 'removeSearchedForTag';
+    public const string TYPE_NAME = 'removeSearchedForTag';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveSearchedForTag extends TdFunction
     public function getTag(): string
     {
         return $this->tag;
+    }
+
+    public function setTag(string $value): static
+    {
+        $this->tag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

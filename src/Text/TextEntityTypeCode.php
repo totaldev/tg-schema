@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeCode extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeCode';
+    public const string TYPE_NAME = 'textEntityTypeCode';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageFileType extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageFileType';
+    public const string TYPE_NAME = 'getMessageFileType';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetMessageFileType extends TdFunction
     public function getMessageFileHead(): string
     {
         return $this->messageFileHead;
+    }
+
+    public function setMessageFileHead(string $value): static
+    {
+        $this->messageFileHead = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

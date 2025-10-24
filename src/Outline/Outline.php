@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Outline extends TdObject
 {
-    public const TYPE_NAME = 'outline';
+    public const string TYPE_NAME = 'outline';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Outline extends TdObject
     public function getPaths(): array
     {
         return $this->paths;
+    }
+
+    public function setPaths(array $value): static
+    {
+        $this->paths = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

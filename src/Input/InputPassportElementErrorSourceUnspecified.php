@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputPassportElementErrorSourceUnspecified extends InputPassportElementErrorSource
 {
-    public const TYPE_NAME = 'inputPassportElementErrorSourceUnspecified';
+    public const string TYPE_NAME = 'inputPassportElementErrorSourceUnspecified';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputPassportElementErrorSourceUnspecified extends InputPassportElementErr
     public function getElementHash(): string
     {
         return $this->elementHash;
+    }
+
+    public function setElementHash(string $value): static
+    {
+        $this->elementHash = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

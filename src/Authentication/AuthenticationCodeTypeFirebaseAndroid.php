@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeFirebaseAndroid';
+    public const string TYPE_NAME = 'authenticationCodeTypeFirebaseAndroid';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class AuthenticationCodeTypeFirebaseAndroid extends AuthenticationCodeType
     public function getLength(): int
     {
         return $this->length;
+    }
+
+    public function setDeviceVerificationParameters(FirebaseDeviceVerificationParameters $value): static
+    {
+        $this->deviceVerificationParameters = $value;
+
+        return $this;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

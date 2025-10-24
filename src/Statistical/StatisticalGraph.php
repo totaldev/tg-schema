@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StatisticalGraph extends TdObject
 {
-    public const TYPE_NAME = 'StatisticalGraph';
+    public const string TYPE_NAME = 'StatisticalGraph';
 
     public function __construct() {}
 

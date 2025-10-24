@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ShareUsersWithBot extends TdFunction
 {
-    public const TYPE_NAME = 'shareUsersWithBot';
+    public const string TYPE_NAME = 'shareUsersWithBot';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class ShareUsersWithBot extends TdFunction
     public function getSharedUserIds(): array
     {
         return $this->sharedUserIds;
+    }
+
+    public function setButtonId(int $value): static
+    {
+        $this->buttonId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyCheck(bool $value): static
+    {
+        $this->onlyCheck = $value;
+
+        return $this;
+    }
+
+    public function setSharedUserIds(array $value): static
+    {
+        $this->sharedUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

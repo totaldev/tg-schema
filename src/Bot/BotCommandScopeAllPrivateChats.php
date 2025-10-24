@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotCommandScopeAllPrivateChats extends BotCommandScope
 {
-    public const TYPE_NAME = 'botCommandScopeAllPrivateChats';
+    public const string TYPE_NAME = 'botCommandScopeAllPrivateChats';
 
     public function __construct()
     {

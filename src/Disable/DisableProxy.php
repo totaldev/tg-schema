@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DisableProxy extends TdFunction
 {
-    public const TYPE_NAME = 'disableProxy';
+    public const string TYPE_NAME = 'disableProxy';
 
     public function __construct() {}
 

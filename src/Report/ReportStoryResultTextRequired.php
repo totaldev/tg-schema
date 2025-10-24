@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportStoryResultTextRequired extends ReportStoryResult
 {
-    public const TYPE_NAME = 'reportStoryResultTextRequired';
+    public const string TYPE_NAME = 'reportStoryResultTextRequired';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReportStoryResultTextRequired extends ReportStoryResult
     public function getOptionId(): string
     {
         return $this->optionId;
+    }
+
+    public function setIsOptional(bool $value): static
+    {
+        $this->isOptional = $value;
+
+        return $this;
+    }
+
+    public function setOptionId(string $value): static
+    {
+        $this->optionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

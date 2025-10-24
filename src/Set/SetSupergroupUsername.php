@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetSupergroupUsername extends TdFunction
 {
-    public const TYPE_NAME = 'setSupergroupUsername';
+    public const string TYPE_NAME = 'setSupergroupUsername';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetSupergroupUsername extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

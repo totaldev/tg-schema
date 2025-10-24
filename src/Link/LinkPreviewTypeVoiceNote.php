@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Voice\VoiceNote;
  */
 class LinkPreviewTypeVoiceNote extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeVoiceNote';
+    public const string TYPE_NAME = 'linkPreviewTypeVoiceNote';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeVoiceNote extends LinkPreviewType
     public function getVoiceNote(): VoiceNote
     {
         return $this->voiceNote;
+    }
+
+    public function setVoiceNote(VoiceNote $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

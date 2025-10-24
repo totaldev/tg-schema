@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeUpgradedGift extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeUpgradedGift';
+    public const string TYPE_NAME = 'internalLinkTypeUpgradedGift';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InternalLinkTypeUpgradedGift extends InternalLinkType
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionChoosingSticker extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionChoosingSticker';
+    public const string TYPE_NAME = 'chatActionChoosingSticker';
 
     public function __construct()
     {

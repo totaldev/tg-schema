@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class WebApp extends TdObject
 {
-    public const TYPE_NAME = 'webApp';
+    public const string TYPE_NAME = 'webApp';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class WebApp extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setShortName(string $value): static
+    {
+        $this->shortName = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

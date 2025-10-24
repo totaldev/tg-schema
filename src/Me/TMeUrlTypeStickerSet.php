@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Me;
  */
 class TMeUrlTypeStickerSet extends TMeUrlType
 {
-    public const TYPE_NAME = 'tMeUrlTypeStickerSet';
+    public const string TYPE_NAME = 'tMeUrlTypeStickerSet';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TMeUrlTypeStickerSet extends TMeUrlType
     public function getStickerSetId(): int
     {
         return $this->stickerSetId;
+    }
+
+    public function setStickerSetId(int $value): static
+    {
+        $this->stickerSetId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

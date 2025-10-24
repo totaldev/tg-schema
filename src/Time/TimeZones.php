@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TimeZones extends TdObject
 {
-    public const TYPE_NAME = 'timeZones';
+    public const string TYPE_NAME = 'timeZones';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class TimeZones extends TdObject
     public function getTimeZones(): array
     {
         return $this->timeZones;
+    }
+
+    public function setTimeZones(array $value): static
+    {
+        $this->timeZones = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

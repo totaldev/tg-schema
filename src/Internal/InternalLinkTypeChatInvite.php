@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeChatInvite extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeChatInvite';
+    public const string TYPE_NAME = 'internalLinkTypeChatInvite';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeChatInvite extends InternalLinkType
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

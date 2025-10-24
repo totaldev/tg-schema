@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateHavePendingNotifications extends Update
 {
-    public const TYPE_NAME = 'updateHavePendingNotifications';
+    public const string TYPE_NAME = 'updateHavePendingNotifications';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateHavePendingNotifications extends Update
     public function getHaveUnreceivedNotifications(): bool
     {
         return $this->haveUnreceivedNotifications;
+    }
+
+    public function setHaveDelayedNotifications(bool $value): static
+    {
+        $this->haveDelayedNotifications = $value;
+
+        return $this;
+    }
+
+    public function setHaveUnreceivedNotifications(bool $value): static
+    {
+        $this->haveUnreceivedNotifications = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

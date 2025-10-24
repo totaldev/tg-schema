@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Text\TextEntity;
  */
 class FormattedText extends TdObject
 {
-    public const TYPE_NAME = 'formattedText';
+    public const string TYPE_NAME = 'formattedText';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class FormattedText extends TdObject
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setEntities(array $value): static
+    {
+        $this->entities = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

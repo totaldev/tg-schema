@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Background;
  */
 class BackgroundFillFreeformGradient extends BackgroundFill
 {
-    public const TYPE_NAME = 'backgroundFillFreeformGradient';
+    public const string TYPE_NAME = 'backgroundFillFreeformGradient';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class BackgroundFillFreeformGradient extends BackgroundFill
     public function getColors(): array
     {
         return $this->colors;
+    }
+
+    public function setColors(array $value): static
+    {
+        $this->colors = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

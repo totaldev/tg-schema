@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureCustomEmoji extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureCustomEmoji';
+    public const string TYPE_NAME = 'premiumFeatureCustomEmoji';
 
     public function __construct()
     {

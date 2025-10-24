@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeatureLinksAndFormatting extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeatureLinksAndFormatting';
+    public const string TYPE_NAME = 'premiumStoryFeatureLinksAndFormatting';
 
     public function __construct()
     {

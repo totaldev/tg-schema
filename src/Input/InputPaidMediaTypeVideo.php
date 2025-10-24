@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPaidMediaTypeVideo extends InputPaidMediaType
 {
-    public const TYPE_NAME = 'inputPaidMediaTypeVideo';
+    public const string TYPE_NAME = 'inputPaidMediaTypeVideo';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class InputPaidMediaTypeVideo extends InputPaidMediaType
     public function getSupportsStreaming(): bool
     {
         return $this->supportsStreaming;
+    }
+
+    public function setCover(?InputFile $value): static
+    {
+        $this->cover = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setStartTimestamp(int $value): static
+    {
+        $this->startTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setSupportsStreaming(bool $value): static
+    {
+        $this->supportsStreaming = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

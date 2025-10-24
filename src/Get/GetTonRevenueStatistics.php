@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetTonRevenueStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getTonRevenueStatistics';
+    public const string TYPE_NAME = 'getTonRevenueStatistics';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetTonRevenueStatistics extends TdFunction
     public function getIsDark(): bool
     {
         return $this->isDark;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

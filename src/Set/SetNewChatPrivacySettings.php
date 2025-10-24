@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetNewChatPrivacySettings extends TdFunction
 {
-    public const TYPE_NAME = 'setNewChatPrivacySettings';
+    public const string TYPE_NAME = 'setNewChatPrivacySettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetNewChatPrivacySettings extends TdFunction
     public function getSettings(): NewChatPrivacySettings
     {
         return $this->settings;
+    }
+
+    public function setSettings(NewChatPrivacySettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

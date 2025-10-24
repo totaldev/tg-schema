@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputGroupCallMessage extends InputGroupCall
 {
-    public const TYPE_NAME = 'inputGroupCallMessage';
+    public const string TYPE_NAME = 'inputGroupCallMessage';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputGroupCallMessage extends InputGroupCall
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

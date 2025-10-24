@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatInviteLink extends TdObject
 {
-    public const TYPE_NAME = 'chatInviteLink';
+    public const string TYPE_NAME = 'chatInviteLink';
 
     public function __construct(
         /**
@@ -164,6 +164,104 @@ class ChatInviteLink extends TdObject
     public function getSubscriptionPricing(): ?StarSubscriptionPricing
     {
         return $this->subscriptionPricing;
+    }
+
+    public function setCreatesJoinRequest(bool $value): static
+    {
+        $this->createsJoinRequest = $value;
+
+        return $this;
+    }
+
+    public function setCreatorUserId(int $value): static
+    {
+        $this->creatorUserId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setEditDate(int $value): static
+    {
+        $this->editDate = $value;
+
+        return $this;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setExpiredMemberCount(int $value): static
+    {
+        $this->expiredMemberCount = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setIsPrimary(bool $value): static
+    {
+        $this->isPrimary = $value;
+
+        return $this;
+    }
+
+    public function setIsRevoked(bool $value): static
+    {
+        $this->isRevoked = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(int $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setMemberLimit(int $value): static
+    {
+        $this->memberLimit = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setPendingJoinRequestCount(int $value): static
+    {
+        $this->pendingJoinRequestCount = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionPricing(?StarSubscriptionPricing $value): static
+    {
+        $this->subscriptionPricing = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

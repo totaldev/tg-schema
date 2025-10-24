@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class BlockMessageSenderFromReplies extends TdFunction
 {
-    public const TYPE_NAME = 'blockMessageSenderFromReplies';
+    public const string TYPE_NAME = 'blockMessageSenderFromReplies';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class BlockMessageSenderFromReplies extends TdFunction
     public function getReportSpam(): bool
     {
         return $this->reportSpam;
+    }
+
+    public function setDeleteAllMessages(bool $value): static
+    {
+        $this->deleteAllMessages = $value;
+
+        return $this;
+    }
+
+    public function setDeleteMessage(bool $value): static
+    {
+        $this->deleteMessage = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReportSpam(bool $value): static
+    {
+        $this->reportSpam = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

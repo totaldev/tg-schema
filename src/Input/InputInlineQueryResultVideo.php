@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultVideo extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultVideo';
+    public const string TYPE_NAME = 'inputInlineQueryResultVideo';
 
     public function __construct(
         /**
@@ -135,6 +135,83 @@ class InputInlineQueryResultVideo extends InputInlineQueryResult
     public function getVideoWidth(): int
     {
         return $this->videoWidth;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setVideoDuration(int $value): static
+    {
+        $this->videoDuration = $value;
+
+        return $this;
+    }
+
+    public function setVideoHeight(int $value): static
+    {
+        $this->videoHeight = $value;
+
+        return $this;
+    }
+
+    public function setVideoUrl(string $value): static
+    {
+        $this->videoUrl = $value;
+
+        return $this;
+    }
+
+    public function setVideoWidth(int $value): static
+    {
+        $this->videoWidth = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

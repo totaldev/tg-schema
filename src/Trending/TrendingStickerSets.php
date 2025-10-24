@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TrendingStickerSets extends TdObject
 {
-    public const TYPE_NAME = 'trendingStickerSets';
+    public const string TYPE_NAME = 'trendingStickerSets';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class TrendingStickerSets extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setIsPremium(bool $value): static
+    {
+        $this->isPremium = $value;
+
+        return $this;
+    }
+
+    public function setSets(array $value): static
+    {
+        $this->sets = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

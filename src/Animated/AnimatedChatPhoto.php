@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AnimatedChatPhoto extends TdObject
 {
-    public const TYPE_NAME = 'animatedChatPhoto';
+    public const string TYPE_NAME = 'animatedChatPhoto';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AnimatedChatPhoto extends TdObject
     public function getMainFrameTimestamp(): float
     {
         return $this->mainFrameTimestamp;
+    }
+
+    public function setFile(File $value): static
+    {
+        $this->file = $value;
+
+        return $this;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setMainFrameTimestamp(float $value): static
+    {
+        $this->mainFrameTimestamp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BankCardActionOpenUrl extends TdObject
 {
-    public const TYPE_NAME = 'bankCardActionOpenUrl';
+    public const string TYPE_NAME = 'bankCardActionOpenUrl';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BankCardActionOpenUrl extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

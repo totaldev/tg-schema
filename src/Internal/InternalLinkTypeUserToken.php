@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeUserToken extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeUserToken';
+    public const string TYPE_NAME = 'internalLinkTypeUserToken';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeUserToken extends InternalLinkType
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

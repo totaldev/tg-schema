@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ForumTopic extends TdObject
 {
-    public const TYPE_NAME = 'forumTopic';
+    public const string TYPE_NAME = 'forumTopic';
 
     public function __construct(
         /**
@@ -136,6 +136,83 @@ class ForumTopic extends TdObject
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setInfo(ForumTopicInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setLastMessage(?Message $value): static
+    {
+        $this->lastMessage = $value;
+
+        return $this;
+    }
+
+    public function setLastReadInboxMessageId(int $value): static
+    {
+        $this->lastReadInboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setNotificationSettings(ChatNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
+    }
+
+    public function setOrder(int $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setUnreadCount(int $value): static
+    {
+        $this->unreadCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadMentionCount(int $value): static
+    {
+        $this->unreadMentionCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

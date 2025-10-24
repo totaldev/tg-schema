@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendChatAction extends TdFunction
 {
-    public const TYPE_NAME = 'sendChatAction';
+    public const string TYPE_NAME = 'sendChatAction';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SendChatAction extends TdFunction
     public function getTopicId(): MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setAction(?ChatAction $value): static
+    {
+        $this->action = $value;
+
+        return $this;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

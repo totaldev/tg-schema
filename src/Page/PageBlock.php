@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PageBlock extends TdObject
 {
-    public const TYPE_NAME = 'PageBlock';
+    public const string TYPE_NAME = 'PageBlock';
 
     public function __construct() {}
 

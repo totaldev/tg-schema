@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeFoundVenue';
+    public const string TYPE_NAME = 'inputStoryAreaTypeFoundVenue';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputStoryAreaTypeFoundVenue extends InputStoryAreaType
     public function getResultId(): string
     {
         return $this->resultId;
+    }
+
+    public function setQueryId(int $value): static
+    {
+        $this->queryId = $value;
+
+        return $this;
+    }
+
+    public function setResultId(string $value): static
+    {
+        $this->resultId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

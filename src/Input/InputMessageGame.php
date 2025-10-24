@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputMessageGame extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageGame';
+    public const string TYPE_NAME = 'inputMessageGame';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputMessageGame extends InputMessageContent
     public function getGameShortName(): string
     {
         return $this->gameShortName;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setGameShortName(string $value): static
+    {
+        $this->gameShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

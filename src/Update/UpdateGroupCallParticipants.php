@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateGroupCallParticipants extends Update
 {
-    public const TYPE_NAME = 'updateGroupCallParticipants';
+    public const string TYPE_NAME = 'updateGroupCallParticipants';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class UpdateGroupCallParticipants extends Update
     public function getParticipantUserIds(): array
     {
         return $this->participantUserIds;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setParticipantUserIds(array $value): static
+    {
+        $this->participantUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

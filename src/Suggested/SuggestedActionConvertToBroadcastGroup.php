@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionConvertToBroadcastGroup extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionConvertToBroadcastGroup';
+    public const string TYPE_NAME = 'suggestedActionConvertToBroadcastGroup';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SuggestedActionConvertToBroadcastGroup extends SuggestedAction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

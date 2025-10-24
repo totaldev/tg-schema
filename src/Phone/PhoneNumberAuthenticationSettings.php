@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PhoneNumberAuthenticationSettings extends TdObject
 {
-    public const TYPE_NAME = 'phoneNumberAuthenticationSettings';
+    public const string TYPE_NAME = 'phoneNumberAuthenticationSettings';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class PhoneNumberAuthenticationSettings extends TdObject
     public function getIsCurrentPhoneNumber(): bool
     {
         return $this->isCurrentPhoneNumber;
+    }
+
+    public function setAllowFlashCall(bool $value): static
+    {
+        $this->allowFlashCall = $value;
+
+        return $this;
+    }
+
+    public function setAllowMissedCall(bool $value): static
+    {
+        $this->allowMissedCall = $value;
+
+        return $this;
+    }
+
+    public function setAllowSmsRetrieverApi(bool $value): static
+    {
+        $this->allowSmsRetrieverApi = $value;
+
+        return $this;
+    }
+
+    public function setAuthenticationTokens(array $value): static
+    {
+        $this->authenticationTokens = $value;
+
+        return $this;
+    }
+
+    public function setFirebaseAuthenticationSettings(?FirebaseAuthenticationSettings $value): static
+    {
+        $this->firebaseAuthenticationSettings = $value;
+
+        return $this;
+    }
+
+    public function setHasUnknownPhoneNumber(bool $value): static
+    {
+        $this->hasUnknownPhoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setIsCurrentPhoneNumber(bool $value): static
+    {
+        $this->isCurrentPhoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

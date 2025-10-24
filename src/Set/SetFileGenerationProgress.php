@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetFileGenerationProgress extends TdFunction
 {
-    public const TYPE_NAME = 'setFileGenerationProgress';
+    public const string TYPE_NAME = 'setFileGenerationProgress';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetFileGenerationProgress extends TdFunction
     public function getLocalPrefixSize(): int
     {
         return $this->localPrefixSize;
+    }
+
+    public function setExpectedSize(int $value): static
+    {
+        $this->expectedSize = $value;
+
+        return $this;
+    }
+
+    public function setGenerationId(int $value): static
+    {
+        $this->generationId = $value;
+
+        return $this;
+    }
+
+    public function setLocalPrefixSize(int $value): static
+    {
+        $this->localPrefixSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

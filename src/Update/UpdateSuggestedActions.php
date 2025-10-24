@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateSuggestedActions extends Update
 {
-    public const TYPE_NAME = 'updateSuggestedActions';
+    public const string TYPE_NAME = 'updateSuggestedActions';
 
     public function __construct(
         /**
@@ -49,6 +49,20 @@ class UpdateSuggestedActions extends Update
     public function getRemovedActions(): array
     {
         return $this->removedActions;
+    }
+
+    public function setAddedActions(array $value): static
+    {
+        $this->addedActions = $value;
+
+        return $this;
+    }
+
+    public function setRemovedActions(array $value): static
+    {
+        $this->removedActions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

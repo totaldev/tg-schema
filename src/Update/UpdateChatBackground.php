@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatBackground extends Update
 {
-    public const TYPE_NAME = 'updateChatBackground';
+    public const string TYPE_NAME = 'updateChatBackground';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatBackground extends Update
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setBackground(?ChatBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineKeyboardButton extends TdObject
 {
-    public const TYPE_NAME = 'inlineKeyboardButton';
+    public const string TYPE_NAME = 'inlineKeyboardButton';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InlineKeyboardButton extends TdObject
     public function getType(): InlineKeyboardButtonType
     {
         return $this->type;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setType(InlineKeyboardButtonType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

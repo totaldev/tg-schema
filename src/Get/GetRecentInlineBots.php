@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecentInlineBots extends TdFunction
 {
-    public const TYPE_NAME = 'getRecentInlineBots';
+    public const string TYPE_NAME = 'getRecentInlineBots';
 
     public function __construct() {}
 

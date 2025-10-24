@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiCategoryTypeEmojiStatus extends EmojiCategoryType
 {
-    public const TYPE_NAME = 'emojiCategoryTypeEmojiStatus';
+    public const string TYPE_NAME = 'emojiCategoryTypeEmojiStatus';
 
     public function __construct()
     {

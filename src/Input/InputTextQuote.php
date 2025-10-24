@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputTextQuote extends TdObject
 {
-    public const TYPE_NAME = 'inputTextQuote';
+    public const string TYPE_NAME = 'inputTextQuote';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InputTextQuote extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setPosition(int $value): static
+    {
+        $this->position = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

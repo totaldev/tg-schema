@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Chats extends TdObject
 {
-    public const TYPE_NAME = 'chats';
+    public const string TYPE_NAME = 'chats';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class Chats extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

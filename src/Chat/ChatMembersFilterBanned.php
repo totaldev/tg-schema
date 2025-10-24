@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatMembersFilterBanned extends ChatMembersFilter
 {
-    public const TYPE_NAME = 'chatMembersFilterBanned';
+    public const string TYPE_NAME = 'chatMembersFilterBanned';
 
     public function __construct()
     {

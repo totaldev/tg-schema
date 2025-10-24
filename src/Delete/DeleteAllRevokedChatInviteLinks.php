@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteAllRevokedChatInviteLinks extends TdFunction
 {
-    public const TYPE_NAME = 'deleteAllRevokedChatInviteLinks';
+    public const string TYPE_NAME = 'deleteAllRevokedChatInviteLinks';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class DeleteAllRevokedChatInviteLinks extends TdFunction
     public function getCreatorUserId(): int
     {
         return $this->creatorUserId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCreatorUserId(int $value): static
+    {
+        $this->creatorUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageChecklist extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageChecklist';
+    public const string TYPE_NAME = 'inputMessageChecklist';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputMessageChecklist extends InputMessageContent
     public function getChecklist(): InputChecklist
     {
         return $this->checklist;
+    }
+
+    public function setChecklist(InputChecklist $value): static
+    {
+        $this->checklist = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

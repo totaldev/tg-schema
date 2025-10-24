@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PollTypeQuiz extends PollType
 {
-    public const TYPE_NAME = 'pollTypeQuiz';
+    public const string TYPE_NAME = 'pollTypeQuiz';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PollTypeQuiz extends PollType
     public function getExplanation(): FormattedText
     {
         return $this->explanation;
+    }
+
+    public function setCorrectOptionId(int $value): static
+    {
+        $this->correctOptionId = $value;
+
+        return $this;
+    }
+
+    public function setExplanation(FormattedText $value): static
+    {
+        $this->explanation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

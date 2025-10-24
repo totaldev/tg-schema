@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatStatisticsMessageSenderInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatStatisticsMessageSenderInfo';
+    public const string TYPE_NAME = 'chatStatisticsMessageSenderInfo';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ChatStatisticsMessageSenderInfo extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setAverageCharacterCount(int $value): static
+    {
+        $this->averageCharacterCount = $value;
+
+        return $this;
+    }
+
+    public function setSentMessageCount(int $value): static
+    {
+        $this->sentMessageCount = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

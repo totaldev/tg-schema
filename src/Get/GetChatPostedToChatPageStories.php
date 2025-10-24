@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatPostedToChatPageStories extends TdFunction
 {
-    public const TYPE_NAME = 'getChatPostedToChatPageStories';
+    public const string TYPE_NAME = 'getChatPostedToChatPageStories';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class GetChatPostedToChatPageStories extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFromStoryId(int $value): static
+    {
+        $this->fromStoryId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

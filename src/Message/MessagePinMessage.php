@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessagePinMessage extends MessageContent
 {
-    public const TYPE_NAME = 'messagePinMessage';
+    public const string TYPE_NAME = 'messagePinMessage';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessagePinMessage extends MessageContent
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

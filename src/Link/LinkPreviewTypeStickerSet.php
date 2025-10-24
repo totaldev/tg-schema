@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeStickerSet extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeStickerSet';
+    public const string TYPE_NAME = 'linkPreviewTypeStickerSet';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class LinkPreviewTypeStickerSet extends LinkPreviewType
     public function getStickers(): array
     {
         return $this->stickers;
+    }
+
+    public function setStickers(array $value): static
+    {
+        $this->stickers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

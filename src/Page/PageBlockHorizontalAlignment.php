@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PageBlockHorizontalAlignment extends TdObject
 {
-    public const TYPE_NAME = 'PageBlockHorizontalAlignment';
+    public const string TYPE_NAME = 'PageBlockHorizontalAlignment';
 
     public function __construct() {}
 

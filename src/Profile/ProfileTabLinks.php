@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Profile;
  */
 class ProfileTabLinks extends ProfileTab
 {
-    public const TYPE_NAME = 'profileTabLinks';
+    public const string TYPE_NAME = 'profileTabLinks';
 
     public function __construct()
     {

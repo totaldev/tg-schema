@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureImprovedDownloadSpeed extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureImprovedDownloadSpeed';
+    public const string TYPE_NAME = 'premiumFeatureImprovedDownloadSpeed';
 
     public function __construct()
     {

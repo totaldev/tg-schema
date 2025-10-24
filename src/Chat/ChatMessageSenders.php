@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatMessageSenders extends TdObject
 {
-    public const TYPE_NAME = 'chatMessageSenders';
+    public const string TYPE_NAME = 'chatMessageSenders';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatMessageSenders extends TdObject
     public function getSenders(): array
     {
         return $this->senders;
+    }
+
+    public function setSenders(array $value): static
+    {
+        $this->senders = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

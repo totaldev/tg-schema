@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RequestPasswordRecovery extends TdFunction
 {
-    public const TYPE_NAME = 'requestPasswordRecovery';
+    public const string TYPE_NAME = 'requestPasswordRecovery';
 
     public function __construct() {}
 

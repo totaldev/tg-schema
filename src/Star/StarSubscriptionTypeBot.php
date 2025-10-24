@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarSubscriptionTypeBot extends StarSubscriptionType
 {
-    public const TYPE_NAME = 'starSubscriptionTypeBot';
+    public const string TYPE_NAME = 'starSubscriptionTypeBot';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StarSubscriptionTypeBot extends StarSubscriptionType
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setInvoiceLink(string $value): static
+    {
+        $this->invoiceLink = $value;
+
+        return $this;
+    }
+
+    public function setIsCanceledByBot(bool $value): static
+    {
+        $this->isCanceledByBot = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

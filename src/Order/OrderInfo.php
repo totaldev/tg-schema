@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class OrderInfo extends TdObject
 {
-    public const TYPE_NAME = 'orderInfo';
+    public const string TYPE_NAME = 'orderInfo';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class OrderInfo extends TdObject
     public function getShippingAddress(): ?Address
     {
         return $this->shippingAddress;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setShippingAddress(?Address $value): static
+    {
+        $this->shippingAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

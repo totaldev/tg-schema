@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementTypePhoneNumber extends PassportElementType
 {
-    public const TYPE_NAME = 'passportElementTypePhoneNumber';
+    public const string TYPE_NAME = 'passportElementTypePhoneNumber';
 
     public function __construct()
     {

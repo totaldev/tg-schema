@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaymentReceiptType extends TdObject
 {
-    public const TYPE_NAME = 'PaymentReceiptType';
+    public const string TYPE_NAME = 'PaymentReceiptType';
 
     public function __construct() {}
 

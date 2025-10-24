@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatPhoto extends TdObject
 {
-    public const TYPE_NAME = 'chatPhoto';
+    public const string TYPE_NAME = 'chatPhoto';
 
     public function __construct(
         /**
@@ -98,6 +98,55 @@ class ChatPhoto extends TdObject
     public function getSticker(): ?ChatPhotoSticker
     {
         return $this->sticker;
+    }
+
+    public function setAddedDate(int $value): static
+    {
+        $this->addedDate = $value;
+
+        return $this;
+    }
+
+    public function setAnimation(?AnimatedChatPhoto $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSizes(array $value): static
+    {
+        $this->sizes = $value;
+
+        return $this;
+    }
+
+    public function setSmallAnimation(?AnimatedChatPhoto $value): static
+    {
+        $this->smallAnimation = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?ChatPhotoSticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VectorPathCommandCubicBezierCurve extends VectorPathCommand
 {
-    public const TYPE_NAME = 'vectorPathCommandCubicBezierCurve';
+    public const string TYPE_NAME = 'vectorPathCommandCubicBezierCurve';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class VectorPathCommandCubicBezierCurve extends VectorPathCommand
     public function getStartControlPoint(): Point
     {
         return $this->startControlPoint;
+    }
+
+    public function setEndControlPoint(Point $value): static
+    {
+        $this->endControlPoint = $value;
+
+        return $this;
+    }
+
+    public function setEndPoint(Point $value): static
+    {
+        $this->endPoint = $value;
+
+        return $this;
+    }
+
+    public function setStartControlPoint(Point $value): static
+    {
+        $this->startControlPoint = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

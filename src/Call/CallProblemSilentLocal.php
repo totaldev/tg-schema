@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemSilentLocal extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemSilentLocal';
+    public const string TYPE_NAME = 'callProblemSilentLocal';
 
     public function __construct()
     {

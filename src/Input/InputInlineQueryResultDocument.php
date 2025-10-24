@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultDocument extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultDocument';
+    public const string TYPE_NAME = 'inputInlineQueryResultDocument';
 
     public function __construct(
         /**
@@ -125,6 +125,76 @@ class InputInlineQueryResultDocument extends InputInlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setDocumentUrl(string $value): static
+    {
+        $this->documentUrl = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailHeight(int $value): static
+    {
+        $this->thumbnailHeight = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailWidth(int $value): static
+    {
+        $this->thumbnailWidth = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

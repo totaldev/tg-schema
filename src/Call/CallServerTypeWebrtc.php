@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallServerTypeWebrtc extends CallServerType
 {
-    public const TYPE_NAME = 'callServerTypeWebrtc';
+    public const string TYPE_NAME = 'callServerTypeWebrtc';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class CallServerTypeWebrtc extends CallServerType
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setSupportsStun(bool $value): static
+    {
+        $this->supportsStun = $value;
+
+        return $this;
+    }
+
+    public function setSupportsTurn(bool $value): static
+    {
+        $this->supportsTurn = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

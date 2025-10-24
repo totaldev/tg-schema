@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BackgroundTypePattern extends BackgroundType
 {
-    public const TYPE_NAME = 'backgroundTypePattern';
+    public const string TYPE_NAME = 'backgroundTypePattern';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class BackgroundTypePattern extends BackgroundType
     public function getIsMoving(): bool
     {
         return $this->isMoving;
+    }
+
+    public function setFill(BackgroundFill $value): static
+    {
+        $this->fill = $value;
+
+        return $this;
+    }
+
+    public function setIntensity(int $value): static
+    {
+        $this->intensity = $value;
+
+        return $this;
+    }
+
+    public function setIsInverted(bool $value): static
+    {
+        $this->isInverted = $value;
+
+        return $this;
+    }
+
+    public function setIsMoving(bool $value): static
+    {
+        $this->isMoving = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

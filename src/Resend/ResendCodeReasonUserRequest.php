@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Resend;
  */
 class ResendCodeReasonUserRequest extends ResendCodeReason
 {
-    public const TYPE_NAME = 'resendCodeReasonUserRequest';
+    public const string TYPE_NAME = 'resendCodeReasonUserRequest';
 
     public function __construct()
     {

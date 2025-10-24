@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteChatHistory extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatHistory';
+    public const string TYPE_NAME = 'deleteChatHistory';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class DeleteChatHistory extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setRemoveFromChatList(bool $value): static
+    {
+        $this->removeFromChatList = $value;
+
+        return $this;
+    }
+
+    public function setRevoke(bool $value): static
+    {
+        $this->revoke = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

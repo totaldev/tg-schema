@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Email;
  */
 class EmailAddressAuthenticationAppleId extends EmailAddressAuthentication
 {
-    public const TYPE_NAME = 'emailAddressAuthenticationAppleId';
+    public const string TYPE_NAME = 'emailAddressAuthenticationAppleId';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class EmailAddressAuthenticationAppleId extends EmailAddressAuthentication
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

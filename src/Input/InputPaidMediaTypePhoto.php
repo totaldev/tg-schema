@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputPaidMediaTypePhoto extends InputPaidMediaType
 {
-    public const TYPE_NAME = 'inputPaidMediaTypePhoto';
+    public const string TYPE_NAME = 'inputPaidMediaTypePhoto';
 
     public function __construct()
     {

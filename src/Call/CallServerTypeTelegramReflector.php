@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallServerTypeTelegramReflector extends CallServerType
 {
-    public const TYPE_NAME = 'callServerTypeTelegramReflector';
+    public const string TYPE_NAME = 'callServerTypeTelegramReflector';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CallServerTypeTelegramReflector extends CallServerType
     public function getPeerTag(): string
     {
         return $this->peerTag;
+    }
+
+    public function setIsTcp(bool $value): static
+    {
+        $this->isTcp = $value;
+
+        return $this;
+    }
+
+    public function setPeerTag(string $value): static
+    {
+        $this->peerTag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

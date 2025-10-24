@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPollVoters extends TdFunction
 {
-    public const TYPE_NAME = 'getPollVoters';
+    public const string TYPE_NAME = 'getPollVoters';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class GetPollVoters extends TdFunction
     public function getOptionId(): int
     {
         return $this->optionId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOptionId(int $value): static
+    {
+        $this->optionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

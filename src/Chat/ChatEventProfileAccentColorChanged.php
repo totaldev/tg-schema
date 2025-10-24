@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventProfileAccentColorChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventProfileAccentColorChanged';
+    public const string TYPE_NAME = 'chatEventProfileAccentColorChanged';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class ChatEventProfileAccentColorChanged extends ChatEventAction
     public function getOldProfileBackgroundCustomEmojiId(): int
     {
         return $this->oldProfileBackgroundCustomEmojiId;
+    }
+
+    public function setNewProfileAccentColorId(int $value): static
+    {
+        $this->newProfileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setNewProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->newProfileBackgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setOldProfileAccentColorId(int $value): static
+    {
+        $this->oldProfileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setOldProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->oldProfileBackgroundCustomEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

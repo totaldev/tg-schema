@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteChatMessagesByDate extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatMessagesByDate';
+    public const string TYPE_NAME = 'deleteChatMessagesByDate';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class DeleteChatMessagesByDate extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMaxDate(int $value): static
+    {
+        $this->maxDate = $value;
+
+        return $this;
+    }
+
+    public function setMinDate(int $value): static
+    {
+        $this->minDate = $value;
+
+        return $this;
+    }
+
+    public function setRevoke(bool $value): static
+    {
+        $this->revoke = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

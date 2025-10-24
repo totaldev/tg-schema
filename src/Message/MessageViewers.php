@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageViewers extends TdObject
 {
-    public const TYPE_NAME = 'messageViewers';
+    public const string TYPE_NAME = 'messageViewers';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageViewers extends TdObject
     public function getViewers(): array
     {
         return $this->viewers;
+    }
+
+    public function setViewers(array $value): static
+    {
+        $this->viewers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

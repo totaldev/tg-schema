@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotWriteAccessAllowReasonConnectedWebsite extends BotWriteAccessAllowReason
 {
-    public const TYPE_NAME = 'botWriteAccessAllowReasonConnectedWebsite';
+    public const string TYPE_NAME = 'botWriteAccessAllowReasonConnectedWebsite';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class BotWriteAccessAllowReasonConnectedWebsite extends BotWriteAccessAllowReaso
     public function getDomainName(): string
     {
         return $this->domainName;
+    }
+
+    public function setDomainName(string $value): static
+    {
+        $this->domainName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

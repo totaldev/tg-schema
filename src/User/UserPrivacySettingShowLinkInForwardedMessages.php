@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowLinkInForwardedMessages extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowLinkInForwardedMessages';
+    public const string TYPE_NAME = 'userPrivacySettingShowLinkInForwardedMessages';
 
     public function __construct()
     {

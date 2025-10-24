@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeMentionName extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeMentionName';
+    public const string TYPE_NAME = 'textEntityTypeMentionName';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextEntityTypeMentionName extends TextEntityType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

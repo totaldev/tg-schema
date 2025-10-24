@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiftSettings extends TdObject
 {
-    public const TYPE_NAME = 'giftSettings';
+    public const string TYPE_NAME = 'giftSettings';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GiftSettings extends TdObject
     public function getShowGiftButton(): bool
     {
         return $this->showGiftButton;
+    }
+
+    public function setAcceptedGiftTypes(AcceptedGiftTypes $value): static
+    {
+        $this->acceptedGiftTypes = $value;
+
+        return $this;
+    }
+
+    public function setShowGiftButton(bool $value): static
+    {
+        $this->showGiftButton = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeCashtag extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeCashtag';
+    public const string TYPE_NAME = 'textEntityTypeCashtag';
 
     public function __construct()
     {

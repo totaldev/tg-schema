@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatSimilarChatCount extends TdFunction
 {
-    public const TYPE_NAME = 'getChatSimilarChatCount';
+    public const string TYPE_NAME = 'getChatSimilarChatCount';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetChatSimilarChatCount extends TdFunction
     public function getReturnLocal(): bool
     {
         return $this->returnLocal;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setReturnLocal(bool $value): static
+    {
+        $this->returnLocal = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

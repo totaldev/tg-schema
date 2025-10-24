@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeclineGroupCallInvitation extends TdFunction
 {
-    public const TYPE_NAME = 'declineGroupCallInvitation';
+    public const string TYPE_NAME = 'declineGroupCallInvitation';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DeclineGroupCallInvitation extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

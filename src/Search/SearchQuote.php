@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchQuote extends TdFunction
 {
-    public const TYPE_NAME = 'searchQuote';
+    public const string TYPE_NAME = 'searchQuote';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class SearchQuote extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setQuote(FormattedText $value): static
+    {
+        $this->quote = $value;
+
+        return $this;
+    }
+
+    public function setQuotePosition(int $value): static
+    {
+        $this->quotePosition = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

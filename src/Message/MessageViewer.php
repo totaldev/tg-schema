@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageViewer extends TdObject
 {
-    public const TYPE_NAME = 'messageViewer';
+    public const string TYPE_NAME = 'messageViewer';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageViewer extends TdObject
     public function getViewDate(): int
     {
         return $this->viewDate;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
+    }
+
+    public function setViewDate(int $value): static
+    {
+        $this->viewDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementTypeDriverLicense extends PassportElementType
 {
-    public const TYPE_NAME = 'passportElementTypeDriverLicense';
+    public const string TYPE_NAME = 'passportElementTypeDriverLicense';
 
     public function __construct()
     {

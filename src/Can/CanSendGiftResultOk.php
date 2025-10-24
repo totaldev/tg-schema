@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanSendGiftResultOk extends CanSendGiftResult
 {
-    public const TYPE_NAME = 'canSendGiftResultOk';
+    public const string TYPE_NAME = 'canSendGiftResultOk';
 
     public function __construct()
     {

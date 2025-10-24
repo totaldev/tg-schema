@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ConnectedWebsites extends TdObject
 {
-    public const TYPE_NAME = 'connectedWebsites';
+    public const string TYPE_NAME = 'connectedWebsites';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ConnectedWebsites extends TdObject
     public function getWebsites(): array
     {
         return $this->websites;
+    }
+
+    public function setWebsites(array $value): static
+    {
+        $this->websites = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

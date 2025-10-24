@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowStatus extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowStatus';
+    public const string TYPE_NAME = 'userPrivacySettingShowStatus';
 
     public function __construct()
     {

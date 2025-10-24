@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeChannelSubscriptionPurchase extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeChannelSubscriptionPurchase';
+    public const string TYPE_NAME = 'starTransactionTypeChannelSubscriptionPurchase';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarTransactionTypeChannelSubscriptionPurchase extends StarTransactionType
     public function getSubscriptionPeriod(): int
     {
         return $this->subscriptionPeriod;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionPeriod(int $value): static
+    {
+        $this->subscriptionPeriod = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

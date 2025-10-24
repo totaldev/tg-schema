@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CloseWebApp extends TdFunction
 {
-    public const TYPE_NAME = 'closeWebApp';
+    public const string TYPE_NAME = 'closeWebApp';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CloseWebApp extends TdFunction
     public function getWebAppLaunchId(): int
     {
         return $this->webAppLaunchId;
+    }
+
+    public function setWebAppLaunchId(int $value): static
+    {
+        $this->webAppLaunchId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

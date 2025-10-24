@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Page;
  */
 class PageBlockHorizontalAlignmentRight extends PageBlockHorizontalAlignment
 {
-    public const TYPE_NAME = 'pageBlockHorizontalAlignmentRight';
+    public const string TYPE_NAME = 'pageBlockHorizontalAlignmentRight';
 
     public function __construct()
     {

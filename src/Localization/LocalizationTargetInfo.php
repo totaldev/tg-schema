@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LocalizationTargetInfo extends TdObject
 {
-    public const TYPE_NAME = 'localizationTargetInfo';
+    public const string TYPE_NAME = 'localizationTargetInfo';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class LocalizationTargetInfo extends TdObject
     public function getLanguagePacks(): array
     {
         return $this->languagePacks;
+    }
+
+    public function setLanguagePacks(array $value): static
+    {
+        $this->languagePacks = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

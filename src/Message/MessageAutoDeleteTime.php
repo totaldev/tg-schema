@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageAutoDeleteTime extends TdObject
 {
-    public const TYPE_NAME = 'messageAutoDeleteTime';
+    public const string TYPE_NAME = 'messageAutoDeleteTime';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageAutoDeleteTime extends TdObject
     public function getTime(): int
     {
         return $this->time;
+    }
+
+    public function setTime(int $value): static
+    {
+        $this->time = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

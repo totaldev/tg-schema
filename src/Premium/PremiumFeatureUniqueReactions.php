@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureUniqueReactions extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureUniqueReactions';
+    public const string TYPE_NAME = 'premiumFeatureUniqueReactions';
 
     public function __construct()
     {

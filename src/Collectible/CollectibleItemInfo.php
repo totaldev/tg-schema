@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CollectibleItemInfo extends TdObject
 {
-    public const TYPE_NAME = 'collectibleItemInfo';
+    public const string TYPE_NAME = 'collectibleItemInfo';
 
     public function __construct(
         /**
@@ -82,6 +82,48 @@ class CollectibleItemInfo extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrencyAmount(int $value): static
+    {
+        $this->cryptocurrencyAmount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setPurchaseDate(int $value): static
+    {
+        $this->purchaseDate = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

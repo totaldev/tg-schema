@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ProfileAccentColor extends TdObject
 {
-    public const TYPE_NAME = 'profileAccentColor';
+    public const string TYPE_NAME = 'profileAccentColor';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class ProfileAccentColor extends TdObject
     public function getMinSupergroupChatBoostLevel(): int
     {
         return $this->minSupergroupChatBoostLevel;
+    }
+
+    public function setDarkThemeColors(ProfileAccentColors $value): static
+    {
+        $this->darkThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLightThemeColors(ProfileAccentColors $value): static
+    {
+        $this->lightThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setMinChannelChatBoostLevel(int $value): static
+    {
+        $this->minChannelChatBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinSupergroupChatBoostLevel(int $value): static
+    {
+        $this->minSupergroupChatBoostLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TargetChatChosen extends TargetChat
 {
-    public const TYPE_NAME = 'targetChatChosen';
+    public const string TYPE_NAME = 'targetChatChosen';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class TargetChatChosen extends TargetChat
     public function getTypes(): TargetChatTypes
     {
         return $this->types;
+    }
+
+    public function setTypes(TargetChatTypes $value): static
+    {
+        $this->types = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

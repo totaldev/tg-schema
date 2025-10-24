@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Supergroup;
  */
 class SupergroupMembersFilterBots extends SupergroupMembersFilter
 {
-    public const TYPE_NAME = 'supergroupMembersFilterBots';
+    public const string TYPE_NAME = 'supergroupMembersFilterBots';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Mask;
  */
 class MaskPointForehead extends MaskPoint
 {
-    public const TYPE_NAME = 'maskPointForehead';
+    public const string TYPE_NAME = 'maskPointForehead';
 
     public function __construct()
     {

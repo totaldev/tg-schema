@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateFile extends Update
 {
-    public const TYPE_NAME = 'updateFile';
+    public const string TYPE_NAME = 'updateFile';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateFile extends Update
     public function getFile(): File
     {
         return $this->file;
+    }
+
+    public function setFile(File $value): static
+    {
+        $this->file = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

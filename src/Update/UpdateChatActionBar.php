@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatActionBar extends Update
 {
-    public const TYPE_NAME = 'updateChatActionBar';
+    public const string TYPE_NAME = 'updateChatActionBar';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatActionBar extends Update
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setActionBar(?ChatActionBar $value): static
+    {
+        $this->actionBar = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

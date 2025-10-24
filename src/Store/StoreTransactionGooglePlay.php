@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Store;
  */
 class StoreTransactionGooglePlay extends StoreTransaction
 {
-    public const TYPE_NAME = 'storeTransactionGooglePlay';
+    public const string TYPE_NAME = 'storeTransactionGooglePlay';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class StoreTransactionGooglePlay extends StoreTransaction
     public function getStoreProductId(): string
     {
         return $this->storeProductId;
+    }
+
+    public function setPackageName(string $value): static
+    {
+        $this->packageName = $value;
+
+        return $this;
+    }
+
+    public function setPurchaseToken(string $value): static
+    {
+        $this->purchaseToken = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

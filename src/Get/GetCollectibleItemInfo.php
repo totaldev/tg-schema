@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetCollectibleItemInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getCollectibleItemInfo';
+    public const string TYPE_NAME = 'getCollectibleItemInfo';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetCollectibleItemInfo extends TdFunction
     public function getType(): CollectibleItemType
     {
         return $this->type;
+    }
+
+    public function setType(CollectibleItemType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

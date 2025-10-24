@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class NewChatPrivacySettings extends TdObject
 {
-    public const TYPE_NAME = 'newChatPrivacySettings';
+    public const string TYPE_NAME = 'newChatPrivacySettings';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class NewChatPrivacySettings extends TdObject
     public function getIncomingPaidMessageStarCount(): int
     {
         return $this->incomingPaidMessageStarCount;
+    }
+
+    public function setAllowNewChatsFromUnknownUsers(bool $value): static
+    {
+        $this->allowNewChatsFromUnknownUsers = $value;
+
+        return $this;
+    }
+
+    public function setIncomingPaidMessageStarCount(int $value): static
+    {
+        $this->incomingPaidMessageStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

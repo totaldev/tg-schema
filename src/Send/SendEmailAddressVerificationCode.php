@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendEmailAddressVerificationCode extends TdFunction
 {
-    public const TYPE_NAME = 'sendEmailAddressVerificationCode';
+    public const string TYPE_NAME = 'sendEmailAddressVerificationCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SendEmailAddressVerificationCode extends TdFunction
     public function getEmailAddress(): string
     {
         return $this->emailAddress;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

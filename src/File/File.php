@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class File extends TdObject
 {
-    public const TYPE_NAME = 'file';
+    public const string TYPE_NAME = 'file';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class File extends TdObject
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function setExpectedSize(int $value): static
+    {
+        $this->expectedSize = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLocal(LocalFile $value): static
+    {
+        $this->local = $value;
+
+        return $this;
+    }
+
+    public function setRemote(RemoteFile $value): static
+    {
+        $this->remote = $value;
+
+        return $this;
+    }
+
+    public function setSize(int $value): static
+    {
+        $this->size = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

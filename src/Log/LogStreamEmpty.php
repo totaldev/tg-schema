@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Log;
  */
 class LogStreamEmpty extends LogStream
 {
-    public const TYPE_NAME = 'logStreamEmpty';
+    public const string TYPE_NAME = 'logStreamEmpty';
 
     public function __construct()
     {

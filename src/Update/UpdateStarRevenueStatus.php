@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStarRevenueStatus extends Update
 {
-    public const TYPE_NAME = 'updateStarRevenueStatus';
+    public const string TYPE_NAME = 'updateStarRevenueStatus';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class UpdateStarRevenueStatus extends Update
     public function getStatus(): StarRevenueStatus
     {
         return $this->status;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setStatus(StarRevenueStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

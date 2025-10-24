@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatIsMarkedAsUnread extends Update
 {
-    public const TYPE_NAME = 'updateChatIsMarkedAsUnread';
+    public const string TYPE_NAME = 'updateChatIsMarkedAsUnread';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatIsMarkedAsUnread extends Update
     public function getIsMarkedAsUnread(): bool
     {
         return $this->isMarkedAsUnread;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsMarkedAsUnread(bool $value): static
+    {
+        $this->isMarkedAsUnread = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

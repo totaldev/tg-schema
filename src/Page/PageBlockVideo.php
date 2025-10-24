@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class PageBlockVideo extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockVideo';
+    public const string TYPE_NAME = 'pageBlockVideo';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class PageBlockVideo extends PageBlock
     public function getVideo(): ?Video
     {
         return $this->video;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setIsLooped(bool $value): static
+    {
+        $this->isLooped = $value;
+
+        return $this;
+    }
+
+    public function setNeedAutoplay(bool $value): static
+    {
+        $this->needAutoplay = $value;
+
+        return $this;
+    }
+
+    public function setVideo(?Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

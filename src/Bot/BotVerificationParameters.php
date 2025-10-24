@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotVerificationParameters extends TdObject
 {
-    public const TYPE_NAME = 'botVerificationParameters';
+    public const string TYPE_NAME = 'botVerificationParameters';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class BotVerificationParameters extends TdObject
     public function getOrganizationName(): string
     {
         return $this->organizationName;
+    }
+
+    public function setCanSetCustomDescription(bool $value): static
+    {
+        $this->canSetCustomDescription = $value;
+
+        return $this;
+    }
+
+    public function setDefaultCustomDescription(?FormattedText $value): static
+    {
+        $this->defaultCustomDescription = $value;
+
+        return $this;
+    }
+
+    public function setIconCustomEmojiId(int $value): static
+    {
+        $this->iconCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setOrganizationName(string $value): static
+    {
+        $this->organizationName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

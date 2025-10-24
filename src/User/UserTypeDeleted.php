@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserTypeDeleted extends UserType
 {
-    public const TYPE_NAME = 'userTypeDeleted';
+    public const string TYPE_NAME = 'userTypeDeleted';
 
     public function __construct()
     {

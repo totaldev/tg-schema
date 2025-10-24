@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSourceSearch extends MessageSource
 {
-    public const TYPE_NAME = 'messageSourceSearch';
+    public const string TYPE_NAME = 'messageSourceSearch';
 
     public function __construct()
     {

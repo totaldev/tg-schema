@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputBackgroundPrevious extends InputBackground
 {
-    public const TYPE_NAME = 'inputBackgroundPrevious';
+    public const string TYPE_NAME = 'inputBackgroundPrevious';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputBackgroundPrevious extends InputBackground
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

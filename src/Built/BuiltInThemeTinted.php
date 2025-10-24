@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Built;
  */
 class BuiltInThemeTinted extends BuiltInTheme
 {
-    public const TYPE_NAME = 'builtInThemeTinted';
+    public const string TYPE_NAME = 'builtInThemeTinted';
 
     public function __construct()
     {

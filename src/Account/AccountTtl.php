@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AccountTtl extends TdObject
 {
-    public const TYPE_NAME = 'accountTtl';
+    public const string TYPE_NAME = 'accountTtl';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AccountTtl extends TdObject
     public function getDays(): int
     {
         return $this->days;
+    }
+
+    public function setDays(int $value): static
+    {
+        $this->days = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

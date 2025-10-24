@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class IdentityDocument extends TdObject
 {
-    public const TYPE_NAME = 'identityDocument';
+    public const string TYPE_NAME = 'identityDocument';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class IdentityDocument extends TdObject
     public function getTranslation(): array
     {
         return $this->translation;
+    }
+
+    public function setExpirationDate(?Date $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setFrontSide(DatedFile $value): static
+    {
+        $this->frontSide = $value;
+
+        return $this;
+    }
+
+    public function setNumber(string $value): static
+    {
+        $this->number = $value;
+
+        return $this;
+    }
+
+    public function setReverseSide(?DatedFile $value): static
+    {
+        $this->reverseSide = $value;
+
+        return $this;
+    }
+
+    public function setSelfie(?DatedFile $value): static
+    {
+        $this->selfie = $value;
+
+        return $this;
+    }
+
+    public function setTranslation(array $value): static
+    {
+        $this->translation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

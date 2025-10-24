@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReportOption extends TdObject
 {
-    public const TYPE_NAME = 'reportOption';
+    public const string TYPE_NAME = 'reportOption';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReportOption extends TdObject
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatBoosts extends TdFunction
 {
-    public const TYPE_NAME = 'getChatBoosts';
+    public const string TYPE_NAME = 'getChatBoosts';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class GetChatBoosts extends TdFunction
     public function getOnlyGiftCodes(): bool
     {
         return $this->onlyGiftCodes;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOnlyGiftCodes(bool $value): static
+    {
+        $this->onlyGiftCodes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

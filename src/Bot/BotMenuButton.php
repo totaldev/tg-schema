@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BotMenuButton extends TdObject
 {
-    public const TYPE_NAME = 'botMenuButton';
+    public const string TYPE_NAME = 'botMenuButton';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BotMenuButton extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

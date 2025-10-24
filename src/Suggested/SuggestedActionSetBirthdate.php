@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionSetBirthdate extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionSetBirthdate';
+    public const string TYPE_NAME = 'suggestedActionSetBirthdate';
 
     public function __construct()
     {

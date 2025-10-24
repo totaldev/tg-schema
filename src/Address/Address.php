@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Address extends TdObject
 {
-    public const TYPE_NAME = 'address';
+    public const string TYPE_NAME = 'address';
 
     public function __construct(
         /**
@@ -82,6 +82,48 @@ class Address extends TdObject
     public function getStreetLine2(): string
     {
         return $this->streetLine2;
+    }
+
+    public function setCity(string $value): static
+    {
+        $this->city = $value;
+
+        return $this;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
+    }
+
+    public function setPostalCode(string $value): static
+    {
+        $this->postalCode = $value;
+
+        return $this;
+    }
+
+    public function setState(string $value): static
+    {
+        $this->state = $value;
+
+        return $this;
+    }
+
+    public function setStreetLine1(string $value): static
+    {
+        $this->streetLine1 = $value;
+
+        return $this;
+    }
+
+    public function setStreetLine2(string $value): static
+    {
+        $this->streetLine2 = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

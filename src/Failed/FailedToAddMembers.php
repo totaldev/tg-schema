@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FailedToAddMembers extends TdObject
 {
-    public const TYPE_NAME = 'failedToAddMembers';
+    public const string TYPE_NAME = 'failedToAddMembers';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class FailedToAddMembers extends TdObject
     public function getFailedToAddMembers(): array
     {
         return $this->failedToAddMembers;
+    }
+
+    public function setFailedToAddMembers(array $value): static
+    {
+        $this->failedToAddMembers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

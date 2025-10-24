@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatRevenueAmount extends TdObject
 {
-    public const TYPE_NAME = 'chatRevenueAmount';
+    public const string TYPE_NAME = 'chatRevenueAmount';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class ChatRevenueAmount extends TdObject
     public function getWithdrawalEnabled(): bool
     {
         return $this->withdrawalEnabled;
+    }
+
+    public function setAvailableAmount(int $value): static
+    {
+        $this->availableAmount = $value;
+
+        return $this;
+    }
+
+    public function setBalanceAmount(int $value): static
+    {
+        $this->balanceAmount = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
+    }
+
+    public function setWithdrawalEnabled(bool $value): static
+    {
+        $this->withdrawalEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

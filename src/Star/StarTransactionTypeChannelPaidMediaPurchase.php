@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeChannelPaidMediaPurchase';
+    public const string TYPE_NAME = 'starTransactionTypeChannelPaidMediaPurchase';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class StarTransactionTypeChannelPaidMediaPurchase extends StarTransactionType
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMedia(array $value): static
+    {
+        $this->media = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatRevenueTransactionTypeFragmentWithdrawal extends ChatRevenueTransactionType
 {
-    public const TYPE_NAME = 'chatRevenueTransactionTypeFragmentWithdrawal';
+    public const string TYPE_NAME = 'chatRevenueTransactionTypeFragmentWithdrawal';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatRevenueTransactionTypeFragmentWithdrawal extends ChatRevenueTransactio
     public function getWithdrawalDate(): int
     {
         return $this->withdrawalDate;
+    }
+
+    public function setState(RevenueWithdrawalState $value): static
+    {
+        $this->state = $value;
+
+        return $this;
+    }
+
+    public function setWithdrawalDate(int $value): static
+    {
+        $this->withdrawalDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

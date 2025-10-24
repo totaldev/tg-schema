@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatJoinRequests extends TdObject
 {
-    public const TYPE_NAME = 'chatJoinRequests';
+    public const string TYPE_NAME = 'chatJoinRequests';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatJoinRequests extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setRequests(array $value): static
+    {
+        $this->requests = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

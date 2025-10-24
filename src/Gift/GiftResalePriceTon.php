@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Gift;
  */
 class GiftResalePriceTon extends GiftResalePrice
 {
-    public const TYPE_NAME = 'giftResalePriceTon';
+    public const string TYPE_NAME = 'giftResalePriceTon';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiftResalePriceTon extends GiftResalePrice
     public function getToncoinCentCount(): int
     {
         return $this->toncoinCentCount;
+    }
+
+    public function setToncoinCentCount(int $value): static
+    {
+        $this->toncoinCentCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

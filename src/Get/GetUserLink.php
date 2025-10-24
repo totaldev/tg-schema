@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetUserLink extends TdFunction
 {
-    public const TYPE_NAME = 'getUserLink';
+    public const string TYPE_NAME = 'getUserLink';
 
     public function __construct() {}
 

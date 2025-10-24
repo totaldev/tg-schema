@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageWebAppDataSent extends MessageContent
 {
-    public const TYPE_NAME = 'messageWebAppDataSent';
+    public const string TYPE_NAME = 'messageWebAppDataSent';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageWebAppDataSent extends MessageContent
     public function getButtonText(): string
     {
         return $this->buttonText;
+    }
+
+    public function setButtonText(string $value): static
+    {
+        $this->buttonText = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

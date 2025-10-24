@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureUniqueStickers extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureUniqueStickers';
+    public const string TYPE_NAME = 'premiumFeatureUniqueStickers';
 
     public function __construct()
     {

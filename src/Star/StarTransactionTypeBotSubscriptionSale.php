@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeBotSubscriptionSale';
+    public const string TYPE_NAME = 'starTransactionTypeBotSubscriptionSale';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class StarTransactionTypeBotSubscriptionSale extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setAffiliate(?AffiliateInfo $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setInvoicePayload(string $value): static
+    {
+        $this->invoicePayload = $value;
+
+        return $this;
+    }
+
+    public function setProductInfo(ProductInfo $value): static
+    {
+        $this->productInfo = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionPeriod(int $value): static
+    {
+        $this->subscriptionPeriod = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

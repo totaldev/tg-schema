@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TextQuote extends TdObject
 {
-    public const TYPE_NAME = 'textQuote';
+    public const string TYPE_NAME = 'textQuote';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class TextQuote extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setIsManual(bool $value): static
+    {
+        $this->isManual = $value;
+
+        return $this;
+    }
+
+    public function setPosition(int $value): static
+    {
+        $this->position = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

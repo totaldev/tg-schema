@@ -14,7 +14,7 @@ use Totaldev\TgSchema\User\UserFullInfo;
  */
 class UpdateUserFullInfo extends Update
 {
-    public const TYPE_NAME = 'updateUserFullInfo';
+    public const string TYPE_NAME = 'updateUserFullInfo';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateUserFullInfo extends Update
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserFullInfo(UserFullInfo $value): static
+    {
+        $this->userFullInfo = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

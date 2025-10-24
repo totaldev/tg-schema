@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatBoostSourcePremium extends ChatBoostSource
 {
-    public const TYPE_NAME = 'chatBoostSourcePremium';
+    public const string TYPE_NAME = 'chatBoostSourcePremium';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatBoostSourcePremium extends ChatBoostSource
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatDefaultDisableNotification extends Update
 {
-    public const TYPE_NAME = 'updateChatDefaultDisableNotification';
+    public const string TYPE_NAME = 'updateChatDefaultDisableNotification';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatDefaultDisableNotification extends Update
     public function getDefaultDisableNotification(): bool
     {
         return $this->defaultDisableNotification;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDefaultDisableNotification(bool $value): static
+    {
+        $this->defaultDisableNotification = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

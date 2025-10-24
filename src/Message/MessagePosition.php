@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessagePosition extends TdObject
 {
-    public const TYPE_NAME = 'messagePosition';
+    public const string TYPE_NAME = 'messagePosition';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class MessagePosition extends TdObject
     public function getPosition(): int
     {
         return $this->position;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setPosition(int $value): static
+    {
+        $this->position = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

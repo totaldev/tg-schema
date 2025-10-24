@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PrepaidGiveaway extends TdObject
 {
-    public const TYPE_NAME = 'prepaidGiveaway';
+    public const string TYPE_NAME = 'prepaidGiveaway';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class PrepaidGiveaway extends TdObject
     public function getWinnerCount(): int
     {
         return $this->winnerCount;
+    }
+
+    public function setBoostCount(int $value): static
+    {
+        $this->boostCount = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setPaymentDate(int $value): static
+    {
+        $this->paymentDate = $value;
+
+        return $this;
+    }
+
+    public function setPrize(GiveawayPrize $value): static
+    {
+        $this->prize = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

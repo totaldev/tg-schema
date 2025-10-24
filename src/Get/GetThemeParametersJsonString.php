@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Theme\ThemeParameters;
  */
 class GetThemeParametersJsonString extends TdFunction
 {
-    public const TYPE_NAME = 'getThemeParametersJsonString';
+    public const string TYPE_NAME = 'getThemeParametersJsonString';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetThemeParametersJsonString extends TdFunction
     public function getTheme(): ThemeParameters
     {
         return $this->theme;
+    }
+
+    public function setTheme(ThemeParameters $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

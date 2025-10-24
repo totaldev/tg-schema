@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
 {
-    public const TYPE_NAME = 'networkStatisticsEntryCall';
+    public const string TYPE_NAME = 'networkStatisticsEntryCall';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class NetworkStatisticsEntryCall extends NetworkStatisticsEntry
     public function getSentBytes(): int
     {
         return $this->sentBytes;
+    }
+
+    public function setDuration(float $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setNetworkType(NetworkType $value): static
+    {
+        $this->networkType = $value;
+
+        return $this;
+    }
+
+    public function setReceivedBytes(int $value): static
+    {
+        $this->receivedBytes = $value;
+
+        return $this;
+    }
+
+    public function setSentBytes(int $value): static
+    {
+        $this->sentBytes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

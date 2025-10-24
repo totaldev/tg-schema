@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultDocument extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultDocument';
+    public const string TYPE_NAME = 'inlineQueryResultDocument';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class InlineQueryResultDocument extends InlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setDocument(Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

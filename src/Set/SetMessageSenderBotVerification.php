@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetMessageSenderBotVerification extends TdFunction
 {
-    public const TYPE_NAME = 'setMessageSenderBotVerification';
+    public const string TYPE_NAME = 'setMessageSenderBotVerification';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SetMessageSenderBotVerification extends TdFunction
     public function getVerifiedId(): MessageSender
     {
         return $this->verifiedId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCustomDescription(string $value): static
+    {
+        $this->customDescription = $value;
+
+        return $this;
+    }
+
+    public function setVerifiedId(MessageSender $value): static
+    {
+        $this->verifiedId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

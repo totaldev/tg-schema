@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatViewAsTopics extends Update
 {
-    public const TYPE_NAME = 'updateChatViewAsTopics';
+    public const string TYPE_NAME = 'updateChatViewAsTopics';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatViewAsTopics extends Update
     public function getViewAsTopics(): bool
     {
         return $this->viewAsTopics;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setViewAsTopics(bool $value): static
+    {
+        $this->viewAsTopics = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

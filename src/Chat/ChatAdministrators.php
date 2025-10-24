@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatAdministrators extends TdObject
 {
-    public const TYPE_NAME = 'chatAdministrators';
+    public const string TYPE_NAME = 'chatAdministrators';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatAdministrators extends TdObject
     public function getAdministrators(): array
     {
         return $this->administrators;
+    }
+
+    public function setAdministrators(array $value): static
+    {
+        $this->administrators = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockDetails extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockDetails';
+    public const string TYPE_NAME = 'pageBlockDetails';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class PageBlockDetails extends PageBlock
     public function getPageBlocks(): array
     {
         return $this->pageBlocks;
+    }
+
+    public function setHeader(RichText $value): static
+    {
+        $this->header = $value;
+
+        return $this;
+    }
+
+    public function setIsOpen(bool $value): static
+    {
+        $this->isOpen = $value;
+
+        return $this;
+    }
+
+    public function setPageBlocks(array $value): static
+    {
+        $this->pageBlocks = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeChat extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeChat';
+    public const string TYPE_NAME = 'linkPreviewTypeChat';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class LinkPreviewTypeChat extends LinkPreviewType
     public function getType(): InviteLinkChatType
     {
         return $this->type;
+    }
+
+    public function setCreatesJoinRequest(bool $value): static
+    {
+        $this->createsJoinRequest = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setType(InviteLinkChatType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

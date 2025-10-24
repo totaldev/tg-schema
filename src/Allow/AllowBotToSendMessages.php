@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AllowBotToSendMessages extends TdFunction
 {
-    public const TYPE_NAME = 'allowBotToSendMessages';
+    public const string TYPE_NAME = 'allowBotToSendMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AllowBotToSendMessages extends TdFunction
     public function getBotUserId(): int
     {
         return $this->botUserId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

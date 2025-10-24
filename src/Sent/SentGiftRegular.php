@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SentGiftRegular extends SentGift
 {
-    public const TYPE_NAME = 'sentGiftRegular';
+    public const string TYPE_NAME = 'sentGiftRegular';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class SentGiftRegular extends SentGift
     public function getGift(): Gift
     {
         return $this->gift;
+    }
+
+    public function setGift(Gift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

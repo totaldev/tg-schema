@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureVoiceRecognition extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureVoiceRecognition';
+    public const string TYPE_NAME = 'premiumFeatureVoiceRecognition';
 
     public function __construct()
     {

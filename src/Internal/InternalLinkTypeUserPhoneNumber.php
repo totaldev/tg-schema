@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeUserPhoneNumber extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeUserPhoneNumber';
+    public const string TYPE_NAME = 'internalLinkTypeUserPhoneNumber';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InternalLinkTypeUserPhoneNumber extends InternalLinkType
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setDraftText(string $value): static
+    {
+        $this->draftText = $value;
+
+        return $this;
+    }
+
+    public function setOpenProfile(bool $value): static
+    {
+        $this->openProfile = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

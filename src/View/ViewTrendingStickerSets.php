@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ViewTrendingStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'viewTrendingStickerSets';
+    public const string TYPE_NAME = 'viewTrendingStickerSets';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ViewTrendingStickerSets extends TdFunction
     public function getStickerSetIds(): array
     {
         return $this->stickerSetIds;
+    }
+
+    public function setStickerSetIds(array $value): static
+    {
+        $this->stickerSetIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

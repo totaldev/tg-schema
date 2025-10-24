@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ShippingOption extends TdObject
 {
-    public const TYPE_NAME = 'shippingOption';
+    public const string TYPE_NAME = 'shippingOption';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class ShippingOption extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setPriceParts(array $value): static
+    {
+        $this->priceParts = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

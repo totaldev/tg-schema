@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionSetProfilePhoto extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionSetProfilePhoto';
+    public const string TYPE_NAME = 'suggestedActionSetProfilePhoto';
 
     public function __construct()
     {

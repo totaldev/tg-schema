@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SavedCredentials extends TdObject
 {
-    public const TYPE_NAME = 'savedCredentials';
+    public const string TYPE_NAME = 'savedCredentials';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SavedCredentials extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TestVectorInt extends TdObject
 {
-    public const TYPE_NAME = 'testVectorInt';
+    public const string TYPE_NAME = 'testVectorInt';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class TestVectorInt extends TdObject
     public function getValue(): array
     {
         return $this->value;
+    }
+
+    public function setValue(array $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

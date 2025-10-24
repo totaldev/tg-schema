@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatMemberStatusRestricted extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusRestricted';
+    public const string TYPE_NAME = 'chatMemberStatusRestricted';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class ChatMemberStatusRestricted extends ChatMemberStatus
     public function getRestrictedUntilDate(): int
     {
         return $this->restrictedUntilDate;
+    }
+
+    public function setIsMember(bool $value): static
+    {
+        $this->isMember = $value;
+
+        return $this;
+    }
+
+    public function setPermissions(ChatPermissions $value): static
+    {
+        $this->permissions = $value;
+
+        return $this;
+    }
+
+    public function setRestrictedUntilDate(int $value): static
+    {
+        $this->restrictedUntilDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class EditStoryCover extends TdFunction
 {
-    public const TYPE_NAME = 'editStoryCover';
+    public const string TYPE_NAME = 'editStoryCover';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class EditStoryCover extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setCoverFrameTimestamp(float $value): static
+    {
+        $this->coverFrameTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

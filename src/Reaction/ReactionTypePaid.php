@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionTypePaid extends ReactionType
 {
-    public const TYPE_NAME = 'reactionTypePaid';
+    public const string TYPE_NAME = 'reactionTypePaid';
 
     public function __construct()
     {

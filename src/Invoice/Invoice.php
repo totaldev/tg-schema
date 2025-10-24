@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Invoice extends TdObject
 {
-    public const TYPE_NAME = 'invoice';
+    public const string TYPE_NAME = 'invoice';
 
     public function __construct(
         /**
@@ -178,6 +178,111 @@ class Invoice extends TdObject
     public function getTermsOfServiceUrl(): string
     {
         return $this->termsOfServiceUrl;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsFlexible(bool $value): static
+    {
+        $this->isFlexible = $value;
+
+        return $this;
+    }
+
+    public function setIsTest(bool $value): static
+    {
+        $this->isTest = $value;
+
+        return $this;
+    }
+
+    public function setMaxTipAmount(int $value): static
+    {
+        $this->maxTipAmount = $value;
+
+        return $this;
+    }
+
+    public function setNeedEmailAddress(bool $value): static
+    {
+        $this->needEmailAddress = $value;
+
+        return $this;
+    }
+
+    public function setNeedName(bool $value): static
+    {
+        $this->needName = $value;
+
+        return $this;
+    }
+
+    public function setNeedPhoneNumber(bool $value): static
+    {
+        $this->needPhoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setNeedShippingAddress(bool $value): static
+    {
+        $this->needShippingAddress = $value;
+
+        return $this;
+    }
+
+    public function setPriceParts(array $value): static
+    {
+        $this->priceParts = $value;
+
+        return $this;
+    }
+
+    public function setRecurringPaymentTermsOfServiceUrl(string $value): static
+    {
+        $this->recurringPaymentTermsOfServiceUrl = $value;
+
+        return $this;
+    }
+
+    public function setSendEmailAddressToProvider(bool $value): static
+    {
+        $this->sendEmailAddressToProvider = $value;
+
+        return $this;
+    }
+
+    public function setSendPhoneNumberToProvider(bool $value): static
+    {
+        $this->sendPhoneNumberToProvider = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionPeriod(int $value): static
+    {
+        $this->subscriptionPeriod = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedTipAmounts(array $value): static
+    {
+        $this->suggestedTipAmounts = $value;
+
+        return $this;
+    }
+
+    public function setTermsOfServiceUrl(string $value): static
+    {
+        $this->termsOfServiceUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

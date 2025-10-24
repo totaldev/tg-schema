@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AddFileToDownloads extends TdFunction
 {
-    public const TYPE_NAME = 'addFileToDownloads';
+    public const string TYPE_NAME = 'addFileToDownloads';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class AddFileToDownloads extends TdFunction
     public function getPriority(): int
     {
         return $this->priority;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setPriority(int $value): static
+    {
+        $this->priority = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

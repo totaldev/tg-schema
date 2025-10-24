@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeChatFolderCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeChatFolderCount';
+    public const string TYPE_NAME = 'premiumLimitTypeChatFolderCount';
 
     public function __construct()
     {

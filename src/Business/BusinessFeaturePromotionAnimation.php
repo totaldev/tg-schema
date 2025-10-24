@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessFeaturePromotionAnimation extends TdObject
 {
-    public const TYPE_NAME = 'businessFeaturePromotionAnimation';
+    public const string TYPE_NAME = 'businessFeaturePromotionAnimation';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class BusinessFeaturePromotionAnimation extends TdObject
     public function getFeature(): BusinessFeature
     {
         return $this->feature;
+    }
+
+    public function setAnimation(Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setFeature(BusinessFeature $value): static
+    {
+        $this->feature = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

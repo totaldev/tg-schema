@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RemoveMessageSenderBotVerification extends TdFunction
 {
-    public const TYPE_NAME = 'removeMessageSenderBotVerification';
+    public const string TYPE_NAME = 'removeMessageSenderBotVerification';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RemoveMessageSenderBotVerification extends TdFunction
     public function getVerifiedId(): MessageSender
     {
         return $this->verifiedId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setVerifiedId(MessageSender $value): static
+    {
+        $this->verifiedId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

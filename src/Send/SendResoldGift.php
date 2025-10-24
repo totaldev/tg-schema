@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendResoldGift extends TdFunction
 {
-    public const TYPE_NAME = 'sendResoldGift';
+    public const string TYPE_NAME = 'sendResoldGift';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class SendResoldGift extends TdFunction
     public function getPrice(): GiftResalePrice
     {
         return $this->price;
+    }
+
+    public function setGiftName(string $value): static
+    {
+        $this->giftName = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setPrice(GiftResalePrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

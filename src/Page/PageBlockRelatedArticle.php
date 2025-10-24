@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockRelatedArticle extends TdObject
 {
-    public const TYPE_NAME = 'pageBlockRelatedArticle';
+    public const string TYPE_NAME = 'pageBlockRelatedArticle';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class PageBlockRelatedArticle extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAuthor(string $value): static
+    {
+        $this->author = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setPublishDate(int $value): static
+    {
+        $this->publishDate = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

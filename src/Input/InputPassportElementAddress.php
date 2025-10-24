@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPassportElementAddress extends InputPassportElement
 {
-    public const TYPE_NAME = 'inputPassportElementAddress';
+    public const string TYPE_NAME = 'inputPassportElementAddress';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class InputPassportElementAddress extends InputPassportElement
     public function getAddress(): Address
     {
         return $this->address;
+    }
+
+    public function setAddress(Address $value): static
+    {
+        $this->address = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

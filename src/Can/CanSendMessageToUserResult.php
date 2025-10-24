@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CanSendMessageToUserResult extends TdObject
 {
-    public const TYPE_NAME = 'CanSendMessageToUserResult';
+    public const string TYPE_NAME = 'CanSendMessageToUserResult';
 
     public function __construct() {}
 

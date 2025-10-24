@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetUserEmojiStatus extends TdFunction
 {
-    public const TYPE_NAME = 'setUserEmojiStatus';
+    public const string TYPE_NAME = 'setUserEmojiStatus';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetUserEmojiStatus extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setEmojiStatus(?EmojiStatus $value): static
+    {
+        $this->emojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatMemberStatusLeft extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusLeft';
+    public const string TYPE_NAME = 'chatMemberStatusLeft';
 
     public function __construct()
     {

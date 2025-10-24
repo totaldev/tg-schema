@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeUrl extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeUrl';
+    public const string TYPE_NAME = 'textEntityTypeUrl';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ApproveSuggestedPost extends TdFunction
 {
-    public const TYPE_NAME = 'approveSuggestedPost';
+    public const string TYPE_NAME = 'approveSuggestedPost';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ApproveSuggestedPost extends TdFunction
     public function getSendDate(): int
     {
         return $this->sendDate;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSendDate(int $value): static
+    {
+        $this->sendDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetOwnedStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'getOwnedStickerSets';
+    public const string TYPE_NAME = 'getOwnedStickerSets';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetOwnedStickerSets extends TdFunction
     public function getOffsetStickerSetId(): int
     {
         return $this->offsetStickerSetId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetStickerSetId(int $value): static
+    {
+        $this->offsetStickerSetId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

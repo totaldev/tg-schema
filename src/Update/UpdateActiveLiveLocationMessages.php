@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateActiveLiveLocationMessages extends Update
 {
-    public const TYPE_NAME = 'updateActiveLiveLocationMessages';
+    public const string TYPE_NAME = 'updateActiveLiveLocationMessages';
 
     public function __construct(
         /**
@@ -38,6 +38,13 @@ class UpdateActiveLiveLocationMessages extends Update
     public function getMessages(): array
     {
         return $this->messages;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

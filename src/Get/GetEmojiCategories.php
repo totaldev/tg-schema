@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetEmojiCategories extends TdFunction
 {
-    public const TYPE_NAME = 'getEmojiCategories';
+    public const string TYPE_NAME = 'getEmojiCategories';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetEmojiCategories extends TdFunction
     public function getType(): ?EmojiCategoryType
     {
         return $this->type;
+    }
+
+    public function setType(?EmojiCategoryType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

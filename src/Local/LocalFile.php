@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LocalFile extends TdObject
 {
-    public const TYPE_NAME = 'localFile';
+    public const string TYPE_NAME = 'localFile';
 
     public function __construct(
         /**
@@ -102,6 +102,62 @@ class LocalFile extends TdObject
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function setCanBeDeleted(bool $value): static
+    {
+        $this->canBeDeleted = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDownloaded(bool $value): static
+    {
+        $this->canBeDownloaded = $value;
+
+        return $this;
+    }
+
+    public function setDownloadOffset(int $value): static
+    {
+        $this->downloadOffset = $value;
+
+        return $this;
+    }
+
+    public function setDownloadedPrefixSize(int $value): static
+    {
+        $this->downloadedPrefixSize = $value;
+
+        return $this;
+    }
+
+    public function setDownloadedSize(int $value): static
+    {
+        $this->downloadedSize = $value;
+
+        return $this;
+    }
+
+    public function setIsDownloadingActive(bool $value): static
+    {
+        $this->isDownloadingActive = $value;
+
+        return $this;
+    }
+
+    public function setIsDownloadingCompleted(bool $value): static
+    {
+        $this->isDownloadingCompleted = $value;
+
+        return $this;
+    }
+
+    public function setPath(string $value): static
+    {
+        $this->path = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

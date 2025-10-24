@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveProfileAudio extends TdFunction
 {
-    public const TYPE_NAME = 'removeProfileAudio';
+    public const string TYPE_NAME = 'removeProfileAudio';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveProfileAudio extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

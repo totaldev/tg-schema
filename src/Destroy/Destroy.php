@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class Destroy extends TdFunction
 {
-    public const TYPE_NAME = 'destroy';
+    public const string TYPE_NAME = 'destroy';
 
     public function __construct() {}
 

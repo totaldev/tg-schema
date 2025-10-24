@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VideoChatStreams extends TdObject
 {
-    public const TYPE_NAME = 'videoChatStreams';
+    public const string TYPE_NAME = 'videoChatStreams';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class VideoChatStreams extends TdObject
     public function getStreams(): array
     {
         return $this->streams;
+    }
+
+    public function setStreams(array $value): static
+    {
+        $this->streams = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

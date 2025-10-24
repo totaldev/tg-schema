@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionViewChecksHint extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionViewChecksHint';
+    public const string TYPE_NAME = 'suggestedActionViewChecksHint';
 
     public function __construct()
     {

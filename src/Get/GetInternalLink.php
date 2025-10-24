@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetInternalLink extends TdFunction
 {
-    public const TYPE_NAME = 'getInternalLink';
+    public const string TYPE_NAME = 'getInternalLink';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetInternalLink extends TdFunction
     public function getType(): InternalLinkType
     {
         return $this->type;
+    }
+
+    public function setIsHttp(bool $value): static
+    {
+        $this->isHttp = $value;
+
+        return $this;
+    }
+
+    public function setType(InternalLinkType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

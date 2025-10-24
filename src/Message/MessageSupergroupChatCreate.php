@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSupergroupChatCreate extends MessageContent
 {
-    public const TYPE_NAME = 'messageSupergroupChatCreate';
+    public const string TYPE_NAME = 'messageSupergroupChatCreate';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageSupergroupChatCreate extends MessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

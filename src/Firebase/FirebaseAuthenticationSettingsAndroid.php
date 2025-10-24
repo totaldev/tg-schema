@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Firebase;
  */
 class FirebaseAuthenticationSettingsAndroid extends FirebaseAuthenticationSettings
 {
-    public const TYPE_NAME = 'firebaseAuthenticationSettingsAndroid';
+    public const string TYPE_NAME = 'firebaseAuthenticationSettingsAndroid';
 
     public function __construct()
     {

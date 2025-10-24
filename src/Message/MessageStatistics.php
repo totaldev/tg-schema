@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageStatistics extends TdObject
 {
-    public const TYPE_NAME = 'messageStatistics';
+    public const string TYPE_NAME = 'messageStatistics';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class MessageStatistics extends TdObject
     public function getMessageReactionGraph(): StatisticalGraph
     {
         return $this->messageReactionGraph;
+    }
+
+    public function setMessageInteractionGraph(StatisticalGraph $value): static
+    {
+        $this->messageInteractionGraph = $value;
+
+        return $this;
+    }
+
+    public function setMessageReactionGraph(StatisticalGraph $value): static
+    {
+        $this->messageReactionGraph = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

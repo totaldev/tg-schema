@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BasicGroup extends TdObject
 {
-    public const TYPE_NAME = 'basicGroup';
+    public const string TYPE_NAME = 'basicGroup';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class BasicGroup extends TdObject
     public function getUpgradedToSupergroupId(): int
     {
         return $this->upgradedToSupergroupId;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(int $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setStatus(ChatMemberStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedToSupergroupId(int $value): static
+    {
+        $this->upgradedToSupergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

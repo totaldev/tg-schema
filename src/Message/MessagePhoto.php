@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePhoto extends MessageContent
 {
-    public const TYPE_NAME = 'messagePhoto';
+    public const string TYPE_NAME = 'messagePhoto';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class MessagePhoto extends MessageContent
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setHasSpoiler(bool $value): static
+    {
+        $this->hasSpoiler = $value;
+
+        return $this;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

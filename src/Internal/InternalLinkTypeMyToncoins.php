@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeMyToncoins extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeMyToncoins';
+    public const string TYPE_NAME = 'internalLinkTypeMyToncoins';
 
     public function __construct()
     {

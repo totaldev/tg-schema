@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TonTransactionType extends TdObject
 {
-    public const TYPE_NAME = 'TonTransactionType';
+    public const string TYPE_NAME = 'TonTransactionType';
 
     public function __construct() {}
 

@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendMessageAlbum extends TdFunction
 {
-    public const TYPE_NAME = 'sendMessageAlbum';
+    public const string TYPE_NAME = 'sendMessageAlbum';
 
     public function __construct(
         /**
@@ -80,6 +80,41 @@ class SendMessageAlbum extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContents(array $value): static
+    {
+        $this->inputMessageContents = $value;
+
+        return $this;
+    }
+
+    public function setOptions(?MessageSendOptions $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

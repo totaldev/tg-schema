@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockSubheader extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockSubheader';
+    public const string TYPE_NAME = 'pageBlockSubheader';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockSubheader extends PageBlock
     public function getSubheader(): RichText
     {
         return $this->subheader;
+    }
+
+    public function setSubheader(RichText $value): static
+    {
+        $this->subheader = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

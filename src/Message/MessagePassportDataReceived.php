@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePassportDataReceived extends MessageContent
 {
-    public const TYPE_NAME = 'messagePassportDataReceived';
+    public const string TYPE_NAME = 'messagePassportDataReceived';
 
     public function __construct(
         /**
@@ -48,6 +48,20 @@ class MessagePassportDataReceived extends MessageContent
     public function getElements(): array
     {
         return $this->elements;
+    }
+
+    public function setCredentials(EncryptedCredentials $value): static
+    {
+        $this->credentials = $value;
+
+        return $this;
+    }
+
+    public function setElements(array $value): static
+    {
+        $this->elements = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

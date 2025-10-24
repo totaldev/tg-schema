@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessConnectedBot extends TdObject
 {
-    public const TYPE_NAME = 'businessConnectedBot';
+    public const string TYPE_NAME = 'businessConnectedBot';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class BusinessConnectedBot extends TdObject
     public function getRights(): BusinessBotRights
     {
         return $this->rights;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setRecipients(BusinessRecipients $value): static
+    {
+        $this->recipients = $value;
+
+        return $this;
+    }
+
+    public function setRights(BusinessBotRights $value): static
+    {
+        $this->rights = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

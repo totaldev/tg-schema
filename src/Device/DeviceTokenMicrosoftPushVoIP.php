@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenMicrosoftPushVoIP extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenMicrosoftPushVoIP';
+    public const string TYPE_NAME = 'deviceTokenMicrosoftPushVoIP';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeviceTokenMicrosoftPushVoIP extends DeviceToken
     public function getChannelUri(): string
     {
         return $this->channelUri;
+    }
+
+    public function setChannelUri(string $value): static
+    {
+        $this->channelUri = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StarTransactionType extends TdObject
 {
-    public const TYPE_NAME = 'StarTransactionType';
+    public const string TYPE_NAME = 'StarTransactionType';
 
     public function __construct() {}
 

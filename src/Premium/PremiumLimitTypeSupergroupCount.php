@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeSupergroupCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeSupergroupCount';
+    public const string TYPE_NAME = 'premiumLimitTypeSupergroupCount';
 
     public function __construct()
     {

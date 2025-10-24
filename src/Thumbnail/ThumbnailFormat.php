@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ThumbnailFormat extends TdObject
 {
-    public const TYPE_NAME = 'ThumbnailFormat';
+    public const string TYPE_NAME = 'ThumbnailFormat';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetStarWithdrawalUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getStarWithdrawalUrl';
+    public const string TYPE_NAME = 'getStarWithdrawalUrl';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetStarWithdrawalUrl extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

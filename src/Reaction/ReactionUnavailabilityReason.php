@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReactionUnavailabilityReason extends TdObject
 {
-    public const TYPE_NAME = 'ReactionUnavailabilityReason';
+    public const string TYPE_NAME = 'ReactionUnavailabilityReason';
 
     public function __construct() {}
 

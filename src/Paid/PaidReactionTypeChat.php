@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Paid;
  */
 class PaidReactionTypeChat extends PaidReactionType
 {
-    public const TYPE_NAME = 'paidReactionTypeChat';
+    public const string TYPE_NAME = 'paidReactionTypeChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PaidReactionTypeChat extends PaidReactionType
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

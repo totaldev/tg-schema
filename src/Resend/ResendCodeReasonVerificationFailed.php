@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Resend;
  */
 class ResendCodeReasonVerificationFailed extends ResendCodeReason
 {
-    public const TYPE_NAME = 'resendCodeReasonVerificationFailed';
+    public const string TYPE_NAME = 'resendCodeReasonVerificationFailed';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ResendCodeReasonVerificationFailed extends ResendCodeReason
     public function getErrorMessage(): string
     {
         return $this->errorMessage;
+    }
+
+    public function setErrorMessage(string $value): static
+    {
+        $this->errorMessage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

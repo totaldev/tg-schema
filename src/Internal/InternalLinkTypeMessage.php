@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeMessage extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeMessage';
+    public const string TYPE_NAME = 'internalLinkTypeMessage';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeMessage extends InternalLinkType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

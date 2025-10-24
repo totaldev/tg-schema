@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryRepostInfo extends TdObject
 {
-    public const TYPE_NAME = 'storyRepostInfo';
+    public const string TYPE_NAME = 'storyRepostInfo';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class StoryRepostInfo extends TdObject
     public function getOrigin(): StoryOrigin
     {
         return $this->origin;
+    }
+
+    public function setIsContentModified(bool $value): static
+    {
+        $this->isContentModified = $value;
+
+        return $this;
+    }
+
+    public function setOrigin(StoryOrigin $value): static
+    {
+        $this->origin = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleDirectMessagesChatTopicCanSendUnpaidMessages extends TdFunction
 {
-    public const TYPE_NAME = 'toggleDirectMessagesChatTopicCanSendUnpaidMessages';
+    public const string TYPE_NAME = 'toggleDirectMessagesChatTopicCanSendUnpaidMessages';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class ToggleDirectMessagesChatTopicCanSendUnpaidMessages extends TdFunction
     public function getTopicId(): int
     {
         return $this->topicId;
+    }
+
+    public function setCanSendUnpaidMessages(bool $value): static
+    {
+        $this->canSendUnpaidMessages = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setRefundPayments(bool $value): static
+    {
+        $this->refundPayments = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(int $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentAudio extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentAudio';
+    public const string TYPE_NAME = 'pushMessageContentAudio';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PushMessageContentAudio extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setAudio(?Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

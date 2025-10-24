@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VideoMessageAdvertisement extends TdObject
 {
-    public const TYPE_NAME = 'videoMessageAdvertisement';
+    public const string TYPE_NAME = 'videoMessageAdvertisement';
 
     public function __construct(
         /**
@@ -104,6 +104,62 @@ class VideoMessageAdvertisement extends TdObject
     public function getUniqueId(): int
     {
         return $this->uniqueId;
+    }
+
+    public function setAdditionalInfo(string $value): static
+    {
+        $this->additionalInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanBeReported(bool $value): static
+    {
+        $this->canBeReported = $value;
+
+        return $this;
+    }
+
+    public function setMaxDisplayDuration(int $value): static
+    {
+        $this->maxDisplayDuration = $value;
+
+        return $this;
+    }
+
+    public function setMinDisplayDuration(int $value): static
+    {
+        $this->minDisplayDuration = $value;
+
+        return $this;
+    }
+
+    public function setSponsor(AdvertisementSponsor $value): static
+    {
+        $this->sponsor = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

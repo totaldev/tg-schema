@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeFirefox extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeFirefox';
+    public const string TYPE_NAME = 'sessionTypeFirefox';
 
     public function __construct()
     {

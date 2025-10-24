@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateStoryAlbum extends TdFunction
 {
-    public const TYPE_NAME = 'createStoryAlbum';
+    public const string TYPE_NAME = 'createStoryAlbum';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class CreateStoryAlbum extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setStoryIds(array $value): static
+    {
+        $this->storyIds = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

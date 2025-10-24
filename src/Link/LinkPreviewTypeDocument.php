@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeDocument extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeDocument';
+    public const string TYPE_NAME = 'linkPreviewTypeDocument';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeDocument extends LinkPreviewType
     public function getDocument(): Document
     {
         return $this->document;
+    }
+
+    public function setDocument(Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

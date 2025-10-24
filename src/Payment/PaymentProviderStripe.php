@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Payment;
  */
 class PaymentProviderStripe extends PaymentProvider
 {
-    public const TYPE_NAME = 'paymentProviderStripe';
+    public const string TYPE_NAME = 'paymentProviderStripe';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class PaymentProviderStripe extends PaymentProvider
     public function getPublishableKey(): string
     {
         return $this->publishableKey;
+    }
+
+    public function setNeedCardholderName(bool $value): static
+    {
+        $this->needCardholderName = $value;
+
+        return $this;
+    }
+
+    public function setNeedCountry(bool $value): static
+    {
+        $this->needCountry = $value;
+
+        return $this;
+    }
+
+    public function setNeedPostalCode(bool $value): static
+    {
+        $this->needPostalCode = $value;
+
+        return $this;
+    }
+
+    public function setPublishableKey(string $value): static
+    {
+        $this->publishableKey = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeBackground extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeBackground';
+    public const string TYPE_NAME = 'linkPreviewTypeBackground';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class LinkPreviewTypeBackground extends LinkPreviewType
     public function getDocument(): ?Document
     {
         return $this->document;
+    }
+
+    public function setBackgroundType(?BackgroundType $value): static
+    {
+        $this->backgroundType = $value;
+
+        return $this;
+    }
+
+    public function setDocument(?Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

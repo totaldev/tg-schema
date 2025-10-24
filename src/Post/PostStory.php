@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PostStory extends TdFunction
 {
-    public const TYPE_NAME = 'postStory';
+    public const string TYPE_NAME = 'postStory';
 
     public function __construct(
         /**
@@ -130,6 +130,76 @@ class PostStory extends TdFunction
     public function getProtectContent(): bool
     {
         return $this->protectContent;
+    }
+
+    public function setActivePeriod(int $value): static
+    {
+        $this->activePeriod = $value;
+
+        return $this;
+    }
+
+    public function setAlbumIds(array $value): static
+    {
+        $this->albumIds = $value;
+
+        return $this;
+    }
+
+    public function setAreas(?InputStoryAreas $value): static
+    {
+        $this->areas = $value;
+
+        return $this;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setContent(InputStoryContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setFromStoryFullId(?StoryFullId $value): static
+    {
+        $this->fromStoryFullId = $value;
+
+        return $this;
+    }
+
+    public function setIsPostedToChatPage(bool $value): static
+    {
+        $this->isPostedToChatPage = $value;
+
+        return $this;
+    }
+
+    public function setPrivacySettings(StoryPrivacySettings $value): static
+    {
+        $this->privacySettings = $value;
+
+        return $this;
+    }
+
+    public function setProtectContent(bool $value): static
+    {
+        $this->protectContent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

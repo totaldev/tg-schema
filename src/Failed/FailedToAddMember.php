@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FailedToAddMember extends TdObject
 {
-    public const TYPE_NAME = 'failedToAddMember';
+    public const string TYPE_NAME = 'failedToAddMember';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class FailedToAddMember extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setPremiumRequiredToSendMessages(bool $value): static
+    {
+        $this->premiumRequiredToSendMessages = $value;
+
+        return $this;
+    }
+
+    public function setPremiumWouldAllowInvite(bool $value): static
+    {
+        $this->premiumWouldAllowInvite = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

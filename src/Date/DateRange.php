@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class DateRange extends TdObject
 {
-    public const TYPE_NAME = 'dateRange';
+    public const string TYPE_NAME = 'dateRange';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DateRange extends TdObject
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setEndDate(int $value): static
+    {
+        $this->endDate = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

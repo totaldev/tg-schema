@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Connection;
  */
 class ConnectionStateConnectingToProxy extends ConnectionState
 {
-    public const TYPE_NAME = 'connectionStateConnectingToProxy';
+    public const string TYPE_NAME = 'connectionStateConnectingToProxy';
 
     public function __construct()
     {

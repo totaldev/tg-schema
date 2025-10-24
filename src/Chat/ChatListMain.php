@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatListMain extends ChatList
 {
-    public const TYPE_NAME = 'chatListMain';
+    public const string TYPE_NAME = 'chatListMain';
 
     public function __construct()
     {

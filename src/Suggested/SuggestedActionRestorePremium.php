@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionRestorePremium extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionRestorePremium';
+    public const string TYPE_NAME = 'suggestedActionRestorePremium';
 
     public function __construct()
     {

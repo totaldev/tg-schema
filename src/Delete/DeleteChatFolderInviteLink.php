@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteChatFolderInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatFolderInviteLink';
+    public const string TYPE_NAME = 'deleteChatFolderInviteLink';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DeleteChatFolderInviteLink extends TdFunction
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

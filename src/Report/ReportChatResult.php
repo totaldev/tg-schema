@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReportChatResult extends TdObject
 {
-    public const TYPE_NAME = 'ReportChatResult';
+    public const string TYPE_NAME = 'ReportChatResult';
 
     public function __construct() {}
 

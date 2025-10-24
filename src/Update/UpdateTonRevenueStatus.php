@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Ton\TonRevenueStatus;
  */
 class UpdateTonRevenueStatus extends Update
 {
-    public const TYPE_NAME = 'updateTonRevenueStatus';
+    public const string TYPE_NAME = 'updateTonRevenueStatus';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class UpdateTonRevenueStatus extends Update
     public function getStatus(): TonRevenueStatus
     {
         return $this->status;
+    }
+
+    public function setStatus(TonRevenueStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetMessageSenderBlockList extends TdFunction
 {
-    public const TYPE_NAME = 'setMessageSenderBlockList';
+    public const string TYPE_NAME = 'setMessageSenderBlockList';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetMessageSenderBlockList extends TdFunction
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setBlockList(?BlockList $value): static
+    {
+        $this->blockList = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

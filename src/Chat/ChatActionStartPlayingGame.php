@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionStartPlayingGame extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionStartPlayingGame';
+    public const string TYPE_NAME = 'chatActionStartPlayingGame';
 
     public function __construct()
     {

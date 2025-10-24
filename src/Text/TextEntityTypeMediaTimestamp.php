@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeMediaTimestamp extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeMediaTimestamp';
+    public const string TYPE_NAME = 'textEntityTypeMediaTimestamp';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextEntityTypeMediaTimestamp extends TextEntityType
     public function getMediaTimestamp(): int
     {
         return $this->mediaTimestamp;
+    }
+
+    public function setMediaTimestamp(int $value): static
+    {
+        $this->mediaTimestamp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

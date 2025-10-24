@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateSupergroupChat extends TdFunction
 {
-    public const TYPE_NAME = 'createSupergroupChat';
+    public const string TYPE_NAME = 'createSupergroupChat';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CreateSupergroupChat extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setForce(bool $value): static
+    {
+        $this->force = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

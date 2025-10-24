@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatChangeTitle extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatChangeTitle';
+    public const string TYPE_NAME = 'pushMessageContentChatChangeTitle';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentChatChangeTitle extends PushMessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

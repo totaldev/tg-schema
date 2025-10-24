@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckAuthenticationPremiumPurchase extends TdFunction
 {
-    public const TYPE_NAME = 'checkAuthenticationPremiumPurchase';
+    public const string TYPE_NAME = 'checkAuthenticationPremiumPurchase';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class CheckAuthenticationPremiumPurchase extends TdFunction
     public function getCurrency(): string
     {
         return $this->currency;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

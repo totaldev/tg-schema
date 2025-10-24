@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeInvoice extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeInvoice';
+    public const string TYPE_NAME = 'linkPreviewTypeInvoice';
 
     public function __construct()
     {

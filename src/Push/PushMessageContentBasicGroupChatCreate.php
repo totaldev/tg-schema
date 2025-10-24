@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentBasicGroupChatCreate extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentBasicGroupChatCreate';
+    public const string TYPE_NAME = 'pushMessageContentBasicGroupChatCreate';
 
     public function __construct()
     {

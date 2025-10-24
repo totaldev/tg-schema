@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputCredentialsGooglePay extends InputCredentials
 {
-    public const TYPE_NAME = 'inputCredentialsGooglePay';
+    public const string TYPE_NAME = 'inputCredentialsGooglePay';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputCredentialsGooglePay extends InputCredentials
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

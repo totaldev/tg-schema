@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureLastSeenTimes extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureLastSeenTimes';
+    public const string TYPE_NAME = 'premiumFeatureLastSeenTimes';
 
     public function __construct()
     {

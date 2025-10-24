@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeActiveSessions extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeActiveSessions';
+    public const string TYPE_NAME = 'internalLinkTypeActiveSessions';
 
     public function __construct()
     {

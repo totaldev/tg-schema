@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageStory extends MessageContent
 {
-    public const TYPE_NAME = 'messageStory';
+    public const string TYPE_NAME = 'messageStory';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class MessageStory extends MessageContent
     public function getViaMention(): bool
     {
         return $this->viaMention;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
+    }
+
+    public function setViaMention(bool $value): static
+    {
+        $this->viaMention = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

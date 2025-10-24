@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Theme\ThemeSettings;
  */
 class LinkPreviewTypeTheme extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeTheme';
+    public const string TYPE_NAME = 'linkPreviewTypeTheme';
 
     public function __construct(
         /**
@@ -48,6 +48,20 @@ class LinkPreviewTypeTheme extends LinkPreviewType
     public function getSettings(): ?ThemeSettings
     {
         return $this->settings;
+    }
+
+    public function setDocuments(array $value): static
+    {
+        $this->documents = $value;
+
+        return $this;
+    }
+
+    public function setSettings(?ThemeSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

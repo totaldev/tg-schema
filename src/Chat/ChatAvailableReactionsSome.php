@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatAvailableReactionsSome extends ChatAvailableReactions
 {
-    public const TYPE_NAME = 'chatAvailableReactionsSome';
+    public const string TYPE_NAME = 'chatAvailableReactionsSome';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class ChatAvailableReactionsSome extends ChatAvailableReactions
     public function getReactions(): array
     {
         return $this->reactions;
+    }
+
+    public function setMaxReactionCount(int $value): static
+    {
+        $this->maxReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setReactions(array $value): static
+    {
+        $this->reactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeDocument extends FileType
 {
-    public const TYPE_NAME = 'fileTypeDocument';
+    public const string TYPE_NAME = 'fileTypeDocument';
 
     public function __construct()
     {

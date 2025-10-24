@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryListMain extends StoryList
 {
-    public const TYPE_NAME = 'storyListMain';
+    public const string TYPE_NAME = 'storyListMain';
 
     public function __construct()
     {

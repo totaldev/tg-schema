@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessInfo extends TdObject
 {
-    public const TYPE_NAME = 'businessInfo';
+    public const string TYPE_NAME = 'businessInfo';
 
     public function __construct(
         /**
@@ -103,6 +103,62 @@ class BusinessInfo extends TdObject
     public function getStartPage(): ?BusinessStartPage
     {
         return $this->startPage;
+    }
+
+    public function setAwayMessageSettings(?BusinessAwayMessageSettings $value): static
+    {
+        $this->awayMessageSettings = $value;
+
+        return $this;
+    }
+
+    public function setGreetingMessageSettings(?BusinessGreetingMessageSettings $value): static
+    {
+        $this->greetingMessageSettings = $value;
+
+        return $this;
+    }
+
+    public function setLocalOpeningHours(?BusinessOpeningHours $value): static
+    {
+        $this->localOpeningHours = $value;
+
+        return $this;
+    }
+
+    public function setLocation(?BusinessLocation $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setNextCloseIn(int $value): static
+    {
+        $this->nextCloseIn = $value;
+
+        return $this;
+    }
+
+    public function setNextOpenIn(int $value): static
+    {
+        $this->nextOpenIn = $value;
+
+        return $this;
+    }
+
+    public function setOpeningHours(?BusinessOpeningHours $value): static
+    {
+        $this->openingHours = $value;
+
+        return $this;
+    }
+
+    public function setStartPage(?BusinessStartPage $value): static
+    {
+        $this->startPage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

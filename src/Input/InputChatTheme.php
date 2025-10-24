@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputChatTheme extends TdObject
 {
-    public const TYPE_NAME = 'InputChatTheme';
+    public const string TYPE_NAME = 'InputChatTheme';
 
     public function __construct() {}
 

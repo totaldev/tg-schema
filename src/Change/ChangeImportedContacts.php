@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChangeImportedContacts extends TdFunction
 {
-    public const TYPE_NAME = 'changeImportedContacts';
+    public const string TYPE_NAME = 'changeImportedContacts';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class ChangeImportedContacts extends TdFunction
     public function getContacts(): array
     {
         return $this->contacts;
+    }
+
+    public function setContacts(array $value): static
+    {
+        $this->contacts = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

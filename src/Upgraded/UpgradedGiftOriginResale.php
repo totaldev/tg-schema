@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftOriginResale extends UpgradedGiftOrigin
 {
-    public const TYPE_NAME = 'upgradedGiftOriginResale';
+    public const string TYPE_NAME = 'upgradedGiftOriginResale';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpgradedGiftOriginResale extends UpgradedGiftOrigin
     public function getPrice(): GiftResalePrice
     {
         return $this->price;
+    }
+
+    public function setPrice(GiftResalePrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

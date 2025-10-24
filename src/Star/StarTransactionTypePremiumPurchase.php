@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypePremiumPurchase extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypePremiumPurchase';
+    public const string TYPE_NAME = 'starTransactionTypePremiumPurchase';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class StarTransactionTypePremiumPurchase extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

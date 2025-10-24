@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputCredentialsNew extends InputCredentials
 {
-    public const TYPE_NAME = 'inputCredentialsNew';
+    public const string TYPE_NAME = 'inputCredentialsNew';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputCredentialsNew extends InputCredentials
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setAllowSave(bool $value): static
+    {
+        $this->allowSave = $value;
+
+        return $this;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

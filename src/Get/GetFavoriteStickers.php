@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetFavoriteStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getFavoriteStickers';
+    public const string TYPE_NAME = 'getFavoriteStickers';
 
     public function __construct() {}
 

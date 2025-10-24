@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewPreCheckoutQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewPreCheckoutQuery';
+    public const string TYPE_NAME = 'updateNewPreCheckoutQuery';
 
     public function __construct(
         /**
@@ -95,6 +95,55 @@ class UpdateNewPreCheckoutQuery extends Update
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInvoicePayload(string $value): static
+    {
+        $this->invoicePayload = $value;
+
+        return $this;
+    }
+
+    public function setOrderInfo(?OrderInfo $value): static
+    {
+        $this->orderInfo = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
+    }
+
+    public function setShippingOptionId(string $value): static
+    {
+        $this->shippingOptionId = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureIncreasedLimits extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureIncreasedLimits';
+    public const string TYPE_NAME = 'premiumFeatureIncreasedLimits';
 
     public function __construct()
     {

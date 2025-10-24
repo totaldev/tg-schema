@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateGroupCallNewMessage extends Update
 {
-    public const TYPE_NAME = 'updateGroupCallNewMessage';
+    public const string TYPE_NAME = 'updateGroupCallNewMessage';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class UpdateGroupCallNewMessage extends Update
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InviteLinkChatType extends TdObject
 {
-    public const TYPE_NAME = 'InviteLinkChatType';
+    public const string TYPE_NAME = 'InviteLinkChatType';
 
     public function __construct() {}
 

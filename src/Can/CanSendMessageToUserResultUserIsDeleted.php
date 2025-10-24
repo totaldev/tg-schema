@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanSendMessageToUserResultUserIsDeleted extends CanSendMessageToUserResult
 {
-    public const TYPE_NAME = 'canSendMessageToUserResultUserIsDeleted';
+    public const string TYPE_NAME = 'canSendMessageToUserResultUserIsDeleted';
 
     public function __construct()
     {

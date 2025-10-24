@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentRecurringPayment extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentRecurringPayment';
+    public const string TYPE_NAME = 'pushMessageContentRecurringPayment';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentRecurringPayment extends PushMessageContent
     public function getAmount(): string
     {
         return $this->amount;
+    }
+
+    public function setAmount(string $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

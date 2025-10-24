@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AdvertisementSponsor extends TdObject
 {
-    public const TYPE_NAME = 'advertisementSponsor';
+    public const string TYPE_NAME = 'advertisementSponsor';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AdvertisementSponsor extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setInfo(string $value): static
+    {
+        $this->info = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

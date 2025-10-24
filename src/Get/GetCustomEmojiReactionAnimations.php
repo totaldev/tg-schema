@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCustomEmojiReactionAnimations extends TdFunction
 {
-    public const TYPE_NAME = 'getCustomEmojiReactionAnimations';
+    public const string TYPE_NAME = 'getCustomEmojiReactionAnimations';
 
     public function __construct() {}
 

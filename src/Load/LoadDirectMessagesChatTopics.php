@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class LoadDirectMessagesChatTopics extends TdFunction
 {
-    public const TYPE_NAME = 'loadDirectMessagesChatTopics';
+    public const string TYPE_NAME = 'loadDirectMessagesChatTopics';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class LoadDirectMessagesChatTopics extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

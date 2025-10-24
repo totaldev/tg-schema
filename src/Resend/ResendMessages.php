@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ResendMessages extends TdFunction
 {
-    public const TYPE_NAME = 'resendMessages';
+    public const string TYPE_NAME = 'resendMessages';
 
     public function __construct(
         /**
@@ -68,6 +68,34 @@ class ResendMessages extends TdFunction
     public function getQuote(): ?InputTextQuote
     {
         return $this->quote;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setQuote(?InputTextQuote $value): static
+    {
+        $this->quote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

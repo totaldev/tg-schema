@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateFileRemovedFromDownloads extends Update
 {
-    public const TYPE_NAME = 'updateFileRemovedFromDownloads';
+    public const string TYPE_NAME = 'updateFileRemovedFromDownloads';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateFileRemovedFromDownloads extends Update
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setCounts(DownloadedFileCounts $value): static
+    {
+        $this->counts = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

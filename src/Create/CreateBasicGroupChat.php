@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateBasicGroupChat extends TdFunction
 {
-    public const TYPE_NAME = 'createBasicGroupChat';
+    public const string TYPE_NAME = 'createBasicGroupChat';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CreateBasicGroupChat extends TdFunction
     public function getForce(): bool
     {
         return $this->force;
+    }
+
+    public function setBasicGroupId(int $value): static
+    {
+        $this->basicGroupId = $value;
+
+        return $this;
+    }
+
+    public function setForce(bool $value): static
+    {
+        $this->force = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

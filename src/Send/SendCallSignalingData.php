@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendCallSignalingData extends TdFunction
 {
-    public const TYPE_NAME = 'sendCallSignalingData';
+    public const string TYPE_NAME = 'sendCallSignalingData';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SendCallSignalingData extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

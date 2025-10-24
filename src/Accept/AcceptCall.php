@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AcceptCall extends TdFunction
 {
-    public const TYPE_NAME = 'acceptCall';
+    public const string TYPE_NAME = 'acceptCall';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class AcceptCall extends TdFunction
     public function getProtocol(): CallProtocol
     {
         return $this->protocol;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setProtocol(CallProtocol $value): static
+    {
+        $this->protocol = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

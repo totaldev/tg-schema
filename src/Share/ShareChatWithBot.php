@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ShareChatWithBot extends TdFunction
 {
-    public const TYPE_NAME = 'shareChatWithBot';
+    public const string TYPE_NAME = 'shareChatWithBot';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class ShareChatWithBot extends TdFunction
     public function getSharedChatId(): int
     {
         return $this->sharedChatId;
+    }
+
+    public function setButtonId(int $value): static
+    {
+        $this->buttonId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyCheck(bool $value): static
+    {
+        $this->onlyCheck = $value;
+
+        return $this;
+    }
+
+    public function setSharedChatId(int $value): static
+    {
+        $this->sharedChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

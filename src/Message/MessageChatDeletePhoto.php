@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatDeletePhoto extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatDeletePhoto';
+    public const string TYPE_NAME = 'messageChatDeletePhoto';
 
     public function __construct()
     {

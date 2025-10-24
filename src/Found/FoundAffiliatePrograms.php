@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundAffiliatePrograms extends TdObject
 {
-    public const TYPE_NAME = 'foundAffiliatePrograms';
+    public const string TYPE_NAME = 'foundAffiliatePrograms';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class FoundAffiliatePrograms extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setPrograms(array $value): static
+    {
+        $this->programs = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

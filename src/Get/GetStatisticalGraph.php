@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStatisticalGraph extends TdFunction
 {
-    public const TYPE_NAME = 'getStatisticalGraph';
+    public const string TYPE_NAME = 'getStatisticalGraph';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetStatisticalGraph extends TdFunction
     public function getX(): int
     {
         return $this->x;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
+    }
+
+    public function setX(int $value): static
+    {
+        $this->x = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

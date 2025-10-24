@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextUrl extends RichText
 {
-    public const TYPE_NAME = 'richTextUrl';
+    public const string TYPE_NAME = 'richTextUrl';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class RichTextUrl extends RichText
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setIsCached(bool $value): static
+    {
+        $this->isCached = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

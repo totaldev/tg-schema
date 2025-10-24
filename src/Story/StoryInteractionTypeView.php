@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryInteractionTypeView extends StoryInteractionType
 {
-    public const TYPE_NAME = 'storyInteractionTypeView';
+    public const string TYPE_NAME = 'storyInteractionTypeView';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StoryInteractionTypeView extends StoryInteractionType
     public function getChosenReactionType(): ?ReactionType
     {
         return $this->chosenReactionType;
+    }
+
+    public function setChosenReactionType(?ReactionType $value): static
+    {
+        $this->chosenReactionType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPassportAuthorizationFormAvailableElements extends TdFunction
 {
-    public const TYPE_NAME = 'getPassportAuthorizationFormAvailableElements';
+    public const string TYPE_NAME = 'getPassportAuthorizationFormAvailableElements';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetPassportAuthorizationFormAvailableElements extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setAuthorizationFormId(int $value): static
+    {
+        $this->authorizationFormId = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DisconnectAffiliateProgram extends TdFunction
 {
-    public const TYPE_NAME = 'disconnectAffiliateProgram';
+    public const string TYPE_NAME = 'disconnectAffiliateProgram';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class DisconnectAffiliateProgram extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAffiliate(AffiliateType $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

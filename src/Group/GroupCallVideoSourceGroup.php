@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GroupCallVideoSourceGroup extends TdObject
 {
-    public const TYPE_NAME = 'groupCallVideoSourceGroup';
+    public const string TYPE_NAME = 'groupCallVideoSourceGroup';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GroupCallVideoSourceGroup extends TdObject
     public function getSourceIds(): array
     {
         return $this->sourceIds;
+    }
+
+    public function setSemantics(string $value): static
+    {
+        $this->semantics = $value;
+
+        return $this;
+    }
+
+    public function setSourceIds(array $value): static
+    {
+        $this->sourceIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

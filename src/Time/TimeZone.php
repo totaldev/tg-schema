@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TimeZone extends TdObject
 {
-    public const TYPE_NAME = 'timeZone';
+    public const string TYPE_NAME = 'timeZone';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class TimeZone extends TdObject
     public function getUtcTimeOffset(): int
     {
         return $this->utcTimeOffset;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setUtcTimeOffset(int $value): static
+    {
+        $this->utcTimeOffset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

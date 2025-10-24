@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureAwayMessage extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureAwayMessage';
+    public const string TYPE_NAME = 'businessFeatureAwayMessage';
 
     public function __construct()
     {

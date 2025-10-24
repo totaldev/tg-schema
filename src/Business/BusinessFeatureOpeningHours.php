@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureOpeningHours extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureOpeningHours';
+    public const string TYPE_NAME = 'businessFeatureOpeningHours';
 
     public function __construct()
     {

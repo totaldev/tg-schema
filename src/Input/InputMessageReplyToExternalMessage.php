@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageReplyToExternalMessage extends InputMessageReplyTo
 {
-    public const TYPE_NAME = 'inputMessageReplyToExternalMessage';
+    public const string TYPE_NAME = 'inputMessageReplyToExternalMessage';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class InputMessageReplyToExternalMessage extends InputMessageReplyTo
     public function getQuote(): ?InputTextQuote
     {
         return $this->quote;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChecklistTaskId(int $value): static
+    {
+        $this->checklistTaskId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setQuote(?InputTextQuote $value): static
+    {
+        $this->quote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

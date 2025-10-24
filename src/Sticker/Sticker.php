@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class Sticker extends TdObject
 {
-    public const TYPE_NAME = 'sticker';
+    public const string TYPE_NAME = 'sticker';
 
     public function __construct(
         /**
@@ -115,6 +115,69 @@ class Sticker extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setFormat(StickerFormat $value): static
+    {
+        $this->format = $value;
+
+        return $this;
+    }
+
+    public function setFullType(StickerFullType $value): static
+    {
+        $this->fullType = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setSetId(int $value): static
+    {
+        $this->setId = $value;
+
+        return $this;
+    }
+
+    public function setSticker(File $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageChatSetBackground extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatSetBackground';
+    public const string TYPE_NAME = 'messageChatSetBackground';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class MessageChatSetBackground extends MessageContent
     public function getOnlyForSelf(): bool
     {
         return $this->onlyForSelf;
+    }
+
+    public function setBackground(ChatBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setOldBackgroundMessageId(int $value): static
+    {
+        $this->oldBackgroundMessageId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyForSelf(bool $value): static
+    {
+        $this->onlyForSelf = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

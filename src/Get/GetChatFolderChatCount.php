@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatFolderChatCount extends TdFunction
 {
-    public const TYPE_NAME = 'getChatFolderChatCount';
+    public const string TYPE_NAME = 'getChatFolderChatCount';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetChatFolderChatCount extends TdFunction
     public function getFolder(): ChatFolder
     {
         return $this->folder;
+    }
+
+    public function setFolder(ChatFolder $value): static
+    {
+        $this->folder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

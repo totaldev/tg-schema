@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatReadOutbox extends Update
 {
-    public const TYPE_NAME = 'updateChatReadOutbox';
+    public const string TYPE_NAME = 'updateChatReadOutbox';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatReadOutbox extends Update
     public function getLastReadOutboxMessageId(): int
     {
         return $this->lastReadOutboxMessageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

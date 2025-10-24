@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentInvoice extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentInvoice';
+    public const string TYPE_NAME = 'pushMessageContentInvoice';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentInvoice extends PushMessageContent
     public function getPrice(): string
     {
         return $this->price;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setPrice(string $value): static
+    {
+        $this->price = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

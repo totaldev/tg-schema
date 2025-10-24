@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatRevenueTransactionTypeSponsoredMessageEarnings extends ChatRevenueTransactionType
 {
-    public const TYPE_NAME = 'chatRevenueTransactionTypeSponsoredMessageEarnings';
+    public const string TYPE_NAME = 'chatRevenueTransactionTypeSponsoredMessageEarnings';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatRevenueTransactionTypeSponsoredMessageEarnings extends ChatRevenueTran
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setEndDate(int $value): static
+    {
+        $this->endDate = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateCall extends TdFunction
 {
-    public const TYPE_NAME = 'createCall';
+    public const string TYPE_NAME = 'createCall';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class CreateCall extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setIsVideo(bool $value): static
+    {
+        $this->isVideo = $value;
+
+        return $this;
+    }
+
+    public function setProtocol(CallProtocol $value): static
+    {
+        $this->protocol = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

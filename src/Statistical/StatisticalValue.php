@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StatisticalValue extends TdObject
 {
-    public const TYPE_NAME = 'statisticalValue';
+    public const string TYPE_NAME = 'statisticalValue';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class StatisticalValue extends TdObject
     public function getValue(): float
     {
         return $this->value;
+    }
+
+    public function setGrowthRatePercentage(float $value): static
+    {
+        $this->growthRatePercentage = $value;
+
+        return $this;
+    }
+
+    public function setPreviousValue(float $value): static
+    {
+        $this->previousValue = $value;
+
+        return $this;
+    }
+
+    public function setValue(float $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

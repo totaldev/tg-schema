@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VideoChat extends TdObject
 {
-    public const TYPE_NAME = 'videoChat';
+    public const string TYPE_NAME = 'videoChat';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class VideoChat extends TdObject
     public function getHasParticipants(): bool
     {
         return $this->hasParticipants;
+    }
+
+    public function setDefaultParticipantId(?MessageSender $value): static
+    {
+        $this->defaultParticipantId = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setHasParticipants(bool $value): static
+    {
+        $this->hasParticipants = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatMessageAutoDeleteTime extends TdFunction
 {
-    public const TYPE_NAME = 'setChatMessageAutoDeleteTime';
+    public const string TYPE_NAME = 'setChatMessageAutoDeleteTime';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class SetChatMessageAutoDeleteTime extends TdFunction
     public function getMessageAutoDeleteTime(): int
     {
         return $this->messageAutoDeleteTime;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageAutoDeleteTime(int $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageDice extends MessageContent
 {
-    public const TYPE_NAME = 'messageDice';
+    public const string TYPE_NAME = 'messageDice';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class MessageDice extends MessageContent
     public function getValue(): int
     {
         return $this->value;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setFinalState(?DiceStickers $value): static
+    {
+        $this->finalState = $value;
+
+        return $this;
+    }
+
+    public function setInitialState(?DiceStickers $value): static
+    {
+        $this->initialState = $value;
+
+        return $this;
+    }
+
+    public function setSuccessAnimationFrameNumber(int $value): static
+    {
+        $this->successAnimationFrameNumber = $value;
+
+        return $this;
+    }
+
+    public function setValue(int $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

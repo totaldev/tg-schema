@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetLogStream extends TdFunction
 {
-    public const TYPE_NAME = 'setLogStream';
+    public const string TYPE_NAME = 'setLogStream';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetLogStream extends TdFunction
     public function getLogStream(): LogStream
     {
         return $this->logStream;
+    }
+
+    public function setLogStream(LogStream $value): static
+    {
+        $this->logStream = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

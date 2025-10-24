@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentContactRegistered extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentContactRegistered';
+    public const string TYPE_NAME = 'pushMessageContentContactRegistered';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentContactRegistered extends PushMessageContent
     public function getAsPremiumAccount(): bool
     {
         return $this->asPremiumAccount;
+    }
+
+    public function setAsPremiumAccount(bool $value): static
+    {
+        $this->asPremiumAccount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

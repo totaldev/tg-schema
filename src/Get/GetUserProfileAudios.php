@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetUserProfileAudios extends TdFunction
 {
-    public const TYPE_NAME = 'getUserProfileAudios';
+    public const string TYPE_NAME = 'getUserProfileAudios';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetUserProfileAudios extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

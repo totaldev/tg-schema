@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageEffectTypeEmojiReaction extends MessageEffectType
 {
-    public const TYPE_NAME = 'messageEffectTypeEmojiReaction';
+    public const string TYPE_NAME = 'messageEffectTypeEmojiReaction';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessageEffectTypeEmojiReaction extends MessageEffectType
     public function getSelectAnimation(): Sticker
     {
         return $this->selectAnimation;
+    }
+
+    public function setEffectAnimation(Sticker $value): static
+    {
+        $this->effectAnimation = $value;
+
+        return $this;
+    }
+
+    public function setSelectAnimation(Sticker $value): static
+    {
+        $this->selectAnimation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

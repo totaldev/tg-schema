@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReportSupergroupAntiSpamFalsePositive extends TdFunction
 {
-    public const TYPE_NAME = 'reportSupergroupAntiSpamFalsePositive';
+    public const string TYPE_NAME = 'reportSupergroupAntiSpamFalsePositive';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ReportSupergroupAntiSpamFalsePositive extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

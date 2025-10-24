@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStorageStatisticsFast extends TdFunction
 {
-    public const TYPE_NAME = 'getStorageStatisticsFast';
+    public const string TYPE_NAME = 'getStorageStatisticsFast';
 
     public function __construct() {}
 

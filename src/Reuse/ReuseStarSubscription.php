@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReuseStarSubscription extends TdFunction
 {
-    public const TYPE_NAME = 'reuseStarSubscription';
+    public const string TYPE_NAME = 'reuseStarSubscription';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ReuseStarSubscription extends TdFunction
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
+    }
+
+    public function setSubscriptionId(string $value): static
+    {
+        $this->subscriptionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallProtocol extends TdObject
 {
-    public const TYPE_NAME = 'callProtocol';
+    public const string TYPE_NAME = 'callProtocol';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class CallProtocol extends TdObject
     public function getUdpReflector(): bool
     {
         return $this->udpReflector;
+    }
+
+    public function setLibraryVersions(array $value): static
+    {
+        $this->libraryVersions = $value;
+
+        return $this;
+    }
+
+    public function setMaxLayer(int $value): static
+    {
+        $this->maxLayer = $value;
+
+        return $this;
+    }
+
+    public function setMinLayer(int $value): static
+    {
+        $this->minLayer = $value;
+
+        return $this;
+    }
+
+    public function setUdpP2p(bool $value): static
+    {
+        $this->udpP2p = $value;
+
+        return $this;
+    }
+
+    public function setUdpReflector(bool $value): static
+    {
+        $this->udpReflector = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

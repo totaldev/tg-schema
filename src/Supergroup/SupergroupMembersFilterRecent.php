@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Supergroup;
  */
 class SupergroupMembersFilterRecent extends SupergroupMembersFilter
 {
-    public const TYPE_NAME = 'supergroupMembersFilterRecent';
+    public const string TYPE_NAME = 'supergroupMembersFilterRecent';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryContent extends TdObject
 {
-    public const TYPE_NAME = 'StoryContent';
+    public const string TYPE_NAME = 'StoryContent';
 
     public function __construct() {}
 

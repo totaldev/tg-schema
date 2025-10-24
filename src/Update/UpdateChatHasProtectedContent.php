@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatHasProtectedContent extends Update
 {
-    public const TYPE_NAME = 'updateChatHasProtectedContent';
+    public const string TYPE_NAME = 'updateChatHasProtectedContent';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatHasProtectedContent extends Update
     public function getHasProtectedContent(): bool
     {
         return $this->hasProtectedContent;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHasProtectedContent(bool $value): static
+    {
+        $this->hasProtectedContent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

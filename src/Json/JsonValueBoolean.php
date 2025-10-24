@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Json;
  */
 class JsonValueBoolean extends JsonValue
 {
-    public const TYPE_NAME = 'jsonValueBoolean';
+    public const string TYPE_NAME = 'jsonValueBoolean';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class JsonValueBoolean extends JsonValue
     public function getValue(): bool
     {
         return $this->value;
+    }
+
+    public function setValue(bool $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

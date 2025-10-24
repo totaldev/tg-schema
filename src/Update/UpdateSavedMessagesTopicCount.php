@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateSavedMessagesTopicCount extends Update
 {
-    public const TYPE_NAME = 'updateSavedMessagesTopicCount';
+    public const string TYPE_NAME = 'updateSavedMessagesTopicCount';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpdateSavedMessagesTopicCount extends Update
     public function getTopicCount(): int
     {
         return $this->topicCount;
+    }
+
+    public function setTopicCount(int $value): static
+    {
+        $this->topicCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

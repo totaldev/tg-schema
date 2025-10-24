@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementIdentityCard extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementIdentityCard';
+    public const string TYPE_NAME = 'passportElementIdentityCard';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementIdentityCard extends PassportElement
     public function getIdentityCard(): IdentityDocument
     {
         return $this->identityCard;
+    }
+
+    public function setIdentityCard(IdentityDocument $value): static
+    {
+        $this->identityCard = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

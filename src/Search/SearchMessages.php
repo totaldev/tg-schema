@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchMessages';
+    public const string TYPE_NAME = 'searchMessages';
 
     public function __construct(
         /**
@@ -105,6 +105,62 @@ class SearchMessages extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setChatList(?ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
+    }
+
+    public function setChatTypeFilter(?SearchMessagesChatTypeFilter $value): static
+    {
+        $this->chatTypeFilter = $value;
+
+        return $this;
+    }
+
+    public function setFilter(?SearchMessagesFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setMaxDate(int $value): static
+    {
+        $this->maxDate = $value;
+
+        return $this;
+    }
+
+    public function setMinDate(int $value): static
+    {
+        $this->minDate = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

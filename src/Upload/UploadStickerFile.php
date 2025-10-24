@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UploadStickerFile extends TdFunction
 {
-    public const TYPE_NAME = 'uploadStickerFile';
+    public const string TYPE_NAME = 'uploadStickerFile';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UploadStickerFile extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setStickerFormat(StickerFormat $value): static
+    {
+        $this->stickerFormat = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

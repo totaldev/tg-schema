@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PersonalDetails extends TdObject
 {
-    public const TYPE_NAME = 'personalDetails';
+    public const string TYPE_NAME = 'personalDetails';
 
     public function __construct(
         /**
@@ -124,6 +124,76 @@ class PersonalDetails extends TdObject
     public function getResidenceCountryCode(): string
     {
         return $this->residenceCountryCode;
+    }
+
+    public function setBirthdate(Date $value): static
+    {
+        $this->birthdate = $value;
+
+        return $this;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setGender(string $value): static
+    {
+        $this->gender = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
+    }
+
+    public function setMiddleName(string $value): static
+    {
+        $this->middleName = $value;
+
+        return $this;
+    }
+
+    public function setNativeFirstName(string $value): static
+    {
+        $this->nativeFirstName = $value;
+
+        return $this;
+    }
+
+    public function setNativeLastName(string $value): static
+    {
+        $this->nativeLastName = $value;
+
+        return $this;
+    }
+
+    public function setNativeMiddleName(string $value): static
+    {
+        $this->nativeMiddleName = $value;
+
+        return $this;
+    }
+
+    public function setResidenceCountryCode(string $value): static
+    {
+        $this->residenceCountryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

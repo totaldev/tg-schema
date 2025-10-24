@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TestSquareInt extends TdFunction
 {
-    public const TYPE_NAME = 'testSquareInt';
+    public const string TYPE_NAME = 'testSquareInt';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TestSquareInt extends TdFunction
     public function getX(): int
     {
         return $this->x;
+    }
+
+    public function setX(int $value): static
+    {
+        $this->x = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

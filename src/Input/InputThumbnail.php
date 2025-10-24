@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputThumbnail extends TdObject
 {
-    public const TYPE_NAME = 'inputThumbnail';
+    public const string TYPE_NAME = 'inputThumbnail';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InputThumbnail extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(InputFile $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationSettingsScopePrivateChats extends NotificationSettingsScope
 {
-    public const TYPE_NAME = 'notificationSettingsScopePrivateChats';
+    public const string TYPE_NAME = 'notificationSettingsScopePrivateChats';
 
     public function __construct()
     {

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditInlineMessageCaption extends TdFunction
 {
-    public const TYPE_NAME = 'editInlineMessageCaption';
+    public const string TYPE_NAME = 'editInlineMessageCaption';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class EditInlineMessageCaption extends TdFunction
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

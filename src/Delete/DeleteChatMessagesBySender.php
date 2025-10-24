@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DeleteChatMessagesBySender extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatMessagesBySender';
+    public const string TYPE_NAME = 'deleteChatMessagesBySender';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DeleteChatMessagesBySender extends TdFunction
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

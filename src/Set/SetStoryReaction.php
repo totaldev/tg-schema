@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetStoryReaction extends TdFunction
 {
-    public const TYPE_NAME = 'setStoryReaction';
+    public const string TYPE_NAME = 'setStoryReaction';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class SetStoryReaction extends TdFunction
     public function getUpdateRecentReactions(): bool
     {
         return $this->updateRecentReactions;
+    }
+
+    public function setReactionType(?ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
+    }
+
+    public function setUpdateRecentReactions(bool $value): static
+    {
+        $this->updateRecentReactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

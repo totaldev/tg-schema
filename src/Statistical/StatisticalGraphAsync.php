@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Statistical;
  */
 class StatisticalGraphAsync extends StatisticalGraph
 {
-    public const TYPE_NAME = 'statisticalGraphAsync';
+    public const string TYPE_NAME = 'statisticalGraphAsync';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StatisticalGraphAsync extends StatisticalGraph
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

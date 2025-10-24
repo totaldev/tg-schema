@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventVideoChatParticipantIsMutedToggled';
+    public const string TYPE_NAME = 'chatEventVideoChatParticipantIsMutedToggled';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventVideoChatParticipantIsMutedToggled extends ChatEventAction
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setIsMuted(bool $value): static
+    {
+        $this->isMuted = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

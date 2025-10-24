@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatBoostSlot extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostSlot';
+    public const string TYPE_NAME = 'chatBoostSlot';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class ChatBoostSlot extends TdObject
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setCooldownUntilDate(int $value): static
+    {
+        $this->cooldownUntilDate = $value;
+
+        return $this;
+    }
+
+    public function setCurrentlyBoostedChatId(int $value): static
+    {
+        $this->currentlyBoostedChatId = $value;
+
+        return $this;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setSlotId(int $value): static
+    {
+        $this->slotId = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

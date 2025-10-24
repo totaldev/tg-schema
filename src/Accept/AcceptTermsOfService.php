@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AcceptTermsOfService extends TdFunction
 {
-    public const TYPE_NAME = 'acceptTermsOfService';
+    public const string TYPE_NAME = 'acceptTermsOfService';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AcceptTermsOfService extends TdFunction
     public function getTermsOfServiceId(): string
     {
         return $this->termsOfServiceId;
+    }
+
+    public function setTermsOfServiceId(string $value): static
+    {
+        $this->termsOfServiceId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

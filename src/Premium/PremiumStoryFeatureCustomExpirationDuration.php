@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeatureCustomExpirationDuration extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeatureCustomExpirationDuration';
+    public const string TYPE_NAME = 'premiumStoryFeatureCustomExpirationDuration';
 
     public function __construct()
     {

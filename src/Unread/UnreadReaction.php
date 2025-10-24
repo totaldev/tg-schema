@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UnreadReaction extends TdObject
 {
-    public const TYPE_NAME = 'unreadReaction';
+    public const string TYPE_NAME = 'unreadReaction';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UnreadReaction extends TdObject
     public function getType(): ReactionType
     {
         return $this->type;
+    }
+
+    public function setIsBig(bool $value): static
+    {
+        $this->isBig = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setType(ReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

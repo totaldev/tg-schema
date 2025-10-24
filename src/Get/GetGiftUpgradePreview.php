@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetGiftUpgradePreview extends TdFunction
 {
-    public const TYPE_NAME = 'getGiftUpgradePreview';
+    public const string TYPE_NAME = 'getGiftUpgradePreview';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetGiftUpgradePreview extends TdFunction
     public function getGiftId(): int
     {
         return $this->giftId;
+    }
+
+    public function setGiftId(int $value): static
+    {
+        $this->giftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

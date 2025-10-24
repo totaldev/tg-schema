@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSendingStatePending extends MessageSendingState
 {
-    public const TYPE_NAME = 'messageSendingStatePending';
+    public const string TYPE_NAME = 'messageSendingStatePending';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageSendingStatePending extends MessageSendingState
     public function getSendingId(): int
     {
         return $this->sendingId;
+    }
+
+    public function setSendingId(int $value): static
+    {
+        $this->sendingId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

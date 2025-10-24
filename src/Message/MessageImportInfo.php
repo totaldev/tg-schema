@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageImportInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageImportInfo';
+    public const string TYPE_NAME = 'messageImportInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageImportInfo extends TdObject
     public function getSenderName(): string
     {
         return $this->senderName;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setSenderName(string $value): static
+    {
+        $this->senderName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

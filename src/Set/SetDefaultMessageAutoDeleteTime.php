@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetDefaultMessageAutoDeleteTime extends TdFunction
 {
-    public const TYPE_NAME = 'setDefaultMessageAutoDeleteTime';
+    public const string TYPE_NAME = 'setDefaultMessageAutoDeleteTime';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetDefaultMessageAutoDeleteTime extends TdFunction
     public function getMessageAutoDeleteTime(): MessageAutoDeleteTime
     {
         return $this->messageAutoDeleteTime;
+    }
+
+    public function setMessageAutoDeleteTime(MessageAutoDeleteTime $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

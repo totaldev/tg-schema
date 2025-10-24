@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CanSendMessageToUser extends TdFunction
 {
-    public const TYPE_NAME = 'canSendMessageToUser';
+    public const string TYPE_NAME = 'canSendMessageToUser';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CanSendMessageToUser extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setOnlyLocal(bool $value): static
+    {
+        $this->onlyLocal = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

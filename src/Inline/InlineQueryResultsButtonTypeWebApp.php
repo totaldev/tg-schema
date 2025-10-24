@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType
 {
-    public const TYPE_NAME = 'inlineQueryResultsButtonTypeWebApp';
+    public const string TYPE_NAME = 'inlineQueryResultsButtonTypeWebApp';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InlineQueryResultsButtonTypeWebApp extends InlineQueryResultsButtonType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

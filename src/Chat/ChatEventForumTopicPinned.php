@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventForumTopicPinned extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventForumTopicPinned';
+    public const string TYPE_NAME = 'chatEventForumTopicPinned';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventForumTopicPinned extends ChatEventAction
     public function getOldTopicInfo(): ?ForumTopicInfo
     {
         return $this->oldTopicInfo;
+    }
+
+    public function setNewTopicInfo(?ForumTopicInfo $value): static
+    {
+        $this->newTopicInfo = $value;
+
+        return $this;
+    }
+
+    public function setOldTopicInfo(?ForumTopicInfo $value): static
+    {
+        $this->oldTopicInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

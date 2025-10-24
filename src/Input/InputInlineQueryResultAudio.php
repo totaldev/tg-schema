@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultAudio extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultAudio';
+    public const string TYPE_NAME = 'inputInlineQueryResultAudio';
 
     public function __construct(
         /**
@@ -95,6 +95,55 @@ class InputInlineQueryResultAudio extends InputInlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAudioDuration(int $value): static
+    {
+        $this->audioDuration = $value;
+
+        return $this;
+    }
+
+    public function setAudioUrl(string $value): static
+    {
+        $this->audioUrl = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setPerformer(string $value): static
+    {
+        $this->performer = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

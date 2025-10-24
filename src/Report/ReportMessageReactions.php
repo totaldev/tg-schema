@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReportMessageReactions extends TdFunction
 {
-    public const TYPE_NAME = 'reportMessageReactions';
+    public const string TYPE_NAME = 'reportMessageReactions';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class ReportMessageReactions extends TdFunction
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

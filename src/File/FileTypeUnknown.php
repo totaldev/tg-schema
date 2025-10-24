@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeUnknown extends FileType
 {
-    public const TYPE_NAME = 'fileTypeUnknown';
+    public const string TYPE_NAME = 'fileTypeUnknown';
 
     public function __construct()
     {

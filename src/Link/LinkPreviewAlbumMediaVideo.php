@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class LinkPreviewAlbumMediaVideo extends LinkPreviewAlbumMedia
 {
-    public const TYPE_NAME = 'linkPreviewAlbumMediaVideo';
+    public const string TYPE_NAME = 'linkPreviewAlbumMediaVideo';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewAlbumMediaVideo extends LinkPreviewAlbumMedia
     public function getVideo(): Video
     {
         return $this->video;
+    }
+
+    public function setVideo(Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

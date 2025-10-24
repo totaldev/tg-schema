@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ResendPhoneNumberCode extends TdFunction
 {
-    public const TYPE_NAME = 'resendPhoneNumberCode';
+    public const string TYPE_NAME = 'resendPhoneNumberCode';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ResendPhoneNumberCode extends TdFunction
     public function getReason(): ?ResendCodeReason
     {
         return $this->reason;
+    }
+
+    public function setReason(?ResendCodeReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

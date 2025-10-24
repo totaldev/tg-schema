@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentUpgradedGift extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentUpgradedGift';
+    public const string TYPE_NAME = 'pushMessageContentUpgradedGift';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentUpgradedGift extends PushMessageContent
     public function getIsUpgrade(): bool
     {
         return $this->isUpgrade;
+    }
+
+    public function setIsPrepaidUpgrade(bool $value): static
+    {
+        $this->isPrepaidUpgrade = $value;
+
+        return $this;
+    }
+
+    public function setIsUpgrade(bool $value): static
+    {
+        $this->isUpgrade = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

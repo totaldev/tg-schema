@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Web\WebAppOpenParameters;
  */
 class OpenWebApp extends TdFunction
 {
-    public const TYPE_NAME = 'openWebApp';
+    public const string TYPE_NAME = 'openWebApp';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class OpenWebApp extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setParameters(WebAppOpenParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class JoinChatByInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'joinChatByInviteLink';
+    public const string TYPE_NAME = 'joinChatByInviteLink';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class JoinChatByInviteLink extends TdFunction
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

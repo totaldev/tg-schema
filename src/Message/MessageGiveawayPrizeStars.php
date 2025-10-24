@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGiveawayPrizeStars extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiveawayPrizeStars';
+    public const string TYPE_NAME = 'messageGiveawayPrizeStars';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class MessageGiveawayPrizeStars extends MessageContent
     public function getTransactionId(): string
     {
         return $this->transactionId;
+    }
+
+    public function setBoostedChatId(int $value): static
+    {
+        $this->boostedChatId = $value;
+
+        return $this;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
+    }
+
+    public function setIsUnclaimed(bool $value): static
+    {
+        $this->isUnclaimed = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setTransactionId(string $value): static
+    {
+        $this->transactionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

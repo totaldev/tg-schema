@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeChatFolderSettings extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeChatFolderSettings';
+    public const string TYPE_NAME = 'internalLinkTypeChatFolderSettings';
 
     public function __construct()
     {

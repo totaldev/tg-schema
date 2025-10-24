@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Phone;
  */
 class PhoneNumberCodeTypeChange extends PhoneNumberCodeType
 {
-    public const TYPE_NAME = 'phoneNumberCodeTypeChange';
+    public const string TYPE_NAME = 'phoneNumberCodeTypeChange';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckStickerSetNameResultOk extends CheckStickerSetNameResult
 {
-    public const TYPE_NAME = 'checkStickerSetNameResultOk';
+    public const string TYPE_NAME = 'checkStickerSetNameResultOk';
 
     public function __construct()
     {

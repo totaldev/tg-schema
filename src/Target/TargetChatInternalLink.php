@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TargetChatInternalLink extends TargetChat
 {
-    public const TYPE_NAME = 'targetChatInternalLink';
+    public const string TYPE_NAME = 'targetChatInternalLink';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class TargetChatInternalLink extends TargetChat
     public function getLink(): InternalLinkType
     {
         return $this->link;
+    }
+
+    public function setLink(InternalLinkType $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

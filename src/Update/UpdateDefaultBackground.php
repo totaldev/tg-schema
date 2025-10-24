@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateDefaultBackground extends Update
 {
-    public const TYPE_NAME = 'updateDefaultBackground';
+    public const string TYPE_NAME = 'updateDefaultBackground';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateDefaultBackground extends Update
     public function getForDarkTheme(): bool
     {
         return $this->forDarkTheme;
+    }
+
+    public function setBackground(?Background $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setForDarkTheme(bool $value): static
+    {
+        $this->forDarkTheme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

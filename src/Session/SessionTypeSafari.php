@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeSafari extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeSafari';
+    public const string TYPE_NAME = 'sessionTypeSafari';
 
     public function __construct()
     {

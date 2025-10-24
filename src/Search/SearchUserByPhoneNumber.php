@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchUserByPhoneNumber extends TdFunction
 {
-    public const TYPE_NAME = 'searchUserByPhoneNumber';
+    public const string TYPE_NAME = 'searchUserByPhoneNumber';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchUserByPhoneNumber extends TdFunction
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setOnlyLocal(bool $value): static
+    {
+        $this->onlyLocal = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

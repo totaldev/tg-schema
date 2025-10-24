@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftOrigin;
  */
 class MessageUpgradedGift extends MessageContent
 {
-    public const TYPE_NAME = 'messageUpgradedGift';
+    public const string TYPE_NAME = 'messageUpgradedGift';
 
     public function __construct(
         /**
@@ -156,6 +156,97 @@ class MessageUpgradedGift extends MessageContent
     public function getWasTransferred(): bool
     {
         return $this->wasTransferred;
+    }
+
+    public function setCanBeTransferred(bool $value): static
+    {
+        $this->canBeTransferred = $value;
+
+        return $this;
+    }
+
+    public function setDropOriginalDetailsStarCount(int $value): static
+    {
+        $this->dropOriginalDetailsStarCount = $value;
+
+        return $this;
+    }
+
+    public function setExportDate(int $value): static
+    {
+        $this->exportDate = $value;
+
+        return $this;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setIsSaved(bool $value): static
+    {
+        $this->isSaved = $value;
+
+        return $this;
+    }
+
+    public function setNextResaleDate(int $value): static
+    {
+        $this->nextResaleDate = $value;
+
+        return $this;
+    }
+
+    public function setNextTransferDate(int $value): static
+    {
+        $this->nextTransferDate = $value;
+
+        return $this;
+    }
+
+    public function setOrigin(UpgradedGiftOrigin $value): static
+    {
+        $this->origin = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setReceiverId(MessageSender $value): static
+    {
+        $this->receiverId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setTransferStarCount(int $value): static
+    {
+        $this->transferStarCount = $value;
+
+        return $this;
+    }
+
+    public function setWasTransferred(bool $value): static
+    {
+        $this->wasTransferred = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatBusinessBotManageBar extends Update
 {
-    public const TYPE_NAME = 'updateChatBusinessBotManageBar';
+    public const string TYPE_NAME = 'updateChatBusinessBotManageBar';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatBusinessBotManageBar extends Update
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setBusinessBotManageBar(?BusinessBotManageBar $value): static
+    {
+        $this->businessBotManageBar = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

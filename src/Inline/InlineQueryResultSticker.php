@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultSticker extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultSticker';
+    public const string TYPE_NAME = 'inlineQueryResultSticker';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class InlineQueryResultSticker extends InlineQueryResult
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

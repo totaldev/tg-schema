@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FoundPosition extends TdObject
 {
-    public const TYPE_NAME = 'foundPosition';
+    public const string TYPE_NAME = 'foundPosition';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class FoundPosition extends TdObject
     public function getPosition(): int
     {
         return $this->position;
+    }
+
+    public function setPosition(int $value): static
+    {
+        $this->position = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

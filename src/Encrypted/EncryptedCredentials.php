@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EncryptedCredentials extends TdObject
 {
-    public const TYPE_NAME = 'encryptedCredentials';
+    public const string TYPE_NAME = 'encryptedCredentials';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class EncryptedCredentials extends TdObject
     public function getSecret(): string
     {
         return $this->secret;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setHash(string $value): static
+    {
+        $this->hash = $value;
+
+        return $this;
+    }
+
+    public function setSecret(string $value): static
+    {
+        $this->secret = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

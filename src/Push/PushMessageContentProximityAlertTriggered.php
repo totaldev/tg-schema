@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentProximityAlertTriggered extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentProximityAlertTriggered';
+    public const string TYPE_NAME = 'pushMessageContentProximityAlertTriggered';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentProximityAlertTriggered extends PushMessageContent
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    public function setDistance(int $value): static
+    {
+        $this->distance = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

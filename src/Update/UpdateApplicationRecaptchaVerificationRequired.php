@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateApplicationRecaptchaVerificationRequired extends Update
 {
-    public const TYPE_NAME = 'updateApplicationRecaptchaVerificationRequired';
+    public const string TYPE_NAME = 'updateApplicationRecaptchaVerificationRequired';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class UpdateApplicationRecaptchaVerificationRequired extends Update
     public function getVerificationId(): int
     {
         return $this->verificationId;
+    }
+
+    public function setAction(string $value): static
+    {
+        $this->action = $value;
+
+        return $this;
+    }
+
+    public function setRecaptchaKeyId(string $value): static
+    {
+        $this->recaptchaKeyId = $value;
+
+        return $this;
+    }
+
+    public function setVerificationId(int $value): static
+    {
+        $this->verificationId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

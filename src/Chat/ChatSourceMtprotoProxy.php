@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatSourceMtprotoProxy extends ChatSource
 {
-    public const TYPE_NAME = 'chatSourceMtprotoProxy';
+    public const string TYPE_NAME = 'chatSourceMtprotoProxy';
 
     public function __construct()
     {

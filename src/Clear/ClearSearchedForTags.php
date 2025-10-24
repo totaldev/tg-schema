@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearSearchedForTags extends TdFunction
 {
-    public const TYPE_NAME = 'clearSearchedForTags';
+    public const string TYPE_NAME = 'clearSearchedForTags';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ClearSearchedForTags extends TdFunction
     public function getClearCashtags(): bool
     {
         return $this->clearCashtags;
+    }
+
+    public function setClearCashtags(bool $value): static
+    {
+        $this->clearCashtags = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

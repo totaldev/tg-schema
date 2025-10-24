@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecentlyVisitedTMeUrls extends TdFunction
 {
-    public const TYPE_NAME = 'getRecentlyVisitedTMeUrls';
+    public const string TYPE_NAME = 'getRecentlyVisitedTMeUrls';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetRecentlyVisitedTMeUrls extends TdFunction
     public function getReferrer(): string
     {
         return $this->referrer;
+    }
+
+    public function setReferrer(string $value): static
+    {
+        $this->referrer = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetQuickReplyShortcutName extends TdFunction
 {
-    public const TYPE_NAME = 'setQuickReplyShortcutName';
+    public const string TYPE_NAME = 'setQuickReplyShortcutName';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetQuickReplyShortcutName extends TdFunction
     public function getShortcutId(): int
     {
         return $this->shortcutId;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setShortcutId(int $value): static
+    {
+        $this->shortcutId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

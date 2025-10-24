@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputSticker extends TdObject
 {
-    public const TYPE_NAME = 'inputSticker';
+    public const string TYPE_NAME = 'inputSticker';
 
     public function __construct(
         /**
@@ -77,6 +77,41 @@ class InputSticker extends TdObject
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setEmojis(string $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setFormat(StickerFormat $value): static
+    {
+        $this->format = $value;
+
+        return $this;
+    }
+
+    public function setKeywords(array $value): static
+    {
+        $this->keywords = $value;
+
+        return $this;
+    }
+
+    public function setMaskPosition(?MaskPosition $value): static
+    {
+        $this->maskPosition = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

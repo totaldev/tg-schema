@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowFindingByPhoneNumber extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowFindingByPhoneNumber';
+    public const string TYPE_NAME = 'userPrivacySettingAllowFindingByPhoneNumber';
 
     public function __construct()
     {

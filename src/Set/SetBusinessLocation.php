@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessLocation extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessLocation';
+    public const string TYPE_NAME = 'setBusinessLocation';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetBusinessLocation extends TdFunction
     public function getLocation(): ?BusinessLocation
     {
         return $this->location;
+    }
+
+    public function setLocation(?BusinessLocation $value): static
+    {
+        $this->location = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

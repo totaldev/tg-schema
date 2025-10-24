@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Json;
  */
 class JsonValueNull extends JsonValue
 {
-    public const TYPE_NAME = 'jsonValueNull';
+    public const string TYPE_NAME = 'jsonValueNull';
 
     public function __construct()
     {

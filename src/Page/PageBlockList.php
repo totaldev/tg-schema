@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockList extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockList';
+    public const string TYPE_NAME = 'pageBlockList';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class PageBlockList extends PageBlock
     public function getItems(): array
     {
         return $this->items;
+    }
+
+    public function setItems(array $value): static
+    {
+        $this->items = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

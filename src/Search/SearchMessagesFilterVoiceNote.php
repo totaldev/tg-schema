@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterVoiceNote extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterVoiceNote';
+    public const string TYPE_NAME = 'searchMessagesFilterVoiceNote';
 
     public function __construct()
     {

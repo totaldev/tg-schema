@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeStoryAlbum extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeStoryAlbum';
+    public const string TYPE_NAME = 'internalLinkTypeStoryAlbum';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeStoryAlbum extends InternalLinkType
     public function getStoryAlbumOwnerUsername(): string
     {
         return $this->storyAlbumOwnerUsername;
+    }
+
+    public function setStoryAlbumId(int $value): static
+    {
+        $this->storyAlbumId = $value;
+
+        return $this;
+    }
+
+    public function setStoryAlbumOwnerUsername(string $value): static
+    {
+        $this->storyAlbumOwnerUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

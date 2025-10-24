@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeLoginUrl';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeLoginUrl';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class InlineKeyboardButtonTypeLoginUrl extends InlineKeyboardButtonType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setForwardText(string $value): static
+    {
+        $this->forwardText = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

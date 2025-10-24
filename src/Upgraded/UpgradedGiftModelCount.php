@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftModelCount extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftModelCount';
+    public const string TYPE_NAME = 'upgradedGiftModelCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UpgradedGiftModelCount extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setModel(UpgradedGiftModel $value): static
+    {
+        $this->model = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

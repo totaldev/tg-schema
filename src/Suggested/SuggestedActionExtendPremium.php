@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionExtendPremium extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionExtendPremium';
+    public const string TYPE_NAME = 'suggestedActionExtendPremium';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SuggestedActionExtendPremium extends SuggestedAction
     public function getManagePremiumSubscriptionUrl(): string
     {
         return $this->managePremiumSubscriptionUrl;
+    }
+
+    public function setManagePremiumSubscriptionUrl(string $value): static
+    {
+        $this->managePremiumSubscriptionUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

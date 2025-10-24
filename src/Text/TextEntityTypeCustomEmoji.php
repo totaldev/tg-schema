@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeCustomEmoji extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeCustomEmoji';
+    public const string TYPE_NAME = 'textEntityTypeCustomEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextEntityTypeCustomEmoji extends TextEntityType
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

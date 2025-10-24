@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EmojiStatus extends TdObject
 {
-    public const TYPE_NAME = 'emojiStatus';
+    public const string TYPE_NAME = 'emojiStatus';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class EmojiStatus extends TdObject
     public function getType(): EmojiStatusType
     {
         return $this->type;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setType(EmojiStatusType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

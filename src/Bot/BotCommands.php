@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotCommands extends TdObject
 {
-    public const TYPE_NAME = 'botCommands';
+    public const string TYPE_NAME = 'botCommands';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class BotCommands extends TdObject
     public function getCommands(): array
     {
         return $this->commands;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCommands(array $value): static
+    {
+        $this->commands = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

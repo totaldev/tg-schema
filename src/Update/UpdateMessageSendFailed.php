@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageSendFailed extends Update
 {
-    public const TYPE_NAME = 'updateMessageSendFailed';
+    public const string TYPE_NAME = 'updateMessageSendFailed';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class UpdateMessageSendFailed extends Update
     public function getOldMessageId(): int
     {
         return $this->oldMessageId;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setOldMessageId(int $value): static
+    {
+        $this->oldMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

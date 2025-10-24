@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddedReaction extends TdObject
 {
-    public const TYPE_NAME = 'addedReaction';
+    public const string TYPE_NAME = 'addedReaction';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class AddedReaction extends TdObject
     public function getType(): ReactionType
     {
         return $this->type;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setType(ReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

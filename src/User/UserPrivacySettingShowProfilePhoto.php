@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowProfilePhoto extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowProfilePhoto';
+    public const string TYPE_NAME = 'userPrivacySettingShowProfilePhoto';
 
     public function __construct()
     {

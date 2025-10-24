@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventInviteLinkEdited extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventInviteLinkEdited';
+    public const string TYPE_NAME = 'chatEventInviteLinkEdited';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventInviteLinkEdited extends ChatEventAction
     public function getOldInviteLink(): ChatInviteLink
     {
         return $this->oldInviteLink;
+    }
+
+    public function setNewInviteLink(ChatInviteLink $value): static
+    {
+        $this->newInviteLink = $value;
+
+        return $this;
+    }
+
+    public function setOldInviteLink(ChatInviteLink $value): static
+    {
+        $this->oldInviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

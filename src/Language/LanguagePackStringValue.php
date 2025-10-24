@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LanguagePackStringValue extends TdObject
 {
-    public const TYPE_NAME = 'LanguagePackStringValue';
+    public const string TYPE_NAME = 'LanguagePackStringValue';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateAutosaveSettings extends Update
 {
-    public const TYPE_NAME = 'updateAutosaveSettings';
+    public const string TYPE_NAME = 'updateAutosaveSettings';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateAutosaveSettings extends Update
     public function getSettings(): ?ScopeAutosaveSettings
     {
         return $this->settings;
+    }
+
+    public function setScope(AutosaveSettingsScope $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
+    }
+
+    public function setSettings(?ScopeAutosaveSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

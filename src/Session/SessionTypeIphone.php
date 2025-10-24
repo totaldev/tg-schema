@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeIphone extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeIphone';
+    public const string TYPE_NAME = 'sessionTypeIphone';
 
     public function __construct()
     {

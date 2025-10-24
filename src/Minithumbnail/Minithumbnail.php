@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Minithumbnail extends TdObject
 {
-    public const TYPE_NAME = 'minithumbnail';
+    public const string TYPE_NAME = 'minithumbnail';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class Minithumbnail extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

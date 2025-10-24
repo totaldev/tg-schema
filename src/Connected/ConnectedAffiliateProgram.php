@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ConnectedAffiliateProgram extends TdObject
 {
-    public const TYPE_NAME = 'connectedAffiliateProgram';
+    public const string TYPE_NAME = 'connectedAffiliateProgram';
 
     public function __construct(
         /**
@@ -94,6 +94,55 @@ class ConnectedAffiliateProgram extends TdObject
     public function getUserCount(): int
     {
         return $this->userCount;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setConnectionDate(int $value): static
+    {
+        $this->connectionDate = $value;
+
+        return $this;
+    }
+
+    public function setIsDisconnected(bool $value): static
+    {
+        $this->isDisconnected = $value;
+
+        return $this;
+    }
+
+    public function setParameters(AffiliateProgramParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
+    }
+
+    public function setRevenueStarCount(int $value): static
+    {
+        $this->revenueStarCount = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
+    }
+
+    public function setUserCount(int $value): static
+    {
+        $this->userCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

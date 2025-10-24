@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatReplyMarkup extends Update
 {
-    public const TYPE_NAME = 'updateChatReplyMarkup';
+    public const string TYPE_NAME = 'updateChatReplyMarkup';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UpdateChatReplyMarkup extends Update
     public function getReplyMarkupMessageId(): int
     {
         return $this->replyMarkupMessageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkupMessageId(int $value): static
+    {
+        $this->replyMarkupMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

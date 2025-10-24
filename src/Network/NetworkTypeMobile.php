@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Network;
  */
 class NetworkTypeMobile extends NetworkType
 {
-    public const TYPE_NAME = 'networkTypeMobile';
+    public const string TYPE_NAME = 'networkTypeMobile';
 
     public function __construct()
     {

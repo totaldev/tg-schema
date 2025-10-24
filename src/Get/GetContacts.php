@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetContacts extends TdFunction
 {
-    public const TYPE_NAME = 'getContacts';
+    public const string TYPE_NAME = 'getContacts';
 
     public function __construct() {}
 

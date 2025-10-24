@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeUser extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeUser';
+    public const string TYPE_NAME = 'linkPreviewTypeUser';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class LinkPreviewTypeUser extends LinkPreviewType
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setIsBot(bool $value): static
+    {
+        $this->isBot = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

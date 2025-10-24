@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ActivateStoryStealthMode extends TdFunction
 {
-    public const TYPE_NAME = 'activateStoryStealthMode';
+    public const string TYPE_NAME = 'activateStoryStealthMode';
 
     public function __construct() {}
 

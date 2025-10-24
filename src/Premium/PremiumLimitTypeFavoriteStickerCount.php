@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeFavoriteStickerCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeFavoriteStickerCount';
+    public const string TYPE_NAME = 'premiumLimitTypeFavoriteStickerCount';
 
     public function __construct()
     {

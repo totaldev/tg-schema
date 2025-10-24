@@ -24,7 +24,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UserFullInfo extends TdObject
 {
-    public const TYPE_NAME = 'userFullInfo';
+    public const string TYPE_NAME = 'userFullInfo';
 
     public function __construct(
         /**
@@ -333,6 +333,216 @@ class UserFullInfo extends TdObject
     public function getSupportsVideoCalls(): bool
     {
         return $this->supportsVideoCalls;
+    }
+
+    public function setBio(?FormattedText $value): static
+    {
+        $this->bio = $value;
+
+        return $this;
+    }
+
+    public function setBirthdate(?Birthdate $value): static
+    {
+        $this->birthdate = $value;
+
+        return $this;
+    }
+
+    public function setBlockList(?BlockList $value): static
+    {
+        $this->blockList = $value;
+
+        return $this;
+    }
+
+    public function setBotInfo(?BotInfo $value): static
+    {
+        $this->botInfo = $value;
+
+        return $this;
+    }
+
+    public function setBotVerification(?BotVerification $value): static
+    {
+        $this->botVerification = $value;
+
+        return $this;
+    }
+
+    public function setBusinessInfo(?BusinessInfo $value): static
+    {
+        $this->businessInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanBeCalled(bool $value): static
+    {
+        $this->canBeCalled = $value;
+
+        return $this;
+    }
+
+    public function setFirstProfileAudio(?Audio $value): static
+    {
+        $this->firstProfileAudio = $value;
+
+        return $this;
+    }
+
+    public function setGiftCount(int $value): static
+    {
+        $this->giftCount = $value;
+
+        return $this;
+    }
+
+    public function setGiftSettings(GiftSettings $value): static
+    {
+        $this->giftSettings = $value;
+
+        return $this;
+    }
+
+    public function setGroupInCommonCount(int $value): static
+    {
+        $this->groupInCommonCount = $value;
+
+        return $this;
+    }
+
+    public function setHasPostedToProfileStories(bool $value): static
+    {
+        $this->hasPostedToProfileStories = $value;
+
+        return $this;
+    }
+
+    public function setHasPrivateCalls(bool $value): static
+    {
+        $this->hasPrivateCalls = $value;
+
+        return $this;
+    }
+
+    public function setHasPrivateForwards(bool $value): static
+    {
+        $this->hasPrivateForwards = $value;
+
+        return $this;
+    }
+
+    public function setHasRestrictedVoiceAndVideoNoteMessages(bool $value): static
+    {
+        $this->hasRestrictedVoiceAndVideoNoteMessages = $value;
+
+        return $this;
+    }
+
+    public function setHasSponsoredMessagesEnabled(bool $value): static
+    {
+        $this->hasSponsoredMessagesEnabled = $value;
+
+        return $this;
+    }
+
+    public function setIncomingPaidMessageStarCount(int $value): static
+    {
+        $this->incomingPaidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setMainProfileTab(?ProfileTab $value): static
+    {
+        $this->mainProfileTab = $value;
+
+        return $this;
+    }
+
+    public function setNeedPhoneNumberPrivacyException(bool $value): static
+    {
+        $this->needPhoneNumberPrivacyException = $value;
+
+        return $this;
+    }
+
+    public function setNote(?FormattedText $value): static
+    {
+        $this->note = $value;
+
+        return $this;
+    }
+
+    public function setOutgoingPaidMessageStarCount(int $value): static
+    {
+        $this->outgoingPaidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setPendingRating(?UserRating $value): static
+    {
+        $this->pendingRating = $value;
+
+        return $this;
+    }
+
+    public function setPendingRatingDate(int $value): static
+    {
+        $this->pendingRatingDate = $value;
+
+        return $this;
+    }
+
+    public function setPersonalChatId(int $value): static
+    {
+        $this->personalChatId = $value;
+
+        return $this;
+    }
+
+    public function setPersonalPhoto(?ChatPhoto $value): static
+    {
+        $this->personalPhoto = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setPublicPhoto(?ChatPhoto $value): static
+    {
+        $this->publicPhoto = $value;
+
+        return $this;
+    }
+
+    public function setRating(?UserRating $value): static
+    {
+        $this->rating = $value;
+
+        return $this;
+    }
+
+    public function setSetChatBackground(bool $value): static
+    {
+        $this->setChatBackground = $value;
+
+        return $this;
+    }
+
+    public function setSupportsVideoCalls(bool $value): static
+    {
+        $this->supportsVideoCalls = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

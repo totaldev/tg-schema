@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedAnimations extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedAnimations';
+    public const string TYPE_NAME = 'getSavedAnimations';
 
     public function __construct() {}
 

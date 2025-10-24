@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeFragmentWithdrawal';
+    public const string TYPE_NAME = 'starTransactionTypeFragmentWithdrawal';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StarTransactionTypeFragmentWithdrawal extends StarTransactionType
     public function getWithdrawalState(): ?RevenueWithdrawalState
     {
         return $this->withdrawalState;
+    }
+
+    public function setWithdrawalState(?RevenueWithdrawalState $value): static
+    {
+        $this->withdrawalState = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

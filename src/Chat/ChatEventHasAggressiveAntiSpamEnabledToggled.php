@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventHasAggressiveAntiSpamEnabledToggled';
+    public const string TYPE_NAME = 'chatEventHasAggressiveAntiSpamEnabledToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventHasAggressiveAntiSpamEnabledToggled extends ChatEventAction
     public function getHasAggressiveAntiSpamEnabled(): bool
     {
         return $this->hasAggressiveAntiSpamEnabled;
+    }
+
+    public function setHasAggressiveAntiSpamEnabled(bool $value): static
+    {
+        $this->hasAggressiveAntiSpamEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

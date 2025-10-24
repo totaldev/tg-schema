@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PublicForwardMessage extends PublicForward
 {
-    public const TYPE_NAME = 'publicForwardMessage';
+    public const string TYPE_NAME = 'publicForwardMessage';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PublicForwardMessage extends PublicForward
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

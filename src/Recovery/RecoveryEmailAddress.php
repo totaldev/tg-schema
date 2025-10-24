@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RecoveryEmailAddress extends TdObject
 {
-    public const TYPE_NAME = 'recoveryEmailAddress';
+    public const string TYPE_NAME = 'recoveryEmailAddress';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RecoveryEmailAddress extends TdObject
     public function getRecoveryEmailAddress(): string
     {
         return $this->recoveryEmailAddress;
+    }
+
+    public function setRecoveryEmailAddress(string $value): static
+    {
+        $this->recoveryEmailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

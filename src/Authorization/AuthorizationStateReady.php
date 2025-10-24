@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateReady extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateReady';
+    public const string TYPE_NAME = 'authorizationStateReady';
 
     public function __construct()
     {

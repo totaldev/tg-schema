@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LanguagePackStrings extends TdObject
 {
-    public const TYPE_NAME = 'languagePackStrings';
+    public const string TYPE_NAME = 'languagePackStrings';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LanguagePackStrings extends TdObject
     public function getStrings(): array
     {
         return $this->strings;
+    }
+
+    public function setStrings(array $value): static
+    {
+        $this->strings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

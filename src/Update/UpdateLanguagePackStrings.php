@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateLanguagePackStrings extends Update
 {
-    public const TYPE_NAME = 'updateLanguagePackStrings';
+    public const string TYPE_NAME = 'updateLanguagePackStrings';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class UpdateLanguagePackStrings extends Update
     public function getStrings(): array
     {
         return $this->strings;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
+    }
+
+    public function setLocalizationTarget(string $value): static
+    {
+        $this->localizationTarget = $value;
+
+        return $this;
+    }
+
+    public function setStrings(array $value): static
+    {
+        $this->strings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

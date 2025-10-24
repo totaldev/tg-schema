@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Mask;
  */
 class MaskPointEyes extends MaskPoint
 {
-    public const TYPE_NAME = 'maskPointEyes';
+    public const string TYPE_NAME = 'maskPointEyes';
 
     public function __construct()
     {

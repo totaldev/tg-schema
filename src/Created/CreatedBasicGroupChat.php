@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreatedBasicGroupChat extends TdObject
 {
-    public const TYPE_NAME = 'createdBasicGroupChat';
+    public const string TYPE_NAME = 'createdBasicGroupChat';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class CreatedBasicGroupChat extends TdObject
     public function getFailedToAddMembers(): FailedToAddMembers
     {
         return $this->failedToAddMembers;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFailedToAddMembers(FailedToAddMembers $value): static
+    {
+        $this->failedToAddMembers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

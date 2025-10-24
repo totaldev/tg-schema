@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Revenue;
  */
 class RevenueWithdrawalStateFailed extends RevenueWithdrawalState
 {
-    public const TYPE_NAME = 'revenueWithdrawalStateFailed';
+    public const string TYPE_NAME = 'revenueWithdrawalStateFailed';
 
     public function __construct()
     {

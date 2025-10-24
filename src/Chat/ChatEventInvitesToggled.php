@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventInvitesToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventInvitesToggled';
+    public const string TYPE_NAME = 'chatEventInvitesToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventInvitesToggled extends ChatEventAction
     public function getCanInviteUsers(): bool
     {
         return $this->canInviteUsers;
+    }
+
+    public function setCanInviteUsers(bool $value): static
+    {
+        $this->canInviteUsers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

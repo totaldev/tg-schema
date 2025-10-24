@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatJoinByLink extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatJoinByLink';
+    public const string TYPE_NAME = 'pushMessageContentChatJoinByLink';
 
     public function __construct()
     {

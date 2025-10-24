@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\VideoNote;
  */
 class PushMessageContentVideoNote extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentVideoNote';
+    public const string TYPE_NAME = 'pushMessageContentVideoNote';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PushMessageContentVideoNote extends PushMessageContent
     public function getVideoNote(): ?VideoNote
     {
         return $this->videoNote;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setVideoNote(?VideoNote $value): static
+    {
+        $this->videoNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

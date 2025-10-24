@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetVideoChatDefaultParticipant extends TdFunction
 {
-    public const TYPE_NAME = 'setVideoChatDefaultParticipant';
+    public const string TYPE_NAME = 'setVideoChatDefaultParticipant';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetVideoChatDefaultParticipant extends TdFunction
     public function getDefaultParticipantId(): MessageSender
     {
         return $this->defaultParticipantId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDefaultParticipantId(MessageSender $value): static
+    {
+        $this->defaultParticipantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

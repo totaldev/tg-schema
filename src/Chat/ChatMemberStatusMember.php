@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatMemberStatusMember extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusMember';
+    public const string TYPE_NAME = 'chatMemberStatusMember';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatMemberStatusMember extends ChatMemberStatus
     public function getMemberUntilDate(): int
     {
         return $this->memberUntilDate;
+    }
+
+    public function setMemberUntilDate(int $value): static
+    {
+        $this->memberUntilDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

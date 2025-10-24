@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ToggleGroupCallParticipantIsHandRaised extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallParticipantIsHandRaised';
+    public const string TYPE_NAME = 'toggleGroupCallParticipantIsHandRaised';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class ToggleGroupCallParticipantIsHandRaised extends TdFunction
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsHandRaised(bool $value): static
+    {
+        $this->isHandRaised = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

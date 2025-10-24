@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatGiftNotifications extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatGiftNotifications';
+    public const string TYPE_NAME = 'toggleChatGiftNotifications';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleChatGiftNotifications extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setAreEnabled(bool $value): static
+    {
+        $this->areEnabled = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

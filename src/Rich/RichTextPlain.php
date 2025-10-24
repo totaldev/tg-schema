@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Rich;
  */
 class RichTextPlain extends RichText
 {
-    public const TYPE_NAME = 'richTextPlain';
+    public const string TYPE_NAME = 'richTextPlain';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RichTextPlain extends RichText
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

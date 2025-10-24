@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetSupergroupUnrestrictBoostCount extends TdFunction
 {
-    public const TYPE_NAME = 'setSupergroupUnrestrictBoostCount';
+    public const string TYPE_NAME = 'setSupergroupUnrestrictBoostCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class SetSupergroupUnrestrictBoostCount extends TdFunction
     public function getUnrestrictBoostCount(): int
     {
         return $this->unrestrictBoostCount;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
+    }
+
+    public function setUnrestrictBoostCount(int $value): static
+    {
+        $this->unrestrictBoostCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

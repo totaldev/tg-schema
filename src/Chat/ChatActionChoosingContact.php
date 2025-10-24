@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionChoosingContact extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionChoosingContact';
+    public const string TYPE_NAME = 'chatActionChoosingContact';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageBotWriteAccessAllowed extends MessageContent
 {
-    public const TYPE_NAME = 'messageBotWriteAccessAllowed';
+    public const string TYPE_NAME = 'messageBotWriteAccessAllowed';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageBotWriteAccessAllowed extends MessageContent
     public function getReason(): BotWriteAccessAllowReason
     {
         return $this->reason;
+    }
+
+    public function setReason(BotWriteAccessAllowReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

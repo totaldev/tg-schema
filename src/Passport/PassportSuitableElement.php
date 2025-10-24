@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportSuitableElement extends TdObject
 {
-    public const TYPE_NAME = 'passportSuitableElement';
+    public const string TYPE_NAME = 'passportSuitableElement';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class PassportSuitableElement extends TdObject
     public function getType(): PassportElementType
     {
         return $this->type;
+    }
+
+    public function setIsNativeNameRequired(bool $value): static
+    {
+        $this->isNativeNameRequired = $value;
+
+        return $this;
+    }
+
+    public function setIsSelfieRequired(bool $value): static
+    {
+        $this->isSelfieRequired = $value;
+
+        return $this;
+    }
+
+    public function setIsTranslationRequired(bool $value): static
+    {
+        $this->isTranslationRequired = $value;
+
+        return $this;
+    }
+
+    public function setType(PassportElementType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

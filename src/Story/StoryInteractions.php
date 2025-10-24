@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryInteractions extends TdObject
 {
-    public const TYPE_NAME = 'storyInteractions';
+    public const string TYPE_NAME = 'storyInteractions';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class StoryInteractions extends TdObject
     public function getTotalReactionCount(): int
     {
         return $this->totalReactionCount;
+    }
+
+    public function setInteractions(array $value): static
+    {
+        $this->interactions = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
+    }
+
+    public function setTotalForwardCount(int $value): static
+    {
+        $this->totalForwardCount = $value;
+
+        return $this;
+    }
+
+    public function setTotalReactionCount(int $value): static
+    {
+        $this->totalReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

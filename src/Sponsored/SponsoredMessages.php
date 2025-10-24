@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SponsoredMessages extends TdObject
 {
-    public const TYPE_NAME = 'sponsoredMessages';
+    public const string TYPE_NAME = 'sponsoredMessages';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SponsoredMessages extends TdObject
     public function getMessagesBetween(): int
     {
         return $this->messagesBetween;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setMessagesBetween(int $value): static
+    {
+        $this->messagesBetween = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

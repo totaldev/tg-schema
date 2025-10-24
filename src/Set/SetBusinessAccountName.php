@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBusinessAccountName extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessAccountName';
+    public const string TYPE_NAME = 'setBusinessAccountName';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetBusinessAccountName extends TdFunction
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GroupCallVideoQuality extends TdObject
 {
-    public const TYPE_NAME = 'GroupCallVideoQuality';
+    public const string TYPE_NAME = 'GroupCallVideoQuality';
 
     public function __construct() {}
 

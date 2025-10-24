@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCloseFriends extends TdFunction
 {
-    public const TYPE_NAME = 'getCloseFriends';
+    public const string TYPE_NAME = 'getCloseFriends';
 
     public function __construct() {}
 

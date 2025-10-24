@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateMessageLiveLocationViewed extends Update
 {
-    public const TYPE_NAME = 'updateMessageLiveLocationViewed';
+    public const string TYPE_NAME = 'updateMessageLiveLocationViewed';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateMessageLiveLocationViewed extends Update
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

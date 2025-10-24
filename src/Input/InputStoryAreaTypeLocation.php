@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputStoryAreaTypeLocation extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeLocation';
+    public const string TYPE_NAME = 'inputStoryAreaTypeLocation';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class InputStoryAreaTypeLocation extends InputStoryAreaType
     public function getLocation(): Location
     {
         return $this->location;
+    }
+
+    public function setAddress(?LocationAddress $value): static
+    {
+        $this->address = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

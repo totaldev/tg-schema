@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetProfileAccentColor extends TdFunction
 {
-    public const TYPE_NAME = 'setProfileAccentColor';
+    public const string TYPE_NAME = 'setProfileAccentColor';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetProfileAccentColor extends TdFunction
     public function getProfileBackgroundCustomEmojiId(): int
     {
         return $this->profileBackgroundCustomEmojiId;
+    }
+
+    public function setProfileAccentColorId(int $value): static
+    {
+        $this->profileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->profileBackgroundCustomEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatDraftMessage extends TdFunction
 {
-    public const TYPE_NAME = 'setChatDraftMessage';
+    public const string TYPE_NAME = 'setChatDraftMessage';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class SetChatDraftMessage extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

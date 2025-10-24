@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGiftIsSaved extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGiftIsSaved';
+    public const string TYPE_NAME = 'toggleGiftIsSaved';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGiftIsSaved extends TdFunction
     public function getReceivedGiftId(): string
     {
         return $this->receivedGiftId;
+    }
+
+    public function setIsSaved(bool $value): static
+    {
+        $this->isSaved = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

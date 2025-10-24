@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageInteractionInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageInteractionInfo';
+    public const string TYPE_NAME = 'messageInteractionInfo';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class MessageInteractionInfo extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function setForwardCount(int $value): static
+    {
+        $this->forwardCount = $value;
+
+        return $this;
+    }
+
+    public function setReactions(?MessageReactions $value): static
+    {
+        $this->reactions = $value;
+
+        return $this;
+    }
+
+    public function setReplyInfo(?MessageReplyInfo $value): static
+    {
+        $this->replyInfo = $value;
+
+        return $this;
+    }
+
+    public function setViewCount(int $value): static
+    {
+        $this->viewCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

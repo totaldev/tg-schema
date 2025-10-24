@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmojiStatusType extends TdObject
 {
-    public const TYPE_NAME = 'EmojiStatusType';
+    public const string TYPE_NAME = 'EmojiStatusType';
 
     public function __construct() {}
 

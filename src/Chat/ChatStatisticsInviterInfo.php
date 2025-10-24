@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatStatisticsInviterInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatStatisticsInviterInfo';
+    public const string TYPE_NAME = 'chatStatisticsInviterInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatStatisticsInviterInfo extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setAddedMemberCount(int $value): static
+    {
+        $this->addedMemberCount = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

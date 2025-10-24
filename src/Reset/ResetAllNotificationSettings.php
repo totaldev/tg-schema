@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResetAllNotificationSettings extends TdFunction
 {
-    public const TYPE_NAME = 'resetAllNotificationSettings';
+    public const string TYPE_NAME = 'resetAllNotificationSettings';
 
     public function __construct() {}
 

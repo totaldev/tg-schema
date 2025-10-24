@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetStarAdAccountUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getStarAdAccountUrl';
+    public const string TYPE_NAME = 'getStarAdAccountUrl';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetStarAdAccountUrl extends TdFunction
     public function getOwnerId(): MessageSender
     {
         return $this->ownerId;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

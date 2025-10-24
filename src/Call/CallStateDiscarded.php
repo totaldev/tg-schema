@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CallStateDiscarded extends CallState
 {
-    public const TYPE_NAME = 'callStateDiscarded';
+    public const string TYPE_NAME = 'callStateDiscarded';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class CallStateDiscarded extends CallState
     public function getReason(): CallDiscardReason
     {
         return $this->reason;
+    }
+
+    public function setNeedDebugInformation(bool $value): static
+    {
+        $this->needDebugInformation = $value;
+
+        return $this;
+    }
+
+    public function setNeedLog(bool $value): static
+    {
+        $this->needLog = $value;
+
+        return $this;
+    }
+
+    public function setNeedRating(bool $value): static
+    {
+        $this->needRating = $value;
+
+        return $this;
+    }
+
+    public function setReason(CallDiscardReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

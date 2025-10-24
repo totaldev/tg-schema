@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextEmailAddress extends RichText
 {
-    public const TYPE_NAME = 'richTextEmailAddress';
+    public const string TYPE_NAME = 'richTextEmailAddress';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RichTextEmailAddress extends RichText
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

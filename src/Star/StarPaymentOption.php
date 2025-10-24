@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StarPaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'starPaymentOption';
+    public const string TYPE_NAME = 'starPaymentOption';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class StarPaymentOption extends TdObject
     public function getStoreProductId(): string
     {
         return $this->storeProductId;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsAdditional(bool $value): static
+    {
+        $this->isAdditional = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

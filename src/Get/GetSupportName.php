@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSupportName extends TdFunction
 {
-    public const TYPE_NAME = 'getSupportName';
+    public const string TYPE_NAME = 'getSupportName';
 
     public function __construct() {}
 

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatFolderInviteLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatFolderInviteLinkInfo';
+    public const string TYPE_NAME = 'chatFolderInviteLinkInfo';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class ChatFolderInviteLinkInfo extends TdObject
     public function getMissingChatIds(): array
     {
         return $this->missingChatIds;
+    }
+
+    public function setAddedChatIds(array $value): static
+    {
+        $this->addedChatIds = $value;
+
+        return $this;
+    }
+
+    public function setChatFolderInfo(ChatFolderInfo $value): static
+    {
+        $this->chatFolderInfo = $value;
+
+        return $this;
+    }
+
+    public function setMissingChatIds(array $value): static
+    {
+        $this->missingChatIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

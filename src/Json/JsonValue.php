@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class JsonValue extends TdObject
 {
-    public const TYPE_NAME = 'JsonValue';
+    public const string TYPE_NAME = 'JsonValue';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemNoise extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemNoise';
+    public const string TYPE_NAME = 'callProblemNoise';
 
     public function __construct()
     {

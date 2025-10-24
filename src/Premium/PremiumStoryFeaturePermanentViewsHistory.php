@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeaturePermanentViewsHistory extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeaturePermanentViewsHistory';
+    public const string TYPE_NAME = 'premiumStoryFeaturePermanentViewsHistory';
 
     public function __construct()
     {

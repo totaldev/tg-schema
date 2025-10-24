@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEvent extends TdObject
 {
-    public const TYPE_NAME = 'chatEvent';
+    public const string TYPE_NAME = 'chatEvent';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class ChatEvent extends TdObject
     public function getMemberId(): MessageSender
     {
         return $this->memberId;
+    }
+
+    public function setAction(ChatEventAction $value): static
+    {
+        $this->action = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setMemberId(MessageSender $value): static
+    {
+        $this->memberId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

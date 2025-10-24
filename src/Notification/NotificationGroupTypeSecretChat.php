@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationGroupTypeSecretChat extends NotificationGroupType
 {
-    public const TYPE_NAME = 'notificationGroupTypeSecretChat';
+    public const string TYPE_NAME = 'notificationGroupTypeSecretChat';
 
     public function __construct()
     {

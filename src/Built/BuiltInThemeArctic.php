@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Built;
  */
 class BuiltInThemeArctic extends BuiltInTheme
 {
-    public const TYPE_NAME = 'builtInThemeArctic';
+    public const string TYPE_NAME = 'builtInThemeArctic';
 
     public function __construct()
     {

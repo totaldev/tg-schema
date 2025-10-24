@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FileDownload extends TdObject
 {
-    public const TYPE_NAME = 'fileDownload';
+    public const string TYPE_NAME = 'fileDownload';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class FileDownload extends TdObject
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setAddDate(int $value): static
+    {
+        $this->addDate = $value;
+
+        return $this;
+    }
+
+    public function setCompleteDate(int $value): static
+    {
+        $this->completeDate = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

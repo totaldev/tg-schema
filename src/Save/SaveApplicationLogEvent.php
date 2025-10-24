@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SaveApplicationLogEvent extends TdFunction
 {
-    public const TYPE_NAME = 'saveApplicationLogEvent';
+    public const string TYPE_NAME = 'saveApplicationLogEvent';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SaveApplicationLogEvent extends TdFunction
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setData(JsonValue $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setType(string $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

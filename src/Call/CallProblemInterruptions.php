@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemInterruptions extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemInterruptions';
+    public const string TYPE_NAME = 'callProblemInterruptions';
 
     public function __construct()
     {

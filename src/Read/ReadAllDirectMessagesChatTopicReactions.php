@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReadAllDirectMessagesChatTopicReactions extends TdFunction
 {
-    public const TYPE_NAME = 'readAllDirectMessagesChatTopicReactions';
+    public const string TYPE_NAME = 'readAllDirectMessagesChatTopicReactions';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReadAllDirectMessagesChatTopicReactions extends TdFunction
     public function getTopicId(): int
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(int $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetDefaultGroupAdministratorRights extends TdFunction
 {
-    public const TYPE_NAME = 'setDefaultGroupAdministratorRights';
+    public const string TYPE_NAME = 'setDefaultGroupAdministratorRights';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetDefaultGroupAdministratorRights extends TdFunction
     public function getDefaultGroupAdministratorRights(): ?ChatAdministratorRights
     {
         return $this->defaultGroupAdministratorRights;
+    }
+
+    public function setDefaultGroupAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->defaultGroupAdministratorRights = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddChecklistTasks extends TdFunction
 {
-    public const TYPE_NAME = 'addChecklistTasks';
+    public const string TYPE_NAME = 'addChecklistTasks';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class AddChecklistTasks extends TdFunction
     public function getTasks(): array
     {
         return $this->tasks;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setTasks(array $value): static
+    {
+        $this->tasks = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

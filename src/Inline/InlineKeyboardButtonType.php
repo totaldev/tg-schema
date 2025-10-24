@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InlineKeyboardButtonType extends TdObject
 {
-    public const TYPE_NAME = 'InlineKeyboardButtonType';
+    public const string TYPE_NAME = 'InlineKeyboardButtonType';
 
     public function __construct() {}
 

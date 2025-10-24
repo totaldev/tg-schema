@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecoveryEmailAddress extends TdFunction
 {
-    public const TYPE_NAME = 'getRecoveryEmailAddress';
+    public const string TYPE_NAME = 'getRecoveryEmailAddress';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetRecoveryEmailAddress extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

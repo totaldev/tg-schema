@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Rich;
  */
 class RichTextAnchor extends RichText
 {
-    public const TYPE_NAME = 'richTextAnchor';
+    public const string TYPE_NAME = 'richTextAnchor';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RichTextAnchor extends RichText
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

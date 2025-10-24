@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypePremiumBotDeposit extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypePremiumBotDeposit';
+    public const string TYPE_NAME = 'starTransactionTypePremiumBotDeposit';
 
     public function __construct()
     {

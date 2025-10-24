@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SharedChat extends TdObject
 {
-    public const TYPE_NAME = 'sharedChat';
+    public const string TYPE_NAME = 'sharedChat';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class SharedChat extends TdObject
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

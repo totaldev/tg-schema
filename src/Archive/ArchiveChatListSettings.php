@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ArchiveChatListSettings extends TdObject
 {
-    public const TYPE_NAME = 'archiveChatListSettings';
+    public const string TYPE_NAME = 'archiveChatListSettings';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ArchiveChatListSettings extends TdObject
     public function getKeepUnmutedChatsArchived(): bool
     {
         return $this->keepUnmutedChatsArchived;
+    }
+
+    public function setArchiveAndMuteNewChatsFromUnknownUsers(bool $value): static
+    {
+        $this->archiveAndMuteNewChatsFromUnknownUsers = $value;
+
+        return $this;
+    }
+
+    public function setKeepChatsFromFoldersArchived(bool $value): static
+    {
+        $this->keepChatsFromFoldersArchived = $value;
+
+        return $this;
+    }
+
+    public function setKeepUnmutedChatsArchived(bool $value): static
+    {
+        $this->keepUnmutedChatsArchived = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

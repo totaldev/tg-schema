@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BankCardInfo extends TdObject
 {
-    public const TYPE_NAME = 'bankCardInfo';
+    public const string TYPE_NAME = 'bankCardInfo';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class BankCardInfo extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setActions(array $value): static
+    {
+        $this->actions = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

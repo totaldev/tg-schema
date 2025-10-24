@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeQrCodeAuthentication extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeQrCodeAuthentication';
+    public const string TYPE_NAME = 'internalLinkTypeQrCodeAuthentication';
 
     public function __construct()
     {

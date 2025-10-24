@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaymentReceipt extends TdObject
 {
-    public const TYPE_NAME = 'paymentReceipt';
+    public const string TYPE_NAME = 'paymentReceipt';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class PaymentReceipt extends TdObject
     public function getType(): PaymentReceiptType
     {
         return $this->type;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setProductInfo(ProductInfo $value): static
+    {
+        $this->productInfo = $value;
+
+        return $this;
+    }
+
+    public function setSellerBotUserId(int $value): static
+    {
+        $this->sellerBotUserId = $value;
+
+        return $this;
+    }
+
+    public function setType(PaymentReceiptType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

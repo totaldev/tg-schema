@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckChatUsernameResultUsernameInvalid extends CheckChatUsernameResult
 {
-    public const TYPE_NAME = 'checkChatUsernameResultUsernameInvalid';
+    public const string TYPE_NAME = 'checkChatUsernameResultUsernameInvalid';
 
     public function __construct()
     {

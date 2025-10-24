@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionExtendStarSubscriptions extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionExtendStarSubscriptions';
+    public const string TYPE_NAME = 'suggestedActionExtendStarSubscriptions';
 
     public function __construct()
     {

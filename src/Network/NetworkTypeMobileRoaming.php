@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Network;
  */
 class NetworkTypeMobileRoaming extends NetworkType
 {
-    public const TYPE_NAME = 'networkTypeMobileRoaming';
+    public const string TYPE_NAME = 'networkTypeMobileRoaming';
 
     public function __construct()
     {

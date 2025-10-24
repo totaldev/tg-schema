@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeApple extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeApple';
+    public const string TYPE_NAME = 'sessionTypeApple';
 
     public function __construct()
     {

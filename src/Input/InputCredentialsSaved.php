@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputCredentialsSaved extends InputCredentials
 {
-    public const TYPE_NAME = 'inputCredentialsSaved';
+    public const string TYPE_NAME = 'inputCredentialsSaved';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InputCredentialsSaved extends InputCredentials
     public function getSavedCredentialsId(): string
     {
         return $this->savedCredentialsId;
+    }
+
+    public function setSavedCredentialsId(string $value): static
+    {
+        $this->savedCredentialsId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

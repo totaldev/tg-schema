@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SponsoredMessage extends TdObject
 {
-    public const TYPE_NAME = 'sponsoredMessage';
+    public const string TYPE_NAME = 'sponsoredMessage';
 
     public function __construct(
         /**
@@ -125,6 +125,76 @@ class SponsoredMessage extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setAdditionalInfo(string $value): static
+    {
+        $this->additionalInfo = $value;
+
+        return $this;
+    }
+
+    public function setBackgroundCustomEmojiId(int $value): static
+    {
+        $this->backgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setButtonText(string $value): static
+    {
+        $this->buttonText = $value;
+
+        return $this;
+    }
+
+    public function setCanBeReported(bool $value): static
+    {
+        $this->canBeReported = $value;
+
+        return $this;
+    }
+
+    public function setContent(MessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setIsRecommended(bool $value): static
+    {
+        $this->isRecommended = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSponsor(AdvertisementSponsor $value): static
+    {
+        $this->sponsor = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

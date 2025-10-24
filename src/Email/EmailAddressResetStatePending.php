@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Email;
  */
 class EmailAddressResetStatePending extends EmailAddressResetState
 {
-    public const TYPE_NAME = 'emailAddressResetStatePending';
+    public const string TYPE_NAME = 'emailAddressResetStatePending';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class EmailAddressResetStatePending extends EmailAddressResetState
     public function getResetIn(): int
     {
         return $this->resetIn;
+    }
+
+    public function setResetIn(int $value): static
+    {
+        $this->resetIn = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventPermissionsChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventPermissionsChanged';
+    public const string TYPE_NAME = 'chatEventPermissionsChanged';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventPermissionsChanged extends ChatEventAction
     public function getOldPermissions(): ChatPermissions
     {
         return $this->oldPermissions;
+    }
+
+    public function setNewPermissions(ChatPermissions $value): static
+    {
+        $this->newPermissions = $value;
+
+        return $this;
+    }
+
+    public function setOldPermissions(ChatPermissions $value): static
+    {
+        $this->oldPermissions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

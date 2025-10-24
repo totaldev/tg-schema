@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class Close extends TdFunction
 {
-    public const TYPE_NAME = 'close';
+    public const string TYPE_NAME = 'close';
 
     public function __construct() {}
 

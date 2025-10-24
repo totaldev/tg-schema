@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class JsonValueArray extends JsonValue
 {
-    public const TYPE_NAME = 'jsonValueArray';
+    public const string TYPE_NAME = 'jsonValueArray';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class JsonValueArray extends JsonValue
     public function getValues(): array
     {
         return $this->values;
+    }
+
+    public function setValues(array $value): static
+    {
+        $this->values = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

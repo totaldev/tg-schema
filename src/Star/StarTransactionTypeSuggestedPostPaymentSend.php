@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeSuggestedPostPaymentSend extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeSuggestedPostPaymentSend';
+    public const string TYPE_NAME = 'starTransactionTypeSuggestedPostPaymentSend';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StarTransactionTypeSuggestedPostPaymentSend extends StarTransactionType
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

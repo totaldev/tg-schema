@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerFormatTgs extends StickerFormat
 {
-    public const TYPE_NAME = 'stickerFormatTgs';
+    public const string TYPE_NAME = 'stickerFormatTgs';
 
     public function __construct()
     {

@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditMessageMedia extends TdFunction
 {
-    public const TYPE_NAME = 'editMessageMedia';
+    public const string TYPE_NAME = 'editMessageMedia';
 
     public function __construct(
         /**
@@ -67,6 +67,34 @@ class EditMessageMedia extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

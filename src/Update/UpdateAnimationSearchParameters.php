@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateAnimationSearchParameters extends Update
 {
-    public const TYPE_NAME = 'updateAnimationSearchParameters';
+    public const string TYPE_NAME = 'updateAnimationSearchParameters';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class UpdateAnimationSearchParameters extends Update
     public function getProvider(): string
     {
         return $this->provider;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setProvider(string $value): static
+    {
+        $this->provider = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Unconfirmed\UnconfirmedSession;
  */
 class UpdateUnconfirmedSession extends Update
 {
-    public const TYPE_NAME = 'updateUnconfirmedSession';
+    public const string TYPE_NAME = 'updateUnconfirmedSession';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateUnconfirmedSession extends Update
     public function getSession(): ?UnconfirmedSession
     {
         return $this->session;
+    }
+
+    public function setSession(?UnconfirmedSession $value): static
+    {
+        $this->session = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

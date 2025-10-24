@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Payment;
  */
 class PaymentFormTypeStars extends PaymentFormType
 {
-    public const TYPE_NAME = 'paymentFormTypeStars';
+    public const string TYPE_NAME = 'paymentFormTypeStars';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PaymentFormTypeStars extends PaymentFormType
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumGiftPaymentOptions extends TdObject
 {
-    public const TYPE_NAME = 'premiumGiftPaymentOptions';
+    public const string TYPE_NAME = 'premiumGiftPaymentOptions';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PremiumGiftPaymentOptions extends TdObject
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function setOptions(array $value): static
+    {
+        $this->options = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SuggestedAction extends TdObject
 {
-    public const TYPE_NAME = 'SuggestedAction';
+    public const string TYPE_NAME = 'SuggestedAction';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatRevenueAmount extends Update
 {
-    public const TYPE_NAME = 'updateChatRevenueAmount';
+    public const string TYPE_NAME = 'updateChatRevenueAmount';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateChatRevenueAmount extends Update
     public function getRevenueAmount(): ChatRevenueAmount
     {
         return $this->revenueAmount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setRevenueAmount(ChatRevenueAmount $value): static
+    {
+        $this->revenueAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

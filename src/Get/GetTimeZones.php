@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetTimeZones extends TdFunction
 {
-    public const TYPE_NAME = 'getTimeZones';
+    public const string TYPE_NAME = 'getTimeZones';
 
     public function __construct() {}
 

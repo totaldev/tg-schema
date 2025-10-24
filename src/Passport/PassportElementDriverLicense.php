@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementDriverLicense extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementDriverLicense';
+    public const string TYPE_NAME = 'passportElementDriverLicense';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementDriverLicense extends PassportElement
     public function getDriverLicense(): IdentityDocument
     {
         return $this->driverLicense;
+    }
+
+    public function setDriverLicense(IdentityDocument $value): static
+    {
+        $this->driverLicense = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

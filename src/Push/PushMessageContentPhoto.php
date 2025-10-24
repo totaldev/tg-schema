@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentPhoto extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentPhoto';
+    public const string TYPE_NAME = 'pushMessageContentPhoto';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class PushMessageContentPhoto extends PushMessageContent
     public function getPhoto(): ?Photo
     {
         return $this->photo;
+    }
+
+    public function setCaption(string $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

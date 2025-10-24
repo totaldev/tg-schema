@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LogTags extends TdObject
 {
-    public const TYPE_NAME = 'logTags';
+    public const string TYPE_NAME = 'logTags';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class LogTags extends TdObject
     public function getTags(): array
     {
         return $this->tags;
+    }
+
+    public function setTags(array $value): static
+    {
+        $this->tags = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

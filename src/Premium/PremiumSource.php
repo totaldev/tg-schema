@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PremiumSource extends TdObject
 {
-    public const TYPE_NAME = 'PremiumSource';
+    public const string TYPE_NAME = 'PremiumSource';
 
     public function __construct() {}
 

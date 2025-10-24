@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Invite;
  */
 class InviteGroupCallParticipantResultUserAlreadyParticipant extends InviteGroupCallParticipantResult
 {
-    public const TYPE_NAME = 'inviteGroupCallParticipantResultUserAlreadyParticipant';
+    public const string TYPE_NAME = 'inviteGroupCallParticipantResultUserAlreadyParticipant';
 
     public function __construct()
     {

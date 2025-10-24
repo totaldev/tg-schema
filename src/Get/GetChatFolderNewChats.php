@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatFolderNewChats extends TdFunction
 {
-    public const TYPE_NAME = 'getChatFolderNewChats';
+    public const string TYPE_NAME = 'getChatFolderNewChats';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetChatFolderNewChats extends TdFunction
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeTextUrl extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeTextUrl';
+    public const string TYPE_NAME = 'textEntityTypeTextUrl';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextEntityTypeTextUrl extends TextEntityType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatDiscussionGroup extends TdFunction
 {
-    public const TYPE_NAME = 'setChatDiscussionGroup';
+    public const string TYPE_NAME = 'setChatDiscussionGroup';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetChatDiscussionGroup extends TdFunction
     public function getDiscussionChatId(): int
     {
         return $this->discussionChatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDiscussionChatId(int $value): static
+    {
+        $this->discussionChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

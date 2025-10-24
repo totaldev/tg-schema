@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Location extends TdObject
 {
-    public const TYPE_NAME = 'location';
+    public const string TYPE_NAME = 'location';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class Location extends TdObject
     public function getLongitude(): float
     {
         return $this->longitude;
+    }
+
+    public function setHorizontalAccuracy(float $value): static
+    {
+        $this->horizontalAccuracy = $value;
+
+        return $this;
+    }
+
+    public function setLatitude(float $value): static
+    {
+        $this->latitude = $value;
+
+        return $this;
+    }
+
+    public function setLongitude(float $value): static
+    {
+        $this->longitude = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

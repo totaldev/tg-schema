@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AddChatMember extends TdFunction
 {
-    public const TYPE_NAME = 'addChatMember';
+    public const string TYPE_NAME = 'addChatMember';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class AddChatMember extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForwardLimit(int $value): static
+    {
+        $this->forwardLimit = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

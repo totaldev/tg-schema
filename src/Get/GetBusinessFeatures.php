@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetBusinessFeatures extends TdFunction
 {
-    public const TYPE_NAME = 'getBusinessFeatures';
+    public const string TYPE_NAME = 'getBusinessFeatures';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetBusinessFeatures extends TdFunction
     public function getSource(): ?BusinessFeature
     {
         return $this->source;
+    }
+
+    public function setSource(?BusinessFeature $value): static
+    {
+        $this->source = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

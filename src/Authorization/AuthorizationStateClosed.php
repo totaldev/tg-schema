@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateClosed extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateClosed';
+    public const string TYPE_NAME = 'authorizationStateClosed';
 
     public function __construct()
     {

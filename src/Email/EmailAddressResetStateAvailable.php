@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Email;
  */
 class EmailAddressResetStateAvailable extends EmailAddressResetState
 {
-    public const TYPE_NAME = 'emailAddressResetStateAvailable';
+    public const string TYPE_NAME = 'emailAddressResetStateAvailable';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class EmailAddressResetStateAvailable extends EmailAddressResetState
     public function getWaitPeriod(): int
     {
         return $this->waitPeriod;
+    }
+
+    public function setWaitPeriod(int $value): static
+    {
+        $this->waitPeriod = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

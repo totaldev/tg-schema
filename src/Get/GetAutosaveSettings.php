@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAutosaveSettings extends TdFunction
 {
-    public const TYPE_NAME = 'getAutosaveSettings';
+    public const string TYPE_NAME = 'getAutosaveSettings';
 
     public function __construct() {}
 

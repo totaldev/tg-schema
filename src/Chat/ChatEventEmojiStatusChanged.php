@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventEmojiStatusChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventEmojiStatusChanged';
+    public const string TYPE_NAME = 'chatEventEmojiStatusChanged';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventEmojiStatusChanged extends ChatEventAction
     public function getOldEmojiStatus(): ?EmojiStatus
     {
         return $this->oldEmojiStatus;
+    }
+
+    public function setNewEmojiStatus(?EmojiStatus $value): static
+    {
+        $this->newEmojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setOldEmojiStatus(?EmojiStatus $value): static
+    {
+        $this->oldEmojiStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

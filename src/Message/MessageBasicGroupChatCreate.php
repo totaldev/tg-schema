@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageBasicGroupChatCreate extends MessageContent
 {
-    public const TYPE_NAME = 'messageBasicGroupChatCreate';
+    public const string TYPE_NAME = 'messageBasicGroupChatCreate';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class MessageBasicGroupChatCreate extends MessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setMemberUserIds(array $value): static
+    {
+        $this->memberUserIds = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

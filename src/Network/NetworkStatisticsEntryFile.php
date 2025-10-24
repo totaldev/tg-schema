@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
 {
-    public const TYPE_NAME = 'networkStatisticsEntryFile';
+    public const string TYPE_NAME = 'networkStatisticsEntryFile';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class NetworkStatisticsEntryFile extends NetworkStatisticsEntry
     public function getSentBytes(): int
     {
         return $this->sentBytes;
+    }
+
+    public function setFileType(?FileType $value): static
+    {
+        $this->fileType = $value;
+
+        return $this;
+    }
+
+    public function setNetworkType(NetworkType $value): static
+    {
+        $this->networkType = $value;
+
+        return $this;
+    }
+
+    public function setReceivedBytes(int $value): static
+    {
+        $this->receivedBytes = $value;
+
+        return $this;
+    }
+
+    public function setSentBytes(int $value): static
+    {
+        $this->sentBytes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

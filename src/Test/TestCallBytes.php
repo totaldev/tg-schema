@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TestCallBytes extends TdFunction
 {
-    public const TYPE_NAME = 'testCallBytes';
+    public const string TYPE_NAME = 'testCallBytes';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TestCallBytes extends TdFunction
     public function getX(): string
     {
         return $this->x;
+    }
+
+    public function setX(string $value): static
+    {
+        $this->x = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

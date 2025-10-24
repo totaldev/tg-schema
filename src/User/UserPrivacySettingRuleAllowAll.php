@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowAll extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowAll';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowAll';
 
     public function __construct()
     {

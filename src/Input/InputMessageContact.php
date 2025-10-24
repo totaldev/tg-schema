@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageContact extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageContact';
+    public const string TYPE_NAME = 'inputMessageContact';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class InputMessageContact extends InputMessageContent
     public function getContact(): Contact
     {
         return $this->contact;
+    }
+
+    public function setContact(Contact $value): static
+    {
+        $this->contact = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

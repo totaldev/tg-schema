@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatStatisticsAdministratorActionsInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatStatisticsAdministratorActionsInfo';
+    public const string TYPE_NAME = 'chatStatisticsAdministratorActionsInfo';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class ChatStatisticsAdministratorActionsInfo extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setBannedUserCount(int $value): static
+    {
+        $this->bannedUserCount = $value;
+
+        return $this;
+    }
+
+    public function setDeletedMessageCount(int $value): static
+    {
+        $this->deletedMessageCount = $value;
+
+        return $this;
+    }
+
+    public function setRestrictedUserCount(int $value): static
+    {
+        $this->restrictedUserCount = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

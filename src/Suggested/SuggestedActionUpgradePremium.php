@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionUpgradePremium extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionUpgradePremium';
+    public const string TYPE_NAME = 'suggestedActionUpgradePremium';
 
     public function __construct()
     {

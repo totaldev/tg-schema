@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryOriginPublicStory extends StoryOrigin
 {
-    public const TYPE_NAME = 'storyOriginPublicStory';
+    public const string TYPE_NAME = 'storyOriginPublicStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StoryOriginPublicStory extends StoryOrigin
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

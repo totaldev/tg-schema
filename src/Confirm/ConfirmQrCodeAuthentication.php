@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ConfirmQrCodeAuthentication extends TdFunction
 {
-    public const TYPE_NAME = 'confirmQrCodeAuthentication';
+    public const string TYPE_NAME = 'confirmQrCodeAuthentication';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ConfirmQrCodeAuthentication extends TdFunction
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

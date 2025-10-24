@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenWebPush extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenWebPush';
+    public const string TYPE_NAME = 'deviceTokenWebPush';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class DeviceTokenWebPush extends DeviceToken
     public function getP256dhBase64url(): string
     {
         return $this->p256dhBase64url;
+    }
+
+    public function setAuthBase64url(string $value): static
+    {
+        $this->authBase64url = $value;
+
+        return $this;
+    }
+
+    public function setEndpoint(string $value): static
+    {
+        $this->endpoint = $value;
+
+        return $this;
+    }
+
+    public function setP256dhBase64url(string $value): static
+    {
+        $this->p256dhBase64url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

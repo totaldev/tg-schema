@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PhoneNumberCodeType extends TdObject
 {
-    public const TYPE_NAME = 'PhoneNumberCodeType';
+    public const string TYPE_NAME = 'PhoneNumberCodeType';
 
     public function __construct() {}
 

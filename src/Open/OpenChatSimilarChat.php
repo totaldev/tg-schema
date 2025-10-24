@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class OpenChatSimilarChat extends TdFunction
 {
-    public const TYPE_NAME = 'openChatSimilarChat';
+    public const string TYPE_NAME = 'openChatSimilarChat';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class OpenChatSimilarChat extends TdFunction
     public function getOpenedChatId(): int
     {
         return $this->openedChatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setOpenedChatId(int $value): static
+    {
+        $this->openedChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

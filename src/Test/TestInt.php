@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TestInt extends TdObject
 {
-    public const TYPE_NAME = 'testInt';
+    public const string TYPE_NAME = 'testInt';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TestInt extends TdObject
     public function getValue(): int
     {
         return $this->value;
+    }
+
+    public function setValue(int $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

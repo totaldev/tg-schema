@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StickerType extends TdObject
 {
-    public const TYPE_NAME = 'StickerType';
+    public const string TYPE_NAME = 'StickerType';
 
     public function __construct() {}
 

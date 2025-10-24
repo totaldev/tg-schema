@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeSmsWord extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeSmsWord';
+    public const string TYPE_NAME = 'authenticationCodeTypeSmsWord';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AuthenticationCodeTypeSmsWord extends AuthenticationCodeType
     public function getFirstLetter(): string
     {
         return $this->firstLetter;
+    }
+
+    public function setFirstLetter(string $value): static
+    {
+        $this->firstLetter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCallbackQueryMessage extends TdFunction
 {
-    public const TYPE_NAME = 'getCallbackQueryMessage';
+    public const string TYPE_NAME = 'getCallbackQueryMessage';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetCallbackQueryMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setCallbackQueryId(int $value): static
+    {
+        $this->callbackQueryId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

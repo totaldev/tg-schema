@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Story extends TdObject
 {
-    public const TYPE_NAME = 'story';
+    public const string TYPE_NAME = 'story';
 
     public function __construct(
         /**
@@ -290,6 +290,188 @@ class Story extends TdObject
     public function getRepostInfo(): ?StoryRepostInfo
     {
         return $this->repostInfo;
+    }
+
+    public function setAlbumIds(array $value): static
+    {
+        $this->albumIds = $value;
+
+        return $this;
+    }
+
+    public function setAreas(array $value): static
+    {
+        $this->areas = $value;
+
+        return $this;
+    }
+
+    public function setCanBeAddedToAlbum(bool $value): static
+    {
+        $this->canBeAddedToAlbum = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeleted(bool $value): static
+    {
+        $this->canBeDeleted = $value;
+
+        return $this;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
+    }
+
+    public function setCanBeForwarded(bool $value): static
+    {
+        $this->canBeForwarded = $value;
+
+        return $this;
+    }
+
+    public function setCanBeReplied(bool $value): static
+    {
+        $this->canBeReplied = $value;
+
+        return $this;
+    }
+
+    public function setCanGetInteractions(bool $value): static
+    {
+        $this->canGetInteractions = $value;
+
+        return $this;
+    }
+
+    public function setCanGetStatistics(bool $value): static
+    {
+        $this->canGetStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanToggleIsPostedToChatPage(bool $value): static
+    {
+        $this->canToggleIsPostedToChatPage = $value;
+
+        return $this;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setChosenReactionType(?ReactionType $value): static
+    {
+        $this->chosenReactionType = $value;
+
+        return $this;
+    }
+
+    public function setContent(StoryContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setHasExpiredViewers(bool $value): static
+    {
+        $this->hasExpiredViewers = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInteractionInfo(?StoryInteractionInfo $value): static
+    {
+        $this->interactionInfo = $value;
+
+        return $this;
+    }
+
+    public function setIsBeingEdited(bool $value): static
+    {
+        $this->isBeingEdited = $value;
+
+        return $this;
+    }
+
+    public function setIsBeingPosted(bool $value): static
+    {
+        $this->isBeingPosted = $value;
+
+        return $this;
+    }
+
+    public function setIsEdited(bool $value): static
+    {
+        $this->isEdited = $value;
+
+        return $this;
+    }
+
+    public function setIsPostedToChatPage(bool $value): static
+    {
+        $this->isPostedToChatPage = $value;
+
+        return $this;
+    }
+
+    public function setIsVisibleOnlyForSelf(bool $value): static
+    {
+        $this->isVisibleOnlyForSelf = $value;
+
+        return $this;
+    }
+
+    public function setPosterChatId(int $value): static
+    {
+        $this->posterChatId = $value;
+
+        return $this;
+    }
+
+    public function setPosterId(?MessageSender $value): static
+    {
+        $this->posterId = $value;
+
+        return $this;
+    }
+
+    public function setPrivacySettings(StoryPrivacySettings $value): static
+    {
+        $this->privacySettings = $value;
+
+        return $this;
+    }
+
+    public function setRepostInfo(?StoryRepostInfo $value): static
+    {
+        $this->repostInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

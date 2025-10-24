@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BotWriteAccessAllowReason extends TdObject
 {
-    public const TYPE_NAME = 'BotWriteAccessAllowReason';
+    public const string TYPE_NAME = 'BotWriteAccessAllowReason';
 
     public function __construct() {}
 

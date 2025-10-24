@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftOriginBlockchain extends UpgradedGiftOrigin
 {
-    public const TYPE_NAME = 'upgradedGiftOriginBlockchain';
+    public const string TYPE_NAME = 'upgradedGiftOriginBlockchain';
 
     public function __construct()
     {

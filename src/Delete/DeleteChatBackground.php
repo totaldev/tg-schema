@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteChatBackground extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatBackground';
+    public const string TYPE_NAME = 'deleteChatBackground';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DeleteChatBackground extends TdFunction
     public function getRestorePrevious(): bool
     {
         return $this->restorePrevious;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setRestorePrevious(bool $value): static
+    {
+        $this->restorePrevious = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

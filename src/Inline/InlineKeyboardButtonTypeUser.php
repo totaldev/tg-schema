@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeUser extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeUser';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeUser';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InlineKeyboardButtonTypeUser extends InlineKeyboardButtonType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerFullTypeCustomEmoji extends StickerFullType
 {
-    public const TYPE_NAME = 'stickerFullTypeCustomEmoji';
+    public const string TYPE_NAME = 'stickerFullTypeCustomEmoji';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StickerFullTypeCustomEmoji extends StickerFullType
     public function getNeedsRepainting(): bool
     {
         return $this->needsRepainting;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setNeedsRepainting(bool $value): static
+    {
+        $this->needsRepainting = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

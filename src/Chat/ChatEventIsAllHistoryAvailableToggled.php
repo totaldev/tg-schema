@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventIsAllHistoryAvailableToggled';
+    public const string TYPE_NAME = 'chatEventIsAllHistoryAvailableToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventIsAllHistoryAvailableToggled extends ChatEventAction
     public function getIsAllHistoryAvailable(): bool
     {
         return $this->isAllHistoryAvailable;
+    }
+
+    public function setIsAllHistoryAvailable(bool $value): static
+    {
+        $this->isAllHistoryAvailable = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

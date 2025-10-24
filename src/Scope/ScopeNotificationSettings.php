@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ScopeNotificationSettings extends TdObject
 {
-    public const TYPE_NAME = 'scopeNotificationSettings';
+    public const string TYPE_NAME = 'scopeNotificationSettings';
 
     public function __construct(
         /**
@@ -112,6 +112,69 @@ class ScopeNotificationSettings extends TdObject
     public function getUseDefaultMuteStories(): bool
     {
         return $this->useDefaultMuteStories;
+    }
+
+    public function setDisableMentionNotifications(bool $value): static
+    {
+        $this->disableMentionNotifications = $value;
+
+        return $this;
+    }
+
+    public function setDisablePinnedMessageNotifications(bool $value): static
+    {
+        $this->disablePinnedMessageNotifications = $value;
+
+        return $this;
+    }
+
+    public function setMuteFor(int $value): static
+    {
+        $this->muteFor = $value;
+
+        return $this;
+    }
+
+    public function setMuteStories(bool $value): static
+    {
+        $this->muteStories = $value;
+
+        return $this;
+    }
+
+    public function setShowPreview(bool $value): static
+    {
+        $this->showPreview = $value;
+
+        return $this;
+    }
+
+    public function setShowStoryPoster(bool $value): static
+    {
+        $this->showStoryPoster = $value;
+
+        return $this;
+    }
+
+    public function setSoundId(int $value): static
+    {
+        $this->soundId = $value;
+
+        return $this;
+    }
+
+    public function setStorySoundId(int $value): static
+    {
+        $this->storySoundId = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultMuteStories(bool $value): static
+    {
+        $this->useDefaultMuteStories = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

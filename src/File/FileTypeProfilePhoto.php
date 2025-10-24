@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeProfilePhoto extends FileType
 {
-    public const TYPE_NAME = 'fileTypeProfilePhoto';
+    public const string TYPE_NAME = 'fileTypeProfilePhoto';
 
     public function __construct()
     {

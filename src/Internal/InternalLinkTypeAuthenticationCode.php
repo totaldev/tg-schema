@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeAuthenticationCode extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeAuthenticationCode';
+    public const string TYPE_NAME = 'internalLinkTypeAuthenticationCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InternalLinkTypeAuthenticationCode extends InternalLinkType
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

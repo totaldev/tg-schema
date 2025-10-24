@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateFileDownload extends Update
 {
-    public const TYPE_NAME = 'updateFileDownload';
+    public const string TYPE_NAME = 'updateFileDownload';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class UpdateFileDownload extends Update
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function setCompleteDate(int $value): static
+    {
+        $this->completeDate = $value;
+
+        return $this;
+    }
+
+    public function setCounts(DownloadedFileCounts $value): static
+    {
+        $this->counts = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

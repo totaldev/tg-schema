@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftAttributeId;
  */
 class SearchGiftsForResale extends TdFunction
 {
-    public const TYPE_NAME = 'searchGiftsForResale';
+    public const string TYPE_NAME = 'searchGiftsForResale';
 
     public function __construct(
         /**
@@ -77,6 +77,41 @@ class SearchGiftsForResale extends TdFunction
     public function getOrder(): GiftForResaleOrder
     {
         return $this->order;
+    }
+
+    public function setAttributes(array $value): static
+    {
+        $this->attributes = $value;
+
+        return $this;
+    }
+
+    public function setGiftId(int $value): static
+    {
+        $this->giftId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOrder(GiftForResaleOrder $value): static
+    {
+        $this->order = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

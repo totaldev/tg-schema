@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteDefaultBackground extends TdFunction
 {
-    public const TYPE_NAME = 'deleteDefaultBackground';
+    public const string TYPE_NAME = 'deleteDefaultBackground';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeleteDefaultBackground extends TdFunction
     public function getForDarkTheme(): bool
     {
         return $this->forDarkTheme;
+    }
+
+    public function setForDarkTheme(bool $value): static
+    {
+        $this->forDarkTheme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

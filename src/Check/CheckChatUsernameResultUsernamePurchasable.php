@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckChatUsernameResultUsernamePurchasable extends CheckChatUsernameResult
 {
-    public const TYPE_NAME = 'checkChatUsernameResultUsernamePurchasable';
+    public const string TYPE_NAME = 'checkChatUsernameResultUsernamePurchasable';
 
     public function __construct()
     {

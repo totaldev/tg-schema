@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DropGiftOriginalDetails extends TdFunction
 {
-    public const TYPE_NAME = 'dropGiftOriginalDetails';
+    public const string TYPE_NAME = 'dropGiftOriginalDetails';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DropGiftOriginalDetails extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

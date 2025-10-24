@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeTelegramAdsWithdrawal extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeTelegramAdsWithdrawal';
+    public const string TYPE_NAME = 'starTransactionTypeTelegramAdsWithdrawal';
 
     public function __construct()
     {

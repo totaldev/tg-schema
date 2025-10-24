@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterPhotoAndVideo extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterPhotoAndVideo';
+    public const string TYPE_NAME = 'searchMessagesFilterPhotoAndVideo';
 
     public function __construct()
     {

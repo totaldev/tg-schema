@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
 {
-    public const TYPE_NAME = 'chatPhotoStickerTypeRegularOrMask';
+    public const string TYPE_NAME = 'chatPhotoStickerTypeRegularOrMask';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType
     public function getStickerSetId(): int
     {
         return $this->stickerSetId;
+    }
+
+    public function setStickerId(int $value): static
+    {
+        $this->stickerId = $value;
+
+        return $this;
+    }
+
+    public function setStickerSetId(int $value): static
+    {
+        $this->stickerSetId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

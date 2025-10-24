@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveFileFromDownloads extends TdFunction
 {
-    public const TYPE_NAME = 'removeFileFromDownloads';
+    public const string TYPE_NAME = 'removeFileFromDownloads';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RemoveFileFromDownloads extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setDeleteFromCache(bool $value): static
+    {
+        $this->deleteFromCache = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FoundPositions extends TdObject
 {
-    public const TYPE_NAME = 'foundPositions';
+    public const string TYPE_NAME = 'foundPositions';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class FoundPositions extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setPositions(array $value): static
+    {
+        $this->positions = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveAllFilesFromDownloads extends TdFunction
 {
-    public const TYPE_NAME = 'removeAllFilesFromDownloads';
+    public const string TYPE_NAME = 'removeAllFilesFromDownloads';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class RemoveAllFilesFromDownloads extends TdFunction
     public function getOnlyCompleted(): bool
     {
         return $this->onlyCompleted;
+    }
+
+    public function setDeleteFromCache(bool $value): static
+    {
+        $this->deleteFromCache = $value;
+
+        return $this;
+    }
+
+    public function setOnlyActive(bool $value): static
+    {
+        $this->onlyActive = $value;
+
+        return $this;
+    }
+
+    public function setOnlyCompleted(bool $value): static
+    {
+        $this->onlyCompleted = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

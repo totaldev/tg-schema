@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleVideoChatEnabledStartNotification extends TdFunction
 {
-    public const TYPE_NAME = 'toggleVideoChatEnabledStartNotification';
+    public const string TYPE_NAME = 'toggleVideoChatEnabledStartNotification';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleVideoChatEnabledStartNotification extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setEnabledStartNotification(bool $value): static
+    {
+        $this->enabledStartNotification = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

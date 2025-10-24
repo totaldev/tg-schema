@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReplaceStickerInSet extends TdFunction
 {
-    public const TYPE_NAME = 'replaceStickerInSet';
+    public const string TYPE_NAME = 'replaceStickerInSet';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class ReplaceStickerInSet extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setNewSticker(InputSticker $value): static
+    {
+        $this->newSticker = $value;
+
+        return $this;
+    }
+
+    public function setOldSticker(InputFile $value): static
+    {
+        $this->oldSticker = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

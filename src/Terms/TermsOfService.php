@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TermsOfService extends TdObject
 {
-    public const TYPE_NAME = 'termsOfService';
+    public const string TYPE_NAME = 'termsOfService';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class TermsOfService extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setMinUserAge(int $value): static
+    {
+        $this->minUserAge = $value;
+
+        return $this;
+    }
+
+    public function setShowPopup(bool $value): static
+    {
+        $this->showPopup = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

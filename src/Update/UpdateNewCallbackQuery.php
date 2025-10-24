@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewCallbackQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewCallbackQuery';
+    public const string TYPE_NAME = 'updateNewCallbackQuery';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class UpdateNewCallbackQuery extends Update
     public function getSenderUserId(): int
     {
         return $this->senderUserId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChatInstance(int $value): static
+    {
+        $this->chatInstance = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setPayload(CallbackQueryPayload $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

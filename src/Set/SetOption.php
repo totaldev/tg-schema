@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetOption extends TdFunction
 {
-    public const TYPE_NAME = 'setOption';
+    public const string TYPE_NAME = 'setOption';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetOption extends TdFunction
     public function getValue(): ?OptionValue
     {
         return $this->value;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setValue(?OptionValue $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddStickerToSet extends TdFunction
 {
-    public const TYPE_NAME = 'addStickerToSet';
+    public const string TYPE_NAME = 'addStickerToSet';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AddStickerToSet extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputSticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

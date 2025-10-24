@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatBoostLevelFeatures extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostLevelFeatures';
+    public const string TYPE_NAME = 'chatBoostLevelFeatures';
 
     public function __construct(
         /**
@@ -172,6 +172,111 @@ class ChatBoostLevelFeatures extends TdObject
     public function getTitleColorCount(): int
     {
         return $this->titleColorCount;
+    }
+
+    public function setAccentColorCount(int $value): static
+    {
+        $this->accentColorCount = $value;
+
+        return $this;
+    }
+
+    public function setCanDisableSponsoredMessages(bool $value): static
+    {
+        $this->canDisableSponsoredMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanEnableAutomaticTranslation(bool $value): static
+    {
+        $this->canEnableAutomaticTranslation = $value;
+
+        return $this;
+    }
+
+    public function setCanRecognizeSpeech(bool $value): static
+    {
+        $this->canRecognizeSpeech = $value;
+
+        return $this;
+    }
+
+    public function setCanSetBackgroundCustomEmoji(bool $value): static
+    {
+        $this->canSetBackgroundCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setCanSetCustomBackground(bool $value): static
+    {
+        $this->canSetCustomBackground = $value;
+
+        return $this;
+    }
+
+    public function setCanSetCustomEmojiStickerSet(bool $value): static
+    {
+        $this->canSetCustomEmojiStickerSet = $value;
+
+        return $this;
+    }
+
+    public function setCanSetEmojiStatus(bool $value): static
+    {
+        $this->canSetEmojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setCanSetProfileBackgroundCustomEmoji(bool $value): static
+    {
+        $this->canSetProfileBackgroundCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setChatThemeBackgroundCount(int $value): static
+    {
+        $this->chatThemeBackgroundCount = $value;
+
+        return $this;
+    }
+
+    public function setCustomEmojiReactionCount(int $value): static
+    {
+        $this->customEmojiReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setLevel(int $value): static
+    {
+        $this->level = $value;
+
+        return $this;
+    }
+
+    public function setProfileAccentColorCount(int $value): static
+    {
+        $this->profileAccentColorCount = $value;
+
+        return $this;
+    }
+
+    public function setStoryPerDayCount(int $value): static
+    {
+        $this->storyPerDayCount = $value;
+
+        return $this;
+    }
+
+    public function setTitleColorCount(int $value): static
+    {
+        $this->titleColorCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

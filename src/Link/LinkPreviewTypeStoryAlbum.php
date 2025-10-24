@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class LinkPreviewTypeStoryAlbum extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeStoryAlbum';
+    public const string TYPE_NAME = 'linkPreviewTypeStoryAlbum';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class LinkPreviewTypeStoryAlbum extends LinkPreviewType
     public function getVideoIcon(): ?Video
     {
         return $this->videoIcon;
+    }
+
+    public function setPhotoIcon(?Photo $value): static
+    {
+        $this->photoIcon = $value;
+
+        return $this;
+    }
+
+    public function setVideoIcon(?Video $value): static
+    {
+        $this->videoIcon = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumGiftCodeInfo extends TdObject
 {
-    public const TYPE_NAME = 'premiumGiftCodeInfo';
+    public const string TYPE_NAME = 'premiumGiftCodeInfo';
 
     public function __construct(
         /**
@@ -94,6 +94,55 @@ class PremiumGiftCodeInfo extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setCreationDate(int $value): static
+    {
+        $this->creationDate = $value;
+
+        return $this;
+    }
+
+    public function setCreatorId(?MessageSender $value): static
+    {
+        $this->creatorId = $value;
+
+        return $this;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
+    }
+
+    public function setIsFromGiveaway(bool $value): static
+    {
+        $this->isFromGiveaway = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setUseDate(int $value): static
+    {
+        $this->useDate = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class BoostChat extends TdFunction
 {
-    public const TYPE_NAME = 'boostChat';
+    public const string TYPE_NAME = 'boostChat';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class BoostChat extends TdFunction
     public function getSlotIds(): array
     {
         return $this->slotIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSlotIds(array $value): static
+    {
+        $this->slotIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

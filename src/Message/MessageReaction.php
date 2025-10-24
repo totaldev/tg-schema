@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageReaction extends TdObject
 {
-    public const TYPE_NAME = 'messageReaction';
+    public const string TYPE_NAME = 'messageReaction';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class MessageReaction extends TdObject
     public function getUsedSenderId(): ?MessageSender
     {
         return $this->usedSenderId;
+    }
+
+    public function setIsChosen(bool $value): static
+    {
+        $this->isChosen = $value;
+
+        return $this;
+    }
+
+    public function setRecentSenderIds(array $value): static
+    {
+        $this->recentSenderIds = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
+    }
+
+    public function setType(ReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setUsedSenderId(?MessageSender $value): static
+    {
+        $this->usedSenderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

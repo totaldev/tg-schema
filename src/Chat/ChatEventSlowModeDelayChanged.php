@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventSlowModeDelayChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventSlowModeDelayChanged';
+    public const string TYPE_NAME = 'chatEventSlowModeDelayChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventSlowModeDelayChanged extends ChatEventAction
     public function getOldSlowModeDelay(): int
     {
         return $this->oldSlowModeDelay;
+    }
+
+    public function setNewSlowModeDelay(int $value): static
+    {
+        $this->newSlowModeDelay = $value;
+
+        return $this;
+    }
+
+    public function setOldSlowModeDelay(int $value): static
+    {
+        $this->oldSlowModeDelay = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

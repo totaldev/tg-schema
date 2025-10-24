@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GameHighScores extends TdObject
 {
-    public const TYPE_NAME = 'gameHighScores';
+    public const string TYPE_NAME = 'gameHighScores';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class GameHighScores extends TdObject
     public function getScores(): array
     {
         return $this->scores;
+    }
+
+    public function setScores(array $value): static
+    {
+        $this->scores = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ParseMarkdown extends TdFunction
 {
-    public const TYPE_NAME = 'parseMarkdown';
+    public const string TYPE_NAME = 'parseMarkdown';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ParseMarkdown extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

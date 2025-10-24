@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getChatStatistics';
+    public const string TYPE_NAME = 'getChatStatistics';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetChatStatistics extends TdFunction
     public function getIsDark(): bool
     {
         return $this->isDark;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

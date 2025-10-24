@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewInlineQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewInlineQuery';
+    public const string TYPE_NAME = 'updateNewInlineQuery';
 
     public function __construct(
         /**
@@ -86,6 +86,48 @@ class UpdateNewInlineQuery extends Update
     public function getUserLocation(): ?Location
     {
         return $this->userLocation;
+    }
+
+    public function setChatType(?ChatType $value): static
+    {
+        $this->chatType = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
+    }
+
+    public function setUserLocation(?Location $value): static
+    {
+        $this->userLocation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

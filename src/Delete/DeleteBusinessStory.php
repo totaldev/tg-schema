@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteBusinessStory extends TdFunction
 {
-    public const TYPE_NAME = 'deleteBusinessStory';
+    public const string TYPE_NAME = 'deleteBusinessStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DeleteBusinessStory extends TdFunction
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

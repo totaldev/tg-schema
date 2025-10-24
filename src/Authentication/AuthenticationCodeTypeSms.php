@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeSms extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeSms';
+    public const string TYPE_NAME = 'authenticationCodeTypeSms';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AuthenticationCodeTypeSms extends AuthenticationCodeType
     public function getLength(): int
     {
         return $this->length;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

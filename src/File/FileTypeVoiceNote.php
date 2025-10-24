@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeVoiceNote extends FileType
 {
-    public const TYPE_NAME = 'fileTypeVoiceNote';
+    public const string TYPE_NAME = 'fileTypeVoiceNote';
 
     public function __construct()
     {

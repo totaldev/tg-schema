@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatFolderName extends TdObject
 {
-    public const TYPE_NAME = 'chatFolderName';
+    public const string TYPE_NAME = 'chatFolderName';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatFolderName extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setAnimateCustomEmoji(bool $value): static
+    {
+        $this->animateCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

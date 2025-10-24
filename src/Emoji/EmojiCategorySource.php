@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmojiCategorySource extends TdObject
 {
-    public const TYPE_NAME = 'EmojiCategorySource';
+    public const string TYPE_NAME = 'EmojiCategorySource';
 
     public function __construct() {}
 

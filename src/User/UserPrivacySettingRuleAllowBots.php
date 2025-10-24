@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowBots extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowBots';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowBots';
 
     public function __construct()
     {

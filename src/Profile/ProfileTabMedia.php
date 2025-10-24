@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Profile;
  */
 class ProfileTabMedia extends ProfileTab
 {
-    public const TYPE_NAME = 'profileTabMedia';
+    public const string TYPE_NAME = 'profileTabMedia';
 
     public function __construct()
     {

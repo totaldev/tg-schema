@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStickerSet extends Update
 {
-    public const TYPE_NAME = 'updateStickerSet';
+    public const string TYPE_NAME = 'updateStickerSet';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateStickerSet extends Update
     public function getStickerSet(): StickerSet
     {
         return $this->stickerSet;
+    }
+
+    public function setStickerSet(StickerSet $value): static
+    {
+        $this->stickerSet = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

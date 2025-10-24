@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStoryInteractions extends TdFunction
 {
-    public const TYPE_NAME = 'getStoryInteractions';
+    public const string TYPE_NAME = 'getStoryInteractions';
 
     public function __construct(
         /**
@@ -92,6 +92,55 @@ class GetStoryInteractions extends TdFunction
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOnlyContacts(bool $value): static
+    {
+        $this->onlyContacts = $value;
+
+        return $this;
+    }
+
+    public function setPreferForwards(bool $value): static
+    {
+        $this->preferForwards = $value;
+
+        return $this;
+    }
+
+    public function setPreferWithReaction(bool $value): static
+    {
+        $this->preferWithReaction = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

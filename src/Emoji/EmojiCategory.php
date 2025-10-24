@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EmojiCategory extends TdObject
 {
-    public const TYPE_NAME = 'emojiCategory';
+    public const string TYPE_NAME = 'emojiCategory';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class EmojiCategory extends TdObject
     public function getSource(): EmojiCategorySource
     {
         return $this->source;
+    }
+
+    public function setIcon(Sticker $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setIsGreeting(bool $value): static
+    {
+        $this->isGreeting = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setSource(EmojiCategorySource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

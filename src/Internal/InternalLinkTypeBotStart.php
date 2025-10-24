@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeBotStart extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBotStart';
+    public const string TYPE_NAME = 'internalLinkTypeBotStart';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InternalLinkTypeBotStart extends InternalLinkType
     public function getStartParameter(): string
     {
         return $this->startParameter;
+    }
+
+    public function setAutostart(bool $value): static
+    {
+        $this->autostart = $value;
+
+        return $this;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

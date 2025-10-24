@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanSendMessageToUserResultUserRestrictsNewChats extends CanSendMessageToUserResult
 {
-    public const TYPE_NAME = 'canSendMessageToUserResultUserRestrictsNewChats';
+    public const string TYPE_NAME = 'canSendMessageToUserResultUserRestrictsNewChats';
 
     public function __construct()
     {

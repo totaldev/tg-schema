@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageUsersShared extends MessageContent
 {
-    public const TYPE_NAME = 'messageUsersShared';
+    public const string TYPE_NAME = 'messageUsersShared';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class MessageUsersShared extends MessageContent
     public function getUsers(): array
     {
         return $this->users;
+    }
+
+    public function setButtonId(int $value): static
+    {
+        $this->buttonId = $value;
+
+        return $this;
+    }
+
+    public function setUsers(array $value): static
+    {
+        $this->users = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

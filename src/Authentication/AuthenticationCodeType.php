@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AuthenticationCodeType extends TdObject
 {
-    public const TYPE_NAME = 'AuthenticationCodeType';
+    public const string TYPE_NAME = 'AuthenticationCodeType';
 
     public function __construct() {}
 

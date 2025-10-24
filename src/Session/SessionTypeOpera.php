@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeOpera extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeOpera';
+    public const string TYPE_NAME = 'sessionTypeOpera';
 
     public function __construct()
     {

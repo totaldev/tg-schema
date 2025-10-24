@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateContactCloseBirthdays extends Update
 {
-    public const TYPE_NAME = 'updateContactCloseBirthdays';
+    public const string TYPE_NAME = 'updateContactCloseBirthdays';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class UpdateContactCloseBirthdays extends Update
     public function getCloseBirthdayUsers(): array
     {
         return $this->closeBirthdayUsers;
+    }
+
+    public function setCloseBirthdayUsers(array $value): static
+    {
+        $this->closeBirthdayUsers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

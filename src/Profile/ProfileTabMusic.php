@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Profile;
  */
 class ProfileTabMusic extends ProfileTab
 {
-    public const TYPE_NAME = 'profileTabMusic';
+    public const string TYPE_NAME = 'profileTabMusic';
 
     public function __construct()
     {

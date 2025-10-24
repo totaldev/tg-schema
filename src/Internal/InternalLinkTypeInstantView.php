@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeInstantView extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeInstantView';
+    public const string TYPE_NAME = 'internalLinkTypeInstantView';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeInstantView extends InternalLinkType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setFallbackUrl(string $value): static
+    {
+        $this->fallbackUrl = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

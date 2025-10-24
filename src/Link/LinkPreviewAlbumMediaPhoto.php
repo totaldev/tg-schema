@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewAlbumMediaPhoto extends LinkPreviewAlbumMedia
 {
-    public const TYPE_NAME = 'linkPreviewAlbumMediaPhoto';
+    public const string TYPE_NAME = 'linkPreviewAlbumMediaPhoto';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewAlbumMediaPhoto extends LinkPreviewAlbumMedia
     public function getPhoto(): Photo
     {
         return $this->photo;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

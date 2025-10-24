@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessAwayMessageScheduleAlways extends BusinessAwayMessageSchedule
 {
-    public const TYPE_NAME = 'businessAwayMessageScheduleAlways';
+    public const string TYPE_NAME = 'businessAwayMessageScheduleAlways';
 
     public function __construct()
     {

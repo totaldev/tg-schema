@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SponsoredChat extends TdObject
 {
-    public const TYPE_NAME = 'sponsoredChat';
+    public const string TYPE_NAME = 'sponsoredChat';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class SponsoredChat extends TdObject
     public function getUniqueId(): int
     {
         return $this->uniqueId;
+    }
+
+    public function setAdditionalInfo(string $value): static
+    {
+        $this->additionalInfo = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSponsorInfo(string $value): static
+    {
+        $this->sponsorInfo = $value;
+
+        return $this;
+    }
+
+    public function setUniqueId(int $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

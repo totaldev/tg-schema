@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateDefaultPaidReactionType extends Update
 {
-    public const TYPE_NAME = 'updateDefaultPaidReactionType';
+    public const string TYPE_NAME = 'updateDefaultPaidReactionType';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateDefaultPaidReactionType extends Update
     public function getType(): PaidReactionType
     {
         return $this->type;
+    }
+
+    public function setType(PaidReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

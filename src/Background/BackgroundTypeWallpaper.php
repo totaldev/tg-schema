@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Background;
  */
 class BackgroundTypeWallpaper extends BackgroundType
 {
-    public const TYPE_NAME = 'backgroundTypeWallpaper';
+    public const string TYPE_NAME = 'backgroundTypeWallpaper';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BackgroundTypeWallpaper extends BackgroundType
     public function getIsMoving(): bool
     {
         return $this->isMoving;
+    }
+
+    public function setIsBlurred(bool $value): static
+    {
+        $this->isBlurred = $value;
+
+        return $this;
+    }
+
+    public function setIsMoving(bool $value): static
+    {
+        $this->isMoving = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

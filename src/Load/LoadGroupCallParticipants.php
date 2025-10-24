@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class LoadGroupCallParticipants extends TdFunction
 {
-    public const TYPE_NAME = 'loadGroupCallParticipants';
+    public const string TYPE_NAME = 'loadGroupCallParticipants';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class LoadGroupCallParticipants extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

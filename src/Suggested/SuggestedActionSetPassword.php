@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionSetPassword extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionSetPassword';
+    public const string TYPE_NAME = 'suggestedActionSetPassword';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SuggestedActionSetPassword extends SuggestedAction
     public function getAuthorizationDelay(): int
     {
         return $this->authorizationDelay;
+    }
+
+    public function setAuthorizationDelay(int $value): static
+    {
+        $this->authorizationDelay = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

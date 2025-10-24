@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateUnreadMessageCount extends Update
 {
-    public const TYPE_NAME = 'updateUnreadMessageCount';
+    public const string TYPE_NAME = 'updateUnreadMessageCount';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UpdateUnreadMessageCount extends Update
     public function getUnreadUnmutedCount(): int
     {
         return $this->unreadUnmutedCount;
+    }
+
+    public function setChatList(ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
+    }
+
+    public function setUnreadCount(int $value): static
+    {
+        $this->unreadCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadUnmutedCount(int $value): static
+    {
+        $this->unreadUnmutedCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

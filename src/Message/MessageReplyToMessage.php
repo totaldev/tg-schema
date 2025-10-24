@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Text\TextQuote;
  */
 class MessageReplyToMessage extends MessageReplyTo
 {
-    public const TYPE_NAME = 'messageReplyToMessage';
+    public const string TYPE_NAME = 'messageReplyToMessage';
 
     public function __construct(
         /**
@@ -95,6 +95,55 @@ class MessageReplyToMessage extends MessageReplyTo
     public function getQuote(): ?TextQuote
     {
         return $this->quote;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChecklistTaskId(int $value): static
+    {
+        $this->checklistTaskId = $value;
+
+        return $this;
+    }
+
+    public function setContent(?MessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOrigin(?MessageOrigin $value): static
+    {
+        $this->origin = $value;
+
+        return $this;
+    }
+
+    public function setOriginSendDate(int $value): static
+    {
+        $this->originSendDate = $value;
+
+        return $this;
+    }
+
+    public function setQuote(?TextQuote $value): static
+    {
+        $this->quote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

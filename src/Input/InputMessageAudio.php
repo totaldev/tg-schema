@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageAudio extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageAudio';
+    public const string TYPE_NAME = 'inputMessageAudio';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class InputMessageAudio extends InputMessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAlbumCoverThumbnail(?InputThumbnail $value): static
+    {
+        $this->albumCoverThumbnail = $value;
+
+        return $this;
+    }
+
+    public function setAudio(InputFile $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setPerformer(string $value): static
+    {
+        $this->performer = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

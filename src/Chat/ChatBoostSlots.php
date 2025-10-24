@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatBoostSlots extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostSlots';
+    public const string TYPE_NAME = 'chatBoostSlots';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatBoostSlots extends TdObject
     public function getSlots(): array
     {
         return $this->slots;
+    }
+
+    public function setSlots(array $value): static
+    {
+        $this->slots = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

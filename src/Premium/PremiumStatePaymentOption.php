@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumStatePaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'premiumStatePaymentOption';
+    public const string TYPE_NAME = 'premiumStatePaymentOption';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class PremiumStatePaymentOption extends TdObject
     public function getPaymentOption(): PremiumPaymentOption
     {
         return $this->paymentOption;
+    }
+
+    public function setIsCurrent(bool $value): static
+    {
+        $this->isCurrent = $value;
+
+        return $this;
+    }
+
+    public function setIsUpgrade(bool $value): static
+    {
+        $this->isUpgrade = $value;
+
+        return $this;
+    }
+
+    public function setLastTransactionId(string $value): static
+    {
+        $this->lastTransactionId = $value;
+
+        return $this;
+    }
+
+    public function setPaymentOption(PremiumPaymentOption $value): static
+    {
+        $this->paymentOption = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

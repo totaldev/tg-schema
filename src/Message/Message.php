@@ -19,7 +19,7 @@ use Totaldev\TgSchema\Unread\UnreadReaction;
  */
 class Message extends TdObject
 {
-    public const TYPE_NAME = 'message';
+    public const string TYPE_NAME = 'message';
 
     public function __construct(
         /**
@@ -400,6 +400,265 @@ class Message extends TdObject
     public function getViaBotUserId(): int
     {
         return $this->viaBotUserId;
+    }
+
+    public function setAuthorSignature(string $value): static
+    {
+        $this->authorSignature = $value;
+
+        return $this;
+    }
+
+    public function setAutoDeleteIn(float $value): static
+    {
+        $this->autoDeleteIn = $value;
+
+        return $this;
+    }
+
+    public function setCanBeSaved(bool $value): static
+    {
+        $this->canBeSaved = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setContainsUnreadMention(bool $value): static
+    {
+        $this->containsUnreadMention = $value;
+
+        return $this;
+    }
+
+    public function setContent(MessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setEditDate(int $value): static
+    {
+        $this->editDate = $value;
+
+        return $this;
+    }
+
+    public function setEffectId(int $value): static
+    {
+        $this->effectId = $value;
+
+        return $this;
+    }
+
+    public function setFactCheck(?FactCheck $value): static
+    {
+        $this->factCheck = $value;
+
+        return $this;
+    }
+
+    public function setForwardInfo(?MessageForwardInfo $value): static
+    {
+        $this->forwardInfo = $value;
+
+        return $this;
+    }
+
+    public function setHasTimestampedMedia(bool $value): static
+    {
+        $this->hasTimestampedMedia = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setImportInfo(?MessageImportInfo $value): static
+    {
+        $this->importInfo = $value;
+
+        return $this;
+    }
+
+    public function setInteractionInfo(?MessageInteractionInfo $value): static
+    {
+        $this->interactionInfo = $value;
+
+        return $this;
+    }
+
+    public function setIsChannelPost(bool $value): static
+    {
+        $this->isChannelPost = $value;
+
+        return $this;
+    }
+
+    public function setIsFromOffline(bool $value): static
+    {
+        $this->isFromOffline = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setIsPaidStarSuggestedPost(bool $value): static
+    {
+        $this->isPaidStarSuggestedPost = $value;
+
+        return $this;
+    }
+
+    public function setIsPaidTonSuggestedPost(bool $value): static
+    {
+        $this->isPaidTonSuggestedPost = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setMediaAlbumId(int $value): static
+    {
+        $this->mediaAlbumId = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?MessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setRestrictionInfo(?RestrictionInfo $value): static
+    {
+        $this->restrictionInfo = $value;
+
+        return $this;
+    }
+
+    public function setSchedulingState(?MessageSchedulingState $value): static
+    {
+        $this->schedulingState = $value;
+
+        return $this;
+    }
+
+    public function setSelfDestructIn(float $value): static
+    {
+        $this->selfDestructIn = $value;
+
+        return $this;
+    }
+
+    public function setSelfDestructType(?MessageSelfDestructType $value): static
+    {
+        $this->selfDestructType = $value;
+
+        return $this;
+    }
+
+    public function setSenderBoostCount(int $value): static
+    {
+        $this->senderBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setSenderBusinessBotUserId(int $value): static
+    {
+        $this->senderBusinessBotUserId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setSendingState(?MessageSendingState $value): static
+    {
+        $this->sendingState = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostInfo(?SuggestedPostInfo $value): static
+    {
+        $this->suggestedPostInfo = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactions(array $value): static
+    {
+        $this->unreadReactions = $value;
+
+        return $this;
+    }
+
+    public function setViaBotUserId(int $value): static
+    {
+        $this->viaBotUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

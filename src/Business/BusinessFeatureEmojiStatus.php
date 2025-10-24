@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureEmojiStatus extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureEmojiStatus';
+    public const string TYPE_NAME = 'businessFeatureEmojiStatus';
 
     public function __construct()
     {

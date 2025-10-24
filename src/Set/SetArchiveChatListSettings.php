@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetArchiveChatListSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setArchiveChatListSettings';
+    public const string TYPE_NAME = 'setArchiveChatListSettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetArchiveChatListSettings extends TdFunction
     public function getSettings(): ArchiveChatListSettings
     {
         return $this->settings;
+    }
+
+    public function setSettings(ArchiveChatListSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

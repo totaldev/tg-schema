@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReceivedGift extends TdObject
 {
-    public const TYPE_NAME = 'receivedGift';
+    public const string TYPE_NAME = 'receivedGift';
 
     public function __construct(
         /**
@@ -238,6 +238,153 @@ class ReceivedGift extends TdObject
     public function getWasRefunded(): bool
     {
         return $this->wasRefunded;
+    }
+
+    public function setCanBeTransferred(bool $value): static
+    {
+        $this->canBeTransferred = $value;
+
+        return $this;
+    }
+
+    public function setCanBeUpgraded(bool $value): static
+    {
+        $this->canBeUpgraded = $value;
+
+        return $this;
+    }
+
+    public function setCollectionIds(array $value): static
+    {
+        $this->collectionIds = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setDropOriginalDetailsStarCount(int $value): static
+    {
+        $this->dropOriginalDetailsStarCount = $value;
+
+        return $this;
+    }
+
+    public function setExportDate(int $value): static
+    {
+        $this->exportDate = $value;
+
+        return $this;
+    }
+
+    public function setGift(SentGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setIsPrivate(bool $value): static
+    {
+        $this->isPrivate = $value;
+
+        return $this;
+    }
+
+    public function setIsSaved(bool $value): static
+    {
+        $this->isSaved = $value;
+
+        return $this;
+    }
+
+    public function setIsUpgradeSeparate(bool $value): static
+    {
+        $this->isUpgradeSeparate = $value;
+
+        return $this;
+    }
+
+    public function setNextResaleDate(int $value): static
+    {
+        $this->nextResaleDate = $value;
+
+        return $this;
+    }
+
+    public function setNextTransferDate(int $value): static
+    {
+        $this->nextTransferDate = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidUpgradeHash(string $value): static
+    {
+        $this->prepaidUpgradeHash = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidUpgradeStarCount(int $value): static
+    {
+        $this->prepaidUpgradeStarCount = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setSellStarCount(int $value): static
+    {
+        $this->sellStarCount = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setTransferStarCount(int $value): static
+    {
+        $this->transferStarCount = $value;
+
+        return $this;
+    }
+
+    public function setWasRefunded(bool $value): static
+    {
+        $this->wasRefunded = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

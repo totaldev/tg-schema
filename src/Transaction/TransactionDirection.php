@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TransactionDirection extends TdObject
 {
-    public const TYPE_NAME = 'TransactionDirection';
+    public const string TYPE_NAME = 'TransactionDirection';
 
     public function __construct() {}
 

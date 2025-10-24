@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecentStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getRecentStickers';
+    public const string TYPE_NAME = 'getRecentStickers';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetRecentStickers extends TdFunction
     public function getIsAttached(): bool
     {
         return $this->isAttached;
+    }
+
+    public function setIsAttached(bool $value): static
+    {
+        $this->isAttached = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

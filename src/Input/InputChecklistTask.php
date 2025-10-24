@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputChecklistTask extends TdObject
 {
-    public const TYPE_NAME = 'inputChecklistTask';
+    public const string TYPE_NAME = 'inputChecklistTask';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InputChecklistTask extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

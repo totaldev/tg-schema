@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ConnectionState extends TdObject
 {
-    public const TYPE_NAME = 'ConnectionState';
+    public const string TYPE_NAME = 'ConnectionState';
 
     public function __construct() {}
 

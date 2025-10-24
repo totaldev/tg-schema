@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateStoryStealthMode extends Update
 {
-    public const TYPE_NAME = 'updateStoryStealthMode';
+    public const string TYPE_NAME = 'updateStoryStealthMode';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateStoryStealthMode extends Update
     public function getCooldownUntilDate(): int
     {
         return $this->cooldownUntilDate;
+    }
+
+    public function setActiveUntilDate(int $value): static
+    {
+        $this->activeUntilDate = $value;
+
+        return $this;
+    }
+
+    public function setCooldownUntilDate(int $value): static
+    {
+        $this->cooldownUntilDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChecklistTask extends TdObject
 {
-    public const TYPE_NAME = 'checklistTask';
+    public const string TYPE_NAME = 'checklistTask';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class ChecklistTask extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setCompletedByUserId(int $value): static
+    {
+        $this->completedByUserId = $value;
+
+        return $this;
+    }
+
+    public function setCompletionDate(int $value): static
+    {
+        $this->completionDate = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

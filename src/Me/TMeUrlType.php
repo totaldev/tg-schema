@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TMeUrlType extends TdObject
 {
-    public const TYPE_NAME = 'TMeUrlType';
+    public const string TYPE_NAME = 'TMeUrlType';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageGameScore extends MessageContent
 {
-    public const TYPE_NAME = 'messageGameScore';
+    public const string TYPE_NAME = 'messageGameScore';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class MessageGameScore extends MessageContent
     public function getScore(): int
     {
         return $this->score;
+    }
+
+    public function setGameId(int $value): static
+    {
+        $this->gameId = $value;
+
+        return $this;
+    }
+
+    public function setGameMessageId(int $value): static
+    {
+        $this->gameMessageId = $value;
+
+        return $this;
+    }
+
+    public function setScore(int $value): static
+    {
+        $this->score = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

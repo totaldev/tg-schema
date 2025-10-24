@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputFileLocal extends InputFile
 {
-    public const TYPE_NAME = 'inputFileLocal';
+    public const string TYPE_NAME = 'inputFileLocal';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputFileLocal extends InputFile
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function setPath(string $value): static
+    {
+        $this->path = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StickerSets extends TdObject
 {
-    public const TYPE_NAME = 'stickerSets';
+    public const string TYPE_NAME = 'stickerSets';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class StickerSets extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setSets(array $value): static
+    {
+        $this->sets = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

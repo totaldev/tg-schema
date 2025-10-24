@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NetworkStatistics extends TdObject
 {
-    public const TYPE_NAME = 'networkStatistics';
+    public const string TYPE_NAME = 'networkStatistics';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class NetworkStatistics extends TdObject
     public function getSinceDate(): int
     {
         return $this->sinceDate;
+    }
+
+    public function setEntries(array $value): static
+    {
+        $this->entries = $value;
+
+        return $this;
+    }
+
+    public function setSinceDate(int $value): static
+    {
+        $this->sinceDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

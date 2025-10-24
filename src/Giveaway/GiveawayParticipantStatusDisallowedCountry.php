@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayParticipantStatusDisallowedCountry extends GiveawayParticipantStatus
 {
-    public const TYPE_NAME = 'giveawayParticipantStatusDisallowedCountry';
+    public const string TYPE_NAME = 'giveawayParticipantStatusDisallowedCountry';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiveawayParticipantStatusDisallowedCountry extends GiveawayParticipantStat
     public function getUserCountryCode(): string
     {
         return $this->userCountryCode;
+    }
+
+    public function setUserCountryCode(string $value): static
+    {
+        $this->userCountryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MaskPoint extends TdObject
 {
-    public const TYPE_NAME = 'MaskPoint';
+    public const string TYPE_NAME = 'MaskPoint';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Sessions extends TdObject
 {
-    public const TYPE_NAME = 'sessions';
+    public const string TYPE_NAME = 'sessions';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class Sessions extends TdObject
     public function getSessions(): array
     {
         return $this->sessions;
+    }
+
+    public function setInactiveSessionTtlDays(int $value): static
+    {
+        $this->inactiveSessionTtlDays = $value;
+
+        return $this;
+    }
+
+    public function setSessions(array $value): static
+    {
+        $this->sessions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

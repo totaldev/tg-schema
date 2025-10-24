@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypePaidMessageReceive extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypePaidMessageReceive';
+    public const string TYPE_NAME = 'starTransactionTypePaidMessageReceive';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StarTransactionTypePaidMessageReceive extends StarTransactionType
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setCommissionPerMille(int $value): static
+    {
+        $this->commissionPerMille = $value;
+
+        return $this;
+    }
+
+    public function setCommissionStarAmount(StarAmount $value): static
+    {
+        $this->commissionStarAmount = $value;
+
+        return $this;
+    }
+
+    public function setMessageCount(int $value): static
+    {
+        $this->messageCount = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

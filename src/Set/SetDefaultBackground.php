@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetDefaultBackground extends TdFunction
 {
-    public const TYPE_NAME = 'setDefaultBackground';
+    public const string TYPE_NAME = 'setDefaultBackground';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class SetDefaultBackground extends TdFunction
     public function getType(): ?BackgroundType
     {
         return $this->type;
+    }
+
+    public function setBackground(?InputBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setForDarkTheme(bool $value): static
+    {
+        $this->forDarkTheme = $value;
+
+        return $this;
+    }
+
+    public function setType(?BackgroundType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

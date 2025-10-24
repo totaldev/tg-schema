@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetGroupCall extends TdFunction
 {
-    public const TYPE_NAME = 'getGroupCall';
+    public const string TYPE_NAME = 'getGroupCall';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetGroupCall extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

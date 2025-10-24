@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockEmbedded extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockEmbedded';
+    public const string TYPE_NAME = 'pageBlockEmbedded';
 
     public function __construct(
         /**
@@ -105,6 +105,62 @@ class PageBlockEmbedded extends PageBlock
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAllowScrolling(bool $value): static
+    {
+        $this->allowScrolling = $value;
+
+        return $this;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setHtml(string $value): static
+    {
+        $this->html = $value;
+
+        return $this;
+    }
+
+    public function setIsFullWidth(bool $value): static
+    {
+        $this->isFullWidth = $value;
+
+        return $this;
+    }
+
+    public function setPosterPhoto(?Photo $value): static
+    {
+        $this->posterPhoto = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

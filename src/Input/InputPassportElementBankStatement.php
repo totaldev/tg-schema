@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPassportElementBankStatement extends InputPassportElement
 {
-    public const TYPE_NAME = 'inputPassportElementBankStatement';
+    public const string TYPE_NAME = 'inputPassportElementBankStatement';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputPassportElementBankStatement extends InputPassportElement
     public function getBankStatement(): InputPersonalDocument
     {
         return $this->bankStatement;
+    }
+
+    public function setBankStatement(InputPersonalDocument $value): static
+    {
+        $this->bankStatement = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

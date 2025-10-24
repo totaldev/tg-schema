@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BlockList extends TdObject
 {
-    public const TYPE_NAME = 'BlockList';
+    public const string TYPE_NAME = 'BlockList';
 
     public function __construct() {}
 

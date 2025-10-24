@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypePremiumFeatures extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypePremiumFeatures';
+    public const string TYPE_NAME = 'internalLinkTypePremiumFeatures';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypePremiumFeatures extends InternalLinkType
     public function getReferrer(): string
     {
         return $this->referrer;
+    }
+
+    public function setReferrer(string $value): static
+    {
+        $this->referrer = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

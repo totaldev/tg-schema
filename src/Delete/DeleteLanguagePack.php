@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteLanguagePack extends TdFunction
 {
-    public const TYPE_NAME = 'deleteLanguagePack';
+    public const string TYPE_NAME = 'deleteLanguagePack';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class DeleteLanguagePack extends TdFunction
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

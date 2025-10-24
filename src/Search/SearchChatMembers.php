@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchChatMembers extends TdFunction
 {
-    public const TYPE_NAME = 'searchChatMembers';
+    public const string TYPE_NAME = 'searchChatMembers';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SearchChatMembers extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilter(?ChatMembersFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

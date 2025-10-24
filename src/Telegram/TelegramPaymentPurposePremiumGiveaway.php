@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose
 {
-    public const TYPE_NAME = 'telegramPaymentPurposePremiumGiveaway';
+    public const string TYPE_NAME = 'telegramPaymentPurposePremiumGiveaway';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class TelegramPaymentPurposePremiumGiveaway extends TelegramPaymentPurpose
     public function getWinnerCount(): int
     {
         return $this->winnerCount;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setParameters(GiveawayParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

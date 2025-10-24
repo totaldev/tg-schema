@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaymentFormTypeStarSubscription extends PaymentFormType
 {
-    public const TYPE_NAME = 'paymentFormTypeStarSubscription';
+    public const string TYPE_NAME = 'paymentFormTypeStarSubscription';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PaymentFormTypeStarSubscription extends PaymentFormType
     public function getPricing(): StarSubscriptionPricing
     {
         return $this->pricing;
+    }
+
+    public function setPricing(StarSubscriptionPricing $value): static
+    {
+        $this->pricing = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

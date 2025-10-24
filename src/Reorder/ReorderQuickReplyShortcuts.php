@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReorderQuickReplyShortcuts extends TdFunction
 {
-    public const TYPE_NAME = 'reorderQuickReplyShortcuts';
+    public const string TYPE_NAME = 'reorderQuickReplyShortcuts';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ReorderQuickReplyShortcuts extends TdFunction
     public function getShortcutIds(): array
     {
         return $this->shortcutIds;
+    }
+
+    public function setShortcutIds(array $value): static
+    {
+        $this->shortcutIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

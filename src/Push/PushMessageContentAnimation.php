@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentAnimation extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentAnimation';
+    public const string TYPE_NAME = 'pushMessageContentAnimation';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PushMessageContentAnimation extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setCaption(string $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

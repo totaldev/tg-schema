@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiCategoryTypeRegularStickers extends EmojiCategoryType
 {
-    public const TYPE_NAME = 'emojiCategoryTypeRegularStickers';
+    public const string TYPE_NAME = 'emojiCategoryTypeRegularStickers';
 
     public function __construct()
     {

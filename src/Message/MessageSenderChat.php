@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSenderChat extends MessageSender
 {
-    public const TYPE_NAME = 'messageSenderChat';
+    public const string TYPE_NAME = 'messageSenderChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageSenderChat extends MessageSender
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

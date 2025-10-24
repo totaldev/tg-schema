@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureIncreasedUploadFileSize extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureIncreasedUploadFileSize';
+    public const string TYPE_NAME = 'premiumFeatureIncreasedUploadFileSize';
 
     public function __construct()
     {

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ToggleGroupCallParticipantIsMuted extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallParticipantIsMuted';
+    public const string TYPE_NAME = 'toggleGroupCallParticipantIsMuted';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class ToggleGroupCallParticipantIsMuted extends TdFunction
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsMuted(bool $value): static
+    {
+        $this->isMuted = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

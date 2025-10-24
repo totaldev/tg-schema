@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateGroupCallParticipant extends Update
 {
-    public const TYPE_NAME = 'updateGroupCallParticipant';
+    public const string TYPE_NAME = 'updateGroupCallParticipant';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateGroupCallParticipant extends Update
     public function getParticipant(): GroupCallParticipant
     {
         return $this->participant;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setParticipant(GroupCallParticipant $value): static
+    {
+        $this->participant = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

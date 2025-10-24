@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetBlockedMessageSenders extends TdFunction
 {
-    public const TYPE_NAME = 'getBlockedMessageSenders';
+    public const string TYPE_NAME = 'getBlockedMessageSenders';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetBlockedMessageSenders extends TdFunction
     public function getOffset(): int
     {
         return $this->offset;
+    }
+
+    public function setBlockList(BlockList $value): static
+    {
+        $this->blockList = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

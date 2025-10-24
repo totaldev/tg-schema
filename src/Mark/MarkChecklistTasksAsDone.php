@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class MarkChecklistTasksAsDone extends TdFunction
 {
-    public const TYPE_NAME = 'markChecklistTasksAsDone';
+    public const string TYPE_NAME = 'markChecklistTasksAsDone';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class MarkChecklistTasksAsDone extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMarkedAsDoneTaskIds(array $value): static
+    {
+        $this->markedAsDoneTaskIds = $value;
+
+        return $this;
+    }
+
+    public function setMarkedAsNotDoneTaskIds(array $value): static
+    {
+        $this->markedAsNotDoneTaskIds = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

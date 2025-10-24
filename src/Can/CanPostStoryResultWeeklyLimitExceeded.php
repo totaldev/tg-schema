@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult
 {
-    public const TYPE_NAME = 'canPostStoryResultWeeklyLimitExceeded';
+    public const string TYPE_NAME = 'canPostStoryResultWeeklyLimitExceeded';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CanPostStoryResultWeeklyLimitExceeded extends CanPostStoryResult
     public function getRetryAfter(): int
     {
         return $this->retryAfter;
+    }
+
+    public function setRetryAfter(int $value): static
+    {
+        $this->retryAfter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

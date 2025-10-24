@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputBackgroundRemote extends InputBackground
 {
-    public const TYPE_NAME = 'inputBackgroundRemote';
+    public const string TYPE_NAME = 'inputBackgroundRemote';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputBackgroundRemote extends InputBackground
     public function getBackgroundId(): int
     {
         return $this->backgroundId;
+    }
+
+    public function setBackgroundId(int $value): static
+    {
+        $this->backgroundId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

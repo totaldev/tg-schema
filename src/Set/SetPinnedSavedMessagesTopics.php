@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetPinnedSavedMessagesTopics extends TdFunction
 {
-    public const TYPE_NAME = 'setPinnedSavedMessagesTopics';
+    public const string TYPE_NAME = 'setPinnedSavedMessagesTopics';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetPinnedSavedMessagesTopics extends TdFunction
     public function getSavedMessagesTopicIds(): array
     {
         return $this->savedMessagesTopicIds;
+    }
+
+    public function setSavedMessagesTopicIds(array $value): static
+    {
+        $this->savedMessagesTopicIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenUbuntuPush extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenUbuntuPush';
+    public const string TYPE_NAME = 'deviceTokenUbuntuPush';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeviceTokenUbuntuPush extends DeviceToken
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

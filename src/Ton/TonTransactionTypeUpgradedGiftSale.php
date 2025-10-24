@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
 {
-    public const TYPE_NAME = 'tonTransactionTypeUpgradedGiftSale';
+    public const string TYPE_NAME = 'tonTransactionTypeUpgradedGiftSale';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class TonTransactionTypeUpgradedGiftSale extends TonTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setCommissionPerMille(int $value): static
+    {
+        $this->commissionPerMille = $value;
+
+        return $this;
+    }
+
+    public function setCommissionToncoinAmount(int $value): static
+    {
+        $this->commissionToncoinAmount = $value;
+
+        return $this;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

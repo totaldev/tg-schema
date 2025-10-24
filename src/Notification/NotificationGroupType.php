@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class NotificationGroupType extends TdObject
 {
-    public const TYPE_NAME = 'NotificationGroupType';
+    public const string TYPE_NAME = 'NotificationGroupType';
 
     public function __construct() {}
 

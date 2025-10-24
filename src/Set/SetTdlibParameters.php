@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetTdlibParameters extends TdFunction
 {
-    public const TYPE_NAME = 'setTdlibParameters';
+    public const string TYPE_NAME = 'setTdlibParameters';
 
     public function __construct(
         /**
@@ -162,6 +162,104 @@ class SetTdlibParameters extends TdFunction
     public function getUseTestDc(): bool
     {
         return $this->useTestDc;
+    }
+
+    public function setApiHash(string $value): static
+    {
+        $this->apiHash = $value;
+
+        return $this;
+    }
+
+    public function setApiId(int $value): static
+    {
+        $this->apiId = $value;
+
+        return $this;
+    }
+
+    public function setApplicationVersion(string $value): static
+    {
+        $this->applicationVersion = $value;
+
+        return $this;
+    }
+
+    public function setDatabaseDirectory(string $value): static
+    {
+        $this->databaseDirectory = $value;
+
+        return $this;
+    }
+
+    public function setDatabaseEncryptionKey(string $value): static
+    {
+        $this->databaseEncryptionKey = $value;
+
+        return $this;
+    }
+
+    public function setDeviceModel(string $value): static
+    {
+        $this->deviceModel = $value;
+
+        return $this;
+    }
+
+    public function setFilesDirectory(string $value): static
+    {
+        $this->filesDirectory = $value;
+
+        return $this;
+    }
+
+    public function setSystemLanguageCode(string $value): static
+    {
+        $this->systemLanguageCode = $value;
+
+        return $this;
+    }
+
+    public function setSystemVersion(string $value): static
+    {
+        $this->systemVersion = $value;
+
+        return $this;
+    }
+
+    public function setUseChatInfoDatabase(bool $value): static
+    {
+        $this->useChatInfoDatabase = $value;
+
+        return $this;
+    }
+
+    public function setUseFileDatabase(bool $value): static
+    {
+        $this->useFileDatabase = $value;
+
+        return $this;
+    }
+
+    public function setUseMessageDatabase(bool $value): static
+    {
+        $this->useMessageDatabase = $value;
+
+        return $this;
+    }
+
+    public function setUseSecretChats(bool $value): static
+    {
+        $this->useSecretChats = $value;
+
+        return $this;
+    }
+
+    public function setUseTestDc(bool $value): static
+    {
+        $this->useTestDc = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

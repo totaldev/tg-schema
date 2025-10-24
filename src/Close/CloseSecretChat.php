@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CloseSecretChat extends TdFunction
 {
-    public const TYPE_NAME = 'closeSecretChat';
+    public const string TYPE_NAME = 'closeSecretChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CloseSecretChat extends TdFunction
     public function getSecretChatId(): int
     {
         return $this->secretChatId;
+    }
+
+    public function setSecretChatId(int $value): static
+    {
+        $this->secretChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

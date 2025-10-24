@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatPaidMessageStarCount extends TdFunction
 {
-    public const TYPE_NAME = 'setChatPaidMessageStarCount';
+    public const string TYPE_NAME = 'setChatPaidMessageStarCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class SetChatPaidMessageStarCount extends TdFunction
     public function getPaidMessageStarCount(): int
     {
         return $this->paidMessageStarCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

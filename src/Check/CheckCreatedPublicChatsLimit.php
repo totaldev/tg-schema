@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CheckCreatedPublicChatsLimit extends TdFunction
 {
-    public const TYPE_NAME = 'checkCreatedPublicChatsLimit';
+    public const string TYPE_NAME = 'checkCreatedPublicChatsLimit';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class CheckCreatedPublicChatsLimit extends TdFunction
     public function getType(): PublicChatType
     {
         return $this->type;
+    }
+
+    public function setType(PublicChatType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

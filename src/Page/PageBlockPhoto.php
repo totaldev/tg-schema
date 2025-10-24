@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockPhoto extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockPhoto';
+    public const string TYPE_NAME = 'pageBlockPhoto';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PageBlockPhoto extends PageBlock
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

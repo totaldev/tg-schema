@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterFailedToSend extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterFailedToSend';
+    public const string TYPE_NAME = 'searchMessagesFilterFailedToSend';
 
     public function __construct()
     {

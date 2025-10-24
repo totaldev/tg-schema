@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class Video extends TdObject
 {
-    public const TYPE_NAME = 'video';
+    public const string TYPE_NAME = 'video';
 
     public function __construct(
         /**
@@ -126,6 +126,76 @@ class Video extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setFileName(string $value): static
+    {
+        $this->fileName = $value;
+
+        return $this;
+    }
+
+    public function setHasStickers(bool $value): static
+    {
+        $this->hasStickers = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSupportsStreaming(bool $value): static
+    {
+        $this->supportsStreaming = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setVideo(File $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

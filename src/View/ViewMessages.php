@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ViewMessages extends TdFunction
 {
-    public const TYPE_NAME = 'viewMessages';
+    public const string TYPE_NAME = 'viewMessages';
 
     public function __construct(
         /**
@@ -68,6 +68,34 @@ class ViewMessages extends TdFunction
     public function getSource(): ?MessageSource
     {
         return $this->source;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForceRead(bool $value): static
+    {
+        $this->forceRead = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
+    }
+
+    public function setSource(?MessageSource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenFirebaseCloudMessaging extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenFirebaseCloudMessaging';
+    public const string TYPE_NAME = 'deviceTokenFirebaseCloudMessaging';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class DeviceTokenFirebaseCloudMessaging extends DeviceToken
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setEncrypt(bool $value): static
+    {
+        $this->encrypt = $value;
+
+        return $this;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

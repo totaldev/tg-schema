@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class WebAppInfo extends TdObject
 {
-    public const TYPE_NAME = 'webAppInfo';
+    public const string TYPE_NAME = 'webAppInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class WebAppInfo extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setLaunchId(int $value): static
+    {
+        $this->launchId = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

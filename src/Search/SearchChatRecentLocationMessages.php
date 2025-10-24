@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchChatRecentLocationMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchChatRecentLocationMessages';
+    public const string TYPE_NAME = 'searchChatRecentLocationMessages';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchChatRecentLocationMessages extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

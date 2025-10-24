@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeUnderline extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeUnderline';
+    public const string TYPE_NAME = 'textEntityTypeUnderline';
 
     public function __construct()
     {

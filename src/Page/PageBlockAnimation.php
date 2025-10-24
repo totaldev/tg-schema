@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockAnimation extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockAnimation';
+    public const string TYPE_NAME = 'pageBlockAnimation';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PageBlockAnimation extends PageBlock
     public function getNeedAutoplay(): bool
     {
         return $this->needAutoplay;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setNeedAutoplay(bool $value): static
+    {
+        $this->needAutoplay = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

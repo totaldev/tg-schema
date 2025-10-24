@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventHasProtectedContentToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventHasProtectedContentToggled';
+    public const string TYPE_NAME = 'chatEventHasProtectedContentToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventHasProtectedContentToggled extends ChatEventAction
     public function getHasProtectedContent(): bool
     {
         return $this->hasProtectedContent;
+    }
+
+    public function setHasProtectedContent(bool $value): static
+    {
+        $this->hasProtectedContent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

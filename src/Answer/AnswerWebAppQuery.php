@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AnswerWebAppQuery extends TdFunction
 {
-    public const TYPE_NAME = 'answerWebAppQuery';
+    public const string TYPE_NAME = 'answerWebAppQuery';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class AnswerWebAppQuery extends TdFunction
     public function getWebAppQueryId(): string
     {
         return $this->webAppQueryId;
+    }
+
+    public function setResult(InputInlineQueryResult $value): static
+    {
+        $this->result = $value;
+
+        return $this;
+    }
+
+    public function setWebAppQueryId(string $value): static
+    {
+        $this->webAppQueryId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

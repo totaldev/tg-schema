@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Transaction;
  */
 class TransactionDirectionOutgoing extends TransactionDirection
 {
-    public const TYPE_NAME = 'transactionDirectionOutgoing';
+    public const string TYPE_NAME = 'transactionDirectionOutgoing';
 
     public function __construct()
     {

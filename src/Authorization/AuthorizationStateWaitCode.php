@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AuthorizationStateWaitCode extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitCode';
+    public const string TYPE_NAME = 'authorizationStateWaitCode';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class AuthorizationStateWaitCode extends AuthorizationState
     public function getCodeInfo(): AuthenticationCodeInfo
     {
         return $this->codeInfo;
+    }
+
+    public function setCodeInfo(AuthenticationCodeInfo $value): static
+    {
+        $this->codeInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

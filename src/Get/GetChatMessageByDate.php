@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatMessageByDate extends TdFunction
 {
-    public const TYPE_NAME = 'getChatMessageByDate';
+    public const string TYPE_NAME = 'getChatMessageByDate';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetChatMessageByDate extends TdFunction
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

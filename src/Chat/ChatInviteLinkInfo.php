@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Verification\VerificationStatus;
  */
 class ChatInviteLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatInviteLinkInfo';
+    public const string TYPE_NAME = 'chatInviteLinkInfo';
 
     public function __construct(
         /**
@@ -157,6 +157,97 @@ class ChatInviteLinkInfo extends TdObject
     public function getVerificationStatus(): ?VerificationStatus
     {
         return $this->verificationStatus;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setAccessibleFor(int $value): static
+    {
+        $this->accessibleFor = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCreatesJoinRequest(bool $value): static
+    {
+        $this->createsJoinRequest = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setIsPublic(bool $value): static
+    {
+        $this->isPublic = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(int $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setMemberUserIds(array $value): static
+    {
+        $this->memberUserIds = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhotoInfo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionInfo(?ChatInviteLinkSubscriptionInfo $value): static
+    {
+        $this->subscriptionInfo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setType(InviteLinkChatType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setVerificationStatus(?VerificationStatus $value): static
+    {
+        $this->verificationStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

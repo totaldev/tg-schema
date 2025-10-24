@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessAccountGiftSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessAccountGiftSettings';
+    public const string TYPE_NAME = 'setBusinessAccountGiftSettings';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetBusinessAccountGiftSettings extends TdFunction
     public function getSettings(): GiftSettings
     {
         return $this->settings;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setSettings(GiftSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

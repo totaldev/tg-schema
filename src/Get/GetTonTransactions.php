@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Transaction\TransactionDirection;
  */
 class GetTonTransactions extends TdFunction
 {
-    public const TYPE_NAME = 'getTonTransactions';
+    public const string TYPE_NAME = 'getTonTransactions';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetTonTransactions extends TdFunction
     public function getOffset(): string
     {
         return $this->offset;
+    }
+
+    public function setDirection(?TransactionDirection $value): static
+    {
+        $this->direction = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateReactionNotificationSettings extends Update
 {
-    public const TYPE_NAME = 'updateReactionNotificationSettings';
+    public const string TYPE_NAME = 'updateReactionNotificationSettings';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateReactionNotificationSettings extends Update
     public function getNotificationSettings(): ReactionNotificationSettings
     {
         return $this->notificationSettings;
+    }
+
+    public function setNotificationSettings(ReactionNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

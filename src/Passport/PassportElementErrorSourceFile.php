@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementErrorSourceFile extends PassportElementErrorSource
 {
-    public const TYPE_NAME = 'passportElementErrorSourceFile';
+    public const string TYPE_NAME = 'passportElementErrorSourceFile';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PassportElementErrorSourceFile extends PassportElementErrorSource
     public function getFileIndex(): int
     {
         return $this->fileIndex;
+    }
+
+    public function setFileIndex(int $value): static
+    {
+        $this->fileIndex = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

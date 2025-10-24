@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftBackdropCount extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftBackdropCount';
+    public const string TYPE_NAME = 'upgradedGiftBackdropCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UpgradedGiftBackdropCount extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setBackdrop(UpgradedGiftBackdrop $value): static
+    {
+        $this->backdrop = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

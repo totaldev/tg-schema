@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextPhoneNumber extends RichText
 {
-    public const TYPE_NAME = 'richTextPhoneNumber';
+    public const string TYPE_NAME = 'richTextPhoneNumber';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RichTextPhoneNumber extends RichText
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

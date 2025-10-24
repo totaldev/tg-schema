@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ValidateOrderInfo extends TdFunction
 {
-    public const TYPE_NAME = 'validateOrderInfo';
+    public const string TYPE_NAME = 'validateOrderInfo';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ValidateOrderInfo extends TdFunction
     public function getOrderInfo(): ?OrderInfo
     {
         return $this->orderInfo;
+    }
+
+    public function setAllowSave(bool $value): static
+    {
+        $this->allowSave = $value;
+
+        return $this;
+    }
+
+    public function setInputInvoice(InputInvoice $value): static
+    {
+        $this->inputInvoice = $value;
+
+        return $this;
+    }
+
+    public function setOrderInfo(?OrderInfo $value): static
+    {
+        $this->orderInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

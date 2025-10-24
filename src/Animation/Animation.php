@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class Animation extends TdObject
 {
-    public const TYPE_NAME = 'animation';
+    public const string TYPE_NAME = 'animation';
 
     public function __construct(
         /**
@@ -116,6 +116,69 @@ class Animation extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAnimation(File $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setFileName(string $value): static
+    {
+        $this->fileName = $value;
+
+        return $this;
+    }
+
+    public function setHasStickers(bool $value): static
+    {
+        $this->hasStickers = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

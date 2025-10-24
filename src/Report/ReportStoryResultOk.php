@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportStoryResultOk extends ReportStoryResult
 {
-    public const TYPE_NAME = 'reportStoryResultOk';
+    public const string TYPE_NAME = 'reportStoryResultOk';
 
     public function __construct()
     {

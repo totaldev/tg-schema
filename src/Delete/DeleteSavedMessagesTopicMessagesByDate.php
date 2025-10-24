@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteSavedMessagesTopicMessagesByDate extends TdFunction
 {
-    public const TYPE_NAME = 'deleteSavedMessagesTopicMessagesByDate';
+    public const string TYPE_NAME = 'deleteSavedMessagesTopicMessagesByDate';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class DeleteSavedMessagesTopicMessagesByDate extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setMaxDate(int $value): static
+    {
+        $this->maxDate = $value;
+
+        return $this;
+    }
+
+    public function setMinDate(int $value): static
+    {
+        $this->minDate = $value;
+
+        return $this;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

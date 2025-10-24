@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetAuthenticationPremiumPurchaseTransaction extends TdFunction
 {
-    public const TYPE_NAME = 'setAuthenticationPremiumPurchaseTransaction';
+    public const string TYPE_NAME = 'setAuthenticationPremiumPurchaseTransaction';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SetAuthenticationPremiumPurchaseTransaction extends TdFunction
     public function getTransaction(): StoreTransaction
     {
         return $this->transaction;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsRestore(bool $value): static
+    {
+        $this->isRestore = $value;
+
+        return $this;
+    }
+
+    public function setTransaction(StoreTransaction $value): static
+    {
+        $this->transaction = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

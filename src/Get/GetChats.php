@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChats extends TdFunction
 {
-    public const TYPE_NAME = 'getChats';
+    public const string TYPE_NAME = 'getChats';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class GetChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setChatList(?ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

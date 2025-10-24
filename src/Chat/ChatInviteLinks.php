@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatInviteLinks extends TdObject
 {
-    public const TYPE_NAME = 'chatInviteLinks';
+    public const string TYPE_NAME = 'chatInviteLinks';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatInviteLinks extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setInviteLinks(array $value): static
+    {
+        $this->inviteLinks = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

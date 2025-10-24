@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatListArchive extends ChatList
 {
-    public const TYPE_NAME = 'chatListArchive';
+    public const string TYPE_NAME = 'chatListArchive';
 
     public function __construct()
     {

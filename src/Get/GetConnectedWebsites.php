@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetConnectedWebsites extends TdFunction
 {
-    public const TYPE_NAME = 'getConnectedWebsites';
+    public const string TYPE_NAME = 'getConnectedWebsites';
 
     public function __construct() {}
 

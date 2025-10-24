@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResetInstalledBackgrounds extends TdFunction
 {
-    public const TYPE_NAME = 'resetInstalledBackgrounds';
+    public const string TYPE_NAME = 'resetInstalledBackgrounds';
 
     public function __construct() {}
 

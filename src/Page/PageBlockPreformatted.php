@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockPreformatted extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockPreformatted';
+    public const string TYPE_NAME = 'pageBlockPreformatted';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PageBlockPreformatted extends PageBlock
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setLanguage(string $value): static
+    {
+        $this->language = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

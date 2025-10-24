@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBusinessMessageIsPinned extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessMessageIsPinned';
+    public const string TYPE_NAME = 'setBusinessMessageIsPinned';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class SetBusinessMessageIsPinned extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallDiscardReason extends TdObject
 {
-    public const TYPE_NAME = 'CallDiscardReason';
+    public const string TYPE_NAME = 'CallDiscardReason';
 
     public function __construct() {}
 

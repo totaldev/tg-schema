@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanTransferOwnershipResultOk extends CanTransferOwnershipResult
 {
-    public const TYPE_NAME = 'canTransferOwnershipResultOk';
+    public const string TYPE_NAME = 'canTransferOwnershipResultOk';
 
     public function __construct()
     {

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageText extends MessageContent
 {
-    public const TYPE_NAME = 'messageText';
+    public const string TYPE_NAME = 'messageText';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class MessageText extends MessageContent
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setLinkPreview(?LinkPreview $value): static
+    {
+        $this->linkPreview = $value;
+
+        return $this;
+    }
+
+    public function setLinkPreviewOptions(?LinkPreviewOptions $value): static
+    {
+        $this->linkPreviewOptions = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

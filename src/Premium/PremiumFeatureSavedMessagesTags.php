@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureSavedMessagesTags extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureSavedMessagesTags';
+    public const string TYPE_NAME = 'premiumFeatureSavedMessagesTags';
 
     public function __construct()
     {

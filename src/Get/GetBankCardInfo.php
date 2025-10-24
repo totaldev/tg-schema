@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBankCardInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getBankCardInfo';
+    public const string TYPE_NAME = 'getBankCardInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetBankCardInfo extends TdFunction
     public function getBankCardNumber(): string
     {
         return $this->bankCardNumber;
+    }
+
+    public function setBankCardNumber(string $value): static
+    {
+        $this->bankCardNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

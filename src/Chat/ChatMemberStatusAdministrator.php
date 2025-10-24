@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatMemberStatusAdministrator extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusAdministrator';
+    public const string TYPE_NAME = 'chatMemberStatusAdministrator';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ChatMemberStatusAdministrator extends ChatMemberStatus
     public function getRights(): ChatAdministratorRights
     {
         return $this->rights;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
+    }
+
+    public function setCustomTitle(string $value): static
+    {
+        $this->customTitle = $value;
+
+        return $this;
+    }
+
+    public function setRights(ChatAdministratorRights $value): static
+    {
+        $this->rights = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

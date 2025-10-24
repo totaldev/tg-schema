@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeUnknown extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeUnknown';
+    public const string TYPE_NAME = 'sessionTypeUnknown';
 
     public function __construct()
     {

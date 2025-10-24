@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotCommandScopeDefault extends BotCommandScope
 {
-    public const TYPE_NAME = 'botCommandScopeDefault';
+    public const string TYPE_NAME = 'botCommandScopeDefault';
 
     public function __construct()
     {

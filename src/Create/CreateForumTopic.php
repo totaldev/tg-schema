@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateForumTopic extends TdFunction
 {
-    public const TYPE_NAME = 'createForumTopic';
+    public const string TYPE_NAME = 'createForumTopic';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class CreateForumTopic extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIcon(ForumTopicIcon $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setIsNameImplicit(bool $value): static
+    {
+        $this->isNameImplicit = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

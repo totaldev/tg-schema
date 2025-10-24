@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getStickers';
+    public const string TYPE_NAME = 'getStickers';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class GetStickers extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaymentProvider extends TdObject
 {
-    public const TYPE_NAME = 'PaymentProvider';
+    public const string TYPE_NAME = 'PaymentProvider';
 
     public function __construct() {}
 

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatAvailableReactions extends TdFunction
 {
-    public const TYPE_NAME = 'setChatAvailableReactions';
+    public const string TYPE_NAME = 'setChatAvailableReactions';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatAvailableReactions extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setAvailableReactions(ChatAvailableReactions $value): static
+    {
+        $this->availableReactions = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

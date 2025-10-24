@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetGroupCallParticipantVolumeLevel extends TdFunction
 {
-    public const TYPE_NAME = 'setGroupCallParticipantVolumeLevel';
+    public const string TYPE_NAME = 'setGroupCallParticipantVolumeLevel';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class SetGroupCallParticipantVolumeLevel extends TdFunction
     public function getVolumeLevel(): int
     {
         return $this->volumeLevel;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
+    }
+
+    public function setVolumeLevel(int $value): static
+    {
+        $this->volumeLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeNone extends FileType
 {
-    public const TYPE_NAME = 'fileTypeNone';
+    public const string TYPE_NAME = 'fileTypeNone';
 
     public function __construct()
     {

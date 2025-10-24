@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Notification extends TdObject
 {
-    public const TYPE_NAME = 'notification';
+    public const string TYPE_NAME = 'notification';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class Notification extends TdObject
     public function getType(): NotificationType
     {
         return $this->type;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsSilent(bool $value): static
+    {
+        $this->isSilent = $value;
+
+        return $this;
+    }
+
+    public function setType(NotificationType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

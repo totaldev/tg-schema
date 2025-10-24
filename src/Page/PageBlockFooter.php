@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockFooter extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockFooter';
+    public const string TYPE_NAME = 'pageBlockFooter';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockFooter extends PageBlock
     public function getFooter(): RichText
     {
         return $this->footer;
+    }
+
+    public function setFooter(RichText $value): static
+    {
+        $this->footer = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

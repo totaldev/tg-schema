@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserTypeBot extends UserType
 {
-    public const TYPE_NAME = 'userTypeBot';
+    public const string TYPE_NAME = 'userTypeBot';
 
     public function __construct(
         /**
@@ -132,6 +132,83 @@ class UserTypeBot extends UserType
     public function getNeedLocation(): bool
     {
         return $this->needLocation;
+    }
+
+    public function setActiveUserCount(int $value): static
+    {
+        $this->activeUserCount = $value;
+
+        return $this;
+    }
+
+    public function setCanBeAddedToAttachmentMenu(bool $value): static
+    {
+        $this->canBeAddedToAttachmentMenu = $value;
+
+        return $this;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
+    }
+
+    public function setCanConnectToBusiness(bool $value): static
+    {
+        $this->canConnectToBusiness = $value;
+
+        return $this;
+    }
+
+    public function setCanJoinGroups(bool $value): static
+    {
+        $this->canJoinGroups = $value;
+
+        return $this;
+    }
+
+    public function setCanReadAllGroupMessages(bool $value): static
+    {
+        $this->canReadAllGroupMessages = $value;
+
+        return $this;
+    }
+
+    public function setHasMainWebApp(bool $value): static
+    {
+        $this->hasMainWebApp = $value;
+
+        return $this;
+    }
+
+    public function setHasTopics(bool $value): static
+    {
+        $this->hasTopics = $value;
+
+        return $this;
+    }
+
+    public function setInlineQueryPlaceholder(string $value): static
+    {
+        $this->inlineQueryPlaceholder = $value;
+
+        return $this;
+    }
+
+    public function setIsInline(bool $value): static
+    {
+        $this->isInline = $value;
+
+        return $this;
+    }
+
+    public function setNeedLocation(bool $value): static
+    {
+        $this->needLocation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

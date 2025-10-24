@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockAudio extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockAudio';
+    public const string TYPE_NAME = 'pageBlockAudio';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PageBlockAudio extends PageBlock
     public function getCaption(): PageBlockCaption
     {
         return $this->caption;
+    }
+
+    public function setAudio(?Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

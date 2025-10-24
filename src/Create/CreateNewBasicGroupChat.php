@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateNewBasicGroupChat extends TdFunction
 {
-    public const TYPE_NAME = 'createNewBasicGroupChat';
+    public const string TYPE_NAME = 'createNewBasicGroupChat';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class CreateNewBasicGroupChat extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setMessageAutoDeleteTime(int $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

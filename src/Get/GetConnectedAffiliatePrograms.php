@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetConnectedAffiliatePrograms extends TdFunction
 {
-    public const TYPE_NAME = 'getConnectedAffiliatePrograms';
+    public const string TYPE_NAME = 'getConnectedAffiliatePrograms';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetConnectedAffiliatePrograms extends TdFunction
     public function getOffset(): string
     {
         return $this->offset;
+    }
+
+    public function setAffiliate(AffiliateType $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

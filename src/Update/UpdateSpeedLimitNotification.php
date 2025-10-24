@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateSpeedLimitNotification extends Update
 {
-    public const TYPE_NAME = 'updateSpeedLimitNotification';
+    public const string TYPE_NAME = 'updateSpeedLimitNotification';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateSpeedLimitNotification extends Update
     public function getIsUpload(): bool
     {
         return $this->isUpload;
+    }
+
+    public function setIsUpload(bool $value): static
+    {
+        $this->isUpload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

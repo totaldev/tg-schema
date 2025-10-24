@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Payment;
  */
 class PaymentProviderOther extends PaymentProvider
 {
-    public const TYPE_NAME = 'paymentProviderOther';
+    public const string TYPE_NAME = 'paymentProviderOther';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PaymentProviderOther extends PaymentProvider
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

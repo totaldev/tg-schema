@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBotProfilePhoto extends TdFunction
 {
-    public const TYPE_NAME = 'setBotProfilePhoto';
+    public const string TYPE_NAME = 'setBotProfilePhoto';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetBotProfilePhoto extends TdFunction
     public function getPhoto(): ?InputChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?InputChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

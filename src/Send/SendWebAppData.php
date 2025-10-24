@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendWebAppData extends TdFunction
 {
-    public const TYPE_NAME = 'sendWebAppData';
+    public const string TYPE_NAME = 'sendWebAppData';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SendWebAppData extends TdFunction
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setButtonText(string $value): static
+    {
+        $this->buttonText = $value;
+
+        return $this;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

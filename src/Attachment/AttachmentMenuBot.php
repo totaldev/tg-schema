@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AttachmentMenuBot extends TdObject
 {
-    public const TYPE_NAME = 'attachmentMenuBot';
+    public const string TYPE_NAME = 'attachmentMenuBot';
 
     public function __construct(
         /**
@@ -254,6 +254,167 @@ class AttachmentMenuBot extends TdObject
     public function getWebAppPlaceholder(): ?File
     {
         return $this->webAppPlaceholder;
+    }
+
+    public function setAndroidIcon(?File $value): static
+    {
+        $this->androidIcon = $value;
+
+        return $this;
+    }
+
+    public function setAndroidSideMenuIcon(?File $value): static
+    {
+        $this->androidSideMenuIcon = $value;
+
+        return $this;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setDefaultIcon(?File $value): static
+    {
+        $this->defaultIcon = $value;
+
+        return $this;
+    }
+
+    public function setIconColor(?AttachmentMenuBotColor $value): static
+    {
+        $this->iconColor = $value;
+
+        return $this;
+    }
+
+    public function setIosAnimatedIcon(?File $value): static
+    {
+        $this->iosAnimatedIcon = $value;
+
+        return $this;
+    }
+
+    public function setIosSideMenuIcon(?File $value): static
+    {
+        $this->iosSideMenuIcon = $value;
+
+        return $this;
+    }
+
+    public function setIosStaticIcon(?File $value): static
+    {
+        $this->iosStaticIcon = $value;
+
+        return $this;
+    }
+
+    public function setIsAdded(bool $value): static
+    {
+        $this->isAdded = $value;
+
+        return $this;
+    }
+
+    public function setMacosIcon(?File $value): static
+    {
+        $this->macosIcon = $value;
+
+        return $this;
+    }
+
+    public function setMacosSideMenuIcon(?File $value): static
+    {
+        $this->macosSideMenuIcon = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setNameColor(?AttachmentMenuBotColor $value): static
+    {
+        $this->nameColor = $value;
+
+        return $this;
+    }
+
+    public function setRequestWriteAccess(bool $value): static
+    {
+        $this->requestWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setShowDisclaimerInSideMenu(bool $value): static
+    {
+        $this->showDisclaimerInSideMenu = $value;
+
+        return $this;
+    }
+
+    public function setShowInAttachmentMenu(bool $value): static
+    {
+        $this->showInAttachmentMenu = $value;
+
+        return $this;
+    }
+
+    public function setShowInSideMenu(bool $value): static
+    {
+        $this->showInSideMenu = $value;
+
+        return $this;
+    }
+
+    public function setSupportsBotChats(bool $value): static
+    {
+        $this->supportsBotChats = $value;
+
+        return $this;
+    }
+
+    public function setSupportsChannelChats(bool $value): static
+    {
+        $this->supportsChannelChats = $value;
+
+        return $this;
+    }
+
+    public function setSupportsGroupChats(bool $value): static
+    {
+        $this->supportsGroupChats = $value;
+
+        return $this;
+    }
+
+    public function setSupportsSelfChat(bool $value): static
+    {
+        $this->supportsSelfChat = $value;
+
+        return $this;
+    }
+
+    public function setSupportsUserChats(bool $value): static
+    {
+        $this->supportsUserChats = $value;
+
+        return $this;
+    }
+
+    public function setWebAppPlaceholder(?File $value): static
+    {
+        $this->webAppPlaceholder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

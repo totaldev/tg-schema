@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPasswordState extends TdFunction
 {
-    public const TYPE_NAME = 'getPasswordState';
+    public const string TYPE_NAME = 'getPasswordState';
 
     public function __construct() {}
 

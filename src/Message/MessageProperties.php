@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageProperties extends TdObject
 {
-    public const TYPE_NAME = 'messageProperties';
+    public const string TYPE_NAME = 'messageProperties';
 
     public function __construct(
         /**
@@ -372,6 +372,251 @@ class MessageProperties extends TdObject
     public function getNeedShowStatistics(): bool
     {
         return $this->needShowStatistics;
+    }
+
+    public function setCanAddOffer(bool $value): static
+    {
+        $this->canAddOffer = $value;
+
+        return $this;
+    }
+
+    public function setCanAddTasks(bool $value): static
+    {
+        $this->canAddTasks = $value;
+
+        return $this;
+    }
+
+    public function setCanBeApproved(bool $value): static
+    {
+        $this->canBeApproved = $value;
+
+        return $this;
+    }
+
+    public function setCanBeCopied(bool $value): static
+    {
+        $this->canBeCopied = $value;
+
+        return $this;
+    }
+
+    public function setCanBeCopiedToSecretChat(bool $value): static
+    {
+        $this->canBeCopiedToSecretChat = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeclined(bool $value): static
+    {
+        $this->canBeDeclined = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeletedForAllUsers(bool $value): static
+    {
+        $this->canBeDeletedForAllUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeletedOnlyForSelf(bool $value): static
+    {
+        $this->canBeDeletedOnlyForSelf = $value;
+
+        return $this;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
+    }
+
+    public function setCanBeForwarded(bool $value): static
+    {
+        $this->canBeForwarded = $value;
+
+        return $this;
+    }
+
+    public function setCanBePaid(bool $value): static
+    {
+        $this->canBePaid = $value;
+
+        return $this;
+    }
+
+    public function setCanBePinned(bool $value): static
+    {
+        $this->canBePinned = $value;
+
+        return $this;
+    }
+
+    public function setCanBeReplied(bool $value): static
+    {
+        $this->canBeReplied = $value;
+
+        return $this;
+    }
+
+    public function setCanBeRepliedInAnotherChat(bool $value): static
+    {
+        $this->canBeRepliedInAnotherChat = $value;
+
+        return $this;
+    }
+
+    public function setCanBeSaved(bool $value): static
+    {
+        $this->canBeSaved = $value;
+
+        return $this;
+    }
+
+    public function setCanBeSharedInStory(bool $value): static
+    {
+        $this->canBeSharedInStory = $value;
+
+        return $this;
+    }
+
+    public function setCanEditMedia(bool $value): static
+    {
+        $this->canEditMedia = $value;
+
+        return $this;
+    }
+
+    public function setCanEditSchedulingState(bool $value): static
+    {
+        $this->canEditSchedulingState = $value;
+
+        return $this;
+    }
+
+    public function setCanEditSuggestedPostInfo(bool $value): static
+    {
+        $this->canEditSuggestedPostInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanGetAuthor(bool $value): static
+    {
+        $this->canGetAuthor = $value;
+
+        return $this;
+    }
+
+    public function setCanGetEmbeddingCode(bool $value): static
+    {
+        $this->canGetEmbeddingCode = $value;
+
+        return $this;
+    }
+
+    public function setCanGetLink(bool $value): static
+    {
+        $this->canGetLink = $value;
+
+        return $this;
+    }
+
+    public function setCanGetMediaTimestampLinks(bool $value): static
+    {
+        $this->canGetMediaTimestampLinks = $value;
+
+        return $this;
+    }
+
+    public function setCanGetMessageThread(bool $value): static
+    {
+        $this->canGetMessageThread = $value;
+
+        return $this;
+    }
+
+    public function setCanGetReadDate(bool $value): static
+    {
+        $this->canGetReadDate = $value;
+
+        return $this;
+    }
+
+    public function setCanGetStatistics(bool $value): static
+    {
+        $this->canGetStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanGetVideoAdvertisements(bool $value): static
+    {
+        $this->canGetVideoAdvertisements = $value;
+
+        return $this;
+    }
+
+    public function setCanGetViewers(bool $value): static
+    {
+        $this->canGetViewers = $value;
+
+        return $this;
+    }
+
+    public function setCanMarkTasksAsDone(bool $value): static
+    {
+        $this->canMarkTasksAsDone = $value;
+
+        return $this;
+    }
+
+    public function setCanRecognizeSpeech(bool $value): static
+    {
+        $this->canRecognizeSpeech = $value;
+
+        return $this;
+    }
+
+    public function setCanReportChat(bool $value): static
+    {
+        $this->canReportChat = $value;
+
+        return $this;
+    }
+
+    public function setCanReportReactions(bool $value): static
+    {
+        $this->canReportReactions = $value;
+
+        return $this;
+    }
+
+    public function setCanReportSupergroupSpam(bool $value): static
+    {
+        $this->canReportSupergroupSpam = $value;
+
+        return $this;
+    }
+
+    public function setCanSetFactCheck(bool $value): static
+    {
+        $this->canSetFactCheck = $value;
+
+        return $this;
+    }
+
+    public function setNeedShowStatistics(bool $value): static
+    {
+        $this->needShowStatistics = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

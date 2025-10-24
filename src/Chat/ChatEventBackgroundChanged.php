@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventBackgroundChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventBackgroundChanged';
+    public const string TYPE_NAME = 'chatEventBackgroundChanged';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventBackgroundChanged extends ChatEventAction
     public function getOldBackground(): ?ChatBackground
     {
         return $this->oldBackground;
+    }
+
+    public function setNewBackground(?ChatBackground $value): static
+    {
+        $this->newBackground = $value;
+
+        return $this;
+    }
+
+    public function setOldBackground(?ChatBackground $value): static
+    {
+        $this->oldBackground = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

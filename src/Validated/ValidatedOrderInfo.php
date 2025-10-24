@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ValidatedOrderInfo extends TdObject
 {
-    public const TYPE_NAME = 'validatedOrderInfo';
+    public const string TYPE_NAME = 'validatedOrderInfo';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ValidatedOrderInfo extends TdObject
     public function getShippingOptions(): array
     {
         return $this->shippingOptions;
+    }
+
+    public function setOrderInfoId(string $value): static
+    {
+        $this->orderInfoId = $value;
+
+        return $this;
+    }
+
+    public function setShippingOptions(array $value): static
+    {
+        $this->shippingOptions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

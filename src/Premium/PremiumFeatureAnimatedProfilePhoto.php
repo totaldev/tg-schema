@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureAnimatedProfilePhoto extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureAnimatedProfilePhoto';
+    public const string TYPE_NAME = 'premiumFeatureAnimatedProfilePhoto';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageReadDateTooOld extends MessageReadDate
 {
-    public const TYPE_NAME = 'messageReadDateTooOld';
+    public const string TYPE_NAME = 'messageReadDateTooOld';
 
     public function __construct()
     {

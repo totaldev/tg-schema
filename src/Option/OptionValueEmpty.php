@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Option;
  */
 class OptionValueEmpty extends OptionValue
 {
-    public const TYPE_NAME = 'optionValueEmpty';
+    public const string TYPE_NAME = 'optionValueEmpty';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatSourcePublicServiceAnnouncement extends ChatSource
 {
-    public const TYPE_NAME = 'chatSourcePublicServiceAnnouncement';
+    public const string TYPE_NAME = 'chatSourcePublicServiceAnnouncement';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatSourcePublicServiceAnnouncement extends ChatSource
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setType(string $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

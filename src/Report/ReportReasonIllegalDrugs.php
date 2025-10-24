@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonIllegalDrugs extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonIllegalDrugs';
+    public const string TYPE_NAME = 'reportReasonIllegalDrugs';
 
     public function __construct()
     {

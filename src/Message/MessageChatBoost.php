@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatBoost extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatBoost';
+    public const string TYPE_NAME = 'messageChatBoost';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageChatBoost extends MessageContent
     public function getBoostCount(): int
     {
         return $this->boostCount;
+    }
+
+    public function setBoostCount(int $value): static
+    {
+        $this->boostCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

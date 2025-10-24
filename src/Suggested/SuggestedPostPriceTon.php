@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedPostPriceTon extends SuggestedPostPrice
 {
-    public const TYPE_NAME = 'suggestedPostPriceTon';
+    public const string TYPE_NAME = 'suggestedPostPriceTon';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SuggestedPostPriceTon extends SuggestedPostPrice
     public function getToncoinCentCount(): int
     {
         return $this->toncoinCentCount;
+    }
+
+    public function setToncoinCentCount(int $value): static
+    {
+        $this->toncoinCentCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

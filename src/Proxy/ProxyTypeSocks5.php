@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Proxy;
  */
 class ProxyTypeSocks5 extends ProxyType
 {
-    public const TYPE_NAME = 'proxyTypeSocks5';
+    public const string TYPE_NAME = 'proxyTypeSocks5';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ProxyTypeSocks5 extends ProxyType
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

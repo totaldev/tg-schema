@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeAttachmentMenuBot';
+    public const string TYPE_NAME = 'internalLinkTypeAttachmentMenuBot';
 
     public function __construct(
         /**
@@ -60,6 +60,27 @@ class InternalLinkTypeAttachmentMenuBot extends InternalLinkType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setTargetChat(TargetChat $value): static
+    {
+        $this->targetChat = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Group;
  */
 class GroupCallDataChannelMain extends GroupCallDataChannel
 {
-    public const TYPE_NAME = 'groupCallDataChannelMain';
+    public const string TYPE_NAME = 'groupCallDataChannelMain';
 
     public function __construct()
     {

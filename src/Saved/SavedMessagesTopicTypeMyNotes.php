@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Saved;
  */
 class SavedMessagesTopicTypeMyNotes extends SavedMessagesTopicType
 {
-    public const TYPE_NAME = 'savedMessagesTopicTypeMyNotes';
+    public const string TYPE_NAME = 'savedMessagesTopicTypeMyNotes';
 
     public function __construct()
     {

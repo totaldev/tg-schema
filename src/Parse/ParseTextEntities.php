@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Text\TextParseMode;
  */
 class ParseTextEntities extends TdFunction
 {
-    public const TYPE_NAME = 'parseTextEntities';
+    public const string TYPE_NAME = 'parseTextEntities';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ParseTextEntities extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setParseMode(TextParseMode $value): static
+    {
+        $this->parseMode = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

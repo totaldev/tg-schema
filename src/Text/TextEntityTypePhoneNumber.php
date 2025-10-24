@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypePhoneNumber extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypePhoneNumber';
+    public const string TYPE_NAME = 'textEntityTypePhoneNumber';
 
     public function __construct()
     {

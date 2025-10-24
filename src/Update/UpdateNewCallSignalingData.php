@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateNewCallSignalingData extends Update
 {
-    public const TYPE_NAME = 'updateNewCallSignalingData';
+    public const string TYPE_NAME = 'updateNewCallSignalingData';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateNewCallSignalingData extends Update
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

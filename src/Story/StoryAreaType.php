@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryAreaType extends TdObject
 {
-    public const TYPE_NAME = 'StoryAreaType';
+    public const string TYPE_NAME = 'StoryAreaType';
 
     public function __construct() {}
 

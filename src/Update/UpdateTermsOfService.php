@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Terms\TermsOfService;
  */
 class UpdateTermsOfService extends Update
 {
-    public const TYPE_NAME = 'updateTermsOfService';
+    public const string TYPE_NAME = 'updateTermsOfService';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateTermsOfService extends Update
     public function getTermsOfServiceId(): string
     {
         return $this->termsOfServiceId;
+    }
+
+    public function setTermsOfService(TermsOfService $value): static
+    {
+        $this->termsOfService = $value;
+
+        return $this;
+    }
+
+    public function setTermsOfServiceId(string $value): static
+    {
+        $this->termsOfServiceId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

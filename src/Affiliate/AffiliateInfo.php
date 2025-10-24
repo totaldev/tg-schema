@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AffiliateInfo extends TdObject
 {
-    public const TYPE_NAME = 'affiliateInfo';
+    public const string TYPE_NAME = 'affiliateInfo';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AffiliateInfo extends TdObject
     public function getStarAmount(): StarAmount
     {
         return $this->starAmount;
+    }
+
+    public function setAffiliateChatId(int $value): static
+    {
+        $this->affiliateChatId = $value;
+
+        return $this;
+    }
+
+    public function setCommissionPerMille(int $value): static
+    {
+        $this->commissionPerMille = $value;
+
+        return $this;
+    }
+
+    public function setStarAmount(StarAmount $value): static
+    {
+        $this->starAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveContacts extends TdFunction
 {
-    public const TYPE_NAME = 'removeContacts';
+    public const string TYPE_NAME = 'removeContacts';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class RemoveContacts extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

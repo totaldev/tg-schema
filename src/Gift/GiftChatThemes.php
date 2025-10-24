@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiftChatThemes extends TdObject
 {
-    public const TYPE_NAME = 'giftChatThemes';
+    public const string TYPE_NAME = 'giftChatThemes';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class GiftChatThemes extends TdObject
     public function getThemes(): array
     {
         return $this->themes;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setThemes(array $value): static
+    {
+        $this->themes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStoryNotificationSettingsExceptions extends TdFunction
 {
-    public const TYPE_NAME = 'getStoryNotificationSettingsExceptions';
+    public const string TYPE_NAME = 'getStoryNotificationSettingsExceptions';
 
     public function __construct() {}
 

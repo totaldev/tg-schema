@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaymentForm extends TdObject
 {
-    public const TYPE_NAME = 'paymentForm';
+    public const string TYPE_NAME = 'paymentForm';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class PaymentForm extends TdObject
     public function getType(): PaymentFormType
     {
         return $this->type;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setProductInfo(ProductInfo $value): static
+    {
+        $this->productInfo = $value;
+
+        return $this;
+    }
+
+    public function setSellerBotUserId(int $value): static
+    {
+        $this->sellerBotUserId = $value;
+
+        return $this;
+    }
+
+    public function setType(PaymentFormType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Web\WebApp;
  */
 class FoundWebApp extends TdObject
 {
-    public const TYPE_NAME = 'foundWebApp';
+    public const string TYPE_NAME = 'foundWebApp';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class FoundWebApp extends TdObject
     public function getWebApp(): WebApp
     {
         return $this->webApp;
+    }
+
+    public function setRequestWriteAccess(bool $value): static
+    {
+        $this->requestWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setSkipConfirmation(bool $value): static
+    {
+        $this->skipConfirmation = $value;
+
+        return $this;
+    }
+
+    public function setWebApp(WebApp $value): static
+    {
+        $this->webApp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

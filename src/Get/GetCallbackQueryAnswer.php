@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetCallbackQueryAnswer extends TdFunction
 {
-    public const TYPE_NAME = 'getCallbackQueryAnswer';
+    public const string TYPE_NAME = 'getCallbackQueryAnswer';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetCallbackQueryAnswer extends TdFunction
     public function getPayload(): CallbackQueryPayload
     {
         return $this->payload;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setPayload(CallbackQueryPayload $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeGiftCollection extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeGiftCollection';
+    public const string TYPE_NAME = 'internalLinkTypeGiftCollection';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeGiftCollection extends InternalLinkType
     public function getGiftOwnerUsername(): string
     {
         return $this->giftOwnerUsername;
+    }
+
+    public function setCollectionId(int $value): static
+    {
+        $this->collectionId = $value;
+
+        return $this;
+    }
+
+    public function setGiftOwnerUsername(string $value): static
+    {
+        $this->giftOwnerUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

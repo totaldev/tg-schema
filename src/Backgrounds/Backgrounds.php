@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Backgrounds extends TdObject
 {
-    public const TYPE_NAME = 'backgrounds';
+    public const string TYPE_NAME = 'backgrounds';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Backgrounds extends TdObject
     public function getBackgrounds(): array
     {
         return $this->backgrounds;
+    }
+
+    public function setBackgrounds(array $value): static
+    {
+        $this->backgrounds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

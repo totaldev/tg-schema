@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreatePrivateChat extends TdFunction
 {
-    public const TYPE_NAME = 'createPrivateChat';
+    public const string TYPE_NAME = 'createPrivateChat';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CreatePrivateChat extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setForce(bool $value): static
+    {
+        $this->force = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

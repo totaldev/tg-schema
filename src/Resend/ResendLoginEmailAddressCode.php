@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResendLoginEmailAddressCode extends TdFunction
 {
-    public const TYPE_NAME = 'resendLoginEmailAddressCode';
+    public const string TYPE_NAME = 'resendLoginEmailAddressCode';
 
     public function __construct() {}
 

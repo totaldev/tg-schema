@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockParagraph extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockParagraph';
+    public const string TYPE_NAME = 'pageBlockParagraph';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockParagraph extends PageBlock
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

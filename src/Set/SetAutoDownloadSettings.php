@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetAutoDownloadSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setAutoDownloadSettings';
+    public const string TYPE_NAME = 'setAutoDownloadSettings';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetAutoDownloadSettings extends TdFunction
     public function getType(): NetworkType
     {
         return $this->type;
+    }
+
+    public function setSettings(AutoDownloadSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
+    }
+
+    public function setType(NetworkType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryAreaPosition extends TdObject
 {
-    public const TYPE_NAME = 'storyAreaPosition';
+    public const string TYPE_NAME = 'storyAreaPosition';
 
     public function __construct(
         /**
@@ -82,6 +82,48 @@ class StoryAreaPosition extends TdObject
     public function getYPercentage(): float
     {
         return $this->yPercentage;
+    }
+
+    public function setCornerRadiusPercentage(float $value): static
+    {
+        $this->cornerRadiusPercentage = $value;
+
+        return $this;
+    }
+
+    public function setHeightPercentage(float $value): static
+    {
+        $this->heightPercentage = $value;
+
+        return $this;
+    }
+
+    public function setRotationAngle(float $value): static
+    {
+        $this->rotationAngle = $value;
+
+        return $this;
+    }
+
+    public function setWidthPercentage(float $value): static
+    {
+        $this->widthPercentage = $value;
+
+        return $this;
+    }
+
+    public function setXPercentage(float $value): static
+    {
+        $this->xPercentage = $value;
+
+        return $this;
+    }
+
+    public function setYPercentage(float $value): static
+    {
+        $this->yPercentage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

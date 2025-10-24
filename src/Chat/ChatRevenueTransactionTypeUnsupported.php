@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatRevenueTransactionTypeUnsupported extends ChatRevenueTransactionType
 {
-    public const TYPE_NAME = 'chatRevenueTransactionTypeUnsupported';
+    public const string TYPE_NAME = 'chatRevenueTransactionTypeUnsupported';
 
     public function __construct()
     {

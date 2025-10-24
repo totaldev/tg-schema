@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumSourceLimitExceeded extends PremiumSource
 {
-    public const TYPE_NAME = 'premiumSourceLimitExceeded';
+    public const string TYPE_NAME = 'premiumSourceLimitExceeded';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class PremiumSourceLimitExceeded extends PremiumSource
     public function getLimitType(): PremiumLimitType
     {
         return $this->limitType;
+    }
+
+    public function setLimitType(PremiumLimitType $value): static
+    {
+        $this->limitType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

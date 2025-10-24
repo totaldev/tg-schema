@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateForumTopicInfo extends Update
 {
-    public const TYPE_NAME = 'updateForumTopicInfo';
+    public const string TYPE_NAME = 'updateForumTopicInfo';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateForumTopicInfo extends Update
     public function getInfo(): ForumTopicInfo
     {
         return $this->info;
+    }
+
+    public function setInfo(ForumTopicInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

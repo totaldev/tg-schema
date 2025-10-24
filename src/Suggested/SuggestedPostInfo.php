@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SuggestedPostInfo extends TdObject
 {
-    public const TYPE_NAME = 'suggestedPostInfo';
+    public const string TYPE_NAME = 'suggestedPostInfo';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class SuggestedPostInfo extends TdObject
     public function getState(): SuggestedPostState
     {
         return $this->state;
+    }
+
+    public function setCanBeApproved(bool $value): static
+    {
+        $this->canBeApproved = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeclined(bool $value): static
+    {
+        $this->canBeDeclined = $value;
+
+        return $this;
+    }
+
+    public function setPrice(?SuggestedPostPrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
+    }
+
+    public function setSendDate(int $value): static
+    {
+        $this->sendDate = $value;
+
+        return $this;
+    }
+
+    public function setState(SuggestedPostState $value): static
+    {
+        $this->state = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

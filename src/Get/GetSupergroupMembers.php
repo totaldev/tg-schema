@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetSupergroupMembers extends TdFunction
 {
-    public const TYPE_NAME = 'getSupergroupMembers';
+    public const string TYPE_NAME = 'getSupergroupMembers';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class GetSupergroupMembers extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setFilter(?SupergroupMembersFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

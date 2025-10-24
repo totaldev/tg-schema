@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventLocationChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventLocationChanged';
+    public const string TYPE_NAME = 'chatEventLocationChanged';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventLocationChanged extends ChatEventAction
     public function getOldLocation(): ?ChatLocation
     {
         return $this->oldLocation;
+    }
+
+    public function setNewLocation(?ChatLocation $value): static
+    {
+        $this->newLocation = $value;
+
+        return $this;
+    }
+
+    public function setOldLocation(?ChatLocation $value): static
+    {
+        $this->oldLocation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

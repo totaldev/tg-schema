@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatBackground extends TdObject
 {
-    public const TYPE_NAME = 'chatBackground';
+    public const string TYPE_NAME = 'chatBackground';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatBackground extends TdObject
     public function getDarkThemeDimming(): int
     {
         return $this->darkThemeDimming;
+    }
+
+    public function setBackground(Background $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setDarkThemeDimming(int $value): static
+    {
+        $this->darkThemeDimming = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotCommandScopeChatMember extends BotCommandScope
 {
-    public const TYPE_NAME = 'botCommandScopeChatMember';
+    public const string TYPE_NAME = 'botCommandScopeChatMember';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BotCommandScopeChatMember extends BotCommandScope
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

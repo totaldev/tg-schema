@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AttachmentMenuBotColor extends TdObject
 {
-    public const TYPE_NAME = 'attachmentMenuBotColor';
+    public const string TYPE_NAME = 'attachmentMenuBotColor';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AttachmentMenuBotColor extends TdObject
     public function getLightColor(): int
     {
         return $this->lightColor;
+    }
+
+    public function setDarkColor(int $value): static
+    {
+        $this->darkColor = $value;
+
+        return $this;
+    }
+
+    public function setLightColor(int $value): static
+    {
+        $this->lightColor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSuggestedStickerSetName extends TdFunction
 {
-    public const TYPE_NAME = 'getSuggestedStickerSetName';
+    public const string TYPE_NAME = 'getSuggestedStickerSetName';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetSuggestedStickerSetName extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

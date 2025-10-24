@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PasswordState extends TdObject
 {
-    public const TYPE_NAME = 'passwordState';
+    public const string TYPE_NAME = 'passwordState';
 
     public function __construct(
         /**
@@ -94,6 +94,55 @@ class PasswordState extends TdObject
     public function getRecoveryEmailAddressCodeInfo(): ?EmailAddressAuthenticationCodeInfo
     {
         return $this->recoveryEmailAddressCodeInfo;
+    }
+
+    public function setHasPassportData(bool $value): static
+    {
+        $this->hasPassportData = $value;
+
+        return $this;
+    }
+
+    public function setHasPassword(bool $value): static
+    {
+        $this->hasPassword = $value;
+
+        return $this;
+    }
+
+    public function setHasRecoveryEmailAddress(bool $value): static
+    {
+        $this->hasRecoveryEmailAddress = $value;
+
+        return $this;
+    }
+
+    public function setLoginEmailAddressPattern(string $value): static
+    {
+        $this->loginEmailAddressPattern = $value;
+
+        return $this;
+    }
+
+    public function setPasswordHint(string $value): static
+    {
+        $this->passwordHint = $value;
+
+        return $this;
+    }
+
+    public function setPendingResetDate(int $value): static
+    {
+        $this->pendingResetDate = $value;
+
+        return $this;
+    }
+
+    public function setRecoveryEmailAddressCodeInfo(?EmailAddressAuthenticationCodeInfo $value): static
+    {
+        $this->recoveryEmailAddressCodeInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

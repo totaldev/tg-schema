@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeBrave extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeBrave';
+    public const string TYPE_NAME = 'sessionTypeBrave';
 
     public function __construct()
     {

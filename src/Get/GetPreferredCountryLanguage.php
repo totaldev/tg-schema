@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPreferredCountryLanguage extends TdFunction
 {
-    public const TYPE_NAME = 'getPreferredCountryLanguage';
+    public const string TYPE_NAME = 'getPreferredCountryLanguage';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetPreferredCountryLanguage extends TdFunction
     public function getCountryCode(): string
     {
         return $this->countryCode;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

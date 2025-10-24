@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AvailableReactions extends TdObject
 {
-    public const TYPE_NAME = 'availableReactions';
+    public const string TYPE_NAME = 'availableReactions';
 
     public function __construct(
         /**
@@ -90,6 +90,48 @@ class AvailableReactions extends TdObject
     public function getUnavailabilityReason(): ?ReactionUnavailabilityReason
     {
         return $this->unavailabilityReason;
+    }
+
+    public function setAllowCustomEmoji(bool $value): static
+    {
+        $this->allowCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setAreTags(bool $value): static
+    {
+        $this->areTags = $value;
+
+        return $this;
+    }
+
+    public function setPopularReactions(array $value): static
+    {
+        $this->popularReactions = $value;
+
+        return $this;
+    }
+
+    public function setRecentReactions(array $value): static
+    {
+        $this->recentReactions = $value;
+
+        return $this;
+    }
+
+    public function setTopReactions(array $value): static
+    {
+        $this->topReactions = $value;
+
+        return $this;
+    }
+
+    public function setUnavailabilityReason(?ReactionUnavailabilityReason $value): static
+    {
+        $this->unavailabilityReason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatTitle extends TdFunction
 {
-    public const TYPE_NAME = 'setChatTitle';
+    public const string TYPE_NAME = 'setChatTitle';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetChatTitle extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

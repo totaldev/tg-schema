@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputPassportElementPhoneNumber extends InputPassportElement
 {
-    public const TYPE_NAME = 'inputPassportElementPhoneNumber';
+    public const string TYPE_NAME = 'inputPassportElementPhoneNumber';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputPassportElementPhoneNumber extends InputPassportElement
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

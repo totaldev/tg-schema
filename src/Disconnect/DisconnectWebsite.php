@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DisconnectWebsite extends TdFunction
 {
-    public const TYPE_NAME = 'disconnectWebsite';
+    public const string TYPE_NAME = 'disconnectWebsite';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DisconnectWebsite extends TdFunction
     public function getWebsiteId(): int
     {
         return $this->websiteId;
+    }
+
+    public function setWebsiteId(int $value): static
+    {
+        $this->websiteId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

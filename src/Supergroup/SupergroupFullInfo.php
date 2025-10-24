@@ -20,7 +20,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SupergroupFullInfo extends TdObject
 {
-    public const TYPE_NAME = 'supergroupFullInfo';
+    public const string TYPE_NAME = 'supergroupFullInfo';
 
     public function __construct(
         /**
@@ -431,6 +431,286 @@ class SupergroupFullInfo extends TdObject
     public function getUpgradedFromMaxMessageId(): int
     {
         return $this->upgradedFromMaxMessageId;
+    }
+
+    public function setAdministratorCount(int $value): static
+    {
+        $this->administratorCount = $value;
+
+        return $this;
+    }
+
+    public function setBannedCount(int $value): static
+    {
+        $this->bannedCount = $value;
+
+        return $this;
+    }
+
+    public function setBotCommands(array $value): static
+    {
+        $this->botCommands = $value;
+
+        return $this;
+    }
+
+    public function setBotVerification(?BotVerification $value): static
+    {
+        $this->botVerification = $value;
+
+        return $this;
+    }
+
+    public function setCanEnablePaidMessages(bool $value): static
+    {
+        $this->canEnablePaidMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanEnablePaidReaction(bool $value): static
+    {
+        $this->canEnablePaidReaction = $value;
+
+        return $this;
+    }
+
+    public function setCanGetMembers(bool $value): static
+    {
+        $this->canGetMembers = $value;
+
+        return $this;
+    }
+
+    public function setCanGetRevenueStatistics(bool $value): static
+    {
+        $this->canGetRevenueStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanGetStarRevenueStatistics(bool $value): static
+    {
+        $this->canGetStarRevenueStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanGetStatistics(bool $value): static
+    {
+        $this->canGetStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanHaveSponsoredMessages(bool $value): static
+    {
+        $this->canHaveSponsoredMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanHideMembers(bool $value): static
+    {
+        $this->canHideMembers = $value;
+
+        return $this;
+    }
+
+    public function setCanSendGift(bool $value): static
+    {
+        $this->canSendGift = $value;
+
+        return $this;
+    }
+
+    public function setCanSetLocation(bool $value): static
+    {
+        $this->canSetLocation = $value;
+
+        return $this;
+    }
+
+    public function setCanSetStickerSet(bool $value): static
+    {
+        $this->canSetStickerSet = $value;
+
+        return $this;
+    }
+
+    public function setCanToggleAggressiveAntiSpam(bool $value): static
+    {
+        $this->canToggleAggressiveAntiSpam = $value;
+
+        return $this;
+    }
+
+    public function setCustomEmojiStickerSetId(int $value): static
+    {
+        $this->customEmojiStickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setDirectMessagesChatId(int $value): static
+    {
+        $this->directMessagesChatId = $value;
+
+        return $this;
+    }
+
+    public function setGiftCount(int $value): static
+    {
+        $this->giftCount = $value;
+
+        return $this;
+    }
+
+    public function setHasAggressiveAntiSpamEnabled(bool $value): static
+    {
+        $this->hasAggressiveAntiSpamEnabled = $value;
+
+        return $this;
+    }
+
+    public function setHasHiddenMembers(bool $value): static
+    {
+        $this->hasHiddenMembers = $value;
+
+        return $this;
+    }
+
+    public function setHasPaidMediaAllowed(bool $value): static
+    {
+        $this->hasPaidMediaAllowed = $value;
+
+        return $this;
+    }
+
+    public function setHasPinnedStories(bool $value): static
+    {
+        $this->hasPinnedStories = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(?ChatInviteLink $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setIsAllHistoryAvailable(bool $value): static
+    {
+        $this->isAllHistoryAvailable = $value;
+
+        return $this;
+    }
+
+    public function setLinkedChatId(int $value): static
+    {
+        $this->linkedChatId = $value;
+
+        return $this;
+    }
+
+    public function setLocation(?ChatLocation $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setMainProfileTab(?ProfileTab $value): static
+    {
+        $this->mainProfileTab = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(int $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setMyBoostCount(int $value): static
+    {
+        $this->myBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setOutgoingPaidMessageStarCount(int $value): static
+    {
+        $this->outgoingPaidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setRestrictedCount(int $value): static
+    {
+        $this->restrictedCount = $value;
+
+        return $this;
+    }
+
+    public function setSlowModeDelay(int $value): static
+    {
+        $this->slowModeDelay = $value;
+
+        return $this;
+    }
+
+    public function setSlowModeDelayExpiresIn(float $value): static
+    {
+        $this->slowModeDelayExpiresIn = $value;
+
+        return $this;
+    }
+
+    public function setStickerSetId(int $value): static
+    {
+        $this->stickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setUnrestrictBoostCount(int $value): static
+    {
+        $this->unrestrictBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedFromBasicGroupId(int $value): static
+    {
+        $this->upgradedFromBasicGroupId = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedFromMaxMessageId(int $value): static
+    {
+        $this->upgradedFromMaxMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

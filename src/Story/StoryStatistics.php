@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryStatistics extends TdObject
 {
-    public const TYPE_NAME = 'storyStatistics';
+    public const string TYPE_NAME = 'storyStatistics';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class StoryStatistics extends TdObject
     public function getStoryReactionGraph(): StatisticalGraph
     {
         return $this->storyReactionGraph;
+    }
+
+    public function setStoryInteractionGraph(StatisticalGraph $value): static
+    {
+        $this->storyInteractionGraph = $value;
+
+        return $this;
+    }
+
+    public function setStoryReactionGraph(StatisticalGraph $value): static
+    {
+        $this->storyReactionGraph = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryContentUnsupported extends StoryContent
 {
-    public const TYPE_NAME = 'storyContentUnsupported';
+    public const string TYPE_NAME = 'storyContentUnsupported';
 
     public function __construct()
     {

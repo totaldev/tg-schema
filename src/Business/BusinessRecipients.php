@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BusinessRecipients extends TdObject
 {
-    public const TYPE_NAME = 'businessRecipients';
+    public const string TYPE_NAME = 'businessRecipients';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class BusinessRecipients extends TdObject
     public function getSelectNonContacts(): bool
     {
         return $this->selectNonContacts;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
+    }
+
+    public function setExcludeSelected(bool $value): static
+    {
+        $this->excludeSelected = $value;
+
+        return $this;
+    }
+
+    public function setExcludedChatIds(array $value): static
+    {
+        $this->excludedChatIds = $value;
+
+        return $this;
+    }
+
+    public function setSelectContacts(bool $value): static
+    {
+        $this->selectContacts = $value;
+
+        return $this;
+    }
+
+    public function setSelectExistingChats(bool $value): static
+    {
+        $this->selectExistingChats = $value;
+
+        return $this;
+    }
+
+    public function setSelectNewChats(bool $value): static
+    {
+        $this->selectNewChats = $value;
+
+        return $this;
+    }
+
+    public function setSelectNonContacts(bool $value): static
+    {
+        $this->selectNonContacts = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeChatBoost extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeChatBoost';
+    public const string TYPE_NAME = 'internalLinkTypeChatBoost';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InternalLinkTypeChatBoost extends InternalLinkType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

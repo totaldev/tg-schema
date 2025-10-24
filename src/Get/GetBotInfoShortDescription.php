@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBotInfoShortDescription extends TdFunction
 {
-    public const TYPE_NAME = 'getBotInfoShortDescription';
+    public const string TYPE_NAME = 'getBotInfoShortDescription';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetBotInfoShortDescription extends TdFunction
     public function getLanguageCode(): string
     {
         return $this->languageCode;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

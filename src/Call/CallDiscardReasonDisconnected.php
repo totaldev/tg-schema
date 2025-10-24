@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallDiscardReasonDisconnected extends CallDiscardReason
 {
-    public const TYPE_NAME = 'callDiscardReasonDisconnected';
+    public const string TYPE_NAME = 'callDiscardReasonDisconnected';
 
     public function __construct()
     {

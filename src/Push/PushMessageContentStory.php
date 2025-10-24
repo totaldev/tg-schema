@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentStory extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentStory';
+    public const string TYPE_NAME = 'pushMessageContentStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentStory extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setIsMention(bool $value): static
+    {
+        $this->isMention = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

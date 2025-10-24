@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageForwarded extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageForwarded';
+    public const string TYPE_NAME = 'inputMessageForwarded';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class InputMessageForwarded extends InputMessageContent
     public function getReplaceVideoStartTimestamp(): bool
     {
         return $this->replaceVideoStartTimestamp;
+    }
+
+    public function setCopyOptions(?MessageCopyOptions $value): static
+    {
+        $this->copyOptions = $value;
+
+        return $this;
+    }
+
+    public function setFromChatId(int $value): static
+    {
+        $this->fromChatId = $value;
+
+        return $this;
+    }
+
+    public function setInGameShare(bool $value): static
+    {
+        $this->inGameShare = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setNewVideoStartTimestamp(int $value): static
+    {
+        $this->newVideoStartTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setReplaceVideoStartTimestamp(bool $value): static
+    {
+        $this->replaceVideoStartTimestamp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

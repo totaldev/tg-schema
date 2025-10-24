@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddOffer extends TdFunction
 {
-    public const TYPE_NAME = 'addOffer';
+    public const string TYPE_NAME = 'addOffer';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class AddOffer extends TdFunction
     public function getOptions(): MessageSendOptions
     {
         return $this->options;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOptions(MessageSendOptions $value): static
+    {
+        $this->options = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatStoryInteractions extends TdFunction
 {
-    public const TYPE_NAME = 'getChatStoryInteractions';
+    public const string TYPE_NAME = 'getChatStoryInteractions';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class GetChatStoryInteractions extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setPreferForwards(bool $value): static
+    {
+        $this->preferForwards = $value;
+
+        return $this;
+    }
+
+    public function setReactionType(?ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

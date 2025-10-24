@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class JsonObjectMember extends TdObject
 {
-    public const TYPE_NAME = 'jsonObjectMember';
+    public const string TYPE_NAME = 'jsonObjectMember';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class JsonObjectMember extends TdObject
     public function getValue(): JsonValue
     {
         return $this->value;
+    }
+
+    public function setKey(string $value): static
+    {
+        $this->key = $value;
+
+        return $this;
+    }
+
+    public function setValue(JsonValue $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

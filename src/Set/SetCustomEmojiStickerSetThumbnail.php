@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetCustomEmojiStickerSetThumbnail extends TdFunction
 {
-    public const TYPE_NAME = 'setCustomEmojiStickerSetThumbnail';
+    public const string TYPE_NAME = 'setCustomEmojiStickerSetThumbnail';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetCustomEmojiStickerSetThumbnail extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

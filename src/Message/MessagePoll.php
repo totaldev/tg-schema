@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePoll extends MessageContent
 {
-    public const TYPE_NAME = 'messagePoll';
+    public const string TYPE_NAME = 'messagePoll';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessagePoll extends MessageContent
     public function getPoll(): Poll
     {
         return $this->poll;
+    }
+
+    public function setPoll(Poll $value): static
+    {
+        $this->poll = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

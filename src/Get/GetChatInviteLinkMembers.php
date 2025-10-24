@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatInviteLinkMembers extends TdFunction
 {
-    public const TYPE_NAME = 'getChatInviteLinkMembers';
+    public const string TYPE_NAME = 'getChatInviteLinkMembers';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class GetChatInviteLinkMembers extends TdFunction
     public function getOnlyWithExpiredSubscription(): bool
     {
         return $this->onlyWithExpiredSubscription;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetMember(?ChatInviteLinkMember $value): static
+    {
+        $this->offsetMember = $value;
+
+        return $this;
+    }
+
+    public function setOnlyWithExpiredSubscription(bool $value): static
+    {
+        $this->onlyWithExpiredSubscription = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

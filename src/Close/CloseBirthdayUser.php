@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CloseBirthdayUser extends TdObject
 {
-    public const TYPE_NAME = 'closeBirthdayUser';
+    public const string TYPE_NAME = 'closeBirthdayUser';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class CloseBirthdayUser extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setBirthdate(Birthdate $value): static
+    {
+        $this->birthdate = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

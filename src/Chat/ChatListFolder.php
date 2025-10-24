@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatListFolder extends ChatList
 {
-    public const TYPE_NAME = 'chatListFolder';
+    public const string TYPE_NAME = 'chatListFolder';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatListFolder extends ChatList
     public function getChatFolderId(): int
     {
         return $this->chatFolderId;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

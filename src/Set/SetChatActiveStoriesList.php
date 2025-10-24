@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatActiveStoriesList extends TdFunction
 {
-    public const TYPE_NAME = 'setChatActiveStoriesList';
+    public const string TYPE_NAME = 'setChatActiveStoriesList';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatActiveStoriesList extends TdFunction
     public function getStoryList(): StoryList
     {
         return $this->storyList;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setStoryList(StoryList $value): static
+    {
+        $this->storyList = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

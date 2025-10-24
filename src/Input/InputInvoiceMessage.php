@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputInvoiceMessage extends InputInvoice
 {
-    public const TYPE_NAME = 'inputInvoiceMessage';
+    public const string TYPE_NAME = 'inputInvoiceMessage';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputInvoiceMessage extends InputInvoice
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateFileGenerationStop extends Update
 {
-    public const TYPE_NAME = 'updateFileGenerationStop';
+    public const string TYPE_NAME = 'updateFileGenerationStop';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpdateFileGenerationStop extends Update
     public function getGenerationId(): int
     {
         return $this->generationId;
+    }
+
+    public function setGenerationId(int $value): static
+    {
+        $this->generationId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

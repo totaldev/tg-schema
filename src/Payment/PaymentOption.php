@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'paymentOption';
+    public const string TYPE_NAME = 'paymentOption';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PaymentOption extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

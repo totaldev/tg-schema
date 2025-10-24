@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdatePollAnswer extends Update
 {
-    public const TYPE_NAME = 'updatePollAnswer';
+    public const string TYPE_NAME = 'updatePollAnswer';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class UpdatePollAnswer extends Update
     public function getVoterId(): MessageSender
     {
         return $this->voterId;
+    }
+
+    public function setOptionIds(array $value): static
+    {
+        $this->optionIds = $value;
+
+        return $this;
+    }
+
+    public function setPollId(int $value): static
+    {
+        $this->pollId = $value;
+
+        return $this;
+    }
+
+    public function setVoterId(MessageSender $value): static
+    {
+        $this->voterId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

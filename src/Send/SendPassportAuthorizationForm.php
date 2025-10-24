@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendPassportAuthorizationForm extends TdFunction
 {
-    public const TYPE_NAME = 'sendPassportAuthorizationForm';
+    public const string TYPE_NAME = 'sendPassportAuthorizationForm';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class SendPassportAuthorizationForm extends TdFunction
     public function getTypes(): array
     {
         return $this->types;
+    }
+
+    public function setAuthorizationFormId(int $value): static
+    {
+        $this->authorizationFormId = $value;
+
+        return $this;
+    }
+
+    public function setTypes(array $value): static
+    {
+        $this->types = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

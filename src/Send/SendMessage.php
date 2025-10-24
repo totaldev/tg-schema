@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendMessage extends TdFunction
 {
-    public const TYPE_NAME = 'sendMessage';
+    public const string TYPE_NAME = 'sendMessage';
 
     public function __construct(
         /**
@@ -88,6 +88,48 @@ class SendMessage extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setOptions(?MessageSendOptions $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetPassportElement extends TdFunction
 {
-    public const TYPE_NAME = 'getPassportElement';
+    public const string TYPE_NAME = 'getPassportElement';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetPassportElement extends TdFunction
     public function getType(): PassportElementType
     {
         return $this->type;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setType(PassportElementType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

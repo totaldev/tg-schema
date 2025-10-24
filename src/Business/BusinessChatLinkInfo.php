@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessChatLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'businessChatLinkInfo';
+    public const string TYPE_NAME = 'businessChatLinkInfo';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class BusinessChatLinkInfo extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

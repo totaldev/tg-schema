@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteMessages extends TdFunction
 {
-    public const TYPE_NAME = 'deleteMessages';
+    public const string TYPE_NAME = 'deleteMessages';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class DeleteMessages extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
+    }
+
+    public function setRevoke(bool $value): static
+    {
+        $this->revoke = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

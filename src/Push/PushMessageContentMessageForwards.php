@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentMessageForwards extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentMessageForwards';
+    public const string TYPE_NAME = 'pushMessageContentMessageForwards';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentMessageForwards extends PushMessageContent
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

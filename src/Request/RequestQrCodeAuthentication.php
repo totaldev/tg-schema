@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RequestQrCodeAuthentication extends TdFunction
 {
-    public const TYPE_NAME = 'requestQrCodeAuthentication';
+    public const string TYPE_NAME = 'requestQrCodeAuthentication';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class RequestQrCodeAuthentication extends TdFunction
     public function getOtherUserIds(): array
     {
         return $this->otherUserIds;
+    }
+
+    public function setOtherUserIds(array $value): static
+    {
+        $this->otherUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

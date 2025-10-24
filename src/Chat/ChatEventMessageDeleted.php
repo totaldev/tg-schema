@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventMessageDeleted extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMessageDeleted';
+    public const string TYPE_NAME = 'chatEventMessageDeleted';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventMessageDeleted extends ChatEventAction
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setCanReportAntiSpamFalsePositive(bool $value): static
+    {
+        $this->canReportAntiSpamFalsePositive = $value;
+
+        return $this;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

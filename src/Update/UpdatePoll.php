@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdatePoll extends Update
 {
-    public const TYPE_NAME = 'updatePoll';
+    public const string TYPE_NAME = 'updatePoll';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdatePoll extends Update
     public function getPoll(): Poll
     {
         return $this->poll;
+    }
+
+    public function setPoll(Poll $value): static
+    {
+        $this->poll = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

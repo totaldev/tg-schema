@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageVideoChatStarted extends MessageContent
 {
-    public const TYPE_NAME = 'messageVideoChatStarted';
+    public const string TYPE_NAME = 'messageVideoChatStarted';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageVideoChatStarted extends MessageContent
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetEmojiReaction extends TdFunction
 {
-    public const TYPE_NAME = 'getEmojiReaction';
+    public const string TYPE_NAME = 'getEmojiReaction';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetEmojiReaction extends TdFunction
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

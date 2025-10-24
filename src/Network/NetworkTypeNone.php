@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Network;
  */
 class NetworkTypeNone extends NetworkType
 {
-    public const TYPE_NAME = 'networkTypeNone';
+    public const string TYPE_NAME = 'networkTypeNone';
 
     public function __construct()
     {

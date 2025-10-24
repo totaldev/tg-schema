@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CanSendGiftResultFail extends CanSendGiftResult
 {
-    public const TYPE_NAME = 'canSendGiftResultFail';
+    public const string TYPE_NAME = 'canSendGiftResultFail';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class CanSendGiftResultFail extends CanSendGiftResult
     public function getReason(): FormattedText
     {
         return $this->reason;
+    }
+
+    public function setReason(FormattedText $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StorageStatisticsFast extends TdObject
 {
-    public const TYPE_NAME = 'storageStatisticsFast';
+    public const string TYPE_NAME = 'storageStatisticsFast';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class StorageStatisticsFast extends TdObject
     public function getLogSize(): int
     {
         return $this->logSize;
+    }
+
+    public function setDatabaseSize(int $value): static
+    {
+        $this->databaseSize = $value;
+
+        return $this;
+    }
+
+    public function setFileCount(int $value): static
+    {
+        $this->fileCount = $value;
+
+        return $this;
+    }
+
+    public function setFilesSize(int $value): static
+    {
+        $this->filesSize = $value;
+
+        return $this;
+    }
+
+    public function setLanguagePackDatabaseSize(int $value): static
+    {
+        $this->languagePackDatabaseSize = $value;
+
+        return $this;
+    }
+
+    public function setLogSize(int $value): static
+    {
+        $this->logSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

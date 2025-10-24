@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TextEntities extends TdObject
 {
-    public const TYPE_NAME = 'textEntities';
+    public const string TYPE_NAME = 'textEntities';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class TextEntities extends TdObject
     public function getEntities(): array
     {
         return $this->entities;
+    }
+
+    public function setEntities(array $value): static
+    {
+        $this->entities = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetCloseFriends extends TdFunction
 {
-    public const TYPE_NAME = 'setCloseFriends';
+    public const string TYPE_NAME = 'setCloseFriends';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetCloseFriends extends TdFunction
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

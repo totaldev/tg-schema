@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaidReactionType extends TdObject
 {
-    public const TYPE_NAME = 'PaidReactionType';
+    public const string TYPE_NAME = 'PaidReactionType';
 
     public function __construct() {}
 

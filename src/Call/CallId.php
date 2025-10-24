@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallId extends TdObject
 {
-    public const TYPE_NAME = 'callId';
+    public const string TYPE_NAME = 'callId';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CallId extends TdObject
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

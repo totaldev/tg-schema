@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GroupCallRecentSpeaker extends TdObject
 {
-    public const TYPE_NAME = 'groupCallRecentSpeaker';
+    public const string TYPE_NAME = 'groupCallRecentSpeaker';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GroupCallRecentSpeaker extends TdObject
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setIsSpeaking(bool $value): static
+    {
+        $this->isSpeaking = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

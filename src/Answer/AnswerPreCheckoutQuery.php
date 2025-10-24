@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AnswerPreCheckoutQuery extends TdFunction
 {
-    public const TYPE_NAME = 'answerPreCheckoutQuery';
+    public const string TYPE_NAME = 'answerPreCheckoutQuery';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AnswerPreCheckoutQuery extends TdFunction
     public function getPreCheckoutQueryId(): int
     {
         return $this->preCheckoutQueryId;
+    }
+
+    public function setErrorMessage(string $value): static
+    {
+        $this->errorMessage = $value;
+
+        return $this;
+    }
+
+    public function setPreCheckoutQueryId(int $value): static
+    {
+        $this->preCheckoutQueryId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

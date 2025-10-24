@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextAnchorLink extends RichText
 {
-    public const TYPE_NAME = 'richTextAnchorLink';
+    public const string TYPE_NAME = 'richTextAnchorLink';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class RichTextAnchorLink extends RichText
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAnchorName(string $value): static
+    {
+        $this->anchorName = $value;
+
+        return $this;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatActionBarReportAddBlock extends ChatActionBar
 {
-    public const TYPE_NAME = 'chatActionBarReportAddBlock';
+    public const string TYPE_NAME = 'chatActionBarReportAddBlock';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class ChatActionBarReportAddBlock extends ChatActionBar
     public function getCanUnarchive(): bool
     {
         return $this->canUnarchive;
+    }
+
+    public function setAccountInfo(?AccountInfo $value): static
+    {
+        $this->accountInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanUnarchive(bool $value): static
+    {
+        $this->canUnarchive = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

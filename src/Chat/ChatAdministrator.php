@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatAdministrator extends TdObject
 {
-    public const TYPE_NAME = 'chatAdministrator';
+    public const string TYPE_NAME = 'chatAdministrator';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ChatAdministrator extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setCustomTitle(string $value): static
+    {
+        $this->customTitle = $value;
+
+        return $this;
+    }
+
+    public function setIsOwner(bool $value): static
+    {
+        $this->isOwner = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

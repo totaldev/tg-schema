@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeSmsPhrase extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeSmsPhrase';
+    public const string TYPE_NAME = 'authenticationCodeTypeSmsPhrase';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class AuthenticationCodeTypeSmsPhrase extends AuthenticationCodeType
     public function getFirstWord(): string
     {
         return $this->firstWord;
+    }
+
+    public function setFirstWord(string $value): static
+    {
+        $this->firstWord = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeHashtag extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeHashtag';
+    public const string TYPE_NAME = 'textEntityTypeHashtag';
 
     public function __construct()
     {

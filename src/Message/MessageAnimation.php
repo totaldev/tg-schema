@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageAnimation extends MessageContent
 {
-    public const TYPE_NAME = 'messageAnimation';
+    public const string TYPE_NAME = 'messageAnimation';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class MessageAnimation extends MessageContent
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function setAnimation(Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setHasSpoiler(bool $value): static
+    {
+        $this->hasSpoiler = $value;
+
+        return $this;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

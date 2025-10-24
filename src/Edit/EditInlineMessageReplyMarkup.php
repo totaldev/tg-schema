@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditInlineMessageReplyMarkup extends TdFunction
 {
-    public const TYPE_NAME = 'editInlineMessageReplyMarkup';
+    public const string TYPE_NAME = 'editInlineMessageReplyMarkup';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class EditInlineMessageReplyMarkup extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

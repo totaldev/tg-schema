@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowPremiumUsers extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowPremiumUsers';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowPremiumUsers';
 
     public function __construct()
     {

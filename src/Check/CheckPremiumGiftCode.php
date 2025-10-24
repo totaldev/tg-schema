@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckPremiumGiftCode extends TdFunction
 {
-    public const TYPE_NAME = 'checkPremiumGiftCode';
+    public const string TYPE_NAME = 'checkPremiumGiftCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CheckPremiumGiftCode extends TdFunction
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

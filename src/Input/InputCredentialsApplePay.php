@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputCredentialsApplePay extends InputCredentials
 {
-    public const TYPE_NAME = 'inputCredentialsApplePay';
+    public const string TYPE_NAME = 'inputCredentialsApplePay';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputCredentialsApplePay extends InputCredentials
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

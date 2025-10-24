@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementErrorSourceSelfie extends PassportElementErrorSource
 {
-    public const TYPE_NAME = 'passportElementErrorSourceSelfie';
+    public const string TYPE_NAME = 'passportElementErrorSourceSelfie';
 
     public function __construct()
     {

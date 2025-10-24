@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockTableCell extends TdObject
 {
-    public const TYPE_NAME = 'pageBlockTableCell';
+    public const string TYPE_NAME = 'pageBlockTableCell';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class PageBlockTableCell extends TdObject
     public function getValign(): PageBlockVerticalAlignment
     {
         return $this->valign;
+    }
+
+    public function setAlign(PageBlockHorizontalAlignment $value): static
+    {
+        $this->align = $value;
+
+        return $this;
+    }
+
+    public function setColspan(int $value): static
+    {
+        $this->colspan = $value;
+
+        return $this;
+    }
+
+    public function setIsHeader(bool $value): static
+    {
+        $this->isHeader = $value;
+
+        return $this;
+    }
+
+    public function setRowspan(int $value): static
+    {
+        $this->rowspan = $value;
+
+        return $this;
+    }
+
+    public function setText(?RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setValign(PageBlockVerticalAlignment $value): static
+    {
+        $this->valign = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

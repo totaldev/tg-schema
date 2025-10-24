@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InviteGroupCallParticipantResult extends TdObject
 {
-    public const TYPE_NAME = 'InviteGroupCallParticipantResult';
+    public const string TYPE_NAME = 'InviteGroupCallParticipantResult';
 
     public function __construct() {}
 

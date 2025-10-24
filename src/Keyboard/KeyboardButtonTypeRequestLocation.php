@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Keyboard;
  */
 class KeyboardButtonTypeRequestLocation extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeRequestLocation';
+    public const string TYPE_NAME = 'keyboardButtonTypeRequestLocation';
 
     public function __construct()
     {

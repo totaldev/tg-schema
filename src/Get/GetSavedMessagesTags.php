@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedMessagesTags extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedMessagesTags';
+    public const string TYPE_NAME = 'getSavedMessagesTags';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetSavedMessagesTags extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

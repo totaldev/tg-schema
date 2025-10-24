@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetMenuButton extends TdFunction
 {
-    public const TYPE_NAME = 'setMenuButton';
+    public const string TYPE_NAME = 'setMenuButton';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetMenuButton extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setMenuButton(BotMenuButton $value): static
+    {
+        $this->menuButton = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RecommendedChatFolders extends TdObject
 {
-    public const TYPE_NAME = 'recommendedChatFolders';
+    public const string TYPE_NAME = 'recommendedChatFolders';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class RecommendedChatFolders extends TdObject
     public function getChatFolders(): array
     {
         return $this->chatFolders;
+    }
+
+    public function setChatFolders(array $value): static
+    {
+        $this->chatFolders = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

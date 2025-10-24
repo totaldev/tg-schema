@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatInviteLinks extends TdFunction
 {
-    public const TYPE_NAME = 'getChatInviteLinks';
+    public const string TYPE_NAME = 'getChatInviteLinks';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class GetChatInviteLinks extends TdFunction
     public function getOffsetInviteLink(): string
     {
         return $this->offsetInviteLink;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCreatorUserId(int $value): static
+    {
+        $this->creatorUserId = $value;
+
+        return $this;
+    }
+
+    public function setIsRevoked(bool $value): static
+    {
+        $this->isRevoked = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetDate(int $value): static
+    {
+        $this->offsetDate = $value;
+
+        return $this;
+    }
+
+    public function setOffsetInviteLink(string $value): static
+    {
+        $this->offsetInviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

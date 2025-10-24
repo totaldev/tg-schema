@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchPublicPosts extends TdFunction
 {
-    public const TYPE_NAME = 'searchPublicPosts';
+    public const string TYPE_NAME = 'searchPublicPosts';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class SearchPublicPosts extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

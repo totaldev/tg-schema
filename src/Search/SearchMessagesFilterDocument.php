@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterDocument extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterDocument';
+    public const string TYPE_NAME = 'searchMessagesFilterDocument';
 
     public function __construct()
     {

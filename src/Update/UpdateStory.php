@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStory extends Update
 {
-    public const TYPE_NAME = 'updateStory';
+    public const string TYPE_NAME = 'updateStory';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateStory extends Update
     public function getStory(): Story
     {
         return $this->story;
+    }
+
+    public function setStory(Story $value): static
+    {
+        $this->story = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

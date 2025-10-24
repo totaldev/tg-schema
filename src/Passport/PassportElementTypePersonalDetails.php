@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementTypePersonalDetails extends PassportElementType
 {
-    public const TYPE_NAME = 'passportElementTypePersonalDetails';
+    public const string TYPE_NAME = 'passportElementTypePersonalDetails';
 
     public function __construct()
     {

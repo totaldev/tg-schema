@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultArticle extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultArticle';
+    public const string TYPE_NAME = 'inputInlineQueryResultArticle';
 
     public function __construct(
         /**
@@ -115,6 +115,69 @@ class InputInlineQueryResultArticle extends InputInlineQueryResult
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailHeight(int $value): static
+    {
+        $this->thumbnailHeight = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailWidth(int $value): static
+    {
+        $this->thumbnailWidth = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

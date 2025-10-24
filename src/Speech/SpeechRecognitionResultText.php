@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Speech;
  */
 class SpeechRecognitionResultText extends SpeechRecognitionResult
 {
-    public const TYPE_NAME = 'speechRecognitionResultText';
+    public const string TYPE_NAME = 'speechRecognitionResultText';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SpeechRecognitionResultText extends SpeechRecognitionResult
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

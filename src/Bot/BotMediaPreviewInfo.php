@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotMediaPreviewInfo extends TdObject
 {
-    public const TYPE_NAME = 'botMediaPreviewInfo';
+    public const string TYPE_NAME = 'botMediaPreviewInfo';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class BotMediaPreviewInfo extends TdObject
     public function getPreviews(): array
     {
         return $this->previews;
+    }
+
+    public function setLanguageCodes(array $value): static
+    {
+        $this->languageCodes = $value;
+
+        return $this;
+    }
+
+    public function setPreviews(array $value): static
+    {
+        $this->previews = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

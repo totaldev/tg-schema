@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryAreaTypeLink extends StoryAreaType
 {
-    public const TYPE_NAME = 'storyAreaTypeLink';
+    public const string TYPE_NAME = 'storyAreaTypeLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StoryAreaTypeLink extends StoryAreaType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

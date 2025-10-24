@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class HideSuggestedAction extends TdFunction
 {
-    public const TYPE_NAME = 'hideSuggestedAction';
+    public const string TYPE_NAME = 'hideSuggestedAction';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class HideSuggestedAction extends TdFunction
     public function getAction(): SuggestedAction
     {
         return $this->action;
+    }
+
+    public function setAction(SuggestedAction $value): static
+    {
+        $this->action = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

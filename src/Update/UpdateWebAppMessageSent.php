@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateWebAppMessageSent extends Update
 {
-    public const TYPE_NAME = 'updateWebAppMessageSent';
+    public const string TYPE_NAME = 'updateWebAppMessageSent';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpdateWebAppMessageSent extends Update
     public function getWebAppLaunchId(): int
     {
         return $this->webAppLaunchId;
+    }
+
+    public function setWebAppLaunchId(int $value): static
+    {
+        $this->webAppLaunchId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

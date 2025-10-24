@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeGooglePlayDeposit extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeGooglePlayDeposit';
+    public const string TYPE_NAME = 'starTransactionTypeGooglePlayDeposit';
 
     public function __construct()
     {

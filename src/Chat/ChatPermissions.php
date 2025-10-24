@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatPermissions extends TdObject
 {
-    public const TYPE_NAME = 'chatPermissions';
+    public const string TYPE_NAME = 'chatPermissions';
 
     public function __construct(
         /**
@@ -162,6 +162,104 @@ class ChatPermissions extends TdObject
     public function getCanSendVoiceNotes(): bool
     {
         return $this->canSendVoiceNotes;
+    }
+
+    public function setCanAddLinkPreviews(bool $value): static
+    {
+        $this->canAddLinkPreviews = $value;
+
+        return $this;
+    }
+
+    public function setCanChangeInfo(bool $value): static
+    {
+        $this->canChangeInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanCreateTopics(bool $value): static
+    {
+        $this->canCreateTopics = $value;
+
+        return $this;
+    }
+
+    public function setCanInviteUsers(bool $value): static
+    {
+        $this->canInviteUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanPinMessages(bool $value): static
+    {
+        $this->canPinMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanSendAudios(bool $value): static
+    {
+        $this->canSendAudios = $value;
+
+        return $this;
+    }
+
+    public function setCanSendBasicMessages(bool $value): static
+    {
+        $this->canSendBasicMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanSendDocuments(bool $value): static
+    {
+        $this->canSendDocuments = $value;
+
+        return $this;
+    }
+
+    public function setCanSendOtherMessages(bool $value): static
+    {
+        $this->canSendOtherMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanSendPhotos(bool $value): static
+    {
+        $this->canSendPhotos = $value;
+
+        return $this;
+    }
+
+    public function setCanSendPolls(bool $value): static
+    {
+        $this->canSendPolls = $value;
+
+        return $this;
+    }
+
+    public function setCanSendVideoNotes(bool $value): static
+    {
+        $this->canSendVideoNotes = $value;
+
+        return $this;
+    }
+
+    public function setCanSendVideos(bool $value): static
+    {
+        $this->canSendVideos = $value;
+
+        return $this;
+    }
+
+    public function setCanSendVoiceNotes(bool $value): static
+    {
+        $this->canSendVoiceNotes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GiftResaleParameters extends TdObject
 {
-    public const TYPE_NAME = 'giftResaleParameters';
+    public const string TYPE_NAME = 'giftResaleParameters';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GiftResaleParameters extends TdObject
     public function getToncoinOnly(): bool
     {
         return $this->toncoinOnly;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setToncoinCentCount(int $value): static
+    {
+        $this->toncoinCentCount = $value;
+
+        return $this;
+    }
+
+    public function setToncoinOnly(bool $value): static
+    {
+        $this->toncoinOnly = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

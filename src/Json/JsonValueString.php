@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Json;
  */
 class JsonValueString extends JsonValue
 {
-    public const TYPE_NAME = 'jsonValueString';
+    public const string TYPE_NAME = 'jsonValueString';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class JsonValueString extends JsonValue
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

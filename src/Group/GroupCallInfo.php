@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GroupCallInfo extends TdObject
 {
-    public const TYPE_NAME = 'groupCallInfo';
+    public const string TYPE_NAME = 'groupCallInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GroupCallInfo extends TdObject
     public function getJoinPayload(): string
     {
         return $this->joinPayload;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setJoinPayload(string $value): static
+    {
+        $this->joinPayload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

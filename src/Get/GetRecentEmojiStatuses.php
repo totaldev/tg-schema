@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecentEmojiStatuses extends TdFunction
 {
-    public const TYPE_NAME = 'getRecentEmojiStatuses';
+    public const string TYPE_NAME = 'getRecentEmojiStatuses';
 
     public function __construct() {}
 

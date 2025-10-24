@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureChatFolderTags extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureChatFolderTags';
+    public const string TYPE_NAME = 'businessFeatureChatFolderTags';
 
     public function __construct()
     {

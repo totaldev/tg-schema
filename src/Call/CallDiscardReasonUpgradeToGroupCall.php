@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallDiscardReasonUpgradeToGroupCall extends CallDiscardReason
 {
-    public const TYPE_NAME = 'callDiscardReasonUpgradeToGroupCall';
+    public const string TYPE_NAME = 'callDiscardReasonUpgradeToGroupCall';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CallDiscardReasonUpgradeToGroupCall extends CallDiscardReason
     public function getInviteLink(): string
     {
         return $this->inviteLink;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

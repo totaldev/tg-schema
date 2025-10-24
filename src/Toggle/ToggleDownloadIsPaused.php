@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleDownloadIsPaused extends TdFunction
 {
-    public const TYPE_NAME = 'toggleDownloadIsPaused';
+    public const string TYPE_NAME = 'toggleDownloadIsPaused';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleDownloadIsPaused extends TdFunction
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

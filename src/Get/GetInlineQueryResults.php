@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetInlineQueryResults extends TdFunction
 {
-    public const TYPE_NAME = 'getInlineQueryResults';
+    public const string TYPE_NAME = 'getInlineQueryResults';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class GetInlineQueryResults extends TdFunction
     public function getUserLocation(): ?Location
     {
         return $this->userLocation;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setUserLocation(?Location $value): static
+    {
+        $this->userLocation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

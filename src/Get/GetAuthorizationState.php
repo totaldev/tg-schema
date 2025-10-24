@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAuthorizationState extends TdFunction
 {
-    public const TYPE_NAME = 'getAuthorizationState';
+    public const string TYPE_NAME = 'getAuthorizationState';
 
     public function __construct() {}
 

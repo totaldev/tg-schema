@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchPublicStoriesByVenue extends TdFunction
 {
-    public const TYPE_NAME = 'searchPublicStoriesByVenue';
+    public const string TYPE_NAME = 'searchPublicStoriesByVenue';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class SearchPublicStoriesByVenue extends TdFunction
     public function getVenueProvider(): string
     {
         return $this->venueProvider;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setVenueId(string $value): static
+    {
+        $this->venueId = $value;
+
+        return $this;
+    }
+
+    public function setVenueProvider(string $value): static
+    {
+        $this->venueProvider = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class GiftForResale extends TdObject
 {
-    public const TYPE_NAME = 'giftForResale';
+    public const string TYPE_NAME = 'giftForResale';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GiftForResale extends TdObject
     public function getReceivedGiftId(): string
     {
         return $this->receivedGiftId;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

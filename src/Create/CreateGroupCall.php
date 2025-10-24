@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateGroupCall extends TdFunction
 {
-    public const TYPE_NAME = 'createGroupCall';
+    public const string TYPE_NAME = 'createGroupCall';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class CreateGroupCall extends TdFunction
     public function getJoinParameters(): ?GroupCallJoinParameters
     {
         return $this->joinParameters;
+    }
+
+    public function setJoinParameters(?GroupCallJoinParameters $value): static
+    {
+        $this->joinParameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

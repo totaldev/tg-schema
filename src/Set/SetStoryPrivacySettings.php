@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetStoryPrivacySettings extends TdFunction
 {
-    public const TYPE_NAME = 'setStoryPrivacySettings';
+    public const string TYPE_NAME = 'setStoryPrivacySettings';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetStoryPrivacySettings extends TdFunction
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setPrivacySettings(StoryPrivacySettings $value): static
+    {
+        $this->privacySettings = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

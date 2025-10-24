@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultsButton extends TdObject
 {
-    public const TYPE_NAME = 'inlineQueryResultsButton';
+    public const string TYPE_NAME = 'inlineQueryResultsButton';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InlineQueryResultsButton extends TdObject
     public function getType(): InlineQueryResultsButtonType
     {
         return $this->type;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setType(InlineQueryResultsButtonType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

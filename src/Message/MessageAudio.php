@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageAudio extends MessageContent
 {
-    public const TYPE_NAME = 'messageAudio';
+    public const string TYPE_NAME = 'messageAudio';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class MessageAudio extends MessageContent
     public function getCaption(): FormattedText
     {
         return $this->caption;
+    }
+
+    public function setAudio(Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

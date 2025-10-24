@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Unread\UnreadReaction;
  */
 class UpdateMessageUnreadReactions extends Update
 {
-    public const TYPE_NAME = 'updateMessageUnreadReactions';
+    public const string TYPE_NAME = 'updateMessageUnreadReactions';
 
     public function __construct(
         /**
@@ -67,6 +67,34 @@ class UpdateMessageUnreadReactions extends Update
     public function getUnreadReactions(): array
     {
         return $this->unreadReactions;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactions(array $value): static
+    {
+        $this->unreadReactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

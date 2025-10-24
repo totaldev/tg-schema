@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AutoDownloadSettings extends TdObject
 {
-    public const TYPE_NAME = 'autoDownloadSettings';
+    public const string TYPE_NAME = 'autoDownloadSettings';
 
     public function __construct(
         /**
@@ -112,6 +112,69 @@ class AutoDownloadSettings extends TdObject
     public function getVideoUploadBitrate(): int
     {
         return $this->videoUploadBitrate;
+    }
+
+    public function setIsAutoDownloadEnabled(bool $value): static
+    {
+        $this->isAutoDownloadEnabled = $value;
+
+        return $this;
+    }
+
+    public function setMaxOtherFileSize(int $value): static
+    {
+        $this->maxOtherFileSize = $value;
+
+        return $this;
+    }
+
+    public function setMaxPhotoFileSize(int $value): static
+    {
+        $this->maxPhotoFileSize = $value;
+
+        return $this;
+    }
+
+    public function setMaxVideoFileSize(int $value): static
+    {
+        $this->maxVideoFileSize = $value;
+
+        return $this;
+    }
+
+    public function setPreloadLargeVideos(bool $value): static
+    {
+        $this->preloadLargeVideos = $value;
+
+        return $this;
+    }
+
+    public function setPreloadNextAudio(bool $value): static
+    {
+        $this->preloadNextAudio = $value;
+
+        return $this;
+    }
+
+    public function setPreloadStories(bool $value): static
+    {
+        $this->preloadStories = $value;
+
+        return $this;
+    }
+
+    public function setUseLessDataForCalls(bool $value): static
+    {
+        $this->useLessDataForCalls = $value;
+
+        return $this;
+    }
+
+    public function setVideoUploadBitrate(int $value): static
+    {
+        $this->videoUploadBitrate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

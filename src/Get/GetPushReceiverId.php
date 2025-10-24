@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPushReceiverId extends TdFunction
 {
-    public const TYPE_NAME = 'getPushReceiverId';
+    public const string TYPE_NAME = 'getPushReceiverId';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetPushReceiverId extends TdFunction
     public function getPayload(): string
     {
         return $this->payload;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

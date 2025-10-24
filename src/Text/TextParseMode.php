@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TextParseMode extends TdObject
 {
-    public const TYPE_NAME = 'TextParseMode';
+    public const string TYPE_NAME = 'TextParseMode';
 
     public function __construct() {}
 

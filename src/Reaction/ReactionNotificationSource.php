@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReactionNotificationSource extends TdObject
 {
-    public const TYPE_NAME = 'ReactionNotificationSource';
+    public const string TYPE_NAME = 'ReactionNotificationSource';
 
     public function __construct() {}
 

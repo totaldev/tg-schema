@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Email;
  */
 class EmailAddressAuthenticationCode extends EmailAddressAuthentication
 {
-    public const TYPE_NAME = 'emailAddressAuthenticationCode';
+    public const string TYPE_NAME = 'emailAddressAuthenticationCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class EmailAddressAuthenticationCode extends EmailAddressAuthentication
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentContact extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentContact';
+    public const string TYPE_NAME = 'pushMessageContentContact';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentContact extends PushMessageContent
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Video\VideoStoryboard;
  */
 class MessageVideo extends MessageContent
 {
-    public const TYPE_NAME = 'messageVideo';
+    public const string TYPE_NAME = 'messageVideo';
 
     public function __construct(
         /**
@@ -123,6 +123,69 @@ class MessageVideo extends MessageContent
     public function getVideo(): Video
     {
         return $this->video;
+    }
+
+    public function setAlternativeVideos(array $value): static
+    {
+        $this->alternativeVideos = $value;
+
+        return $this;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setCover(?Photo $value): static
+    {
+        $this->cover = $value;
+
+        return $this;
+    }
+
+    public function setHasSpoiler(bool $value): static
+    {
+        $this->hasSpoiler = $value;
+
+        return $this;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setStartTimestamp(int $value): static
+    {
+        $this->startTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setStoryboards(array $value): static
+    {
+        $this->storyboards = $value;
+
+        return $this;
+    }
+
+    public function setVideo(Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

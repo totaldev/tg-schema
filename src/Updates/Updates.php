@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Update\Update;
  */
 class Updates extends TdObject
 {
-    public const TYPE_NAME = 'updates';
+    public const string TYPE_NAME = 'updates';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Updates extends TdObject
     public function getUpdates(): array
     {
         return $this->updates;
+    }
+
+    public function setUpdates(array $value): static
+    {
+        $this->updates = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

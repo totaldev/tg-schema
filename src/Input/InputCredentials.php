@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputCredentials extends TdObject
 {
-    public const TYPE_NAME = 'InputCredentials';
+    public const string TYPE_NAME = 'InputCredentials';
 
     public function __construct() {}
 

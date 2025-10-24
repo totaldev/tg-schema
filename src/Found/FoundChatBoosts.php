@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundChatBoosts extends TdObject
 {
-    public const TYPE_NAME = 'foundChatBoosts';
+    public const string TYPE_NAME = 'foundChatBoosts';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class FoundChatBoosts extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setBoosts(array $value): static
+    {
+        $this->boosts = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

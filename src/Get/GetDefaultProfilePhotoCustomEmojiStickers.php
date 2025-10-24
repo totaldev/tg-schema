@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDefaultProfilePhotoCustomEmojiStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getDefaultProfilePhotoCustomEmojiStickers';
+    public const string TYPE_NAME = 'getDefaultProfilePhotoCustomEmojiStickers';
 
     public function __construct() {}
 

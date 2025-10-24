@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateLoggingOut extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateLoggingOut';
+    public const string TYPE_NAME = 'authorizationStateLoggingOut';
 
     public function __construct()
     {

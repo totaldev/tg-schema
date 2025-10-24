@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGiftedPremium extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiftedPremium';
+    public const string TYPE_NAME = 'messageGiftedPremium';
 
     public function __construct(
         /**
@@ -116,6 +116,69 @@ class MessageGiftedPremium extends MessageContent
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrencyAmount(int $value): static
+    {
+        $this->cryptocurrencyAmount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setGifterUserId(int $value): static
+    {
+        $this->gifterUserId = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setReceiverUserId(int $value): static
+    {
+        $this->receiverUserId = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

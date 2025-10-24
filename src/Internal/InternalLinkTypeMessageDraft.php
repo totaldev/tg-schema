@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InternalLinkTypeMessageDraft extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeMessageDraft';
+    public const string TYPE_NAME = 'internalLinkTypeMessageDraft';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class InternalLinkTypeMessageDraft extends InternalLinkType
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setContainsLink(bool $value): static
+    {
+        $this->containsLink = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

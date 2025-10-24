@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageLinkInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageLinkInfo';
+    public const string TYPE_NAME = 'getMessageLinkInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetMessageLinkInfo extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

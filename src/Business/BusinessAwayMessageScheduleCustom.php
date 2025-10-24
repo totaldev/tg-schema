@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessAwayMessageScheduleCustom extends BusinessAwayMessageSchedule
 {
-    public const TYPE_NAME = 'businessAwayMessageScheduleCustom';
+    public const string TYPE_NAME = 'businessAwayMessageScheduleCustom';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BusinessAwayMessageScheduleCustom extends BusinessAwayMessageSchedule
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setEndDate(int $value): static
+    {
+        $this->endDate = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

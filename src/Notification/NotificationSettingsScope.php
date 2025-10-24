@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class NotificationSettingsScope extends TdObject
 {
-    public const TYPE_NAME = 'NotificationSettingsScope';
+    public const string TYPE_NAME = 'NotificationSettingsScope';
 
     public function __construct() {}
 

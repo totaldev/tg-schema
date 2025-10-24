@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeBotPaidMediaSale';
+    public const string TYPE_NAME = 'starTransactionTypeBotPaidMediaSale';
 
     public function __construct(
         /**
@@ -68,6 +68,34 @@ class StarTransactionTypeBotPaidMediaSale extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setAffiliate(?AffiliateInfo $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setMedia(array $value): static
+    {
+        $this->media = $value;
+
+        return $this;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

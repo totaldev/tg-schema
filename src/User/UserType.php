@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UserType extends TdObject
 {
-    public const TYPE_NAME = 'UserType';
+    public const string TYPE_NAME = 'UserType';
 
     public function __construct() {}
 

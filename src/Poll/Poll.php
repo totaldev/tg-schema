@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Poll extends TdObject
 {
-    public const TYPE_NAME = 'poll';
+    public const string TYPE_NAME = 'poll';
 
     public function __construct(
         /**
@@ -129,6 +129,76 @@ class Poll extends TdObject
     public function getType(): PollType
     {
         return $this->type;
+    }
+
+    public function setCloseDate(int $value): static
+    {
+        $this->closeDate = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
+    }
+
+    public function setIsClosed(bool $value): static
+    {
+        $this->isClosed = $value;
+
+        return $this;
+    }
+
+    public function setOpenPeriod(int $value): static
+    {
+        $this->openPeriod = $value;
+
+        return $this;
+    }
+
+    public function setOptions(array $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setQuestion(FormattedText $value): static
+    {
+        $this->question = $value;
+
+        return $this;
+    }
+
+    public function setRecentVoterIds(array $value): static
+    {
+        $this->recentVoterIds = $value;
+
+        return $this;
+    }
+
+    public function setTotalVoterCount(int $value): static
+    {
+        $this->totalVoterCount = $value;
+
+        return $this;
+    }
+
+    public function setType(PollType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FileType extends TdObject
 {
-    public const TYPE_NAME = 'FileType';
+    public const string TYPE_NAME = 'FileType';
 
     public function __construct() {}
 

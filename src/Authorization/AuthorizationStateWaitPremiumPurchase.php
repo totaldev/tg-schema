@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitPremiumPurchase';
+    public const string TYPE_NAME = 'authorizationStateWaitPremiumPurchase';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class AuthorizationStateWaitPremiumPurchase extends AuthorizationState
     public function getSupportEmailSubject(): string
     {
         return $this->supportEmailSubject;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
+    }
+
+    public function setSupportEmailAddress(string $value): static
+    {
+        $this->supportEmailAddress = $value;
+
+        return $this;
+    }
+
+    public function setSupportEmailSubject(string $value): static
+    {
+        $this->supportEmailSubject = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

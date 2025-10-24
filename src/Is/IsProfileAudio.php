@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class IsProfileAudio extends TdFunction
 {
-    public const TYPE_NAME = 'isProfileAudio';
+    public const string TYPE_NAME = 'isProfileAudio';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class IsProfileAudio extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

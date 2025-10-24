@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowBio extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowBio';
+    public const string TYPE_NAME = 'userPrivacySettingShowBio';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryAlbums extends TdObject
 {
-    public const TYPE_NAME = 'storyAlbums';
+    public const string TYPE_NAME = 'storyAlbums';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StoryAlbums extends TdObject
     public function getAlbums(): array
     {
         return $this->albums;
+    }
+
+    public function setAlbums(array $value): static
+    {
+        $this->albums = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryPrivacySettingsCloseFriends extends StoryPrivacySettings
 {
-    public const TYPE_NAME = 'storyPrivacySettingsCloseFriends';
+    public const string TYPE_NAME = 'storyPrivacySettingsCloseFriends';
 
     public function __construct()
     {

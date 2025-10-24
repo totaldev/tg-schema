@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class EditUserStarSubscription extends TdFunction
 {
-    public const TYPE_NAME = 'editUserStarSubscription';
+    public const string TYPE_NAME = 'editUserStarSubscription';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class EditUserStarSubscription extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setIsCanceled(bool $value): static
+    {
+        $this->isCanceled = $value;
+
+        return $this;
+    }
+
+    public function setTelegramPaymentChargeId(string $value): static
+    {
+        $this->telegramPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

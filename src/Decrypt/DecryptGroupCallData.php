@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DecryptGroupCallData extends TdFunction
 {
-    public const TYPE_NAME = 'decryptGroupCallData';
+    public const string TYPE_NAME = 'decryptGroupCallData';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class DecryptGroupCallData extends TdFunction
     public function getParticipantId(): MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setDataChannel(?GroupCallDataChannel $value): static
+    {
+        $this->dataChannel = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

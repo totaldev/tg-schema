@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AddLogMessage extends TdFunction
 {
-    public const TYPE_NAME = 'addLogMessage';
+    public const string TYPE_NAME = 'addLogMessage';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AddLogMessage extends TdFunction
     public function getVerbosityLevel(): int
     {
         return $this->verbosityLevel;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setVerbosityLevel(int $value): static
+    {
+        $this->verbosityLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

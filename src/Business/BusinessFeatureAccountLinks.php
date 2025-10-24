@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureAccountLinks extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureAccountLinks';
+    public const string TYPE_NAME = 'businessFeatureAccountLinks';
 
     public function __construct()
     {

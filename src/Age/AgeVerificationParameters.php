@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AgeVerificationParameters extends TdObject
 {
-    public const TYPE_NAME = 'ageVerificationParameters';
+    public const string TYPE_NAME = 'ageVerificationParameters';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class AgeVerificationParameters extends TdObject
     public function getVerificationBotUsername(): string
     {
         return $this->verificationBotUsername;
+    }
+
+    public function setCountry(string $value): static
+    {
+        $this->country = $value;
+
+        return $this;
+    }
+
+    public function setMinAge(int $value): static
+    {
+        $this->minAge = $value;
+
+        return $this;
+    }
+
+    public function setVerificationBotUsername(string $value): static
+    {
+        $this->verificationBotUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

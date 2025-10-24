@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageAvailableReactions extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageAvailableReactions';
+    public const string TYPE_NAME = 'getMessageAvailableReactions';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class GetMessageAvailableReactions extends TdFunction
     public function getRowSize(): int
     {
         return $this->rowSize;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setRowSize(int $value): static
+    {
+        $this->rowSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

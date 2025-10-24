@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputMessageReplyToStory extends InputMessageReplyTo
 {
-    public const TYPE_NAME = 'inputMessageReplyToStory';
+    public const string TYPE_NAME = 'inputMessageReplyToStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputMessageReplyToStory extends InputMessageReplyTo
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class VectorPathCommand extends TdObject
 {
-    public const TYPE_NAME = 'VectorPathCommand';
+    public const string TYPE_NAME = 'VectorPathCommand';
 
     public function __construct() {}
 

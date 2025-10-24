@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReportSponsoredChat extends TdFunction
 {
-    public const TYPE_NAME = 'reportSponsoredChat';
+    public const string TYPE_NAME = 'reportSponsoredChat';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReportSponsoredChat extends TdFunction
     public function getSponsoredChatUniqueId(): int
     {
         return $this->sponsoredChatUniqueId;
+    }
+
+    public function setOptionId(string $value): static
+    {
+        $this->optionId = $value;
+
+        return $this;
+    }
+
+    public function setSponsoredChatUniqueId(int $value): static
+    {
+        $this->sponsoredChatUniqueId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

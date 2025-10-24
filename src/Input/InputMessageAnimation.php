@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageAnimation extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageAnimation';
+    public const string TYPE_NAME = 'inputMessageAnimation';
 
     public function __construct(
         /**
@@ -117,6 +117,69 @@ class InputMessageAnimation extends InputMessageContent
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAddedStickerFileIds(array $value): static
+    {
+        $this->addedStickerFileIds = $value;
+
+        return $this;
+    }
+
+    public function setAnimation(InputFile $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setHasSpoiler(bool $value): static
+    {
+        $this->hasSpoiler = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

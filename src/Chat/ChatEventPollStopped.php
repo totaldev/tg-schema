@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventPollStopped extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventPollStopped';
+    public const string TYPE_NAME = 'chatEventPollStopped';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatEventPollStopped extends ChatEventAction
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

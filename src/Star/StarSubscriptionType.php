@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StarSubscriptionType extends TdObject
 {
-    public const TYPE_NAME = 'StarSubscriptionType';
+    public const string TYPE_NAME = 'StarSubscriptionType';
 
     public function __construct() {}
 

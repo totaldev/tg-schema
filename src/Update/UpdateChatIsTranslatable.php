@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatIsTranslatable extends Update
 {
-    public const TYPE_NAME = 'updateChatIsTranslatable';
+    public const string TYPE_NAME = 'updateChatIsTranslatable';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatIsTranslatable extends Update
     public function getIsTranslatable(): bool
     {
         return $this->isTranslatable;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsTranslatable(bool $value): static
+    {
+        $this->isTranslatable = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

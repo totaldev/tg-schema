@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageDocument extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageDocument';
+    public const string TYPE_NAME = 'inputMessageDocument';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class InputMessageDocument extends InputMessageContent
     public function getThumbnail(): ?InputThumbnail
     {
         return $this->thumbnail;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDisableContentTypeDetection(bool $value): static
+    {
+        $this->disableContentTypeDetection = $value;
+
+        return $this;
+    }
+
+    public function setDocument(InputFile $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

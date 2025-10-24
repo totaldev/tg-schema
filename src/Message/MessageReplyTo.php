@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageReplyTo extends TdObject
 {
-    public const TYPE_NAME = 'MessageReplyTo';
+    public const string TYPE_NAME = 'MessageReplyTo';
 
     public function __construct() {}
 

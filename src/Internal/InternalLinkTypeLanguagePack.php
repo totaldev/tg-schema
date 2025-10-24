@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeLanguagePack extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeLanguagePack';
+    public const string TYPE_NAME = 'internalLinkTypeLanguagePack';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeLanguagePack extends InternalLinkType
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

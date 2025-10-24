@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetAllStickerEmojis extends TdFunction
 {
-    public const TYPE_NAME = 'getAllStickerEmojis';
+    public const string TYPE_NAME = 'getAllStickerEmojis';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class GetAllStickerEmojis extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setReturnOnlyMainEmoji(bool $value): static
+    {
+        $this->returnOnlyMainEmoji = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

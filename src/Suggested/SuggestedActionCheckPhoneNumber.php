@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionCheckPhoneNumber extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionCheckPhoneNumber';
+    public const string TYPE_NAME = 'suggestedActionCheckPhoneNumber';
 
     public function __construct()
     {

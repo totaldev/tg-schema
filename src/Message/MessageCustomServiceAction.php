@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageCustomServiceAction extends MessageContent
 {
-    public const TYPE_NAME = 'messageCustomServiceAction';
+    public const string TYPE_NAME = 'messageCustomServiceAction';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageCustomServiceAction extends MessageContent
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

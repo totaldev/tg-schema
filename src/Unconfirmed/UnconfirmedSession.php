@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UnconfirmedSession extends TdObject
 {
-    public const TYPE_NAME = 'unconfirmedSession';
+    public const string TYPE_NAME = 'unconfirmedSession';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UnconfirmedSession extends TdObject
     public function getLogInDate(): int
     {
         return $this->logInDate;
+    }
+
+    public function setDeviceModel(string $value): static
+    {
+        $this->deviceModel = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLocation(string $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setLogInDate(int $value): static
+    {
+        $this->logInDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

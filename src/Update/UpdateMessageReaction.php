@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageReaction extends Update
 {
-    public const TYPE_NAME = 'updateMessageReaction';
+    public const string TYPE_NAME = 'updateMessageReaction';
 
     public function __construct(
         /**
@@ -90,6 +90,48 @@ class UpdateMessageReaction extends Update
     public function getOldReactionTypes(): array
     {
         return $this->oldReactionTypes;
+    }
+
+    public function setActorId(MessageSender $value): static
+    {
+        $this->actorId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setNewReactionTypes(array $value): static
+    {
+        $this->newReactionTypes = $value;
+
+        return $this;
+    }
+
+    public function setOldReactionTypes(array $value): static
+    {
+        $this->oldReactionTypes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

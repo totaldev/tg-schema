@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckAuthenticationPasswordRecoveryCode extends TdFunction
 {
-    public const TYPE_NAME = 'checkAuthenticationPasswordRecoveryCode';
+    public const string TYPE_NAME = 'checkAuthenticationPasswordRecoveryCode';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class CheckAuthenticationPasswordRecoveryCode extends TdFunction
     public function getRecoveryCode(): string
     {
         return $this->recoveryCode;
+    }
+
+    public function setRecoveryCode(string $value): static
+    {
+        $this->recoveryCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockChatLink extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockChatLink';
+    public const string TYPE_NAME = 'pageBlockChatLink';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class PageBlockChatLink extends PageBlock
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhotoInfo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

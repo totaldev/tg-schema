@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TMeUrl extends TdObject
 {
-    public const TYPE_NAME = 'tMeUrl';
+    public const string TYPE_NAME = 'tMeUrl';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class TMeUrl extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setType(TMeUrlType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

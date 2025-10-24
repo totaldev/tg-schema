@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResetAuthenticationEmailAddress extends TdFunction
 {
-    public const TYPE_NAME = 'resetAuthenticationEmailAddress';
+    public const string TYPE_NAME = 'resetAuthenticationEmailAddress';
 
     public function __construct() {}
 

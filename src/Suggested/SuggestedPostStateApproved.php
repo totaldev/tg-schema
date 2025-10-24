@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedPostStateApproved extends SuggestedPostState
 {
-    public const TYPE_NAME = 'suggestedPostStateApproved';
+    public const string TYPE_NAME = 'suggestedPostStateApproved';
 
     public function __construct()
     {

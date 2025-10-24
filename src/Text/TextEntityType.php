@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TextEntityType extends TdObject
 {
-    public const TYPE_NAME = 'TextEntityType';
+    public const string TYPE_NAME = 'TextEntityType';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Firebase;
  */
 class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
 {
-    public const TYPE_NAME = 'firebaseAuthenticationSettingsIos';
+    public const string TYPE_NAME = 'firebaseAuthenticationSettingsIos';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class FirebaseAuthenticationSettingsIos extends FirebaseAuthenticationSettings
     public function getIsAppSandbox(): bool
     {
         return $this->isAppSandbox;
+    }
+
+    public function setDeviceToken(string $value): static
+    {
+        $this->deviceToken = $value;
+
+        return $this;
+    }
+
+    public function setIsAppSandbox(bool $value): static
+    {
+        $this->isAppSandbox = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

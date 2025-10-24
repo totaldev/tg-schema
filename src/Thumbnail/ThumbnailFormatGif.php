@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Thumbnail;
  */
 class ThumbnailFormatGif extends ThumbnailFormat
 {
-    public const TYPE_NAME = 'thumbnailFormatGif';
+    public const string TYPE_NAME = 'thumbnailFormatGif';
 
     public function __construct()
     {

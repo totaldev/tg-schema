@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Store;
  */
 class StoreTransactionAppStore extends StoreTransaction
 {
-    public const TYPE_NAME = 'storeTransactionAppStore';
+    public const string TYPE_NAME = 'storeTransactionAppStore';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StoreTransactionAppStore extends StoreTransaction
     public function getReceipt(): string
     {
         return $this->receipt;
+    }
+
+    public function setReceipt(string $value): static
+    {
+        $this->receipt = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

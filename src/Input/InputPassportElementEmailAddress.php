@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputPassportElementEmailAddress extends InputPassportElement
 {
-    public const TYPE_NAME = 'inputPassportElementEmailAddress';
+    public const string TYPE_NAME = 'inputPassportElementEmailAddress';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputPassportElementEmailAddress extends InputPassportElement
     public function getEmailAddress(): string
     {
         return $this->emailAddress;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

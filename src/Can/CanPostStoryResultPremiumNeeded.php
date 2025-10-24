@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanPostStoryResultPremiumNeeded extends CanPostStoryResult
 {
-    public const TYPE_NAME = 'canPostStoryResultPremiumNeeded';
+    public const string TYPE_NAME = 'canPostStoryResultPremiumNeeded';
 
     public function __construct()
     {

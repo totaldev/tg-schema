@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputStoryAreaTypeMessage extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeMessage';
+    public const string TYPE_NAME = 'inputStoryAreaTypeMessage';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InputStoryAreaTypeMessage extends InputStoryAreaType
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

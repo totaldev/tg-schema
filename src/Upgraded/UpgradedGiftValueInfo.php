@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UpgradedGiftValueInfo extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftValueInfo';
+    public const string TYPE_NAME = 'upgradedGiftValueInfo';
 
     public function __construct(
         /**
@@ -162,6 +162,104 @@ class UpgradedGiftValueInfo extends TdObject
     public function getValue(): int
     {
         return $this->value;
+    }
+
+    public function setAverageSalePrice(int $value): static
+    {
+        $this->averageSalePrice = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setFragmentListedGiftCount(int $value): static
+    {
+        $this->fragmentListedGiftCount = $value;
+
+        return $this;
+    }
+
+    public function setFragmentUrl(string $value): static
+    {
+        $this->fragmentUrl = $value;
+
+        return $this;
+    }
+
+    public function setInitialSaleDate(int $value): static
+    {
+        $this->initialSaleDate = $value;
+
+        return $this;
+    }
+
+    public function setInitialSalePrice(int $value): static
+    {
+        $this->initialSalePrice = $value;
+
+        return $this;
+    }
+
+    public function setInitialSaleStarCount(int $value): static
+    {
+        $this->initialSaleStarCount = $value;
+
+        return $this;
+    }
+
+    public function setIsLastSaleOnFragment(bool $value): static
+    {
+        $this->isLastSaleOnFragment = $value;
+
+        return $this;
+    }
+
+    public function setIsValueAverage(bool $value): static
+    {
+        $this->isValueAverage = $value;
+
+        return $this;
+    }
+
+    public function setLastSaleDate(int $value): static
+    {
+        $this->lastSaleDate = $value;
+
+        return $this;
+    }
+
+    public function setLastSalePrice(int $value): static
+    {
+        $this->lastSalePrice = $value;
+
+        return $this;
+    }
+
+    public function setMinimumPrice(int $value): static
+    {
+        $this->minimumPrice = $value;
+
+        return $this;
+    }
+
+    public function setTelegramListedGiftCount(int $value): static
+    {
+        $this->telegramListedGiftCount = $value;
+
+        return $this;
+    }
+
+    public function setValue(int $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

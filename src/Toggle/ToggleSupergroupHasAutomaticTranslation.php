@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupHasAutomaticTranslation extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupHasAutomaticTranslation';
+    public const string TYPE_NAME = 'toggleSupergroupHasAutomaticTranslation';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleSupergroupHasAutomaticTranslation extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setHasAutomaticTranslation(bool $value): static
+    {
+        $this->hasAutomaticTranslation = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

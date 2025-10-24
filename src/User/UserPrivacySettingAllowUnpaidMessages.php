@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowUnpaidMessages extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowUnpaidMessages';
+    public const string TYPE_NAME = 'userPrivacySettingAllowUnpaidMessages';
 
     public function __construct()
     {

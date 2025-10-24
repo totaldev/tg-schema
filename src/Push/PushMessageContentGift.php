@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentGift extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentGift';
+    public const string TYPE_NAME = 'pushMessageContentGift';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentGift extends PushMessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setIsPrepaidUpgrade(bool $value): static
+    {
+        $this->isPrepaidUpgrade = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

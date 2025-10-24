@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBusinessAccountStarAmount extends TdFunction
 {
-    public const TYPE_NAME = 'getBusinessAccountStarAmount';
+    public const string TYPE_NAME = 'getBusinessAccountStarAmount';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetBusinessAccountStarAmount extends TdFunction
     public function getBusinessConnectionId(): string
     {
         return $this->businessConnectionId;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

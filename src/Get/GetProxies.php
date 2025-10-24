@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetProxies extends TdFunction
 {
-    public const TYPE_NAME = 'getProxies';
+    public const string TYPE_NAME = 'getProxies';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryInteractionTypeRepost extends StoryInteractionType
 {
-    public const TYPE_NAME = 'storyInteractionTypeRepost';
+    public const string TYPE_NAME = 'storyInteractionTypeRepost';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class StoryInteractionTypeRepost extends StoryInteractionType
     public function getStory(): Story
     {
         return $this->story;
+    }
+
+    public function setStory(Story $value): static
+    {
+        $this->story = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

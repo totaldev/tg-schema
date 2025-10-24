@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Block;
  */
 class BlockListStories extends BlockList
 {
-    public const TYPE_NAME = 'blockListStories';
+    public const string TYPE_NAME = 'blockListStories';
 
     public function __construct()
     {

@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InternalLinkTypeBotAddToChannel extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBotAddToChannel';
+    public const string TYPE_NAME = 'internalLinkTypeBotAddToChannel';
 
     public function __construct(
         /**
@@ -49,6 +49,20 @@ class InternalLinkTypeBotAddToChannel extends InternalLinkType
     public function getBotUsername(): string
     {
         return $this->botUsername;
+    }
+
+    public function setAdministratorRights(ChatAdministratorRights $value): static
+    {
+        $this->administratorRights = $value;
+
+        return $this;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

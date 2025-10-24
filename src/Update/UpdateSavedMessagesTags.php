@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateSavedMessagesTags extends Update
 {
-    public const TYPE_NAME = 'updateSavedMessagesTags';
+    public const string TYPE_NAME = 'updateSavedMessagesTags';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateSavedMessagesTags extends Update
     public function getTags(): SavedMessagesTags
     {
         return $this->tags;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
+    }
+
+    public function setTags(SavedMessagesTags $value): static
+    {
+        $this->tags = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

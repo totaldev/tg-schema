@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CallStateError extends CallState
 {
-    public const TYPE_NAME = 'callStateError';
+    public const string TYPE_NAME = 'callStateError';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class CallStateError extends CallState
     public function getError(): Error
     {
         return $this->error;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

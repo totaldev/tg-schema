@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ForwardMessages extends TdFunction
 {
-    public const TYPE_NAME = 'forwardMessages';
+    public const string TYPE_NAME = 'forwardMessages';
 
     public function __construct(
         /**
@@ -98,6 +98,55 @@ class ForwardMessages extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFromChatId(int $value): static
+    {
+        $this->fromChatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
+    }
+
+    public function setOptions(?MessageSendOptions $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setRemoveCaption(bool $value): static
+    {
+        $this->removeCaption = $value;
+
+        return $this;
+    }
+
+    public function setSendCopy(bool $value): static
+    {
+        $this->sendCopy = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

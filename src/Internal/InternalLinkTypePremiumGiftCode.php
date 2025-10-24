@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypePremiumGiftCode extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypePremiumGiftCode';
+    public const string TYPE_NAME = 'internalLinkTypePremiumGiftCode';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypePremiumGiftCode extends InternalLinkType
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

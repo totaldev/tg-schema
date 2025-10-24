@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ResendAuthenticationCode extends TdFunction
 {
-    public const TYPE_NAME = 'resendAuthenticationCode';
+    public const string TYPE_NAME = 'resendAuthenticationCode';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ResendAuthenticationCode extends TdFunction
     public function getReason(): ?ResendCodeReason
     {
         return $this->reason;
+    }
+
+    public function setReason(?ResendCodeReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

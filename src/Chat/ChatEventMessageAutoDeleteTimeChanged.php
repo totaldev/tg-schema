@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMessageAutoDeleteTimeChanged';
+    public const string TYPE_NAME = 'chatEventMessageAutoDeleteTimeChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventMessageAutoDeleteTimeChanged extends ChatEventAction
     public function getOldMessageAutoDeleteTime(): int
     {
         return $this->oldMessageAutoDeleteTime;
+    }
+
+    public function setNewMessageAutoDeleteTime(int $value): static
+    {
+        $this->newMessageAutoDeleteTime = $value;
+
+        return $this;
+    }
+
+    public function setOldMessageAutoDeleteTime(int $value): static
+    {
+        $this->oldMessageAutoDeleteTime = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

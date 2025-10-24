@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageForwardInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageForwardInfo';
+    public const string TYPE_NAME = 'messageForwardInfo';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class MessageForwardInfo extends TdObject
     public function getSource(): ?ForwardSource
     {
         return $this->source;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setOrigin(MessageOrigin $value): static
+    {
+        $this->origin = $value;
+
+        return $this;
+    }
+
+    public function setPublicServiceAnnouncementType(string $value): static
+    {
+        $this->publicServiceAnnouncementType = $value;
+
+        return $this;
+    }
+
+    public function setSource(?ForwardSource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

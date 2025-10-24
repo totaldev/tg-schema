@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftBackdrop extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftBackdrop';
+    public const string TYPE_NAME = 'upgradedGiftBackdrop';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class UpgradedGiftBackdrop extends TdObject
     public function getRarityPerMille(): int
     {
         return $this->rarityPerMille;
+    }
+
+    public function setColors(UpgradedGiftBackdropColors $value): static
+    {
+        $this->colors = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setRarityPerMille(int $value): static
+    {
+        $this->rarityPerMille = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

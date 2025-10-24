@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupUsernameIsActive extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupUsernameIsActive';
+    public const string TYPE_NAME = 'toggleSupergroupUsernameIsActive';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class ToggleSupergroupUsernameIsActive extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

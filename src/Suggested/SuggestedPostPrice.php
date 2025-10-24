@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SuggestedPostPrice extends TdObject
 {
-    public const TYPE_NAME = 'SuggestedPostPrice';
+    public const string TYPE_NAME = 'SuggestedPostPrice';
 
     public function __construct() {}
 

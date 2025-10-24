@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockMap extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockMap';
+    public const string TYPE_NAME = 'pageBlockMap';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class PageBlockMap extends PageBlock
     public function getZoom(): int
     {
         return $this->zoom;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
+    }
+
+    public function setZoom(int $value): static
+    {
+        $this->zoom = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

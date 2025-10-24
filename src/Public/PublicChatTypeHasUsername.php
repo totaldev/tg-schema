@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Public;
  */
 class PublicChatTypeHasUsername extends PublicChatType
 {
-    public const TYPE_NAME = 'publicChatTypeHasUsername';
+    public const string TYPE_NAME = 'publicChatTypeHasUsername';
 
     public function __construct()
     {

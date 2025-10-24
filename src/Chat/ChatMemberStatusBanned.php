@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatMemberStatusBanned extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusBanned';
+    public const string TYPE_NAME = 'chatMemberStatusBanned';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ChatMemberStatusBanned extends ChatMemberStatus
     public function getBannedUntilDate(): int
     {
         return $this->bannedUntilDate;
+    }
+
+    public function setBannedUntilDate(int $value): static
+    {
+        $this->bannedUntilDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

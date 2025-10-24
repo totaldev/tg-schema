@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatRevenueTransaction extends TdObject
 {
-    public const TYPE_NAME = 'chatRevenueTransaction';
+    public const string TYPE_NAME = 'chatRevenueTransaction';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class ChatRevenueTransaction extends TdObject
     public function getType(): ChatRevenueTransactionType
     {
         return $this->type;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrencyAmount(int $value): static
+    {
+        $this->cryptocurrencyAmount = $value;
+
+        return $this;
+    }
+
+    public function setType(ChatRevenueTransactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

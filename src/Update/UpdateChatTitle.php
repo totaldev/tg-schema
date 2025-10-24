@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatTitle extends Update
 {
-    public const TYPE_NAME = 'updateChatTitle';
+    public const string TYPE_NAME = 'updateChatTitle';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatTitle extends Update
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

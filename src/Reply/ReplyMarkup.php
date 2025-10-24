@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReplyMarkup extends TdObject
 {
-    public const TYPE_NAME = 'ReplyMarkup';
+    public const string TYPE_NAME = 'ReplyMarkup';
 
     public function __construct() {}
 

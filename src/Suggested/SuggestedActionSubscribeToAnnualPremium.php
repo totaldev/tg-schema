@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionSubscribeToAnnualPremium extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionSubscribeToAnnualPremium';
+    public const string TYPE_NAME = 'suggestedActionSubscribeToAnnualPremium';
 
     public function __construct()
     {

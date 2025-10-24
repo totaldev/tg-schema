@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PassportElement extends TdObject
 {
-    public const TYPE_NAME = 'PassportElement';
+    public const string TYPE_NAME = 'PassportElement';
 
     public function __construct() {}
 

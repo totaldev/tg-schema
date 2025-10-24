@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateNewChosenInlineResult extends Update
 {
-    public const TYPE_NAME = 'updateNewChosenInlineResult';
+    public const string TYPE_NAME = 'updateNewChosenInlineResult';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class UpdateNewChosenInlineResult extends Update
     public function getUserLocation(): ?Location
     {
         return $this->userLocation;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setResultId(string $value): static
+    {
+        $this->resultId = $value;
+
+        return $this;
+    }
+
+    public function setSenderUserId(int $value): static
+    {
+        $this->senderUserId = $value;
+
+        return $this;
+    }
+
+    public function setUserLocation(?Location $value): static
+    {
+        $this->userLocation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

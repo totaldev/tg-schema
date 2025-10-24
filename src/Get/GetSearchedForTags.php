@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSearchedForTags extends TdFunction
 {
-    public const TYPE_NAME = 'getSearchedForTags';
+    public const string TYPE_NAME = 'getSearchedForTags';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetSearchedForTags extends TdFunction
     public function getTagPrefix(): string
     {
         return $this->tagPrefix;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setTagPrefix(string $value): static
+    {
+        $this->tagPrefix = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

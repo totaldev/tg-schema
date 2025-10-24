@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetConnectedAffiliateProgram extends TdFunction
 {
-    public const TYPE_NAME = 'getConnectedAffiliateProgram';
+    public const string TYPE_NAME = 'getConnectedAffiliateProgram';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetConnectedAffiliateProgram extends TdFunction
     public function getBotUserId(): int
     {
         return $this->botUserId;
+    }
+
+    public function setAffiliate(AffiliateType $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

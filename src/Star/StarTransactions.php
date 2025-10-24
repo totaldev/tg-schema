@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactions extends TdObject
 {
-    public const TYPE_NAME = 'starTransactions';
+    public const string TYPE_NAME = 'starTransactions';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class StarTransactions extends TdObject
     public function getTransactions(): array
     {
         return $this->transactions;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setStarAmount(StarAmount $value): static
+    {
+        $this->starAmount = $value;
+
+        return $this;
+    }
+
+    public function setTransactions(array $value): static
+    {
+        $this->transactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

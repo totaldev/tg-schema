@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetImportedContactCount extends TdFunction
 {
-    public const TYPE_NAME = 'getImportedContactCount';
+    public const string TYPE_NAME = 'getImportedContactCount';
 
     public function __construct() {}
 

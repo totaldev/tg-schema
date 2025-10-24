@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleUsernameIsActive extends TdFunction
 {
-    public const TYPE_NAME = 'toggleUsernameIsActive';
+    public const string TYPE_NAME = 'toggleUsernameIsActive';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleUsernameIsActive extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

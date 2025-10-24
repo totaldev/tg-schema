@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryInteractionType extends TdObject
 {
-    public const TYPE_NAME = 'StoryInteractionType';
+    public const string TYPE_NAME = 'StoryInteractionType';
 
     public function __construct() {}
 

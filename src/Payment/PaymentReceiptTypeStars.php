@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Payment;
  */
 class PaymentReceiptTypeStars extends PaymentReceiptType
 {
-    public const TYPE_NAME = 'paymentReceiptTypeStars';
+    public const string TYPE_NAME = 'paymentReceiptTypeStars';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PaymentReceiptTypeStars extends PaymentReceiptType
     public function getTransactionId(): string
     {
         return $this->transactionId;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setTransactionId(string $value): static
+    {
+        $this->transactionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

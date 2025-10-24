@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VoiceNote extends TdObject
 {
-    public const TYPE_NAME = 'voiceNote';
+    public const string TYPE_NAME = 'voiceNote';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class VoiceNote extends TdObject
     public function getWaveform(): string
     {
         return $this->waveform;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setSpeechRecognitionResult(?SpeechRecognitionResult $value): static
+    {
+        $this->speechRecognitionResult = $value;
+
+        return $this;
+    }
+
+    public function setVoice(File $value): static
+    {
+        $this->voice = $value;
+
+        return $this;
+    }
+
+    public function setWaveform(string $value): static
+    {
+        $this->waveform = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

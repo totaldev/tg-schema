@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultSticker extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultSticker';
+    public const string TYPE_NAME = 'inputInlineQueryResultSticker';
 
     public function __construct(
         /**
@@ -95,6 +95,55 @@ class InputInlineQueryResultSticker extends InputInlineQueryResult
     public function getThumbnailUrl(): string
     {
         return $this->thumbnailUrl;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setStickerHeight(int $value): static
+    {
+        $this->stickerHeight = $value;
+
+        return $this;
+    }
+
+    public function setStickerUrl(string $value): static
+    {
+        $this->stickerUrl = $value;
+
+        return $this;
+    }
+
+    public function setStickerWidth(int $value): static
+    {
+        $this->stickerWidth = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

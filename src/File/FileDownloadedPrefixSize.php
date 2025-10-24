@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FileDownloadedPrefixSize extends TdObject
 {
-    public const TYPE_NAME = 'fileDownloadedPrefixSize';
+    public const string TYPE_NAME = 'fileDownloadedPrefixSize';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class FileDownloadedPrefixSize extends TdObject
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function setSize(int $value): static
+    {
+        $this->size = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteAllCallMessages extends TdFunction
 {
-    public const TYPE_NAME = 'deleteAllCallMessages';
+    public const string TYPE_NAME = 'deleteAllCallMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeleteAllCallMessages extends TdFunction
     public function getRevoke(): bool
     {
         return $this->revoke;
+    }
+
+    public function setRevoke(bool $value): static
+    {
+        $this->revoke = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

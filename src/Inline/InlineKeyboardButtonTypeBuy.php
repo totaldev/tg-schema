@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeBuy extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeBuy';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeBuy';
 
     public function __construct()
     {

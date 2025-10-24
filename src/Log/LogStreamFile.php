@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Log;
  */
 class LogStreamFile extends LogStream
 {
-    public const TYPE_NAME = 'logStreamFile';
+    public const string TYPE_NAME = 'logStreamFile';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class LogStreamFile extends LogStream
     public function getRedirectStderr(): bool
     {
         return $this->redirectStderr;
+    }
+
+    public function setMaxFileSize(int $value): static
+    {
+        $this->maxFileSize = $value;
+
+        return $this;
+    }
+
+    public function setPath(string $value): static
+    {
+        $this->path = $value;
+
+        return $this;
+    }
+
+    public function setRedirectStderr(bool $value): static
+    {
+        $this->redirectStderr = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

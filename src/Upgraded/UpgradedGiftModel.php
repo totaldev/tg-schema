@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftModel extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftModel';
+    public const string TYPE_NAME = 'upgradedGiftModel';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class UpgradedGiftModel extends TdObject
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setRarityPerMille(int $value): static
+    {
+        $this->rarityPerMille = $value;
+
+        return $this;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

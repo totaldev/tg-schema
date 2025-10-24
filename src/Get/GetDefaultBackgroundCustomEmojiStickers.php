@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDefaultBackgroundCustomEmojiStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getDefaultBackgroundCustomEmojiStickers';
+    public const string TYPE_NAME = 'getDefaultBackgroundCustomEmojiStickers';
 
     public function __construct() {}
 

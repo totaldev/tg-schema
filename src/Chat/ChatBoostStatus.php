@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatBoostStatus extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostStatus';
+    public const string TYPE_NAME = 'chatBoostStatus';
 
     public function __construct(
         /**
@@ -128,6 +128,76 @@ class ChatBoostStatus extends TdObject
     public function getPrepaidGiveaways(): array
     {
         return $this->prepaidGiveaways;
+    }
+
+    public function setAppliedSlotIds(array $value): static
+    {
+        $this->appliedSlotIds = $value;
+
+        return $this;
+    }
+
+    public function setBoostCount(int $value): static
+    {
+        $this->boostCount = $value;
+
+        return $this;
+    }
+
+    public function setBoostUrl(string $value): static
+    {
+        $this->boostUrl = $value;
+
+        return $this;
+    }
+
+    public function setCurrentLevelBoostCount(int $value): static
+    {
+        $this->currentLevelBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setGiftCodeBoostCount(int $value): static
+    {
+        $this->giftCodeBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setLevel(int $value): static
+    {
+        $this->level = $value;
+
+        return $this;
+    }
+
+    public function setNextLevelBoostCount(int $value): static
+    {
+        $this->nextLevelBoostCount = $value;
+
+        return $this;
+    }
+
+    public function setPremiumMemberCount(int $value): static
+    {
+        $this->premiumMemberCount = $value;
+
+        return $this;
+    }
+
+    public function setPremiumMemberPercentage(float $value): static
+    {
+        $this->premiumMemberPercentage = $value;
+
+        return $this;
+    }
+
+    public function setPrepaidGiveaways(array $value): static
+    {
+        $this->prepaidGiveaways = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

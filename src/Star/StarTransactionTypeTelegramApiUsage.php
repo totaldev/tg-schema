@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeTelegramApiUsage extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeTelegramApiUsage';
+    public const string TYPE_NAME = 'starTransactionTypeTelegramApiUsage';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StarTransactionTypeTelegramApiUsage extends StarTransactionType
     public function getRequestCount(): int
     {
         return $this->requestCount;
+    }
+
+    public function setRequestCount(int $value): static
+    {
+        $this->requestCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

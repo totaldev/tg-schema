@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PublicForwardStory extends PublicForward
 {
-    public const TYPE_NAME = 'publicForwardStory';
+    public const string TYPE_NAME = 'publicForwardStory';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PublicForwardStory extends PublicForward
     public function getStory(): Story
     {
         return $this->story;
+    }
+
+    public function setStory(Story $value): static
+    {
+        $this->story = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

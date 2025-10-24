@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageVideoChatScheduled extends MessageContent
 {
-    public const TYPE_NAME = 'messageVideoChatScheduled';
+    public const string TYPE_NAME = 'messageVideoChatScheduled';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageVideoChatScheduled extends MessageContent
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

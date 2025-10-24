@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Page;
  */
 class PageBlockVerticalAlignmentTop extends PageBlockVerticalAlignment
 {
-    public const TYPE_NAME = 'pageBlockVerticalAlignmentTop';
+    public const string TYPE_NAME = 'pageBlockVerticalAlignmentTop';
 
     public function __construct()
     {

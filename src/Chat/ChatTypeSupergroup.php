@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatTypeSupergroup extends ChatType
 {
-    public const TYPE_NAME = 'chatTypeSupergroup';
+    public const string TYPE_NAME = 'chatTypeSupergroup';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatTypeSupergroup extends ChatType
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setIsChannel(bool $value): static
+    {
+        $this->isChannel = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

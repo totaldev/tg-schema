@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryInteraction extends TdObject
 {
-    public const TYPE_NAME = 'storyInteraction';
+    public const string TYPE_NAME = 'storyInteraction';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StoryInteraction extends TdObject
     public function getType(): StoryInteractionType
     {
         return $this->type;
+    }
+
+    public function setActorId(MessageSender $value): static
+    {
+        $this->actorId = $value;
+
+        return $this;
+    }
+
+    public function setBlockList(?BlockList $value): static
+    {
+        $this->blockList = $value;
+
+        return $this;
+    }
+
+    public function setInteractionDate(int $value): static
+    {
+        $this->interactionDate = $value;
+
+        return $this;
+    }
+
+    public function setType(StoryInteractionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

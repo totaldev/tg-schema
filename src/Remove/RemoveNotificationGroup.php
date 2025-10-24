@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveNotificationGroup extends TdFunction
 {
-    public const TYPE_NAME = 'removeNotificationGroup';
+    public const string TYPE_NAME = 'removeNotificationGroup';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RemoveNotificationGroup extends TdFunction
     public function getNotificationGroupId(): int
     {
         return $this->notificationGroupId;
+    }
+
+    public function setMaxNotificationId(int $value): static
+    {
+        $this->maxNotificationId = $value;
+
+        return $this;
+    }
+
+    public function setNotificationGroupId(int $value): static
+    {
+        $this->notificationGroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

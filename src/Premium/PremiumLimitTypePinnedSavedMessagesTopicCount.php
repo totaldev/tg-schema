@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypePinnedSavedMessagesTopicCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypePinnedSavedMessagesTopicCount';
+    public const string TYPE_NAME = 'premiumLimitTypePinnedSavedMessagesTopicCount';
 
     public function __construct()
     {

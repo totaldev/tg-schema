@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemEcho extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemEcho';
+    public const string TYPE_NAME = 'callProblemEcho';
 
     public function __construct()
     {

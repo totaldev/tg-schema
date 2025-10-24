@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatAvailableReactionsAll extends ChatAvailableReactions
 {
-    public const TYPE_NAME = 'chatAvailableReactionsAll';
+    public const string TYPE_NAME = 'chatAvailableReactionsAll';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatAvailableReactionsAll extends ChatAvailableReactions
     public function getMaxReactionCount(): int
     {
         return $this->maxReactionCount;
+    }
+
+    public function setMaxReactionCount(int $value): static
+    {
+        $this->maxReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

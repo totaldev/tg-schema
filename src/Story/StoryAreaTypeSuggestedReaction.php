@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryAreaTypeSuggestedReaction extends StoryAreaType
 {
-    public const TYPE_NAME = 'storyAreaTypeSuggestedReaction';
+    public const string TYPE_NAME = 'storyAreaTypeSuggestedReaction';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StoryAreaTypeSuggestedReaction extends StoryAreaType
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
+    }
+
+    public function setIsFlipped(bool $value): static
+    {
+        $this->isFlipped = $value;
+
+        return $this;
+    }
+
+    public function setReactionType(ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

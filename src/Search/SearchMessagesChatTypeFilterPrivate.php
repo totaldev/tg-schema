@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesChatTypeFilterPrivate extends SearchMessagesChatTypeFilter
 {
-    public const TYPE_NAME = 'searchMessagesChatTypeFilterPrivate';
+    public const string TYPE_NAME = 'searchMessagesChatTypeFilterPrivate';
 
     public function __construct()
     {

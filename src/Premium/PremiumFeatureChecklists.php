@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureChecklists extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureChecklists';
+    public const string TYPE_NAME = 'premiumFeatureChecklists';
 
     public function __construct()
     {

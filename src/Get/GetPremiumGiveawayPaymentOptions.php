@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPremiumGiveawayPaymentOptions extends TdFunction
 {
-    public const TYPE_NAME = 'getPremiumGiveawayPaymentOptions';
+    public const string TYPE_NAME = 'getPremiumGiveawayPaymentOptions';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetPremiumGiveawayPaymentOptions extends TdFunction
     public function getBoostedChatId(): int
     {
         return $this->boostedChatId;
+    }
+
+    public function setBoostedChatId(int $value): static
+    {
+        $this->boostedChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

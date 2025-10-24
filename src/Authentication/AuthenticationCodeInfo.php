@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AuthenticationCodeInfo extends TdObject
 {
-    public const TYPE_NAME = 'authenticationCodeInfo';
+    public const string TYPE_NAME = 'authenticationCodeInfo';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class AuthenticationCodeInfo extends TdObject
     public function getType(): AuthenticationCodeType
     {
         return $this->type;
+    }
+
+    public function setNextType(?AuthenticationCodeType $value): static
+    {
+        $this->nextType = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setTimeout(int $value): static
+    {
+        $this->timeout = $value;
+
+        return $this;
+    }
+
+    public function setType(AuthenticationCodeType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

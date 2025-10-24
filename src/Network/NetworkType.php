@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class NetworkType extends TdObject
 {
-    public const TYPE_NAME = 'NetworkType';
+    public const string TYPE_NAME = 'NetworkType';
 
     public function __construct() {}
 

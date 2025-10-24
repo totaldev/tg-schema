@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TestCallVectorStringObject extends TdFunction
 {
-    public const TYPE_NAME = 'testCallVectorStringObject';
+    public const string TYPE_NAME = 'testCallVectorStringObject';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class TestCallVectorStringObject extends TdFunction
     public function getX(): array
     {
         return $this->x;
+    }
+
+    public function setX(array $value): static
+    {
+        $this->x = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

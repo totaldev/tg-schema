@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestedPostRefunded extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestedPostRefunded';
+    public const string TYPE_NAME = 'messageSuggestedPostRefunded';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessageSuggestedPostRefunded extends MessageContent
     public function getSuggestedPostMessageId(): int
     {
         return $this->suggestedPostMessageId;
+    }
+
+    public function setReason(SuggestedPostRefundReason $value): static
+    {
+        $this->reason = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostMessageId(int $value): static
+    {
+        $this->suggestedPostMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Seconds extends TdObject
 {
-    public const TYPE_NAME = 'seconds';
+    public const string TYPE_NAME = 'seconds';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class Seconds extends TdObject
     public function getSeconds(): float
     {
         return $this->seconds;
+    }
+
+    public function setSeconds(float $value): static
+    {
+        $this->seconds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

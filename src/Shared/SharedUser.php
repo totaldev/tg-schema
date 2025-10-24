@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SharedUser extends TdObject
 {
-    public const TYPE_NAME = 'sharedUser';
+    public const string TYPE_NAME = 'sharedUser';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class SharedUser extends TdObject
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

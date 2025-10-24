@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateFileDownloads extends Update
 {
-    public const TYPE_NAME = 'updateFileDownloads';
+    public const string TYPE_NAME = 'updateFileDownloads';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class UpdateFileDownloads extends Update
     public function getTotalSize(): int
     {
         return $this->totalSize;
+    }
+
+    public function setDownloadedSize(int $value): static
+    {
+        $this->downloadedSize = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
+    }
+
+    public function setTotalSize(int $value): static
+    {
+        $this->totalSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

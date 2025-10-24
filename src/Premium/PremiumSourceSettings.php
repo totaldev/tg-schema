@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumSourceSettings extends PremiumSource
 {
-    public const TYPE_NAME = 'premiumSourceSettings';
+    public const string TYPE_NAME = 'premiumSourceSettings';
 
     public function __construct()
     {

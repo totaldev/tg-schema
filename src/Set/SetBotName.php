@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBotName extends TdFunction
 {
-    public const TYPE_NAME = 'setBotName';
+    public const string TYPE_NAME = 'setBotName';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetBotName extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddQuickReplyShortcutMessage extends TdFunction
 {
-    public const TYPE_NAME = 'addQuickReplyShortcutMessage';
+    public const string TYPE_NAME = 'addQuickReplyShortcutMessage';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class AddQuickReplyShortcutMessage extends TdFunction
     public function getShortcutName(): string
     {
         return $this->shortcutName;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyToMessageId(int $value): static
+    {
+        $this->replyToMessageId = $value;
+
+        return $this;
+    }
+
+    public function setShortcutName(string $value): static
+    {
+        $this->shortcutName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypePublicChat extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypePublicChat';
+    public const string TYPE_NAME = 'internalLinkTypePublicChat';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class InternalLinkTypePublicChat extends InternalLinkType
     public function getOpenProfile(): bool
     {
         return $this->openProfile;
+    }
+
+    public function setChatUsername(string $value): static
+    {
+        $this->chatUsername = $value;
+
+        return $this;
+    }
+
+    public function setDraftText(string $value): static
+    {
+        $this->draftText = $value;
+
+        return $this;
+    }
+
+    public function setOpenProfile(bool $value): static
+    {
+        $this->openProfile = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

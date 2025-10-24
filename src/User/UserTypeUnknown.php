@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserTypeUnknown extends UserType
 {
-    public const TYPE_NAME = 'userTypeUnknown';
+    public const string TYPE_NAME = 'userTypeUnknown';
 
     public function __construct()
     {

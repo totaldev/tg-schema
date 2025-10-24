@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class StartGroupCallScreenSharing extends TdFunction
 {
-    public const TYPE_NAME = 'startGroupCallScreenSharing';
+    public const string TYPE_NAME = 'startGroupCallScreenSharing';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class StartGroupCallScreenSharing extends TdFunction
     public function getPayload(): string
     {
         return $this->payload;
+    }
+
+    public function setAudioSourceId(int $value): static
+    {
+        $this->audioSourceId = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

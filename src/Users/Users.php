@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Users extends TdObject
 {
-    public const TYPE_NAME = 'users';
+    public const string TYPE_NAME = 'users';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class Users extends TdObject
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

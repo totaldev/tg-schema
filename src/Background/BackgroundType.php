@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BackgroundType extends TdObject
 {
-    public const TYPE_NAME = 'BackgroundType';
+    public const string TYPE_NAME = 'BackgroundType';
 
     public function __construct() {}
 

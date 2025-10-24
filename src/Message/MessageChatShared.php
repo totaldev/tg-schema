@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageChatShared extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatShared';
+    public const string TYPE_NAME = 'messageChatShared';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessageChatShared extends MessageContent
     public function getChat(): SharedChat
     {
         return $this->chat;
+    }
+
+    public function setButtonId(int $value): static
+    {
+        $this->buttonId = $value;
+
+        return $this;
+    }
+
+    public function setChat(SharedChat $value): static
+    {
+        $this->chat = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

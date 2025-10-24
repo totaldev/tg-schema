@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatDescription extends TdFunction
 {
-    public const TYPE_NAME = 'setChatDescription';
+    public const string TYPE_NAME = 'setChatDescription';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetChatDescription extends TdFunction
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

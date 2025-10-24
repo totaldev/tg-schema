@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftOrigin;
  */
 class MessageRefundedUpgradedGift extends MessageContent
 {
-    public const TYPE_NAME = 'messageRefundedUpgradedGift';
+    public const string TYPE_NAME = 'messageRefundedUpgradedGift';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class MessageRefundedUpgradedGift extends MessageContent
     public function getSenderId(): MessageSender
     {
         return $this->senderId;
+    }
+
+    public function setGift(Gift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setOrigin(UpgradedGiftOrigin $value): static
+    {
+        $this->origin = $value;
+
+        return $this;
+    }
+
+    public function setReceiverId(MessageSender $value): static
+    {
+        $this->receiverId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

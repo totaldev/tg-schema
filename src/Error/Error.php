@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Error extends TdObject
 {
-    public const TYPE_NAME = 'error';
+    public const string TYPE_NAME = 'error';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class Error extends TdObject
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function setCode(int $value): static
+    {
+        $this->code = $value;
+
+        return $this;
+    }
+
+    public function setMessage(string $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

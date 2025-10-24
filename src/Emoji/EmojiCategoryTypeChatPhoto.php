@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiCategoryTypeChatPhoto extends EmojiCategoryType
 {
-    public const TYPE_NAME = 'emojiCategoryTypeChatPhoto';
+    public const string TYPE_NAME = 'emojiCategoryTypeChatPhoto';
 
     public function __construct()
     {

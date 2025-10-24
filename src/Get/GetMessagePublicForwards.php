@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessagePublicForwards extends TdFunction
 {
-    public const TYPE_NAME = 'getMessagePublicForwards';
+    public const string TYPE_NAME = 'getMessagePublicForwards';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class GetMessagePublicForwards extends TdFunction
     public function getOffset(): string
     {
         return $this->offset;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

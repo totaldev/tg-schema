@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RichText extends TdObject
 {
-    public const TYPE_NAME = 'RichText';
+    public const string TYPE_NAME = 'RichText';
 
     public function __construct() {}
 

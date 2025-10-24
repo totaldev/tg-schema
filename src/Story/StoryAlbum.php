@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class StoryAlbum extends TdObject
 {
-    public const TYPE_NAME = 'storyAlbum';
+    public const string TYPE_NAME = 'storyAlbum';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StoryAlbum extends TdObject
     public function getVideoIcon(): ?Video
     {
         return $this->videoIcon;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setPhotoIcon(?Photo $value): static
+    {
+        $this->photoIcon = $value;
+
+        return $this;
+    }
+
+    public function setVideoIcon(?Video $value): static
+    {
+        $this->videoIcon = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

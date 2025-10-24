@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AffiliateProgramInfo extends TdObject
 {
-    public const TYPE_NAME = 'affiliateProgramInfo';
+    public const string TYPE_NAME = 'affiliateProgramInfo';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class AffiliateProgramInfo extends TdObject
     public function getParameters(): AffiliateProgramParameters
     {
         return $this->parameters;
+    }
+
+    public function setDailyRevenuePerUserAmount(StarAmount $value): static
+    {
+        $this->dailyRevenuePerUserAmount = $value;
+
+        return $this;
+    }
+
+    public function setEndDate(int $value): static
+    {
+        $this->endDate = $value;
+
+        return $this;
+    }
+
+    public function setParameters(AffiliateProgramParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

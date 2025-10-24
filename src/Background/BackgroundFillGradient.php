@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Background;
  */
 class BackgroundFillGradient extends BackgroundFill
 {
-    public const TYPE_NAME = 'backgroundFillGradient';
+    public const string TYPE_NAME = 'backgroundFillGradient';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class BackgroundFillGradient extends BackgroundFill
     public function getTopColor(): int
     {
         return $this->topColor;
+    }
+
+    public function setBottomColor(int $value): static
+    {
+        $this->bottomColor = $value;
+
+        return $this;
+    }
+
+    public function setRotationAngle(int $value): static
+    {
+        $this->rotationAngle = $value;
+
+        return $this;
+    }
+
+    public function setTopColor(int $value): static
+    {
+        $this->topColor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

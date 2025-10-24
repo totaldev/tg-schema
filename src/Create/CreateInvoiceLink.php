@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateInvoiceLink extends TdFunction
 {
-    public const TYPE_NAME = 'createInvoiceLink';
+    public const string TYPE_NAME = 'createInvoiceLink';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class CreateInvoiceLink extends TdFunction
     public function getInvoice(): InputMessageContent
     {
         return $this->invoice;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setInvoice(InputMessageContent $value): static
+    {
+        $this->invoice = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

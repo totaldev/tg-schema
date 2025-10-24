@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventMemberLeft extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMemberLeft';
+    public const string TYPE_NAME = 'chatEventMemberLeft';
 
     public function __construct()
     {

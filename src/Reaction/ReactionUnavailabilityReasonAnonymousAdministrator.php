@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionUnavailabilityReasonAnonymousAdministrator extends ReactionUnavailabilityReason
 {
-    public const TYPE_NAME = 'reactionUnavailabilityReasonAnonymousAdministrator';
+    public const string TYPE_NAME = 'reactionUnavailabilityReasonAnonymousAdministrator';
 
     public function __construct()
     {

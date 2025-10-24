@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatTheme extends Update
 {
-    public const TYPE_NAME = 'updateChatTheme';
+    public const string TYPE_NAME = 'updateChatTheme';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatTheme extends Update
     public function getTheme(): ?ChatTheme
     {
         return $this->theme;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setTheme(?ChatTheme $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

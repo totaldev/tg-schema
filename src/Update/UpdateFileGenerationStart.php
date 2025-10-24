@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateFileGenerationStart extends Update
 {
-    public const TYPE_NAME = 'updateFileGenerationStart';
+    public const string TYPE_NAME = 'updateFileGenerationStart';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UpdateFileGenerationStart extends Update
     public function getOriginalPath(): string
     {
         return $this->originalPath;
+    }
+
+    public function setConversion(string $value): static
+    {
+        $this->conversion = $value;
+
+        return $this;
+    }
+
+    public function setDestinationPath(string $value): static
+    {
+        $this->destinationPath = $value;
+
+        return $this;
+    }
+
+    public function setGenerationId(int $value): static
+    {
+        $this->generationId = $value;
+
+        return $this;
+    }
+
+    public function setOriginalPath(string $value): static
+    {
+        $this->originalPath = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

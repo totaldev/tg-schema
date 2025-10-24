@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateAnimatedEmojiMessageClicked extends Update
 {
-    public const TYPE_NAME = 'updateAnimatedEmojiMessageClicked';
+    public const string TYPE_NAME = 'updateAnimatedEmojiMessageClicked';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class UpdateAnimatedEmojiMessageClicked extends Update
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

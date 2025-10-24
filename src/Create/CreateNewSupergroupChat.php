@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateNewSupergroupChat extends TdFunction
 {
-    public const TYPE_NAME = 'createNewSupergroupChat';
+    public const string TYPE_NAME = 'createNewSupergroupChat';
 
     public function __construct(
         /**
@@ -94,6 +94,55 @@ class CreateNewSupergroupChat extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setForImport(bool $value): static
+    {
+        $this->forImport = $value;
+
+        return $this;
+    }
+
+    public function setIsChannel(bool $value): static
+    {
+        $this->isChannel = $value;
+
+        return $this;
+    }
+
+    public function setIsForum(bool $value): static
+    {
+        $this->isForum = $value;
+
+        return $this;
+    }
+
+    public function setLocation(?ChatLocation $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setMessageAutoDeleteTime(int $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

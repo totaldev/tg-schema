@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeEmbeddedAudioPlayer';
+    public const string TYPE_NAME = 'linkPreviewTypeEmbeddedAudioPlayer';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class LinkPreviewTypeEmbeddedAudioPlayer extends LinkPreviewType
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Photo $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

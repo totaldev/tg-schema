@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeEdge extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeEdge';
+    public const string TYPE_NAME = 'sessionTypeEdge';
 
     public function __construct()
     {

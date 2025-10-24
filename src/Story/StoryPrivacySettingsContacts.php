@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryPrivacySettingsContacts extends StoryPrivacySettings
 {
-    public const TYPE_NAME = 'storyPrivacySettingsContacts';
+    public const string TYPE_NAME = 'storyPrivacySettingsContacts';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class StoryPrivacySettingsContacts extends StoryPrivacySettings
     public function getExceptUserIds(): array
     {
         return $this->exceptUserIds;
+    }
+
+    public function setExceptUserIds(array $value): static
+    {
+        $this->exceptUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftBackdropColors;
  */
 class EmojiStatusTypeUpgradedGift extends EmojiStatusType
 {
-    public const TYPE_NAME = 'emojiStatusTypeUpgradedGift';
+    public const string TYPE_NAME = 'emojiStatusTypeUpgradedGift';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class EmojiStatusTypeUpgradedGift extends EmojiStatusType
     public function getUpgradedGiftId(): int
     {
         return $this->upgradedGiftId;
+    }
+
+    public function setBackdropColors(UpgradedGiftBackdropColors $value): static
+    {
+        $this->backdropColors = $value;
+
+        return $this;
+    }
+
+    public function setGiftName(string $value): static
+    {
+        $this->giftName = $value;
+
+        return $this;
+    }
+
+    public function setGiftTitle(string $value): static
+    {
+        $this->giftTitle = $value;
+
+        return $this;
+    }
+
+    public function setModelCustomEmojiId(int $value): static
+    {
+        $this->modelCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setSymbolCustomEmojiId(int $value): static
+    {
+        $this->symbolCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedGiftId(int $value): static
+    {
+        $this->upgradedGiftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

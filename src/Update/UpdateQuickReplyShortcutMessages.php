@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateQuickReplyShortcutMessages extends Update
 {
-    public const TYPE_NAME = 'updateQuickReplyShortcutMessages';
+    public const string TYPE_NAME = 'updateQuickReplyShortcutMessages';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class UpdateQuickReplyShortcutMessages extends Update
     public function getShortcutId(): int
     {
         return $this->shortcutId;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setShortcutId(int $value): static
+    {
+        $this->shortcutId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

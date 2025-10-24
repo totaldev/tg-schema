@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CurrentWeather extends TdObject
 {
-    public const TYPE_NAME = 'currentWeather';
+    public const string TYPE_NAME = 'currentWeather';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CurrentWeather extends TdObject
     public function getTemperature(): float
     {
         return $this->temperature;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setTemperature(float $value): static
+    {
+        $this->temperature = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

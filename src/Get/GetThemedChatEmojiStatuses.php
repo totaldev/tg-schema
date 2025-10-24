@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetThemedChatEmojiStatuses extends TdFunction
 {
-    public const TYPE_NAME = 'getThemedChatEmojiStatuses';
+    public const string TYPE_NAME = 'getThemedChatEmojiStatuses';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LoginUrlInfo extends TdObject
 {
-    public const TYPE_NAME = 'LoginUrlInfo';
+    public const string TYPE_NAME = 'LoginUrlInfo';
 
     public function __construct() {}
 

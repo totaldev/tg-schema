@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PublicForward extends TdObject
 {
-    public const TYPE_NAME = 'PublicForward';
+    public const string TYPE_NAME = 'PublicForward';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Proxy;
  */
 class ProxyTypeMtproto extends ProxyType
 {
-    public const TYPE_NAME = 'proxyTypeMtproto';
+    public const string TYPE_NAME = 'proxyTypeMtproto';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ProxyTypeMtproto extends ProxyType
     public function getSecret(): string
     {
         return $this->secret;
+    }
+
+    public function setSecret(string $value): static
+    {
+        $this->secret = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

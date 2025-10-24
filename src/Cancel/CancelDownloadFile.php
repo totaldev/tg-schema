@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CancelDownloadFile extends TdFunction
 {
-    public const TYPE_NAME = 'cancelDownloadFile';
+    public const string TYPE_NAME = 'cancelDownloadFile';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CancelDownloadFile extends TdFunction
     public function getOnlyIfPending(): bool
     {
         return $this->onlyIfPending;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyIfPending(bool $value): static
+    {
+        $this->onlyIfPending = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

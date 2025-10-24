@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DeletePassportElement extends TdFunction
 {
-    public const TYPE_NAME = 'deletePassportElement';
+    public const string TYPE_NAME = 'deletePassportElement';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class DeletePassportElement extends TdFunction
     public function getType(): PassportElementType
     {
         return $this->type;
+    }
+
+    public function setType(PassportElementType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

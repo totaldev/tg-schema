@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Keyboard;
  */
 class KeyboardButtonTypeWebApp extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeWebApp';
+    public const string TYPE_NAME = 'keyboardButtonTypeWebApp';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class KeyboardButtonTypeWebApp extends KeyboardButtonType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

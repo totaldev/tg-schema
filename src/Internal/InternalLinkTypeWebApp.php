@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Web\WebAppOpenMode;
  */
 class InternalLinkTypeWebApp extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeWebApp';
+    public const string TYPE_NAME = 'internalLinkTypeWebApp';
 
     public function __construct(
         /**
@@ -69,6 +69,34 @@ class InternalLinkTypeWebApp extends InternalLinkType
     public function getWebAppShortName(): string
     {
         return $this->webAppShortName;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setMode(WebAppOpenMode $value): static
+    {
+        $this->mode = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
+    }
+
+    public function setWebAppShortName(string $value): static
+    {
+        $this->webAppShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

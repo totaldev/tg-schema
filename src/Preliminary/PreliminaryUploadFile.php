@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PreliminaryUploadFile extends TdFunction
 {
-    public const TYPE_NAME = 'preliminaryUploadFile';
+    public const string TYPE_NAME = 'preliminaryUploadFile';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class PreliminaryUploadFile extends TdFunction
     public function getPriority(): int
     {
         return $this->priority;
+    }
+
+    public function setFile(InputFile $value): static
+    {
+        $this->file = $value;
+
+        return $this;
+    }
+
+    public function setFileType(?FileType $value): static
+    {
+        $this->fileType = $value;
+
+        return $this;
+    }
+
+    public function setPriority(int $value): static
+    {
+        $this->priority = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

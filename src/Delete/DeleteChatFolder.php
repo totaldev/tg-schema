@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteChatFolder extends TdFunction
 {
-    public const TYPE_NAME = 'deleteChatFolder';
+    public const string TYPE_NAME = 'deleteChatFolder';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DeleteChatFolder extends TdFunction
     public function getLeaveChatIds(): array
     {
         return $this->leaveChatIds;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
+    }
+
+    public function setLeaveChatIds(array $value): static
+    {
+        $this->leaveChatIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

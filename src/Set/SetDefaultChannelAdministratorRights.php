@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetDefaultChannelAdministratorRights extends TdFunction
 {
-    public const TYPE_NAME = 'setDefaultChannelAdministratorRights';
+    public const string TYPE_NAME = 'setDefaultChannelAdministratorRights';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetDefaultChannelAdministratorRights extends TdFunction
     public function getDefaultChannelAdministratorRights(): ?ChatAdministratorRights
     {
         return $this->defaultChannelAdministratorRights;
+    }
+
+    public function setDefaultChannelAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->defaultChannelAdministratorRights = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

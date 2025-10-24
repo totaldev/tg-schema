@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaymentFormTypeRegular extends PaymentFormType
 {
-    public const TYPE_NAME = 'paymentFormTypeRegular';
+    public const string TYPE_NAME = 'paymentFormTypeRegular';
 
     public function __construct(
         /**
@@ -111,6 +111,62 @@ class PaymentFormTypeRegular extends PaymentFormType
     public function getSavedOrderInfo(): ?OrderInfo
     {
         return $this->savedOrderInfo;
+    }
+
+    public function setAdditionalPaymentOptions(array $value): static
+    {
+        $this->additionalPaymentOptions = $value;
+
+        return $this;
+    }
+
+    public function setCanSaveCredentials(bool $value): static
+    {
+        $this->canSaveCredentials = $value;
+
+        return $this;
+    }
+
+    public function setInvoice(Invoice $value): static
+    {
+        $this->invoice = $value;
+
+        return $this;
+    }
+
+    public function setNeedPassword(bool $value): static
+    {
+        $this->needPassword = $value;
+
+        return $this;
+    }
+
+    public function setPaymentProvider(PaymentProvider $value): static
+    {
+        $this->paymentProvider = $value;
+
+        return $this;
+    }
+
+    public function setPaymentProviderUserId(int $value): static
+    {
+        $this->paymentProviderUserId = $value;
+
+        return $this;
+    }
+
+    public function setSavedCredentials(array $value): static
+    {
+        $this->savedCredentials = $value;
+
+        return $this;
+    }
+
+    public function setSavedOrderInfo(?OrderInfo $value): static
+    {
+        $this->savedOrderInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ReadDatePrivacySettings extends TdObject
 {
-    public const TYPE_NAME = 'readDatePrivacySettings';
+    public const string TYPE_NAME = 'readDatePrivacySettings';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ReadDatePrivacySettings extends TdObject
     public function getShowReadDate(): bool
     {
         return $this->showReadDate;
+    }
+
+    public function setShowReadDate(bool $value): static
+    {
+        $this->showReadDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

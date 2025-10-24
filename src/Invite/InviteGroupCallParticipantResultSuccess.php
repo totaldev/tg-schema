@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Invite;
  */
 class InviteGroupCallParticipantResultSuccess extends InviteGroupCallParticipantResult
 {
-    public const TYPE_NAME = 'inviteGroupCallParticipantResultSuccess';
+    public const string TYPE_NAME = 'inviteGroupCallParticipantResultSuccess';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InviteGroupCallParticipantResultSuccess extends InviteGroupCallParticipant
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

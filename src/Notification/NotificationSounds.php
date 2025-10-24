@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NotificationSounds extends TdObject
 {
-    public const TYPE_NAME = 'notificationSounds';
+    public const string TYPE_NAME = 'notificationSounds';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class NotificationSounds extends TdObject
     public function getNotificationSounds(): array
     {
         return $this->notificationSounds;
+    }
+
+    public function setNotificationSounds(array $value): static
+    {
+        $this->notificationSounds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

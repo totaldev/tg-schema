@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NotificationTypeNewMessage extends NotificationType
 {
-    public const TYPE_NAME = 'notificationTypeNewMessage';
+    public const string TYPE_NAME = 'notificationTypeNewMessage';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class NotificationTypeNewMessage extends NotificationType
     public function getShowPreview(): bool
     {
         return $this->showPreview;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setShowPreview(bool $value): static
+    {
+        $this->showPreview = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

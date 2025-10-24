@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GiftPurchaseLimits extends TdObject
 {
-    public const TYPE_NAME = 'giftPurchaseLimits';
+    public const string TYPE_NAME = 'giftPurchaseLimits';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GiftPurchaseLimits extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setRemainingCount(int $value): static
+    {
+        $this->remainingCount = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

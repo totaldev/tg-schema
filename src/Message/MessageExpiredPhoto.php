@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageExpiredPhoto extends MessageContent
 {
-    public const TYPE_NAME = 'messageExpiredPhoto';
+    public const string TYPE_NAME = 'messageExpiredPhoto';
 
     public function __construct()
     {

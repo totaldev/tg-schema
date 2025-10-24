@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessAwayMessageSettings extends TdObject
 {
-    public const TYPE_NAME = 'businessAwayMessageSettings';
+    public const string TYPE_NAME = 'businessAwayMessageSettings';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class BusinessAwayMessageSettings extends TdObject
     public function getShortcutId(): int
     {
         return $this->shortcutId;
+    }
+
+    public function setOfflineOnly(bool $value): static
+    {
+        $this->offlineOnly = $value;
+
+        return $this;
+    }
+
+    public function setRecipients(BusinessRecipients $value): static
+    {
+        $this->recipients = $value;
+
+        return $this;
+    }
+
+    public function setSchedule(BusinessAwayMessageSchedule $value): static
+    {
+        $this->schedule = $value;
+
+        return $this;
+    }
+
+    public function setShortcutId(int $value): static
+    {
+        $this->shortcutId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

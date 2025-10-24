@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class OpenBotSimilarBot extends TdFunction
 {
-    public const TYPE_NAME = 'openBotSimilarBot';
+    public const string TYPE_NAME = 'openBotSimilarBot';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class OpenBotSimilarBot extends TdFunction
     public function getOpenedBotUserId(): int
     {
         return $this->openedBotUserId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setOpenedBotUserId(int $value): static
+    {
+        $this->openedBotUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

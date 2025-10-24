@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDirectMessagesChatTopicMessageByDate extends TdFunction
 {
-    public const TYPE_NAME = 'getDirectMessagesChatTopicMessageByDate';
+    public const string TYPE_NAME = 'getDirectMessagesChatTopicMessageByDate';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetDirectMessagesChatTopicMessageByDate extends TdFunction
     public function getTopicId(): int
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(int $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

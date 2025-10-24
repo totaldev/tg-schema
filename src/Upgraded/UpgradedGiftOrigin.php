@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UpgradedGiftOrigin extends TdObject
 {
-    public const TYPE_NAME = 'UpgradedGiftOrigin';
+    public const string TYPE_NAME = 'UpgradedGiftOrigin';
 
     public function __construct() {}
 

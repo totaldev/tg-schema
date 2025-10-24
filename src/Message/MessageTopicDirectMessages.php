@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageTopicDirectMessages extends MessageTopic
 {
-    public const TYPE_NAME = 'messageTopicDirectMessages';
+    public const string TYPE_NAME = 'messageTopicDirectMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageTopicDirectMessages extends MessageTopic
     public function getDirectMessagesChatTopicId(): int
     {
         return $this->directMessagesChatTopicId;
+    }
+
+    public function setDirectMessagesChatTopicId(int $value): static
+    {
+        $this->directMessagesChatTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

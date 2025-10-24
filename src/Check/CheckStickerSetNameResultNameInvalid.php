@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckStickerSetNameResultNameInvalid extends CheckStickerSetNameResult
 {
-    public const TYPE_NAME = 'checkStickerSetNameResultNameInvalid';
+    public const string TYPE_NAME = 'checkStickerSetNameResultNameInvalid';
 
     public function __construct()
     {

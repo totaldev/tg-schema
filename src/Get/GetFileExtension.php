@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetFileExtension extends TdFunction
 {
-    public const TYPE_NAME = 'getFileExtension';
+    public const string TYPE_NAME = 'getFileExtension';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetFileExtension extends TdFunction
     public function getMimeType(): string
     {
         return $this->mimeType;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

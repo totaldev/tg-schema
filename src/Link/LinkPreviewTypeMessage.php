@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeMessage extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeMessage';
+    public const string TYPE_NAME = 'linkPreviewTypeMessage';
 
     public function __construct()
     {

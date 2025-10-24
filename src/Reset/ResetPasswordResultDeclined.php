@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reset;
  */
 class ResetPasswordResultDeclined extends ResetPasswordResult
 {
-    public const TYPE_NAME = 'resetPasswordResultDeclined';
+    public const string TYPE_NAME = 'resetPasswordResultDeclined';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ResetPasswordResultDeclined extends ResetPasswordResult
     public function getRetryDate(): int
     {
         return $this->retryDate;
+    }
+
+    public function setRetryDate(int $value): static
+    {
+        $this->retryDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

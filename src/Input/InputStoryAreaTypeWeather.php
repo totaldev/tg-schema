@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputStoryAreaTypeWeather extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeWeather';
+    public const string TYPE_NAME = 'inputStoryAreaTypeWeather';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class InputStoryAreaTypeWeather extends InputStoryAreaType
     public function getTemperature(): float
     {
         return $this->temperature;
+    }
+
+    public function setBackgroundColor(int $value): static
+    {
+        $this->backgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setTemperature(float $value): static
+    {
+        $this->temperature = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

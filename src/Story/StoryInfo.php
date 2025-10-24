@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class StoryInfo extends TdObject
 {
-    public const TYPE_NAME = 'storyInfo';
+    public const string TYPE_NAME = 'storyInfo';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class StoryInfo extends TdObject
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setIsForCloseFriends(bool $value): static
+    {
+        $this->isForCloseFriends = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

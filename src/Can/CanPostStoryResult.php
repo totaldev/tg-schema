@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CanPostStoryResult extends TdObject
 {
-    public const TYPE_NAME = 'CanPostStoryResult';
+    public const string TYPE_NAME = 'CanPostStoryResult';
 
     public function __construct() {}
 

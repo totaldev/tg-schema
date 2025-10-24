@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanPostStoryResultActiveStoryLimitExceeded extends CanPostStoryResult
 {
-    public const TYPE_NAME = 'canPostStoryResultActiveStoryLimitExceeded';
+    public const string TYPE_NAME = 'canPostStoryResultActiveStoryLimitExceeded';
 
     public function __construct()
     {

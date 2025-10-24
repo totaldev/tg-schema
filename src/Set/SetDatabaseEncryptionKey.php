@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetDatabaseEncryptionKey extends TdFunction
 {
-    public const TYPE_NAME = 'setDatabaseEncryptionKey';
+    public const string TYPE_NAME = 'setDatabaseEncryptionKey';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SetDatabaseEncryptionKey extends TdFunction
     public function getNewEncryptionKey(): string
     {
         return $this->newEncryptionKey;
+    }
+
+    public function setNewEncryptionKey(string $value): static
+    {
+        $this->newEncryptionKey = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendGroupCallMessage extends TdFunction
 {
-    public const TYPE_NAME = 'sendGroupCallMessage';
+    public const string TYPE_NAME = 'sendGroupCallMessage';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SendGroupCallMessage extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

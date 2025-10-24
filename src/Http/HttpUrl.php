@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class HttpUrl extends TdObject
 {
-    public const TYPE_NAME = 'httpUrl';
+    public const string TYPE_NAME = 'httpUrl';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class HttpUrl extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

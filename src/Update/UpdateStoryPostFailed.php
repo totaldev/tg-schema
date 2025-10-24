@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStoryPostFailed extends Update
 {
-    public const TYPE_NAME = 'updateStoryPostFailed';
+    public const string TYPE_NAME = 'updateStoryPostFailed';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class UpdateStoryPostFailed extends Update
     public function getStory(): Story
     {
         return $this->story;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
+    }
+
+    public function setErrorType(?CanPostStoryResult $value): static
+    {
+        $this->errorType = $value;
+
+        return $this;
+    }
+
+    public function setStory(Story $value): static
+    {
+        $this->story = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

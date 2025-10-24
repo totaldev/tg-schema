@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPassportElementUtilityBill extends InputPassportElement
 {
-    public const TYPE_NAME = 'inputPassportElementUtilityBill';
+    public const string TYPE_NAME = 'inputPassportElementUtilityBill';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputPassportElementUtilityBill extends InputPassportElement
     public function getUtilityBill(): InputPersonalDocument
     {
         return $this->utilityBill;
+    }
+
+    public function setUtilityBill(InputPersonalDocument $value): static
+    {
+        $this->utilityBill = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Countries extends TdObject
 {
-    public const TYPE_NAME = 'countries';
+    public const string TYPE_NAME = 'countries';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Countries extends TdObject
     public function getCountries(): array
     {
         return $this->countries;
+    }
+
+    public function setCountries(array $value): static
+    {
+        $this->countries = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

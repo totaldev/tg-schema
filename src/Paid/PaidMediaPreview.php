@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaidMediaPreview extends PaidMedia
 {
-    public const TYPE_NAME = 'paidMediaPreview';
+    public const string TYPE_NAME = 'paidMediaPreview';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class PaidMediaPreview extends PaidMedia
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

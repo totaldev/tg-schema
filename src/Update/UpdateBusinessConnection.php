@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateBusinessConnection extends Update
 {
-    public const TYPE_NAME = 'updateBusinessConnection';
+    public const string TYPE_NAME = 'updateBusinessConnection';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateBusinessConnection extends Update
     public function getConnection(): BusinessConnection
     {
         return $this->connection;
+    }
+
+    public function setConnection(BusinessConnection $value): static
+    {
+        $this->connection = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

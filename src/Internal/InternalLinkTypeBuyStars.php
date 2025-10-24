@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeBuyStars extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBuyStars';
+    public const string TYPE_NAME = 'internalLinkTypeBuyStars';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InternalLinkTypeBuyStars extends InternalLinkType
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setPurpose(string $value): static
+    {
+        $this->purpose = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

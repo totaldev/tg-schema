@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SavedMessagesTopicType extends TdObject
 {
-    public const TYPE_NAME = 'SavedMessagesTopicType';
+    public const string TYPE_NAME = 'SavedMessagesTopicType';
 
     public function __construct() {}
 

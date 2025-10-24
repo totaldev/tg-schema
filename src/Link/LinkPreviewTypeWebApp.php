@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeWebApp extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeWebApp';
+    public const string TYPE_NAME = 'linkPreviewTypeWebApp';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeWebApp extends LinkPreviewType
     public function getPhoto(): ?Photo
     {
         return $this->photo;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reset;
  */
 class ResetPasswordResultPending extends ResetPasswordResult
 {
-    public const TYPE_NAME = 'resetPasswordResultPending';
+    public const string TYPE_NAME = 'resetPasswordResultPending';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ResetPasswordResultPending extends ResetPasswordResult
     public function getPendingResetDate(): int
     {
         return $this->pendingResetDate;
+    }
+
+    public function setPendingResetDate(int $value): static
+    {
+        $this->pendingResetDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

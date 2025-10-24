@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageLink extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageLink';
+    public const string TYPE_NAME = 'getMessageLink';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class GetMessageLink extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForAlbum(bool $value): static
+    {
+        $this->forAlbum = $value;
+
+        return $this;
+    }
+
+    public function setInMessageThread(bool $value): static
+    {
+        $this->inMessageThread = $value;
+
+        return $this;
+    }
+
+    public function setMediaTimestamp(int $value): static
+    {
+        $this->mediaTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

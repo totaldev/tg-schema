@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureMessagePrivacy extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureMessagePrivacy';
+    public const string TYPE_NAME = 'premiumFeatureMessagePrivacy';
 
     public function __construct()
     {

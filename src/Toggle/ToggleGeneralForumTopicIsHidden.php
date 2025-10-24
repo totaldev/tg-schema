@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGeneralForumTopicIsHidden extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGeneralForumTopicIsHidden';
+    public const string TYPE_NAME = 'toggleGeneralForumTopicIsHidden';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGeneralForumTopicIsHidden extends TdFunction
     public function getIsHidden(): bool
     {
         return $this->isHidden;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsHidden(bool $value): static
+    {
+        $this->isHidden = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

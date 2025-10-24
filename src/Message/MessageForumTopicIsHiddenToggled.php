@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageForumTopicIsHiddenToggled extends MessageContent
 {
-    public const TYPE_NAME = 'messageForumTopicIsHiddenToggled';
+    public const string TYPE_NAME = 'messageForumTopicIsHiddenToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageForumTopicIsHiddenToggled extends MessageContent
     public function getIsHidden(): bool
     {
         return $this->isHidden;
+    }
+
+    public function setIsHidden(bool $value): static
+    {
+        $this->isHidden = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

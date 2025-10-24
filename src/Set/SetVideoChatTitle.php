@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetVideoChatTitle extends TdFunction
 {
-    public const TYPE_NAME = 'setVideoChatTitle';
+    public const string TYPE_NAME = 'setVideoChatTitle';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetVideoChatTitle extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

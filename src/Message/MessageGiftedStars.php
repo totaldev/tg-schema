@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGiftedStars extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiftedStars';
+    public const string TYPE_NAME = 'messageGiftedStars';
 
     public function __construct(
         /**
@@ -115,6 +115,69 @@ class MessageGiftedStars extends MessageContent
     public function getTransactionId(): string
     {
         return $this->transactionId;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrency(string $value): static
+    {
+        $this->cryptocurrency = $value;
+
+        return $this;
+    }
+
+    public function setCryptocurrencyAmount(int $value): static
+    {
+        $this->cryptocurrencyAmount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setGifterUserId(int $value): static
+    {
+        $this->gifterUserId = $value;
+
+        return $this;
+    }
+
+    public function setReceiverUserId(int $value): static
+    {
+        $this->receiverUserId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setTransactionId(string $value): static
+    {
+        $this->transactionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

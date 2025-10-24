@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayParticipantStatusAlreadyWasMember extends GiveawayParticipantStatus
 {
-    public const TYPE_NAME = 'giveawayParticipantStatusAlreadyWasMember';
+    public const string TYPE_NAME = 'giveawayParticipantStatusAlreadyWasMember';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiveawayParticipantStatusAlreadyWasMember extends GiveawayParticipantStatu
     public function getJoinedChatDate(): int
     {
         return $this->joinedChatDate;
+    }
+
+    public function setJoinedChatDate(int $value): static
+    {
+        $this->joinedChatDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeUnsupported extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeUnsupported';
+    public const string TYPE_NAME = 'linkPreviewTypeUnsupported';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveRecentHashtag extends TdFunction
 {
-    public const TYPE_NAME = 'removeRecentHashtag';
+    public const string TYPE_NAME = 'removeRecentHashtag';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveRecentHashtag extends TdFunction
     public function getHashtag(): string
     {
         return $this->hashtag;
+    }
+
+    public function setHashtag(string $value): static
+    {
+        $this->hashtag = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

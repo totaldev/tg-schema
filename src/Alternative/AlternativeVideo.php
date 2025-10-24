@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AlternativeVideo extends TdObject
 {
-    public const TYPE_NAME = 'alternativeVideo';
+    public const string TYPE_NAME = 'alternativeVideo';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class AlternativeVideo extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setCodec(string $value): static
+    {
+        $this->codec = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setHlsFile(File $value): static
+    {
+        $this->hlsFile = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setVideo(File $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

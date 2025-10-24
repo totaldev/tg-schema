@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DraftMessage extends TdObject
 {
-    public const TYPE_NAME = 'draftMessage';
+    public const string TYPE_NAME = 'draftMessage';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class DraftMessage extends TdObject
     public function getSuggestedPostInfo(): ?InputSuggestedPostInfo
     {
         return $this->suggestedPostInfo;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setEffectId(int $value): static
+    {
+        $this->effectId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageText(InputMessageContent $value): static
+    {
+        $this->inputMessageText = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostInfo(?InputSuggestedPostInfo $value): static
+    {
+        $this->suggestedPostInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

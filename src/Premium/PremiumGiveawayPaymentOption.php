@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PremiumGiveawayPaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'premiumGiveawayPaymentOption';
+    public const string TYPE_NAME = 'premiumGiveawayPaymentOption';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class PremiumGiveawayPaymentOption extends TdObject
     public function getWinnerCount(): int
     {
         return $this->winnerCount;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductQuantity(int $value): static
+    {
+        $this->storeProductQuantity = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

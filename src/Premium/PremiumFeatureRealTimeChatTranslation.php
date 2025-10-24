@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureRealTimeChatTranslation extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureRealTimeChatTranslation';
+    public const string TYPE_NAME = 'premiumFeatureRealTimeChatTranslation';
 
     public function __construct()
     {

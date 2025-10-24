@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockCover extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockCover';
+    public const string TYPE_NAME = 'pageBlockCover';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class PageBlockCover extends PageBlock
     public function getCover(): PageBlock
     {
         return $this->cover;
+    }
+
+    public function setCover(PageBlock $value): static
+    {
+        $this->cover = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

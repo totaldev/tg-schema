@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetCreatedPublicChats extends TdFunction
 {
-    public const TYPE_NAME = 'getCreatedPublicChats';
+    public const string TYPE_NAME = 'getCreatedPublicChats';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetCreatedPublicChats extends TdFunction
     public function getType(): PublicChatType
     {
         return $this->type;
+    }
+
+    public function setType(PublicChatType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

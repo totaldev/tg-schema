@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarRevenueStatus extends TdObject
 {
-    public const TYPE_NAME = 'starRevenueStatus';
+    public const string TYPE_NAME = 'starRevenueStatus';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class StarRevenueStatus extends TdObject
     public function getWithdrawalEnabled(): bool
     {
         return $this->withdrawalEnabled;
+    }
+
+    public function setAvailableAmount(StarAmount $value): static
+    {
+        $this->availableAmount = $value;
+
+        return $this;
+    }
+
+    public function setCurrentAmount(StarAmount $value): static
+    {
+        $this->currentAmount = $value;
+
+        return $this;
+    }
+
+    public function setNextWithdrawalIn(int $value): static
+    {
+        $this->nextWithdrawalIn = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(StarAmount $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
+    }
+
+    public function setWithdrawalEnabled(bool $value): static
+    {
+        $this->withdrawalEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

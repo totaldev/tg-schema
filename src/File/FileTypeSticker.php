@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeSticker extends FileType
 {
-    public const TYPE_NAME = 'fileTypeSticker';
+    public const string TYPE_NAME = 'fileTypeSticker';
 
     public function __construct()
     {

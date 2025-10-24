@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationGroupTypeCalls extends NotificationGroupType
 {
-    public const TYPE_NAME = 'notificationGroupTypeCalls';
+    public const string TYPE_NAME = 'notificationGroupTypeCalls';
 
     public function __construct()
     {

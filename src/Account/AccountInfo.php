@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AccountInfo extends TdObject
 {
-    public const TYPE_NAME = 'accountInfo';
+    public const string TYPE_NAME = 'accountInfo';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class AccountInfo extends TdObject
     public function getRegistrationYear(): int
     {
         return $this->registrationYear;
+    }
+
+    public function setLastNameChangeDate(int $value): static
+    {
+        $this->lastNameChangeDate = $value;
+
+        return $this;
+    }
+
+    public function setLastPhotoChangeDate(int $value): static
+    {
+        $this->lastPhotoChangeDate = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumberCountryCode(string $value): static
+    {
+        $this->phoneNumberCountryCode = $value;
+
+        return $this;
+    }
+
+    public function setRegistrationMonth(int $value): static
+    {
+        $this->registrationMonth = $value;
+
+        return $this;
+    }
+
+    public function setRegistrationYear(int $value): static
+    {
+        $this->registrationYear = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UpgradedGiftColors extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftColors';
+    public const string TYPE_NAME = 'upgradedGiftColors';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class UpgradedGiftColors extends TdObject
     public function getSymbolCustomEmojiId(): int
     {
         return $this->symbolCustomEmojiId;
+    }
+
+    public function setDarkThemeAccentColor(int $value): static
+    {
+        $this->darkThemeAccentColor = $value;
+
+        return $this;
+    }
+
+    public function setDarkThemeColors(array $value): static
+    {
+        $this->darkThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLightThemeAccentColor(int $value): static
+    {
+        $this->lightThemeAccentColor = $value;
+
+        return $this;
+    }
+
+    public function setLightThemeColors(array $value): static
+    {
+        $this->lightThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setModelCustomEmojiId(int $value): static
+    {
+        $this->modelCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setSymbolCustomEmojiId(int $value): static
+    {
+        $this->symbolCustomEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

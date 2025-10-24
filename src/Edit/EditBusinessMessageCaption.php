@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditBusinessMessageCaption extends TdFunction
 {
-    public const TYPE_NAME = 'editBusinessMessageCaption';
+    public const string TYPE_NAME = 'editBusinessMessageCaption';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class EditBusinessMessageCaption extends TdFunction
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

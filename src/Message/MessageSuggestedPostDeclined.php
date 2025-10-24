@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSuggestedPostDeclined extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestedPostDeclined';
+    public const string TYPE_NAME = 'messageSuggestedPostDeclined';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageSuggestedPostDeclined extends MessageContent
     public function getSuggestedPostMessageId(): int
     {
         return $this->suggestedPostMessageId;
+    }
+
+    public function setComment(string $value): static
+    {
+        $this->comment = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostMessageId(int $value): static
+    {
+        $this->suggestedPostMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

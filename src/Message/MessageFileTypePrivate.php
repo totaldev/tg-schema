@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageFileTypePrivate extends MessageFileType
 {
-    public const TYPE_NAME = 'messageFileTypePrivate';
+    public const string TYPE_NAME = 'messageFileTypePrivate';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageFileTypePrivate extends MessageFileType
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

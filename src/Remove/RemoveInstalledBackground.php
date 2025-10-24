@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveInstalledBackground extends TdFunction
 {
-    public const TYPE_NAME = 'removeInstalledBackground';
+    public const string TYPE_NAME = 'removeInstalledBackground';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveInstalledBackground extends TdFunction
     public function getBackgroundId(): int
     {
         return $this->backgroundId;
+    }
+
+    public function setBackgroundId(int $value): static
+    {
+        $this->backgroundId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

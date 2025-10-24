@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateServiceNotification extends Update
 {
-    public const TYPE_NAME = 'updateServiceNotification';
+    public const string TYPE_NAME = 'updateServiceNotification';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateServiceNotification extends Update
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function setContent(MessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setType(string $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

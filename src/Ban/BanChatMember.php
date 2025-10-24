@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BanChatMember extends TdFunction
 {
-    public const TYPE_NAME = 'banChatMember';
+    public const string TYPE_NAME = 'banChatMember';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class BanChatMember extends TdFunction
     public function getRevokeMessages(): bool
     {
         return $this->revokeMessages;
+    }
+
+    public function setBannedUntilDate(int $value): static
+    {
+        $this->bannedUntilDate = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMemberId(MessageSender $value): static
+    {
+        $this->memberId = $value;
+
+        return $this;
+    }
+
+    public function setRevokeMessages(bool $value): static
+    {
+        $this->revokeMessages = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

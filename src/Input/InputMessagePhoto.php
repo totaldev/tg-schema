@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessagePhoto extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessagePhoto';
+    public const string TYPE_NAME = 'inputMessagePhoto';
 
     public function __construct(
         /**
@@ -118,6 +118,69 @@ class InputMessagePhoto extends InputMessageContent
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAddedStickerFileIds(array $value): static
+    {
+        $this->addedStickerFileIds = $value;
+
+        return $this;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setHasSpoiler(bool $value): static
+    {
+        $this->hasSpoiler = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(InputFile $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setSelfDestructType(?MessageSelfDestructType $value): static
+    {
+        $this->selfDestructType = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

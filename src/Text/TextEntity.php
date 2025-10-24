@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TextEntity extends TdObject
 {
-    public const TYPE_NAME = 'textEntity';
+    public const string TYPE_NAME = 'textEntity';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class TextEntity extends TdObject
     public function getType(): TextEntityType
     {
         return $this->type;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setType(TextEntityType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

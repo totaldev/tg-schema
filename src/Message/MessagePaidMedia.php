@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePaidMedia extends MessageContent
 {
-    public const TYPE_NAME = 'messagePaidMedia';
+    public const string TYPE_NAME = 'messagePaidMedia';
 
     public function __construct(
         /**
@@ -68,6 +68,34 @@ class MessagePaidMedia extends MessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setMedia(array $value): static
+    {
+        $this->media = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

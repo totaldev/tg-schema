@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class HideContactCloseBirthdays extends TdFunction
 {
-    public const TYPE_NAME = 'hideContactCloseBirthdays';
+    public const string TYPE_NAME = 'hideContactCloseBirthdays';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteBotMediaPreviews extends TdFunction
 {
-    public const TYPE_NAME = 'deleteBotMediaPreviews';
+    public const string TYPE_NAME = 'deleteBotMediaPreviews';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class DeleteBotMediaPreviews extends TdFunction
     public function getLanguageCode(): string
     {
         return $this->languageCode;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setFileIds(array $value): static
+    {
+        $this->fileIds = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

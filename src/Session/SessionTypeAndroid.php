@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeAndroid extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeAndroid';
+    public const string TYPE_NAME = 'sessionTypeAndroid';
 
     public function __construct()
     {

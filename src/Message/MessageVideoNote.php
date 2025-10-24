@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\VideoNote;
  */
 class MessageVideoNote extends MessageContent
 {
-    public const TYPE_NAME = 'messageVideoNote';
+    public const string TYPE_NAME = 'messageVideoNote';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class MessageVideoNote extends MessageContent
     public function getVideoNote(): VideoNote
     {
         return $this->videoNote;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setIsViewed(bool $value): static
+    {
+        $this->isViewed = $value;
+
+        return $this;
+    }
+
+    public function setVideoNote(VideoNote $value): static
+    {
+        $this->videoNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

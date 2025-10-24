@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AutosaveSettingsException extends TdObject
 {
-    public const TYPE_NAME = 'autosaveSettingsException';
+    public const string TYPE_NAME = 'autosaveSettingsException';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class AutosaveSettingsException extends TdObject
     public function getSettings(): ScopeAutosaveSettings
     {
         return $this->settings;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSettings(ScopeAutosaveSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

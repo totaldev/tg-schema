@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CountryInfo extends TdObject
 {
-    public const TYPE_NAME = 'countryInfo';
+    public const string TYPE_NAME = 'countryInfo';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class CountryInfo extends TdObject
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setCallingCodes(array $value): static
+    {
+        $this->callingCodes = $value;
+
+        return $this;
+    }
+
+    public function setCountryCode(string $value): static
+    {
+        $this->countryCode = $value;
+
+        return $this;
+    }
+
+    public function setEnglishName(string $value): static
+    {
+        $this->englishName = $value;
+
+        return $this;
+    }
+
+    public function setIsHidden(bool $value): static
+    {
+        $this->isHidden = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

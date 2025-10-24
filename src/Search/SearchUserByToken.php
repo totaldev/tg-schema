@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchUserByToken extends TdFunction
 {
-    public const TYPE_NAME = 'searchUserByToken';
+    public const string TYPE_NAME = 'searchUserByToken';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SearchUserByToken extends TdFunction
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

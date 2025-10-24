@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaymentReceiptTypeRegular extends PaymentReceiptType
 {
-    public const TYPE_NAME = 'paymentReceiptTypeRegular';
+    public const string TYPE_NAME = 'paymentReceiptTypeRegular';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class PaymentReceiptTypeRegular extends PaymentReceiptType
     public function getTipAmount(): int
     {
         return $this->tipAmount;
+    }
+
+    public function setCredentialsTitle(string $value): static
+    {
+        $this->credentialsTitle = $value;
+
+        return $this;
+    }
+
+    public function setInvoice(Invoice $value): static
+    {
+        $this->invoice = $value;
+
+        return $this;
+    }
+
+    public function setOrderInfo(?OrderInfo $value): static
+    {
+        $this->orderInfo = $value;
+
+        return $this;
+    }
+
+    public function setPaymentProviderUserId(int $value): static
+    {
+        $this->paymentProviderUserId = $value;
+
+        return $this;
+    }
+
+    public function setShippingOption(?ShippingOption $value): static
+    {
+        $this->shippingOption = $value;
+
+        return $this;
+    }
+
+    public function setTipAmount(int $value): static
+    {
+        $this->tipAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

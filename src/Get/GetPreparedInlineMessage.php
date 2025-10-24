@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPreparedInlineMessage extends TdFunction
 {
-    public const TYPE_NAME = 'getPreparedInlineMessage';
+    public const string TYPE_NAME = 'getPreparedInlineMessage';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetPreparedInlineMessage extends TdFunction
     public function getPreparedMessageId(): string
     {
         return $this->preparedMessageId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setPreparedMessageId(string $value): static
+    {
+        $this->preparedMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

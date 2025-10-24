@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerTypeMask extends StickerType
 {
-    public const TYPE_NAME = 'stickerTypeMask';
+    public const string TYPE_NAME = 'stickerTypeMask';
 
     public function __construct()
     {

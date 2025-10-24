@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StorePaymentPurposePremiumGift extends StorePaymentPurpose
 {
-    public const TYPE_NAME = 'storePaymentPurposePremiumGift';
+    public const string TYPE_NAME = 'storePaymentPurposePremiumGift';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class StorePaymentPurposePremiumGift extends StorePaymentPurpose
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

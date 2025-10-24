@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EncryptGroupCallData extends TdFunction
 {
-    public const TYPE_NAME = 'encryptGroupCallData';
+    public const string TYPE_NAME = 'encryptGroupCallData';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class EncryptGroupCallData extends TdFunction
     public function getUnencryptedPrefixSize(): int
     {
         return $this->unencryptedPrefixSize;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setDataChannel(GroupCallDataChannel $value): static
+    {
+        $this->dataChannel = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setUnencryptedPrefixSize(int $value): static
+    {
+        $this->unencryptedPrefixSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

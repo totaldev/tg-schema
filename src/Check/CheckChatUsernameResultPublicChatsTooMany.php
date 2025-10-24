@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckChatUsernameResultPublicChatsTooMany extends CheckChatUsernameResult
 {
-    public const TYPE_NAME = 'checkChatUsernameResultPublicChatsTooMany';
+    public const string TYPE_NAME = 'checkChatUsernameResultPublicChatsTooMany';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupHasAggressiveAntiSpamEnabled';
+    public const string TYPE_NAME = 'toggleSupergroupHasAggressiveAntiSpamEnabled';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setHasAggressiveAntiSpamEnabled(bool $value): static
+    {
+        $this->hasAggressiveAntiSpamEnabled = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

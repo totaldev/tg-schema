@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeWindows extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeWindows';
+    public const string TYPE_NAME = 'sessionTypeWindows';
 
     public function __construct()
     {

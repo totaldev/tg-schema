@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventForumTopicDeleted extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventForumTopicDeleted';
+    public const string TYPE_NAME = 'chatEventForumTopicDeleted';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatEventForumTopicDeleted extends ChatEventAction
     public function getTopicInfo(): ForumTopicInfo
     {
         return $this->topicInfo;
+    }
+
+    public function setTopicInfo(ForumTopicInfo $value): static
+    {
+        $this->topicInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

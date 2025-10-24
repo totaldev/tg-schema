@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeStrikethrough extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeStrikethrough';
+    public const string TYPE_NAME = 'textEntityTypeStrikethrough';
 
     public function __construct()
     {

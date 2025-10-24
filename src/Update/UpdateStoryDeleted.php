@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateStoryDeleted extends Update
 {
-    public const TYPE_NAME = 'updateStoryDeleted';
+    public const string TYPE_NAME = 'updateStoryDeleted';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateStoryDeleted extends Update
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

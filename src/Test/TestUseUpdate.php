@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TestUseUpdate extends TdFunction
 {
-    public const TYPE_NAME = 'testUseUpdate';
+    public const string TYPE_NAME = 'testUseUpdate';
 
     public function __construct() {}
 

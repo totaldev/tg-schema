@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetGroupsInCommon extends TdFunction
 {
-    public const TYPE_NAME = 'getGroupsInCommon';
+    public const string TYPE_NAME = 'getGroupsInCommon';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetGroupsInCommon extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetChatId(int $value): static
+    {
+        $this->offsetChatId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

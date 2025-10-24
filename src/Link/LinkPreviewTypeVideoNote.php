@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\VideoNote;
  */
 class LinkPreviewTypeVideoNote extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeVideoNote';
+    public const string TYPE_NAME = 'linkPreviewTypeVideoNote';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeVideoNote extends LinkPreviewType
     public function getVideoNote(): VideoNote
     {
         return $this->videoNote;
+    }
+
+    public function setVideoNote(VideoNote $value): static
+    {
+        $this->videoNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

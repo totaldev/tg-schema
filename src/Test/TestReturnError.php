@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TestReturnError extends TdFunction
 {
-    public const TYPE_NAME = 'testReturnError';
+    public const string TYPE_NAME = 'testReturnError';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class TestReturnError extends TdFunction
     public function getError(): Error
     {
         return $this->error;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

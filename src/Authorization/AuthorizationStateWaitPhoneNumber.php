@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitPhoneNumber extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitPhoneNumber';
+    public const string TYPE_NAME = 'authorizationStateWaitPhoneNumber';
 
     public function __construct()
     {

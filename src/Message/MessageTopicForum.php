@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageTopicForum extends MessageTopic
 {
-    public const TYPE_NAME = 'messageTopicForum';
+    public const string TYPE_NAME = 'messageTopicForum';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageTopicForum extends MessageTopic
     public function getForumTopicId(): int
     {
         return $this->forumTopicId;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

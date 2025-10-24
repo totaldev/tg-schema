@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessChatLink extends TdObject
 {
-    public const TYPE_NAME = 'businessChatLink';
+    public const string TYPE_NAME = 'businessChatLink';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class BusinessChatLink extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setViewCount(int $value): static
+    {
+        $this->viewCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

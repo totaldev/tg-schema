@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateOwnedStarCount extends Update
 {
-    public const TYPE_NAME = 'updateOwnedStarCount';
+    public const string TYPE_NAME = 'updateOwnedStarCount';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateOwnedStarCount extends Update
     public function getStarAmount(): StarAmount
     {
         return $this->starAmount;
+    }
+
+    public function setStarAmount(StarAmount $value): static
+    {
+        $this->starAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

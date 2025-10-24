@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputChatPhotoSticker extends InputChatPhoto
 {
-    public const TYPE_NAME = 'inputChatPhotoSticker';
+    public const string TYPE_NAME = 'inputChatPhotoSticker';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class InputChatPhotoSticker extends InputChatPhoto
     public function getSticker(): ChatPhotoSticker
     {
         return $this->sticker;
+    }
+
+    public function setSticker(ChatPhotoSticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

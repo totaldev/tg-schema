@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetEmojiSuggestionsUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getEmojiSuggestionsUrl';
+    public const string TYPE_NAME = 'getEmojiSuggestionsUrl';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetEmojiSuggestionsUrl extends TdFunction
     public function getLanguageCode(): string
     {
         return $this->languageCode;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UserSupportInfo extends TdObject
 {
-    public const TYPE_NAME = 'userSupportInfo';
+    public const string TYPE_NAME = 'userSupportInfo';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class UserSupportInfo extends TdObject
     public function getMessage(): FormattedText
     {
         return $this->message;
+    }
+
+    public function setAuthor(string $value): static
+    {
+        $this->author = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setMessage(FormattedText $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

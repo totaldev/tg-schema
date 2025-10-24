@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AnswerCallbackQuery extends TdFunction
 {
-    public const TYPE_NAME = 'answerCallbackQuery';
+    public const string TYPE_NAME = 'answerCallbackQuery';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class AnswerCallbackQuery extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setCacheTime(int $value): static
+    {
+        $this->cacheTime = $value;
+
+        return $this;
+    }
+
+    public function setCallbackQueryId(int $value): static
+    {
+        $this->callbackQueryId = $value;
+
+        return $this;
+    }
+
+    public function setShowAlert(bool $value): static
+    {
+        $this->showAlert = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

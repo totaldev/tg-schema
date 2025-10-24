@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeMyStars extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeMyStars';
+    public const string TYPE_NAME = 'internalLinkTypeMyStars';
 
     public function __construct()
     {

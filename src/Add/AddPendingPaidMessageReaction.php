@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddPendingPaidMessageReaction extends TdFunction
 {
-    public const TYPE_NAME = 'addPendingPaidMessageReaction';
+    public const string TYPE_NAME = 'addPendingPaidMessageReaction';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class AddPendingPaidMessageReaction extends TdFunction
     public function getType(): ?PaidReactionType
     {
         return $this->type;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setType(?PaidReactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

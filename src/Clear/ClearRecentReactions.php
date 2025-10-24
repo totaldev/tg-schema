@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearRecentReactions extends TdFunction
 {
-    public const TYPE_NAME = 'clearRecentReactions';
+    public const string TYPE_NAME = 'clearRecentReactions';
 
     public function __construct() {}
 

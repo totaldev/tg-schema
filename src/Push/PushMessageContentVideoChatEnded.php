@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentVideoChatEnded extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentVideoChatEnded';
+    public const string TYPE_NAME = 'pushMessageContentVideoChatEnded';
 
     public function __construct()
     {

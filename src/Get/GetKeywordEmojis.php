@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetKeywordEmojis extends TdFunction
 {
-    public const TYPE_NAME = 'getKeywordEmojis';
+    public const string TYPE_NAME = 'getKeywordEmojis';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetKeywordEmojis extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setInputLanguageCodes(array $value): static
+    {
+        $this->inputLanguageCodes = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

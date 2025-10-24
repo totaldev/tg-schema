@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateChatSubscriptionInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'createChatSubscriptionInviteLink';
+    public const string TYPE_NAME = 'createChatSubscriptionInviteLink';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class CreateChatSubscriptionInviteLink extends TdFunction
     public function getSubscriptionPricing(): StarSubscriptionPricing
     {
         return $this->subscriptionPricing;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionPricing(StarSubscriptionPricing $value): static
+    {
+        $this->subscriptionPricing = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

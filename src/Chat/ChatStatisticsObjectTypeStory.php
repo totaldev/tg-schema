@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatStatisticsObjectTypeStory extends ChatStatisticsObjectType
 {
-    public const TYPE_NAME = 'chatStatisticsObjectTypeStory';
+    public const string TYPE_NAME = 'chatStatisticsObjectTypeStory';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatStatisticsObjectTypeStory extends ChatStatisticsObjectType
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

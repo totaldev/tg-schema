@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleBotUsernameIsActive extends TdFunction
 {
-    public const TYPE_NAME = 'toggleBotUsernameIsActive';
+    public const string TYPE_NAME = 'toggleBotUsernameIsActive';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class ToggleBotUsernameIsActive extends TdFunction
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

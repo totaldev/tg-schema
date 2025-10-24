@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionTyping extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionTyping';
+    public const string TYPE_NAME = 'chatActionTyping';
 
     public function __construct()
     {

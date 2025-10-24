@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AuthorizationStateWaitEmailCode extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitEmailCode';
+    public const string TYPE_NAME = 'authorizationStateWaitEmailCode';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class AuthorizationStateWaitEmailCode extends AuthorizationState
     public function getEmailAddressResetState(): ?EmailAddressResetState
     {
         return $this->emailAddressResetState;
+    }
+
+    public function setAllowAppleId(bool $value): static
+    {
+        $this->allowAppleId = $value;
+
+        return $this;
+    }
+
+    public function setAllowGoogleId(bool $value): static
+    {
+        $this->allowGoogleId = $value;
+
+        return $this;
+    }
+
+    public function setCodeInfo(EmailAddressAuthenticationCodeInfo $value): static
+    {
+        $this->codeInfo = $value;
+
+        return $this;
+    }
+
+    public function setEmailAddressResetState(?EmailAddressResetState $value): static
+    {
+        $this->emailAddressResetState = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

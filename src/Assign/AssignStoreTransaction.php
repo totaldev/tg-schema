@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AssignStoreTransaction extends TdFunction
 {
-    public const TYPE_NAME = 'assignStoreTransaction';
+    public const string TYPE_NAME = 'assignStoreTransaction';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class AssignStoreTransaction extends TdFunction
     public function getTransaction(): StoreTransaction
     {
         return $this->transaction;
+    }
+
+    public function setPurpose(StorePaymentPurpose $value): static
+    {
+        $this->purpose = $value;
+
+        return $this;
+    }
+
+    public function setTransaction(StoreTransaction $value): static
+    {
+        $this->transaction = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

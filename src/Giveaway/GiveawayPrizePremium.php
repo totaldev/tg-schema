@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayPrizePremium extends GiveawayPrize
 {
-    public const TYPE_NAME = 'giveawayPrizePremium';
+    public const string TYPE_NAME = 'giveawayPrizePremium';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiveawayPrizePremium extends GiveawayPrize
     public function getMonthCount(): int
     {
         return $this->monthCount;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

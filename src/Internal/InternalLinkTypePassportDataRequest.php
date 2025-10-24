@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypePassportDataRequest extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypePassportDataRequest';
+    public const string TYPE_NAME = 'internalLinkTypePassportDataRequest';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class InternalLinkTypePassportDataRequest extends InternalLinkType
     public function getScope(): string
     {
         return $this->scope;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCallbackUrl(string $value): static
+    {
+        $this->callbackUrl = $value;
+
+        return $this;
+    }
+
+    public function setNonce(string $value): static
+    {
+        $this->nonce = $value;
+
+        return $this;
+    }
+
+    public function setPublicKey(string $value): static
+    {
+        $this->publicKey = $value;
+
+        return $this;
+    }
+
+    public function setScope(string $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

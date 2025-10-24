@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageDirectMessagePriceChanged extends MessageContent
 {
-    public const TYPE_NAME = 'messageDirectMessagePriceChanged';
+    public const string TYPE_NAME = 'messageDirectMessagePriceChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageDirectMessagePriceChanged extends MessageContent
     public function getPaidMessageStarCount(): int
     {
         return $this->paidMessageStarCount;
+    }
+
+    public function setIsEnabled(bool $value): static
+    {
+        $this->isEnabled = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

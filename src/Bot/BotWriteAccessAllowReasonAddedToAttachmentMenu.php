@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Bot;
  */
 class BotWriteAccessAllowReasonAddedToAttachmentMenu extends BotWriteAccessAllowReason
 {
-    public const TYPE_NAME = 'botWriteAccessAllowReasonAddedToAttachmentMenu';
+    public const string TYPE_NAME = 'botWriteAccessAllowReasonAddedToAttachmentMenu';
 
     public function __construct()
     {

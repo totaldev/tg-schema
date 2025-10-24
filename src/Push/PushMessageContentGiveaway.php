@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentGiveaway extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentGiveaway';
+    public const string TYPE_NAME = 'pushMessageContentGiveaway';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PushMessageContentGiveaway extends PushMessageContent
     public function getWinnerCount(): int
     {
         return $this->winnerCount;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setPrize(?GiveawayPrize $value): static
+    {
+        $this->prize = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

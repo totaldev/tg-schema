@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeDirectMessagesChat extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeDirectMessagesChat';
+    public const string TYPE_NAME = 'internalLinkTypeDirectMessagesChat';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeDirectMessagesChat extends InternalLinkType
     public function getChannelUsername(): string
     {
         return $this->channelUsername;
+    }
+
+    public function setChannelUsername(string $value): static
+    {
+        $this->channelUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

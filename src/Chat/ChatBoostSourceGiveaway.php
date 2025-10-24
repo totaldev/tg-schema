@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatBoostSourceGiveaway extends ChatBoostSource
 {
-    public const TYPE_NAME = 'chatBoostSourceGiveaway';
+    public const string TYPE_NAME = 'chatBoostSourceGiveaway';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class ChatBoostSourceGiveaway extends ChatBoostSource
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setGiftCode(string $value): static
+    {
+        $this->giftCode = $value;
+
+        return $this;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
+    }
+
+    public function setIsUnclaimed(bool $value): static
+    {
+        $this->isUnclaimed = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

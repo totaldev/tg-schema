@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGroupCallScreenSharingIsPaused extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallScreenSharingIsPaused';
+    public const string TYPE_NAME = 'toggleGroupCallScreenSharingIsPaused';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGroupCallScreenSharingIsPaused extends TdFunction
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

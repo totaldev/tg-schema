@@ -20,7 +20,7 @@ use Totaldev\TgSchema\Verification\VerificationStatus;
  */
 class Supergroup extends TdObject
 {
-    public const TYPE_NAME = 'supergroup';
+    public const string TYPE_NAME = 'supergroup';
 
     public function __construct(
         /**
@@ -289,6 +289,188 @@ class Supergroup extends TdObject
     public function getVerificationStatus(): ?VerificationStatus
     {
         return $this->verificationStatus;
+    }
+
+    public function setBoostLevel(int $value): static
+    {
+        $this->boostLevel = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setHasActiveStories(bool $value): static
+    {
+        $this->hasActiveStories = $value;
+
+        return $this;
+    }
+
+    public function setHasAutomaticTranslation(bool $value): static
+    {
+        $this->hasAutomaticTranslation = $value;
+
+        return $this;
+    }
+
+    public function setHasDirectMessagesGroup(bool $value): static
+    {
+        $this->hasDirectMessagesGroup = $value;
+
+        return $this;
+    }
+
+    public function setHasForumTabs(bool $value): static
+    {
+        $this->hasForumTabs = $value;
+
+        return $this;
+    }
+
+    public function setHasLinkedChat(bool $value): static
+    {
+        $this->hasLinkedChat = $value;
+
+        return $this;
+    }
+
+    public function setHasLocation(bool $value): static
+    {
+        $this->hasLocation = $value;
+
+        return $this;
+    }
+
+    public function setHasUnreadActiveStories(bool $value): static
+    {
+        $this->hasUnreadActiveStories = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsAdministeredDirectMessagesGroup(bool $value): static
+    {
+        $this->isAdministeredDirectMessagesGroup = $value;
+
+        return $this;
+    }
+
+    public function setIsBroadcastGroup(bool $value): static
+    {
+        $this->isBroadcastGroup = $value;
+
+        return $this;
+    }
+
+    public function setIsChannel(bool $value): static
+    {
+        $this->isChannel = $value;
+
+        return $this;
+    }
+
+    public function setIsDirectMessagesGroup(bool $value): static
+    {
+        $this->isDirectMessagesGroup = $value;
+
+        return $this;
+    }
+
+    public function setIsForum(bool $value): static
+    {
+        $this->isForum = $value;
+
+        return $this;
+    }
+
+    public function setIsSlowModeEnabled(bool $value): static
+    {
+        $this->isSlowModeEnabled = $value;
+
+        return $this;
+    }
+
+    public function setJoinByRequest(bool $value): static
+    {
+        $this->joinByRequest = $value;
+
+        return $this;
+    }
+
+    public function setJoinToSendMessages(bool $value): static
+    {
+        $this->joinToSendMessages = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(int $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setRestrictionInfo(?RestrictionInfo $value): static
+    {
+        $this->restrictionInfo = $value;
+
+        return $this;
+    }
+
+    public function setShowMessageSender(bool $value): static
+    {
+        $this->showMessageSender = $value;
+
+        return $this;
+    }
+
+    public function setSignMessages(bool $value): static
+    {
+        $this->signMessages = $value;
+
+        return $this;
+    }
+
+    public function setStatus(ChatMemberStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setUsernames(?Usernames $value): static
+    {
+        $this->usernames = $value;
+
+        return $this;
+    }
+
+    public function setVerificationStatus(?VerificationStatus $value): static
+    {
+        $this->verificationStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundPublicPosts extends TdObject
 {
-    public const TYPE_NAME = 'foundPublicPosts';
+    public const string TYPE_NAME = 'foundPublicPosts';
 
     public function __construct(
         /**
@@ -67,6 +67,34 @@ class FoundPublicPosts extends TdObject
     public function getSearchLimits(): ?PublicPostSearchLimits
     {
         return $this->searchLimits;
+    }
+
+    public function setAreLimitsExceeded(bool $value): static
+    {
+        $this->areLimitsExceeded = $value;
+
+        return $this;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setSearchLimits(?PublicPostSearchLimits $value): static
+    {
+        $this->searchLimits = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CollectibleItemType extends TdObject
 {
-    public const TYPE_NAME = 'CollectibleItemType';
+    public const string TYPE_NAME = 'CollectibleItemType';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Affiliate;
  */
 class AffiliateProgramSortOrderRevenue extends AffiliateProgramSortOrder
 {
-    public const TYPE_NAME = 'affiliateProgramSortOrderRevenue';
+    public const string TYPE_NAME = 'affiliateProgramSortOrderRevenue';
 
     public function __construct()
     {

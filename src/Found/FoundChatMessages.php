@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundChatMessages extends TdObject
 {
-    public const TYPE_NAME = 'foundChatMessages';
+    public const string TYPE_NAME = 'foundChatMessages';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class FoundChatMessages extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setMessages(array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setNextFromMessageId(int $value): static
+    {
+        $this->nextFromMessageId = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

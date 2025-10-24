@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserTypeRegular extends UserType
 {
-    public const TYPE_NAME = 'userTypeRegular';
+    public const string TYPE_NAME = 'userTypeRegular';
 
     public function __construct()
     {

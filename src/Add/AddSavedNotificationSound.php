@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddSavedNotificationSound extends TdFunction
 {
-    public const TYPE_NAME = 'addSavedNotificationSound';
+    public const string TYPE_NAME = 'addSavedNotificationSound';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class AddSavedNotificationSound extends TdFunction
     public function getSound(): InputFile
     {
         return $this->sound;
+    }
+
+    public function setSound(InputFile $value): static
+    {
+        $this->sound = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

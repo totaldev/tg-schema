@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReorderChatFolders extends TdFunction
 {
-    public const TYPE_NAME = 'reorderChatFolders';
+    public const string TYPE_NAME = 'reorderChatFolders';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ReorderChatFolders extends TdFunction
     public function getMainChatListPosition(): int
     {
         return $this->mainChatListPosition;
+    }
+
+    public function setChatFolderIds(array $value): static
+    {
+        $this->chatFolderIds = $value;
+
+        return $this;
+    }
+
+    public function setMainChatListPosition(int $value): static
+    {
+        $this->mainChatListPosition = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

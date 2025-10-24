@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleAllDownloadsArePaused extends TdFunction
 {
-    public const TYPE_NAME = 'toggleAllDownloadsArePaused';
+    public const string TYPE_NAME = 'toggleAllDownloadsArePaused';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ToggleAllDownloadsArePaused extends TdFunction
     public function getArePaused(): bool
     {
         return $this->arePaused;
+    }
+
+    public function setArePaused(bool $value): static
+    {
+        $this->arePaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

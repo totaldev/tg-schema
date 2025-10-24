@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditInlineMessageMedia extends TdFunction
 {
-    public const TYPE_NAME = 'editInlineMessageMedia';
+    public const string TYPE_NAME = 'editInlineMessageMedia';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class EditInlineMessageMedia extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

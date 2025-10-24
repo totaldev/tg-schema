@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Check;
  */
 class CheckChatUsernameResultPublicGroupsUnavailable extends CheckChatUsernameResult
 {
-    public const TYPE_NAME = 'checkChatUsernameResultPublicGroupsUnavailable';
+    public const string TYPE_NAME = 'checkChatUsernameResultPublicGroupsUnavailable';
 
     public function __construct()
     {

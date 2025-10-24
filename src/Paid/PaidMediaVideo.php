@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class PaidMediaVideo extends PaidMedia
 {
-    public const TYPE_NAME = 'paidMediaVideo';
+    public const string TYPE_NAME = 'paidMediaVideo';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class PaidMediaVideo extends PaidMedia
     public function getVideo(): Video
     {
         return $this->video;
+    }
+
+    public function setCover(?Photo $value): static
+    {
+        $this->cover = $value;
+
+        return $this;
+    }
+
+    public function setStartTimestamp(int $value): static
+    {
+        $this->startTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setVideo(Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

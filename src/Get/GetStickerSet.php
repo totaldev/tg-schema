@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStickerSet extends TdFunction
 {
-    public const TYPE_NAME = 'getStickerSet';
+    public const string TYPE_NAME = 'getStickerSet';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetStickerSet extends TdFunction
     public function getSetId(): int
     {
         return $this->setId;
+    }
+
+    public function setSetId(int $value): static
+    {
+        $this->setId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

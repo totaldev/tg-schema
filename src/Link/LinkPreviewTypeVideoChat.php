@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeVideoChat extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeVideoChat';
+    public const string TYPE_NAME = 'linkPreviewTypeVideoChat';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class LinkPreviewTypeVideoChat extends LinkPreviewType
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setIsLiveStream(bool $value): static
+    {
+        $this->isLiveStream = $value;
+
+        return $this;
+    }
+
+    public function setJoinsAsSpeaker(bool $value): static
+    {
+        $this->joinsAsSpeaker = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

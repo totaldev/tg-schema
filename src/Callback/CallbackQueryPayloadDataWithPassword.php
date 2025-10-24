@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Callback;
  */
 class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
 {
-    public const TYPE_NAME = 'callbackQueryPayloadDataWithPassword';
+    public const string TYPE_NAME = 'callbackQueryPayloadDataWithPassword';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CallbackQueryPayloadDataWithPassword extends CallbackQueryPayload
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

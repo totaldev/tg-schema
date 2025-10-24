@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenApplePushVoIP extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenApplePushVoIP';
+    public const string TYPE_NAME = 'deviceTokenApplePushVoIP';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class DeviceTokenApplePushVoIP extends DeviceToken
     public function getIsAppSandbox(): bool
     {
         return $this->isAppSandbox;
+    }
+
+    public function setDeviceToken(string $value): static
+    {
+        $this->deviceToken = $value;
+
+        return $this;
+    }
+
+    public function setEncrypt(bool $value): static
+    {
+        $this->encrypt = $value;
+
+        return $this;
+    }
+
+    public function setIsAppSandbox(bool $value): static
+    {
+        $this->isAppSandbox = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

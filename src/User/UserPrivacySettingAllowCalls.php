@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowCalls extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowCalls';
+    public const string TYPE_NAME = 'userPrivacySettingAllowCalls';
 
     public function __construct()
     {

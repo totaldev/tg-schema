@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateDiceEmojis extends Update
 {
-    public const TYPE_NAME = 'updateDiceEmojis';
+    public const string TYPE_NAME = 'updateDiceEmojis';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateDiceEmojis extends Update
     public function getEmojis(): array
     {
         return $this->emojis;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

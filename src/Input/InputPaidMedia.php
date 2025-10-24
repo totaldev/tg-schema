@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPaidMedia extends TdObject
 {
-    public const TYPE_NAME = 'inputPaidMedia';
+    public const string TYPE_NAME = 'inputPaidMedia';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class InputPaidMedia extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setAddedStickerFileIds(array $value): static
+    {
+        $this->addedStickerFileIds = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMedia(InputFile $value): static
+    {
+        $this->media = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setType(InputPaidMediaType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

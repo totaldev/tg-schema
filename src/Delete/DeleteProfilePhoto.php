@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteProfilePhoto extends TdFunction
 {
-    public const TYPE_NAME = 'deleteProfilePhoto';
+    public const string TYPE_NAME = 'deleteProfilePhoto';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeleteProfilePhoto extends TdFunction
     public function getProfilePhotoId(): int
     {
         return $this->profilePhotoId;
+    }
+
+    public function setProfilePhotoId(int $value): static
+    {
+        $this->profilePhotoId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

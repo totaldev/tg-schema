@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatBoostLevelFeatures extends TdFunction
 {
-    public const TYPE_NAME = 'getChatBoostLevelFeatures';
+    public const string TYPE_NAME = 'getChatBoostLevelFeatures';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetChatBoostLevelFeatures extends TdFunction
     public function getLevel(): int
     {
         return $this->level;
+    }
+
+    public function setIsChannel(bool $value): static
+    {
+        $this->isChannel = $value;
+
+        return $this;
+    }
+
+    public function setLevel(int $value): static
+    {
+        $this->level = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

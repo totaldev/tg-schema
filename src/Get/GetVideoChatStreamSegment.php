@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetVideoChatStreamSegment extends TdFunction
 {
-    public const TYPE_NAME = 'getVideoChatStreamSegment';
+    public const string TYPE_NAME = 'getVideoChatStreamSegment';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class GetVideoChatStreamSegment extends TdFunction
     public function getVideoQuality(): ?GroupCallVideoQuality
     {
         return $this->videoQuality;
+    }
+
+    public function setChannelId(int $value): static
+    {
+        $this->channelId = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setScale(int $value): static
+    {
+        $this->scale = $value;
+
+        return $this;
+    }
+
+    public function setTimeOffset(int $value): static
+    {
+        $this->timeOffset = $value;
+
+        return $this;
+    }
+
+    public function setVideoQuality(?GroupCallVideoQuality $value): static
+    {
+        $this->videoQuality = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

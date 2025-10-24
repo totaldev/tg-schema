@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LinkPreviewAlbumMedia extends TdObject
 {
-    public const TYPE_NAME = 'LinkPreviewAlbumMedia';
+    public const string TYPE_NAME = 'LinkPreviewAlbumMedia';
 
     public function __construct() {}
 

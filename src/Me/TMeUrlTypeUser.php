@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Me;
  */
 class TMeUrlTypeUser extends TMeUrlType
 {
-    public const TYPE_NAME = 'tMeUrlTypeUser';
+    public const string TYPE_NAME = 'tMeUrlTypeUser';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TMeUrlTypeUser extends TMeUrlType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

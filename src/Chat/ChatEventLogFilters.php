@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatEventLogFilters extends TdObject
 {
-    public const TYPE_NAME = 'chatEventLogFilters';
+    public const string TYPE_NAME = 'chatEventLogFilters';
 
     public function __construct(
         /**
@@ -162,6 +162,104 @@ class ChatEventLogFilters extends TdObject
     public function getVideoChatChanges(): bool
     {
         return $this->videoChatChanges;
+    }
+
+    public function setForumChanges(bool $value): static
+    {
+        $this->forumChanges = $value;
+
+        return $this;
+    }
+
+    public function setInfoChanges(bool $value): static
+    {
+        $this->infoChanges = $value;
+
+        return $this;
+    }
+
+    public function setInviteLinkChanges(bool $value): static
+    {
+        $this->inviteLinkChanges = $value;
+
+        return $this;
+    }
+
+    public function setMemberInvites(bool $value): static
+    {
+        $this->memberInvites = $value;
+
+        return $this;
+    }
+
+    public function setMemberJoins(bool $value): static
+    {
+        $this->memberJoins = $value;
+
+        return $this;
+    }
+
+    public function setMemberLeaves(bool $value): static
+    {
+        $this->memberLeaves = $value;
+
+        return $this;
+    }
+
+    public function setMemberPromotions(bool $value): static
+    {
+        $this->memberPromotions = $value;
+
+        return $this;
+    }
+
+    public function setMemberRestrictions(bool $value): static
+    {
+        $this->memberRestrictions = $value;
+
+        return $this;
+    }
+
+    public function setMessageDeletions(bool $value): static
+    {
+        $this->messageDeletions = $value;
+
+        return $this;
+    }
+
+    public function setMessageEdits(bool $value): static
+    {
+        $this->messageEdits = $value;
+
+        return $this;
+    }
+
+    public function setMessagePins(bool $value): static
+    {
+        $this->messagePins = $value;
+
+        return $this;
+    }
+
+    public function setSettingChanges(bool $value): static
+    {
+        $this->settingChanges = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionExtensions(bool $value): static
+    {
+        $this->subscriptionExtensions = $value;
+
+        return $this;
+    }
+
+    public function setVideoChatChanges(bool $value): static
+    {
+        $this->videoChatChanges = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

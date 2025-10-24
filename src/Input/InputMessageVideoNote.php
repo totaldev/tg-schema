@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageVideoNote extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageVideoNote';
+    public const string TYPE_NAME = 'inputMessageVideoNote';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class InputMessageVideoNote extends InputMessageContent
     public function getVideoNote(): InputFile
     {
         return $this->videoNote;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setSelfDestructType(?MessageSelfDestructType $value): static
+    {
+        $this->selfDestructType = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputThumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setVideoNote(InputFile $value): static
+    {
+        $this->videoNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetReceivedGifts extends TdFunction
 {
-    public const TYPE_NAME = 'getReceivedGifts';
+    public const string TYPE_NAME = 'getReceivedGifts';
 
     public function __construct(
         /**
@@ -164,6 +164,104 @@ class GetReceivedGifts extends TdFunction
     public function getSortByPrice(): bool
     {
         return $this->sortByPrice;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setCollectionId(int $value): static
+    {
+        $this->collectionId = $value;
+
+        return $this;
+    }
+
+    public function setExcludeHosted(bool $value): static
+    {
+        $this->excludeHosted = $value;
+
+        return $this;
+    }
+
+    public function setExcludeNonUpgradable(bool $value): static
+    {
+        $this->excludeNonUpgradable = $value;
+
+        return $this;
+    }
+
+    public function setExcludeSaved(bool $value): static
+    {
+        $this->excludeSaved = $value;
+
+        return $this;
+    }
+
+    public function setExcludeUnlimited(bool $value): static
+    {
+        $this->excludeUnlimited = $value;
+
+        return $this;
+    }
+
+    public function setExcludeUnsaved(bool $value): static
+    {
+        $this->excludeUnsaved = $value;
+
+        return $this;
+    }
+
+    public function setExcludeUpgradable(bool $value): static
+    {
+        $this->excludeUpgradable = $value;
+
+        return $this;
+    }
+
+    public function setExcludeUpgraded(bool $value): static
+    {
+        $this->excludeUpgraded = $value;
+
+        return $this;
+    }
+
+    public function setExcludeWithoutColors(bool $value): static
+    {
+        $this->excludeWithoutColors = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setSortByPrice(bool $value): static
+    {
+        $this->sortByPrice = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

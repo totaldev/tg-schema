@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReportStoryResultOptionRequired extends ReportStoryResult
 {
-    public const TYPE_NAME = 'reportStoryResultOptionRequired';
+    public const string TYPE_NAME = 'reportStoryResultOptionRequired';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ReportStoryResultOptionRequired extends ReportStoryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setOptions(array $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

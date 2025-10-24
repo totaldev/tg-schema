@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeStorySuggestedReactionAreaCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeStorySuggestedReactionAreaCount';
+    public const string TYPE_NAME = 'premiumLimitTypeStorySuggestedReactionAreaCount';
 
     public function __construct()
     {

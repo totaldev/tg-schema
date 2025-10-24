@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeNotificationSound extends FileType
 {
-    public const TYPE_NAME = 'fileTypeNotificationSound';
+    public const string TYPE_NAME = 'fileTypeNotificationSound';
 
     public function __construct()
     {

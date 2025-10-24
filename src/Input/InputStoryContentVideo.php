@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputStoryContentVideo extends InputStoryContent
 {
-    public const TYPE_NAME = 'inputStoryContentVideo';
+    public const string TYPE_NAME = 'inputStoryContentVideo';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class InputStoryContentVideo extends InputStoryContent
     public function getVideo(): InputFile
     {
         return $this->video;
+    }
+
+    public function setAddedStickerFileIds(array $value): static
+    {
+        $this->addedStickerFileIds = $value;
+
+        return $this;
+    }
+
+    public function setCoverFrameTimestamp(float $value): static
+    {
+        $this->coverFrameTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setDuration(float $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setIsAnimation(bool $value): static
+    {
+        $this->isAnimation = $value;
+
+        return $this;
+    }
+
+    public function setVideo(InputFile $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

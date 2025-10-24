@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Voice\VoiceNote;
  */
 class PushMessageContentVoiceNote extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentVoiceNote';
+    public const string TYPE_NAME = 'pushMessageContentVoiceNote';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PushMessageContentVoiceNote extends PushMessageContent
     public function getVoiceNote(): ?VoiceNote
     {
         return $this->voiceNote;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNote(?VoiceNote $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

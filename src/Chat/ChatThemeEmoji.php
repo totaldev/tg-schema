@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatThemeEmoji extends ChatTheme
 {
-    public const TYPE_NAME = 'chatThemeEmoji';
+    public const string TYPE_NAME = 'chatThemeEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatThemeEmoji extends ChatTheme
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

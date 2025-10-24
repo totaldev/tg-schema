@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Emoji;
  */
 class EmojiCategorySourceSearch extends EmojiCategorySource
 {
-    public const TYPE_NAME = 'emojiCategorySourceSearch';
+    public const string TYPE_NAME = 'emojiCategorySourceSearch';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class EmojiCategorySourceSearch extends EmojiCategorySource
     public function getEmojis(): array
     {
         return $this->emojis;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

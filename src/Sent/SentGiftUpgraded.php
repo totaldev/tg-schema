@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class SentGiftUpgraded extends SentGift
 {
-    public const TYPE_NAME = 'sentGiftUpgraded';
+    public const string TYPE_NAME = 'sentGiftUpgraded';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class SentGiftUpgraded extends SentGift
     public function getGift(): UpgradedGift
     {
         return $this->gift;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

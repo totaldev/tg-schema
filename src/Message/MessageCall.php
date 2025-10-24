@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageCall extends MessageContent
 {
-    public const TYPE_NAME = 'messageCall';
+    public const string TYPE_NAME = 'messageCall';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class MessageCall extends MessageContent
     public function getIsVideo(): bool
     {
         return $this->isVideo;
+    }
+
+    public function setDiscardReason(CallDiscardReason $value): static
+    {
+        $this->discardReason = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setIsVideo(bool $value): static
+    {
+        $this->isVideo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

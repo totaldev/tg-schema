@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddFavoriteSticker extends TdFunction
 {
-    public const TYPE_NAME = 'addFavoriteSticker';
+    public const string TYPE_NAME = 'addFavoriteSticker';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class AddFavoriteSticker extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateForumTopic extends Update
 {
-    public const TYPE_NAME = 'updateForumTopic';
+    public const string TYPE_NAME = 'updateForumTopic';
 
     public function __construct(
         /**
@@ -105,6 +105,62 @@ class UpdateForumTopic extends Update
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setLastReadInboxMessageId(int $value): static
+    {
+        $this->lastReadInboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setNotificationSettings(ChatNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
+    }
+
+    public function setUnreadMentionCount(int $value): static
+    {
+        $this->unreadMentionCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

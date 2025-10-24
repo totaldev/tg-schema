@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatRevenueTransactions extends TdObject
 {
-    public const TYPE_NAME = 'chatRevenueTransactions';
+    public const string TYPE_NAME = 'chatRevenueTransactions';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ChatRevenueTransactions extends TdObject
     public function getTransactions(): array
     {
         return $this->transactions;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTonAmount(int $value): static
+    {
+        $this->tonAmount = $value;
+
+        return $this;
+    }
+
+    public function setTransactions(array $value): static
+    {
+        $this->transactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

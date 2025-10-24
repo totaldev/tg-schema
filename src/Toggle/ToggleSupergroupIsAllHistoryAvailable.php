@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupIsAllHistoryAvailable';
+    public const string TYPE_NAME = 'toggleSupergroupIsAllHistoryAvailable';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleSupergroupIsAllHistoryAvailable extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setIsAllHistoryAvailable(bool $value): static
+    {
+        $this->isAllHistoryAvailable = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

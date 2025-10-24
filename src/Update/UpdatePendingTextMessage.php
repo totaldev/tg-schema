@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdatePendingTextMessage extends Update
 {
-    public const TYPE_NAME = 'updatePendingTextMessage';
+    public const string TYPE_NAME = 'updatePendingTextMessage';
 
     public function __construct(
         /**
@@ -67,6 +67,34 @@ class UpdatePendingTextMessage extends Update
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftId(int $value): static
+    {
+        $this->draftId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

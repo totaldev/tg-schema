@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowBirthdate extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowBirthdate';
+    public const string TYPE_NAME = 'userPrivacySettingShowBirthdate';
 
     public function __construct()
     {

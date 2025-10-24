@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TonTransaction extends TdObject
 {
-    public const TYPE_NAME = 'tonTransaction';
+    public const string TYPE_NAME = 'tonTransaction';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class TonTransaction extends TdObject
     public function getType(): TonTransactionType
     {
         return $this->type;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsRefund(bool $value): static
+    {
+        $this->isRefund = $value;
+
+        return $this;
+    }
+
+    public function setTonAmount(int $value): static
+    {
+        $this->tonAmount = $value;
+
+        return $this;
+    }
+
+    public function setType(TonTransactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

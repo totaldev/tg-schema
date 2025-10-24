@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateGroupCall extends Update
 {
-    public const TYPE_NAME = 'updateGroupCall';
+    public const string TYPE_NAME = 'updateGroupCall';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateGroupCall extends Update
     public function getGroupCall(): GroupCall
     {
         return $this->groupCall;
+    }
+
+    public function setGroupCall(GroupCall $value): static
+    {
+        $this->groupCall = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

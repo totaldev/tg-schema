@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Venue\Venue;
  */
 class InlineQueryResultVenue extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultVenue';
+    public const string TYPE_NAME = 'inlineQueryResultVenue';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class InlineQueryResultVenue extends InlineQueryResult
     public function getVenue(): Venue
     {
         return $this->venue;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setVenue(Venue $value): static
+    {
+        $this->venue = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

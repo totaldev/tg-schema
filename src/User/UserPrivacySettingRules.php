@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UserPrivacySettingRules extends TdObject
 {
-    public const TYPE_NAME = 'userPrivacySettingRules';
+    public const string TYPE_NAME = 'userPrivacySettingRules';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class UserPrivacySettingRules extends TdObject
     public function getRules(): array
     {
         return $this->rules;
+    }
+
+    public function setRules(array $value): static
+    {
+        $this->rules = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

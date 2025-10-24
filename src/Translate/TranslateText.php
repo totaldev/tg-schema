@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TranslateText extends TdFunction
 {
-    public const TYPE_NAME = 'translateText';
+    public const string TYPE_NAME = 'translateText';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class TranslateText extends TdFunction
     public function getToLanguageCode(): string
     {
         return $this->toLanguageCode;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setToLanguageCode(string $value): static
+    {
+        $this->toLanguageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

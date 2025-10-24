@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageFileType extends TdObject
 {
-    public const TYPE_NAME = 'MessageFileType';
+    public const string TYPE_NAME = 'MessageFileType';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeLinux extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeLinux';
+    public const string TYPE_NAME = 'sessionTypeLinux';
 
     public function __construct()
     {

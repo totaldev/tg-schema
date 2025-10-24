@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearAutosaveSettingsExceptions extends TdFunction
 {
-    public const TYPE_NAME = 'clearAutosaveSettingsExceptions';
+    public const string TYPE_NAME = 'clearAutosaveSettingsExceptions';
 
     public function __construct() {}
 

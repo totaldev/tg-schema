@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypePreCode extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypePreCode';
+    public const string TYPE_NAME = 'textEntityTypePreCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TextEntityTypePreCode extends TextEntityType
     public function getLanguage(): string
     {
         return $this->language;
+    }
+
+    public function setLanguage(string $value): static
+    {
+        $this->language = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ProfileAccentColors extends TdObject
 {
-    public const TYPE_NAME = 'profileAccentColors';
+    public const string TYPE_NAME = 'profileAccentColors';
 
     public function __construct(
         /**
@@ -58,6 +58,27 @@ class ProfileAccentColors extends TdObject
     public function getStoryColors(): array
     {
         return $this->storyColors;
+    }
+
+    public function setBackgroundColors(array $value): static
+    {
+        $this->backgroundColors = $value;
+
+        return $this;
+    }
+
+    public function setPaletteColors(array $value): static
+    {
+        $this->paletteColors = $value;
+
+        return $this;
+    }
+
+    public function setStoryColors(array $value): static
+    {
+        $this->storyColors = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

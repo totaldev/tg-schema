@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TargetChatTypes extends TdObject
 {
-    public const TYPE_NAME = 'targetChatTypes';
+    public const string TYPE_NAME = 'targetChatTypes';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class TargetChatTypes extends TdObject
     public function getAllowUserChats(): bool
     {
         return $this->allowUserChats;
+    }
+
+    public function setAllowBotChats(bool $value): static
+    {
+        $this->allowBotChats = $value;
+
+        return $this;
+    }
+
+    public function setAllowChannelChats(bool $value): static
+    {
+        $this->allowChannelChats = $value;
+
+        return $this;
+    }
+
+    public function setAllowGroupChats(bool $value): static
+    {
+        $this->allowGroupChats = $value;
+
+        return $this;
+    }
+
+    public function setAllowUserChats(bool $value): static
+    {
+        $this->allowUserChats = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

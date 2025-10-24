@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateSupergroupFullInfo extends Update
 {
-    public const TYPE_NAME = 'updateSupergroupFullInfo';
+    public const string TYPE_NAME = 'updateSupergroupFullInfo';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateSupergroupFullInfo extends Update
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setSupergroupFullInfo(SupergroupFullInfo $value): static
+    {
+        $this->supergroupFullInfo = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

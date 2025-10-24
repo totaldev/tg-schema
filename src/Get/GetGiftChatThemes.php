@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetGiftChatThemes extends TdFunction
 {
-    public const TYPE_NAME = 'getGiftChatThemes';
+    public const string TYPE_NAME = 'getGiftChatThemes';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetGiftChatThemes extends TdFunction
     public function getOffset(): string
     {
         return $this->offset;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeAffiliateProgramCommission extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeAffiliateProgramCommission';
+    public const string TYPE_NAME = 'starTransactionTypeAffiliateProgramCommission';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarTransactionTypeAffiliateProgramCommission extends StarTransactionType
     public function getCommissionPerMille(): int
     {
         return $this->commissionPerMille;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCommissionPerMille(int $value): static
+    {
+        $this->commissionPerMille = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

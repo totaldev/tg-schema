@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReceivedGifts extends TdObject
 {
-    public const TYPE_NAME = 'receivedGifts';
+    public const string TYPE_NAME = 'receivedGifts';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class ReceivedGifts extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setAreNotificationsEnabled(bool $value): static
+    {
+        $this->areNotificationsEnabled = $value;
+
+        return $this;
+    }
+
+    public function setGifts(array $value): static
+    {
+        $this->gifts = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

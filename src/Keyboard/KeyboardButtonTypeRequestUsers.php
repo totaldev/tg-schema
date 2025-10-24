@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Keyboard;
  */
 class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeRequestUsers';
+    public const string TYPE_NAME = 'keyboardButtonTypeRequestUsers';
 
     public function __construct(
         /**
@@ -112,6 +112,69 @@ class KeyboardButtonTypeRequestUsers extends KeyboardButtonType
     public function getUserIsPremium(): bool
     {
         return $this->userIsPremium;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setMaxQuantity(int $value): static
+    {
+        $this->maxQuantity = $value;
+
+        return $this;
+    }
+
+    public function setRequestName(bool $value): static
+    {
+        $this->requestName = $value;
+
+        return $this;
+    }
+
+    public function setRequestPhoto(bool $value): static
+    {
+        $this->requestPhoto = $value;
+
+        return $this;
+    }
+
+    public function setRequestUsername(bool $value): static
+    {
+        $this->requestUsername = $value;
+
+        return $this;
+    }
+
+    public function setRestrictUserIsBot(bool $value): static
+    {
+        $this->restrictUserIsBot = $value;
+
+        return $this;
+    }
+
+    public function setRestrictUserIsPremium(bool $value): static
+    {
+        $this->restrictUserIsPremium = $value;
+
+        return $this;
+    }
+
+    public function setUserIsBot(bool $value): static
+    {
+        $this->userIsBot = $value;
+
+        return $this;
+    }
+
+    public function setUserIsPremium(bool $value): static
+    {
+        $this->userIsPremium = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

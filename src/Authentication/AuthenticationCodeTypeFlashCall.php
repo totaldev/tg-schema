@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeFlashCall';
+    public const string TYPE_NAME = 'authenticationCodeTypeFlashCall';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class AuthenticationCodeTypeFlashCall extends AuthenticationCodeType
     public function getPattern(): string
     {
         return $this->pattern;
+    }
+
+    public function setPattern(string $value): static
+    {
+        $this->pattern = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

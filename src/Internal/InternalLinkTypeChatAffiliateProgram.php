@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeChatAffiliateProgram';
+    public const string TYPE_NAME = 'internalLinkTypeChatAffiliateProgram';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class InternalLinkTypeChatAffiliateProgram extends InternalLinkType
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setReferrer(string $value): static
+    {
+        $this->referrer = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

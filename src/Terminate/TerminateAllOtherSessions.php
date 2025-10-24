@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TerminateAllOtherSessions extends TdFunction
 {
-    public const TYPE_NAME = 'terminateAllOtherSessions';
+    public const string TYPE_NAME = 'terminateAllOtherSessions';
 
     public function __construct() {}
 

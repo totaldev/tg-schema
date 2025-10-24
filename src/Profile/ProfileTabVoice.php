@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Profile;
  */
 class ProfileTabVoice extends ProfileTab
 {
-    public const TYPE_NAME = 'profileTabVoice';
+    public const string TYPE_NAME = 'profileTabVoice';
 
     public function __construct()
     {

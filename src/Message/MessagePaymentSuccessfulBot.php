@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePaymentSuccessfulBot extends MessageContent
 {
-    public const TYPE_NAME = 'messagePaymentSuccessfulBot';
+    public const string TYPE_NAME = 'messagePaymentSuccessfulBot';
 
     public function __construct(
         /**
@@ -125,6 +125,76 @@ class MessagePaymentSuccessfulBot extends MessageContent
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setInvoicePayload(string $value): static
+    {
+        $this->invoicePayload = $value;
+
+        return $this;
+    }
+
+    public function setIsFirstRecurring(bool $value): static
+    {
+        $this->isFirstRecurring = $value;
+
+        return $this;
+    }
+
+    public function setIsRecurring(bool $value): static
+    {
+        $this->isRecurring = $value;
+
+        return $this;
+    }
+
+    public function setOrderInfo(?OrderInfo $value): static
+    {
+        $this->orderInfo = $value;
+
+        return $this;
+    }
+
+    public function setProviderPaymentChargeId(string $value): static
+    {
+        $this->providerPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setShippingOptionId(string $value): static
+    {
+        $this->shippingOptionId = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionUntilDate(int $value): static
+    {
+        $this->subscriptionUntilDate = $value;
+
+        return $this;
+    }
+
+    public function setTelegramPaymentChargeId(string $value): static
+    {
+        $this->telegramPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatMessageSender extends TdFunction
 {
-    public const TYPE_NAME = 'setChatMessageSender';
+    public const string TYPE_NAME = 'setChatMessageSender';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatMessageSender extends TdFunction
     public function getMessageSenderId(): MessageSender
     {
         return $this->messageSenderId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageSenderId(MessageSender $value): static
+    {
+        $this->messageSenderId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

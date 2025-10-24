@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetLinkPreview extends TdFunction
 {
-    public const TYPE_NAME = 'getLinkPreview';
+    public const string TYPE_NAME = 'getLinkPreview';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class GetLinkPreview extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setLinkPreviewOptions(?LinkPreviewOptions $value): static
+    {
+        $this->linkPreviewOptions = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateMessageMentionRead extends Update
 {
-    public const TYPE_NAME = 'updateMessageMentionRead';
+    public const string TYPE_NAME = 'updateMessageMentionRead';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class UpdateMessageMentionRead extends Update
     public function getUnreadMentionCount(): int
     {
         return $this->unreadMentionCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setUnreadMentionCount(int $value): static
+    {
+        $this->unreadMentionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RemoveStickerFromSet extends TdFunction
 {
-    public const TYPE_NAME = 'removeStickerFromSet';
+    public const string TYPE_NAME = 'removeStickerFromSet';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class RemoveStickerFromSet extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBio extends TdFunction
 {
-    public const TYPE_NAME = 'setBio';
+    public const string TYPE_NAME = 'setBio';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SetBio extends TdFunction
     public function getBio(): string
     {
         return $this->bio;
+    }
+
+    public function setBio(string $value): static
+    {
+        $this->bio = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

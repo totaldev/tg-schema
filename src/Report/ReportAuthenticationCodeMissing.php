@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReportAuthenticationCodeMissing extends TdFunction
 {
-    public const TYPE_NAME = 'reportAuthenticationCodeMissing';
+    public const string TYPE_NAME = 'reportAuthenticationCodeMissing';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ReportAuthenticationCodeMissing extends TdFunction
     public function getMobileNetworkCode(): string
     {
         return $this->mobileNetworkCode;
+    }
+
+    public function setMobileNetworkCode(string $value): static
+    {
+        $this->mobileNetworkCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UserPrivacySettingRule extends TdObject
 {
-    public const TYPE_NAME = 'UserPrivacySettingRule';
+    public const string TYPE_NAME = 'UserPrivacySettingRule';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResetNetworkStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'resetNetworkStatistics';
+    public const string TYPE_NAME = 'resetNetworkStatistics';
 
     public function __construct() {}
 

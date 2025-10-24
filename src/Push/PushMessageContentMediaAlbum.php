@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentMediaAlbum extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentMediaAlbum';
+    public const string TYPE_NAME = 'pushMessageContentMediaAlbum';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class PushMessageContentMediaAlbum extends PushMessageContent
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setHasAudios(bool $value): static
+    {
+        $this->hasAudios = $value;
+
+        return $this;
+    }
+
+    public function setHasDocuments(bool $value): static
+    {
+        $this->hasDocuments = $value;
+
+        return $this;
+    }
+
+    public function setHasPhotos(bool $value): static
+    {
+        $this->hasPhotos = $value;
+
+        return $this;
+    }
+
+    public function setHasVideos(bool $value): static
+    {
+        $this->hasVideos = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

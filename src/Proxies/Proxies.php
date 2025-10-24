@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Proxies extends TdObject
 {
-    public const TYPE_NAME = 'proxies';
+    public const string TYPE_NAME = 'proxies';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class Proxies extends TdObject
     public function getProxies(): array
     {
         return $this->proxies;
+    }
+
+    public function setProxies(array $value): static
+    {
+        $this->proxies = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

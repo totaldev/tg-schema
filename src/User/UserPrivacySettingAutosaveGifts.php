@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAutosaveGifts extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAutosaveGifts';
+    public const string TYPE_NAME = 'userPrivacySettingAutosaveGifts';
 
     public function __construct()
     {

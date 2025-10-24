@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeBusinessChat extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBusinessChat';
+    public const string TYPE_NAME = 'internalLinkTypeBusinessChat';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeBusinessChat extends InternalLinkType
     public function getLinkName(): string
     {
         return $this->linkName;
+    }
+
+    public function setLinkName(string $value): static
+    {
+        $this->linkName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

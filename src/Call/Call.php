@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Call extends TdObject
 {
-    public const TYPE_NAME = 'call';
+    public const string TYPE_NAME = 'call';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class Call extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setIsVideo(bool $value): static
+    {
+        $this->isVideo = $value;
+
+        return $this;
+    }
+
+    public function setState(CallState $value): static
+    {
+        $this->state = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

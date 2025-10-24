@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReorderInstalledStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'reorderInstalledStickerSets';
+    public const string TYPE_NAME = 'reorderInstalledStickerSets';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ReorderInstalledStickerSets extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setStickerSetIds(array $value): static
+    {
+        $this->stickerSetIds = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

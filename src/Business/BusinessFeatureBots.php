@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureBots extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureBots';
+    public const string TYPE_NAME = 'businessFeatureBots';
 
     public function __construct()
     {

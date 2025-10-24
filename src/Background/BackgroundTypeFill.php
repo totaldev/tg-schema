@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BackgroundTypeFill extends BackgroundType
 {
-    public const TYPE_NAME = 'backgroundTypeFill';
+    public const string TYPE_NAME = 'backgroundTypeFill';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class BackgroundTypeFill extends BackgroundType
     public function getFill(): BackgroundFill
     {
         return $this->fill;
+    }
+
+    public function setFill(BackgroundFill $value): static
+    {
+        $this->fill = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

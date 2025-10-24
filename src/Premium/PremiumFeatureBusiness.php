@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureBusiness extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureBusiness';
+    public const string TYPE_NAME = 'premiumFeatureBusiness';
 
     public function __construct()
     {

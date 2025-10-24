@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessAwayMessageScheduleOutsideOfOpeningHours extends BusinessAwayMessageSchedule
 {
-    public const TYPE_NAME = 'businessAwayMessageScheduleOutsideOfOpeningHours';
+    public const string TYPE_NAME = 'businessAwayMessageScheduleOutsideOfOpeningHours';
 
     public function __construct()
     {

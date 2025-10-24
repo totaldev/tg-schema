@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ProfileTab extends TdObject
 {
-    public const TYPE_NAME = 'ProfileTab';
+    public const string TYPE_NAME = 'ProfileTab';
 
     public function __construct() {}
 

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PushMessageContentSticker extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentSticker';
+    public const string TYPE_NAME = 'pushMessageContentSticker';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PushMessageContentSticker extends PushMessageContent
     public function getSticker(): ?Sticker
     {
         return $this->sticker;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

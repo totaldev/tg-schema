@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class OptimizeStorage extends TdFunction
 {
-    public const TYPE_NAME = 'optimizeStorage';
+    public const string TYPE_NAME = 'optimizeStorage';
 
     public function __construct(
         /**
@@ -120,6 +120,69 @@ class OptimizeStorage extends TdFunction
     public function getTtl(): int
     {
         return $this->ttl;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
+    }
+
+    public function setChatLimit(int $value): static
+    {
+        $this->chatLimit = $value;
+
+        return $this;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
+    }
+
+    public function setExcludeChatIds(array $value): static
+    {
+        $this->excludeChatIds = $value;
+
+        return $this;
+    }
+
+    public function setFileTypes(array $value): static
+    {
+        $this->fileTypes = $value;
+
+        return $this;
+    }
+
+    public function setImmunityDelay(int $value): static
+    {
+        $this->immunityDelay = $value;
+
+        return $this;
+    }
+
+    public function setReturnDeletedFileStatistics(bool $value): static
+    {
+        $this->returnDeletedFileStatistics = $value;
+
+        return $this;
+    }
+
+    public function setSize(int $value): static
+    {
+        $this->size = $value;
+
+        return $this;
+    }
+
+    public function setTtl(int $value): static
+    {
+        $this->ttl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

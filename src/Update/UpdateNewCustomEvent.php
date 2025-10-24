@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateNewCustomEvent extends Update
 {
-    public const TYPE_NAME = 'updateNewCustomEvent';
+    public const string TYPE_NAME = 'updateNewCustomEvent';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpdateNewCustomEvent extends Update
     public function getEvent(): string
     {
         return $this->event;
+    }
+
+    public function setEvent(string $value): static
+    {
+        $this->event = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

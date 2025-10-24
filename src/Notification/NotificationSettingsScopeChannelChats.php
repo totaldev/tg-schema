@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationSettingsScopeChannelChats extends NotificationSettingsScope
 {
-    public const TYPE_NAME = 'notificationSettingsScopeChannelChats';
+    public const string TYPE_NAME = 'notificationSettingsScopeChannelChats';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeCopyText extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeCopyText';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeCopyText';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InlineKeyboardButtonTypeCopyText extends InlineKeyboardButtonType
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Firebase;
  */
 class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVerificationParameters
 {
-    public const TYPE_NAME = 'firebaseDeviceVerificationParametersPlayIntegrity';
+    public const string TYPE_NAME = 'firebaseDeviceVerificationParametersPlayIntegrity';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class FirebaseDeviceVerificationParametersPlayIntegrity extends FirebaseDeviceVe
     public function getNonce(): string
     {
         return $this->nonce;
+    }
+
+    public function setCloudProjectNumber(int $value): static
+    {
+        $this->cloudProjectNumber = $value;
+
+        return $this;
+    }
+
+    public function setNonce(string $value): static
+    {
+        $this->nonce = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallStateExchangingKeys extends CallState
 {
-    public const TYPE_NAME = 'callStateExchangingKeys';
+    public const string TYPE_NAME = 'callStateExchangingKeys';
 
     public function __construct()
     {

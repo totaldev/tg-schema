@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallServerType extends TdObject
 {
-    public const TYPE_NAME = 'CallServerType';
+    public const string TYPE_NAME = 'CallServerType';
 
     public function __construct() {}
 

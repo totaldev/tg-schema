@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditCustomLanguagePackInfo extends TdFunction
 {
-    public const TYPE_NAME = 'editCustomLanguagePackInfo';
+    public const string TYPE_NAME = 'editCustomLanguagePackInfo';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class EditCustomLanguagePackInfo extends TdFunction
     public function getInfo(): LanguagePackInfo
     {
         return $this->info;
+    }
+
+    public function setInfo(LanguagePackInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

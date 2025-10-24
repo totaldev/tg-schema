@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanTransferOwnershipResultPasswordNeeded extends CanTransferOwnershipResult
 {
-    public const TYPE_NAME = 'canTransferOwnershipResultPasswordNeeded';
+    public const string TYPE_NAME = 'canTransferOwnershipResultPasswordNeeded';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerTypeRegular extends StickerType
 {
-    public const TYPE_NAME = 'stickerTypeRegular';
+    public const string TYPE_NAME = 'stickerTypeRegular';
 
     public function __construct()
     {

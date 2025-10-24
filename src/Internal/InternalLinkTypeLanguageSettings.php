@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeLanguageSettings extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeLanguageSettings';
+    public const string TYPE_NAME = 'internalLinkTypeLanguageSettings';
 
     public function __construct()
     {

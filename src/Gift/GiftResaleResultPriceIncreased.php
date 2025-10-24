@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiftResaleResultPriceIncreased extends GiftResaleResult
 {
-    public const TYPE_NAME = 'giftResaleResultPriceIncreased';
+    public const string TYPE_NAME = 'giftResaleResultPriceIncreased';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GiftResaleResultPriceIncreased extends GiftResaleResult
     public function getPrice(): GiftResalePrice
     {
         return $this->price;
+    }
+
+    public function setPrice(GiftResalePrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

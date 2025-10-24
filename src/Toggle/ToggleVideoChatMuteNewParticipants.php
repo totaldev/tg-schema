@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleVideoChatMuteNewParticipants extends TdFunction
 {
-    public const TYPE_NAME = 'toggleVideoChatMuteNewParticipants';
+    public const string TYPE_NAME = 'toggleVideoChatMuteNewParticipants';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleVideoChatMuteNewParticipants extends TdFunction
     public function getMuteNewParticipants(): bool
     {
         return $this->muteNewParticipants;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setMuteNewParticipants(bool $value): static
+    {
+        $this->muteNewParticipants = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

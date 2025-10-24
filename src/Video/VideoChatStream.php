@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class VideoChatStream extends TdObject
 {
-    public const TYPE_NAME = 'videoChatStream';
+    public const string TYPE_NAME = 'videoChatStream';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class VideoChatStream extends TdObject
     public function getTimeOffset(): int
     {
         return $this->timeOffset;
+    }
+
+    public function setChannelId(int $value): static
+    {
+        $this->channelId = $value;
+
+        return $this;
+    }
+
+    public function setScale(int $value): static
+    {
+        $this->scale = $value;
+
+        return $this;
+    }
+
+    public function setTimeOffset(int $value): static
+    {
+        $this->timeOffset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

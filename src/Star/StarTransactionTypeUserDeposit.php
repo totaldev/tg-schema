@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeUserDeposit extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeUserDeposit';
+    public const string TYPE_NAME = 'starTransactionTypeUserDeposit';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class StarTransactionTypeUserDeposit extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

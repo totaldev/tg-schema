@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetBotUpdatesStatus extends TdFunction
 {
-    public const TYPE_NAME = 'setBotUpdatesStatus';
+    public const string TYPE_NAME = 'setBotUpdatesStatus';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetBotUpdatesStatus extends TdFunction
     public function getPendingUpdateCount(): int
     {
         return $this->pendingUpdateCount;
+    }
+
+    public function setErrorMessage(string $value): static
+    {
+        $this->errorMessage = $value;
+
+        return $this;
+    }
+
+    public function setPendingUpdateCount(int $value): static
+    {
+        $this->pendingUpdateCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

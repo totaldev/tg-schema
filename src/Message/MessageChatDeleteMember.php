@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatDeleteMember extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatDeleteMember';
+    public const string TYPE_NAME = 'messageChatDeleteMember';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageChatDeleteMember extends MessageContent
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

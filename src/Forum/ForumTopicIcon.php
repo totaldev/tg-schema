@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ForumTopicIcon extends TdObject
 {
-    public const TYPE_NAME = 'forumTopicIcon';
+    public const string TYPE_NAME = 'forumTopicIcon';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ForumTopicIcon extends TdObject
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
+    }
+
+    public function setColor(int $value): static
+    {
+        $this->color = $value;
+
+        return $this;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

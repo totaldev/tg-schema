@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PhotoSize extends TdObject
 {
-    public const TYPE_NAME = 'photoSize';
+    public const string TYPE_NAME = 'photoSize';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class PhotoSize extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(File $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setProgressiveSizes(array $value): static
+    {
+        $this->progressiveSizes = $value;
+
+        return $this;
+    }
+
+    public function setType(string $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

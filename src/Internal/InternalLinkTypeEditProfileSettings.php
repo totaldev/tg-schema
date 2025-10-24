@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeEditProfileSettings extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeEditProfileSettings';
+    public const string TYPE_NAME = 'internalLinkTypeEditProfileSettings';
 
     public function __construct()
     {

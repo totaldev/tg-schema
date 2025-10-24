@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatUnreadReactionCount extends Update
 {
-    public const TYPE_NAME = 'updateChatUnreadReactionCount';
+    public const string TYPE_NAME = 'updateChatUnreadReactionCount';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatUnreadReactionCount extends Update
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

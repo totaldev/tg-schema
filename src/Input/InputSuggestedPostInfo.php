@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputSuggestedPostInfo extends TdObject
 {
-    public const TYPE_NAME = 'inputSuggestedPostInfo';
+    public const string TYPE_NAME = 'inputSuggestedPostInfo';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InputSuggestedPostInfo extends TdObject
     public function getSendDate(): int
     {
         return $this->sendDate;
+    }
+
+    public function setPrice(?SuggestedPostPrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
+    }
+
+    public function setSendDate(int $value): static
+    {
+        $this->sendDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

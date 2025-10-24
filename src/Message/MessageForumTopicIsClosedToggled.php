@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageForumTopicIsClosedToggled extends MessageContent
 {
-    public const TYPE_NAME = 'messageForumTopicIsClosedToggled';
+    public const string TYPE_NAME = 'messageForumTopicIsClosedToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageForumTopicIsClosedToggled extends MessageContent
     public function getIsClosed(): bool
     {
         return $this->isClosed;
+    }
+
+    public function setIsClosed(bool $value): static
+    {
+        $this->isClosed = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

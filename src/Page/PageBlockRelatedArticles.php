@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockRelatedArticles extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockRelatedArticles';
+    public const string TYPE_NAME = 'pageBlockRelatedArticles';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class PageBlockRelatedArticles extends PageBlock
     public function getHeader(): RichText
     {
         return $this->header;
+    }
+
+    public function setArticles(array $value): static
+    {
+        $this->articles = $value;
+
+        return $this;
+    }
+
+    public function setHeader(RichText $value): static
+    {
+        $this->header = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

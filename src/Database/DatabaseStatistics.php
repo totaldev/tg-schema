@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class DatabaseStatistics extends TdObject
 {
-    public const TYPE_NAME = 'databaseStatistics';
+    public const string TYPE_NAME = 'databaseStatistics';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DatabaseStatistics extends TdObject
     public function getStatistics(): string
     {
         return $this->statistics;
+    }
+
+    public function setStatistics(string $value): static
+    {
+        $this->statistics = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

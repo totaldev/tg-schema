@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBusinessConnectedBot extends TdFunction
 {
-    public const TYPE_NAME = 'getBusinessConnectedBot';
+    public const string TYPE_NAME = 'getBusinessConnectedBot';
 
     public function __construct() {}
 

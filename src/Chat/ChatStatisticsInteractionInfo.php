@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatStatisticsInteractionInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatStatisticsInteractionInfo';
+    public const string TYPE_NAME = 'chatStatisticsInteractionInfo';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class ChatStatisticsInteractionInfo extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function setForwardCount(int $value): static
+    {
+        $this->forwardCount = $value;
+
+        return $this;
+    }
+
+    public function setObjectType(ChatStatisticsObjectType $value): static
+    {
+        $this->objectType = $value;
+
+        return $this;
+    }
+
+    public function setReactionCount(int $value): static
+    {
+        $this->reactionCount = $value;
+
+        return $this;
+    }
+
+    public function setViewCount(int $value): static
+    {
+        $this->viewCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

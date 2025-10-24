@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatAdministratorRights extends TdObject
 {
-    public const TYPE_NAME = 'chatAdministratorRights';
+    public const string TYPE_NAME = 'chatAdministratorRights';
 
     public function __construct(
         /**
@@ -182,6 +182,118 @@ class ChatAdministratorRights extends TdObject
     public function getIsAnonymous(): bool
     {
         return $this->isAnonymous;
+    }
+
+    public function setCanChangeInfo(bool $value): static
+    {
+        $this->canChangeInfo = $value;
+
+        return $this;
+    }
+
+    public function setCanDeleteMessages(bool $value): static
+    {
+        $this->canDeleteMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanDeleteStories(bool $value): static
+    {
+        $this->canDeleteStories = $value;
+
+        return $this;
+    }
+
+    public function setCanEditMessages(bool $value): static
+    {
+        $this->canEditMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanEditStories(bool $value): static
+    {
+        $this->canEditStories = $value;
+
+        return $this;
+    }
+
+    public function setCanInviteUsers(bool $value): static
+    {
+        $this->canInviteUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanManageChat(bool $value): static
+    {
+        $this->canManageChat = $value;
+
+        return $this;
+    }
+
+    public function setCanManageDirectMessages(bool $value): static
+    {
+        $this->canManageDirectMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanManageTopics(bool $value): static
+    {
+        $this->canManageTopics = $value;
+
+        return $this;
+    }
+
+    public function setCanManageVideoChats(bool $value): static
+    {
+        $this->canManageVideoChats = $value;
+
+        return $this;
+    }
+
+    public function setCanPinMessages(bool $value): static
+    {
+        $this->canPinMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanPostMessages(bool $value): static
+    {
+        $this->canPostMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanPostStories(bool $value): static
+    {
+        $this->canPostStories = $value;
+
+        return $this;
+    }
+
+    public function setCanPromoteMembers(bool $value): static
+    {
+        $this->canPromoteMembers = $value;
+
+        return $this;
+    }
+
+    public function setCanRestrictMembers(bool $value): static
+    {
+        $this->canRestrictMembers = $value;
+
+        return $this;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

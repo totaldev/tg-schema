@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftColors;
  */
 class UpdateChatAccentColors extends Update
 {
-    public const TYPE_NAME = 'updateChatAccentColors';
+    public const string TYPE_NAME = 'updateChatAccentColors';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class UpdateChatAccentColors extends Update
     public function getUpgradedGiftColors(): ?UpgradedGiftColors
     {
         return $this->upgradedGiftColors;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setBackgroundCustomEmojiId(int $value): static
+    {
+        $this->backgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setProfileAccentColorId(int $value): static
+    {
+        $this->profileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->profileBackgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedGiftColors(?UpgradedGiftColors $value): static
+    {
+        $this->upgradedGiftColors = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

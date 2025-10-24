@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterAnimation extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterAnimation';
+    public const string TYPE_NAME = 'searchMessagesFilterAnimation';
 
     public function __construct()
     {

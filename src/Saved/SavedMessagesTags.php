@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SavedMessagesTags extends TdObject
 {
-    public const TYPE_NAME = 'savedMessagesTags';
+    public const string TYPE_NAME = 'savedMessagesTags';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class SavedMessagesTags extends TdObject
     public function getTags(): array
     {
         return $this->tags;
+    }
+
+    public function setTags(array $value): static
+    {
+        $this->tags = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

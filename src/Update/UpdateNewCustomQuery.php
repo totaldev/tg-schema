@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateNewCustomQuery extends Update
 {
-    public const TYPE_NAME = 'updateNewCustomQuery';
+    public const string TYPE_NAME = 'updateNewCustomQuery';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class UpdateNewCustomQuery extends Update
     public function getTimeout(): int
     {
         return $this->timeout;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTimeout(int $value): static
+    {
+        $this->timeout = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

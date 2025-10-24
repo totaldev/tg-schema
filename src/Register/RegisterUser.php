@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RegisterUser extends TdFunction
 {
-    public const TYPE_NAME = 'registerUser';
+    public const string TYPE_NAME = 'registerUser';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class RegisterUser extends TdFunction
     public function getLastName(): string
     {
         return $this->lastName;
+    }
+
+    public function setDisableNotification(bool $value): static
+    {
+        $this->disableNotification = $value;
+
+        return $this;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

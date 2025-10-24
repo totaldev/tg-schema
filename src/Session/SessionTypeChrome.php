@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeChrome extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeChrome';
+    public const string TYPE_NAME = 'sessionTypeChrome';
 
     public function __construct()
     {

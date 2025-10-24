@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class OptionValue extends TdObject
 {
-    public const TYPE_NAME = 'OptionValue';
+    public const string TYPE_NAME = 'OptionValue';
 
     public function __construct() {}
 

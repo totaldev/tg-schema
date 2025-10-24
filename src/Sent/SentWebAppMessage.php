@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SentWebAppMessage extends TdObject
 {
-    public const TYPE_NAME = 'sentWebAppMessage';
+    public const string TYPE_NAME = 'sentWebAppMessage';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SentWebAppMessage extends TdObject
     public function getInlineMessageId(): string
     {
         return $this->inlineMessageId;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

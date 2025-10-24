@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChecklistTasksDone extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChecklistTasksDone';
+    public const string TYPE_NAME = 'pushMessageContentChecklistTasksDone';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentChecklistTasksDone extends PushMessageContent
     public function getTaskCount(): int
     {
         return $this->taskCount;
+    }
+
+    public function setTaskCount(int $value): static
+    {
+        $this->taskCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

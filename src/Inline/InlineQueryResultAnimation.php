@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultAnimation extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultAnimation';
+    public const string TYPE_NAME = 'inlineQueryResultAnimation';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class InlineQueryResultAnimation extends InlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setAnimation(Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

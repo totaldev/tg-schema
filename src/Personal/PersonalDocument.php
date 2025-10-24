@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PersonalDocument extends TdObject
 {
-    public const TYPE_NAME = 'personalDocument';
+    public const string TYPE_NAME = 'personalDocument';
 
     public function __construct(
         /**
@@ -48,6 +48,20 @@ class PersonalDocument extends TdObject
     public function getTranslation(): array
     {
         return $this->translation;
+    }
+
+    public function setFiles(array $value): static
+    {
+        $this->files = $value;
+
+        return $this;
+    }
+
+    public function setTranslation(array $value): static
+    {
+        $this->translation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

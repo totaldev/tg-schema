@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetAuthenticationEmailAddress extends TdFunction
 {
-    public const TYPE_NAME = 'setAuthenticationEmailAddress';
+    public const string TYPE_NAME = 'setAuthenticationEmailAddress';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class SetAuthenticationEmailAddress extends TdFunction
     public function getEmailAddress(): string
     {
         return $this->emailAddress;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

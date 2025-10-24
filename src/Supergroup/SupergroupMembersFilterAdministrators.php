@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Supergroup;
  */
 class SupergroupMembersFilterAdministrators extends SupergroupMembersFilter
 {
-    public const TYPE_NAME = 'supergroupMembersFilterAdministrators';
+    public const string TYPE_NAME = 'supergroupMembersFilterAdministrators';
 
     public function __construct()
     {

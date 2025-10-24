@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetNewChatPrivacySettings extends TdFunction
 {
-    public const TYPE_NAME = 'getNewChatPrivacySettings';
+    public const string TYPE_NAME = 'getNewChatPrivacySettings';
 
     public function __construct() {}
 

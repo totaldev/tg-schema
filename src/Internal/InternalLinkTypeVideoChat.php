@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeVideoChat extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeVideoChat';
+    public const string TYPE_NAME = 'internalLinkTypeVideoChat';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InternalLinkTypeVideoChat extends InternalLinkType
     public function getIsLiveStream(): bool
     {
         return $this->isLiveStream;
+    }
+
+    public function setChatUsername(string $value): static
+    {
+        $this->chatUsername = $value;
+
+        return $this;
+    }
+
+    public function setInviteHash(string $value): static
+    {
+        $this->inviteHash = $value;
+
+        return $this;
+    }
+
+    public function setIsLiveStream(bool $value): static
+    {
+        $this->isLiveStream = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

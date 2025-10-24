@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterVideoNote extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterVideoNote';
+    public const string TYPE_NAME = 'searchMessagesFilterVideoNote';
 
     public function __construct()
     {

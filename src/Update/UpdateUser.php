@@ -14,7 +14,7 @@ use Totaldev\TgSchema\User\User;
  */
 class UpdateUser extends Update
 {
-    public const TYPE_NAME = 'updateUser';
+    public const string TYPE_NAME = 'updateUser';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateUser extends Update
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function setUser(User $value): static
+    {
+        $this->user = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

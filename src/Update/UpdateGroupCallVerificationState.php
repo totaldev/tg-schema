@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateGroupCallVerificationState extends Update
 {
-    public const TYPE_NAME = 'updateGroupCallVerificationState';
+    public const string TYPE_NAME = 'updateGroupCallVerificationState';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class UpdateGroupCallVerificationState extends Update
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setGeneration(int $value): static
+    {
+        $this->generation = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

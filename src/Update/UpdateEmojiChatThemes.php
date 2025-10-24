@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateEmojiChatThemes extends Update
 {
-    public const TYPE_NAME = 'updateEmojiChatThemes';
+    public const string TYPE_NAME = 'updateEmojiChatThemes';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class UpdateEmojiChatThemes extends Update
     public function getChatThemes(): array
     {
         return $this->chatThemes;
+    }
+
+    public function setChatThemes(array $value): static
+    {
+        $this->chatThemes = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

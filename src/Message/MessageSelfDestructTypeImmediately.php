@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSelfDestructTypeImmediately extends MessageSelfDestructType
 {
-    public const TYPE_NAME = 'messageSelfDestructTypeImmediately';
+    public const string TYPE_NAME = 'messageSelfDestructTypeImmediately';
 
     public function __construct()
     {

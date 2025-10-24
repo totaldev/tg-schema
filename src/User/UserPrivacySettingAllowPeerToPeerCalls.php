@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingAllowPeerToPeerCalls extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingAllowPeerToPeerCalls';
+    public const string TYPE_NAME = 'userPrivacySettingAllowPeerToPeerCalls';
 
     public function __construct()
     {

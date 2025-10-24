@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeFragmentDeposit extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeFragmentDeposit';
+    public const string TYPE_NAME = 'starTransactionTypeFragmentDeposit';
 
     public function __construct()
     {

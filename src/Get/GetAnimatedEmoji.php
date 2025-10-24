@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAnimatedEmoji extends TdFunction
 {
-    public const TYPE_NAME = 'getAnimatedEmoji';
+    public const string TYPE_NAME = 'getAnimatedEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetAnimatedEmoji extends TdFunction
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

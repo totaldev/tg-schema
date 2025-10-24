@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionBarSharePhoneNumber extends ChatActionBar
 {
-    public const TYPE_NAME = 'chatActionBarSharePhoneNumber';
+    public const string TYPE_NAME = 'chatActionBarSharePhoneNumber';
 
     public function __construct()
     {

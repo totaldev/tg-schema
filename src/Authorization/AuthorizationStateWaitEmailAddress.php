@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitEmailAddress extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitEmailAddress';
+    public const string TYPE_NAME = 'authorizationStateWaitEmailAddress';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class AuthorizationStateWaitEmailAddress extends AuthorizationState
     public function getAllowGoogleId(): bool
     {
         return $this->allowGoogleId;
+    }
+
+    public function setAllowAppleId(bool $value): static
+    {
+        $this->allowAppleId = $value;
+
+        return $this;
+    }
+
+    public function setAllowGoogleId(bool $value): static
+    {
+        $this->allowGoogleId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

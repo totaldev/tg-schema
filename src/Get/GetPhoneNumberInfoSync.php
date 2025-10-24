@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPhoneNumberInfoSync extends TdFunction
 {
-    public const TYPE_NAME = 'getPhoneNumberInfoSync';
+    public const string TYPE_NAME = 'getPhoneNumberInfoSync';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetPhoneNumberInfoSync extends TdFunction
     public function getPhoneNumberPrefix(): string
     {
         return $this->phoneNumberPrefix;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumberPrefix(string $value): static
+    {
+        $this->phoneNumberPrefix = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

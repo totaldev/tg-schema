@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementEmailAddress extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementEmailAddress';
+    public const string TYPE_NAME = 'passportElementEmailAddress';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PassportElementEmailAddress extends PassportElement
     public function getEmailAddress(): string
     {
         return $this->emailAddress;
+    }
+
+    public function setEmailAddress(string $value): static
+    {
+        $this->emailAddress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

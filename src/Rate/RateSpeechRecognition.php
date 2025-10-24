@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RateSpeechRecognition extends TdFunction
 {
-    public const TYPE_NAME = 'rateSpeechRecognition';
+    public const string TYPE_NAME = 'rateSpeechRecognition';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class RateSpeechRecognition extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsGood(bool $value): static
+    {
+        $this->isGood = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

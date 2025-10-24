@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLocalizationTargetInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getLocalizationTargetInfo';
+    public const string TYPE_NAME = 'getLocalizationTargetInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetLocalizationTargetInfo extends TdFunction
     public function getOnlyLocal(): bool
     {
         return $this->onlyLocal;
+    }
+
+    public function setOnlyLocal(bool $value): static
+    {
+        $this->onlyLocal = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

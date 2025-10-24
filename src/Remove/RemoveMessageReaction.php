@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RemoveMessageReaction extends TdFunction
 {
-    public const TYPE_NAME = 'removeMessageReaction';
+    public const string TYPE_NAME = 'removeMessageReaction';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class RemoveMessageReaction extends TdFunction
     public function getReactionType(): ReactionType
     {
         return $this->reactionType;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReactionType(ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

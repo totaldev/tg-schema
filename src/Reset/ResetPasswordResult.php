@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ResetPasswordResult extends TdObject
 {
-    public const TYPE_NAME = 'ResetPasswordResult';
+    public const string TYPE_NAME = 'ResetPasswordResult';
 
     public function __construct() {}
 

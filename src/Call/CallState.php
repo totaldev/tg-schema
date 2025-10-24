@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallState extends TdObject
 {
-    public const TYPE_NAME = 'CallState';
+    public const string TYPE_NAME = 'CallState';
 
     public function __construct() {}
 

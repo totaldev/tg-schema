@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockSubtitle extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockSubtitle';
+    public const string TYPE_NAME = 'pageBlockSubtitle';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockSubtitle extends PageBlock
     public function getSubtitle(): RichText
     {
         return $this->subtitle;
+    }
+
+    public function setSubtitle(RichText $value): static
+    {
+        $this->subtitle = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

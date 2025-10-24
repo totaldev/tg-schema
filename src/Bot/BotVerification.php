@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotVerification extends TdObject
 {
-    public const TYPE_NAME = 'botVerification';
+    public const string TYPE_NAME = 'botVerification';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class BotVerification extends TdObject
     public function getIconCustomEmojiId(): int
     {
         return $this->iconCustomEmojiId;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCustomDescription(FormattedText $value): static
+    {
+        $this->customDescription = $value;
+
+        return $this;
+    }
+
+    public function setIconCustomEmojiId(int $value): static
+    {
+        $this->iconCustomEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

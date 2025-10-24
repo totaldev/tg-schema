@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDefaultChatPhotoCustomEmojiStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getDefaultChatPhotoCustomEmojiStickers';
+    public const string TYPE_NAME = 'getDefaultChatPhotoCustomEmojiStickers';
 
     public function __construct() {}
 

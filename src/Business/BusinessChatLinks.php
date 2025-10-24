@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessChatLinks extends TdObject
 {
-    public const TYPE_NAME = 'businessChatLinks';
+    public const string TYPE_NAME = 'businessChatLinks';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class BusinessChatLinks extends TdObject
     public function getLinks(): array
     {
         return $this->links;
+    }
+
+    public function setLinks(array $value): static
+    {
+        $this->links = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

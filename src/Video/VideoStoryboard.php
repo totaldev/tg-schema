@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VideoStoryboard extends TdObject
 {
-    public const TYPE_NAME = 'videoStoryboard';
+    public const string TYPE_NAME = 'videoStoryboard';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class VideoStoryboard extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMapFile(File $value): static
+    {
+        $this->mapFile = $value;
+
+        return $this;
+    }
+
+    public function setStoryboardFile(File $value): static
+    {
+        $this->storyboardFile = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

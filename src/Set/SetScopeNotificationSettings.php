@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetScopeNotificationSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setScopeNotificationSettings';
+    public const string TYPE_NAME = 'setScopeNotificationSettings';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class SetScopeNotificationSettings extends TdFunction
     public function getScope(): NotificationSettingsScope
     {
         return $this->scope;
+    }
+
+    public function setNotificationSettings(ScopeNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
+    }
+
+    public function setScope(NotificationSettingsScope $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

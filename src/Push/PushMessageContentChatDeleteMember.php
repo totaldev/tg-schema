@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatDeleteMember extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatDeleteMember';
+    public const string TYPE_NAME = 'pushMessageContentChatDeleteMember';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class PushMessageContentChatDeleteMember extends PushMessageContent
     public function getMemberName(): string
     {
         return $this->memberName;
+    }
+
+    public function setIsCurrentUser(bool $value): static
+    {
+        $this->isCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setIsLeft(bool $value): static
+    {
+        $this->isLeft = $value;
+
+        return $this;
+    }
+
+    public function setMemberName(string $value): static
+    {
+        $this->memberName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

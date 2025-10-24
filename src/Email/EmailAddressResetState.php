@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmailAddressResetState extends TdObject
 {
-    public const TYPE_NAME = 'EmailAddressResetState';
+    public const string TYPE_NAME = 'EmailAddressResetState';
 
     public function __construct() {}
 

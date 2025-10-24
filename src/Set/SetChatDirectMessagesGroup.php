@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatDirectMessagesGroup extends TdFunction
 {
-    public const TYPE_NAME = 'setChatDirectMessagesGroup';
+    public const string TYPE_NAME = 'setChatDirectMessagesGroup';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetChatDirectMessagesGroup extends TdFunction
     public function getPaidMessageStarCount(): int
     {
         return $this->paidMessageStarCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsEnabled(bool $value): static
+    {
+        $this->isEnabled = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentSuggestBirthdate extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentSuggestBirthdate';
+    public const string TYPE_NAME = 'pushMessageContentSuggestBirthdate';
 
     public function __construct()
     {

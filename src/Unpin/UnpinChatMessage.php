@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class UnpinChatMessage extends TdFunction
 {
-    public const TYPE_NAME = 'unpinChatMessage';
+    public const string TYPE_NAME = 'unpinChatMessage';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UnpinChatMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

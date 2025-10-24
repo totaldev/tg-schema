@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatStatisticsChannel extends ChatStatistics
 {
-    public const TYPE_NAME = 'chatStatisticsChannel';
+    public const string TYPE_NAME = 'chatStatisticsChannel';
 
     public function __construct(
         /**
@@ -249,6 +249,160 @@ class ChatStatisticsChannel extends ChatStatistics
     public function getViewCountBySourceGraph(): StatisticalGraph
     {
         return $this->viewCountBySourceGraph;
+    }
+
+    public function setEnabledNotificationsPercentage(float $value): static
+    {
+        $this->enabledNotificationsPercentage = $value;
+
+        return $this;
+    }
+
+    public function setInstantViewInteractionGraph(StatisticalGraph $value): static
+    {
+        $this->instantViewInteractionGraph = $value;
+
+        return $this;
+    }
+
+    public function setJoinBySourceGraph(StatisticalGraph $value): static
+    {
+        $this->joinBySourceGraph = $value;
+
+        return $this;
+    }
+
+    public function setJoinGraph(StatisticalGraph $value): static
+    {
+        $this->joinGraph = $value;
+
+        return $this;
+    }
+
+    public function setLanguageGraph(StatisticalGraph $value): static
+    {
+        $this->languageGraph = $value;
+
+        return $this;
+    }
+
+    public function setMeanMessageReactionCount(StatisticalValue $value): static
+    {
+        $this->meanMessageReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setMeanMessageShareCount(StatisticalValue $value): static
+    {
+        $this->meanMessageShareCount = $value;
+
+        return $this;
+    }
+
+    public function setMeanMessageViewCount(StatisticalValue $value): static
+    {
+        $this->meanMessageViewCount = $value;
+
+        return $this;
+    }
+
+    public function setMeanStoryReactionCount(StatisticalValue $value): static
+    {
+        $this->meanStoryReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setMeanStoryShareCount(StatisticalValue $value): static
+    {
+        $this->meanStoryShareCount = $value;
+
+        return $this;
+    }
+
+    public function setMeanStoryViewCount(StatisticalValue $value): static
+    {
+        $this->meanStoryViewCount = $value;
+
+        return $this;
+    }
+
+    public function setMemberCount(StatisticalValue $value): static
+    {
+        $this->memberCount = $value;
+
+        return $this;
+    }
+
+    public function setMemberCountGraph(StatisticalGraph $value): static
+    {
+        $this->memberCountGraph = $value;
+
+        return $this;
+    }
+
+    public function setMessageInteractionGraph(StatisticalGraph $value): static
+    {
+        $this->messageInteractionGraph = $value;
+
+        return $this;
+    }
+
+    public function setMessageReactionGraph(StatisticalGraph $value): static
+    {
+        $this->messageReactionGraph = $value;
+
+        return $this;
+    }
+
+    public function setMuteGraph(StatisticalGraph $value): static
+    {
+        $this->muteGraph = $value;
+
+        return $this;
+    }
+
+    public function setPeriod(DateRange $value): static
+    {
+        $this->period = $value;
+
+        return $this;
+    }
+
+    public function setRecentInteractions(array $value): static
+    {
+        $this->recentInteractions = $value;
+
+        return $this;
+    }
+
+    public function setStoryInteractionGraph(StatisticalGraph $value): static
+    {
+        $this->storyInteractionGraph = $value;
+
+        return $this;
+    }
+
+    public function setStoryReactionGraph(StatisticalGraph $value): static
+    {
+        $this->storyReactionGraph = $value;
+
+        return $this;
+    }
+
+    public function setViewCountByHourGraph(StatisticalGraph $value): static
+    {
+        $this->viewCountByHourGraph = $value;
+
+        return $this;
+    }
+
+    public function setViewCountBySourceGraph(StatisticalGraph $value): static
+    {
+        $this->viewCountBySourceGraph = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

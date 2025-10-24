@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteDirectMessagesChatTopicMessagesByDate extends TdFunction
 {
-    public const TYPE_NAME = 'deleteDirectMessagesChatTopicMessagesByDate';
+    public const string TYPE_NAME = 'deleteDirectMessagesChatTopicMessagesByDate';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class DeleteDirectMessagesChatTopicMessagesByDate extends TdFunction
     public function getTopicId(): int
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMaxDate(int $value): static
+    {
+        $this->maxDate = $value;
+
+        return $this;
+    }
+
+    public function setMinDate(int $value): static
+    {
+        $this->minDate = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(int $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

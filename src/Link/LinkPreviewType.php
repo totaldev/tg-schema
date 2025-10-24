@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LinkPreviewType extends TdObject
 {
-    public const TYPE_NAME = 'LinkPreviewType';
+    public const string TYPE_NAME = 'LinkPreviewType';
 
     public function __construct() {}
 

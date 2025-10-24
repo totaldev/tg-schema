@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\VideoChat;
  */
 class UpdateChatVideoChat extends Update
 {
-    public const TYPE_NAME = 'updateChatVideoChat';
+    public const string TYPE_NAME = 'updateChatVideoChat';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatVideoChat extends Update
     public function getVideoChat(): VideoChat
     {
         return $this->videoChat;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setVideoChat(VideoChat $value): static
+    {
+        $this->videoChat = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

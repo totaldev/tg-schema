@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Theme\ThemeParameters;
  */
 class WebAppOpenParameters extends TdObject
 {
-    public const TYPE_NAME = 'webAppOpenParameters';
+    public const string TYPE_NAME = 'webAppOpenParameters';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class WebAppOpenParameters extends TdObject
     public function getTheme(): ?ThemeParameters
     {
         return $this->theme;
+    }
+
+    public function setApplicationName(string $value): static
+    {
+        $this->applicationName = $value;
+
+        return $this;
+    }
+
+    public function setMode(?WebAppOpenMode $value): static
+    {
+        $this->mode = $value;
+
+        return $this;
+    }
+
+    public function setTheme(?ThemeParameters $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

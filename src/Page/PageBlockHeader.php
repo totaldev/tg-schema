@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockHeader extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockHeader';
+    public const string TYPE_NAME = 'pageBlockHeader';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockHeader extends PageBlock
     public function getHeader(): RichText
     {
         return $this->header;
+    }
+
+    public function setHeader(RichText $value): static
+    {
+        $this->header = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

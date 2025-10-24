@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeAlbum extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeAlbum';
+    public const string TYPE_NAME = 'linkPreviewTypeAlbum';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class LinkPreviewTypeAlbum extends LinkPreviewType
     public function getMedia(): array
     {
         return $this->media;
+    }
+
+    public function setCaption(string $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setMedia(array $value): static
+    {
+        $this->media = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

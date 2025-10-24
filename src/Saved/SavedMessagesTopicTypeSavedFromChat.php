@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Saved;
  */
 class SavedMessagesTopicTypeSavedFromChat extends SavedMessagesTopicType
 {
-    public const TYPE_NAME = 'savedMessagesTopicTypeSavedFromChat';
+    public const string TYPE_NAME = 'savedMessagesTopicTypeSavedFromChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SavedMessagesTopicTypeSavedFromChat extends SavedMessagesTopicType
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

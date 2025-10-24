@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SuggestUserProfilePhoto extends TdFunction
 {
-    public const TYPE_NAME = 'suggestUserProfilePhoto';
+    public const string TYPE_NAME = 'suggestUserProfilePhoto';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SuggestUserProfilePhoto extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setPhoto(InputChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

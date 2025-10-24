@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetCustomLanguagePack extends TdFunction
 {
-    public const TYPE_NAME = 'setCustomLanguagePack';
+    public const string TYPE_NAME = 'setCustomLanguagePack';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class SetCustomLanguagePack extends TdFunction
     public function getStrings(): array
     {
         return $this->strings;
+    }
+
+    public function setInfo(LanguagePackInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
+    }
+
+    public function setStrings(array $value): static
+    {
+        $this->strings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

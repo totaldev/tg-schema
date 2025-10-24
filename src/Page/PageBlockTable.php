@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockTable extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockTable';
+    public const string TYPE_NAME = 'pageBlockTable';
 
     public function __construct(
         /**
@@ -67,6 +67,34 @@ class PageBlockTable extends PageBlock
     public function getIsStriped(): bool
     {
         return $this->isStriped;
+    }
+
+    public function setCaption(RichText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setCells(array $value): static
+    {
+        $this->cells = $value;
+
+        return $this;
+    }
+
+    public function setIsBordered(bool $value): static
+    {
+        $this->isBordered = $value;
+
+        return $this;
+    }
+
+    public function setIsStriped(bool $value): static
+    {
+        $this->isStriped = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

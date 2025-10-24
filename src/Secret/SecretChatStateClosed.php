@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Secret;
  */
 class SecretChatStateClosed extends SecretChatState
 {
-    public const TYPE_NAME = 'secretChatStateClosed';
+    public const string TYPE_NAME = 'secretChatStateClosed';
 
     public function __construct()
     {

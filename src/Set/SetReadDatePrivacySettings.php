@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetReadDatePrivacySettings extends TdFunction
 {
-    public const TYPE_NAME = 'setReadDatePrivacySettings';
+    public const string TYPE_NAME = 'setReadDatePrivacySettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetReadDatePrivacySettings extends TdFunction
     public function getSettings(): ReadDatePrivacySettings
     {
         return $this->settings;
+    }
+
+    public function setSettings(ReadDatePrivacySettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

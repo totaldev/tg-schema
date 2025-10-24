@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class PushMessageContentVideo extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentVideo';
+    public const string TYPE_NAME = 'pushMessageContentVideo';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class PushMessageContentVideo extends PushMessageContent
     public function getVideo(): ?Video
     {
         return $this->video;
+    }
+
+    public function setCaption(string $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setIsSecret(bool $value): static
+    {
+        $this->isSecret = $value;
+
+        return $this;
+    }
+
+    public function setVideo(?Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

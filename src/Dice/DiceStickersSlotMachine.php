@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DiceStickersSlotMachine extends DiceStickers
 {
-    public const TYPE_NAME = 'diceStickersSlotMachine';
+    public const string TYPE_NAME = 'diceStickersSlotMachine';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class DiceStickersSlotMachine extends DiceStickers
     public function getRightReel(): Sticker
     {
         return $this->rightReel;
+    }
+
+    public function setBackground(Sticker $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setCenterReel(Sticker $value): static
+    {
+        $this->centerReel = $value;
+
+        return $this;
+    }
+
+    public function setLeftReel(Sticker $value): static
+    {
+        $this->leftReel = $value;
+
+        return $this;
+    }
+
+    public function setLever(Sticker $value): static
+    {
+        $this->lever = $value;
+
+        return $this;
+    }
+
+    public function setRightReel(Sticker $value): static
+    {
+        $this->rightReel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

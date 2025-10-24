@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetNetworkStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getNetworkStatistics';
+    public const string TYPE_NAME = 'getNetworkStatistics';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetNetworkStatistics extends TdFunction
     public function getOnlyCurrent(): bool
     {
         return $this->onlyCurrent;
+    }
+
+    public function setOnlyCurrent(bool $value): static
+    {
+        $this->onlyCurrent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

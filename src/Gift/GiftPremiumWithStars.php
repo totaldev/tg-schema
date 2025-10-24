@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiftPremiumWithStars extends TdFunction
 {
-    public const TYPE_NAME = 'giftPremiumWithStars';
+    public const string TYPE_NAME = 'giftPremiumWithStars';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class GiftPremiumWithStars extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotMediaPreview extends TdObject
 {
-    public const TYPE_NAME = 'botMediaPreview';
+    public const string TYPE_NAME = 'botMediaPreview';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class BotMediaPreview extends TdObject
     public function getDate(): int
     {
         return $this->date;
+    }
+
+    public function setContent(StoryContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

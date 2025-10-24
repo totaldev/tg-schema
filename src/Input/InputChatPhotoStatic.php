@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputChatPhotoStatic extends InputChatPhoto
 {
-    public const TYPE_NAME = 'inputChatPhotoStatic';
+    public const string TYPE_NAME = 'inputChatPhotoStatic';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputChatPhotoStatic extends InputChatPhoto
     public function getPhoto(): InputFile
     {
         return $this->photo;
+    }
+
+    public function setPhoto(InputFile $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

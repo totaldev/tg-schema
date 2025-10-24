@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetExternalLink extends TdFunction
 {
-    public const TYPE_NAME = 'getExternalLink';
+    public const string TYPE_NAME = 'getExternalLink';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetExternalLink extends TdFunction
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setAllowWriteAccess(bool $value): static
+    {
+        $this->allowWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

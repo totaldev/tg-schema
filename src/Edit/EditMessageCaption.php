@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditMessageCaption extends TdFunction
 {
-    public const TYPE_NAME = 'editMessageCaption';
+    public const string TYPE_NAME = 'editMessageCaption';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class EditMessageCaption extends TdFunction
     public function getShowCaptionAboveMedia(): bool
     {
         return $this->showCaptionAboveMedia;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetRecommendedChatFolders extends TdFunction
 {
-    public const TYPE_NAME = 'getRecommendedChatFolders';
+    public const string TYPE_NAME = 'getRecommendedChatFolders';
 
     public function __construct() {}
 

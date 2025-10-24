@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Web\WebApp;
  */
 class BotWriteAccessAllowReasonLaunchedWebApp extends BotWriteAccessAllowReason
 {
-    public const TYPE_NAME = 'botWriteAccessAllowReasonLaunchedWebApp';
+    public const string TYPE_NAME = 'botWriteAccessAllowReasonLaunchedWebApp';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class BotWriteAccessAllowReasonLaunchedWebApp extends BotWriteAccessAllowReason
     public function getWebApp(): WebApp
     {
         return $this->webApp;
+    }
+
+    public function setWebApp(WebApp $value): static
+    {
+        $this->webApp = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

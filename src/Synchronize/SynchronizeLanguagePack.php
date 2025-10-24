@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SynchronizeLanguagePack extends TdFunction
 {
-    public const TYPE_NAME = 'synchronizeLanguagePack';
+    public const string TYPE_NAME = 'synchronizeLanguagePack';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class SynchronizeLanguagePack extends TdFunction
     public function getLanguagePackId(): string
     {
         return $this->languagePackId;
+    }
+
+    public function setLanguagePackId(string $value): static
+    {
+        $this->languagePackId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanPostStoryResultOk extends CanPostStoryResult
 {
-    public const TYPE_NAME = 'canPostStoryResultOk';
+    public const string TYPE_NAME = 'canPostStoryResultOk';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CanPostStoryResultOk extends CanPostStoryResult
     public function getStoryCount(): int
     {
         return $this->storyCount;
+    }
+
+    public function setStoryCount(int $value): static
+    {
+        $this->storyCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

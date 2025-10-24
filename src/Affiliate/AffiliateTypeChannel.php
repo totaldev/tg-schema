@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Affiliate;
  */
 class AffiliateTypeChannel extends AffiliateType
 {
-    public const TYPE_NAME = 'affiliateTypeChannel';
+    public const string TYPE_NAME = 'affiliateTypeChannel';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AffiliateTypeChannel extends AffiliateType
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

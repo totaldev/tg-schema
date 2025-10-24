@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateBusinessMessageEdited extends Update
 {
-    public const TYPE_NAME = 'updateBusinessMessageEdited';
+    public const string TYPE_NAME = 'updateBusinessMessageEdited';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateBusinessMessageEdited extends Update
     public function getMessage(): BusinessMessage
     {
         return $this->message;
+    }
+
+    public function setConnectionId(string $value): static
+    {
+        $this->connectionId = $value;
+
+        return $this;
+    }
+
+    public function setMessage(BusinessMessage $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

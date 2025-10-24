@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DeleteGiftCollection extends TdFunction
 {
-    public const TYPE_NAME = 'deleteGiftCollection';
+    public const string TYPE_NAME = 'deleteGiftCollection';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DeleteGiftCollection extends TdFunction
     public function getOwnerId(): MessageSender
     {
         return $this->ownerId;
+    }
+
+    public function setCollectionId(int $value): static
+    {
+        $this->collectionId = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

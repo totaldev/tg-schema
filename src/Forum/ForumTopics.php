@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ForumTopics extends TdObject
 {
-    public const TYPE_NAME = 'forumTopics';
+    public const string TYPE_NAME = 'forumTopics';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class ForumTopics extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setNextOffsetDate(int $value): static
+    {
+        $this->nextOffsetDate = $value;
+
+        return $this;
+    }
+
+    public function setNextOffsetForumTopicId(int $value): static
+    {
+        $this->nextOffsetForumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setNextOffsetMessageId(int $value): static
+    {
+        $this->nextOffsetMessageId = $value;
+
+        return $this;
+    }
+
+    public function setTopics(array $value): static
+    {
+        $this->topics = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

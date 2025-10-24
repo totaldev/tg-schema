@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChecklist extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChecklist';
+    public const string TYPE_NAME = 'pushMessageContentChecklist';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentChecklist extends PushMessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

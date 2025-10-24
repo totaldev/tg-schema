@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestProfilePhoto extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestProfilePhoto';
+    public const string TYPE_NAME = 'messageSuggestProfilePhoto';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageSuggestProfilePhoto extends MessageContent
     public function getPhoto(): ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setPhoto(ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

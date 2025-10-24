@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateTemporaryPassword extends TdFunction
 {
-    public const TYPE_NAME = 'createTemporaryPassword';
+    public const string TYPE_NAME = 'createTemporaryPassword';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CreateTemporaryPassword extends TdFunction
     public function getValidFor(): int
     {
         return $this->validFor;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setValidFor(int $value): static
+    {
+        $this->validFor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

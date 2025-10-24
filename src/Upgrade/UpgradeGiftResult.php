@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class UpgradeGiftResult extends TdObject
 {
-    public const TYPE_NAME = 'upgradeGiftResult';
+    public const string TYPE_NAME = 'upgradeGiftResult';
 
     public function __construct(
         /**
@@ -114,6 +114,69 @@ class UpgradeGiftResult extends TdObject
     public function getTransferStarCount(): int
     {
         return $this->transferStarCount;
+    }
+
+    public function setCanBeTransferred(bool $value): static
+    {
+        $this->canBeTransferred = $value;
+
+        return $this;
+    }
+
+    public function setDropOriginalDetailsStarCount(int $value): static
+    {
+        $this->dropOriginalDetailsStarCount = $value;
+
+        return $this;
+    }
+
+    public function setExportDate(int $value): static
+    {
+        $this->exportDate = $value;
+
+        return $this;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setIsSaved(bool $value): static
+    {
+        $this->isSaved = $value;
+
+        return $this;
+    }
+
+    public function setNextResaleDate(int $value): static
+    {
+        $this->nextResaleDate = $value;
+
+        return $this;
+    }
+
+    public function setNextTransferDate(int $value): static
+    {
+        $this->nextTransferDate = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setTransferStarCount(int $value): static
+    {
+        $this->transferStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

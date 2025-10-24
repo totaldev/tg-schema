@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleStoryIsPostedToChatPage extends TdFunction
 {
-    public const TYPE_NAME = 'toggleStoryIsPostedToChatPage';
+    public const string TYPE_NAME = 'toggleStoryIsPostedToChatPage';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ToggleStoryIsPostedToChatPage extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setIsPostedToChatPage(bool $value): static
+    {
+        $this->isPostedToChatPage = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

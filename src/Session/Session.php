@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Session extends TdObject
 {
-    public const TYPE_NAME = 'session';
+    public const string TYPE_NAME = 'session';
 
     public function __construct(
         /**
@@ -203,6 +203,132 @@ class Session extends TdObject
     public function getType(): SessionType
     {
         return $this->type;
+    }
+
+    public function setApiId(int $value): static
+    {
+        $this->apiId = $value;
+
+        return $this;
+    }
+
+    public function setApplicationName(string $value): static
+    {
+        $this->applicationName = $value;
+
+        return $this;
+    }
+
+    public function setApplicationVersion(string $value): static
+    {
+        $this->applicationVersion = $value;
+
+        return $this;
+    }
+
+    public function setCanAcceptCalls(bool $value): static
+    {
+        $this->canAcceptCalls = $value;
+
+        return $this;
+    }
+
+    public function setCanAcceptSecretChats(bool $value): static
+    {
+        $this->canAcceptSecretChats = $value;
+
+        return $this;
+    }
+
+    public function setDeviceModel(string $value): static
+    {
+        $this->deviceModel = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIpAddress(string $value): static
+    {
+        $this->ipAddress = $value;
+
+        return $this;
+    }
+
+    public function setIsCurrent(bool $value): static
+    {
+        $this->isCurrent = $value;
+
+        return $this;
+    }
+
+    public function setIsOfficialApplication(bool $value): static
+    {
+        $this->isOfficialApplication = $value;
+
+        return $this;
+    }
+
+    public function setIsPasswordPending(bool $value): static
+    {
+        $this->isPasswordPending = $value;
+
+        return $this;
+    }
+
+    public function setIsUnconfirmed(bool $value): static
+    {
+        $this->isUnconfirmed = $value;
+
+        return $this;
+    }
+
+    public function setLastActiveDate(int $value): static
+    {
+        $this->lastActiveDate = $value;
+
+        return $this;
+    }
+
+    public function setLocation(string $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setLogInDate(int $value): static
+    {
+        $this->logInDate = $value;
+
+        return $this;
+    }
+
+    public function setPlatform(string $value): static
+    {
+        $this->platform = $value;
+
+        return $this;
+    }
+
+    public function setSystemVersion(string $value): static
+    {
+        $this->systemVersion = $value;
+
+        return $this;
+    }
+
+    public function setType(SessionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

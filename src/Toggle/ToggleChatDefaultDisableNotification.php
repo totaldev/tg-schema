@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatDefaultDisableNotification extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatDefaultDisableNotification';
+    public const string TYPE_NAME = 'toggleChatDefaultDisableNotification';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleChatDefaultDisableNotification extends TdFunction
     public function getDefaultDisableNotification(): bool
     {
         return $this->defaultDisableNotification;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDefaultDisableNotification(bool $value): static
+    {
+        $this->defaultDisableNotification = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

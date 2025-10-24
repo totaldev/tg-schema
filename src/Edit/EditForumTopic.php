@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class EditForumTopic extends TdFunction
 {
-    public const TYPE_NAME = 'editForumTopic';
+    public const string TYPE_NAME = 'editForumTopic';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class EditForumTopic extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setEditIconCustomEmoji(bool $value): static
+    {
+        $this->editIconCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setIconCustomEmojiId(int $value): static
+    {
+        $this->iconCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

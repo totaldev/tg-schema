@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveSavedNotificationSound extends TdFunction
 {
-    public const TYPE_NAME = 'removeSavedNotificationSound';
+    public const string TYPE_NAME = 'removeSavedNotificationSound';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveSavedNotificationSound extends TdFunction
     public function getNotificationSoundId(): int
     {
         return $this->notificationSoundId;
+    }
+
+    public function setNotificationSoundId(int $value): static
+    {
+        $this->notificationSoundId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

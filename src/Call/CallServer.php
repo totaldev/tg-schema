@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CallServer extends TdObject
 {
-    public const TYPE_NAME = 'callServer';
+    public const string TYPE_NAME = 'callServer';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class CallServer extends TdObject
     public function getType(): CallServerType
     {
         return $this->type;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIpAddress(string $value): static
+    {
+        $this->ipAddress = $value;
+
+        return $this;
+    }
+
+    public function setIpv6Address(string $value): static
+    {
+        $this->ipv6Address = $value;
+
+        return $this;
+    }
+
+    public function setPort(int $value): static
+    {
+        $this->port = $value;
+
+        return $this;
+    }
+
+    public function setType(CallServerType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

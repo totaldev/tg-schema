@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetApplicationVerificationToken extends TdFunction
 {
-    public const TYPE_NAME = 'setApplicationVerificationToken';
+    public const string TYPE_NAME = 'setApplicationVerificationToken';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetApplicationVerificationToken extends TdFunction
     public function getVerificationId(): int
     {
         return $this->verificationId;
+    }
+
+    public function setToken(string $value): static
+    {
+        $this->token = $value;
+
+        return $this;
+    }
+
+    public function setVerificationId(int $value): static
+    {
+        $this->verificationId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
 {
-    public const TYPE_NAME = 'upgradeBasicGroupChatToSupergroupChat';
+    public const string TYPE_NAME = 'upgradeBasicGroupChatToSupergroupChat';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class UpgradeBasicGroupChatToSupergroupChat extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

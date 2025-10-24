@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetProfileAudioPosition extends TdFunction
 {
-    public const TYPE_NAME = 'setProfileAudioPosition';
+    public const string TYPE_NAME = 'setProfileAudioPosition';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetProfileAudioPosition extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setAfterFileId(int $value): static
+    {
+        $this->afterFileId = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageOriginChannel extends MessageOrigin
 {
-    public const TYPE_NAME = 'messageOriginChannel';
+    public const string TYPE_NAME = 'messageOriginChannel';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class MessageOriginChannel extends MessageOrigin
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setAuthorSignature(string $value): static
+    {
+        $this->authorSignature = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

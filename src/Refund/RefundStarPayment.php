@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RefundStarPayment extends TdFunction
 {
-    public const TYPE_NAME = 'refundStarPayment';
+    public const string TYPE_NAME = 'refundStarPayment';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RefundStarPayment extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setTelegramPaymentChargeId(string $value): static
+    {
+        $this->telegramPaymentChargeId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

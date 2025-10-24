@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetApplicationConfig extends TdFunction
 {
-    public const TYPE_NAME = 'getApplicationConfig';
+    public const string TYPE_NAME = 'getApplicationConfig';
 
     public function __construct() {}
 

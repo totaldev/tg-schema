@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InternalLinkType extends TdObject
 {
-    public const TYPE_NAME = 'InternalLinkType';
+    public const string TYPE_NAME = 'InternalLinkType';
 
     public function __construct() {}
 

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class WriteGeneratedFilePart extends TdFunction
 {
-    public const TYPE_NAME = 'writeGeneratedFilePart';
+    public const string TYPE_NAME = 'writeGeneratedFilePart';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class WriteGeneratedFilePart extends TdFunction
     public function getOffset(): int
     {
         return $this->offset;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setGenerationId(int $value): static
+    {
+        $this->generationId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

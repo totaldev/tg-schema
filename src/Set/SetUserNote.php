@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetUserNote extends TdFunction
 {
-    public const TYPE_NAME = 'setUserNote';
+    public const string TYPE_NAME = 'setUserNote';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetUserNote extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setNote(FormattedText $value): static
+    {
+        $this->note = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class JoinVideoChat extends TdFunction
 {
-    public const TYPE_NAME = 'joinVideoChat';
+    public const string TYPE_NAME = 'joinVideoChat';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class JoinVideoChat extends TdFunction
     public function getParticipantId(): ?MessageSender
     {
         return $this->participantId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setInviteHash(string $value): static
+    {
+        $this->inviteHash = $value;
+
+        return $this;
+    }
+
+    public function setJoinParameters(GroupCallJoinParameters $value): static
+    {
+        $this->joinParameters = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(?MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

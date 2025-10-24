@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftSymbolCount extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftSymbolCount';
+    public const string TYPE_NAME = 'upgradedGiftSymbolCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UpgradedGiftSymbolCount extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setSymbol(UpgradedGiftSymbol $value): static
+    {
+        $this->symbol = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

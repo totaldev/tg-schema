@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Me;
  */
 class TMeUrlTypeSupergroup extends TMeUrlType
 {
-    public const TYPE_NAME = 'tMeUrlTypeSupergroup';
+    public const string TYPE_NAME = 'tMeUrlTypeSupergroup';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TMeUrlTypeSupergroup extends TMeUrlType
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

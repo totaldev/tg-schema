@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TMeUrlTypeChatInvite extends TMeUrlType
 {
-    public const TYPE_NAME = 'tMeUrlTypeChatInvite';
+    public const string TYPE_NAME = 'tMeUrlTypeChatInvite';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class TMeUrlTypeChatInvite extends TMeUrlType
     public function getInfo(): ChatInviteLinkInfo
     {
         return $this->info;
+    }
+
+    public function setInfo(ChatInviteLinkInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

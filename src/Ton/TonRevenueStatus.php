@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TonRevenueStatus extends TdObject
 {
-    public const TYPE_NAME = 'tonRevenueStatus';
+    public const string TYPE_NAME = 'tonRevenueStatus';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class TonRevenueStatus extends TdObject
     public function getWithdrawalEnabled(): bool
     {
         return $this->withdrawalEnabled;
+    }
+
+    public function setAvailableAmount(int $value): static
+    {
+        $this->availableAmount = $value;
+
+        return $this;
+    }
+
+    public function setBalanceAmount(int $value): static
+    {
+        $this->balanceAmount = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
+    }
+
+    public function setWithdrawalEnabled(bool $value): static
+    {
+        $this->withdrawalEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

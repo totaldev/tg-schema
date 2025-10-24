@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Trending\TrendingStickerSets;
  */
 class UpdateTrendingStickerSets extends Update
 {
-    public const TYPE_NAME = 'updateTrendingStickerSets';
+    public const string TYPE_NAME = 'updateTrendingStickerSets';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class UpdateTrendingStickerSets extends Update
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setStickerSets(TrendingStickerSets $value): static
+    {
+        $this->stickerSets = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

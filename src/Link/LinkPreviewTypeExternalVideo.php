@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeExternalVideo extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeExternalVideo';
+    public const string TYPE_NAME = 'linkPreviewTypeExternalVideo';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class LinkPreviewTypeExternalVideo extends LinkPreviewType
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

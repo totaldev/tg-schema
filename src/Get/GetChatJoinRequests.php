@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatJoinRequests extends TdFunction
 {
-    public const TYPE_NAME = 'getChatJoinRequests';
+    public const string TYPE_NAME = 'getChatJoinRequests';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class GetChatJoinRequests extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetRequest(?ChatJoinRequest $value): static
+    {
+        $this->offsetRequest = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

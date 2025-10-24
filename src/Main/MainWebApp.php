@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Web\WebAppOpenMode;
  */
 class MainWebApp extends TdObject
 {
-    public const TYPE_NAME = 'mainWebApp';
+    public const string TYPE_NAME = 'mainWebApp';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class MainWebApp extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setMode(WebAppOpenMode $value): static
+    {
+        $this->mode = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

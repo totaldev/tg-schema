@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentLocation extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentLocation';
+    public const string TYPE_NAME = 'pushMessageContentLocation';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PushMessageContentLocation extends PushMessageContent
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setIsLive(bool $value): static
+    {
+        $this->isLive = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

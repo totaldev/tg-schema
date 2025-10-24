@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallStatePending extends CallState
 {
-    public const TYPE_NAME = 'callStatePending';
+    public const string TYPE_NAME = 'callStatePending';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CallStatePending extends CallState
     public function getIsReceived(): bool
     {
         return $this->isReceived;
+    }
+
+    public function setIsCreated(bool $value): static
+    {
+        $this->isCreated = $value;
+
+        return $this;
+    }
+
+    public function setIsReceived(bool $value): static
+    {
+        $this->isReceived = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureForumTopicIcon extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureForumTopicIcon';
+    public const string TYPE_NAME = 'premiumFeatureForumTopicIcon';
 
     public function __construct()
     {

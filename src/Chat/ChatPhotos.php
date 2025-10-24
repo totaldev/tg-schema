@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatPhotos extends TdObject
 {
-    public const TYPE_NAME = 'chatPhotos';
+    public const string TYPE_NAME = 'chatPhotos';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatPhotos extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setPhotos(array $value): static
+    {
+        $this->photos = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

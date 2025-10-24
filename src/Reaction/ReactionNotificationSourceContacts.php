@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionNotificationSourceContacts extends ReactionNotificationSource
 {
-    public const TYPE_NAME = 'reactionNotificationSourceContacts';
+    public const string TYPE_NAME = 'reactionNotificationSourceContacts';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateAgeVerificationParameters extends Update
 {
-    public const TYPE_NAME = 'updateAgeVerificationParameters';
+    public const string TYPE_NAME = 'updateAgeVerificationParameters';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateAgeVerificationParameters extends Update
     public function getParameters(): ?AgeVerificationParameters
     {
         return $this->parameters;
+    }
+
+    public function setParameters(?AgeVerificationParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

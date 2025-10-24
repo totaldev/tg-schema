@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayParticipantStatusAdministrator extends GiveawayParticipantStatus
 {
-    public const TYPE_NAME = 'giveawayParticipantStatusAdministrator';
+    public const string TYPE_NAME = 'giveawayParticipantStatusAdministrator';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiveawayParticipantStatusAdministrator extends GiveawayParticipantStatus
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeatureStealthMode extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeatureStealthMode';
+    public const string TYPE_NAME = 'premiumStoryFeatureStealthMode';
 
     public function __construct()
     {

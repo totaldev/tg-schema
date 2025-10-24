@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeBioLength extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeBioLength';
+    public const string TYPE_NAME = 'premiumLimitTypeBioLength';
 
     public function __construct()
     {

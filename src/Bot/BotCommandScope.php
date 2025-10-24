@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BotCommandScope extends TdObject
 {
-    public const TYPE_NAME = 'BotCommandScope';
+    public const string TYPE_NAME = 'BotCommandScope';
 
     public function __construct() {}
 

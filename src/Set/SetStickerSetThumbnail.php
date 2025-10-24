@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetStickerSetThumbnail extends TdFunction
 {
-    public const TYPE_NAME = 'setStickerSetThumbnail';
+    public const string TYPE_NAME = 'setStickerSetThumbnail';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SetStickerSetThumbnail extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setFormat(?StickerFormat $value): static
+    {
+        $this->format = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?InputFile $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

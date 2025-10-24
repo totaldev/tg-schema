@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InlineQueryResultsButtonType extends TdObject
 {
-    public const TYPE_NAME = 'InlineQueryResultsButtonType';
+    public const string TYPE_NAME = 'InlineQueryResultsButtonType';
 
     public function __construct() {}
 

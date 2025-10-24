@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatLocation extends TdObject
 {
-    public const TYPE_NAME = 'chatLocation';
+    public const string TYPE_NAME = 'chatLocation';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatLocation extends TdObject
     public function getLocation(): Location
     {
         return $this->location;
+    }
+
+    public function setAddress(string $value): static
+    {
+        $this->address = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

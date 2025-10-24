@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearImportedContacts extends TdFunction
 {
-    public const TYPE_NAME = 'clearImportedContacts';
+    public const string TYPE_NAME = 'clearImportedContacts';
 
     public function __construct() {}
 

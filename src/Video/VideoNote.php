@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class VideoNote extends TdObject
 {
-    public const TYPE_NAME = 'videoNote';
+    public const string TYPE_NAME = 'videoNote';
 
     public function __construct(
         /**
@@ -97,6 +97,55 @@ class VideoNote extends TdObject
     public function getWaveform(): string
     {
         return $this->waveform;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSpeechRecognitionResult(?SpeechRecognitionResult $value): static
+    {
+        $this->speechRecognitionResult = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setVideo(File $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
+    public function setWaveform(string $value): static
+    {
+        $this->waveform = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

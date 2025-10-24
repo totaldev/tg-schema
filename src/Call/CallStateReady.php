@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CallStateReady extends CallState
 {
-    public const TYPE_NAME = 'callStateReady';
+    public const string TYPE_NAME = 'callStateReady';
 
     public function __construct(
         /**
@@ -108,6 +108,62 @@ class CallStateReady extends CallState
     public function getServers(): array
     {
         return $this->servers;
+    }
+
+    public function setAllowP2p(bool $value): static
+    {
+        $this->allowP2p = $value;
+
+        return $this;
+    }
+
+    public function setConfig(string $value): static
+    {
+        $this->config = $value;
+
+        return $this;
+    }
+
+    public function setCustomParameters(string $value): static
+    {
+        $this->customParameters = $value;
+
+        return $this;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setEncryptionKey(string $value): static
+    {
+        $this->encryptionKey = $value;
+
+        return $this;
+    }
+
+    public function setIsGroupCallSupported(bool $value): static
+    {
+        $this->isGroupCallSupported = $value;
+
+        return $this;
+    }
+
+    public function setProtocol(CallProtocol $value): static
+    {
+        $this->protocol = $value;
+
+        return $this;
+    }
+
+    public function setServers(array $value): static
+    {
+        $this->servers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

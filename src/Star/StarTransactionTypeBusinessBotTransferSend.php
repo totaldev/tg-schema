@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeBusinessBotTransferSend extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeBusinessBotTransferSend';
+    public const string TYPE_NAME = 'starTransactionTypeBusinessBotTransferSend';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StarTransactionTypeBusinessBotTransferSend extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

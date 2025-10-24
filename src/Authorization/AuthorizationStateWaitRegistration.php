@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Terms\TermsOfService;
  */
 class AuthorizationStateWaitRegistration extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitRegistration';
+    public const string TYPE_NAME = 'authorizationStateWaitRegistration';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class AuthorizationStateWaitRegistration extends AuthorizationState
     public function getTermsOfService(): TermsOfService
     {
         return $this->termsOfService;
+    }
+
+    public function setTermsOfService(TermsOfService $value): static
+    {
+        $this->termsOfService = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

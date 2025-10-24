@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStarSubscriptions extends TdFunction
 {
-    public const TYPE_NAME = 'getStarSubscriptions';
+    public const string TYPE_NAME = 'getStarSubscriptions';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetStarSubscriptions extends TdFunction
     public function getOnlyExpiring(): bool
     {
         return $this->onlyExpiring;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOnlyExpiring(bool $value): static
+    {
+        $this->onlyExpiring = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

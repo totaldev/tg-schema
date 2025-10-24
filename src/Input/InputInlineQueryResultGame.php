@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultGame extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultGame';
+    public const string TYPE_NAME = 'inputInlineQueryResultGame';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class InputInlineQueryResultGame extends InputInlineQueryResult
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setGameShortName(string $value): static
+    {
+        $this->gameShortName = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

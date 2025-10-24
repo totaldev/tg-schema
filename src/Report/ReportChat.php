@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReportChat extends TdFunction
 {
-    public const TYPE_NAME = 'reportChat';
+    public const string TYPE_NAME = 'reportChat';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class ReportChat extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageIds(array $value): static
+    {
+        $this->messageIds = $value;
+
+        return $this;
+    }
+
+    public function setOptionId(string $value): static
+    {
+        $this->optionId = $value;
+
+        return $this;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

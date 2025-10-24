@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FinishFileGeneration extends TdFunction
 {
-    public const TYPE_NAME = 'finishFileGeneration';
+    public const string TYPE_NAME = 'finishFileGeneration';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class FinishFileGeneration extends TdFunction
     public function getGenerationId(): int
     {
         return $this->generationId;
+    }
+
+    public function setError(?Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
+    }
+
+    public function setGenerationId(int $value): static
+    {
+        $this->generationId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

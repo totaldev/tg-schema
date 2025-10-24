@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageReplyToStory extends MessageReplyTo
 {
-    public const TYPE_NAME = 'messageReplyToStory';
+    public const string TYPE_NAME = 'messageReplyToStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageReplyToStory extends MessageReplyTo
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

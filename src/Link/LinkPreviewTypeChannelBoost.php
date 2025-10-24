@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeChannelBoost extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeChannelBoost';
+    public const string TYPE_NAME = 'linkPreviewTypeChannelBoost';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeChannelBoost extends LinkPreviewType
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

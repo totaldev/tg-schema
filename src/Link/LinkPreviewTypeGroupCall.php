@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeGroupCall extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeGroupCall';
+    public const string TYPE_NAME = 'linkPreviewTypeGroupCall';
 
     public function __construct()
     {

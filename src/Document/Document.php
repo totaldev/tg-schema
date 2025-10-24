@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class Document extends TdObject
 {
-    public const TYPE_NAME = 'document';
+    public const string TYPE_NAME = 'document';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class Document extends TdObject
     public function getThumbnail(): ?Thumbnail
     {
         return $this->thumbnail;
+    }
+
+    public function setDocument(File $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setFileName(string $value): static
+    {
+        $this->fileName = $value;
+
+        return $this;
+    }
+
+    public function setMimeType(string $value): static
+    {
+        $this->mimeType = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GroupCallParticipant extends TdObject
 {
-    public const TYPE_NAME = 'groupCallParticipant';
+    public const string TYPE_NAME = 'groupCallParticipant';
 
     public function __construct(
         /**
@@ -204,6 +204,132 @@ class GroupCallParticipant extends TdObject
     public function getVolumeLevel(): int
     {
         return $this->volumeLevel;
+    }
+
+    public function setAudioSourceId(int $value): static
+    {
+        $this->audioSourceId = $value;
+
+        return $this;
+    }
+
+    public function setBio(string $value): static
+    {
+        $this->bio = $value;
+
+        return $this;
+    }
+
+    public function setCanBeMutedForAllUsers(bool $value): static
+    {
+        $this->canBeMutedForAllUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanBeMutedForCurrentUser(bool $value): static
+    {
+        $this->canBeMutedForCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setCanBeUnmutedForAllUsers(bool $value): static
+    {
+        $this->canBeUnmutedForAllUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanBeUnmutedForCurrentUser(bool $value): static
+    {
+        $this->canBeUnmutedForCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setCanUnmuteSelf(bool $value): static
+    {
+        $this->canUnmuteSelf = $value;
+
+        return $this;
+    }
+
+    public function setIsCurrentUser(bool $value): static
+    {
+        $this->isCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setIsHandRaised(bool $value): static
+    {
+        $this->isHandRaised = $value;
+
+        return $this;
+    }
+
+    public function setIsMutedForAllUsers(bool $value): static
+    {
+        $this->isMutedForAllUsers = $value;
+
+        return $this;
+    }
+
+    public function setIsMutedForCurrentUser(bool $value): static
+    {
+        $this->isMutedForCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setIsSpeaking(bool $value): static
+    {
+        $this->isSpeaking = $value;
+
+        return $this;
+    }
+
+    public function setOrder(string $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
+    }
+
+    public function setScreenSharingAudioSourceId(int $value): static
+    {
+        $this->screenSharingAudioSourceId = $value;
+
+        return $this;
+    }
+
+    public function setScreenSharingVideoInfo(?GroupCallParticipantVideoInfo $value): static
+    {
+        $this->screenSharingVideoInfo = $value;
+
+        return $this;
+    }
+
+    public function setVideoInfo(?GroupCallParticipantVideoInfo $value): static
+    {
+        $this->videoInfo = $value;
+
+        return $this;
+    }
+
+    public function setVolumeLevel(int $value): static
+    {
+        $this->volumeLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

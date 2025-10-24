@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Vector\VectorPathCommand;
  */
 class ClosedVectorPath extends TdObject
 {
-    public const TYPE_NAME = 'closedVectorPath';
+    public const string TYPE_NAME = 'closedVectorPath';
 
     public function __construct(
         /**
@@ -36,6 +36,13 @@ class ClosedVectorPath extends TdObject
     public function getCommands(): array
     {
         return $this->commands;
+    }
+
+    public function setCommands(array $value): static
+    {
+        $this->commands = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

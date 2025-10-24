@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputBackgroundLocal extends InputBackground
 {
-    public const TYPE_NAME = 'inputBackgroundLocal';
+    public const string TYPE_NAME = 'inputBackgroundLocal';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputBackgroundLocal extends InputBackground
     public function getBackground(): InputFile
     {
         return $this->background;
+    }
+
+    public function setBackground(InputFile $value): static
+    {
+        $this->background = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

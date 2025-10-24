@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Star;
  */
 class StarTransactionTypeGiveawayDeposit extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeGiveawayDeposit';
+    public const string TYPE_NAME = 'starTransactionTypeGiveawayDeposit';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class StarTransactionTypeGiveawayDeposit extends StarTransactionType
     public function getGiveawayMessageId(): int
     {
         return $this->giveawayMessageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

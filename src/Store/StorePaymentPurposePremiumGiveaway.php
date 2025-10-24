@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
 {
-    public const TYPE_NAME = 'storePaymentPurposePremiumGiveaway';
+    public const string TYPE_NAME = 'storePaymentPurposePremiumGiveaway';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class StorePaymentPurposePremiumGiveaway extends StorePaymentPurpose
     public function getParameters(): GiveawayParameters
     {
         return $this->parameters;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setParameters(GiveawayParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

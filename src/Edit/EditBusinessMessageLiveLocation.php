@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditBusinessMessageLiveLocation extends TdFunction
 {
-    public const TYPE_NAME = 'editBusinessMessageLiveLocation';
+    public const string TYPE_NAME = 'editBusinessMessageLiveLocation';
 
     public function __construct(
         /**
@@ -105,6 +105,62 @@ class EditBusinessMessageLiveLocation extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHeading(int $value): static
+    {
+        $this->heading = $value;
+
+        return $this;
+    }
+
+    public function setLivePeriod(int $value): static
+    {
+        $this->livePeriod = $value;
+
+        return $this;
+    }
+
+    public function setLocation(?Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setProximityAlertRadius(int $value): static
+    {
+        $this->proximityAlertRadius = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageTopicSavedMessages extends MessageTopic
 {
-    public const TYPE_NAME = 'messageTopicSavedMessages';
+    public const string TYPE_NAME = 'messageTopicSavedMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageTopicSavedMessages extends MessageTopic
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementErrorSourceReverseSide extends PassportElementErrorSource
 {
-    public const TYPE_NAME = 'passportElementErrorSourceReverseSide';
+    public const string TYPE_NAME = 'passportElementErrorSourceReverseSide';
 
     public function __construct()
     {

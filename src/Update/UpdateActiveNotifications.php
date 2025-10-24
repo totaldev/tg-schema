@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateActiveNotifications extends Update
 {
-    public const TYPE_NAME = 'updateActiveNotifications';
+    public const string TYPE_NAME = 'updateActiveNotifications';
 
     public function __construct(
         /**
@@ -38,6 +38,13 @@ class UpdateActiveNotifications extends Update
     public function getGroups(): array
     {
         return $this->groups;
+    }
+
+    public function setGroups(array $value): static
+    {
+        $this->groups = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

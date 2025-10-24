@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerTypeCustomEmoji extends StickerType
 {
-    public const TYPE_NAME = 'stickerTypeCustomEmoji';
+    public const string TYPE_NAME = 'stickerTypeCustomEmoji';
 
     public function __construct()
     {

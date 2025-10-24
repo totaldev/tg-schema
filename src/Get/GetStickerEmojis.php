@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetStickerEmojis extends TdFunction
 {
-    public const TYPE_NAME = 'getStickerEmojis';
+    public const string TYPE_NAME = 'getStickerEmojis';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class GetStickerEmojis extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

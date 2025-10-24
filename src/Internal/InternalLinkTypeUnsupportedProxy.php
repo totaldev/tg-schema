@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeUnsupportedProxy extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeUnsupportedProxy';
+    public const string TYPE_NAME = 'internalLinkTypeUnsupportedProxy';
 
     public function __construct()
     {

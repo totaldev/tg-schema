@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestedPostApprovalFailed extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestedPostApprovalFailed';
+    public const string TYPE_NAME = 'messageSuggestedPostApprovalFailed';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessageSuggestedPostApprovalFailed extends MessageContent
     public function getSuggestedPostMessageId(): int
     {
         return $this->suggestedPostMessageId;
+    }
+
+    public function setPrice(SuggestedPostPrice $value): static
+    {
+        $this->price = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostMessageId(int $value): static
+    {
+        $this->suggestedPostMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

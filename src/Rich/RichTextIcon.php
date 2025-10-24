@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextIcon extends RichText
 {
-    public const TYPE_NAME = 'richTextIcon';
+    public const string TYPE_NAME = 'richTextIcon';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class RichTextIcon extends RichText
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setDocument(Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

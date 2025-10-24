@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentScreenshotTaken extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentScreenshotTaken';
+    public const string TYPE_NAME = 'pushMessageContentScreenshotTaken';
 
     public function __construct()
     {

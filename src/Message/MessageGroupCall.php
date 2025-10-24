@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGroupCall extends MessageContent
 {
-    public const TYPE_NAME = 'messageGroupCall';
+    public const string TYPE_NAME = 'messageGroupCall';
 
     public function __construct(
         /**
@@ -79,6 +79,41 @@ class MessageGroupCall extends MessageContent
     public function getWasMissed(): bool
     {
         return $this->wasMissed;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setIsVideo(bool $value): static
+    {
+        $this->isVideo = $value;
+
+        return $this;
+    }
+
+    public function setOtherParticipantIds(array $value): static
+    {
+        $this->otherParticipantIds = $value;
+
+        return $this;
+    }
+
+    public function setWasMissed(bool $value): static
+    {
+        $this->wasMissed = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

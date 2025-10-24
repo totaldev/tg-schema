@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ProxyType extends TdObject
 {
-    public const TYPE_NAME = 'ProxyType';
+    public const string TYPE_NAME = 'ProxyType';
 
     public function __construct() {}
 

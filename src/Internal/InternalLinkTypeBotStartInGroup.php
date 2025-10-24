@@ -21,7 +21,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InternalLinkTypeBotStartInGroup extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBotStartInGroup';
+    public const string TYPE_NAME = 'internalLinkTypeBotStartInGroup';
 
     public function __construct(
         /**
@@ -62,6 +62,27 @@ class InternalLinkTypeBotStartInGroup extends InternalLinkType
     public function getStartParameter(): string
     {
         return $this->startParameter;
+    }
+
+    public function setAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->administratorRights = $value;
+
+        return $this;
+    }
+
+    public function setBotUsername(string $value): static
+    {
+        $this->botUsername = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

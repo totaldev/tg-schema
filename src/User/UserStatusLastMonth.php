@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserStatusLastMonth extends UserStatus
 {
-    public const TYPE_NAME = 'userStatusLastMonth';
+    public const string TYPE_NAME = 'userStatusLastMonth';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UserStatusLastMonth extends UserStatus
     public function getByMyPrivacySettings(): bool
     {
         return $this->byMyPrivacySettings;
+    }
+
+    public function setByMyPrivacySettings(bool $value): static
+    {
+        $this->byMyPrivacySettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetWebPageInstantView extends TdFunction
 {
-    public const TYPE_NAME = 'getWebPageInstantView';
+    public const string TYPE_NAME = 'getWebPageInstantView';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class GetWebPageInstantView extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setOnlyLocal(bool $value): static
+    {
+        $this->onlyLocal = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

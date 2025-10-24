@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class QuickReplyMessages extends TdObject
 {
-    public const TYPE_NAME = 'quickReplyMessages';
+    public const string TYPE_NAME = 'quickReplyMessages';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class QuickReplyMessages extends TdObject
     public function getMessages(): ?array
     {
         return $this->messages;
+    }
+
+    public function setMessages(?array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

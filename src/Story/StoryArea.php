@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryArea extends TdObject
 {
-    public const TYPE_NAME = 'storyArea';
+    public const string TYPE_NAME = 'storyArea';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class StoryArea extends TdObject
     public function getType(): StoryAreaType
     {
         return $this->type;
+    }
+
+    public function setPosition(StoryAreaPosition $value): static
+    {
+        $this->position = $value;
+
+        return $this;
+    }
+
+    public function setType(StoryAreaType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

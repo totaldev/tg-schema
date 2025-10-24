@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockAuthorDate extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockAuthorDate';
+    public const string TYPE_NAME = 'pageBlockAuthorDate';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class PageBlockAuthorDate extends PageBlock
     public function getPublishDate(): int
     {
         return $this->publishDate;
+    }
+
+    public function setAuthor(RichText $value): static
+    {
+        $this->author = $value;
+
+        return $this;
+    }
+
+    public function setPublishDate(int $value): static
+    {
+        $this->publishDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

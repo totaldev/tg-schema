@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionBarReportSpam extends ChatActionBar
 {
-    public const TYPE_NAME = 'chatActionBarReportSpam';
+    public const string TYPE_NAME = 'chatActionBarReportSpam';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ChatActionBarReportSpam extends ChatActionBar
     public function getCanUnarchive(): bool
     {
         return $this->canUnarchive;
+    }
+
+    public function setCanUnarchive(bool $value): static
+    {
+        $this->canUnarchive = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

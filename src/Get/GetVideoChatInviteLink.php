@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetVideoChatInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'getVideoChatInviteLink';
+    public const string TYPE_NAME = 'getVideoChatInviteLink';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetVideoChatInviteLink extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setCanSelfUnmute(bool $value): static
+    {
+        $this->canSelfUnmute = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

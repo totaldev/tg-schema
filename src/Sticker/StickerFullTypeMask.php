@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StickerFullTypeMask extends StickerFullType
 {
-    public const TYPE_NAME = 'stickerFullTypeMask';
+    public const string TYPE_NAME = 'stickerFullTypeMask';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StickerFullTypeMask extends StickerFullType
     public function getMaskPosition(): ?MaskPosition
     {
         return $this->maskPosition;
+    }
+
+    public function setMaskPosition(?MaskPosition $value): static
+    {
+        $this->maskPosition = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

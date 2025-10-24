@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TransferChatOwnership extends TdFunction
 {
-    public const TYPE_NAME = 'transferChatOwnership';
+    public const string TYPE_NAME = 'transferChatOwnership';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class TransferChatOwnership extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

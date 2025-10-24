@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetFile extends TdFunction
 {
-    public const TYPE_NAME = 'getFile';
+    public const string TYPE_NAME = 'getFile';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetFile extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

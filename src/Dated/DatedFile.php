@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DatedFile extends TdObject
 {
-    public const TYPE_NAME = 'datedFile';
+    public const string TYPE_NAME = 'datedFile';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class DatedFile extends TdObject
     public function getFile(): File
     {
         return $this->file;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setFile(File $value): static
+    {
+        $this->file = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class AllowUnpaidMessagesFromUser extends TdFunction
 {
-    public const TYPE_NAME = 'allowUnpaidMessagesFromUser';
+    public const string TYPE_NAME = 'allowUnpaidMessagesFromUser';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class AllowUnpaidMessagesFromUser extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setRefundPayments(bool $value): static
+    {
+        $this->refundPayments = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

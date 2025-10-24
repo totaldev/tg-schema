@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionGiftPremiumForChristmas extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionGiftPremiumForChristmas';
+    public const string TYPE_NAME = 'suggestedActionGiftPremiumForChristmas';
 
     public function __construct()
     {

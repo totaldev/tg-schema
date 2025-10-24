@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatAddedToList extends Update
 {
-    public const TYPE_NAME = 'updateChatAddedToList';
+    public const string TYPE_NAME = 'updateChatAddedToList';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatAddedToList extends Update
     public function getChatList(): ChatList
     {
         return $this->chatList;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChatList(ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

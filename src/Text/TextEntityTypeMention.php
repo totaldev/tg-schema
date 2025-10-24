@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeMention extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeMention';
+    public const string TYPE_NAME = 'textEntityTypeMention';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateVideoChat extends TdFunction
 {
-    public const TYPE_NAME = 'createVideoChat';
+    public const string TYPE_NAME = 'createVideoChat';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class CreateVideoChat extends TdFunction
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsRtmpStream(bool $value): static
+    {
+        $this->isRtmpStream = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

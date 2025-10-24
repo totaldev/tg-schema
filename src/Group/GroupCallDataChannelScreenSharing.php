@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Group;
  */
 class GroupCallDataChannelScreenSharing extends GroupCallDataChannel
 {
-    public const TYPE_NAME = 'groupCallDataChannelScreenSharing';
+    public const string TYPE_NAME = 'groupCallDataChannelScreenSharing';
 
     public function __construct()
     {

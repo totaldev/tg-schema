@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddQuickReplyShortcutMessageAlbum extends TdFunction
 {
-    public const TYPE_NAME = 'addQuickReplyShortcutMessageAlbum';
+    public const string TYPE_NAME = 'addQuickReplyShortcutMessageAlbum';
 
     public function __construct(
         /**
@@ -57,6 +57,27 @@ class AddQuickReplyShortcutMessageAlbum extends TdFunction
     public function getShortcutName(): string
     {
         return $this->shortcutName;
+    }
+
+    public function setInputMessageContents(array $value): static
+    {
+        $this->inputMessageContents = $value;
+
+        return $this;
+    }
+
+    public function setReplyToMessageId(int $value): static
+    {
+        $this->replyToMessageId = $value;
+
+        return $this;
+    }
+
+    public function setShortcutName(string $value): static
+    {
+        $this->shortcutName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

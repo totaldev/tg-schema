@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatRevenueTransactionType extends TdObject
 {
-    public const TYPE_NAME = 'ChatRevenueTransactionType';
+    public const string TYPE_NAME = 'ChatRevenueTransactionType';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatHasScheduledMessages extends Update
 {
-    public const TYPE_NAME = 'updateChatHasScheduledMessages';
+    public const string TYPE_NAME = 'updateChatHasScheduledMessages';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UpdateChatHasScheduledMessages extends Update
     public function getHasScheduledMessages(): bool
     {
         return $this->hasScheduledMessages;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHasScheduledMessages(bool $value): static
+    {
+        $this->hasScheduledMessages = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

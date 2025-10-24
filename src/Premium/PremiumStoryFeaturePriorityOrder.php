@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumStoryFeaturePriorityOrder extends PremiumStoryFeature
 {
-    public const TYPE_NAME = 'premiumStoryFeaturePriorityOrder';
+    public const string TYPE_NAME = 'premiumStoryFeaturePriorityOrder';
 
     public function __construct()
     {

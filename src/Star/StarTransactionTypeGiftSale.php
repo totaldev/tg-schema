@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransactionTypeGiftSale extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeGiftSale';
+    public const string TYPE_NAME = 'starTransactionTypeGiftSale';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class StarTransactionTypeGiftSale extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setGift(Gift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

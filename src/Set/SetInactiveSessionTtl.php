@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetInactiveSessionTtl extends TdFunction
 {
-    public const TYPE_NAME = 'setInactiveSessionTtl';
+    public const string TYPE_NAME = 'setInactiveSessionTtl';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SetInactiveSessionTtl extends TdFunction
     public function getInactiveSessionTtlDays(): int
     {
         return $this->inactiveSessionTtlDays;
+    }
+
+    public function setInactiveSessionTtlDays(int $value): static
+    {
+        $this->inactiveSessionTtlDays = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

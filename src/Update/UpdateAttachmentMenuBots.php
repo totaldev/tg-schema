@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateAttachmentMenuBots extends Update
 {
-    public const TYPE_NAME = 'updateAttachmentMenuBots';
+    public const string TYPE_NAME = 'updateAttachmentMenuBots';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class UpdateAttachmentMenuBots extends Update
     public function getBots(): array
     {
         return $this->bots;
+    }
+
+    public function setBots(array $value): static
+    {
+        $this->bots = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

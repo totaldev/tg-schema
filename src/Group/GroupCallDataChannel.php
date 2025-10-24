@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GroupCallDataChannel extends TdObject
 {
-    public const TYPE_NAME = 'GroupCallDataChannel';
+    public const string TYPE_NAME = 'GroupCallDataChannel';
 
     public function __construct() {}
 

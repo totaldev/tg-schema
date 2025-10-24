@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowChatMembers';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowChatMembers';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UserPrivacySettingRuleAllowChatMembers extends UserPrivacySettingRule
     public function getChatIds(): array
     {
         return $this->chatIds;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

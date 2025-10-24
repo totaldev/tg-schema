@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureUpgradedStories extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureUpgradedStories';
+    public const string TYPE_NAME = 'businessFeatureUpgradedStories';
 
     public function __construct()
     {

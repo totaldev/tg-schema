@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessagePaidMessagesRefunded extends MessageContent
 {
-    public const TYPE_NAME = 'messagePaidMessagesRefunded';
+    public const string TYPE_NAME = 'messagePaidMessagesRefunded';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessagePaidMessagesRefunded extends MessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setMessageCount(int $value): static
+    {
+        $this->messageCount = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

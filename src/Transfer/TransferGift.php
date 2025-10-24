@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TransferGift extends TdFunction
 {
-    public const TYPE_NAME = 'transferGift';
+    public const string TYPE_NAME = 'transferGift';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class TransferGift extends TdFunction
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setBusinessConnectionId(string $value): static
+    {
+        $this->businessConnectionId = $value;
+
+        return $this;
+    }
+
+    public function setNewOwnerId(MessageSender $value): static
+    {
+        $this->newOwnerId = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

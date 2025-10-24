@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageLink extends TdObject
 {
-    public const TYPE_NAME = 'messageLink';
+    public const string TYPE_NAME = 'messageLink';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageLink extends TdObject
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setIsPublic(bool $value): static
+    {
+        $this->isPublic = $value;
+
+        return $this;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

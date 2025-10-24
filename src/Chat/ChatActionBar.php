@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatActionBar extends TdObject
 {
-    public const TYPE_NAME = 'ChatActionBar';
+    public const string TYPE_NAME = 'ChatActionBar';
 
     public function __construct() {}
 

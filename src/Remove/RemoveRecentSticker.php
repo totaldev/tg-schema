@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RemoveRecentSticker extends TdFunction
 {
-    public const TYPE_NAME = 'removeRecentSticker';
+    public const string TYPE_NAME = 'removeRecentSticker';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RemoveRecentSticker extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setIsAttached(bool $value): static
+    {
+        $this->isAttached = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

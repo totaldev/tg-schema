@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPremiumState extends TdFunction
 {
-    public const TYPE_NAME = 'getPremiumState';
+    public const string TYPE_NAME = 'getPremiumState';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class PinChatMessage extends TdFunction
 {
-    public const TYPE_NAME = 'pinChatMessage';
+    public const string TYPE_NAME = 'pinChatMessage';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class PinChatMessage extends TdFunction
     public function getOnlyForSelf(): bool
     {
         return $this->onlyForSelf;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDisableNotification(bool $value): static
+    {
+        $this->disableNotification = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyForSelf(bool $value): static
+    {
+        $this->onlyForSelf = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

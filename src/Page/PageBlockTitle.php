@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockTitle extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockTitle';
+    public const string TYPE_NAME = 'pageBlockTitle';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockTitle extends PageBlock
     public function getTitle(): RichText
     {
         return $this->title;
+    }
+
+    public function setTitle(RichText $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

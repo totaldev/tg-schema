@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendTextMessageDraft extends TdFunction
 {
-    public const TYPE_NAME = 'sendTextMessageDraft';
+    public const string TYPE_NAME = 'sendTextMessageDraft';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class SendTextMessageDraft extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftId(int $value): static
+    {
+        $this->draftId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

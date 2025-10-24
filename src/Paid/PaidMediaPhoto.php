@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaidMediaPhoto extends PaidMedia
 {
-    public const TYPE_NAME = 'paidMediaPhoto';
+    public const string TYPE_NAME = 'paidMediaPhoto';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PaidMediaPhoto extends PaidMedia
     public function getPhoto(): Photo
     {
         return $this->photo;
+    }
+
+    public function setPhoto(Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetStarRevenueStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getStarRevenueStatistics';
+    public const string TYPE_NAME = 'getStarRevenueStatistics';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetStarRevenueStatistics extends TdFunction
     public function getOwnerId(): MessageSender
     {
         return $this->ownerId;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

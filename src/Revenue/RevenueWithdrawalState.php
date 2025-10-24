@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RevenueWithdrawalState extends TdObject
 {
-    public const TYPE_NAME = 'RevenueWithdrawalState';
+    public const string TYPE_NAME = 'RevenueWithdrawalState';
 
     public function __construct() {}
 

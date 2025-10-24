@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Voice\VoiceNote;
  */
 class InlineQueryResultVoiceNote extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultVoiceNote';
+    public const string TYPE_NAME = 'inlineQueryResultVoiceNote';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class InlineQueryResultVoiceNote extends InlineQueryResult
     public function getVoiceNote(): VoiceNote
     {
         return $this->voiceNote;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNote(VoiceNote $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

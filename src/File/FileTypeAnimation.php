@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeAnimation extends FileType
 {
-    public const TYPE_NAME = 'fileTypeAnimation';
+    public const string TYPE_NAME = 'fileTypeAnimation';
 
     public function __construct()
     {

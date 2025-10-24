@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPremiumStickerExamples extends TdFunction
 {
-    public const TYPE_NAME = 'getPremiumStickerExamples';
+    public const string TYPE_NAME = 'getPremiumStickerExamples';
 
     public function __construct() {}
 

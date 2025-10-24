@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetCustomEmojiStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getCustomEmojiStickers';
+    public const string TYPE_NAME = 'getCustomEmojiStickers';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class GetCustomEmojiStickers extends TdFunction
     public function getCustomEmojiIds(): array
     {
         return $this->customEmojiIds;
+    }
+
+    public function setCustomEmojiIds(array $value): static
+    {
+        $this->customEmojiIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

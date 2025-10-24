@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageText extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageText';
+    public const string TYPE_NAME = 'inputMessageText';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class InputMessageText extends InputMessageContent
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setClearDraft(bool $value): static
+    {
+        $this->clearDraft = $value;
+
+        return $this;
+    }
+
+    public function setLinkPreviewOptions(?LinkPreviewOptions $value): static
+    {
+        $this->linkPreviewOptions = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

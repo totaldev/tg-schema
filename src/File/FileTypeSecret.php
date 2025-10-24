@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeSecret extends FileType
 {
-    public const TYPE_NAME = 'fileTypeSecret';
+    public const string TYPE_NAME = 'fileTypeSecret';
 
     public function __construct()
     {

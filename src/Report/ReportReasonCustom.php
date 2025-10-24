@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonCustom extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonCustom';
+    public const string TYPE_NAME = 'reportReasonCustom';
 
     public function __construct()
     {

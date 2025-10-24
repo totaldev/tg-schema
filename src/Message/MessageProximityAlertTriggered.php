@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageProximityAlertTriggered extends MessageContent
 {
-    public const TYPE_NAME = 'messageProximityAlertTriggered';
+    public const string TYPE_NAME = 'messageProximityAlertTriggered';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class MessageProximityAlertTriggered extends MessageContent
     public function getWatcherId(): MessageSender
     {
         return $this->watcherId;
+    }
+
+    public function setDistance(int $value): static
+    {
+        $this->distance = $value;
+
+        return $this;
+    }
+
+    public function setTravelerId(MessageSender $value): static
+    {
+        $this->travelerId = $value;
+
+        return $this;
+    }
+
+    public function setWatcherId(MessageSender $value): static
+    {
+        $this->watcherId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

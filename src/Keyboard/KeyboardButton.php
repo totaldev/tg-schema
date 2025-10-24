@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class KeyboardButton extends TdObject
 {
-    public const TYPE_NAME = 'keyboardButton';
+    public const string TYPE_NAME = 'keyboardButton';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class KeyboardButton extends TdObject
     public function getType(): KeyboardButtonType
     {
         return $this->type;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
+    }
+
+    public function setType(KeyboardButtonType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatBoostFeatures extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostFeatures';
+    public const string TYPE_NAME = 'chatBoostFeatures';
 
     public function __construct(
         /**
@@ -125,6 +125,76 @@ class ChatBoostFeatures extends TdObject
     public function getMinSponsoredMessageDisableBoostLevel(): int
     {
         return $this->minSponsoredMessageDisableBoostLevel;
+    }
+
+    public function setFeatures(array $value): static
+    {
+        $this->features = $value;
+
+        return $this;
+    }
+
+    public function setMinAutomaticTranslationBoostLevel(int $value): static
+    {
+        $this->minAutomaticTranslationBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinBackgroundCustomEmojiBoostLevel(int $value): static
+    {
+        $this->minBackgroundCustomEmojiBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinChatThemeBackgroundBoostLevel(int $value): static
+    {
+        $this->minChatThemeBackgroundBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinCustomBackgroundBoostLevel(int $value): static
+    {
+        $this->minCustomBackgroundBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinCustomEmojiStickerSetBoostLevel(int $value): static
+    {
+        $this->minCustomEmojiStickerSetBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinEmojiStatusBoostLevel(int $value): static
+    {
+        $this->minEmojiStatusBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinProfileBackgroundCustomEmojiBoostLevel(int $value): static
+    {
+        $this->minProfileBackgroundCustomEmojiBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinSpeechRecognitionBoostLevel(int $value): static
+    {
+        $this->minSpeechRecognitionBoostLevel = $value;
+
+        return $this;
+    }
+
+    public function setMinSponsoredMessageDisableBoostLevel(int $value): static
+    {
+        $this->minSponsoredMessageDisableBoostLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

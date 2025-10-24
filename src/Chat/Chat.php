@@ -22,7 +22,7 @@ use Totaldev\TgSchema\Video\VideoChat;
  */
 class Chat extends TdObject
 {
-    public const TYPE_NAME = 'chat';
+    public const string TYPE_NAME = 'chat';
 
     public function __construct(
         /**
@@ -455,6 +455,300 @@ class Chat extends TdObject
     public function getViewAsTopics(): bool
     {
         return $this->viewAsTopics;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setActionBar(?ChatActionBar $value): static
+    {
+        $this->actionBar = $value;
+
+        return $this;
+    }
+
+    public function setAvailableReactions(ChatAvailableReactions $value): static
+    {
+        $this->availableReactions = $value;
+
+        return $this;
+    }
+
+    public function setBackground(?ChatBackground $value): static
+    {
+        $this->background = $value;
+
+        return $this;
+    }
+
+    public function setBackgroundCustomEmojiId(int $value): static
+    {
+        $this->backgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setBlockList(?BlockList $value): static
+    {
+        $this->blockList = $value;
+
+        return $this;
+    }
+
+    public function setBusinessBotManageBar(?BusinessBotManageBar $value): static
+    {
+        $this->businessBotManageBar = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeletedForAllUsers(bool $value): static
+    {
+        $this->canBeDeletedForAllUsers = $value;
+
+        return $this;
+    }
+
+    public function setCanBeDeletedOnlyForSelf(bool $value): static
+    {
+        $this->canBeDeletedOnlyForSelf = $value;
+
+        return $this;
+    }
+
+    public function setCanBeReported(bool $value): static
+    {
+        $this->canBeReported = $value;
+
+        return $this;
+    }
+
+    public function setChatLists(array $value): static
+    {
+        $this->chatLists = $value;
+
+        return $this;
+    }
+
+    public function setClientData(string $value): static
+    {
+        $this->clientData = $value;
+
+        return $this;
+    }
+
+    public function setDefaultDisableNotification(bool $value): static
+    {
+        $this->defaultDisableNotification = $value;
+
+        return $this;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setEmojiStatus(?EmojiStatus $value): static
+    {
+        $this->emojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setHasProtectedContent(bool $value): static
+    {
+        $this->hasProtectedContent = $value;
+
+        return $this;
+    }
+
+    public function setHasScheduledMessages(bool $value): static
+    {
+        $this->hasScheduledMessages = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsMarkedAsUnread(bool $value): static
+    {
+        $this->isMarkedAsUnread = $value;
+
+        return $this;
+    }
+
+    public function setIsTranslatable(bool $value): static
+    {
+        $this->isTranslatable = $value;
+
+        return $this;
+    }
+
+    public function setLastMessage(?Message $value): static
+    {
+        $this->lastMessage = $value;
+
+        return $this;
+    }
+
+    public function setLastReadInboxMessageId(int $value): static
+    {
+        $this->lastReadInboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setMessageAutoDeleteTime(int $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
+    }
+
+    public function setMessageSenderId(?MessageSender $value): static
+    {
+        $this->messageSenderId = $value;
+
+        return $this;
+    }
+
+    public function setNotificationSettings(ChatNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
+    }
+
+    public function setPendingJoinRequests(?ChatJoinRequestsInfo $value): static
+    {
+        $this->pendingJoinRequests = $value;
+
+        return $this;
+    }
+
+    public function setPermissions(ChatPermissions $value): static
+    {
+        $this->permissions = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhotoInfo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setPositions(array $value): static
+    {
+        $this->positions = $value;
+
+        return $this;
+    }
+
+    public function setProfileAccentColorId(int $value): static
+    {
+        $this->profileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->profileBackgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkupMessageId(int $value): static
+    {
+        $this->replyMarkupMessageId = $value;
+
+        return $this;
+    }
+
+    public function setTheme(?ChatTheme $value): static
+    {
+        $this->theme = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setType(ChatType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setUnreadCount(int $value): static
+    {
+        $this->unreadCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadMentionCount(int $value): static
+    {
+        $this->unreadMentionCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedGiftColors(?UpgradedGiftColors $value): static
+    {
+        $this->upgradedGiftColors = $value;
+
+        return $this;
+    }
+
+    public function setVideoChat(VideoChat $value): static
+    {
+        $this->videoChat = $value;
+
+        return $this;
+    }
+
+    public function setViewAsTopics(bool $value): static
+    {
+        $this->viewAsTopics = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

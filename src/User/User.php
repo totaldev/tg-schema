@@ -20,7 +20,7 @@ use Totaldev\TgSchema\Verification\VerificationStatus;
  */
 class User extends TdObject
 {
-    public const TYPE_NAME = 'user';
+    public const string TYPE_NAME = 'user';
 
     public function __construct(
         /**
@@ -309,6 +309,202 @@ class User extends TdObject
     public function getVerificationStatus(): ?VerificationStatus
     {
         return $this->verificationStatus;
+    }
+
+    public function setAccentColorId(int $value): static
+    {
+        $this->accentColorId = $value;
+
+        return $this;
+    }
+
+    public function setAddedToAttachmentMenu(bool $value): static
+    {
+        $this->addedToAttachmentMenu = $value;
+
+        return $this;
+    }
+
+    public function setBackgroundCustomEmojiId(int $value): static
+    {
+        $this->backgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setEmojiStatus(?EmojiStatus $value): static
+    {
+        $this->emojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setHasActiveStories(bool $value): static
+    {
+        $this->hasActiveStories = $value;
+
+        return $this;
+    }
+
+    public function setHasUnreadActiveStories(bool $value): static
+    {
+        $this->hasUnreadActiveStories = $value;
+
+        return $this;
+    }
+
+    public function setHaveAccess(bool $value): static
+    {
+        $this->haveAccess = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsCloseFriend(bool $value): static
+    {
+        $this->isCloseFriend = $value;
+
+        return $this;
+    }
+
+    public function setIsContact(bool $value): static
+    {
+        $this->isContact = $value;
+
+        return $this;
+    }
+
+    public function setIsMutualContact(bool $value): static
+    {
+        $this->isMutualContact = $value;
+
+        return $this;
+    }
+
+    public function setIsPremium(bool $value): static
+    {
+        $this->isPremium = $value;
+
+        return $this;
+    }
+
+    public function setIsSupport(bool $value): static
+    {
+        $this->isSupport = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
+    }
+
+    public function setPaidMessageStarCount(int $value): static
+    {
+        $this->paidMessageStarCount = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setProfileAccentColorId(int $value): static
+    {
+        $this->profileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->profileBackgroundCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setProfilePhoto(?ProfilePhoto $value): static
+    {
+        $this->profilePhoto = $value;
+
+        return $this;
+    }
+
+    public function setRestrictionInfo(?RestrictionInfo $value): static
+    {
+        $this->restrictionInfo = $value;
+
+        return $this;
+    }
+
+    public function setRestrictsNewChats(bool $value): static
+    {
+        $this->restrictsNewChats = $value;
+
+        return $this;
+    }
+
+    public function setStatus(UserStatus $value): static
+    {
+        $this->status = $value;
+
+        return $this;
+    }
+
+    public function setType(UserType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedGiftColors(?UpgradedGiftColors $value): static
+    {
+        $this->upgradedGiftColors = $value;
+
+        return $this;
+    }
+
+    public function setUsernames(?Usernames $value): static
+    {
+        $this->usernames = $value;
+
+        return $this;
+    }
+
+    public function setVerificationStatus(?VerificationStatus $value): static
+    {
+        $this->verificationStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

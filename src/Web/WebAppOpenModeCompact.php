@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Web;
  */
 class WebAppOpenModeCompact extends WebAppOpenMode
 {
-    public const TYPE_NAME = 'webAppOpenModeCompact';
+    public const string TYPE_NAME = 'webAppOpenModeCompact';
 
     public function __construct()
     {

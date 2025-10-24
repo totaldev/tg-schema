@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatThemeGift extends ChatTheme
 {
-    public const TYPE_NAME = 'chatThemeGift';
+    public const string TYPE_NAME = 'chatThemeGift';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class ChatThemeGift extends ChatTheme
     public function getGiftTheme(): GiftChatTheme
     {
         return $this->giftTheme;
+    }
+
+    public function setGiftTheme(GiftChatTheme $value): static
+    {
+        $this->giftTheme = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

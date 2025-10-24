@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetMapThumbnailFile extends TdFunction
 {
-    public const TYPE_NAME = 'getMapThumbnailFile';
+    public const string TYPE_NAME = 'getMapThumbnailFile';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class GetMapThumbnailFile extends TdFunction
     public function getZoom(): int
     {
         return $this->zoom;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setScale(int $value): static
+    {
+        $this->scale = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
+    }
+
+    public function setZoom(int $value): static
+    {
+        $this->zoom = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

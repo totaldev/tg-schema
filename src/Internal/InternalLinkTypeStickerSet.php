@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeStickerSet extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeStickerSet';
+    public const string TYPE_NAME = 'internalLinkTypeStickerSet';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeStickerSet extends InternalLinkType
     public function getStickerSetName(): string
     {
         return $this->stickerSetName;
+    }
+
+    public function setExpectCustomEmoji(bool $value): static
+    {
+        $this->expectCustomEmoji = $value;
+
+        return $this;
+    }
+
+    public function setStickerSetName(string $value): static
+    {
+        $this->stickerSetName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

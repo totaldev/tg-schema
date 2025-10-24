@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Poll;
  */
 class PollTypeRegular extends PollType
 {
-    public const TYPE_NAME = 'pollTypeRegular';
+    public const string TYPE_NAME = 'pollTypeRegular';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PollTypeRegular extends PollType
     public function getAllowMultipleAnswers(): bool
     {
         return $this->allowMultipleAnswers;
+    }
+
+    public function setAllowMultipleAnswers(bool $value): static
+    {
+        $this->allowMultipleAnswers = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

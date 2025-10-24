@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClickAnimatedEmojiMessage extends TdFunction
 {
-    public const TYPE_NAME = 'clickAnimatedEmojiMessage';
+    public const string TYPE_NAME = 'clickAnimatedEmojiMessage';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ClickAnimatedEmojiMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

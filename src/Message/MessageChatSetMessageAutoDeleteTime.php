@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatSetMessageAutoDeleteTime extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatSetMessageAutoDeleteTime';
+    public const string TYPE_NAME = 'messageChatSetMessageAutoDeleteTime';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageChatSetMessageAutoDeleteTime extends MessageContent
     public function getMessageAutoDeleteTime(): int
     {
         return $this->messageAutoDeleteTime;
+    }
+
+    public function setFromUserId(int $value): static
+    {
+        $this->fromUserId = $value;
+
+        return $this;
+    }
+
+    public function setMessageAutoDeleteTime(int $value): static
+    {
+        $this->messageAutoDeleteTime = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Network;
  */
 class NetworkTypeWiFi extends NetworkType
 {
-    public const TYPE_NAME = 'networkTypeWiFi';
+    public const string TYPE_NAME = 'networkTypeWiFi';
 
     public function __construct()
     {

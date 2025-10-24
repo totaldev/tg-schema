@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class StickerSet extends TdObject
 {
-    public const TYPE_NAME = 'stickerSet';
+    public const string TYPE_NAME = 'stickerSet';
 
     public function __construct(
         /**
@@ -180,6 +180,111 @@ class StickerSet extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setEmojis(array $value): static
+    {
+        $this->emojis = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsAllowedAsChatEmojiStatus(bool $value): static
+    {
+        $this->isAllowedAsChatEmojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setIsArchived(bool $value): static
+    {
+        $this->isArchived = $value;
+
+        return $this;
+    }
+
+    public function setIsInstalled(bool $value): static
+    {
+        $this->isInstalled = $value;
+
+        return $this;
+    }
+
+    public function setIsOfficial(bool $value): static
+    {
+        $this->isOfficial = $value;
+
+        return $this;
+    }
+
+    public function setIsOwned(bool $value): static
+    {
+        $this->isOwned = $value;
+
+        return $this;
+    }
+
+    public function setIsViewed(bool $value): static
+    {
+        $this->isViewed = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setNeedsRepainting(bool $value): static
+    {
+        $this->needsRepainting = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
+    }
+
+    public function setStickers(array $value): static
+    {
+        $this->stickers = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailOutline(?Outline $value): static
+    {
+        $this->thumbnailOutline = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

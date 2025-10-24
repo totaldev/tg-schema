@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SpeechRecognitionResultError extends SpeechRecognitionResult
 {
-    public const TYPE_NAME = 'speechRecognitionResultError';
+    public const string TYPE_NAME = 'speechRecognitionResultError';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class SpeechRecognitionResultError extends SpeechRecognitionResult
     public function getError(): Error
     {
         return $this->error;
+    }
+
+    public function setError(Error $value): static
+    {
+        $this->error = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

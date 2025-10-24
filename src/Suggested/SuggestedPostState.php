@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SuggestedPostState extends TdObject
 {
-    public const TYPE_NAME = 'SuggestedPostState';
+    public const string TYPE_NAME = 'SuggestedPostState';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDatabaseStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getDatabaseStatistics';
+    public const string TYPE_NAME = 'getDatabaseStatistics';
 
     public function __construct() {}
 

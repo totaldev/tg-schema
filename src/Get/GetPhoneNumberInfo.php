@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPhoneNumberInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getPhoneNumberInfo';
+    public const string TYPE_NAME = 'getPhoneNumberInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetPhoneNumberInfo extends TdFunction
     public function getPhoneNumberPrefix(): string
     {
         return $this->phoneNumberPrefix;
+    }
+
+    public function setPhoneNumberPrefix(string $value): static
+    {
+        $this->phoneNumberPrefix = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

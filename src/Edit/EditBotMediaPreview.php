@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditBotMediaPreview extends TdFunction
 {
-    public const TYPE_NAME = 'editBotMediaPreview';
+    public const string TYPE_NAME = 'editBotMediaPreview';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class EditBotMediaPreview extends TdFunction
     public function getLanguageCode(): string
     {
         return $this->languageCode;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setContent(InputStoryContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
+    }
+
+    public function setLanguageCode(string $value): static
+    {
+        $this->languageCode = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

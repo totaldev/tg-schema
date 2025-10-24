@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatPinnedStories extends TdFunction
 {
-    public const TYPE_NAME = 'setChatPinnedStories';
+    public const string TYPE_NAME = 'setChatPinnedStories';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatPinnedStories extends TdFunction
     public function getStoryIds(): array
     {
         return $this->storyIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setStoryIds(array $value): static
+    {
+        $this->storyIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

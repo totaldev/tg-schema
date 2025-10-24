@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReorderGiftCollections extends TdFunction
 {
-    public const TYPE_NAME = 'reorderGiftCollections';
+    public const string TYPE_NAME = 'reorderGiftCollections';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ReorderGiftCollections extends TdFunction
     public function getOwnerId(): MessageSender
     {
         return $this->ownerId;
+    }
+
+    public function setCollectionIds(array $value): static
+    {
+        $this->collectionIds = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

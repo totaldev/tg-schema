@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeSelfDestructingVideo extends FileType
 {
-    public const TYPE_NAME = 'fileTypeSelfDestructingVideo';
+    public const string TYPE_NAME = 'fileTypeSelfDestructingVideo';
 
     public function __construct()
     {

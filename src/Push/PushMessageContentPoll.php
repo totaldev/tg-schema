@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentPoll extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentPoll';
+    public const string TYPE_NAME = 'pushMessageContentPoll';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class PushMessageContentPoll extends PushMessageContent
     public function getQuestion(): string
     {
         return $this->question;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setIsRegular(bool $value): static
+    {
+        $this->isRegular = $value;
+
+        return $this;
+    }
+
+    public function setQuestion(string $value): static
+    {
+        $this->question = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputGroupCallLink extends InputGroupCall
 {
-    public const TYPE_NAME = 'inputGroupCallLink';
+    public const string TYPE_NAME = 'inputGroupCallLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputGroupCallLink extends InputGroupCall
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

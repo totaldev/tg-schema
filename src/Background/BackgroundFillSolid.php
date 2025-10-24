@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Background;
  */
 class BackgroundFillSolid extends BackgroundFill
 {
-    public const TYPE_NAME = 'backgroundFillSolid';
+    public const string TYPE_NAME = 'backgroundFillSolid';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class BackgroundFillSolid extends BackgroundFill
     public function getColor(): int
     {
         return $this->color;
+    }
+
+    public function setColor(int $value): static
+    {
+        $this->color = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

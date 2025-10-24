@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventAvailableReactionsChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventAvailableReactionsChanged';
+    public const string TYPE_NAME = 'chatEventAvailableReactionsChanged';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventAvailableReactionsChanged extends ChatEventAction
     public function getOldAvailableReactions(): ChatAvailableReactions
     {
         return $this->oldAvailableReactions;
+    }
+
+    public function setNewAvailableReactions(ChatAvailableReactions $value): static
+    {
+        $this->newAvailableReactions = $value;
+
+        return $this;
+    }
+
+    public function setOldAvailableReactions(ChatAvailableReactions $value): static
+    {
+        $this->oldAvailableReactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

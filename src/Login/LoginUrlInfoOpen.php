@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Login;
  */
 class LoginUrlInfoOpen extends LoginUrlInfo
 {
-    public const TYPE_NAME = 'loginUrlInfoOpen';
+    public const string TYPE_NAME = 'loginUrlInfoOpen';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class LoginUrlInfoOpen extends LoginUrlInfo
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setSkipConfirmation(bool $value): static
+    {
+        $this->skipConfirmation = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

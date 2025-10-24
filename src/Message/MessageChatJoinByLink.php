@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatJoinByLink extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatJoinByLink';
+    public const string TYPE_NAME = 'messageChatJoinByLink';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Usernames extends TdObject
 {
-    public const TYPE_NAME = 'usernames';
+    public const string TYPE_NAME = 'usernames';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class Usernames extends TdObject
     public function getEditableUsername(): string
     {
         return $this->editableUsername;
+    }
+
+    public function setActiveUsernames(array $value): static
+    {
+        $this->activeUsernames = $value;
+
+        return $this;
+    }
+
+    public function setDisabledUsernames(array $value): static
+    {
+        $this->disabledUsernames = $value;
+
+        return $this;
+    }
+
+    public function setEditableUsername(string $value): static
+    {
+        $this->editableUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

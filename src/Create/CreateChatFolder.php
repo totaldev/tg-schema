@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CreateChatFolder extends TdFunction
 {
-    public const TYPE_NAME = 'createChatFolder';
+    public const string TYPE_NAME = 'createChatFolder';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class CreateChatFolder extends TdFunction
     public function getFolder(): ChatFolder
     {
         return $this->folder;
+    }
+
+    public function setFolder(ChatFolder $value): static
+    {
+        $this->folder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

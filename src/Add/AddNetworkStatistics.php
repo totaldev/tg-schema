@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AddNetworkStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'addNetworkStatistics';
+    public const string TYPE_NAME = 'addNetworkStatistics';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class AddNetworkStatistics extends TdFunction
     public function getEntry(): NetworkStatisticsEntry
     {
         return $this->entry;
+    }
+
+    public function setEntry(NetworkStatisticsEntry $value): static
+    {
+        $this->entry = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

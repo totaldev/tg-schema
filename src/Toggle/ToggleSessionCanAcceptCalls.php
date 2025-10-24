@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSessionCanAcceptCalls extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSessionCanAcceptCalls';
+    public const string TYPE_NAME = 'toggleSessionCanAcceptCalls';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleSessionCanAcceptCalls extends TdFunction
     public function getSessionId(): int
     {
         return $this->sessionId;
+    }
+
+    public function setCanAcceptCalls(bool $value): static
+    {
+        $this->canAcceptCalls = $value;
+
+        return $this;
+    }
+
+    public function setSessionId(int $value): static
+    {
+        $this->sessionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

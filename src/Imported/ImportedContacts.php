@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ImportedContacts extends TdObject
 {
-    public const TYPE_NAME = 'importedContacts';
+    public const string TYPE_NAME = 'importedContacts';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class ImportedContacts extends TdObject
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setImporterCount(array $value): static
+    {
+        $this->importerCount = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

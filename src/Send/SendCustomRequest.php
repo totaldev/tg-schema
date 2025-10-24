@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendCustomRequest extends TdFunction
 {
-    public const TYPE_NAME = 'sendCustomRequest';
+    public const string TYPE_NAME = 'sendCustomRequest';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SendCustomRequest extends TdFunction
     public function getParameters(): string
     {
         return $this->parameters;
+    }
+
+    public function setMethod(string $value): static
+    {
+        $this->method = $value;
+
+        return $this;
+    }
+
+    public function setParameters(string $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

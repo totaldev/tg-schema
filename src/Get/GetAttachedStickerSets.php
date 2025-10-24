@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAttachedStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'getAttachedStickerSets';
+    public const string TYPE_NAME = 'getAttachedStickerSets';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetAttachedStickerSets extends TdFunction
     public function getFileId(): int
     {
         return $this->fileId;
+    }
+
+    public function setFileId(int $value): static
+    {
+        $this->fileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

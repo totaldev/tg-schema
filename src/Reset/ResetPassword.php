@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ResetPassword extends TdFunction
 {
-    public const TYPE_NAME = 'resetPassword';
+    public const string TYPE_NAME = 'resetPassword';
 
     public function __construct() {}
 

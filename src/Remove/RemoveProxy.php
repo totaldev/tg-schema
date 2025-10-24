@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class RemoveProxy extends TdFunction
 {
-    public const TYPE_NAME = 'removeProxy';
+    public const string TYPE_NAME = 'removeProxy';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class RemoveProxy extends TdFunction
     public function getProxyId(): int
     {
         return $this->proxyId;
+    }
+
+    public function setProxyId(int $value): static
+    {
+        $this->proxyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

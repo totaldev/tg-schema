@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageEmbeddingCode extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageEmbeddingCode';
+    public const string TYPE_NAME = 'getMessageEmbeddingCode';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetMessageEmbeddingCode extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForAlbum(bool $value): static
+    {
+        $this->forAlbum = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

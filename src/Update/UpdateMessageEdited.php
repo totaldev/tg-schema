@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageEdited extends Update
 {
-    public const TYPE_NAME = 'updateMessageEdited';
+    public const string TYPE_NAME = 'updateMessageEdited';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class UpdateMessageEdited extends Update
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setEditDate(int $value): static
+    {
+        $this->editDate = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

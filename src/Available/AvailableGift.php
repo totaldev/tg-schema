@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AvailableGift extends TdObject
 {
-    public const TYPE_NAME = 'availableGift';
+    public const string TYPE_NAME = 'availableGift';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class AvailableGift extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setGift(Gift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setMinResaleStarCount(int $value): static
+    {
+        $this->minResaleStarCount = $value;
+
+        return $this;
+    }
+
+    public function setResaleCount(int $value): static
+    {
+        $this->resaleCount = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

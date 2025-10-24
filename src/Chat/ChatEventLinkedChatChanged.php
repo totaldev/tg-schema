@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventLinkedChatChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventLinkedChatChanged';
+    public const string TYPE_NAME = 'chatEventLinkedChatChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventLinkedChatChanged extends ChatEventAction
     public function getOldLinkedChatId(): int
     {
         return $this->oldLinkedChatId;
+    }
+
+    public function setNewLinkedChatId(int $value): static
+    {
+        $this->newLinkedChatId = $value;
+
+        return $this;
+    }
+
+    public function setOldLinkedChatId(int $value): static
+    {
+        $this->oldLinkedChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

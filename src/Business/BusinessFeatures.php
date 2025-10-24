@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessFeatures extends TdObject
 {
-    public const TYPE_NAME = 'businessFeatures';
+    public const string TYPE_NAME = 'businessFeatures';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class BusinessFeatures extends TdObject
     public function getFeatures(): array
     {
         return $this->features;
+    }
+
+    public function setFeatures(array $value): static
+    {
+        $this->features = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

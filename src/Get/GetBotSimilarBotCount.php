@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBotSimilarBotCount extends TdFunction
 {
-    public const TYPE_NAME = 'getBotSimilarBotCount';
+    public const string TYPE_NAME = 'getBotSimilarBotCount';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetBotSimilarBotCount extends TdFunction
     public function getReturnLocal(): bool
     {
         return $this->returnLocal;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setReturnLocal(bool $value): static
+    {
+        $this->returnLocal = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

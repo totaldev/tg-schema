@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetMessageFactCheck extends TdFunction
 {
-    public const TYPE_NAME = 'setMessageFactCheck';
+    public const string TYPE_NAME = 'setMessageFactCheck';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SetMessageFactCheck extends TdFunction
     public function getText(): ?FormattedText
     {
         return $this->text;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setText(?FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

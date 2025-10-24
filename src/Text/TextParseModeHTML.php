@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextParseModeHTML extends TextParseMode
 {
-    public const TYPE_NAME = 'textParseModeHTML';
+    public const string TYPE_NAME = 'textParseModeHTML';
 
     public function __construct()
     {

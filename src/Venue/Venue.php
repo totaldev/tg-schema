@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Venue extends TdObject
 {
-    public const TYPE_NAME = 'venue';
+    public const string TYPE_NAME = 'venue';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class Venue extends TdObject
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function setAddress(string $value): static
+    {
+        $this->address = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setProvider(string $value): static
+    {
+        $this->provider = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setType(string $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class SpeechRecognitionResult extends TdObject
 {
-    public const TYPE_NAME = 'SpeechRecognitionResult';
+    public const string TYPE_NAME = 'SpeechRecognitionResult';
 
     public function __construct() {}
 

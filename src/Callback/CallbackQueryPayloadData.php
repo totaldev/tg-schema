@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Callback;
  */
 class CallbackQueryPayloadData extends CallbackQueryPayload
 {
-    public const TYPE_NAME = 'callbackQueryPayloadData';
+    public const string TYPE_NAME = 'callbackQueryPayloadData';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CallbackQueryPayloadData extends CallbackQueryPayload
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

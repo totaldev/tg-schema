@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Voice\VoiceNote;
  */
 class MessageVoiceNote extends MessageContent
 {
-    public const TYPE_NAME = 'messageVoiceNote';
+    public const string TYPE_NAME = 'messageVoiceNote';
 
     public function __construct(
         /**
@@ -56,6 +56,27 @@ class MessageVoiceNote extends MessageContent
     public function getVoiceNote(): VoiceNote
     {
         return $this->voiceNote;
+    }
+
+    public function setCaption(FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setIsListened(bool $value): static
+    {
+        $this->isListened = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNote(VoiceNote $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

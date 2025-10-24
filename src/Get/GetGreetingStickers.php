@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetGreetingStickers extends TdFunction
 {
-    public const TYPE_NAME = 'getGreetingStickers';
+    public const string TYPE_NAME = 'getGreetingStickers';
 
     public function __construct() {}
 

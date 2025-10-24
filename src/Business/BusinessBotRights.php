@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BusinessBotRights extends TdObject
 {
-    public const TYPE_NAME = 'businessBotRights';
+    public const string TYPE_NAME = 'businessBotRights';
 
     public function __construct(
         /**
@@ -162,6 +162,104 @@ class BusinessBotRights extends TdObject
     public function getCanViewGiftsAndStars(): bool
     {
         return $this->canViewGiftsAndStars;
+    }
+
+    public function setCanChangeGiftSettings(bool $value): static
+    {
+        $this->canChangeGiftSettings = $value;
+
+        return $this;
+    }
+
+    public function setCanDeleteAllMessages(bool $value): static
+    {
+        $this->canDeleteAllMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanDeleteSentMessages(bool $value): static
+    {
+        $this->canDeleteSentMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanEditBio(bool $value): static
+    {
+        $this->canEditBio = $value;
+
+        return $this;
+    }
+
+    public function setCanEditName(bool $value): static
+    {
+        $this->canEditName = $value;
+
+        return $this;
+    }
+
+    public function setCanEditProfilePhoto(bool $value): static
+    {
+        $this->canEditProfilePhoto = $value;
+
+        return $this;
+    }
+
+    public function setCanEditUsername(bool $value): static
+    {
+        $this->canEditUsername = $value;
+
+        return $this;
+    }
+
+    public function setCanManageStories(bool $value): static
+    {
+        $this->canManageStories = $value;
+
+        return $this;
+    }
+
+    public function setCanReadMessages(bool $value): static
+    {
+        $this->canReadMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanReply(bool $value): static
+    {
+        $this->canReply = $value;
+
+        return $this;
+    }
+
+    public function setCanSellGifts(bool $value): static
+    {
+        $this->canSellGifts = $value;
+
+        return $this;
+    }
+
+    public function setCanTransferAndUpgradeGifts(bool $value): static
+    {
+        $this->canTransferAndUpgradeGifts = $value;
+
+        return $this;
+    }
+
+    public function setCanTransferStars(bool $value): static
+    {
+        $this->canTransferStars = $value;
+
+        return $this;
+    }
+
+    public function setCanViewGiftsAndStars(bool $value): static
+    {
+        $this->canViewGiftsAndStars = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

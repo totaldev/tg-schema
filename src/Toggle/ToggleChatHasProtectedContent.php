@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatHasProtectedContent extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatHasProtectedContent';
+    public const string TYPE_NAME = 'toggleChatHasProtectedContent';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleChatHasProtectedContent extends TdFunction
     public function getHasProtectedContent(): bool
     {
         return $this->hasProtectedContent;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHasProtectedContent(bool $value): static
+    {
+        $this->hasProtectedContent = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

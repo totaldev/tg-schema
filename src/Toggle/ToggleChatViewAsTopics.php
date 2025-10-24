@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatViewAsTopics extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatViewAsTopics';
+    public const string TYPE_NAME = 'toggleChatViewAsTopics';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleChatViewAsTopics extends TdFunction
     public function getViewAsTopics(): bool
     {
         return $this->viewAsTopics;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setViewAsTopics(bool $value): static
+    {
+        $this->viewAsTopics = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

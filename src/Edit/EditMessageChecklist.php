@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditMessageChecklist extends TdFunction
 {
-    public const TYPE_NAME = 'editMessageChecklist';
+    public const string TYPE_NAME = 'editMessageChecklist';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class EditMessageChecklist extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChecklist(InputChecklist $value): static
+    {
+        $this->checklist = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

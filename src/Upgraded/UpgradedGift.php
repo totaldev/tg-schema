@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGift extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGift';
+    public const string TYPE_NAME = 'upgradedGift';
 
     public function __construct(
         /**
@@ -265,6 +265,174 @@ class UpgradedGift extends TdObject
     public function getValueCurrency(): string
     {
         return $this->valueCurrency;
+    }
+
+    public function setBackdrop(UpgradedGiftBackdrop $value): static
+    {
+        $this->backdrop = $value;
+
+        return $this;
+    }
+
+    public function setColors(?UpgradedGiftColors $value): static
+    {
+        $this->colors = $value;
+
+        return $this;
+    }
+
+    public function setGiftAddress(string $value): static
+    {
+        $this->giftAddress = $value;
+
+        return $this;
+    }
+
+    public function setHostId(?MessageSender $value): static
+    {
+        $this->hostId = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsPremium(bool $value): static
+    {
+        $this->isPremium = $value;
+
+        return $this;
+    }
+
+    public function setIsThemeAvailable(bool $value): static
+    {
+        $this->isThemeAvailable = $value;
+
+        return $this;
+    }
+
+    public function setMaxUpgradedCount(int $value): static
+    {
+        $this->maxUpgradedCount = $value;
+
+        return $this;
+    }
+
+    public function setModel(UpgradedGiftModel $value): static
+    {
+        $this->model = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setNumber(int $value): static
+    {
+        $this->number = $value;
+
+        return $this;
+    }
+
+    public function setOriginalDetails(?UpgradedGiftOriginalDetails $value): static
+    {
+        $this->originalDetails = $value;
+
+        return $this;
+    }
+
+    public function setOwnerAddress(string $value): static
+    {
+        $this->ownerAddress = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(?MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setOwnerName(string $value): static
+    {
+        $this->ownerName = $value;
+
+        return $this;
+    }
+
+    public function setPublisherChatId(int $value): static
+    {
+        $this->publisherChatId = $value;
+
+        return $this;
+    }
+
+    public function setRegularGiftId(int $value): static
+    {
+        $this->regularGiftId = $value;
+
+        return $this;
+    }
+
+    public function setResaleParameters(?GiftResaleParameters $value): static
+    {
+        $this->resaleParameters = $value;
+
+        return $this;
+    }
+
+    public function setSymbol(UpgradedGiftSymbol $value): static
+    {
+        $this->symbol = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setTotalUpgradedCount(int $value): static
+    {
+        $this->totalUpgradedCount = $value;
+
+        return $this;
+    }
+
+    public function setUsedThemeChatId(int $value): static
+    {
+        $this->usedThemeChatId = $value;
+
+        return $this;
+    }
+
+    public function setValueAmount(int $value): static
+    {
+        $this->valueAmount = $value;
+
+        return $this;
+    }
+
+    public function setValueCurrency(string $value): static
+    {
+        $this->valueCurrency = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

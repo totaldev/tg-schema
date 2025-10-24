@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatChangePhoto extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatChangePhoto';
+    public const string TYPE_NAME = 'pushMessageContentChatChangePhoto';
 
     public function __construct()
     {

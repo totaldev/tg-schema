@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaymentResult extends TdObject
 {
-    public const TYPE_NAME = 'paymentResult';
+    public const string TYPE_NAME = 'paymentResult';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PaymentResult extends TdObject
     public function getVerificationUrl(): string
     {
         return $this->verificationUrl;
+    }
+
+    public function setSuccess(bool $value): static
+    {
+        $this->success = $value;
+
+        return $this;
+    }
+
+    public function setVerificationUrl(string $value): static
+    {
+        $this->verificationUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

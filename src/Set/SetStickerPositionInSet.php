@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetStickerPositionInSet extends TdFunction
 {
-    public const TYPE_NAME = 'setStickerPositionInSet';
+    public const string TYPE_NAME = 'setStickerPositionInSet';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetStickerPositionInSet extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setPosition(int $value): static
+    {
+        $this->position = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

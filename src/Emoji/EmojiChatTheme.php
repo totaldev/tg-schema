@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Theme\ThemeSettings;
  */
 class EmojiChatTheme extends TdObject
 {
-    public const TYPE_NAME = 'emojiChatTheme';
+    public const string TYPE_NAME = 'emojiChatTheme';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class EmojiChatTheme extends TdObject
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setDarkSettings(ThemeSettings $value): static
+    {
+        $this->darkSettings = $value;
+
+        return $this;
+    }
+
+    public function setLightSettings(ThemeSettings $value): static
+    {
+        $this->lightSettings = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

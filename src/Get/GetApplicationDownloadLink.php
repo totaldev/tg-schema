@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetApplicationDownloadLink extends TdFunction
 {
-    public const TYPE_NAME = 'getApplicationDownloadLink';
+    public const string TYPE_NAME = 'getApplicationDownloadLink';
 
     public function __construct() {}
 

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageFileTypeUnknown extends MessageFileType
 {
-    public const TYPE_NAME = 'messageFileTypeUnknown';
+    public const string TYPE_NAME = 'messageFileTypeUnknown';
 
     public function __construct()
     {

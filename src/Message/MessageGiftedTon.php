@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGiftedTon extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiftedTon';
+    public const string TYPE_NAME = 'messageGiftedTon';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class MessageGiftedTon extends MessageContent
     public function getTransactionId(): string
     {
         return $this->transactionId;
+    }
+
+    public function setGifterUserId(int $value): static
+    {
+        $this->gifterUserId = $value;
+
+        return $this;
+    }
+
+    public function setReceiverUserId(int $value): static
+    {
+        $this->receiverUserId = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setTonAmount(int $value): static
+    {
+        $this->tonAmount = $value;
+
+        return $this;
+    }
+
+    public function setTransactionId(string $value): static
+    {
+        $this->transactionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleBotCanManageEmojiStatus extends TdFunction
 {
-    public const TYPE_NAME = 'toggleBotCanManageEmojiStatus';
+    public const string TYPE_NAME = 'toggleBotCanManageEmojiStatus';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleBotCanManageEmojiStatus extends TdFunction
     public function getCanManageEmojiStatus(): bool
     {
         return $this->canManageEmojiStatus;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCanManageEmojiStatus(bool $value): static
+    {
+        $this->canManageEmojiStatus = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

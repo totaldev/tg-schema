@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonCopyright extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonCopyright';
+    public const string TYPE_NAME = 'reportReasonCopyright';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatIsMarkedAsUnread extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatIsMarkedAsUnread';
+    public const string TYPE_NAME = 'toggleChatIsMarkedAsUnread';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleChatIsMarkedAsUnread extends TdFunction
     public function getIsMarkedAsUnread(): bool
     {
         return $this->isMarkedAsUnread;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsMarkedAsUnread(bool $value): static
+    {
+        $this->isMarkedAsUnread = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReactionNotificationSettings extends TdObject
 {
-    public const TYPE_NAME = 'reactionNotificationSettings';
+    public const string TYPE_NAME = 'reactionNotificationSettings';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class ReactionNotificationSettings extends TdObject
     public function getStoryReactionSource(): ReactionNotificationSource
     {
         return $this->storyReactionSource;
+    }
+
+    public function setMessageReactionSource(ReactionNotificationSource $value): static
+    {
+        $this->messageReactionSource = $value;
+
+        return $this;
+    }
+
+    public function setShowPreview(bool $value): static
+    {
+        $this->showPreview = $value;
+
+        return $this;
+    }
+
+    public function setSoundId(int $value): static
+    {
+        $this->soundId = $value;
+
+        return $this;
+    }
+
+    public function setStoryReactionSource(ReactionNotificationSource $value): static
+    {
+        $this->storyReactionSource = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

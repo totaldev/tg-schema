@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStoryStatistics extends TdFunction
 {
-    public const TYPE_NAME = 'getStoryStatistics';
+    public const string TYPE_NAME = 'getStoryStatistics';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetStoryStatistics extends TdFunction
     public function getStoryId(): int
     {
         return $this->storyId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

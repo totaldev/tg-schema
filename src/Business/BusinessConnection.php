@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessConnection extends TdObject
 {
-    public const TYPE_NAME = 'businessConnection';
+    public const string TYPE_NAME = 'businessConnection';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class BusinessConnection extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsEnabled(bool $value): static
+    {
+        $this->isEnabled = $value;
+
+        return $this;
+    }
+
+    public function setRights(?BusinessBotRights $value): static
+    {
+        $this->rights = $value;
+
+        return $this;
+    }
+
+    public function setUserChatId(int $value): static
+    {
+        $this->userChatId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

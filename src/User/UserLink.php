@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UserLink extends TdObject
 {
-    public const TYPE_NAME = 'userLink';
+    public const string TYPE_NAME = 'userLink';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class UserLink extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setExpiresIn(int $value): static
+    {
+        $this->expiresIn = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

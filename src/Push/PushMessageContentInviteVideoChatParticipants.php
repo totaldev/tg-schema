@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentInviteVideoChatParticipants extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentInviteVideoChatParticipants';
+    public const string TYPE_NAME = 'pushMessageContentInviteVideoChatParticipants';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentInviteVideoChatParticipants extends PushMessageContent
     public function getIsCurrentUser(): bool
     {
         return $this->isCurrentUser;
+    }
+
+    public function setIsCurrentUser(bool $value): static
+    {
+        $this->isCurrentUser = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

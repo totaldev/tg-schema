@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetChatRevenueWithdrawalUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getChatRevenueWithdrawalUrl';
+    public const string TYPE_NAME = 'getChatRevenueWithdrawalUrl';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetChatRevenueWithdrawalUrl extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

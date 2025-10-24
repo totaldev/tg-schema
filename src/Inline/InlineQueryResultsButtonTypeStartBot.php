@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineQueryResultsButtonTypeStartBot extends InlineQueryResultsButtonType
 {
-    public const TYPE_NAME = 'inlineQueryResultsButtonTypeStartBot';
+    public const string TYPE_NAME = 'inlineQueryResultsButtonTypeStartBot';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InlineQueryResultsButtonTypeStartBot extends InlineQueryResultsButtonType
     public function getParameter(): string
     {
         return $this->parameter;
+    }
+
+    public function setParameter(string $value): static
+    {
+        $this->parameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

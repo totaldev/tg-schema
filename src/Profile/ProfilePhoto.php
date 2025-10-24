@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ProfilePhoto extends TdObject
 {
-    public const TYPE_NAME = 'profilePhoto';
+    public const string TYPE_NAME = 'profilePhoto';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class ProfilePhoto extends TdObject
     public function getSmall(): File
     {
         return $this->small;
+    }
+
+    public function setBig(File $value): static
+    {
+        $this->big = $value;
+
+        return $this;
+    }
+
+    public function setHasAnimation(bool $value): static
+    {
+        $this->hasAnimation = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsPersonal(bool $value): static
+    {
+        $this->isPersonal = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSmall(File $value): static
+    {
+        $this->small = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

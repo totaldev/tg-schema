@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationTypeNewCall extends NotificationType
 {
-    public const TYPE_NAME = 'notificationTypeNewCall';
+    public const string TYPE_NAME = 'notificationTypeNewCall';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class NotificationTypeNewCall extends NotificationType
     public function getCallId(): int
     {
         return $this->callId;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

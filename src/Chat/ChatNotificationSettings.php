@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatNotificationSettings extends TdObject
 {
-    public const TYPE_NAME = 'chatNotificationSettings';
+    public const string TYPE_NAME = 'chatNotificationSettings';
 
     public function __construct(
         /**
@@ -182,6 +182,118 @@ class ChatNotificationSettings extends TdObject
     public function getUseDefaultStorySound(): bool
     {
         return $this->useDefaultStorySound;
+    }
+
+    public function setDisableMentionNotifications(bool $value): static
+    {
+        $this->disableMentionNotifications = $value;
+
+        return $this;
+    }
+
+    public function setDisablePinnedMessageNotifications(bool $value): static
+    {
+        $this->disablePinnedMessageNotifications = $value;
+
+        return $this;
+    }
+
+    public function setMuteFor(int $value): static
+    {
+        $this->muteFor = $value;
+
+        return $this;
+    }
+
+    public function setMuteStories(bool $value): static
+    {
+        $this->muteStories = $value;
+
+        return $this;
+    }
+
+    public function setShowPreview(bool $value): static
+    {
+        $this->showPreview = $value;
+
+        return $this;
+    }
+
+    public function setShowStoryPoster(bool $value): static
+    {
+        $this->showStoryPoster = $value;
+
+        return $this;
+    }
+
+    public function setSoundId(int $value): static
+    {
+        $this->soundId = $value;
+
+        return $this;
+    }
+
+    public function setStorySoundId(int $value): static
+    {
+        $this->storySoundId = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultDisableMentionNotifications(bool $value): static
+    {
+        $this->useDefaultDisableMentionNotifications = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultDisablePinnedMessageNotifications(bool $value): static
+    {
+        $this->useDefaultDisablePinnedMessageNotifications = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultMuteFor(bool $value): static
+    {
+        $this->useDefaultMuteFor = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultMuteStories(bool $value): static
+    {
+        $this->useDefaultMuteStories = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultShowPreview(bool $value): static
+    {
+        $this->useDefaultShowPreview = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultShowStoryPoster(bool $value): static
+    {
+        $this->useDefaultShowStoryPoster = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultSound(bool $value): static
+    {
+        $this->useDefaultSound = $value;
+
+        return $this;
+    }
+
+    public function setUseDefaultStorySound(bool $value): static
+    {
+        $this->useDefaultStorySound = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

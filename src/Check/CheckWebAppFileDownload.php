@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckWebAppFileDownload extends TdFunction
 {
-    public const TYPE_NAME = 'checkWebAppFileDownload';
+    public const string TYPE_NAME = 'checkWebAppFileDownload';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class CheckWebAppFileDownload extends TdFunction
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setFileName(string $value): static
+    {
+        $this->fileName = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

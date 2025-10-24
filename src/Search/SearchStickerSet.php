@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchStickerSet extends TdFunction
 {
-    public const TYPE_NAME = 'searchStickerSet';
+    public const string TYPE_NAME = 'searchStickerSet';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchStickerSet extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setIgnoreCache(bool $value): static
+    {
+        $this->ignoreCache = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ImportedContact extends TdObject
 {
-    public const TYPE_NAME = 'importedContact';
+    public const string TYPE_NAME = 'importedContact';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class ImportedContact extends TdObject
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setFirstName(string $value): static
+    {
+        $this->firstName = $value;
+
+        return $this;
+    }
+
+    public function setLastName(string $value): static
+    {
+        $this->lastName = $value;
+
+        return $this;
+    }
+
+    public function setNote(?FormattedText $value): static
+    {
+        $this->note = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

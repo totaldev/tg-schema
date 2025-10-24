@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionTypeEmoji extends ReactionType
 {
-    public const TYPE_NAME = 'reactionTypeEmoji';
+    public const string TYPE_NAME = 'reactionTypeEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ReactionTypeEmoji extends ReactionType
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

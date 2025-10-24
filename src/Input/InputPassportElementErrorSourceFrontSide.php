@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputPassportElementErrorSourceFrontSide extends InputPassportElementErrorSource
 {
-    public const TYPE_NAME = 'inputPassportElementErrorSourceFrontSide';
+    public const string TYPE_NAME = 'inputPassportElementErrorSourceFrontSide';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputPassportElementErrorSourceFrontSide extends InputPassportElementError
     public function getFileHash(): string
     {
         return $this->fileHash;
+    }
+
+    public function setFileHash(string $value): static
+    {
+        $this->fileHash = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

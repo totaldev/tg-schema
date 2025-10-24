@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetMainProfileTab extends TdFunction
 {
-    public const TYPE_NAME = 'setMainProfileTab';
+    public const string TYPE_NAME = 'setMainProfileTab';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetMainProfileTab extends TdFunction
     public function getMainProfileTab(): ProfileTab
     {
         return $this->mainProfileTab;
+    }
+
+    public function setMainProfileTab(ProfileTab $value): static
+    {
+        $this->mainProfileTab = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

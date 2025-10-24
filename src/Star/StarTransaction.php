@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarTransaction extends TdObject
 {
-    public const TYPE_NAME = 'starTransaction';
+    public const string TYPE_NAME = 'starTransaction';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class StarTransaction extends TdObject
     public function getType(): StarTransactionType
     {
         return $this->type;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsRefund(bool $value): static
+    {
+        $this->isRefund = $value;
+
+        return $this;
+    }
+
+    public function setStarAmount(StarAmount $value): static
+    {
+        $this->starAmount = $value;
+
+        return $this;
+    }
+
+    public function setType(StarTransactionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeSecure extends FileType
 {
-    public const TYPE_NAME = 'fileTypeSecure';
+    public const string TYPE_NAME = 'fileTypeSecure';
 
     public function __construct()
     {

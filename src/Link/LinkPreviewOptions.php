@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class LinkPreviewOptions extends TdObject
 {
-    public const TYPE_NAME = 'linkPreviewOptions';
+    public const string TYPE_NAME = 'linkPreviewOptions';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class LinkPreviewOptions extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setForceLargeMedia(bool $value): static
+    {
+        $this->forceLargeMedia = $value;
+
+        return $this;
+    }
+
+    public function setForceSmallMedia(bool $value): static
+    {
+        $this->forceSmallMedia = $value;
+
+        return $this;
+    }
+
+    public function setIsDisabled(bool $value): static
+    {
+        $this->isDisabled = $value;
+
+        return $this;
+    }
+
+    public function setShowAboveText(bool $value): static
+    {
+        $this->showAboveText = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

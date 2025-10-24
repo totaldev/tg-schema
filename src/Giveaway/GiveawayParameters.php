@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GiveawayParameters extends TdObject
 {
-    public const TYPE_NAME = 'giveawayParameters';
+    public const string TYPE_NAME = 'giveawayParameters';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class GiveawayParameters extends TdObject
     public function getWinnersSelectionDate(): int
     {
         return $this->winnersSelectionDate;
+    }
+
+    public function setAdditionalChatIds(array $value): static
+    {
+        $this->additionalChatIds = $value;
+
+        return $this;
+    }
+
+    public function setBoostedChatId(int $value): static
+    {
+        $this->boostedChatId = $value;
+
+        return $this;
+    }
+
+    public function setCountryCodes(array $value): static
+    {
+        $this->countryCodes = $value;
+
+        return $this;
+    }
+
+    public function setHasPublicWinners(bool $value): static
+    {
+        $this->hasPublicWinners = $value;
+
+        return $this;
+    }
+
+    public function setOnlyNewMembers(bool $value): static
+    {
+        $this->onlyNewMembers = $value;
+
+        return $this;
+    }
+
+    public function setPrizeDescription(string $value): static
+    {
+        $this->prizeDescription = $value;
+
+        return $this;
+    }
+
+    public function setWinnersSelectionDate(int $value): static
+    {
+        $this->winnersSelectionDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckAuthenticationPassword extends TdFunction
 {
-    public const TYPE_NAME = 'checkAuthenticationPassword';
+    public const string TYPE_NAME = 'checkAuthenticationPassword';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CheckAuthenticationPassword extends TdFunction
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

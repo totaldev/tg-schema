@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessagePaymentSuccessful extends MessageContent
 {
-    public const TYPE_NAME = 'messagePaymentSuccessful';
+    public const string TYPE_NAME = 'messagePaymentSuccessful';
 
     public function __construct(
         /**
@@ -102,6 +102,62 @@ class MessagePaymentSuccessful extends MessageContent
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setInvoiceChatId(int $value): static
+    {
+        $this->invoiceChatId = $value;
+
+        return $this;
+    }
+
+    public function setInvoiceMessageId(int $value): static
+    {
+        $this->invoiceMessageId = $value;
+
+        return $this;
+    }
+
+    public function setInvoiceName(string $value): static
+    {
+        $this->invoiceName = $value;
+
+        return $this;
+    }
+
+    public function setIsFirstRecurring(bool $value): static
+    {
+        $this->isFirstRecurring = $value;
+
+        return $this;
+    }
+
+    public function setIsRecurring(bool $value): static
+    {
+        $this->isRecurring = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionUntilDate(int $value): static
+    {
+        $this->subscriptionUntilDate = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

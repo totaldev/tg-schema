@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class LogOut extends TdFunction
 {
-    public const TYPE_NAME = 'logOut';
+    public const string TYPE_NAME = 'logOut';
 
     public function __construct() {}
 

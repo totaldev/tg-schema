@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Link;
  */
 class LinkPreviewTypeShareableChatFolder extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeShareableChatFolder';
+    public const string TYPE_NAME = 'linkPreviewTypeShareableChatFolder';
 
     public function __construct()
     {

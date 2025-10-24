@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reset;
  */
 class ResetPasswordResultOk extends ResetPasswordResult
 {
-    public const TYPE_NAME = 'resetPasswordResultOk';
+    public const string TYPE_NAME = 'resetPasswordResultOk';
 
     public function __construct()
     {

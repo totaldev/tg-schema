@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionUploadingVideo extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionUploadingVideo';
+    public const string TYPE_NAME = 'chatActionUploadingVideo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatActionUploadingVideo extends ChatAction
     public function getProgress(): int
     {
         return $this->progress;
+    }
+
+    public function setProgress(int $value): static
+    {
+        $this->progress = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

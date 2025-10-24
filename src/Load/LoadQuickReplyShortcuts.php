@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class LoadQuickReplyShortcuts extends TdFunction
 {
-    public const TYPE_NAME = 'loadQuickReplyShortcuts';
+    public const string TYPE_NAME = 'loadQuickReplyShortcuts';
 
     public function __construct() {}
 

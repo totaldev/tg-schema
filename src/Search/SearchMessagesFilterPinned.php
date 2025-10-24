@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Search;
  */
 class SearchMessagesFilterPinned extends SearchMessagesFilter
 {
-    public const TYPE_NAME = 'searchMessagesFilterPinned';
+    public const string TYPE_NAME = 'searchMessagesFilterPinned';
 
     public function __construct()
     {

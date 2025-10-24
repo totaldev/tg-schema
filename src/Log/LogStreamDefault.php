@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Log;
  */
 class LogStreamDefault extends LogStream
 {
-    public const TYPE_NAME = 'logStreamDefault';
+    public const string TYPE_NAME = 'logStreamDefault';
 
     public function __construct()
     {

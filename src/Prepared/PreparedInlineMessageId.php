@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PreparedInlineMessageId extends TdObject
 {
-    public const TYPE_NAME = 'preparedInlineMessageId';
+    public const string TYPE_NAME = 'preparedInlineMessageId';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PreparedInlineMessageId extends TdObject
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

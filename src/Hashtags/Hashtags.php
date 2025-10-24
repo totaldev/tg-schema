@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Hashtags extends TdObject
 {
-    public const TYPE_NAME = 'hashtags';
+    public const string TYPE_NAME = 'hashtags';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class Hashtags extends TdObject
     public function getHashtags(): array
     {
         return $this->hashtags;
+    }
+
+    public function setHashtags(array $value): static
+    {
+        $this->hashtags = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

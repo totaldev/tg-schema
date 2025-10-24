@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputChatPhoto extends TdObject
 {
-    public const TYPE_NAME = 'InputChatPhoto';
+    public const string TYPE_NAME = 'InputChatPhoto';
 
     public function __construct() {}
 

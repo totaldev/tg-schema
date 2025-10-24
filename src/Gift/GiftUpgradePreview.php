@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftSymbol;
  */
 class GiftUpgradePreview extends TdObject
 {
-    public const TYPE_NAME = 'giftUpgradePreview';
+    public const string TYPE_NAME = 'giftUpgradePreview';
 
     public function __construct(
         /**
@@ -86,6 +86,41 @@ class GiftUpgradePreview extends TdObject
     public function getSymbols(): array
     {
         return $this->symbols;
+    }
+
+    public function setBackdrops(array $value): static
+    {
+        $this->backdrops = $value;
+
+        return $this;
+    }
+
+    public function setModels(array $value): static
+    {
+        $this->models = $value;
+
+        return $this;
+    }
+
+    public function setNextPrices(array $value): static
+    {
+        $this->nextPrices = $value;
+
+        return $this;
+    }
+
+    public function setPrices(array $value): static
+    {
+        $this->prices = $value;
+
+        return $this;
+    }
+
+    public function setSymbols(array $value): static
+    {
+        $this->symbols = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteBusinessChatLink extends TdFunction
 {
-    public const TYPE_NAME = 'deleteBusinessChatLink';
+    public const string TYPE_NAME = 'deleteBusinessChatLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeleteBusinessChatLink extends TdFunction
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

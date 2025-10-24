@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventInviteLinkDeleted extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventInviteLinkDeleted';
+    public const string TYPE_NAME = 'chatEventInviteLinkDeleted';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class ChatEventInviteLinkDeleted extends ChatEventAction
     public function getInviteLink(): ChatInviteLink
     {
         return $this->inviteLink;
+    }
+
+    public function setInviteLink(ChatInviteLink $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetGroupCallParticipantIsSpeaking extends TdFunction
 {
-    public const TYPE_NAME = 'setGroupCallParticipantIsSpeaking';
+    public const string TYPE_NAME = 'setGroupCallParticipantIsSpeaking';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetGroupCallParticipantIsSpeaking extends TdFunction
     public function getIsSpeaking(): bool
     {
         return $this->isSpeaking;
+    }
+
+    public function setAudioSource(int $value): static
+    {
+        $this->audioSource = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsSpeaking(bool $value): static
+    {
+        $this->isSpeaking = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

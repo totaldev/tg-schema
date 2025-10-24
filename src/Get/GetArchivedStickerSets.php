@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetArchivedStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'getArchivedStickerSets';
+    public const string TYPE_NAME = 'getArchivedStickerSets';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetArchivedStickerSets extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetStickerSetId(int $value): static
+    {
+        $this->offsetStickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

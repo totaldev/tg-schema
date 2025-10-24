@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedOrderInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedOrderInfo';
+    public const string TYPE_NAME = 'getSavedOrderInfo';
 
     public function __construct() {}
 

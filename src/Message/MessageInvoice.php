@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageInvoice extends MessageContent
 {
-    public const TYPE_NAME = 'messageInvoice';
+    public const string TYPE_NAME = 'messageInvoice';
 
     public function __construct(
         /**
@@ -117,6 +117,69 @@ class MessageInvoice extends MessageContent
     public function getTotalAmount(): int
     {
         return $this->totalAmount;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsTest(bool $value): static
+    {
+        $this->isTest = $value;
+
+        return $this;
+    }
+
+    public function setNeedShippingAddress(bool $value): static
+    {
+        $this->needShippingAddress = $value;
+
+        return $this;
+    }
+
+    public function setPaidMedia(?PaidMedia $value): static
+    {
+        $this->paidMedia = $value;
+
+        return $this;
+    }
+
+    public function setPaidMediaCaption(?FormattedText $value): static
+    {
+        $this->paidMediaCaption = $value;
+
+        return $this;
+    }
+
+    public function setProductInfo(ProductInfo $value): static
+    {
+        $this->productInfo = $value;
+
+        return $this;
+    }
+
+    public function setReceiptMessageId(int $value): static
+    {
+        $this->receiptMessageId = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
+    }
+
+    public function setTotalAmount(int $value): static
+    {
+        $this->totalAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

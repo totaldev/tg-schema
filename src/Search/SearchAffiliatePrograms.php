@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchAffiliatePrograms extends TdFunction
 {
-    public const TYPE_NAME = 'searchAffiliatePrograms';
+    public const string TYPE_NAME = 'searchAffiliatePrograms';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class SearchAffiliatePrograms extends TdFunction
     public function getSortOrder(): AffiliateProgramSortOrder
     {
         return $this->sortOrder;
+    }
+
+    public function setAffiliate(AffiliateType $value): static
+    {
+        $this->affiliate = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setSortOrder(AffiliateProgramSortOrder $value): static
+    {
+        $this->sortOrder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CloseStory extends TdFunction
 {
-    public const TYPE_NAME = 'closeStory';
+    public const string TYPE_NAME = 'closeStory';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class CloseStory extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

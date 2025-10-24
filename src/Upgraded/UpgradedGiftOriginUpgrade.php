@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin
 {
-    public const TYPE_NAME = 'upgradedGiftOriginUpgrade';
+    public const string TYPE_NAME = 'upgradedGiftOriginUpgrade';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpgradedGiftOriginUpgrade extends UpgradedGiftOrigin
     public function getGiftMessageId(): int
     {
         return $this->giftMessageId;
+    }
+
+    public function setGiftMessageId(int $value): static
+    {
+        $this->giftMessageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputStoryContentPhoto extends InputStoryContent
 {
-    public const TYPE_NAME = 'inputStoryContentPhoto';
+    public const string TYPE_NAME = 'inputStoryContentPhoto';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class InputStoryContentPhoto extends InputStoryContent
     public function getPhoto(): InputFile
     {
         return $this->photo;
+    }
+
+    public function setAddedStickerFileIds(array $value): static
+    {
+        $this->addedStickerFileIds = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(InputFile $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

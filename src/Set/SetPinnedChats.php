@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetPinnedChats extends TdFunction
 {
-    public const TYPE_NAME = 'setPinnedChats';
+    public const string TYPE_NAME = 'setPinnedChats';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class SetPinnedChats extends TdFunction
     public function getChatList(): ChatList
     {
         return $this->chatList;
+    }
+
+    public function setChatIds(array $value): static
+    {
+        $this->chatIds = $value;
+
+        return $this;
+    }
+
+    public function setChatList(ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

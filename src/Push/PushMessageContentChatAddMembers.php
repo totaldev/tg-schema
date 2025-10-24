@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatAddMembers extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatAddMembers';
+    public const string TYPE_NAME = 'pushMessageContentChatAddMembers';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class PushMessageContentChatAddMembers extends PushMessageContent
     public function getMemberName(): string
     {
         return $this->memberName;
+    }
+
+    public function setIsCurrentUser(bool $value): static
+    {
+        $this->isCurrentUser = $value;
+
+        return $this;
+    }
+
+    public function setIsReturned(bool $value): static
+    {
+        $this->isReturned = $value;
+
+        return $this;
+    }
+
+    public function setMemberName(string $value): static
+    {
+        $this->memberName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputBackground extends TdObject
 {
-    public const TYPE_NAME = 'InputBackground';
+    public const string TYPE_NAME = 'InputBackground';
 
     public function __construct() {}
 

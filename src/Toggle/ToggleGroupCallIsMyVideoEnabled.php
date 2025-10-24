@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGroupCallIsMyVideoEnabled extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallIsMyVideoEnabled';
+    public const string TYPE_NAME = 'toggleGroupCallIsMyVideoEnabled';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGroupCallIsMyVideoEnabled extends TdFunction
     public function getIsMyVideoEnabled(): bool
     {
         return $this->isMyVideoEnabled;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsMyVideoEnabled(bool $value): static
+    {
+        $this->isMyVideoEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Public;
  */
 class PublicChatTypeIsLocationBased extends PublicChatType
 {
-    public const TYPE_NAME = 'publicChatTypeIsLocationBased';
+    public const string TYPE_NAME = 'publicChatTypeIsLocationBased';
 
     public function __construct()
     {

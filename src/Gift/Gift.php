@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Gift extends TdObject
 {
-    public const TYPE_NAME = 'gift';
+    public const string TYPE_NAME = 'gift';
 
     public function __construct(
         /**
@@ -164,6 +164,104 @@ class Gift extends TdObject
     public function getUserLimits(): ?GiftPurchaseLimits
     {
         return $this->userLimits;
+    }
+
+    public function setDefaultSellStarCount(int $value): static
+    {
+        $this->defaultSellStarCount = $value;
+
+        return $this;
+    }
+
+    public function setFirstSendDate(int $value): static
+    {
+        $this->firstSendDate = $value;
+
+        return $this;
+    }
+
+    public function setHasColors(bool $value): static
+    {
+        $this->hasColors = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsForBirthday(bool $value): static
+    {
+        $this->isForBirthday = $value;
+
+        return $this;
+    }
+
+    public function setIsPremium(bool $value): static
+    {
+        $this->isPremium = $value;
+
+        return $this;
+    }
+
+    public function setLastSendDate(int $value): static
+    {
+        $this->lastSendDate = $value;
+
+        return $this;
+    }
+
+    public function setNextSendDate(int $value): static
+    {
+        $this->nextSendDate = $value;
+
+        return $this;
+    }
+
+    public function setOverallLimits(?GiftPurchaseLimits $value): static
+    {
+        $this->overallLimits = $value;
+
+        return $this;
+    }
+
+    public function setPublisherChatId(int $value): static
+    {
+        $this->publisherChatId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
+    }
+
+    public function setUpgradeStarCount(int $value): static
+    {
+        $this->upgradeStarCount = $value;
+
+        return $this;
+    }
+
+    public function setUserLimits(?GiftPurchaseLimits $value): static
+    {
+        $this->userLimits = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

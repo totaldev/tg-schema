@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DiscardCall extends TdFunction
 {
-    public const TYPE_NAME = 'discardCall';
+    public const string TYPE_NAME = 'discardCall';
 
     public function __construct(
         /**
@@ -82,6 +82,48 @@ class DiscardCall extends TdFunction
     public function getIsVideo(): bool
     {
         return $this->isVideo;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setConnectionId(int $value): static
+    {
+        $this->connectionId = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setIsDisconnected(bool $value): static
+    {
+        $this->isDisconnected = $value;
+
+        return $this;
+    }
+
+    public function setIsVideo(bool $value): static
+    {
+        $this->isVideo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

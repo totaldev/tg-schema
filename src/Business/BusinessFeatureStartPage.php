@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureStartPage extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureStartPage';
+    public const string TYPE_NAME = 'businessFeatureStartPage';
 
     public function __construct()
     {

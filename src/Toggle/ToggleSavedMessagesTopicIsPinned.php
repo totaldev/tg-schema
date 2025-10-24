@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSavedMessagesTopicIsPinned extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSavedMessagesTopicIsPinned';
+    public const string TYPE_NAME = 'toggleSavedMessagesTopicIsPinned';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleSavedMessagesTopicIsPinned extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchOutgoingDocumentMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchOutgoingDocumentMessages';
+    public const string TYPE_NAME = 'searchOutgoingDocumentMessages';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchOutgoingDocumentMessages extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

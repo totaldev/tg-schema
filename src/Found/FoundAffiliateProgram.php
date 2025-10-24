@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class FoundAffiliateProgram extends TdObject
 {
-    public const TYPE_NAME = 'foundAffiliateProgram';
+    public const string TYPE_NAME = 'foundAffiliateProgram';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class FoundAffiliateProgram extends TdObject
     public function getInfo(): AffiliateProgramInfo
     {
         return $this->info;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setInfo(AffiliateProgramInfo $value): static
+    {
+        $this->info = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

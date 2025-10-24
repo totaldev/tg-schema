@@ -17,7 +17,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class StoryVideo extends TdObject
 {
-    public const TYPE_NAME = 'storyVideo';
+    public const string TYPE_NAME = 'storyVideo';
 
     public function __construct(
         /**
@@ -126,6 +126,76 @@ class StoryVideo extends TdObject
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function setCoverFrameTimestamp(float $value): static
+    {
+        $this->coverFrameTimestamp = $value;
+
+        return $this;
+    }
+
+    public function setDuration(float $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setHasStickers(bool $value): static
+    {
+        $this->hasStickers = $value;
+
+        return $this;
+    }
+
+    public function setHeight(int $value): static
+    {
+        $this->height = $value;
+
+        return $this;
+    }
+
+    public function setIsAnimation(bool $value): static
+    {
+        $this->isAnimation = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setPreloadPrefixSize(int $value): static
+    {
+        $this->preloadPrefixSize = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setVideo(File $value): static
+    {
+        $this->video = $value;
+
+        return $this;
+    }
+
+    public function setWidth(int $value): static
+    {
+        $this->width = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

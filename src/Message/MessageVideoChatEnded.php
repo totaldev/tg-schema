@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageVideoChatEnded extends MessageContent
 {
-    public const TYPE_NAME = 'messageVideoChatEnded';
+    public const string TYPE_NAME = 'messageVideoChatEnded';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageVideoChatEnded extends MessageContent
     public function getDuration(): int
     {
         return $this->duration;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

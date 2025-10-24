@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputChatPhotoPrevious extends InputChatPhoto
 {
-    public const TYPE_NAME = 'inputChatPhotoPrevious';
+    public const string TYPE_NAME = 'inputChatPhotoPrevious';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputChatPhotoPrevious extends InputChatPhoto
     public function getChatPhotoId(): int
     {
         return $this->chatPhotoId;
+    }
+
+    public function setChatPhotoId(int $value): static
+    {
+        $this->chatPhotoId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSourceForumTopicHistory extends MessageSource
 {
-    public const TYPE_NAME = 'messageSourceForumTopicHistory';
+    public const string TYPE_NAME = 'messageSourceForumTopicHistory';
 
     public function __construct()
     {

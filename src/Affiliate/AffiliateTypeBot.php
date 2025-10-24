@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Affiliate;
  */
 class AffiliateTypeBot extends AffiliateType
 {
-    public const TYPE_NAME = 'affiliateTypeBot';
+    public const string TYPE_NAME = 'affiliateTypeBot';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AffiliateTypeBot extends AffiliateType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

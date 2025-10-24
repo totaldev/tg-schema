@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeBold extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeBold';
+    public const string TYPE_NAME = 'textEntityTypeBold';
 
     public function __construct()
     {

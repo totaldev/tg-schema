@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetChatPermissions extends TdFunction
 {
-    public const TYPE_NAME = 'setChatPermissions';
+    public const string TYPE_NAME = 'setChatPermissions';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class SetChatPermissions extends TdFunction
     public function getPermissions(): ChatPermissions
     {
         return $this->permissions;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPermissions(ChatPermissions $value): static
+    {
+        $this->permissions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageAnimatedEmoji extends MessageContent
 {
-    public const TYPE_NAME = 'messageAnimatedEmoji';
+    public const string TYPE_NAME = 'messageAnimatedEmoji';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessageAnimatedEmoji extends MessageContent
     public function getEmoji(): string
     {
         return $this->emoji;
+    }
+
+    public function setAnimatedEmoji(AnimatedEmoji $value): static
+    {
+        $this->animatedEmoji = $value;
+
+        return $this;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

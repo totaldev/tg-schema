@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetInlineGameHighScores extends TdFunction
 {
-    public const TYPE_NAME = 'getInlineGameHighScores';
+    public const string TYPE_NAME = 'getInlineGameHighScores';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetInlineGameHighScores extends TdFunction
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

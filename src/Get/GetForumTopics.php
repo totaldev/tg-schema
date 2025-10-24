@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetForumTopics extends TdFunction
 {
-    public const TYPE_NAME = 'getForumTopics';
+    public const string TYPE_NAME = 'getForumTopics';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class GetForumTopics extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffsetDate(int $value): static
+    {
+        $this->offsetDate = $value;
+
+        return $this;
+    }
+
+    public function setOffsetForumTopicId(int $value): static
+    {
+        $this->offsetForumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setOffsetMessageId(int $value): static
+    {
+        $this->offsetMessageId = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

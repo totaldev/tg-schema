@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatFolderInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatFolderInfo';
+    public const string TYPE_NAME = 'chatFolderInfo';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class ChatFolderInfo extends TdObject
     public function getName(): ChatFolderName
     {
         return $this->name;
+    }
+
+    public function setColorId(int $value): static
+    {
+        $this->colorId = $value;
+
+        return $this;
+    }
+
+    public function setHasMyInviteLinks(bool $value): static
+    {
+        $this->hasMyInviteLinks = $value;
+
+        return $this;
+    }
+
+    public function setIcon(ChatFolderIcon $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsShareable(bool $value): static
+    {
+        $this->isShareable = $value;
+
+        return $this;
+    }
+
+    public function setName(ChatFolderName $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

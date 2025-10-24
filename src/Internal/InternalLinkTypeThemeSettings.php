@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeThemeSettings extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeThemeSettings';
+    public const string TYPE_NAME = 'internalLinkTypeThemeSettings';
 
     public function __construct()
     {

@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BasicGroupFullInfo extends TdObject
 {
-    public const TYPE_NAME = 'basicGroupFullInfo';
+    public const string TYPE_NAME = 'basicGroupFullInfo';
 
     public function __construct(
         /**
@@ -111,6 +111,62 @@ class BasicGroupFullInfo extends TdObject
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setBotCommands(array $value): static
+    {
+        $this->botCommands = $value;
+
+        return $this;
+    }
+
+    public function setCanHideMembers(bool $value): static
+    {
+        $this->canHideMembers = $value;
+
+        return $this;
+    }
+
+    public function setCanToggleAggressiveAntiSpam(bool $value): static
+    {
+        $this->canToggleAggressiveAntiSpam = $value;
+
+        return $this;
+    }
+
+    public function setCreatorUserId(int $value): static
+    {
+        $this->creatorUserId = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(?ChatInviteLink $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setMembers(array $value): static
+    {
+        $this->members = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

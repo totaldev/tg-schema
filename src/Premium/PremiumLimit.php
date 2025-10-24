@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumLimit extends TdObject
 {
-    public const TYPE_NAME = 'premiumLimit';
+    public const string TYPE_NAME = 'premiumLimit';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class PremiumLimit extends TdObject
     public function getType(): PremiumLimitType
     {
         return $this->type;
+    }
+
+    public function setDefaultValue(int $value): static
+    {
+        $this->defaultValue = $value;
+
+        return $this;
+    }
+
+    public function setPremiumValue(int $value): static
+    {
+        $this->premiumValue = $value;
+
+        return $this;
+    }
+
+    public function setType(PremiumLimitType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingShowPhoneNumber extends UserPrivacySetting
 {
-    public const TYPE_NAME = 'userPrivacySettingShowPhoneNumber';
+    public const string TYPE_NAME = 'userPrivacySettingShowPhoneNumber';
 
     public function __construct()
     {

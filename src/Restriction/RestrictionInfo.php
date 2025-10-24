@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RestrictionInfo extends TdObject
 {
-    public const TYPE_NAME = 'restrictionInfo';
+    public const string TYPE_NAME = 'restrictionInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RestrictionInfo extends TdObject
     public function getRestrictionReason(): string
     {
         return $this->restrictionReason;
+    }
+
+    public function setHasSensitiveContent(bool $value): static
+    {
+        $this->hasSensitiveContent = $value;
+
+        return $this;
+    }
+
+    public function setRestrictionReason(string $value): static
+    {
+        $this->restrictionReason = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

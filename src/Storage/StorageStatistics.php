@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StorageStatistics extends TdObject
 {
-    public const TYPE_NAME = 'storageStatistics';
+    public const string TYPE_NAME = 'storageStatistics';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class StorageStatistics extends TdObject
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function setByChat(array $value): static
+    {
+        $this->byChat = $value;
+
+        return $this;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
+    }
+
+    public function setSize(int $value): static
+    {
+        $this->size = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendGift extends TdFunction
 {
-    public const TYPE_NAME = 'sendGift';
+    public const string TYPE_NAME = 'sendGift';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class SendGift extends TdFunction
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setGiftId(int $value): static
+    {
+        $this->giftId = $value;
+
+        return $this;
+    }
+
+    public function setIsPrivate(bool $value): static
+    {
+        $this->isPrivate = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setPayForUpgrade(bool $value): static
+    {
+        $this->payForUpgrade = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

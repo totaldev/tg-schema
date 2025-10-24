@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Collectible;
  */
 class CollectibleItemTypeUsername extends CollectibleItemType
 {
-    public const TYPE_NAME = 'collectibleItemTypeUsername';
+    public const string TYPE_NAME = 'collectibleItemTypeUsername';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CollectibleItemTypeUsername extends CollectibleItemType
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

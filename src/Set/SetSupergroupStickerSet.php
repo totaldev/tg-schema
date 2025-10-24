@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetSupergroupStickerSet extends TdFunction
 {
-    public const TYPE_NAME = 'setSupergroupStickerSet';
+    public const string TYPE_NAME = 'setSupergroupStickerSet';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetSupergroupStickerSet extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setStickerSetId(int $value): static
+    {
+        $this->stickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

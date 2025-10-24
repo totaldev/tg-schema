@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetReadDatePrivacySettings extends TdFunction
 {
-    public const TYPE_NAME = 'getReadDatePrivacySettings';
+    public const string TYPE_NAME = 'getReadDatePrivacySettings';
 
     public function __construct() {}
 

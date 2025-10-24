@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeSupergroupBoost extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeSupergroupBoost';
+    public const string TYPE_NAME = 'linkPreviewTypeSupergroupBoost';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeSupergroupBoost extends LinkPreviewType
     public function getPhoto(): ?ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setPhoto(?ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ReplyMarkupShowKeyboard extends ReplyMarkup
 {
-    public const TYPE_NAME = 'replyMarkupShowKeyboard';
+    public const string TYPE_NAME = 'replyMarkupShowKeyboard';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class ReplyMarkupShowKeyboard extends ReplyMarkup
     public function getRows(): array
     {
         return $this->rows;
+    }
+
+    public function setInputFieldPlaceholder(string $value): static
+    {
+        $this->inputFieldPlaceholder = $value;
+
+        return $this;
+    }
+
+    public function setIsPersistent(bool $value): static
+    {
+        $this->isPersistent = $value;
+
+        return $this;
+    }
+
+    public function setIsPersonal(bool $value): static
+    {
+        $this->isPersonal = $value;
+
+        return $this;
+    }
+
+    public function setOneTime(bool $value): static
+    {
+        $this->oneTime = $value;
+
+        return $this;
+    }
+
+    public function setResizeKeyboard(bool $value): static
+    {
+        $this->resizeKeyboard = $value;
+
+        return $this;
+    }
+
+    public function setRows(array $value): static
+    {
+        $this->rows = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

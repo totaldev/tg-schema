@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatPhotoStickerType extends TdObject
 {
-    public const TYPE_NAME = 'ChatPhotoStickerType';
+    public const string TYPE_NAME = 'ChatPhotoStickerType';
 
     public function __construct() {}
 

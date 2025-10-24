@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class DeviceToken extends TdObject
 {
-    public const TYPE_NAME = 'DeviceToken';
+    public const string TYPE_NAME = 'DeviceToken';
 
     public function __construct() {}
 

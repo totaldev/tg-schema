@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessagePositions extends TdObject
 {
-    public const TYPE_NAME = 'messagePositions';
+    public const string TYPE_NAME = 'messagePositions';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class MessagePositions extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setPositions(array $value): static
+    {
+        $this->positions = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageVoiceNote extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageVoiceNote';
+    public const string TYPE_NAME = 'inputMessageVoiceNote';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class InputMessageVoiceNote extends InputMessageContent
     public function getWaveform(): string
     {
         return $this->waveform;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setSelfDestructType(?MessageSelfDestructType $value): static
+    {
+        $this->selfDestructType = $value;
+
+        return $this;
+    }
+
+    public function setVoiceNote(InputFile $value): static
+    {
+        $this->voiceNote = $value;
+
+        return $this;
+    }
+
+    public function setWaveform(string $value): static
+    {
+        $this->waveform = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

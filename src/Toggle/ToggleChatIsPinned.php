@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ToggleChatIsPinned extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatIsPinned';
+    public const string TYPE_NAME = 'toggleChatIsPinned';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class ToggleChatIsPinned extends TdFunction
     public function getIsPinned(): bool
     {
         return $this->isPinned;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setChatList(ChatList $value): static
+    {
+        $this->chatList = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

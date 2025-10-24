@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageExpiredVoiceNote extends MessageContent
 {
-    public const TYPE_NAME = 'messageExpiredVoiceNote';
+    public const string TYPE_NAME = 'messageExpiredVoiceNote';
 
     public function __construct()
     {

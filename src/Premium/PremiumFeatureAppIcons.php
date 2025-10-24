@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureAppIcons extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureAppIcons';
+    public const string TYPE_NAME = 'premiumFeatureAppIcons';
 
     public function __construct()
     {

@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class WebPageInstantView extends TdObject
 {
-    public const TYPE_NAME = 'webPageInstantView';
+    public const string TYPE_NAME = 'webPageInstantView';
 
     public function __construct(
         /**
@@ -87,6 +87,48 @@ class WebPageInstantView extends TdObject
     public function getViewCount(): int
     {
         return $this->viewCount;
+    }
+
+    public function setFeedbackLink(InternalLinkType $value): static
+    {
+        $this->feedbackLink = $value;
+
+        return $this;
+    }
+
+    public function setIsFull(bool $value): static
+    {
+        $this->isFull = $value;
+
+        return $this;
+    }
+
+    public function setIsRtl(bool $value): static
+    {
+        $this->isRtl = $value;
+
+        return $this;
+    }
+
+    public function setPageBlocks(array $value): static
+    {
+        $this->pageBlocks = $value;
+
+        return $this;
+    }
+
+    public function setVersion(int $value): static
+    {
+        $this->version = $value;
+
+        return $this;
+    }
+
+    public function setViewCount(int $value): static
+    {
+        $this->viewCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

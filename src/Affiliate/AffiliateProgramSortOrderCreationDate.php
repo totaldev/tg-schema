@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Affiliate;
  */
 class AffiliateProgramSortOrderCreationDate extends AffiliateProgramSortOrder
 {
-    public const TYPE_NAME = 'affiliateProgramSortOrderCreationDate';
+    public const string TYPE_NAME = 'affiliateProgramSortOrderCreationDate';
 
     public function __construct()
     {

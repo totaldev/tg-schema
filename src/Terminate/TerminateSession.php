@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class TerminateSession extends TdFunction
 {
-    public const TYPE_NAME = 'terminateSession';
+    public const string TYPE_NAME = 'terminateSession';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class TerminateSession extends TdFunction
     public function getSessionId(): int
     {
         return $this->sessionId;
+    }
+
+    public function setSessionId(int $value): static
+    {
+        $this->sessionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

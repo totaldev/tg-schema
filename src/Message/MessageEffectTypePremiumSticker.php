@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageEffectTypePremiumSticker extends MessageEffectType
 {
-    public const TYPE_NAME = 'messageEffectTypePremiumSticker';
+    public const string TYPE_NAME = 'messageEffectTypePremiumSticker';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageEffectTypePremiumSticker extends MessageEffectType
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

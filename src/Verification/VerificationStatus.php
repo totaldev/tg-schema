@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class VerificationStatus extends TdObject
 {
-    public const TYPE_NAME = 'verificationStatus';
+    public const string TYPE_NAME = 'verificationStatus';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class VerificationStatus extends TdObject
     public function getIsVerified(): bool
     {
         return $this->isVerified;
+    }
+
+    public function setBotVerificationIconCustomEmojiId(int $value): static
+    {
+        $this->botVerificationIconCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setIsFake(bool $value): static
+    {
+        $this->isFake = $value;
+
+        return $this;
+    }
+
+    public function setIsScam(bool $value): static
+    {
+        $this->isScam = $value;
+
+        return $this;
+    }
+
+    public function setIsVerified(bool $value): static
+    {
+        $this->isVerified = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

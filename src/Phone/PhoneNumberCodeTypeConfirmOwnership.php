@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Phone;
  */
 class PhoneNumberCodeTypeConfirmOwnership extends PhoneNumberCodeType
 {
-    public const TYPE_NAME = 'phoneNumberCodeTypeConfirmOwnership';
+    public const string TYPE_NAME = 'phoneNumberCodeTypeConfirmOwnership';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PhoneNumberCodeTypeConfirmOwnership extends PhoneNumberCodeType
     public function getHash(): string
     {
         return $this->hash;
+    }
+
+    public function setHash(string $value): static
+    {
+        $this->hash = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

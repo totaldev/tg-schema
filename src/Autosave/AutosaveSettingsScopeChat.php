@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Autosave;
  */
 class AutosaveSettingsScopeChat extends AutosaveSettingsScope
 {
-    public const TYPE_NAME = 'autosaveSettingsScopeChat';
+    public const string TYPE_NAME = 'autosaveSettingsScopeChat';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class AutosaveSettingsScopeChat extends AutosaveSettingsScope
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

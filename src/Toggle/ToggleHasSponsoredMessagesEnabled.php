@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleHasSponsoredMessagesEnabled extends TdFunction
 {
-    public const TYPE_NAME = 'toggleHasSponsoredMessagesEnabled';
+    public const string TYPE_NAME = 'toggleHasSponsoredMessagesEnabled';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ToggleHasSponsoredMessagesEnabled extends TdFunction
     public function getHasSponsoredMessagesEnabled(): bool
     {
         return $this->hasSponsoredMessagesEnabled;
+    }
+
+    public function setHasSponsoredMessagesEnabled(bool $value): static
+    {
+        $this->hasSponsoredMessagesEnabled = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

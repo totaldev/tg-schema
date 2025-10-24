@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageFactCheck extends Update
 {
-    public const TYPE_NAME = 'updateMessageFactCheck';
+    public const string TYPE_NAME = 'updateMessageFactCheck';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UpdateMessageFactCheck extends Update
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFactCheck(FactCheck $value): static
+    {
+        $this->factCheck = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

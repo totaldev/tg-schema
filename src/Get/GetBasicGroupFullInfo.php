@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetBasicGroupFullInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getBasicGroupFullInfo';
+    public const string TYPE_NAME = 'getBasicGroupFullInfo';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetBasicGroupFullInfo extends TdFunction
     public function getBasicGroupId(): int
     {
         return $this->basicGroupId;
+    }
+
+    public function setBasicGroupId(int $value): static
+    {
+        $this->basicGroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

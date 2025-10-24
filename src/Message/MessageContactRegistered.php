@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageContactRegistered extends MessageContent
 {
-    public const TYPE_NAME = 'messageContactRegistered';
+    public const string TYPE_NAME = 'messageContactRegistered';
 
     public function __construct()
     {

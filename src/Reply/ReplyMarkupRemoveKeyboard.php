@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Reply;
  */
 class ReplyMarkupRemoveKeyboard extends ReplyMarkup
 {
-    public const TYPE_NAME = 'replyMarkupRemoveKeyboard';
+    public const string TYPE_NAME = 'replyMarkupRemoveKeyboard';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class ReplyMarkupRemoveKeyboard extends ReplyMarkup
     public function getIsPersonal(): bool
     {
         return $this->isPersonal;
+    }
+
+    public function setIsPersonal(bool $value): static
+    {
+        $this->isPersonal = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

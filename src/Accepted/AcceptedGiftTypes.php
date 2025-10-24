@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AcceptedGiftTypes extends TdObject
 {
-    public const TYPE_NAME = 'acceptedGiftTypes';
+    public const string TYPE_NAME = 'acceptedGiftTypes';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class AcceptedGiftTypes extends TdObject
     public function getUpgradedGifts(): bool
     {
         return $this->upgradedGifts;
+    }
+
+    public function setLimitedGifts(bool $value): static
+    {
+        $this->limitedGifts = $value;
+
+        return $this;
+    }
+
+    public function setPremiumSubscription(bool $value): static
+    {
+        $this->premiumSubscription = $value;
+
+        return $this;
+    }
+
+    public function setUnlimitedGifts(bool $value): static
+    {
+        $this->unlimitedGifts = $value;
+
+        return $this;
+    }
+
+    public function setUpgradedGifts(bool $value): static
+    {
+        $this->upgradedGifts = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authorization;
  */
 class AuthorizationStateWaitTdlibParameters extends AuthorizationState
 {
-    public const TYPE_NAME = 'authorizationStateWaitTdlibParameters';
+    public const string TYPE_NAME = 'authorizationStateWaitTdlibParameters';
 
     public function __construct()
     {

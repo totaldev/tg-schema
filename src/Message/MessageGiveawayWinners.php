@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGiveawayWinners extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiveawayWinners';
+    public const string TYPE_NAME = 'messageGiveawayWinners';
 
     public function __construct(
         /**
@@ -137,6 +137,83 @@ class MessageGiveawayWinners extends MessageContent
     public function getWinnerUserIds(): array
     {
         return $this->winnerUserIds;
+    }
+
+    public function setActualWinnersSelectionDate(int $value): static
+    {
+        $this->actualWinnersSelectionDate = $value;
+
+        return $this;
+    }
+
+    public function setAdditionalChatCount(int $value): static
+    {
+        $this->additionalChatCount = $value;
+
+        return $this;
+    }
+
+    public function setBoostedChatId(int $value): static
+    {
+        $this->boostedChatId = $value;
+
+        return $this;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
+    }
+
+    public function setOnlyNewMembers(bool $value): static
+    {
+        $this->onlyNewMembers = $value;
+
+        return $this;
+    }
+
+    public function setPrize(GiveawayPrize $value): static
+    {
+        $this->prize = $value;
+
+        return $this;
+    }
+
+    public function setPrizeDescription(string $value): static
+    {
+        $this->prizeDescription = $value;
+
+        return $this;
+    }
+
+    public function setUnclaimedPrizeCount(int $value): static
+    {
+        $this->unclaimedPrizeCount = $value;
+
+        return $this;
+    }
+
+    public function setWasRefunded(bool $value): static
+    {
+        $this->wasRefunded = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
+    }
+
+    public function setWinnerUserIds(array $value): static
+    {
+        $this->winnerUserIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

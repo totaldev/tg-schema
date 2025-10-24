@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Invite;
  */
 class InviteGroupCallParticipantResultUserWasBanned extends InviteGroupCallParticipantResult
 {
-    public const TYPE_NAME = 'inviteGroupCallParticipantResultUserWasBanned';
+    public const string TYPE_NAME = 'inviteGroupCallParticipantResultUserWasBanned';
 
     public function __construct()
     {

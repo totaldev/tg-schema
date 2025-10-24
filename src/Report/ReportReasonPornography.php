@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonPornography extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonPornography';
+    public const string TYPE_NAME = 'reportReasonPornography';
 
     public function __construct()
     {

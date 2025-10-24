@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Connection;
  */
 class ConnectionStateReady extends ConnectionState
 {
-    public const TYPE_NAME = 'connectionStateReady';
+    public const string TYPE_NAME = 'connectionStateReady';
 
     public function __construct()
     {

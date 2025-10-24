@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GroupCallParticipants extends TdObject
 {
-    public const TYPE_NAME = 'groupCallParticipants';
+    public const string TYPE_NAME = 'groupCallParticipants';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class GroupCallParticipants extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setParticipantIds(array $value): static
+    {
+        $this->participantIds = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

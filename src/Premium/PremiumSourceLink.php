@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumSourceLink extends PremiumSource
 {
-    public const TYPE_NAME = 'premiumSourceLink';
+    public const string TYPE_NAME = 'premiumSourceLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PremiumSourceLink extends PremiumSource
     public function getReferrer(): string
     {
         return $this->referrer;
+    }
+
+    public function setReferrer(string $value): static
+    {
+        $this->referrer = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

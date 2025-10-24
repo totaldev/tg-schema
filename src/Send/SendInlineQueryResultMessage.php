@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendInlineQueryResultMessage extends TdFunction
 {
-    public const TYPE_NAME = 'sendInlineQueryResultMessage';
+    public const string TYPE_NAME = 'sendInlineQueryResultMessage';
 
     public function __construct(
         /**
@@ -96,6 +96,55 @@ class SendInlineQueryResultMessage extends TdFunction
     public function getTopicId(): ?MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setHideViaBot(bool $value): static
+    {
+        $this->hideViaBot = $value;
+
+        return $this;
+    }
+
+    public function setOptions(?MessageSendOptions $value): static
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    public function setQueryId(int $value): static
+    {
+        $this->queryId = $value;
+
+        return $this;
+    }
+
+    public function setReplyTo(?InputMessageReplyTo $value): static
+    {
+        $this->replyTo = $value;
+
+        return $this;
+    }
+
+    public function setResultId(string $value): static
+    {
+        $this->resultId = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(?MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

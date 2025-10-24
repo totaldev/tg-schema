@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeBackground extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeBackground';
+    public const string TYPE_NAME = 'internalLinkTypeBackground';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class InternalLinkTypeBackground extends InternalLinkType
     public function getBackgroundName(): string
     {
         return $this->backgroundName;
+    }
+
+    public function setBackgroundName(string $value): static
+    {
+        $this->backgroundName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

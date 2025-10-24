@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputPaidMediaType extends TdObject
 {
-    public const TYPE_NAME = 'InputPaidMediaType';
+    public const string TYPE_NAME = 'InputPaidMediaType';
 
     public function __construct() {}
 

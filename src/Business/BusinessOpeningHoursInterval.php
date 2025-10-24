@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BusinessOpeningHoursInterval extends TdObject
 {
-    public const TYPE_NAME = 'businessOpeningHoursInterval';
+    public const string TYPE_NAME = 'businessOpeningHoursInterval';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class BusinessOpeningHoursInterval extends TdObject
     public function getStartMinute(): int
     {
         return $this->startMinute;
+    }
+
+    public function setEndMinute(int $value): static
+    {
+        $this->endMinute = $value;
+
+        return $this;
+    }
+
+    public function setStartMinute(int $value): static
+    {
+        $this->startMinute = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

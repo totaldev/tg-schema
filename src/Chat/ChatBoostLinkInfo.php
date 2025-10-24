@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ChatBoostLinkInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatBoostLinkInfo';
+    public const string TYPE_NAME = 'chatBoostLinkInfo';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatBoostLinkInfo extends TdObject
     public function getIsPublic(): bool
     {
         return $this->isPublic;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsPublic(bool $value): static
+    {
+        $this->isPublic = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

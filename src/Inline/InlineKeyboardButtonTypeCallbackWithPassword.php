@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Inline;
  */
 class InlineKeyboardButtonTypeCallbackWithPassword extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeCallbackWithPassword';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeCallbackWithPassword';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InlineKeyboardButtonTypeCallbackWithPassword extends InlineKeyboardButtonT
     public function getData(): string
     {
         return $this->data;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

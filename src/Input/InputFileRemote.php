@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputFileRemote extends InputFile
 {
-    public const TYPE_NAME = 'inputFileRemote';
+    public const string TYPE_NAME = 'inputFileRemote';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class InputFileRemote extends InputFile
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

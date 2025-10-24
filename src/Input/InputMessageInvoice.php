@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessageInvoice extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessageInvoice';
+    public const string TYPE_NAME = 'inputMessageInvoice';
 
     public function __construct(
         /**
@@ -156,6 +156,97 @@ class InputMessageInvoice extends InputMessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setInvoice(Invoice $value): static
+    {
+        $this->invoice = $value;
+
+        return $this;
+    }
+
+    public function setPaidMedia(?InputPaidMedia $value): static
+    {
+        $this->paidMedia = $value;
+
+        return $this;
+    }
+
+    public function setPaidMediaCaption(?FormattedText $value): static
+    {
+        $this->paidMediaCaption = $value;
+
+        return $this;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setPhotoHeight(int $value): static
+    {
+        $this->photoHeight = $value;
+
+        return $this;
+    }
+
+    public function setPhotoSize(int $value): static
+    {
+        $this->photoSize = $value;
+
+        return $this;
+    }
+
+    public function setPhotoUrl(string $value): static
+    {
+        $this->photoUrl = $value;
+
+        return $this;
+    }
+
+    public function setPhotoWidth(int $value): static
+    {
+        $this->photoWidth = $value;
+
+        return $this;
+    }
+
+    public function setProviderData(string $value): static
+    {
+        $this->providerData = $value;
+
+        return $this;
+    }
+
+    public function setProviderToken(string $value): static
+    {
+        $this->providerToken = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

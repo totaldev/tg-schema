@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultAudio extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultAudio';
+    public const string TYPE_NAME = 'inlineQueryResultAudio';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class InlineQueryResultAudio extends InlineQueryResult
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setAudio(Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

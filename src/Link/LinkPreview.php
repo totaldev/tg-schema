@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreview extends TdObject
 {
-    public const TYPE_NAME = 'linkPreview';
+    public const string TYPE_NAME = 'linkPreview';
 
     public function __construct(
         /**
@@ -154,6 +154,97 @@ class LinkPreview extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setAuthor(string $value): static
+    {
+        $this->author = $value;
+
+        return $this;
+    }
+
+    public function setDescription(FormattedText $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setDisplayUrl(string $value): static
+    {
+        $this->displayUrl = $value;
+
+        return $this;
+    }
+
+    public function setHasLargeMedia(bool $value): static
+    {
+        $this->hasLargeMedia = $value;
+
+        return $this;
+    }
+
+    public function setInstantViewVersion(int $value): static
+    {
+        $this->instantViewVersion = $value;
+
+        return $this;
+    }
+
+    public function setShowAboveText(bool $value): static
+    {
+        $this->showAboveText = $value;
+
+        return $this;
+    }
+
+    public function setShowLargeMedia(bool $value): static
+    {
+        $this->showLargeMedia = $value;
+
+        return $this;
+    }
+
+    public function setShowMediaAboveDescription(bool $value): static
+    {
+        $this->showMediaAboveDescription = $value;
+
+        return $this;
+    }
+
+    public function setSiteName(string $value): static
+    {
+        $this->siteName = $value;
+
+        return $this;
+    }
+
+    public function setSkipConfirmation(bool $value): static
+    {
+        $this->skipConfirmation = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setType(LinkPreviewType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

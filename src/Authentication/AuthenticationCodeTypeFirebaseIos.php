@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Authentication;
  */
 class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
 {
-    public const TYPE_NAME = 'authenticationCodeTypeFirebaseIos';
+    public const string TYPE_NAME = 'authenticationCodeTypeFirebaseIos';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class AuthenticationCodeTypeFirebaseIos extends AuthenticationCodeType
     public function getReceipt(): string
     {
         return $this->receipt;
+    }
+
+    public function setLength(int $value): static
+    {
+        $this->length = $value;
+
+        return $this;
+    }
+
+    public function setPushTimeout(int $value): static
+    {
+        $this->pushTimeout = $value;
+
+        return $this;
+    }
+
+    public function setReceipt(string $value): static
+    {
+        $this->receipt = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

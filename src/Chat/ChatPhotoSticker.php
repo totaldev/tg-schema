@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatPhotoSticker extends TdObject
 {
-    public const TYPE_NAME = 'chatPhotoSticker';
+    public const string TYPE_NAME = 'chatPhotoSticker';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatPhotoSticker extends TdObject
     public function getType(): ChatPhotoStickerType
     {
         return $this->type;
+    }
+
+    public function setBackgroundFill(BackgroundFill $value): static
+    {
+        $this->backgroundFill = $value;
+
+        return $this;
+    }
+
+    public function setType(ChatPhotoStickerType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

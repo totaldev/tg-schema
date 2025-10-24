@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryOriginHiddenUser extends StoryOrigin
 {
-    public const TYPE_NAME = 'storyOriginHiddenUser';
+    public const string TYPE_NAME = 'storyOriginHiddenUser';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StoryOriginHiddenUser extends StoryOrigin
     public function getPosterName(): string
     {
         return $this->posterName;
+    }
+
+    public function setPosterName(string $value): static
+    {
+        $this->posterName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Gift;
  */
 class GiftResalePriceStar extends GiftResalePrice
 {
-    public const TYPE_NAME = 'giftResalePriceStar';
+    public const string TYPE_NAME = 'giftResalePriceStar';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GiftResalePriceStar extends GiftResalePrice
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Birthdate extends TdObject
 {
-    public const TYPE_NAME = 'birthdate';
+    public const string TYPE_NAME = 'birthdate';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class Birthdate extends TdObject
     public function getYear(): int
     {
         return $this->year;
+    }
+
+    public function setDay(int $value): static
+    {
+        $this->day = $value;
+
+        return $this;
+    }
+
+    public function setMonth(int $value): static
+    {
+        $this->month = $value;
+
+        return $this;
+    }
+
+    public function setYear(int $value): static
+    {
+        $this->year = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

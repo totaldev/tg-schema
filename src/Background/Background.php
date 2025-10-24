@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Background extends TdObject
 {
-    public const TYPE_NAME = 'background';
+    public const string TYPE_NAME = 'background';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class Background extends TdObject
     public function getType(): BackgroundType
     {
         return $this->type;
+    }
+
+    public function setDocument(?Document $value): static
+    {
+        $this->document = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsDark(bool $value): static
+    {
+        $this->isDark = $value;
+
+        return $this;
+    }
+
+    public function setIsDefault(bool $value): static
+    {
+        $this->isDefault = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setType(BackgroundType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

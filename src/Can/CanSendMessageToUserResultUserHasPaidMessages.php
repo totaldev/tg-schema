@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanSendMessageToUserResultUserHasPaidMessages extends CanSendMessageToUserResult
 {
-    public const TYPE_NAME = 'canSendMessageToUserResultUserHasPaidMessages';
+    public const string TYPE_NAME = 'canSendMessageToUserResultUserHasPaidMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CanSendMessageToUserResultUserHasPaidMessages extends CanSendMessageToUser
     public function getOutgoingPaidMessageStarCount(): int
     {
         return $this->outgoingPaidMessageStarCount;
+    }
+
+    public function setOutgoingPaidMessageStarCount(int $value): static
+    {
+        $this->outgoingPaidMessageStarCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

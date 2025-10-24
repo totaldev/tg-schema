@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchCallMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchCallMessages';
+    public const string TYPE_NAME = 'searchCallMessages';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class SearchCallMessages extends TdFunction
     public function getOnlyMissed(): bool
     {
         return $this->onlyMissed;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOnlyMissed(bool $value): static
+    {
+        $this->onlyMissed = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

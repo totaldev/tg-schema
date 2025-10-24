@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class NotificationSound extends TdObject
 {
-    public const TYPE_NAME = 'notificationSound';
+    public const string TYPE_NAME = 'notificationSound';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class NotificationSound extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setData(string $value): static
+    {
+        $this->data = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setSound(File $value): static
+    {
+        $this->sound = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

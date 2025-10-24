@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventStickerSetChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventStickerSetChanged';
+    public const string TYPE_NAME = 'chatEventStickerSetChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventStickerSetChanged extends ChatEventAction
     public function getOldStickerSetId(): int
     {
         return $this->oldStickerSetId;
+    }
+
+    public function setNewStickerSetId(int $value): static
+    {
+        $this->newStickerSetId = $value;
+
+        return $this;
+    }
+
+    public function setOldStickerSetId(int $value): static
+    {
+        $this->oldStickerSetId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

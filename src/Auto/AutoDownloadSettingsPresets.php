@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class AutoDownloadSettingsPresets extends TdObject
 {
-    public const TYPE_NAME = 'autoDownloadSettingsPresets';
+    public const string TYPE_NAME = 'autoDownloadSettingsPresets';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class AutoDownloadSettingsPresets extends TdObject
     public function getMedium(): AutoDownloadSettings
     {
         return $this->medium;
+    }
+
+    public function setHigh(AutoDownloadSettings $value): static
+    {
+        $this->high = $value;
+
+        return $this;
+    }
+
+    public function setLow(AutoDownloadSettings $value): static
+    {
+        $this->low = $value;
+
+        return $this;
+    }
+
+    public function setMedium(AutoDownloadSettings $value): static
+    {
+        $this->medium = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

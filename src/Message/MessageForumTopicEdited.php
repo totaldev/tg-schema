@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageForumTopicEdited extends MessageContent
 {
-    public const TYPE_NAME = 'messageForumTopicEdited';
+    public const string TYPE_NAME = 'messageForumTopicEdited';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class MessageForumTopicEdited extends MessageContent
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setEditIconCustomEmojiId(bool $value): static
+    {
+        $this->editIconCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setIconCustomEmojiId(int $value): static
+    {
+        $this->iconCustomEmojiId = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

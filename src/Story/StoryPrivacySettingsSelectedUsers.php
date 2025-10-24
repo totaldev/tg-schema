@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings
 {
-    public const TYPE_NAME = 'storyPrivacySettingsSelectedUsers';
+    public const string TYPE_NAME = 'storyPrivacySettingsSelectedUsers';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

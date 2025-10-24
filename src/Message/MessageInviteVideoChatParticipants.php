@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageInviteVideoChatParticipants extends MessageContent
 {
-    public const TYPE_NAME = 'messageInviteVideoChatParticipants';
+    public const string TYPE_NAME = 'messageInviteVideoChatParticipants';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class MessageInviteVideoChatParticipants extends MessageContent
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

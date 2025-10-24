@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetInactiveSupergroupChats extends TdFunction
 {
-    public const TYPE_NAME = 'getInactiveSupergroupChats';
+    public const string TYPE_NAME = 'getInactiveSupergroupChats';
 
     public function __construct() {}
 

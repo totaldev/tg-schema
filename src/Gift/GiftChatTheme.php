@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class GiftChatTheme extends TdObject
 {
-    public const TYPE_NAME = 'giftChatTheme';
+    public const string TYPE_NAME = 'giftChatTheme';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class GiftChatTheme extends TdObject
     public function getLightSettings(): ThemeSettings
     {
         return $this->lightSettings;
+    }
+
+    public function setDarkSettings(ThemeSettings $value): static
+    {
+        $this->darkSettings = $value;
+
+        return $this;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setLightSettings(ThemeSettings $value): static
+    {
+        $this->lightSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

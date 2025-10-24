@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageExpiredVideo extends MessageContent
 {
-    public const TYPE_NAME = 'messageExpiredVideo';
+    public const string TYPE_NAME = 'messageExpiredVideo';
 
     public function __construct()
     {

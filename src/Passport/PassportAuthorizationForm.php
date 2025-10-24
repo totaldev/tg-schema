@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportAuthorizationForm extends TdObject
 {
-    public const TYPE_NAME = 'passportAuthorizationForm';
+    public const string TYPE_NAME = 'passportAuthorizationForm';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class PassportAuthorizationForm extends TdObject
     public function getRequiredElements(): array
     {
         return $this->requiredElements;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setPrivacyPolicyUrl(string $value): static
+    {
+        $this->privacyPolicyUrl = $value;
+
+        return $this;
+    }
+
+    public function setRequiredElements(array $value): static
+    {
+        $this->requiredElements = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

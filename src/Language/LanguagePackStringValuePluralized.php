@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Language;
  */
 class LanguagePackStringValuePluralized extends LanguagePackStringValue
 {
-    public const TYPE_NAME = 'languagePackStringValuePluralized';
+    public const string TYPE_NAME = 'languagePackStringValuePluralized';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class LanguagePackStringValuePluralized extends LanguagePackStringValue
     public function getZeroValue(): string
     {
         return $this->zeroValue;
+    }
+
+    public function setFewValue(string $value): static
+    {
+        $this->fewValue = $value;
+
+        return $this;
+    }
+
+    public function setManyValue(string $value): static
+    {
+        $this->manyValue = $value;
+
+        return $this;
+    }
+
+    public function setOneValue(string $value): static
+    {
+        $this->oneValue = $value;
+
+        return $this;
+    }
+
+    public function setOtherValue(string $value): static
+    {
+        $this->otherValue = $value;
+
+        return $this;
+    }
+
+    public function setTwoValue(string $value): static
+    {
+        $this->twoValue = $value;
+
+        return $this;
+    }
+
+    public function setZeroValue(string $value): static
+    {
+        $this->zeroValue = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

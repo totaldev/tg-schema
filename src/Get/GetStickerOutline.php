@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStickerOutline extends TdFunction
 {
-    public const TYPE_NAME = 'getStickerOutline';
+    public const string TYPE_NAME = 'getStickerOutline';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class GetStickerOutline extends TdFunction
     public function getStickerFileId(): int
     {
         return $this->stickerFileId;
+    }
+
+    public function setForAnimatedEmoji(bool $value): static
+    {
+        $this->forAnimatedEmoji = $value;
+
+        return $this;
+    }
+
+    public function setForClickedAnimatedEmojiMessage(bool $value): static
+    {
+        $this->forClickedAnimatedEmojiMessage = $value;
+
+        return $this;
+    }
+
+    public function setStickerFileId(int $value): static
+    {
+        $this->stickerFileId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

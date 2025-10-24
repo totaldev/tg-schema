@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventPhotoChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventPhotoChanged';
+    public const string TYPE_NAME = 'chatEventPhotoChanged';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class ChatEventPhotoChanged extends ChatEventAction
     public function getOldPhoto(): ?ChatPhoto
     {
         return $this->oldPhoto;
+    }
+
+    public function setNewPhoto(?ChatPhoto $value): static
+    {
+        $this->newPhoto = $value;
+
+        return $this;
+    }
+
+    public function setOldPhoto(?ChatPhoto $value): static
+    {
+        $this->oldPhoto = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule
 {
-    public const TYPE_NAME = 'userPrivacySettingRuleAllowUsers';
+    public const string TYPE_NAME = 'userPrivacySettingRuleAllowUsers';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UserPrivacySettingRuleAllowUsers extends UserPrivacySettingRule
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

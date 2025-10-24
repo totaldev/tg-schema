@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateOwnedTonCount extends Update
 {
-    public const TYPE_NAME = 'updateOwnedTonCount';
+    public const string TYPE_NAME = 'updateOwnedTonCount';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpdateOwnedTonCount extends Update
     public function getTonAmount(): int
     {
         return $this->tonAmount;
+    }
+
+    public function setTonAmount(int $value): static
+    {
+        $this->tonAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

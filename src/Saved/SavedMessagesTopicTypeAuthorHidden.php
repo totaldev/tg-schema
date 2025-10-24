@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Saved;
  */
 class SavedMessagesTopicTypeAuthorHidden extends SavedMessagesTopicType
 {
-    public const TYPE_NAME = 'savedMessagesTopicTypeAuthorHidden';
+    public const string TYPE_NAME = 'savedMessagesTopicTypeAuthorHidden';
 
     public function __construct()
     {

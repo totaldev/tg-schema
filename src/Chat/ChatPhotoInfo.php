@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatPhotoInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatPhotoInfo';
+    public const string TYPE_NAME = 'chatPhotoInfo';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class ChatPhotoInfo extends TdObject
     public function getSmall(): File
     {
         return $this->small;
+    }
+
+    public function setBig(File $value): static
+    {
+        $this->big = $value;
+
+        return $this;
+    }
+
+    public function setHasAnimation(bool $value): static
+    {
+        $this->hasAnimation = $value;
+
+        return $this;
+    }
+
+    public function setIsPersonal(bool $value): static
+    {
+        $this->isPersonal = $value;
+
+        return $this;
+    }
+
+    public function setMinithumbnail(?Minithumbnail $value): static
+    {
+        $this->minithumbnail = $value;
+
+        return $this;
+    }
+
+    public function setSmall(File $value): static
+    {
+        $this->small = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

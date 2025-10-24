@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class QuickReplyMessage extends TdObject
 {
-    public const TYPE_NAME = 'quickReplyMessage';
+    public const string TYPE_NAME = 'quickReplyMessage';
 
     public function __construct(
         /**
@@ -106,6 +106,62 @@ class QuickReplyMessage extends TdObject
     public function getViaBotUserId(): int
     {
         return $this->viaBotUserId;
+    }
+
+    public function setCanBeEdited(bool $value): static
+    {
+        $this->canBeEdited = $value;
+
+        return $this;
+    }
+
+    public function setContent(MessageContent $value): static
+    {
+        $this->content = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setMediaAlbumId(int $value): static
+    {
+        $this->mediaAlbumId = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setReplyToMessageId(int $value): static
+    {
+        $this->replyToMessageId = $value;
+
+        return $this;
+    }
+
+    public function setSendingState(?MessageSendingState $value): static
+    {
+        $this->sendingState = $value;
+
+        return $this;
+    }
+
+    public function setViaBotUserId(int $value): static
+    {
+        $this->viaBotUserId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

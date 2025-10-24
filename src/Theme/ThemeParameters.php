@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ThemeParameters extends TdObject
 {
-    public const TYPE_NAME = 'themeParameters';
+    public const string TYPE_NAME = 'themeParameters';
 
     public function __construct(
         /**
@@ -172,6 +172,111 @@ class ThemeParameters extends TdObject
     public function getTextColor(): int
     {
         return $this->textColor;
+    }
+
+    public function setAccentTextColor(int $value): static
+    {
+        $this->accentTextColor = $value;
+
+        return $this;
+    }
+
+    public function setBackgroundColor(int $value): static
+    {
+        $this->backgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setBottomBarBackgroundColor(int $value): static
+    {
+        $this->bottomBarBackgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setButtonColor(int $value): static
+    {
+        $this->buttonColor = $value;
+
+        return $this;
+    }
+
+    public function setButtonTextColor(int $value): static
+    {
+        $this->buttonTextColor = $value;
+
+        return $this;
+    }
+
+    public function setDestructiveTextColor(int $value): static
+    {
+        $this->destructiveTextColor = $value;
+
+        return $this;
+    }
+
+    public function setHeaderBackgroundColor(int $value): static
+    {
+        $this->headerBackgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setHintColor(int $value): static
+    {
+        $this->hintColor = $value;
+
+        return $this;
+    }
+
+    public function setLinkColor(int $value): static
+    {
+        $this->linkColor = $value;
+
+        return $this;
+    }
+
+    public function setSecondaryBackgroundColor(int $value): static
+    {
+        $this->secondaryBackgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setSectionBackgroundColor(int $value): static
+    {
+        $this->sectionBackgroundColor = $value;
+
+        return $this;
+    }
+
+    public function setSectionHeaderTextColor(int $value): static
+    {
+        $this->sectionHeaderTextColor = $value;
+
+        return $this;
+    }
+
+    public function setSectionSeparatorColor(int $value): static
+    {
+        $this->sectionSeparatorColor = $value;
+
+        return $this;
+    }
+
+    public function setSubtitleTextColor(int $value): static
+    {
+        $this->subtitleTextColor = $value;
+
+        return $this;
+    }
+
+    public function setTextColor(int $value): static
+    {
+        $this->textColor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

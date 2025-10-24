@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatPosition extends Update
 {
-    public const TYPE_NAME = 'updateChatPosition';
+    public const string TYPE_NAME = 'updateChatPosition';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatPosition extends Update
     public function getPosition(): ChatPosition
     {
         return $this->position;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPosition(ChatPosition $value): static
+    {
+        $this->position = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

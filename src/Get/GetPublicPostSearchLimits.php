@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetPublicPostSearchLimits extends TdFunction
 {
-    public const TYPE_NAME = 'getPublicPostSearchLimits';
+    public const string TYPE_NAME = 'getPublicPostSearchLimits';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetPublicPostSearchLimits extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

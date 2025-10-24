@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Gift;
  */
 class GiftForResaleOrderPrice extends GiftForResaleOrder
 {
-    public const TYPE_NAME = 'giftForResaleOrderPrice';
+    public const string TYPE_NAME = 'giftForResaleOrderPrice';
 
     public function __construct()
     {

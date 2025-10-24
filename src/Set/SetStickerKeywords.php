@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetStickerKeywords extends TdFunction
 {
-    public const TYPE_NAME = 'setStickerKeywords';
+    public const string TYPE_NAME = 'setStickerKeywords';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class SetStickerKeywords extends TdFunction
     public function getSticker(): InputFile
     {
         return $this->sticker;
+    }
+
+    public function setKeywords(array $value): static
+    {
+        $this->keywords = $value;
+
+        return $this;
+    }
+
+    public function setSticker(InputFile $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

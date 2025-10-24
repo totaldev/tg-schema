@@ -18,7 +18,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetAuthenticationPhoneNumber extends TdFunction
 {
-    public const TYPE_NAME = 'setAuthenticationPhoneNumber';
+    public const string TYPE_NAME = 'setAuthenticationPhoneNumber';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class SetAuthenticationPhoneNumber extends TdFunction
     public function getSettings(): ?PhoneNumberAuthenticationSettings
     {
         return $this->settings;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setSettings(?PhoneNumberAuthenticationSettings $value): static
+    {
+        $this->settings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageReactions extends TdObject
 {
-    public const TYPE_NAME = 'messageReactions';
+    public const string TYPE_NAME = 'messageReactions';
 
     public function __construct(
         /**
@@ -68,6 +68,34 @@ class MessageReactions extends TdObject
     public function getReactions(): array
     {
         return $this->reactions;
+    }
+
+    public function setAreTags(bool $value): static
+    {
+        $this->areTags = $value;
+
+        return $this;
+    }
+
+    public function setCanGetAddedReactions(bool $value): static
+    {
+        $this->canGetAddedReactions = $value;
+
+        return $this;
+    }
+
+    public function setPaidReactors(array $value): static
+    {
+        $this->paidReactors = $value;
+
+        return $this;
+    }
+
+    public function setReactions(array $value): static
+    {
+        $this->reactions = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

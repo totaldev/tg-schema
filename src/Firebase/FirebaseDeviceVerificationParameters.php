@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FirebaseDeviceVerificationParameters extends TdObject
 {
-    public const TYPE_NAME = 'FirebaseDeviceVerificationParameters';
+    public const string TYPE_NAME = 'FirebaseDeviceVerificationParameters';
 
     public function __construct() {}
 

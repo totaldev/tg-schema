@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetMessageEffect extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageEffect';
+    public const string TYPE_NAME = 'getMessageEffect';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class GetMessageEffect extends TdFunction
     public function getEffectId(): int
     {
         return $this->effectId;
+    }
+
+    public function setEffectId(int $value): static
+    {
+        $this->effectId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class ScopeAutosaveSettings extends TdObject
 {
-    public const TYPE_NAME = 'scopeAutosaveSettings';
+    public const string TYPE_NAME = 'scopeAutosaveSettings';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ScopeAutosaveSettings extends TdObject
     public function getMaxVideoFileSize(): int
     {
         return $this->maxVideoFileSize;
+    }
+
+    public function setAutosavePhotos(bool $value): static
+    {
+        $this->autosavePhotos = $value;
+
+        return $this;
+    }
+
+    public function setAutosaveVideos(bool $value): static
+    {
+        $this->autosaveVideos = $value;
+
+        return $this;
+    }
+
+    public function setMaxVideoFileSize(int $value): static
+    {
+        $this->maxVideoFileSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

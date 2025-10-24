@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumPaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'premiumPaymentOption';
+    public const string TYPE_NAME = 'premiumPaymentOption';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class PremiumPaymentOption extends TdObject
     public function getStoreProductId(): string
     {
         return $this->storeProductId;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setDiscountPercentage(int $value): static
+    {
+        $this->discountPercentage = $value;
+
+        return $this;
+    }
+
+    public function setMonthCount(int $value): static
+    {
+        $this->monthCount = $value;
+
+        return $this;
+    }
+
+    public function setPaymentLink(?InternalLinkType $value): static
+    {
+        $this->paymentLink = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

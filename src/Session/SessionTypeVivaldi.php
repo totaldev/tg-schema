@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeVivaldi extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeVivaldi';
+    public const string TYPE_NAME = 'sessionTypeVivaldi';
 
     public function __construct()
     {

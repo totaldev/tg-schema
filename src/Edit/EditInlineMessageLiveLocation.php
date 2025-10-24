@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditInlineMessageLiveLocation extends TdFunction
 {
-    public const TYPE_NAME = 'editInlineMessageLiveLocation';
+    public const string TYPE_NAME = 'editInlineMessageLiveLocation';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class EditInlineMessageLiveLocation extends TdFunction
     public function getReplyMarkup(): ?ReplyMarkup
     {
         return $this->replyMarkup;
+    }
+
+    public function setHeading(int $value): static
+    {
+        $this->heading = $value;
+
+        return $this;
+    }
+
+    public function setInlineMessageId(string $value): static
+    {
+        $this->inlineMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLivePeriod(int $value): static
+    {
+        $this->livePeriod = $value;
+
+        return $this;
+    }
+
+    public function setLocation(?Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setProximityAlertRadius(int $value): static
+    {
+        $this->proximityAlertRadius = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

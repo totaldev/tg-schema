@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Proxy;
  */
 class ProxyTypeHttp extends ProxyType
 {
-    public const TYPE_NAME = 'proxyTypeHttp';
+    public const string TYPE_NAME = 'proxyTypeHttp';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ProxyTypeHttp extends ProxyType
     public function getUsername(): string
     {
         return $this->username;
+    }
+
+    public function setHttpOnly(bool $value): static
+    {
+        $this->httpOnly = $value;
+
+        return $this;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setUsername(string $value): static
+    {
+        $this->username = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputInlineQueryResultLocation extends InputInlineQueryResult
 {
-    public const TYPE_NAME = 'inputInlineQueryResultLocation';
+    public const string TYPE_NAME = 'inputInlineQueryResultLocation';
 
     public function __construct(
         /**
@@ -116,6 +116,69 @@ class InputInlineQueryResultLocation extends InputInlineQueryResult
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInputMessageContent(InputMessageContent $value): static
+    {
+        $this->inputMessageContent = $value;
+
+        return $this;
+    }
+
+    public function setLivePeriod(int $value): static
+    {
+        $this->livePeriod = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
+    }
+
+    public function setReplyMarkup(?ReplyMarkup $value): static
+    {
+        $this->replyMarkup = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailHeight(int $value): static
+    {
+        $this->thumbnailHeight = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailUrl(string $value): static
+    {
+        $this->thumbnailUrl = $value;
+
+        return $this;
+    }
+
+    public function setThumbnailWidth(int $value): static
+    {
+        $this->thumbnailWidth = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

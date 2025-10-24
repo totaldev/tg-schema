@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryAreaTypeLocation extends StoryAreaType
 {
-    public const TYPE_NAME = 'storyAreaTypeLocation';
+    public const string TYPE_NAME = 'storyAreaTypeLocation';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class StoryAreaTypeLocation extends StoryAreaType
     public function getLocation(): Location
     {
         return $this->location;
+    }
+
+    public function setAddress(?LocationAddress $value): static
+    {
+        $this->address = $value;
+
+        return $this;
+    }
+
+    public function setLocation(Location $value): static
+    {
+        $this->location = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

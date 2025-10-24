@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Thumbnail;
  */
 class ThumbnailFormatMpeg4 extends ThumbnailFormat
 {
-    public const TYPE_NAME = 'thumbnailFormatMpeg4';
+    public const string TYPE_NAME = 'thumbnailFormatMpeg4';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchBackground extends TdFunction
 {
-    public const TYPE_NAME = 'searchBackground';
+    public const string TYPE_NAME = 'searchBackground';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SearchBackground extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

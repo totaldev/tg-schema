@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentChatSetBackground extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentChatSetBackground';
+    public const string TYPE_NAME = 'pushMessageContentChatSetBackground';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class PushMessageContentChatSetBackground extends PushMessageContent
     public function getIsSame(): bool
     {
         return $this->isSame;
+    }
+
+    public function setIsSame(bool $value): static
+    {
+        $this->isSame = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

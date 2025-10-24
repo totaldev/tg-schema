@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAvailableChatBoostSlots extends TdFunction
 {
-    public const TYPE_NAME = 'getAvailableChatBoostSlots';
+    public const string TYPE_NAME = 'getAvailableChatBoostSlots';
 
     public function __construct() {}
 

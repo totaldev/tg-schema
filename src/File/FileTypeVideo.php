@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeVideo extends FileType
 {
-    public const TYPE_NAME = 'fileTypeVideo';
+    public const string TYPE_NAME = 'fileTypeVideo';
 
     public function __construct()
     {

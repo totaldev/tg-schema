@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Upgraded;
  */
 class UpgradedGiftAttributeIdModel extends UpgradedGiftAttributeId
 {
-    public const TYPE_NAME = 'upgradedGiftAttributeIdModel';
+    public const string TYPE_NAME = 'upgradedGiftAttributeIdModel';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UpgradedGiftAttributeIdModel extends UpgradedGiftAttributeId
     public function getStickerId(): int
     {
         return $this->stickerId;
+    }
+
+    public function setStickerId(int $value): static
+    {
+        $this->stickerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

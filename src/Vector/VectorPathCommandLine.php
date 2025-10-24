@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VectorPathCommandLine extends VectorPathCommand
 {
-    public const TYPE_NAME = 'vectorPathCommandLine';
+    public const string TYPE_NAME = 'vectorPathCommandLine';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class VectorPathCommandLine extends VectorPathCommand
     public function getEndPoint(): Point
     {
         return $this->endPoint;
+    }
+
+    public function setEndPoint(Point $value): static
+    {
+        $this->endPoint = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

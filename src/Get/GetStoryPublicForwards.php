@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetStoryPublicForwards extends TdFunction
 {
-    public const TYPE_NAME = 'getStoryPublicForwards';
+    public const string TYPE_NAME = 'getStoryPublicForwards';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class GetStoryPublicForwards extends TdFunction
     public function getStoryPosterChatId(): int
     {
         return $this->storyPosterChatId;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterChatId(int $value): static
+    {
+        $this->storyPosterChatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageFileTypeGroup extends MessageFileType
 {
-    public const TYPE_NAME = 'messageFileTypeGroup';
+    public const string TYPE_NAME = 'messageFileTypeGroup';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageFileTypeGroup extends MessageFileType
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

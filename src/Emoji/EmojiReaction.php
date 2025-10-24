@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EmojiReaction extends TdObject
 {
-    public const TYPE_NAME = 'emojiReaction';
+    public const string TYPE_NAME = 'emojiReaction';
 
     public function __construct(
         /**
@@ -124,6 +124,76 @@ class EmojiReaction extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setActivateAnimation(Sticker $value): static
+    {
+        $this->activateAnimation = $value;
+
+        return $this;
+    }
+
+    public function setAppearAnimation(Sticker $value): static
+    {
+        $this->appearAnimation = $value;
+
+        return $this;
+    }
+
+    public function setAroundAnimation(?Sticker $value): static
+    {
+        $this->aroundAnimation = $value;
+
+        return $this;
+    }
+
+    public function setCenterAnimation(?Sticker $value): static
+    {
+        $this->centerAnimation = $value;
+
+        return $this;
+    }
+
+    public function setEffectAnimation(Sticker $value): static
+    {
+        $this->effectAnimation = $value;
+
+        return $this;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setSelectAnimation(Sticker $value): static
+    {
+        $this->selectAnimation = $value;
+
+        return $this;
+    }
+
+    public function setStaticIcon(Sticker $value): static
+    {
+        $this->staticIcon = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

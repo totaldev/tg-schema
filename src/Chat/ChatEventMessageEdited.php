@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventMessageEdited extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventMessageEdited';
+    public const string TYPE_NAME = 'chatEventMessageEdited';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventMessageEdited extends ChatEventAction
     public function getOldMessage(): Message
     {
         return $this->oldMessage;
+    }
+
+    public function setNewMessage(Message $value): static
+    {
+        $this->newMessage = $value;
+
+        return $this;
+    }
+
+    public function setOldMessage(Message $value): static
+    {
+        $this->oldMessage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

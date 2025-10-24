@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputInvoice extends TdObject
 {
-    public const TYPE_NAME = 'InputInvoice';
+    public const string TYPE_NAME = 'InputInvoice';
 
     public function __construct() {}
 

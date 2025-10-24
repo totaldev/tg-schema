@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeBlockQuote extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeBlockQuote';
+    public const string TYPE_NAME = 'textEntityTypeBlockQuote';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Built;
  */
 class BuiltInThemeNight extends BuiltInTheme
 {
-    public const TYPE_NAME = 'builtInThemeNight';
+    public const string TYPE_NAME = 'builtInThemeNight';
 
     public function __construct()
     {

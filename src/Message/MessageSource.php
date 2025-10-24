@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageSource extends TdObject
 {
-    public const TYPE_NAME = 'MessageSource';
+    public const string TYPE_NAME = 'MessageSource';
 
     public function __construct() {}
 

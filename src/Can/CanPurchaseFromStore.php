@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class CanPurchaseFromStore extends TdFunction
 {
-    public const TYPE_NAME = 'canPurchaseFromStore';
+    public const string TYPE_NAME = 'canPurchaseFromStore';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class CanPurchaseFromStore extends TdFunction
     public function getPurpose(): StorePaymentPurpose
     {
         return $this->purpose;
+    }
+
+    public function setPurpose(StorePaymentPurpose $value): static
+    {
+        $this->purpose = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

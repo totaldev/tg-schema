@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetAccountTtl extends TdFunction
 {
-    public const TYPE_NAME = 'getAccountTtl';
+    public const string TYPE_NAME = 'getAccountTtl';
 
     public function __construct() {}
 

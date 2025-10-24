@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class VideoMessageAdvertisements extends TdObject
 {
-    public const TYPE_NAME = 'videoMessageAdvertisements';
+    public const string TYPE_NAME = 'videoMessageAdvertisements';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class VideoMessageAdvertisements extends TdObject
     public function getStartDelay(): int
     {
         return $this->startDelay;
+    }
+
+    public function setAdvertisements(array $value): static
+    {
+        $this->advertisements = $value;
+
+        return $this;
+    }
+
+    public function setBetweenDelay(int $value): static
+    {
+        $this->betweenDelay = $value;
+
+        return $this;
+    }
+
+    public function setStartDelay(int $value): static
+    {
+        $this->startDelay = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

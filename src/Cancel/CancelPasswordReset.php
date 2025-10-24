@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CancelPasswordReset extends TdFunction
 {
-    public const TYPE_NAME = 'cancelPasswordReset';
+    public const string TYPE_NAME = 'cancelPasswordReset';
 
     public function __construct() {}
 

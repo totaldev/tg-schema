@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Top\TopChatCategory;
  */
 class RemoveTopChat extends TdFunction
 {
-    public const TYPE_NAME = 'removeTopChat';
+    public const string TYPE_NAME = 'removeTopChat';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class RemoveTopChat extends TdFunction
     public function getChatId(): int
     {
         return $this->chatId;
+    }
+
+    public function setCategory(TopChatCategory $value): static
+    {
+        $this->category = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

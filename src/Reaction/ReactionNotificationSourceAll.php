@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionNotificationSourceAll extends ReactionNotificationSource
 {
-    public const TYPE_NAME = 'reactionNotificationSourceAll';
+    public const string TYPE_NAME = 'reactionNotificationSourceAll';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStoryPostSucceeded extends Update
 {
-    public const TYPE_NAME = 'updateStoryPostSucceeded';
+    public const string TYPE_NAME = 'updateStoryPostSucceeded';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateStoryPostSucceeded extends Update
     public function getStory(): Story
     {
         return $this->story;
+    }
+
+    public function setOldStoryId(int $value): static
+    {
+        $this->oldStoryId = $value;
+
+        return $this;
+    }
+
+    public function setStory(Story $value): static
+    {
+        $this->story = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

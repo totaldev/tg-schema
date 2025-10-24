@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageGiveawayCompleted extends MessageContent
 {
-    public const TYPE_NAME = 'messageGiveawayCompleted';
+    public const string TYPE_NAME = 'messageGiveawayCompleted';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class MessageGiveawayCompleted extends MessageContent
     public function getWinnerCount(): int
     {
         return $this->winnerCount;
+    }
+
+    public function setGiveawayMessageId(int $value): static
+    {
+        $this->giveawayMessageId = $value;
+
+        return $this;
+    }
+
+    public function setIsStarGiveaway(bool $value): static
+    {
+        $this->isStarGiveaway = $value;
+
+        return $this;
+    }
+
+    public function setUnclaimedPrizeCount(int $value): static
+    {
+        $this->unclaimedPrizeCount = $value;
+
+        return $this;
+    }
+
+    public function setWinnerCount(int $value): static
+    {
+        $this->winnerCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

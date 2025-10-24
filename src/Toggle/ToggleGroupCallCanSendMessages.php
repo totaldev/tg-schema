@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGroupCallCanSendMessages extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallCanSendMessages';
+    public const string TYPE_NAME = 'toggleGroupCallCanSendMessages';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGroupCallCanSendMessages extends TdFunction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setCanSendMessages(bool $value): static
+    {
+        $this->canSendMessages = $value;
+
+        return $this;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

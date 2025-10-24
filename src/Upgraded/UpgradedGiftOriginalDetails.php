@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpgradedGiftOriginalDetails extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftOriginalDetails';
+    public const string TYPE_NAME = 'upgradedGiftOriginalDetails';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class UpgradedGiftOriginalDetails extends TdObject
     public function getText(): FormattedText
     {
         return $this->text;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setReceiverId(MessageSender $value): static
+    {
+        $this->receiverId = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setText(FormattedText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

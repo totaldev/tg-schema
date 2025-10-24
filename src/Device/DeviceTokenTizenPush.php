@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenTizenPush extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenTizenPush';
+    public const string TYPE_NAME = 'deviceTokenTizenPush';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeviceTokenTizenPush extends DeviceToken
     public function getRegId(): string
     {
         return $this->regId;
+    }
+
+    public function setRegId(string $value): static
+    {
+        $this->regId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupHasHiddenMembers extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupHasHiddenMembers';
+    public const string TYPE_NAME = 'toggleSupergroupHasHiddenMembers';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class ToggleSupergroupHasHiddenMembers extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setHasHiddenMembers(bool $value): static
+    {
+        $this->hasHiddenMembers = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetSavedMessagesTopicMessageByDate extends TdFunction
 {
-    public const TYPE_NAME = 'getSavedMessagesTopicMessageByDate';
+    public const string TYPE_NAME = 'getSavedMessagesTopicMessageByDate';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetSavedMessagesTopicMessageByDate extends TdFunction
     public function getSavedMessagesTopicId(): int
     {
         return $this->savedMessagesTopicId;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setSavedMessagesTopicId(int $value): static
+    {
+        $this->savedMessagesTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

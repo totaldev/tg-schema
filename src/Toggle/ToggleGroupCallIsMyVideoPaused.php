@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleGroupCallIsMyVideoPaused extends TdFunction
 {
-    public const TYPE_NAME = 'toggleGroupCallIsMyVideoPaused';
+    public const string TYPE_NAME = 'toggleGroupCallIsMyVideoPaused';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleGroupCallIsMyVideoPaused extends TdFunction
     public function getIsMyVideoPaused(): bool
     {
         return $this->isMyVideoPaused;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setIsMyVideoPaused(bool $value): static
+    {
+        $this->isMyVideoPaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

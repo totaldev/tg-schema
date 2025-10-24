@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Update extends TdObject
 {
-    public const TYPE_NAME = 'Update';
+    public const string TYPE_NAME = 'Update';
 
     public function __construct() {}
 

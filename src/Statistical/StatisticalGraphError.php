@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Statistical;
  */
 class StatisticalGraphError extends StatisticalGraph
 {
-    public const TYPE_NAME = 'statisticalGraphError';
+    public const string TYPE_NAME = 'statisticalGraphError';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StatisticalGraphError extends StatisticalGraph
     public function getErrorMessage(): string
     {
         return $this->errorMessage;
+    }
+
+    public function setErrorMessage(string $value): static
+    {
+        $this->errorMessage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

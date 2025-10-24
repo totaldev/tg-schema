@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BackgroundFill extends TdObject
 {
-    public const TYPE_NAME = 'BackgroundFill';
+    public const string TYPE_NAME = 'BackgroundFill';
 
     public function __construct() {}
 

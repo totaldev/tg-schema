@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SecretChat extends TdObject
 {
-    public const TYPE_NAME = 'secretChat';
+    public const string TYPE_NAME = 'secretChat';
 
     public function __construct(
         /**
@@ -83,6 +83,48 @@ class SecretChat extends TdObject
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsOutbound(bool $value): static
+    {
+        $this->isOutbound = $value;
+
+        return $this;
+    }
+
+    public function setKeyHash(string $value): static
+    {
+        $this->keyHash = $value;
+
+        return $this;
+    }
+
+    public function setLayer(int $value): static
+    {
+        $this->layer = $value;
+
+        return $this;
+    }
+
+    public function setState(SecretChatState $value): static
+    {
+        $this->state = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

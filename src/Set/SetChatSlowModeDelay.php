@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatSlowModeDelay extends TdFunction
 {
-    public const TYPE_NAME = 'setChatSlowModeDelay';
+    public const string TYPE_NAME = 'setChatSlowModeDelay';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SetChatSlowModeDelay extends TdFunction
     public function getSlowModeDelay(): int
     {
         return $this->slowModeDelay;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setSlowModeDelay(int $value): static
+    {
+        $this->slowModeDelay = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

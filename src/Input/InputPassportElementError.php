@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputPassportElementError extends TdObject
 {
-    public const TYPE_NAME = 'inputPassportElementError';
+    public const string TYPE_NAME = 'inputPassportElementError';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class InputPassportElementError extends TdObject
     public function getType(): PassportElementType
     {
         return $this->type;
+    }
+
+    public function setMessage(string $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setSource(InputPassportElementErrorSource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
+    }
+
+    public function setType(PassportElementType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

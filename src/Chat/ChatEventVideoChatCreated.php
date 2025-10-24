@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventVideoChatCreated extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventVideoChatCreated';
+    public const string TYPE_NAME = 'chatEventVideoChatCreated';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventVideoChatCreated extends ChatEventAction
     public function getGroupCallId(): int
     {
         return $this->groupCallId;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

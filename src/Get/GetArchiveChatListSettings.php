@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetArchiveChatListSettings extends TdFunction
 {
-    public const TYPE_NAME = 'getArchiveChatListSettings';
+    public const string TYPE_NAME = 'getArchiveChatListSettings';
 
     public function __construct() {}
 

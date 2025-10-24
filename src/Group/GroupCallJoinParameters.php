@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class GroupCallJoinParameters extends TdObject
 {
-    public const TYPE_NAME = 'groupCallJoinParameters';
+    public const string TYPE_NAME = 'groupCallJoinParameters';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class GroupCallJoinParameters extends TdObject
     public function getPayload(): string
     {
         return $this->payload;
+    }
+
+    public function setAudioSourceId(int $value): static
+    {
+        $this->audioSourceId = $value;
+
+        return $this;
+    }
+
+    public function setIsMuted(bool $value): static
+    {
+        $this->isMuted = $value;
+
+        return $this;
+    }
+
+    public function setIsMyVideoEnabled(bool $value): static
+    {
+        $this->isMyVideoEnabled = $value;
+
+        return $this;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

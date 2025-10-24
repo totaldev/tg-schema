@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestBirthdate extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestBirthdate';
+    public const string TYPE_NAME = 'messageSuggestBirthdate';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageSuggestBirthdate extends MessageContent
     public function getBirthdate(): Birthdate
     {
         return $this->birthdate;
+    }
+
+    public function setBirthdate(Birthdate $value): static
+    {
+        $this->birthdate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

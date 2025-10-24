@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
 {
-    public const TYPE_NAME = 'inlineKeyboardButtonTypeSwitchInline';
+    public const string TYPE_NAME = 'inlineKeyboardButtonTypeSwitchInline';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class InlineKeyboardButtonTypeSwitchInline extends InlineKeyboardButtonType
     public function getTargetChat(): TargetChat
     {
         return $this->targetChat;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setTargetChat(TargetChat $value): static
+    {
+        $this->targetChat = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

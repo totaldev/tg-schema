@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetForumTopic extends TdFunction
 {
-    public const TYPE_NAME = 'getForumTopic';
+    public const string TYPE_NAME = 'getForumTopic';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetForumTopic extends TdFunction
     public function getForumTopicId(): int
     {
         return $this->forumTopicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

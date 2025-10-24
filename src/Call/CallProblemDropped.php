@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemDropped extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemDropped';
+    public const string TYPE_NAME = 'callProblemDropped';
 
     public function __construct()
     {

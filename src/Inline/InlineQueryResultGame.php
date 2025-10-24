@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InlineQueryResultGame extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultGame';
+    public const string TYPE_NAME = 'inlineQueryResultGame';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class InlineQueryResultGame extends InlineQueryResult
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setGame(Game $value): static
+    {
+        $this->game = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

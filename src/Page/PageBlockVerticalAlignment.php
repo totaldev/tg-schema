@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PageBlockVerticalAlignment extends TdObject
 {
-    public const TYPE_NAME = 'PageBlockVerticalAlignment';
+    public const string TYPE_NAME = 'PageBlockVerticalAlignment';
 
     public function __construct() {}
 

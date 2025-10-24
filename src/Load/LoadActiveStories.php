@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LoadActiveStories extends TdFunction
 {
-    public const TYPE_NAME = 'loadActiveStories';
+    public const string TYPE_NAME = 'loadActiveStories';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LoadActiveStories extends TdFunction
     public function getStoryList(): StoryList
     {
         return $this->storyList;
+    }
+
+    public function setStoryList(StoryList $value): static
+    {
+        $this->storyList = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

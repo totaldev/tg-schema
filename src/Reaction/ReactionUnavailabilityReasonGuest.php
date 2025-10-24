@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reaction;
  */
 class ReactionUnavailabilityReasonGuest extends ReactionUnavailabilityReason
 {
-    public const TYPE_NAME = 'reactionUnavailabilityReasonGuest';
+    public const string TYPE_NAME = 'reactionUnavailabilityReasonGuest';
 
     public function __construct()
     {

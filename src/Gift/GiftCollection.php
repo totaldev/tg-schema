@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GiftCollection extends TdObject
 {
-    public const TYPE_NAME = 'giftCollection';
+    public const string TYPE_NAME = 'giftCollection';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class GiftCollection extends TdObject
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setGiftCount(int $value): static
+    {
+        $this->giftCount = $value;
+
+        return $this;
+    }
+
+    public function setIcon(?Sticker $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

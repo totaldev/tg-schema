@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleBusinessConnectedBotChatIsPaused extends TdFunction
 {
-    public const TYPE_NAME = 'toggleBusinessConnectedBotChatIsPaused';
+    public const string TYPE_NAME = 'toggleBusinessConnectedBotChatIsPaused';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleBusinessConnectedBotChatIsPaused extends TdFunction
     public function getIsPaused(): bool
     {
         return $this->isPaused;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

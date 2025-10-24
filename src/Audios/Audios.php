@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Audios extends TdObject
 {
-    public const TYPE_NAME = 'audios';
+    public const string TYPE_NAME = 'audios';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class Audios extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setAudios(array $value): static
+    {
+        $this->audios = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarSubscription extends TdObject
 {
-    public const TYPE_NAME = 'starSubscription';
+    public const string TYPE_NAME = 'starSubscription';
 
     public function __construct(
         /**
@@ -93,6 +93,55 @@ class StarSubscription extends TdObject
     public function getType(): StarSubscriptionType
     {
         return $this->type;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsCanceled(bool $value): static
+    {
+        $this->isCanceled = $value;
+
+        return $this;
+    }
+
+    public function setIsExpiring(bool $value): static
+    {
+        $this->isExpiring = $value;
+
+        return $this;
+    }
+
+    public function setPricing(StarSubscriptionPricing $value): static
+    {
+        $this->pricing = $value;
+
+        return $this;
+    }
+
+    public function setType(StarSubscriptionType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

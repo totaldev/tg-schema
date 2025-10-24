@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class Count extends TdObject
 {
-    public const TYPE_NAME = 'count';
+    public const string TYPE_NAME = 'count';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class Count extends TdObject
     public function getCount(): int
     {
         return $this->count;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

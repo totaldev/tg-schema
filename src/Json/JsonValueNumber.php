@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Json;
  */
 class JsonValueNumber extends JsonValue
 {
-    public const TYPE_NAME = 'jsonValueNumber';
+    public const string TYPE_NAME = 'jsonValueNumber';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class JsonValueNumber extends JsonValue
     public function getValue(): float
     {
         return $this->value;
+    }
+
+    public function setValue(float $value): static
+    {
+        $this->value = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

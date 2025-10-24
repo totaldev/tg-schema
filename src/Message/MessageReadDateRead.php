@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageReadDateRead extends MessageReadDate
 {
-    public const TYPE_NAME = 'messageReadDateRead';
+    public const string TYPE_NAME = 'messageReadDateRead';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageReadDateRead extends MessageReadDate
     public function getReadDate(): int
     {
         return $this->readDate;
+    }
+
+    public function setReadDate(int $value): static
+    {
+        $this->readDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

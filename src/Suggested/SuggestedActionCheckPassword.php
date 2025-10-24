@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Suggested;
  */
 class SuggestedActionCheckPassword extends SuggestedAction
 {
-    public const TYPE_NAME = 'suggestedActionCheckPassword';
+    public const string TYPE_NAME = 'suggestedActionCheckPassword';
 
     public function __construct()
     {

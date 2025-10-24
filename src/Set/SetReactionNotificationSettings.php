@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetReactionNotificationSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setReactionNotificationSettings';
+    public const string TYPE_NAME = 'setReactionNotificationSettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetReactionNotificationSettings extends TdFunction
     public function getNotificationSettings(): ReactionNotificationSettings
     {
         return $this->notificationSettings;
+    }
+
+    public function setNotificationSettings(ReactionNotificationSettings $value): static
+    {
+        $this->notificationSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

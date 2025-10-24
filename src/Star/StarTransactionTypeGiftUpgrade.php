@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class StarTransactionTypeGiftUpgrade extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeGiftUpgrade';
+    public const string TYPE_NAME = 'starTransactionTypeGiftUpgrade';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class StarTransactionTypeGiftUpgrade extends StarTransactionType
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setUserId(int $value): static
+    {
+        $this->userId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

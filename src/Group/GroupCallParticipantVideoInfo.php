@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GroupCallParticipantVideoInfo extends TdObject
 {
-    public const TYPE_NAME = 'groupCallParticipantVideoInfo';
+    public const string TYPE_NAME = 'groupCallParticipantVideoInfo';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class GroupCallParticipantVideoInfo extends TdObject
     public function getSourceGroups(): array
     {
         return $this->sourceGroups;
+    }
+
+    public function setEndpointId(string $value): static
+    {
+        $this->endpointId = $value;
+
+        return $this;
+    }
+
+    public function setIsPaused(bool $value): static
+    {
+        $this->isPaused = $value;
+
+        return $this;
+    }
+
+    public function setSourceGroups(array $value): static
+    {
+        $this->sourceGroups = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

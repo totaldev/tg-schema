@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventAutomaticTranslationToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventAutomaticTranslationToggled';
+    public const string TYPE_NAME = 'chatEventAutomaticTranslationToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventAutomaticTranslationToggled extends ChatEventAction
     public function getHasAutomaticTranslation(): bool
     {
         return $this->hasAutomaticTranslation;
+    }
+
+    public function setHasAutomaticTranslation(bool $value): static
+    {
+        $this->hasAutomaticTranslation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

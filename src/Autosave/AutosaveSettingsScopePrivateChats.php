@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Autosave;
  */
 class AutosaveSettingsScopePrivateChats extends AutosaveSettingsScope
 {
-    public const TYPE_NAME = 'autosaveSettingsScopePrivateChats';
+    public const string TYPE_NAME = 'autosaveSettingsScopePrivateChats';
 
     public function __construct()
     {

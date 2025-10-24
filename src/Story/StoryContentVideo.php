@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryContentVideo extends StoryContent
 {
-    public const TYPE_NAME = 'storyContentVideo';
+    public const string TYPE_NAME = 'storyContentVideo';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class StoryContentVideo extends StoryContent
     public function getVideo(): StoryVideo
     {
         return $this->video;
+    }
+
+    public function setAlternativeVideo(?StoryVideo $value): static
+    {
+        $this->alternativeVideo = $value;
+
+        return $this;
+    }
+
+    public function setVideo(StoryVideo $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

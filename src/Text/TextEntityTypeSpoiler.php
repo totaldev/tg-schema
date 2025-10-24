@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeSpoiler extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeSpoiler';
+    public const string TYPE_NAME = 'textEntityTypeSpoiler';
 
     public function __construct()
     {

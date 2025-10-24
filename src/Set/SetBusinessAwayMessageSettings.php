@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessAwayMessageSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessAwayMessageSettings';
+    public const string TYPE_NAME = 'setBusinessAwayMessageSettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetBusinessAwayMessageSettings extends TdFunction
     public function getAwayMessageSettings(): ?BusinessAwayMessageSettings
     {
         return $this->awayMessageSettings;
+    }
+
+    public function setAwayMessageSettings(?BusinessAwayMessageSettings $value): static
+    {
+        $this->awayMessageSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeAudio extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeAudio';
+    public const string TYPE_NAME = 'linkPreviewTypeAudio';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeAudio extends LinkPreviewType
     public function getAudio(): Audio
     {
         return $this->audio;
+    }
+
+    public function setAudio(Audio $value): static
+    {
+        $this->audio = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

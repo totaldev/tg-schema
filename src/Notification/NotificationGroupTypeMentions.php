@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Notification;
  */
 class NotificationGroupTypeMentions extends NotificationGroupType
 {
-    public const TYPE_NAME = 'notificationGroupTypeMentions';
+    public const string TYPE_NAME = 'notificationGroupTypeMentions';
 
     public function __construct()
     {

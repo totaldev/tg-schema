@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateFavoriteStickers extends Update
 {
-    public const TYPE_NAME = 'updateFavoriteStickers';
+    public const string TYPE_NAME = 'updateFavoriteStickers';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateFavoriteStickers extends Update
     public function getStickerIds(): array
     {
         return $this->stickerIds;
+    }
+
+    public function setStickerIds(array $value): static
+    {
+        $this->stickerIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

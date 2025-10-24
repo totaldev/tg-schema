@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class EditChatSubscriptionInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'editChatSubscriptionInviteLink';
+    public const string TYPE_NAME = 'editChatSubscriptionInviteLink';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class EditChatSubscriptionInviteLink extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

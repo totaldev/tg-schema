@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatActionRecordingVideoNote extends ChatAction
 {
-    public const TYPE_NAME = 'chatActionRecordingVideoNote';
+    public const string TYPE_NAME = 'chatActionRecordingVideoNote';
 
     public function __construct()
     {

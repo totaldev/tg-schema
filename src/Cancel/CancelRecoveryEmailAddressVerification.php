@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CancelRecoveryEmailAddressVerification extends TdFunction
 {
-    public const TYPE_NAME = 'cancelRecoveryEmailAddressVerification';
+    public const string TYPE_NAME = 'cancelRecoveryEmailAddressVerification';
 
     public function __construct() {}
 

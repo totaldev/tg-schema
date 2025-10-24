@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class EmailAddressAuthentication extends TdObject
 {
-    public const TYPE_NAME = 'EmailAddressAuthentication';
+    public const string TYPE_NAME = 'EmailAddressAuthentication';
 
     public function __construct() {}
 

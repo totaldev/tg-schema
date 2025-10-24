@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageChatChangePhoto extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatChangePhoto';
+    public const string TYPE_NAME = 'messageChatChangePhoto';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageChatChangePhoto extends MessageContent
     public function getPhoto(): ChatPhoto
     {
         return $this->photo;
+    }
+
+    public function setPhoto(ChatPhoto $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

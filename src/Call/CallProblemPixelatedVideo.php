@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemPixelatedVideo extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemPixelatedVideo';
+    public const string TYPE_NAME = 'callProblemPixelatedVideo';
 
     public function __construct()
     {

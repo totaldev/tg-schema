@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Push;
  */
 class PushMessageContentGameScore extends PushMessageContent
 {
-    public const TYPE_NAME = 'pushMessageContentGameScore';
+    public const string TYPE_NAME = 'pushMessageContentGameScore';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class PushMessageContentGameScore extends PushMessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setScore(int $value): static
+    {
+        $this->score = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AccentColor extends TdObject
 {
-    public const TYPE_NAME = 'accentColor';
+    public const string TYPE_NAME = 'accentColor';
 
     public function __construct(
         /**
@@ -76,6 +76,41 @@ class AccentColor extends TdObject
     public function getMinChannelChatBoostLevel(): int
     {
         return $this->minChannelChatBoostLevel;
+    }
+
+    public function setBuiltInAccentColorId(int $value): static
+    {
+        $this->builtInAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setDarkThemeColors(array $value): static
+    {
+        $this->darkThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setLightThemeColors(array $value): static
+    {
+        $this->lightThemeColors = $value;
+
+        return $this;
+    }
+
+    public function setMinChannelChatBoostLevel(int $value): static
+    {
+        $this->minChannelChatBoostLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

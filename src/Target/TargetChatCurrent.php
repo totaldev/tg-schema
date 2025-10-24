@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Target;
  */
 class TargetChatCurrent extends TargetChat
 {
-    public const TYPE_NAME = 'targetChatCurrent';
+    public const string TYPE_NAME = 'targetChatCurrent';
 
     public function __construct()
     {

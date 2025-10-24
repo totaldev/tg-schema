@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallDiscardReasonHungUp extends CallDiscardReason
 {
-    public const TYPE_NAME = 'callDiscardReasonHungUp';
+    public const string TYPE_NAME = 'callDiscardReasonHungUp';
 
     public function __construct()
     {

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Can;
  */
 class CanSendMessageToUserResultOk extends CanSendMessageToUserResult
 {
-    public const TYPE_NAME = 'canSendMessageToUserResultOk';
+    public const string TYPE_NAME = 'canSendMessageToUserResultOk';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageSchedulingState extends TdObject
 {
-    public const TYPE_NAME = 'MessageSchedulingState';
+    public const string TYPE_NAME = 'MessageSchedulingState';
 
     public function __construct() {}
 

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementRentalAgreement extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementRentalAgreement';
+    public const string TYPE_NAME = 'passportElementRentalAgreement';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementRentalAgreement extends PassportElement
     public function getRentalAgreement(): PersonalDocument
     {
         return $this->rentalAgreement;
+    }
+
+    public function setRentalAgreement(PersonalDocument $value): static
+    {
+        $this->rentalAgreement = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

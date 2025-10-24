@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumSourceBusinessFeature extends PremiumSource
 {
-    public const TYPE_NAME = 'premiumSourceBusinessFeature';
+    public const string TYPE_NAME = 'premiumSourceBusinessFeature';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PremiumSourceBusinessFeature extends PremiumSource
     public function getFeature(): ?BusinessFeature
     {
         return $this->feature;
+    }
+
+    public function setFeature(?BusinessFeature $value): static
+    {
+        $this->feature = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

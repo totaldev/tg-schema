@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Top\TopChatCategory;
  */
 class GetTopChats extends TdFunction
 {
-    public const TYPE_NAME = 'getTopChats';
+    public const string TYPE_NAME = 'getTopChats';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetTopChats extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setCategory(TopChatCategory $value): static
+    {
+        $this->category = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementsWithErrors extends TdObject
 {
-    public const TYPE_NAME = 'passportElementsWithErrors';
+    public const string TYPE_NAME = 'passportElementsWithErrors';
 
     public function __construct(
         /**
@@ -47,6 +47,20 @@ class PassportElementsWithErrors extends TdObject
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function setElements(array $value): static
+    {
+        $this->elements = $value;
+
+        return $this;
+    }
+
+    public function setErrors(array $value): static
+    {
+        $this->errors = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

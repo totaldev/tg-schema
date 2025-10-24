@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatRevenueTransactionTypeFragmentRefund extends ChatRevenueTransactionType
 {
-    public const TYPE_NAME = 'chatRevenueTransactionTypeFragmentRefund';
+    public const string TYPE_NAME = 'chatRevenueTransactionTypeFragmentRefund';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatRevenueTransactionTypeFragmentRefund extends ChatRevenueTransactionTyp
     public function getRefundDate(): int
     {
         return $this->refundDate;
+    }
+
+    public function setRefundDate(int $value): static
+    {
+        $this->refundDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

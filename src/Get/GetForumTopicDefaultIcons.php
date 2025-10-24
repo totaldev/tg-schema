@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetForumTopicDefaultIcons extends TdFunction
 {
-    public const TYPE_NAME = 'getForumTopicDefaultIcons';
+    public const string TYPE_NAME = 'getForumTopicDefaultIcons';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSupergroupSignMessages extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSupergroupSignMessages';
+    public const string TYPE_NAME = 'toggleSupergroupSignMessages';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ToggleSupergroupSignMessages extends TdFunction
     public function getSupergroupId(): int
     {
         return $this->supergroupId;
+    }
+
+    public function setShowMessageSender(bool $value): static
+    {
+        $this->showMessageSender = $value;
+
+        return $this;
+    }
+
+    public function setSignMessages(bool $value): static
+    {
+        $this->signMessages = $value;
+
+        return $this;
+    }
+
+    public function setSupergroupId(int $value): static
+    {
+        $this->supergroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

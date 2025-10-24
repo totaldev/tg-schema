@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatMemberStatusCreator extends ChatMemberStatus
 {
-    public const TYPE_NAME = 'chatMemberStatusCreator';
+    public const string TYPE_NAME = 'chatMemberStatusCreator';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class ChatMemberStatusCreator extends ChatMemberStatus
     public function getIsMember(): bool
     {
         return $this->isMember;
+    }
+
+    public function setCustomTitle(string $value): static
+    {
+        $this->customTitle = $value;
+
+        return $this;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
+    }
+
+    public function setIsMember(bool $value): static
+    {
+        $this->isMember = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class RichTextStrikethrough extends RichText
 {
-    public const TYPE_NAME = 'richTextStrikethrough';
+    public const string TYPE_NAME = 'richTextStrikethrough';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class RichTextStrikethrough extends RichText
     public function getText(): RichText
     {
         return $this->text;
+    }
+
+    public function setText(RichText $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

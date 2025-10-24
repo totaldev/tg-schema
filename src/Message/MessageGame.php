@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageGame extends MessageContent
 {
-    public const TYPE_NAME = 'messageGame';
+    public const string TYPE_NAME = 'messageGame';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class MessageGame extends MessageContent
     public function getGame(): Game
     {
         return $this->game;
+    }
+
+    public function setGame(Game $value): static
+    {
+        $this->game = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

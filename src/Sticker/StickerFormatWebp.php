@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Sticker;
  */
 class StickerFormatWebp extends StickerFormat
 {
-    public const TYPE_NAME = 'stickerFormatWebp';
+    public const string TYPE_NAME = 'stickerFormatWebp';
 
     public function __construct()
     {

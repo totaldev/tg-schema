@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetMessageAddedReactions extends TdFunction
 {
-    public const TYPE_NAME = 'getMessageAddedReactions';
+    public const string TYPE_NAME = 'getMessageAddedReactions';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class GetMessageAddedReactions extends TdFunction
     public function getReactionType(): ?ReactionType
     {
         return $this->reactionType;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setReactionType(?ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

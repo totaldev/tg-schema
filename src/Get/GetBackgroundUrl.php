@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetBackgroundUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getBackgroundUrl';
+    public const string TYPE_NAME = 'getBackgroundUrl';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetBackgroundUrl extends TdFunction
     public function getType(): BackgroundType
     {
         return $this->type;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
+    }
+
+    public function setType(BackgroundType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

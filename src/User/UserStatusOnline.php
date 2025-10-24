@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\User;
  */
 class UserStatusOnline extends UserStatus
 {
-    public const TYPE_NAME = 'userStatusOnline';
+    public const string TYPE_NAME = 'userStatusOnline';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class UserStatusOnline extends UserStatus
     public function getExpires(): int
     {
         return $this->expires;
+    }
+
+    public function setExpires(int $value): static
+    {
+        $this->expires = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RemoteFile extends TdObject
 {
-    public const TYPE_NAME = 'remoteFile';
+    public const string TYPE_NAME = 'remoteFile';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class RemoteFile extends TdObject
     public function getUploadedSize(): int
     {
         return $this->uploadedSize;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsUploadingActive(bool $value): static
+    {
+        $this->isUploadingActive = $value;
+
+        return $this;
+    }
+
+    public function setIsUploadingCompleted(bool $value): static
+    {
+        $this->isUploadingCompleted = $value;
+
+        return $this;
+    }
+
+    public function setUniqueId(string $value): static
+    {
+        $this->uniqueId = $value;
+
+        return $this;
+    }
+
+    public function setUploadedSize(int $value): static
+    {
+        $this->uploadedSize = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

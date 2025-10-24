@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateAuthorizationState extends Update
 {
-    public const TYPE_NAME = 'updateAuthorizationState';
+    public const string TYPE_NAME = 'updateAuthorizationState';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class UpdateAuthorizationState extends Update
     public function getAuthorizationState(): AuthorizationState
     {
         return $this->authorizationState;
+    }
+
+    public function setAuthorizationState(AuthorizationState $value): static
+    {
+        $this->authorizationState = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

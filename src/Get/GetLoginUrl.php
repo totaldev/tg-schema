@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLoginUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getLoginUrl';
+    public const string TYPE_NAME = 'getLoginUrl';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class GetLoginUrl extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setAllowWriteAccess(bool $value): static
+    {
+        $this->allowWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setButtonId(int $value): static
+    {
+        $this->buttonId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

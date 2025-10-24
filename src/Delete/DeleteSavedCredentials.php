@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class DeleteSavedCredentials extends TdFunction
 {
-    public const TYPE_NAME = 'deleteSavedCredentials';
+    public const string TYPE_NAME = 'deleteSavedCredentials';
 
     public function __construct() {}
 

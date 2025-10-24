@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GroupCall extends TdObject
 {
-    public const TYPE_NAME = 'groupCall';
+    public const string TYPE_NAME = 'groupCall';
 
     public function __construct(
         /**
@@ -285,6 +285,188 @@ class GroupCall extends TdObject
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setCanBeManaged(bool $value): static
+    {
+        $this->canBeManaged = $value;
+
+        return $this;
+    }
+
+    public function setCanEnableVideo(bool $value): static
+    {
+        $this->canEnableVideo = $value;
+
+        return $this;
+    }
+
+    public function setCanSendMessages(bool $value): static
+    {
+        $this->canSendMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanToggleCanSendMessages(bool $value): static
+    {
+        $this->canToggleCanSendMessages = $value;
+
+        return $this;
+    }
+
+    public function setCanToggleMuteNewParticipants(bool $value): static
+    {
+        $this->canToggleMuteNewParticipants = $value;
+
+        return $this;
+    }
+
+    public function setDuration(int $value): static
+    {
+        $this->duration = $value;
+
+        return $this;
+    }
+
+    public function setEnabledStartNotification(bool $value): static
+    {
+        $this->enabledStartNotification = $value;
+
+        return $this;
+    }
+
+    public function setHasHiddenListeners(bool $value): static
+    {
+        $this->hasHiddenListeners = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(string $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setIsActive(bool $value): static
+    {
+        $this->isActive = $value;
+
+        return $this;
+    }
+
+    public function setIsJoined(bool $value): static
+    {
+        $this->isJoined = $value;
+
+        return $this;
+    }
+
+    public function setIsMyVideoEnabled(bool $value): static
+    {
+        $this->isMyVideoEnabled = $value;
+
+        return $this;
+    }
+
+    public function setIsMyVideoPaused(bool $value): static
+    {
+        $this->isMyVideoPaused = $value;
+
+        return $this;
+    }
+
+    public function setIsOwned(bool $value): static
+    {
+        $this->isOwned = $value;
+
+        return $this;
+    }
+
+    public function setIsRtmpStream(bool $value): static
+    {
+        $this->isRtmpStream = $value;
+
+        return $this;
+    }
+
+    public function setIsVideoChat(bool $value): static
+    {
+        $this->isVideoChat = $value;
+
+        return $this;
+    }
+
+    public function setIsVideoRecorded(bool $value): static
+    {
+        $this->isVideoRecorded = $value;
+
+        return $this;
+    }
+
+    public function setLoadedAllParticipants(bool $value): static
+    {
+        $this->loadedAllParticipants = $value;
+
+        return $this;
+    }
+
+    public function setMuteNewParticipants(bool $value): static
+    {
+        $this->muteNewParticipants = $value;
+
+        return $this;
+    }
+
+    public function setNeedRejoin(bool $value): static
+    {
+        $this->needRejoin = $value;
+
+        return $this;
+    }
+
+    public function setParticipantCount(int $value): static
+    {
+        $this->participantCount = $value;
+
+        return $this;
+    }
+
+    public function setRecentSpeakers(array $value): static
+    {
+        $this->recentSpeakers = $value;
+
+        return $this;
+    }
+
+    public function setRecordDuration(int $value): static
+    {
+        $this->recordDuration = $value;
+
+        return $this;
+    }
+
+    public function setScheduledStartDate(int $value): static
+    {
+        $this->scheduledStartDate = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

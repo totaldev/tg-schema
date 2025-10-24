@@ -18,7 +18,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGiftSymbolCount;
  */
 class GiftsForResale extends TdObject
 {
-    public const TYPE_NAME = 'giftsForResale';
+    public const string TYPE_NAME = 'giftsForResale';
 
     public function __construct(
         /**
@@ -95,6 +95,48 @@ class GiftsForResale extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setBackdrops(array $value): static
+    {
+        $this->backdrops = $value;
+
+        return $this;
+    }
+
+    public function setGifts(array $value): static
+    {
+        $this->gifts = $value;
+
+        return $this;
+    }
+
+    public function setModels(array $value): static
+    {
+        $this->models = $value;
+
+        return $this;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setSymbols(array $value): static
+    {
+        $this->symbols = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

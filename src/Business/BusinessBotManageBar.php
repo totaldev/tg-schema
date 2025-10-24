@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class BusinessBotManageBar extends TdObject
 {
-    public const TYPE_NAME = 'businessBotManageBar';
+    public const string TYPE_NAME = 'businessBotManageBar';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class BusinessBotManageBar extends TdObject
     public function getManageUrl(): string
     {
         return $this->manageUrl;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setCanBotReply(bool $value): static
+    {
+        $this->canBotReply = $value;
+
+        return $this;
+    }
+
+    public function setIsBotPaused(bool $value): static
+    {
+        $this->isBotPaused = $value;
+
+        return $this;
+    }
+
+    public function setManageUrl(string $value): static
+    {
+        $this->manageUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

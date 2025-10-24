@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleSessionCanAcceptSecretChats extends TdFunction
 {
-    public const TYPE_NAME = 'toggleSessionCanAcceptSecretChats';
+    public const string TYPE_NAME = 'toggleSessionCanAcceptSecretChats';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleSessionCanAcceptSecretChats extends TdFunction
     public function getSessionId(): int
     {
         return $this->sessionId;
+    }
+
+    public function setCanAcceptSecretChats(bool $value): static
+    {
+        $this->canAcceptSecretChats = $value;
+
+        return $this;
+    }
+
+    public function setSessionId(int $value): static
+    {
+        $this->sessionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

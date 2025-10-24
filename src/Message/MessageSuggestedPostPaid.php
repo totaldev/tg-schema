@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageSuggestedPostPaid extends MessageContent
 {
-    public const TYPE_NAME = 'messageSuggestedPostPaid';
+    public const string TYPE_NAME = 'messageSuggestedPostPaid';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class MessageSuggestedPostPaid extends MessageContent
     public function getTonAmount(): int
     {
         return $this->tonAmount;
+    }
+
+    public function setStarAmount(StarAmount $value): static
+    {
+        $this->starAmount = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostMessageId(int $value): static
+    {
+        $this->suggestedPostMessageId = $value;
+
+        return $this;
+    }
+
+    public function setTonAmount(int $value): static
+    {
+        $this->tonAmount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

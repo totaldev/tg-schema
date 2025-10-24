@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PhoneNumberInfo extends TdObject
 {
-    public const TYPE_NAME = 'phoneNumberInfo';
+    public const string TYPE_NAME = 'phoneNumberInfo';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class PhoneNumberInfo extends TdObject
     public function getIsAnonymous(): bool
     {
         return $this->isAnonymous;
+    }
+
+    public function setCountry(?CountryInfo $value): static
+    {
+        $this->country = $value;
+
+        return $this;
+    }
+
+    public function setCountryCallingCode(string $value): static
+    {
+        $this->countryCallingCode = $value;
+
+        return $this;
+    }
+
+    public function setFormattedPhoneNumber(string $value): static
+    {
+        $this->formattedPhoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

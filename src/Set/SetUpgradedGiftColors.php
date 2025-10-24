@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetUpgradedGiftColors extends TdFunction
 {
-    public const TYPE_NAME = 'setUpgradedGiftColors';
+    public const string TYPE_NAME = 'setUpgradedGiftColors';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class SetUpgradedGiftColors extends TdFunction
     public function getUpgradedGiftColorsId(): int
     {
         return $this->upgradedGiftColorsId;
+    }
+
+    public function setUpgradedGiftColorsId(int $value): static
+    {
+        $this->upgradedGiftColorsId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

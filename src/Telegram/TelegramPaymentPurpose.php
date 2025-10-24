@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class TelegramPaymentPurpose extends TdObject
 {
-    public const TYPE_NAME = 'TelegramPaymentPurpose';
+    public const string TYPE_NAME = 'TelegramPaymentPurpose';
 
     public function __construct() {}
 

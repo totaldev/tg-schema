@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BusinessMessage extends TdObject
 {
-    public const TYPE_NAME = 'businessMessage';
+    public const string TYPE_NAME = 'businessMessage';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class BusinessMessage extends TdObject
     public function getReplyToMessage(): ?Message
     {
         return $this->replyToMessage;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setReplyToMessage(?Message $value): static
+    {
+        $this->replyToMessage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

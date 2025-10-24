@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageTopicThread extends MessageTopic
 {
-    public const TYPE_NAME = 'messageTopicThread';
+    public const string TYPE_NAME = 'messageTopicThread';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageTopicThread extends MessageTopic
     public function getMessageThreadId(): int
     {
         return $this->messageThreadId;
+    }
+
+    public function setMessageThreadId(int $value): static
+    {
+        $this->messageThreadId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

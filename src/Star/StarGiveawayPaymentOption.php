@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StarGiveawayPaymentOption extends TdObject
 {
-    public const TYPE_NAME = 'starGiveawayPaymentOption';
+    public const string TYPE_NAME = 'starGiveawayPaymentOption';
 
     public function __construct(
         /**
@@ -105,6 +105,62 @@ class StarGiveawayPaymentOption extends TdObject
     public function getYearlyBoostCount(): int
     {
         return $this->yearlyBoostCount;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setIsAdditional(bool $value): static
+    {
+        $this->isAdditional = $value;
+
+        return $this;
+    }
+
+    public function setIsDefault(bool $value): static
+    {
+        $this->isDefault = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
+    }
+
+    public function setStoreProductId(string $value): static
+    {
+        $this->storeProductId = $value;
+
+        return $this;
+    }
+
+    public function setWinnerOptions(array $value): static
+    {
+        $this->winnerOptions = $value;
+
+        return $this;
+    }
+
+    public function setYearlyBoostCount(int $value): static
+    {
+        $this->yearlyBoostCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

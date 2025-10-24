@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PollType extends TdObject
 {
-    public const TYPE_NAME = 'PollType';
+    public const string TYPE_NAME = 'PollType';
 
     public function __construct() {}
 

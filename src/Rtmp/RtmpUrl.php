@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class RtmpUrl extends TdObject
 {
-    public const TYPE_NAME = 'rtmpUrl';
+    public const string TYPE_NAME = 'rtmpUrl';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class RtmpUrl extends TdObject
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setStreamKey(string $value): static
+    {
+        $this->streamKey = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

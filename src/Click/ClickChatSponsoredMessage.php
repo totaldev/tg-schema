@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClickChatSponsoredMessage extends TdFunction
 {
-    public const TYPE_NAME = 'clickChatSponsoredMessage';
+    public const string TYPE_NAME = 'clickChatSponsoredMessage';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class ClickChatSponsoredMessage extends TdFunction
     public function getMessageId(): int
     {
         return $this->messageId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFromFullscreen(bool $value): static
+    {
+        $this->fromFullscreen = $value;
+
+        return $this;
+    }
+
+    public function setIsMediaClick(bool $value): static
+    {
+        $this->isMediaClick = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

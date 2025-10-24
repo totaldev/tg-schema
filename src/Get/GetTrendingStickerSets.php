@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetTrendingStickerSets extends TdFunction
 {
-    public const TYPE_NAME = 'getTrendingStickerSets';
+    public const string TYPE_NAME = 'getTrendingStickerSets';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class GetTrendingStickerSets extends TdFunction
     public function getStickerType(): StickerType
     {
         return $this->stickerType;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(int $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setStickerType(StickerType $value): static
+    {
+        $this->stickerType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

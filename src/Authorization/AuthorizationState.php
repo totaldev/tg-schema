@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class AuthorizationState extends TdObject
 {
-    public const TYPE_NAME = 'AuthorizationState';
+    public const string TYPE_NAME = 'AuthorizationState';
 
     public function __construct() {}
 

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearAllDraftMessages extends TdFunction
 {
-    public const TYPE_NAME = 'clearAllDraftMessages';
+    public const string TYPE_NAME = 'clearAllDraftMessages';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ClearAllDraftMessages extends TdFunction
     public function getExcludeSecretChats(): bool
     {
         return $this->excludeSecretChats;
+    }
+
+    public function setExcludeSecretChats(bool $value): static
+    {
+        $this->excludeSecretChats = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

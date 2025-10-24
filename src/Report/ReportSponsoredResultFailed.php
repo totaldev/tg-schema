@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportSponsoredResultFailed extends ReportSponsoredResult
 {
-    public const TYPE_NAME = 'reportSponsoredResultFailed';
+    public const string TYPE_NAME = 'reportSponsoredResultFailed';
 
     public function __construct()
     {

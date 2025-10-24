@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Giveaway;
  */
 class GiveawayParticipantStatusParticipating extends GiveawayParticipantStatus
 {
-    public const TYPE_NAME = 'giveawayParticipantStatusParticipating';
+    public const string TYPE_NAME = 'giveawayParticipantStatusParticipating';
 
     public function __construct()
     {

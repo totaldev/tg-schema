@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SendCallDebugInformation extends TdFunction
 {
-    public const TYPE_NAME = 'sendCallDebugInformation';
+    public const string TYPE_NAME = 'sendCallDebugInformation';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SendCallDebugInformation extends TdFunction
     public function getDebugInformation(): string
     {
         return $this->debugInformation;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setDebugInformation(string $value): static
+    {
+        $this->debugInformation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

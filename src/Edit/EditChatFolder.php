@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class EditChatFolder extends TdFunction
 {
-    public const TYPE_NAME = 'editChatFolder';
+    public const string TYPE_NAME = 'editChatFolder';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class EditChatFolder extends TdFunction
     public function getFolder(): ChatFolder
     {
         return $this->folder;
+    }
+
+    public function setChatFolderId(int $value): static
+    {
+        $this->chatFolderId = $value;
+
+        return $this;
+    }
+
+    public function setFolder(ChatFolder $value): static
+    {
+        $this->folder = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

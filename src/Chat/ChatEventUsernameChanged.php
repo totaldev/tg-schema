@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventUsernameChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventUsernameChanged';
+    public const string TYPE_NAME = 'chatEventUsernameChanged';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ChatEventUsernameChanged extends ChatEventAction
     public function getOldUsername(): string
     {
         return $this->oldUsername;
+    }
+
+    public function setNewUsername(string $value): static
+    {
+        $this->newUsername = $value;
+
+        return $this;
+    }
+
+    public function setOldUsername(string $value): static
+    {
+        $this->oldUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

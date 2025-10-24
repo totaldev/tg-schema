@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessGreetingMessageSettings extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessGreetingMessageSettings';
+    public const string TYPE_NAME = 'setBusinessGreetingMessageSettings';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetBusinessGreetingMessageSettings extends TdFunction
     public function getGreetingMessageSettings(): ?BusinessGreetingMessageSettings
     {
         return $this->greetingMessageSettings;
+    }
+
+    public function setGreetingMessageSettings(?BusinessGreetingMessageSettings $value): static
+    {
+        $this->greetingMessageSettings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

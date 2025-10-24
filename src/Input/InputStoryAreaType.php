@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class InputStoryAreaType extends TdObject
 {
-    public const TYPE_NAME = 'InputStoryAreaType';
+    public const string TYPE_NAME = 'InputStoryAreaType';
 
     public function __construct() {}
 

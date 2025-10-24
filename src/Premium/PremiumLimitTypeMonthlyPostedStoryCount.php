@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumLimitTypeMonthlyPostedStoryCount extends PremiumLimitType
 {
-    public const TYPE_NAME = 'premiumLimitTypeMonthlyPostedStoryCount';
+    public const string TYPE_NAME = 'premiumLimitTypeMonthlyPostedStoryCount';
 
     public function __construct()
     {

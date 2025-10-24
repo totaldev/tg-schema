@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Text;
  */
 class TextEntityTypeExpandableBlockQuote extends TextEntityType
 {
-    public const TYPE_NAME = 'textEntityTypeExpandableBlockQuote';
+    public const string TYPE_NAME = 'textEntityTypeExpandableBlockQuote';
 
     public function __construct()
     {

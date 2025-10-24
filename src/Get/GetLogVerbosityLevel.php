@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLogVerbosityLevel extends TdFunction
 {
-    public const TYPE_NAME = 'getLogVerbosityLevel';
+    public const string TYPE_NAME = 'getLogVerbosityLevel';
 
     public function __construct() {}
 

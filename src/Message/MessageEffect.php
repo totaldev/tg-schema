@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageEffect extends TdObject
 {
-    public const TYPE_NAME = 'messageEffect';
+    public const string TYPE_NAME = 'messageEffect';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class MessageEffect extends TdObject
     public function getType(): MessageEffectType
     {
         return $this->type;
+    }
+
+    public function setEmoji(string $value): static
+    {
+        $this->emoji = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsPremium(bool $value): static
+    {
+        $this->isPremium = $value;
+
+        return $this;
+    }
+
+    public function setStaticIcon(?Sticker $value): static
+    {
+        $this->staticIcon = $value;
+
+        return $this;
+    }
+
+    public function setType(MessageEffectType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

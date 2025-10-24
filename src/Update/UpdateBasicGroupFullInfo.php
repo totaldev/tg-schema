@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateBasicGroupFullInfo extends Update
 {
-    public const TYPE_NAME = 'updateBasicGroupFullInfo';
+    public const string TYPE_NAME = 'updateBasicGroupFullInfo';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateBasicGroupFullInfo extends Update
     public function getBasicGroupId(): int
     {
         return $this->basicGroupId;
+    }
+
+    public function setBasicGroupFullInfo(BasicGroupFullInfo $value): static
+    {
+        $this->basicGroupFullInfo = $value;
+
+        return $this;
+    }
+
+    public function setBasicGroupId(int $value): static
+    {
+        $this->basicGroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

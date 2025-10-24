@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventVideoChatParticipantVolumeLevelChanged';
+    public const string TYPE_NAME = 'chatEventVideoChatParticipantVolumeLevelChanged';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class ChatEventVideoChatParticipantVolumeLevelChanged extends ChatEventAction
     public function getVolumeLevel(): int
     {
         return $this->volumeLevel;
+    }
+
+    public function setParticipantId(MessageSender $value): static
+    {
+        $this->participantId = $value;
+
+        return $this;
+    }
+
+    public function setVolumeLevel(int $value): static
+    {
+        $this->volumeLevel = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

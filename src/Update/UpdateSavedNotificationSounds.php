@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateSavedNotificationSounds extends Update
 {
-    public const TYPE_NAME = 'updateSavedNotificationSounds';
+    public const string TYPE_NAME = 'updateSavedNotificationSounds';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class UpdateSavedNotificationSounds extends Update
     public function getNotificationSoundIds(): array
     {
         return $this->notificationSoundIds;
+    }
+
+    public function setNotificationSoundIds(array $value): static
+    {
+        $this->notificationSoundIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

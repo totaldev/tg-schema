@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Store;
  */
 class StorePaymentPurposeStars extends StorePaymentPurpose
 {
-    public const TYPE_NAME = 'storePaymentPurposeStars';
+    public const string TYPE_NAME = 'storePaymentPurposeStars';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class StorePaymentPurposeStars extends StorePaymentPurpose
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setAmount(int $value): static
+    {
+        $this->amount = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCurrency(string $value): static
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

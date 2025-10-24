@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetDefaultReactionType extends TdFunction
 {
-    public const TYPE_NAME = 'setDefaultReactionType';
+    public const string TYPE_NAME = 'setDefaultReactionType';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetDefaultReactionType extends TdFunction
     public function getReactionType(): ReactionType
     {
         return $this->reactionType;
+    }
+
+    public function setReactionType(ReactionType $value): static
+    {
+        $this->reactionType = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

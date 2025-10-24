@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ClearRecentlyFoundChats extends TdFunction
 {
-    public const TYPE_NAME = 'clearRecentlyFoundChats';
+    public const string TYPE_NAME = 'clearRecentlyFoundChats';
 
     public function __construct() {}
 

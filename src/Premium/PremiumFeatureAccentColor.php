@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Premium;
  */
 class PremiumFeatureAccentColor extends PremiumFeature
 {
-    public const TYPE_NAME = 'premiumFeatureAccentColor';
+    public const string TYPE_NAME = 'premiumFeatureAccentColor';
 
     public function __construct()
     {

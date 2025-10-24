@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockKicker extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockKicker';
+    public const string TYPE_NAME = 'pageBlockKicker';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PageBlockKicker extends PageBlock
     public function getKicker(): RichText
     {
         return $this->kicker;
+    }
+
+    public function setKicker(RichText $value): static
+    {
+        $this->kicker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

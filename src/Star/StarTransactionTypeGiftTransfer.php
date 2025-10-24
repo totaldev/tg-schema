@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class StarTransactionTypeGiftTransfer extends StarTransactionType
 {
-    public const TYPE_NAME = 'starTransactionTypeGiftTransfer';
+    public const string TYPE_NAME = 'starTransactionTypeGiftTransfer';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class StarTransactionTypeGiftTransfer extends StarTransactionType
     public function getOwnerId(): MessageSender
     {
         return $this->ownerId;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

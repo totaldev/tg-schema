@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatTypeBasicGroup extends ChatType
 {
-    public const TYPE_NAME = 'chatTypeBasicGroup';
+    public const string TYPE_NAME = 'chatTypeBasicGroup';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatTypeBasicGroup extends ChatType
     public function getBasicGroupId(): int
     {
         return $this->basicGroupId;
+    }
+
+    public function setBasicGroupId(int $value): static
+    {
+        $this->basicGroupId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

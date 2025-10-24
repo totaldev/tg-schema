@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageCalendarDay extends TdObject
 {
-    public const TYPE_NAME = 'messageCalendarDay';
+    public const string TYPE_NAME = 'messageCalendarDay';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class MessageCalendarDay extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

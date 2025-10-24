@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetChatNotificationSettingsExceptions extends TdFunction
 {
-    public const TYPE_NAME = 'getChatNotificationSettingsExceptions';
+    public const string TYPE_NAME = 'getChatNotificationSettingsExceptions';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetChatNotificationSettingsExceptions extends TdFunction
     public function getScope(): ?NotificationSettingsScope
     {
         return $this->scope;
+    }
+
+    public function setCompareSound(bool $value): static
+    {
+        $this->compareSound = $value;
+
+        return $this;
+    }
+
+    public function setScope(?NotificationSettingsScope $value): static
+    {
+        $this->scope = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

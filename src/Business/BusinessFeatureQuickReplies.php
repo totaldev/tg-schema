@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Business;
  */
 class BusinessFeatureQuickReplies extends BusinessFeature
 {
-    public const TYPE_NAME = 'businessFeatureQuickReplies';
+    public const string TYPE_NAME = 'businessFeatureQuickReplies';
 
     public function __construct()
     {

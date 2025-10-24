@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetLogTags extends TdFunction
 {
-    public const TYPE_NAME = 'getLogTags';
+    public const string TYPE_NAME = 'getLogTags';
 
     public function __construct() {}
 

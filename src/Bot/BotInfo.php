@@ -19,7 +19,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class BotInfo extends TdObject
 {
-    public const TYPE_NAME = 'botInfo';
+    public const string TYPE_NAME = 'botInfo';
 
     public function __construct(
         /**
@@ -250,6 +250,160 @@ class BotInfo extends TdObject
     public function getWebAppHeaderLightColor(): int
     {
         return $this->webAppHeaderLightColor;
+    }
+
+    public function setAffiliateProgram(?AffiliateProgramInfo $value): static
+    {
+        $this->affiliateProgram = $value;
+
+        return $this;
+    }
+
+    public function setAnimation(?Animation $value): static
+    {
+        $this->animation = $value;
+
+        return $this;
+    }
+
+    public function setCanGetRevenueStatistics(bool $value): static
+    {
+        $this->canGetRevenueStatistics = $value;
+
+        return $this;
+    }
+
+    public function setCanManageEmojiStatus(bool $value): static
+    {
+        $this->canManageEmojiStatus = $value;
+
+        return $this;
+    }
+
+    public function setCommands(array $value): static
+    {
+        $this->commands = $value;
+
+        return $this;
+    }
+
+    public function setDefaultChannelAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->defaultChannelAdministratorRights = $value;
+
+        return $this;
+    }
+
+    public function setDefaultGroupAdministratorRights(?ChatAdministratorRights $value): static
+    {
+        $this->defaultGroupAdministratorRights = $value;
+
+        return $this;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setEditCommandsLink(?InternalLinkType $value): static
+    {
+        $this->editCommandsLink = $value;
+
+        return $this;
+    }
+
+    public function setEditDescriptionLink(?InternalLinkType $value): static
+    {
+        $this->editDescriptionLink = $value;
+
+        return $this;
+    }
+
+    public function setEditDescriptionMediaLink(?InternalLinkType $value): static
+    {
+        $this->editDescriptionMediaLink = $value;
+
+        return $this;
+    }
+
+    public function setEditSettingsLink(?InternalLinkType $value): static
+    {
+        $this->editSettingsLink = $value;
+
+        return $this;
+    }
+
+    public function setHasMediaPreviews(bool $value): static
+    {
+        $this->hasMediaPreviews = $value;
+
+        return $this;
+    }
+
+    public function setMenuButton(?BotMenuButton $value): static
+    {
+        $this->menuButton = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?Photo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
+    }
+
+    public function setPrivacyPolicyUrl(string $value): static
+    {
+        $this->privacyPolicyUrl = $value;
+
+        return $this;
+    }
+
+    public function setShortDescription(string $value): static
+    {
+        $this->shortDescription = $value;
+
+        return $this;
+    }
+
+    public function setVerificationParameters(?BotVerificationParameters $value): static
+    {
+        $this->verificationParameters = $value;
+
+        return $this;
+    }
+
+    public function setWebAppBackgroundDarkColor(int $value): static
+    {
+        $this->webAppBackgroundDarkColor = $value;
+
+        return $this;
+    }
+
+    public function setWebAppBackgroundLightColor(int $value): static
+    {
+        $this->webAppBackgroundLightColor = $value;
+
+        return $this;
+    }
+
+    public function setWebAppHeaderDarkColor(int $value): static
+    {
+        $this->webAppHeaderDarkColor = $value;
+
+        return $this;
+    }
+
+    public function setWebAppHeaderLightColor(int $value): static
+    {
+        $this->webAppHeaderLightColor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

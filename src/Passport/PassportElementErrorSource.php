@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PassportElementErrorSource extends TdObject
 {
-    public const TYPE_NAME = 'PassportElementErrorSource';
+    public const string TYPE_NAME = 'PassportElementErrorSource';
 
     public function __construct() {}
 

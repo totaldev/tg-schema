@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class StartGroupCallRecording extends TdFunction
 {
-    public const TYPE_NAME = 'startGroupCallRecording';
+    public const string TYPE_NAME = 'startGroupCallRecording';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class StartGroupCallRecording extends TdFunction
     public function getUsePortraitOrientation(): bool
     {
         return $this->usePortraitOrientation;
+    }
+
+    public function setGroupCallId(int $value): static
+    {
+        $this->groupCallId = $value;
+
+        return $this;
+    }
+
+    public function setRecordVideo(bool $value): static
+    {
+        $this->recordVideo = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUsePortraitOrientation(bool $value): static
+    {
+        $this->usePortraitOrientation = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

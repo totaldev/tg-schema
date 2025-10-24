@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Keyboard;
  */
 class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeRequestPoll';
+    public const string TYPE_NAME = 'keyboardButtonTypeRequestPoll';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class KeyboardButtonTypeRequestPoll extends KeyboardButtonType
     public function getForceRegular(): bool
     {
         return $this->forceRegular;
+    }
+
+    public function setForceQuiz(bool $value): static
+    {
+        $this->forceQuiz = $value;
+
+        return $this;
+    }
+
+    public function setForceRegular(bool $value): static
+    {
+        $this->forceRegular = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

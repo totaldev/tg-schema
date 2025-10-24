@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Device;
  */
 class DeviceTokenSimplePush extends DeviceToken
 {
-    public const TYPE_NAME = 'deviceTokenSimplePush';
+    public const string TYPE_NAME = 'deviceTokenSimplePush';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class DeviceTokenSimplePush extends DeviceToken
     public function getEndpoint(): string
     {
         return $this->endpoint;
+    }
+
+    public function setEndpoint(string $value): static
+    {
+        $this->endpoint = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

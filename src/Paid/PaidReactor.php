@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PaidReactor extends TdObject
 {
-    public const TYPE_NAME = 'paidReactor';
+    public const string TYPE_NAME = 'paidReactor';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class PaidReactor extends TdObject
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setIsAnonymous(bool $value): static
+    {
+        $this->isAnonymous = $value;
+
+        return $this;
+    }
+
+    public function setIsMe(bool $value): static
+    {
+        $this->isMe = $value;
+
+        return $this;
+    }
+
+    public function setIsTop(bool $value): static
+    {
+        $this->isTop = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(?MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

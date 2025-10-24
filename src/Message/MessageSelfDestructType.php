@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageSelfDestructType extends TdObject
 {
-    public const TYPE_NAME = 'MessageSelfDestructType';
+    public const string TYPE_NAME = 'MessageSelfDestructType';
 
     public function __construct() {}
 

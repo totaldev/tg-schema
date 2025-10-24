@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateStoryListChatCount extends Update
 {
-    public const TYPE_NAME = 'updateStoryListChatCount';
+    public const string TYPE_NAME = 'updateStoryListChatCount';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateStoryListChatCount extends Update
     public function getStoryList(): StoryList
     {
         return $this->storyList;
+    }
+
+    public function setChatCount(int $value): static
+    {
+        $this->chatCount = $value;
+
+        return $this;
+    }
+
+    public function setStoryList(StoryList $value): static
+    {
+        $this->storyList = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

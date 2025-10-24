@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Web\WebAppOpenParameters;
  */
 class GetWebAppLinkUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getWebAppLinkUrl';
+    public const string TYPE_NAME = 'getWebAppLinkUrl';
 
     public function __construct(
         /**
@@ -84,6 +84,48 @@ class GetWebAppLinkUrl extends TdFunction
     public function getWebAppShortName(): string
     {
         return $this->webAppShortName;
+    }
+
+    public function setAllowWriteAccess(bool $value): static
+    {
+        $this->allowWriteAccess = $value;
+
+        return $this;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setParameters(WebAppOpenParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
+    }
+
+    public function setWebAppShortName(string $value): static
+    {
+        $this->webAppShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class MessageReplyInfo extends TdObject
 {
-    public const TYPE_NAME = 'messageReplyInfo';
+    public const string TYPE_NAME = 'messageReplyInfo';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class MessageReplyInfo extends TdObject
     public function getReplyCount(): int
     {
         return $this->replyCount;
+    }
+
+    public function setLastMessageId(int $value): static
+    {
+        $this->lastMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadInboxMessageId(int $value): static
+    {
+        $this->lastReadInboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setRecentReplierIds(array $value): static
+    {
+        $this->recentReplierIds = $value;
+
+        return $this;
+    }
+
+    public function setReplyCount(int $value): static
+    {
+        $this->replyCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

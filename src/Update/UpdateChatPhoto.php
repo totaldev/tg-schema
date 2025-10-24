@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatPhoto extends Update
 {
-    public const TYPE_NAME = 'updateChatPhoto';
+    public const string TYPE_NAME = 'updateChatPhoto';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class UpdateChatPhoto extends Update
     public function getPhoto(): ?ChatPhotoInfo
     {
         return $this->photo;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setPhoto(?ChatPhotoInfo $value): static
+    {
+        $this->photo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

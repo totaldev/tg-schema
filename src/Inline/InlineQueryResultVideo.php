@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Video\Video;
  */
 class InlineQueryResultVideo extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultVideo';
+    public const string TYPE_NAME = 'inlineQueryResultVideo';
 
     public function __construct(
         /**
@@ -65,6 +65,34 @@ class InlineQueryResultVideo extends InlineQueryResult
     public function getVideo(): Video
     {
         return $this->video;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setVideo(Video $value): static
+    {
+        $this->video = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

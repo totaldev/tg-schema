@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Story;
  */
 class StoryAreaTypeUpgradedGift extends StoryAreaType
 {
-    public const TYPE_NAME = 'storyAreaTypeUpgradedGift';
+    public const string TYPE_NAME = 'storyAreaTypeUpgradedGift';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class StoryAreaTypeUpgradedGift extends StoryAreaType
     public function getGiftName(): string
     {
         return $this->giftName;
+    }
+
+    public function setGiftName(string $value): static
+    {
+        $this->giftName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

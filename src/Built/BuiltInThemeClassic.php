@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Built;
  */
 class BuiltInThemeClassic extends BuiltInTheme
 {
-    public const TYPE_NAME = 'builtInThemeClassic';
+    public const string TYPE_NAME = 'builtInThemeClassic';
 
     public function __construct()
     {

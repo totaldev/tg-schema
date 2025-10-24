@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetUpgradedGiftWithdrawalUrl extends TdFunction
 {
-    public const TYPE_NAME = 'getUpgradedGiftWithdrawalUrl';
+    public const string TYPE_NAME = 'getUpgradedGiftWithdrawalUrl';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class GetUpgradedGiftWithdrawalUrl extends TdFunction
     public function getReceivedGiftId(): string
     {
         return $this->receivedGiftId;
+    }
+
+    public function setPassword(string $value): static
+    {
+        $this->password = $value;
+
+        return $this;
+    }
+
+    public function setReceivedGiftId(string $value): static
+    {
+        $this->receivedGiftId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Keyboard;
  */
 class KeyboardButtonTypeRequestPhoneNumber extends KeyboardButtonType
 {
-    public const TYPE_NAME = 'keyboardButtonTypeRequestPhoneNumber';
+    public const string TYPE_NAME = 'keyboardButtonTypeRequestPhoneNumber';
 
     public function __construct()
     {

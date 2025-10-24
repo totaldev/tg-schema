@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetDeepLinkInfo extends TdFunction
 {
-    public const TYPE_NAME = 'getDeepLinkInfo';
+    public const string TYPE_NAME = 'getDeepLinkInfo';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetDeepLinkInfo extends TdFunction
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

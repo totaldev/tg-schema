@@ -16,7 +16,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SavedMessagesTopic extends TdObject
 {
-    public const TYPE_NAME = 'savedMessagesTopic';
+    public const string TYPE_NAME = 'savedMessagesTopic';
 
     public function __construct(
         /**
@@ -85,6 +85,48 @@ class SavedMessagesTopic extends TdObject
     public function getType(): SavedMessagesTopicType
     {
         return $this->type;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setLastMessage(?Message $value): static
+    {
+        $this->lastMessage = $value;
+
+        return $this;
+    }
+
+    public function setOrder(int $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setType(SavedMessagesTopicType $value): static
+    {
+        $this->type = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

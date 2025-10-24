@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeInvoice extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeInvoice';
+    public const string TYPE_NAME = 'internalLinkTypeInvoice';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InternalLinkTypeInvoice extends InternalLinkType
     public function getInvoiceName(): string
     {
         return $this->invoiceName;
+    }
+
+    public function setInvoiceName(string $value): static
+    {
+        $this->invoiceName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

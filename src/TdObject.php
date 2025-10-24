@@ -10,7 +10,7 @@ use JsonSerializable;
 
 abstract class TdObject implements JsonSerializable, TdTypeSerializableInterface
 {
-    public const TYPE_NAME = '_tdObject';
+    public const string TYPE_NAME = '_tdObject';
 
     public ?string $tdExtra = null;
 

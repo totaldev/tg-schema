@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class TonTransactionTypeFragmentDeposit extends TonTransactionType
 {
-    public const TYPE_NAME = 'tonTransactionTypeFragmentDeposit';
+    public const string TYPE_NAME = 'tonTransactionTypeFragmentDeposit';
 
     public function __construct(
         /**
@@ -45,6 +45,20 @@ class TonTransactionTypeFragmentDeposit extends TonTransactionType
     public function getSticker(): ?Sticker
     {
         return $this->sticker;
+    }
+
+    public function setIsGift(bool $value): static
+    {
+        $this->isGift = $value;
+
+        return $this;
+    }
+
+    public function setSticker(?Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatInviteLinkSubscriptionInfo extends TdObject
 {
-    public const TYPE_NAME = 'chatInviteLinkSubscriptionInfo';
+    public const string TYPE_NAME = 'chatInviteLinkSubscriptionInfo';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class ChatInviteLinkSubscriptionInfo extends TdObject
     public function getPricing(): StarSubscriptionPricing
     {
         return $this->pricing;
+    }
+
+    public function setCanReuse(bool $value): static
+    {
+        $this->canReuse = $value;
+
+        return $this;
+    }
+
+    public function setFormId(int $value): static
+    {
+        $this->formId = $value;
+
+        return $this;
+    }
+
+    public function setPricing(StarSubscriptionPricing $value): static
+    {
+        $this->pricing = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

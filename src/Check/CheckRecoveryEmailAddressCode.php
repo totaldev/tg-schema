@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CheckRecoveryEmailAddressCode extends TdFunction
 {
-    public const TYPE_NAME = 'checkRecoveryEmailAddressCode';
+    public const string TYPE_NAME = 'checkRecoveryEmailAddressCode';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CheckRecoveryEmailAddressCode extends TdFunction
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $value): static
+    {
+        $this->code = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

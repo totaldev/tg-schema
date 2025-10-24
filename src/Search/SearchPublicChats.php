@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchPublicChats extends TdFunction
 {
-    public const TYPE_NAME = 'searchPublicChats';
+    public const string TYPE_NAME = 'searchPublicChats';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class SearchPublicChats extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

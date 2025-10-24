@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchStringsByPrefix extends TdFunction
 {
-    public const TYPE_NAME = 'searchStringsByPrefix';
+    public const string TYPE_NAME = 'searchStringsByPrefix';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class SearchStringsByPrefix extends TdFunction
     public function getStrings(): array
     {
         return $this->strings;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
+    }
+
+    public function setReturnNoneForEmptyQuery(bool $value): static
+    {
+        $this->returnNoneForEmptyQuery = $value;
+
+        return $this;
+    }
+
+    public function setStrings(array $value): static
+    {
+        $this->strings = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

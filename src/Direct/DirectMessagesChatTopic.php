@@ -17,7 +17,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DirectMessagesChatTopic extends TdObject
 {
-    public const TYPE_NAME = 'directMessagesChatTopic';
+    public const string TYPE_NAME = 'directMessagesChatTopic';
 
     public function __construct(
         /**
@@ -146,6 +146,90 @@ class DirectMessagesChatTopic extends TdObject
     public function getUnreadReactionCount(): int
     {
         return $this->unreadReactionCount;
+    }
+
+    public function setCanSendUnpaidMessages(bool $value): static
+    {
+        $this->canSendUnpaidMessages = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDraftMessage(?DraftMessage $value): static
+    {
+        $this->draftMessage = $value;
+
+        return $this;
+    }
+
+    public function setId(int $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setIsMarkedAsUnread(bool $value): static
+    {
+        $this->isMarkedAsUnread = $value;
+
+        return $this;
+    }
+
+    public function setLastMessage(?Message $value): static
+    {
+        $this->lastMessage = $value;
+
+        return $this;
+    }
+
+    public function setLastReadInboxMessageId(int $value): static
+    {
+        $this->lastReadInboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setLastReadOutboxMessageId(int $value): static
+    {
+        $this->lastReadOutboxMessageId = $value;
+
+        return $this;
+    }
+
+    public function setOrder(int $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setSenderId(MessageSender $value): static
+    {
+        $this->senderId = $value;
+
+        return $this;
+    }
+
+    public function setUnreadCount(int $value): static
+    {
+        $this->unreadCount = $value;
+
+        return $this;
+    }
+
+    public function setUnreadReactionCount(int $value): static
+    {
+        $this->unreadReactionCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

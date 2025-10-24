@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Upgraded\UpgradedGift;
  */
 class LinkPreviewTypeUpgradedGift extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeUpgradedGift';
+    public const string TYPE_NAME = 'linkPreviewTypeUpgradedGift';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class LinkPreviewTypeUpgradedGift extends LinkPreviewType
     public function getGift(): UpgradedGift
     {
         return $this->gift;
+    }
+
+    public function setGift(UpgradedGift $value): static
+    {
+        $this->gift = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

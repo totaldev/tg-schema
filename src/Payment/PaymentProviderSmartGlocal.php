@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Payment;
  */
 class PaymentProviderSmartGlocal extends PaymentProvider
 {
-    public const TYPE_NAME = 'paymentProviderSmartGlocal';
+    public const string TYPE_NAME = 'paymentProviderSmartGlocal';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class PaymentProviderSmartGlocal extends PaymentProvider
     public function getTokenizeUrl(): string
     {
         return $this->tokenizeUrl;
+    }
+
+    public function setPublicToken(string $value): static
+    {
+        $this->publicToken = $value;
+
+        return $this;
+    }
+
+    public function setTokenizeUrl(string $value): static
+    {
+        $this->tokenizeUrl = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

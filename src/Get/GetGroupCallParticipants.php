@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class GetGroupCallParticipants extends TdFunction
 {
-    public const TYPE_NAME = 'getGroupCallParticipants';
+    public const string TYPE_NAME = 'getGroupCallParticipants';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class GetGroupCallParticipants extends TdFunction
     public function getLimit(): int
     {
         return $this->limit;
+    }
+
+    public function setInputGroupCall(InputGroupCall $value): static
+    {
+        $this->inputGroupCall = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

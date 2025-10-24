@@ -14,7 +14,7 @@ use Totaldev\TgSchema\Thumbnail\Thumbnail;
  */
 class InlineQueryResultArticle extends InlineQueryResult
 {
-    public const TYPE_NAME = 'inlineQueryResultArticle';
+    public const string TYPE_NAME = 'inlineQueryResultArticle';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class InlineQueryResultArticle extends InlineQueryResult
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setDescription(string $value): static
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setThumbnail(?Thumbnail $value): static
+    {
+        $this->thumbnail = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class Messages extends TdObject
 {
-    public const TYPE_NAME = 'messages';
+    public const string TYPE_NAME = 'messages';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class Messages extends TdObject
     public function getTotalCount(): int
     {
         return $this->totalCount;
+    }
+
+    public function setMessages(?array $value): static
+    {
+        $this->messages = $value;
+
+        return $this;
+    }
+
+    public function setTotalCount(int $value): static
+    {
+        $this->totalCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

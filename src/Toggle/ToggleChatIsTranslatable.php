@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleChatIsTranslatable extends TdFunction
 {
-    public const TYPE_NAME = 'toggleChatIsTranslatable';
+    public const string TYPE_NAME = 'toggleChatIsTranslatable';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ToggleChatIsTranslatable extends TdFunction
     public function getIsTranslatable(): bool
     {
         return $this->isTranslatable;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setIsTranslatable(bool $value): static
+    {
+        $this->isTranslatable = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

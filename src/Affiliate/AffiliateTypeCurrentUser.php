@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Affiliate;
  */
 class AffiliateTypeCurrentUser extends AffiliateType
 {
-    public const TYPE_NAME = 'affiliateTypeCurrentUser';
+    public const string TYPE_NAME = 'affiliateTypeCurrentUser';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ToggleForumTopicIsClosed extends TdFunction
 {
-    public const TYPE_NAME = 'toggleForumTopicIsClosed';
+    public const string TYPE_NAME = 'toggleForumTopicIsClosed';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class ToggleForumTopicIsClosed extends TdFunction
     public function getIsClosed(): bool
     {
         return $this->isClosed;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setIsClosed(bool $value): static
+    {
+        $this->isClosed = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

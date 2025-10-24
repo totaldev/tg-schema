@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchFileDownloads extends TdFunction
 {
-    public const TYPE_NAME = 'searchFileDownloads';
+    public const string TYPE_NAME = 'searchFileDownloads';
 
     public function __construct(
         /**
@@ -72,6 +72,41 @@ class SearchFileDownloads extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOnlyActive(bool $value): static
+    {
+        $this->onlyActive = $value;
+
+        return $this;
+    }
+
+    public function setOnlyCompleted(bool $value): static
+    {
+        $this->onlyCompleted = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

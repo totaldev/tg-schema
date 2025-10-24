@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Thumbnail;
  */
 class ThumbnailFormatTgs extends ThumbnailFormat
 {
-    public const TYPE_NAME = 'thumbnailFormatTgs';
+    public const string TYPE_NAME = 'thumbnailFormatTgs';
 
     public function __construct()
     {

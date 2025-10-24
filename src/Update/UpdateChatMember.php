@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateChatMember extends Update
 {
-    public const TYPE_NAME = 'updateChatMember';
+    public const string TYPE_NAME = 'updateChatMember';
 
     public function __construct(
         /**
@@ -106,6 +106,62 @@ class UpdateChatMember extends Update
     public function getViaJoinRequest(): bool
     {
         return $this->viaJoinRequest;
+    }
+
+    public function setActorUserId(int $value): static
+    {
+        $this->actorUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setDate(int $value): static
+    {
+        $this->date = $value;
+
+        return $this;
+    }
+
+    public function setInviteLink(?ChatInviteLink $value): static
+    {
+        $this->inviteLink = $value;
+
+        return $this;
+    }
+
+    public function setNewChatMember(ChatMember $value): static
+    {
+        $this->newChatMember = $value;
+
+        return $this;
+    }
+
+    public function setOldChatMember(ChatMember $value): static
+    {
+        $this->oldChatMember = $value;
+
+        return $this;
+    }
+
+    public function setViaChatFolderInviteLink(bool $value): static
+    {
+        $this->viaChatFolderInviteLink = $value;
+
+        return $this;
+    }
+
+    public function setViaJoinRequest(bool $value): static
+    {
+        $this->viaJoinRequest = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

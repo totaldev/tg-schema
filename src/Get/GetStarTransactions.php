@@ -16,7 +16,7 @@ use Totaldev\TgSchema\Transaction\TransactionDirection;
  */
 class GetStarTransactions extends TdFunction
 {
-    public const TYPE_NAME = 'getStarTransactions';
+    public const string TYPE_NAME = 'getStarTransactions';
 
     public function __construct(
         /**
@@ -75,6 +75,41 @@ class GetStarTransactions extends TdFunction
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
+    }
+
+    public function setDirection(?TransactionDirection $value): static
+    {
+        $this->direction = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setOwnerId(MessageSender $value): static
+    {
+        $this->ownerId = $value;
+
+        return $this;
+    }
+
+    public function setSubscriptionId(string $value): static
+    {
+        $this->subscriptionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

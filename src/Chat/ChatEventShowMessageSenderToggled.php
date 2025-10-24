@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatEventShowMessageSenderToggled extends ChatEventAction
 {
-    public const TYPE_NAME = 'chatEventShowMessageSenderToggled';
+    public const string TYPE_NAME = 'chatEventShowMessageSenderToggled';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatEventShowMessageSenderToggled extends ChatEventAction
     public function getShowMessageSender(): bool
     {
         return $this->showMessageSender;
+    }
+
+    public function setShowMessageSender(bool $value): static
+    {
+        $this->showMessageSender = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

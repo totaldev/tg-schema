@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SearchSecretMessages extends TdFunction
 {
-    public const TYPE_NAME = 'searchSecretMessages';
+    public const string TYPE_NAME = 'searchSecretMessages';
 
     public function __construct(
         /**
@@ -74,6 +74,41 @@ class SearchSecretMessages extends TdFunction
     public function getQuery(): string
     {
         return $this->query;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setFilter(?SearchMessagesFilter $value): static
+    {
+        $this->filter = $value;
+
+        return $this;
+    }
+
+    public function setLimit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    public function setOffset(string $value): static
+    {
+        $this->offset = $value;
+
+        return $this;
+    }
+
+    public function setQuery(string $value): static
+    {
+        $this->query = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

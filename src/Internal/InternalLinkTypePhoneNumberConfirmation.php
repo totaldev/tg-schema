@@ -13,7 +13,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypePhoneNumberConfirmation';
+    public const string TYPE_NAME = 'internalLinkTypePhoneNumberConfirmation';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class InternalLinkTypePhoneNumberConfirmation extends InternalLinkType
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
+    }
+
+    public function setHash(string $value): static
+    {
+        $this->hash = $value;
+
+        return $this;
+    }
+
+    public function setPhoneNumber(string $value): static
+    {
+        $this->phoneNumber = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

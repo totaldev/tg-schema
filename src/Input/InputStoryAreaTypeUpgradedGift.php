@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputStoryAreaTypeUpgradedGift extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeUpgradedGift';
+    public const string TYPE_NAME = 'inputStoryAreaTypeUpgradedGift';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputStoryAreaTypeUpgradedGift extends InputStoryAreaType
     public function getGiftName(): string
     {
         return $this->giftName;
+    }
+
+    public function setGiftName(string $value): static
+    {
+        $this->giftName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

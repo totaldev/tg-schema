@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Language;
  */
 class LanguagePackStringValueDeleted extends LanguagePackStringValue
 {
-    public const TYPE_NAME = 'languagePackStringValueDeleted';
+    public const string TYPE_NAME = 'languagePackStringValueDeleted';
 
     public function __construct()
     {

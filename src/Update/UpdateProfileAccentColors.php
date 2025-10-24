@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateProfileAccentColors extends Update
 {
-    public const TYPE_NAME = 'updateProfileAccentColors';
+    public const string TYPE_NAME = 'updateProfileAccentColors';
 
     public function __construct(
         /**
@@ -49,6 +49,20 @@ class UpdateProfileAccentColors extends Update
     public function getColors(): array
     {
         return $this->colors;
+    }
+
+    public function setAvailableAccentColorIds(array $value): static
+    {
+        $this->availableAccentColorIds = $value;
+
+        return $this;
+    }
+
+    public function setColors(array $value): static
+    {
+        $this->colors = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

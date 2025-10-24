@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ForumTopicInfo extends TdObject
 {
-    public const TYPE_NAME = 'forumTopicInfo';
+    public const string TYPE_NAME = 'forumTopicInfo';
 
     public function __construct(
         /**
@@ -134,6 +134,83 @@ class ForumTopicInfo extends TdObject
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCreationDate(int $value): static
+    {
+        $this->creationDate = $value;
+
+        return $this;
+    }
+
+    public function setCreatorId(MessageSender $value): static
+    {
+        $this->creatorId = $value;
+
+        return $this;
+    }
+
+    public function setForumTopicId(int $value): static
+    {
+        $this->forumTopicId = $value;
+
+        return $this;
+    }
+
+    public function setIcon(ForumTopicIcon $value): static
+    {
+        $this->icon = $value;
+
+        return $this;
+    }
+
+    public function setIsClosed(bool $value): static
+    {
+        $this->isClosed = $value;
+
+        return $this;
+    }
+
+    public function setIsGeneral(bool $value): static
+    {
+        $this->isGeneral = $value;
+
+        return $this;
+    }
+
+    public function setIsHidden(bool $value): static
+    {
+        $this->isHidden = $value;
+
+        return $this;
+    }
+
+    public function setIsNameImplicit(bool $value): static
+    {
+        $this->isNameImplicit = $value;
+
+        return $this;
+    }
+
+    public function setIsOutgoing(bool $value): static
+    {
+        $this->isOutgoing = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

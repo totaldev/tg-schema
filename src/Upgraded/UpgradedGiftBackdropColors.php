@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class UpgradedGiftBackdropColors extends TdObject
 {
-    public const TYPE_NAME = 'upgradedGiftBackdropColors';
+    public const string TYPE_NAME = 'upgradedGiftBackdropColors';
 
     public function __construct(
         /**
@@ -62,6 +62,34 @@ class UpgradedGiftBackdropColors extends TdObject
     public function getTextColor(): int
     {
         return $this->textColor;
+    }
+
+    public function setCenterColor(int $value): static
+    {
+        $this->centerColor = $value;
+
+        return $this;
+    }
+
+    public function setEdgeColor(int $value): static
+    {
+        $this->edgeColor = $value;
+
+        return $this;
+    }
+
+    public function setSymbolColor(int $value): static
+    {
+        $this->symbolColor = $value;
+
+        return $this;
+    }
+
+    public function setTextColor(int $value): static
+    {
+        $this->textColor = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

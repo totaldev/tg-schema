@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Call;
  */
 class CallProblemDistortedSpeech extends CallProblem
 {
-    public const TYPE_NAME = 'callProblemDistortedSpeech';
+    public const string TYPE_NAME = 'callProblemDistortedSpeech';
 
     public function __construct()
     {

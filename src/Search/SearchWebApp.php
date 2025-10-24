@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SearchWebApp extends TdFunction
 {
-    public const TYPE_NAME = 'searchWebApp';
+    public const string TYPE_NAME = 'searchWebApp';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class SearchWebApp extends TdFunction
     public function getWebAppShortName(): string
     {
         return $this->webAppShortName;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setWebAppShortName(string $value): static
+    {
+        $this->webAppShortName = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

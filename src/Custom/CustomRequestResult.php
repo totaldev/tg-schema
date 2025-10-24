@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CustomRequestResult extends TdObject
 {
-    public const TYPE_NAME = 'customRequestResult';
+    public const string TYPE_NAME = 'customRequestResult';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class CustomRequestResult extends TdObject
     public function getResult(): string
     {
         return $this->result;
+    }
+
+    public function setResult(string $value): static
+    {
+        $this->result = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

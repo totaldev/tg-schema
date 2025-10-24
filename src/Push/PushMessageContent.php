@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PushMessageContent extends TdObject
 {
-    public const TYPE_NAME = 'PushMessageContent';
+    public const string TYPE_NAME = 'PushMessageContent';
 
     public function __construct() {}
 

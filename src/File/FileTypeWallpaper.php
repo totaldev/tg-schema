@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\File;
  */
 class FileTypeWallpaper extends FileType
 {
-    public const TYPE_NAME = 'fileTypeWallpaper';
+    public const string TYPE_NAME = 'fileTypeWallpaper';
 
     public function __construct()
     {

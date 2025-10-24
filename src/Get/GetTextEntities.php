@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetTextEntities extends TdFunction
 {
-    public const TYPE_NAME = 'getTextEntities';
+    public const string TYPE_NAME = 'getTextEntities';
 
     public function __construct(
         /**
@@ -33,6 +33,13 @@ class GetTextEntities extends TdFunction
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $value): static
+    {
+        $this->text = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

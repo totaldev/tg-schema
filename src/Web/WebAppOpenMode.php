@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class WebAppOpenMode extends TdObject
 {
-    public const TYPE_NAME = 'WebAppOpenMode';
+    public const string TYPE_NAME = 'WebAppOpenMode';
 
     public function __construct() {}
 

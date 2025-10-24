@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class CallbackQueryPayload extends TdObject
 {
-    public const TYPE_NAME = 'CallbackQueryPayload';
+    public const string TYPE_NAME = 'CallbackQueryPayload';
 
     public function __construct() {}
 

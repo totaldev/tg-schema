@@ -15,7 +15,7 @@ use Totaldev\TgSchema\Web\WebAppOpenParameters;
  */
 class GetMainWebApp extends TdFunction
 {
-    public const TYPE_NAME = 'getMainWebApp';
+    public const string TYPE_NAME = 'getMainWebApp';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class GetMainWebApp extends TdFunction
     public function getStartParameter(): string
     {
         return $this->startParameter;
+    }
+
+    public function setBotUserId(int $value): static
+    {
+        $this->botUserId = $value;
+
+        return $this;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setParameters(WebAppOpenParameters $value): static
+    {
+        $this->parameters = $value;
+
+        return $this;
+    }
+
+    public function setStartParameter(string $value): static
+    {
+        $this->startParameter = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SendCallRating extends TdFunction
 {
-    public const TYPE_NAME = 'sendCallRating';
+    public const string TYPE_NAME = 'sendCallRating';
 
     public function __construct(
         /**
@@ -66,6 +66,34 @@ class SendCallRating extends TdFunction
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function setCallId(int $value): static
+    {
+        $this->callId = $value;
+
+        return $this;
+    }
+
+    public function setComment(string $value): static
+    {
+        $this->comment = $value;
+
+        return $this;
+    }
+
+    public function setProblems(array $value): static
+    {
+        $this->problems = $value;
+
+        return $this;
+    }
+
+    public function setRating(int $value): static
+    {
+        $this->rating = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

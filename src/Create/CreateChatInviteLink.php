@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class CreateChatInviteLink extends TdFunction
 {
-    public const TYPE_NAME = 'createChatInviteLink';
+    public const string TYPE_NAME = 'createChatInviteLink';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class CreateChatInviteLink extends TdFunction
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setCreatesJoinRequest(bool $value): static
+    {
+        $this->createsJoinRequest = $value;
+
+        return $this;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setMemberLimit(int $value): static
+    {
+        $this->memberLimit = $value;
+
+        return $this;
+    }
+
+    public function setName(string $value): static
+    {
+        $this->name = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Passport;
  */
 class PassportElementErrorSourceFiles extends PassportElementErrorSource
 {
-    public const TYPE_NAME = 'passportElementErrorSourceFiles';
+    public const string TYPE_NAME = 'passportElementErrorSourceFiles';
 
     public function __construct()
     {

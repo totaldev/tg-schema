@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeUnknownDeepLink extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeUnknownDeepLink';
+    public const string TYPE_NAME = 'internalLinkTypeUnknownDeepLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InternalLinkTypeUnknownDeepLink extends InternalLinkType
     public function getLink(): string
     {
         return $this->link;
+    }
+
+    public function setLink(string $value): static
+    {
+        $this->link = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

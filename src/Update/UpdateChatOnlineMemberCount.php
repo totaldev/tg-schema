@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Update;
  */
 class UpdateChatOnlineMemberCount extends Update
 {
-    public const TYPE_NAME = 'updateChatOnlineMemberCount';
+    public const string TYPE_NAME = 'updateChatOnlineMemberCount';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class UpdateChatOnlineMemberCount extends Update
     public function getOnlineMemberCount(): int
     {
         return $this->onlineMemberCount;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setOnlineMemberCount(int $value): static
+    {
+        $this->onlineMemberCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

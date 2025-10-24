@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class FoundUsers extends TdObject
 {
-    public const TYPE_NAME = 'foundUsers';
+    public const string TYPE_NAME = 'foundUsers';
 
     public function __construct(
         /**
@@ -44,6 +44,20 @@ class FoundUsers extends TdObject
     public function getUserIds(): array
     {
         return $this->userIds;
+    }
+
+    public function setNextOffset(string $value): static
+    {
+        $this->nextOffset = $value;
+
+        return $this;
+    }
+
+    public function setUserIds(array $value): static
+    {
+        $this->userIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

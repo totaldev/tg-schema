@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class GetActiveSessions extends TdFunction
 {
-    public const TYPE_NAME = 'getActiveSessions';
+    public const string TYPE_NAME = 'getActiveSessions';
 
     public function __construct() {}
 

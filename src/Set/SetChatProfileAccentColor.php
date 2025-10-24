@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetChatProfileAccentColor extends TdFunction
 {
-    public const TYPE_NAME = 'setChatProfileAccentColor';
+    public const string TYPE_NAME = 'setChatProfileAccentColor';
 
     public function __construct(
         /**
@@ -52,6 +52,27 @@ class SetChatProfileAccentColor extends TdFunction
     public function getProfileBackgroundCustomEmojiId(): int
     {
         return $this->profileBackgroundCustomEmojiId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setProfileAccentColorId(int $value): static
+    {
+        $this->profileAccentColorId = $value;
+
+        return $this;
+    }
+
+    public function setProfileBackgroundCustomEmojiId(int $value): static
+    {
+        $this->profileBackgroundCustomEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

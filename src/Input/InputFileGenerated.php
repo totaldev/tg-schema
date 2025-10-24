@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputFileGenerated extends InputFile
 {
-    public const TYPE_NAME = 'inputFileGenerated';
+    public const string TYPE_NAME = 'inputFileGenerated';
 
     public function __construct(
         /**
@@ -53,6 +53,27 @@ class InputFileGenerated extends InputFile
     public function getOriginalPath(): string
     {
         return $this->originalPath;
+    }
+
+    public function setConversion(string $value): static
+    {
+        $this->conversion = $value;
+
+        return $this;
+    }
+
+    public function setExpectedSize(int $value): static
+    {
+        $this->expectedSize = $value;
+
+        return $this;
+    }
+
+    public function setOriginalPath(string $value): static
+    {
+        $this->originalPath = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class MessageEffectType extends TdObject
 {
-    public const TYPE_NAME = 'MessageEffectType';
+    public const string TYPE_NAME = 'MessageEffectType';
 
     public function __construct() {}
 

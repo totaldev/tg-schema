@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class DiceStickersRegular extends DiceStickers
 {
-    public const TYPE_NAME = 'diceStickersRegular';
+    public const string TYPE_NAME = 'diceStickersRegular';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class DiceStickersRegular extends DiceStickers
     public function getSticker(): Sticker
     {
         return $this->sticker;
+    }
+
+    public function setSticker(Sticker $value): static
+    {
+        $this->sticker = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

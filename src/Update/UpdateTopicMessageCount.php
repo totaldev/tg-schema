@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateTopicMessageCount extends Update
 {
-    public const TYPE_NAME = 'updateTopicMessageCount';
+    public const string TYPE_NAME = 'updateTopicMessageCount';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UpdateTopicMessageCount extends Update
     public function getTopicId(): MessageTopic
     {
         return $this->topicId;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageCount(int $value): static
+    {
+        $this->messageCount = $value;
+
+        return $this;
+    }
+
+    public function setTopicId(MessageTopic $value): static
+    {
+        $this->topicId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

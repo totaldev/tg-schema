@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Input;
  */
 class InputStoryAreaTypeLink extends InputStoryAreaType
 {
-    public const TYPE_NAME = 'inputStoryAreaTypeLink';
+    public const string TYPE_NAME = 'inputStoryAreaTypeLink';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class InputStoryAreaTypeLink extends InputStoryAreaType
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function setUrl(string $value): static
+    {
+        $this->url = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

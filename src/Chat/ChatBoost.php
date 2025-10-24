@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatBoost extends TdObject
 {
-    public const TYPE_NAME = 'chatBoost';
+    public const string TYPE_NAME = 'chatBoost';
 
     public function __construct(
         /**
@@ -73,6 +73,41 @@ class ChatBoost extends TdObject
     public function getStartDate(): int
     {
         return $this->startDate;
+    }
+
+    public function setCount(int $value): static
+    {
+        $this->count = $value;
+
+        return $this;
+    }
+
+    public function setExpirationDate(int $value): static
+    {
+        $this->expirationDate = $value;
+
+        return $this;
+    }
+
+    public function setId(string $value): static
+    {
+        $this->id = $value;
+
+        return $this;
+    }
+
+    public function setSource(ChatBoostSource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
+    }
+
+    public function setStartDate(int $value): static
+    {
+        $this->startDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

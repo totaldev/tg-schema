@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSchedulingStateSendWhenOnline extends MessageSchedulingState
 {
-    public const TYPE_NAME = 'messageSchedulingStateSendWhenOnline';
+    public const string TYPE_NAME = 'messageSchedulingStateSendWhenOnline';
 
     public function __construct()
     {

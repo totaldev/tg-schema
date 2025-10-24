@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Chat;
  */
 class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType
 {
-    public const TYPE_NAME = 'chatPhotoStickerTypeCustomEmoji';
+    public const string TYPE_NAME = 'chatPhotoStickerTypeCustomEmoji';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType
     public function getCustomEmojiId(): int
     {
         return $this->customEmojiId;
+    }
+
+    public function setCustomEmojiId(int $value): static
+    {
+        $this->customEmojiId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

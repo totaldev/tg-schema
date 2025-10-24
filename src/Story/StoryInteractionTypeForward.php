@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class StoryInteractionTypeForward extends StoryInteractionType
 {
-    public const TYPE_NAME = 'storyInteractionTypeForward';
+    public const string TYPE_NAME = 'storyInteractionTypeForward';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class StoryInteractionTypeForward extends StoryInteractionType
     public function getMessage(): Message
     {
         return $this->message;
+    }
+
+    public function setMessage(Message $value): static
+    {
+        $this->message = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

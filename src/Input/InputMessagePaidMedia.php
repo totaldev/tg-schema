@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class InputMessagePaidMedia extends InputMessageContent
 {
-    public const TYPE_NAME = 'inputMessagePaidMedia';
+    public const string TYPE_NAME = 'inputMessagePaidMedia';
 
     public function __construct(
         /**
@@ -77,6 +77,41 @@ class InputMessagePaidMedia extends InputMessageContent
     public function getStarCount(): int
     {
         return $this->starCount;
+    }
+
+    public function setCaption(?FormattedText $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setPaidMedia(array $value): static
+    {
+        $this->paidMedia = $value;
+
+        return $this;
+    }
+
+    public function setPayload(string $value): static
+    {
+        $this->payload = $value;
+
+        return $this;
+    }
+
+    public function setShowCaptionAboveMedia(bool $value): static
+    {
+        $this->showCaptionAboveMedia = $value;
+
+        return $this;
+    }
+
+    public function setStarCount(int $value): static
+    {
+        $this->starCount = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

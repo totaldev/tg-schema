@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Reply;
  */
 class ReplyMarkupForceReply extends ReplyMarkup
 {
-    public const TYPE_NAME = 'replyMarkupForceReply';
+    public const string TYPE_NAME = 'replyMarkupForceReply';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReplyMarkupForceReply extends ReplyMarkup
     public function getIsPersonal(): bool
     {
         return $this->isPersonal;
+    }
+
+    public function setInputFieldPlaceholder(string $value): static
+    {
+        $this->inputFieldPlaceholder = $value;
+
+        return $this;
+    }
+
+    public function setIsPersonal(bool $value): static
+    {
+        $this->isPersonal = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

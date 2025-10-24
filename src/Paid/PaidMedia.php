@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdObject;
  */
 class PaidMedia extends TdObject
 {
-    public const TYPE_NAME = 'PaidMedia';
+    public const string TYPE_NAME = 'PaidMedia';
 
     public function __construct() {}
 

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class UpdateMessageSuggestedPostInfo extends Update
 {
-    public const TYPE_NAME = 'updateMessageSuggestedPostInfo';
+    public const string TYPE_NAME = 'updateMessageSuggestedPostInfo';
 
     public function __construct(
         /**
@@ -55,6 +55,27 @@ class UpdateMessageSuggestedPostInfo extends Update
     public function getSuggestedPostInfo(): SuggestedPostInfo
     {
         return $this->suggestedPostInfo;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setSuggestedPostInfo(SuggestedPostInfo $value): static
+    {
+        $this->suggestedPostInfo = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

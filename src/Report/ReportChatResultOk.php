@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportChatResultOk extends ReportChatResult
 {
-    public const TYPE_NAME = 'reportChatResultOk';
+    public const string TYPE_NAME = 'reportChatResultOk';
 
     public function __construct()
     {

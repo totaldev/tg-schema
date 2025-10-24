@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatPosition extends TdObject
 {
-    public const TYPE_NAME = 'chatPosition';
+    public const string TYPE_NAME = 'chatPosition';
 
     public function __construct(
         /**
@@ -63,6 +63,34 @@ class ChatPosition extends TdObject
     public function getSource(): ?ChatSource
     {
         return $this->source;
+    }
+
+    public function setIsPinned(bool $value): static
+    {
+        $this->isPinned = $value;
+
+        return $this;
+    }
+
+    public function setList(ChatList $value): static
+    {
+        $this->list = $value;
+
+        return $this;
+    }
+
+    public function setOrder(int $value): static
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    public function setSource(?ChatSource $value): static
+    {
+        $this->source = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

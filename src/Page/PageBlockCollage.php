@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PageBlockCollage extends PageBlock
 {
-    public const TYPE_NAME = 'pageBlockCollage';
+    public const string TYPE_NAME = 'pageBlockCollage';
 
     public function __construct(
         /**
@@ -46,6 +46,20 @@ class PageBlockCollage extends PageBlock
     public function getPageBlocks(): array
     {
         return $this->pageBlocks;
+    }
+
+    public function setCaption(PageBlockCaption $value): static
+    {
+        $this->caption = $value;
+
+        return $this;
+    }
+
+    public function setPageBlocks(array $value): static
+    {
+        $this->pageBlocks = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

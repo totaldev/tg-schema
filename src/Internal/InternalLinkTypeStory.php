@@ -12,7 +12,7 @@ namespace Totaldev\TgSchema\Internal;
  */
 class InternalLinkTypeStory extends InternalLinkType
 {
-    public const TYPE_NAME = 'internalLinkTypeStory';
+    public const string TYPE_NAME = 'internalLinkTypeStory';
 
     public function __construct(
         /**
@@ -43,6 +43,20 @@ class InternalLinkTypeStory extends InternalLinkType
     public function getStoryPosterUsername(): string
     {
         return $this->storyPosterUsername;
+    }
+
+    public function setStoryId(int $value): static
+    {
+        $this->storyId = $value;
+
+        return $this;
+    }
+
+    public function setStoryPosterUsername(string $value): static
+    {
+        $this->storyPosterUsername = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

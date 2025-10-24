@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Invite;
  */
 class InviteLinkChatTypeChannel extends InviteLinkChatType
 {
-    public const TYPE_NAME = 'inviteLinkChatTypeChannel';
+    public const string TYPE_NAME = 'inviteLinkChatTypeChannel';
 
     public function __construct()
     {

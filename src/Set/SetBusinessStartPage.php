@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class SetBusinessStartPage extends TdFunction
 {
-    public const TYPE_NAME = 'setBusinessStartPage';
+    public const string TYPE_NAME = 'setBusinessStartPage';
 
     public function __construct(
         /**
@@ -34,6 +34,13 @@ class SetBusinessStartPage extends TdFunction
     public function getStartPage(): ?InputBusinessStartPage
     {
         return $this->startPage;
+    }
+
+    public function setStartPage(?InputBusinessStartPage $value): static
+    {
+        $this->startPage = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

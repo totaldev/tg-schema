@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PremiumFeatures extends TdObject
 {
-    public const TYPE_NAME = 'premiumFeatures';
+    public const string TYPE_NAME = 'premiumFeatures';
 
     public function __construct(
         /**
@@ -58,6 +58,27 @@ class PremiumFeatures extends TdObject
     public function getPaymentLink(): ?InternalLinkType
     {
         return $this->paymentLink;
+    }
+
+    public function setFeatures(array $value): static
+    {
+        $this->features = $value;
+
+        return $this;
+    }
+
+    public function setLimits(array $value): static
+    {
+        $this->limits = $value;
+
+        return $this;
+    }
+
+    public function setPaymentLink(?InternalLinkType $value): static
+    {
+        $this->paymentLink = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

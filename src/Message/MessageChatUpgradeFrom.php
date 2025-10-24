@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageChatUpgradeFrom extends MessageContent
 {
-    public const TYPE_NAME = 'messageChatUpgradeFrom';
+    public const string TYPE_NAME = 'messageChatUpgradeFrom';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class MessageChatUpgradeFrom extends MessageContent
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setBasicGroupId(int $value): static
+    {
+        $this->basicGroupId = $value;
+
+        return $this;
+    }
+
+    public function setTitle(string $value): static
+    {
+        $this->title = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

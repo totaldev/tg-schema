@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class ReportVideoMessageAdvertisement extends TdFunction
 {
-    public const TYPE_NAME = 'reportVideoMessageAdvertisement';
+    public const string TYPE_NAME = 'reportVideoMessageAdvertisement';
 
     public function __construct(
         /**
@@ -42,6 +42,20 @@ class ReportVideoMessageAdvertisement extends TdFunction
     public function getOptionId(): string
     {
         return $this->optionId;
+    }
+
+    public function setAdvertisementUniqueId(int $value): static
+    {
+        $this->advertisementUniqueId = $value;
+
+        return $this;
+    }
+
+    public function setOptionId(string $value): static
+    {
+        $this->optionId = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

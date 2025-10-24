@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Session;
  */
 class SessionTypeXbox extends SessionType
 {
-    public const TYPE_NAME = 'sessionTypeXbox';
+    public const string TYPE_NAME = 'sessionTypeXbox';
 
     public function __construct()
     {

@@ -13,7 +13,7 @@ use Totaldev\TgSchema\TdFunction;
  */
 class SetPollAnswer extends TdFunction
 {
-    public const TYPE_NAME = 'setPollAnswer';
+    public const string TYPE_NAME = 'setPollAnswer';
 
     public function __construct(
         /**
@@ -54,6 +54,27 @@ class SetPollAnswer extends TdFunction
     public function getOptionIds(): array
     {
         return $this->optionIds;
+    }
+
+    public function setChatId(int $value): static
+    {
+        $this->chatId = $value;
+
+        return $this;
+    }
+
+    public function setMessageId(int $value): static
+    {
+        $this->messageId = $value;
+
+        return $this;
+    }
+
+    public function setOptionIds(array $value): static
+    {
+        $this->optionIds = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

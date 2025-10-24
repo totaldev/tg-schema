@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class PassportElementAddress extends PassportElement
 {
-    public const TYPE_NAME = 'passportElementAddress';
+    public const string TYPE_NAME = 'passportElementAddress';
 
     public function __construct(
         /**
@@ -35,6 +35,13 @@ class PassportElementAddress extends PassportElement
     public function getAddress(): Address
     {
         return $this->address;
+    }
+
+    public function setAddress(Address $value): static
+    {
+        $this->address = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

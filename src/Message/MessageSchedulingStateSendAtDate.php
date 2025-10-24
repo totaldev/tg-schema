@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Message;
  */
 class MessageSchedulingStateSendAtDate extends MessageSchedulingState
 {
-    public const TYPE_NAME = 'messageSchedulingStateSendAtDate';
+    public const string TYPE_NAME = 'messageSchedulingStateSendAtDate';
 
     public function __construct(
         /**
@@ -32,6 +32,13 @@ class MessageSchedulingStateSendAtDate extends MessageSchedulingState
     public function getSendDate(): int
     {
         return $this->sendDate;
+    }
+
+    public function setSendDate(int $value): static
+    {
+        $this->sendDate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

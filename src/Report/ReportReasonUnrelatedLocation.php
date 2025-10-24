@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Report;
  */
 class ReportReasonUnrelatedLocation extends ReportReason
 {
-    public const TYPE_NAME = 'reportReasonUnrelatedLocation';
+    public const string TYPE_NAME = 'reportReasonUnrelatedLocation';
 
     public function __construct()
     {

@@ -15,7 +15,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class ChatRevenueStatistics extends TdObject
 {
-    public const TYPE_NAME = 'chatRevenueStatistics';
+    public const string TYPE_NAME = 'chatRevenueStatistics';
 
     public function __construct(
         /**
@@ -64,6 +64,34 @@ class ChatRevenueStatistics extends TdObject
     public function getUsdRate(): float
     {
         return $this->usdRate;
+    }
+
+    public function setRevenueAmount(ChatRevenueAmount $value): static
+    {
+        $this->revenueAmount = $value;
+
+        return $this;
+    }
+
+    public function setRevenueByHourGraph(StatisticalGraph $value): static
+    {
+        $this->revenueByHourGraph = $value;
+
+        return $this;
+    }
+
+    public function setRevenueGraph(StatisticalGraph $value): static
+    {
+        $this->revenueGraph = $value;
+
+        return $this;
+    }
+
+    public function setUsdRate(float $value): static
+    {
+        $this->usdRate = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array

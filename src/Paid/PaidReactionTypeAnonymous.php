@@ -11,7 +11,7 @@ namespace Totaldev\TgSchema\Paid;
  */
 class PaidReactionTypeAnonymous extends PaidReactionType
 {
-    public const TYPE_NAME = 'paidReactionTypeAnonymous';
+    public const string TYPE_NAME = 'paidReactionTypeAnonymous';
 
     public function __construct()
     {

@@ -14,7 +14,7 @@ use Totaldev\TgSchema\TdSchemaRegistry;
  */
 class LinkPreviewTypeGiftCollection extends LinkPreviewType
 {
-    public const TYPE_NAME = 'linkPreviewTypeGiftCollection';
+    public const string TYPE_NAME = 'linkPreviewTypeGiftCollection';
 
     public function __construct(
         /**
@@ -37,6 +37,13 @@ class LinkPreviewTypeGiftCollection extends LinkPreviewType
     public function getIcons(): array
     {
         return $this->icons;
+    }
+
+    public function setIcons(array $value): static
+    {
+        $this->icons = $value;
+
+        return $this;
     }
 
     public function typeSerialize(): array
