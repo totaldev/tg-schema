@@ -52,11 +52,11 @@ class SendMessage extends TdFunction
     {
         return new static(
             $array['chat_id'],
+            TdSchemaRegistry::fromArray($array['input_message_content']),
             isset($array['topic_id']) ? TdSchemaRegistry::fromArray($array['topic_id']) : null,
             isset($array['reply_to']) ? TdSchemaRegistry::fromArray($array['reply_to']) : null,
             isset($array['options']) ? TdSchemaRegistry::fromArray($array['options']) : null,
             isset($array['reply_markup']) ? TdSchemaRegistry::fromArray($array['reply_markup']) : null,
-            TdSchemaRegistry::fromArray($array['input_message_content']),
         );
     }
 
@@ -136,12 +136,12 @@ class SendMessage extends TdFunction
     {
         return [
             '@type'                 => static::TYPE_NAME,
+            'input_message_content' => $this->inputMessageContent->typeSerialize(),
             'chat_id'               => $this->chatId,
             'topic_id'              => $this->topicId ?? null,
             'reply_to'              => $this->replyTo ?? null,
             'options'               => $this->options ?? null,
             'reply_markup'          => $this->replyMarkup ?? null,
-            'input_message_content' => $this->inputMessageContent->typeSerialize(),
         ];
     }
 }

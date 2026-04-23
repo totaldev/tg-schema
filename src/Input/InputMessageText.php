@@ -38,8 +38,8 @@ class InputMessageText extends InputMessageContent
     {
         return new static(
             TdSchemaRegistry::fromArray($array['text']),
-            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
             $array['clear_draft'],
+            isset($array['link_preview_options']) ? TdSchemaRegistry::fromArray($array['link_preview_options']) : null,
         );
     }
 
@@ -84,8 +84,8 @@ class InputMessageText extends InputMessageContent
         return [
             '@type'                => static::TYPE_NAME,
             'text'                 => $this->text->typeSerialize(),
-            'link_preview_options' => $this->linkPreviewOptions ?? null,
             'clear_draft'          => $this->clearDraft,
+            'link_preview_options' => $this->linkPreviewOptions ?? null,
         ];
     }
 }
